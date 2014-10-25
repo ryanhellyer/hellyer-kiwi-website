@@ -1,0 +1,184 @@
+/*
+	Theme Name: Boommf
+	Theme URI: http://pixopoint.com/
+	Description: Boommf was created as the blog theme for http://fgw.org.nz/
+	Version: 0.9
+	Author: PixoPoint / Ryan Hellyer
+	Author URI: http://pixopoint.com/
+
+	This theme was designed and coded by PixoPoint Web Development / Ryan Hellyer
+	http://pixopoint.com/
+
+	The CSS, XHTML and design of this WordPress theme is copyright &copy; 2008 to Ryan Hellyer
+	You may modify this theme for your own purposes as long as you leave the link in the footer
+	to http://pixopoint.com/.	Anyone who wishes to use this theme must download it from
+	http://pixopoint.com/
+*/
+
+/* Body */
+	body {margin:0;padding:0;background:#667A88}
+	#wrapper {width:713px;margin:0 auto;background:#ffffff url('images/border_left.png') repeat-y left}
+	#wrapper2 {width:100%;background:url('images/border_right.png') repeat-y right}
+	#header {display:block;background:url('images/header.png');width:699px;height:125px;margin:0 auto}
+	#contentwrapper {margin:0 23px}
+
+/* Sidebar */
+	#sidebar {color:#2B4D70;font-family:sans-serif;background:#ffffff;width:160px;float:left;padding:0 0 10px 10px}
+	#sidebar a {color:#2B4D70;text-decoration:none}
+	#sidebar a:hover {text-decoration:underline}
+	#sidebar h3 {color:#2B4D70;font-weight:normal;font-family:georgia,serif;font-size:1.3em}
+	#sidebar h3 a {color:#2B4D70;text-decoration:none}
+	#sidebar h3 a:hover {text-decoration:underline}
+	#sidebar ul {list-style:none;margin:0 0 0 10px;padding:0}
+	#sidebar li {color:#2B4D70;font-weight:bold;font-size:0.8em;margin:7px 0}
+	#sidebar li li {font-size:1em}
+	#sidebar li:before {color:#2B4D70;content:"\00BB \0020"}
+	#sidebar li a {color:#2B4D70;text-decoration:none}
+	#sidebar li a:hover {text-decoration:underline}
+
+/* Main Content */
+	#maincontent {background:#ffffff;width:470px;float:right;padding-right:20px}
+	#maincontent #postdate {text-align:right;color:#aaaaaa;border-bottom:1px solid #cccccc;font-size:0.75em;padding:15px 0 3px 0}
+	#maincontent h1,#maincontent h2,#maincontent h3,#maincontent h4,#maincontent h5,#maincontent h6 {color:#2B4D70;font-weight:normal;font-family:georgia,serif}
+	#maincontent h1 {font-size:1.5em}
+	#maincontent h2 {font-size:1.3em}
+	#maincontent h3 {font-size:1.0em;font-weight:bold;margin:15px 0 4px 0;padding:0}
+	#maincontent h4 {font-size:0.9em;font-weight:bold;margin:15px 0 4px 0;padding:0}
+	#maincontent h5 {font-size:0.8em;font-weight:bold;margin:15px 0 4px 0;padding:0}
+	#maincontent h6 {font-size:0.7em;font-weight:bold;margin:15px 0 4px 0;padding:0}
+	#maincontent ul {margin:5px 0}
+	#maincontent ul li {color:#253040;font-family:sans-serif;font-size:0.8em;font-family:"Lucida Sans Unicode",verdana,sans-serif}
+	#maincontent ol li {color:#253040;font-family:sans-serif;font-size:0.8em;font-family:"Lucida Sans Unicode",verdana,sans-serif}
+	#maincontent img {border:1px solid #cccccc}
+	#maincontent img.alignleft {float:left;margin:0 10px 0 0}
+	#maincontent img.aligncenter {display:block;margin:0 auto}
+	#maincontent img.alignright {float:right;margin:0 0 0 10px}
+	#maincontent a img {border:1px solid #2B4D70}
+	#maincontent a:hover img {border:1px solid #406DB4}
+	#maincontent p {line-height:1.5em;margin:0;padding:0 0 10px 0;color:#253040;font-family:sans-serif;font-size:0.8em;font-family:"Lucida Sans Unicode",verdana,sans-serif}
+	#maincontent a {color:#2B4D70;text-decoration:none}
+	#maincontent a:hover {color:#2B4D70;text-decoration:underline}
+
+/* Comments section */
+	#maincontent #postinfo {color:#aaaaaa;border-bottom:1px dotted #cccccc;font-size:0.75em;margin:0 0 40px 0;padding:15px 0 3px 0}
+	#maincontent .postcomment {clear:both;margin-top:10px;padding-top:10px;border-top:1px solid #cccccc;}
+	#maincontent .postcomment.alt {background:#eeeeee}
+	#maincontent .postcomment.alt p {background:#eeeeee}
+	#maincontent .postcomment img {float:left;margin:0 0 10px 10px;width:60px;height:60px}
+	#maincontent .postcomment p {background:transparent;float:right;width:390px;color:#888888;font-size:0.7em}
+	#maincontent .postcomment .clear {clear:both}
+	#maincontent #comment {width:100%}
+	#maincontent #respond {clear:both;border-top:1px solid #cccccc;padding-top:30px}
+
+/* Footer */
+	#footer {border-top:1px solid #cccccc;clear:both;padding:10px 0;text-align:center;font-family:sans-serif;color:#aaaaaa;font-size:0.7em}
+	#footer a {text-decoration:none;color:#2B4D70}
+	#footer a:hover {text-decoration:underline}
+
+/* For WordPress dropdown menu plugin */
+	#suckerfishnav li {color:#2B4D70;font-weight:bold;font-size:1em;margin:0}
+	#suckerfishnav li:before {color:#2B4D70;content:""}
+
+
+
+
+
+#suckerfishnav {
+    background:#ffffff repeat-x;
+    font-size:12px;
+    font-family:helvetica,sans-serif;
+    font-weight:bold;
+    }
+#suckerfishnav, #suckerfishnav ul {
+    float:left;
+    list-style:none;
+    line-height:30px;
+    padding:0;
+    border:0px solid #bbb;
+    margin:0;
+    width:140px;
+    }
+#suckerfishnav a {
+    display:block;
+    color:#2B4D70;
+    text-decoration:none;
+    padding:0px 8px;
+    }
+#suckerfishnav li {
+    float:left;
+    padding:0;
+    }
+#suckerfishnav li a {
+    width:124px;
+    height:30px;
+    overflow:hidden;
+    }
+#suckerfishnav ul {
+    position:absolute;
+    left:-999em;
+    height:auto;
+    width:161px;
+    font-weight:normal;
+    margin:0;
+    line-height:1;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:-30px 0 0 140px;
+    }
+#suckerfishnav li li {
+    width:159px;
+    border-bottom:1px solid #cccccc;
+    border-left:1px solid #cccccc;
+    border-right:1px solid #cccccc;
+    font-weight:normal;
+    font-family:helvetica,sans-serif;
+    }
+#suckerfishnav li li a {
+    padding:7px 10px;
+    width:144px;
+    height:10px;
+    font-size:10px;
+    color:#2B4D70;
+    }
+#suckerfishnav li ul ul {
+    margin:-25px 0 0 160px;
+    }
+#suckerfishnav li li:hover {
+    background:#3C7CBD;
+    }
+#suckerfishnav li ul li:hover a, #suckerfishnav li ul li li:hover a, #suckerfishnav li ul li li li:hover a, #suckerfishnav li ul li li li:hover a {
+    color:#fff;
+    }
+#suckerfishnav li:hover a, #suckerfishnav li.sfhover a {
+    color:#fff;
+    }
+#suckerfishnav li:hover li a, #suckerfishnav li li:hover li a, #suckerfishnav li li li:hover li a, #suckerfishnav li li li li:hover li a {
+    color:#2B4D70;
+    }
+#suckerfishnav li:hover ul ul, #suckerfishnav li:hover ul ul ul, #suckerfishnav li:hover ul ul ul ul, #suckerfishnav li.sfhover ul ul, #suckerfishnav li.sfhover ul ul ul, #suckerfishnav li.sfhover ul ul ul ul {
+    left:-999em;
+    }
+#suckerfishnav li:hover ul, #suckerfishnav li li:hover ul, #suckerfishnav li li li:hover ul, #suckerfishnav li li li li:hover ul, #suckerfishnav li.sfhover ul, #suckerfishnav li li.sfhover ul, #suckerfishnav li li li.sfhover ul, #suckerfishnav li li li li.sfhover ul {
+    left:auto;
+    background:#eeeeee;
+    }
+#suckerfishnav li:hover, #suckerfishnav li.sfhover {
+    background:#3C7CBD;
+    }
+#suckerfishnav .current_page_parent {
+    background:#eeeeee;
+    }
+#suckerfishnav .current_page_item {
+    background:#dddddd;
+    }
+#suckerfishnav .current_page_parent a:after, #suckerfishnav .current_page_parent li a:after, #suckerfishnav .current_page_parent li li a:after, #suckerfishnav .current_page_parent li li li a:after, #suckerfishnav .current_page_parent li li li li a:after {
+    content:"";
+    }
+#suckerfishnav .current_page_parent a:after, #suckerfishnav li .current_page_parent a:after, #suckerfishnav li li .current_page_parent a:after, #suckerfishnav li li li .current_page_parent a:after {
+    color:#000000;
+    content:"";
+    }
+#suckerfishnav .current_page_item a:after, #suckerfishnav li .current_page_item a:after, #suckerfishnav li li .current_page_item a:after, #suckerfishnav li li li .current_page_item a:after, #suckerfishnav li li li li .current_page_item a:after {
+    color:#000000;
+    content:"";
+    }

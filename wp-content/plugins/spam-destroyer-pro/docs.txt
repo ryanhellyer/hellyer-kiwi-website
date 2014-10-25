@@ -1,0 +1,53 @@
+/*
+
+Add support for filterable cookie time length as added in version 1.3.2 stable by Milan.
+
+Set reasonable number of sig. figs ... 
+class-spam-destroyer-statistics.php
+
+Auto-increment spam protection.
+Allow for changing spam protection via wp-config.php or plugin.
+Perhaps set protection level as option.
+Perhaps allow user to set maximum number of spams to reach before bumping to next protection level.
+
+
+ * === low ===
+ * No JS = Only CAPTCHA
+ * With JS = Only Cookie and JS input replacement
+ *
+ * === high ===
+ * No JS = doesn't work
+ * With JS = CAPTCHA, Cookie and JS input replacement
+ * 
+ * === Possible extras ===
+ * 		Browser sniffing?
+ * 		More advanced CAPTCHA
+ * 		StopForumSpam
+ */
+
+
+Theoretical future ... 
+LOW
+	No captcha with JS
+	Match captcha without JS
+MEDIUM
+	Need JS
+	MATH CAPTCHA
+HIGH
+	Need JS
+	Match CAPTCHA
+	StopForumSpam
+ULTRA
+	NEED JS
+	StopForumSpam
+	Recaptcha
+
+
+
+
+JS input replacement
+Cookie check
+CAPTCHA
+
+Trackbacks ... check for URL on page
+Blocks based on time. Defaults to 5 seconds since last post.
