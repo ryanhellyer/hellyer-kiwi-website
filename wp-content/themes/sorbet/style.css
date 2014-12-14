@@ -3,7 +3,7 @@
  * Author: WordPress.com
  * Author URI: https://wordpress.com/themes/
  * Description: Sorbet is a delicious treat for your blog or website. Colorful post formats help your content pop, while secondary information (navigation, search, social links, and widgets) is tucked neatly away in the header for easy access that doesn't crowd your content.
- * Version: 1.0.8
+ * Version: 1.1
  * License: GNU General Public License v2 or later
  * License URI: license.txt
  * Tags: blue, gray, green, orange, pink, red, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, rtl-language-support, sticky-post, translation-ready
@@ -2503,4 +2503,71 @@ div.sharedaddy div.sd-block {
 }
 .social-links ul a:before {
   content: "\f415";
+}
+
+
+/* =Eventbrite */
+
+.eventbrite-event:before {
+  content: "\f306";
+  z-index: 2;
+}
+.eventbrite-event .entry-meta > span {
+  margin-right: 20px;
+}
+.eventbrite-event .entry-meta > span:before {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Genericons";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  margin-right: 2px;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+.eventbrite-event .event-time:before {
+  content: '\f307';
+}
+.eventbrite-event .event-venue:before {
+  content: '\f417';
+}
+.eventbrite-event .event-organizer:before {
+  content: '\f304';
+}
+.eventbrite-event .event-details:before {
+  content: '\f455';
+}
+.archive-eventbrite .paging-navigation {
+  background-color: white;
+  border-top: 8px solid #f45145;
+  margin: 0 0 81px;
+  padding: 27px 27px 22px;
+  position: relative;
+  text-align: center;
+}
+.archive-eventbrite .paging-navigation .page-numbers {
+  color: #656e7f;
+  padding: 6px 12px;
+}
+.archive-eventbrite .paging-navigation a:hover,
+.archive-eventbrite .paging-navigation .current {
+  background-color: #9ba2af;
+  color: #fff;
+}
+.archive-eventbrite .site-content .paging-navigation a:before,
+.archive-eventbrite .site-content .paging-navigation a:before {
+  display: none;
+}
+@media screen and (max-width: 47.2226em) {
+  .eventbrite-event .event-time,
+  .eventbrite-event .event-venue,
+  .eventbrite-event .event-organizer,
+  .eventbrite-event .event-details {
+    clear: both;
+    display: block;
+    float: none;
+    margin: 0;
+    width: 100%;
+  }
 }

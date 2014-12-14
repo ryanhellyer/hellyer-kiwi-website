@@ -1,10 +1,10 @@
 === Multilingual Press ===
-Contributors: Inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot
-Tags: l10n, i18n, bilingual, international, internationalization, lang, language, localization,  multilanguage, multi language, multilingual, multi lingual, multisite, switcher, translation, website translation, wordpress translation, chinese, german, french, russian, widget
+Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot
+Tags: l10n, i18n, bilingual, international, internationalization, lang, language, localization,  multilanguage, multi language, multilingual, multi lingual, multisite, switcher, translation, website translation, wordpress translation, chinese, german, french, russian, widget, menu, navigation, network, categories, taxonomy
 
 Requires at least: 3.8
-Tested up to: 3.9
-Stable tag: 2.0.1
+Tested up to: 4.0
+Stable tag: 2.1.1
 
 Create networks with multiple languages
 
@@ -26,6 +26,8 @@ any data-loss or garbage output.
 
 Our **Language Manager** offers 174 languages, and you can edit them.
 
+**Translate our plugin, and get a free Pro license!** Please contact our lead developer @toscho before you start: `t.scholz` at `inpsyde.com`.
+
 We cannot guarantee free ad hoc support. Please be patient, we are a small team.
 You can follow our progress and development notices on our
 [developer blog](http://make.marketpress.com/multilingualpress/).
@@ -36,6 +38,8 @@ You can follow our progress and development notices on our
 - Language Manager with 174 editable languages.
 - View the translations for each post or page underneath the post editor.
 - Show a list of links for all translations on each page in a flexible widget.
+- Translate posts, pages and taxonomy terms like categories or tags.
+- Add translation links to any nav menu.
 - No lock-in: After deactivation, all sites will still work.
 
 = Pro Version =
@@ -60,7 +64,7 @@ save your time and to improve your work flow and user experience:
 == Installation ==
 
 = Requirements =
-* WordPress Multisite 3.3+
+* WordPress Multisite 3.4+
 * PHP 5.2.4, newer PHP versions will work faster.
 
 Use the installer via back-end of your install or ...
@@ -96,22 +100,36 @@ access to your content after the plugin deactivation.
 
 == Changelog ==
 
-= 2.0.3 =
+= 2.1.2 Edith Fellowes =
 
-- Show current site in mlp_get_available_languages_titles() with proper
-  language name.
+- Combine all scripts and stylesheets, separated for frontend and backend.
+- Minify scripts and stylesheets when `SCRIPT_DEBUG` and `MULTILINGUALPRESS_DEBUG` are not set.
+- Make the icon/flag for the current site available in nav menus.
+- Sites with custom name are now returned in `Mlp_Language_Api::get_translations()`.
+- Better updates: Make sure that site relations are not lost and languages are not duplicated.
 
-= 2.0.2 =
+= 2.1.1 =
 
-- Changes to the Pro version only, skipped in the free version.
+- Fixed autoloading with `glob()` on Solaris systems.
+- Fixed database error when upgrading from a preview version of the 2.1 branch.
+- Custom flags are now fetched from the correct site.
+- Built-in flag icons are checked on the file system before we return an URL for them.
+- Language switcher widget is now visible for all users.
+- Improved description of the widget options.
+- Search pages are translated correctly.
+- Pro: Table duplicator works with custom tables now.
 
-= 2.0.1 =
+= 2.1.0 =
 
-- Extend return value of `Mlp_Helpers::get_blog_language()`: `lang` and
-  `language_short` return just the first part of a language tag, `language_long`
-  the complete language tag.
-- Make `get_available_languages_titles()` use the correct source.
-- Remove `language-list.php`.
+- Added links to translations to the `head` element.
+- Relations between sites are now stored in a separate table `mlp_site_relations`. This is faster than the previous option call, and it is less error prone, because we don’t have to synchronize these relations between sites. The old options will be imported into the table automatically during the upgrade.
+- Pro: Post meta fields in poorly written plugins will not be overwritten anymore. We had many reports about plugins without a check for the current site when they write meta fields. Now we remove all global post data before we synchronize the posts, and we restore them when we are done.
+- Installation and uninstallation are heavily improved now. We catch many more edge cases and switches from Free to Pro.
+- Languages are now synchronized between MultilingualPress and WordPress. When you assign a language in MultilingualPress to a site the first time and the language files are available, we set the site language in the WordPress option to that value.
+- You can add language links to regular navigation menus in the backend now. These links are adjusted automatically on each site: if there is a dedicated translation, the link will be changed to that page. It will point to the other site’s front page otherwise.
+- Users who are not logged in will not get permalinks for non-public sites anymore. You can work on a new site now safely, test all the links while being logged in, and your visitors will never see that until you set the site to public.
+- You can link existing terms (tags, categories, whatever) now. We will add support for term creation on that page later.
+- There are hundreds of other, minor improvements, too many to list them all.
 
 = 2.0.0 =
 

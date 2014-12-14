@@ -59,6 +59,12 @@ function sorbet_setup() {
 		'default-color' => 'f0f1f3',
 		'default-image' => '',
 	) ) );
+
+	/**
+	 * Add support for Eventbrite.
+	 * See: https://wordpress.org/plugins/eventbrite-api/
+	 */
+	add_theme_support( 'eventbrite' );
 }
 endif; // sorbet_setup
 add_action( 'after_setup_theme', 'sorbet_setup' );
@@ -214,3 +220,8 @@ function sorbet_mce_css( $mce_css ) {
 	return $mce_css . $font;
 }
 add_filter( 'mce_css', 'sorbet_mce_css' );
+
+/**
+ * Remove the separator from Eventbrite events meta.
+ */
+add_filter( 'eventbrite_meta_separator', '__return_false' );

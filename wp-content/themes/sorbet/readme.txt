@@ -51,6 +51,9 @@ You can add links to a multitude of social services to a toggle menu (the heart 
 
 == Changelog ==
 
+= 1.1 - November 27, 2014 =
+* Add support for the Eventbrite API plugin.
+
 = 1.0.8 - August, 2014 =
 * Adjust icon font sizes to align to clear pixel values
 * Trigger .resize() on sidebar area when opened
