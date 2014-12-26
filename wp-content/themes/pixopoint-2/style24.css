@@ -785,6 +785,7 @@ h4.share-prefix {
 	border:none;
 }
 .post img {
+	max-width: 100%;
 	border:10px solid #ededed;
 }
 blockquote {
@@ -971,6 +972,13 @@ ul#numeric_pagination li a:hover {
 	.post_thumbnail {
 		display: none;
 	}
+
+.page-template-products-list-php h2.post_title, .search h2.post_title, .archive h2.post_title, .home h2.post_title,
+.page-template-products-list-php .postcontent, .search .postcontent, .archive .postcontent, .home .postcontent {
+	margin: 0;	
+}
+
+
 	#maincontent {
 		padding:20px 0 20px 20px;
 	}
@@ -996,3 +1004,21 @@ ul#numeric_pagination li a:hover {
 		width: 80%;
 	}
 }
+
+.wp-api-screenshots ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.wp-api-screenshots ol li {
+	list-style: none;
+}
+
+#respond label#prompt-comment-subscribe {
+	width: 100%;
+}
+#prompt-comment-subscribe input[type=checkbox] {
+	height: auto;
+	width: auto;
+}
+

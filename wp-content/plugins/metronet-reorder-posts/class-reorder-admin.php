@@ -17,7 +17,7 @@
  * @author Ronald Huereca
  * @since 2.0.0
  */
-class Reorder_Admin {
+class MN_Reorder_Admin {
 	/**
 	 * @var $instance 
 	 * @desc Instance of the admin class
@@ -47,6 +47,7 @@ class Reorder_Admin {
 		if ( !apply_filters( 'metronet_reorder_post_allow_admin', true ) ) return; //Use this filter if you want to disable the admin panel settings for this plugin, including disabling the menu order overrides
 		
 		//Initialize actions
+		/* Dev note:  If you know what you're doing code-wise, add the menu_order in get_posts, pre_get_posts, or WP_Query, disable these filters, and/or disable the admin settings (see above). */
 		add_filter( 'posts_orderby', array( $this, 'modify_menu_order_sql' ), 30, 2 );
 		add_action( 'pre_get_posts', array( $this, 'modify_menu_order_pre' ), 30, 1 );
 		
@@ -305,7 +306,7 @@ class Reorder_Admin {
 		
 		//Get main plugin options
 		$plugin_options = $this->get_plugin_options();
-		if ( !isset( $plugin_options[ 'menu_order' ] ) || !is_array( $plugin_options[ 'menu_order' ] ) || empty( $plugin_options[ 'menu_order' ] ) ) return;
+		if ( !isset( $plugin_options[ 'menu_order' ] ) || !is_array( $plugin_options[ 'menu_order' ] ) || empty( $plugin_options[ 'menu_order' ] ) ) return $sql_orderby;
 		
 		$menu_order = $plugin_options[ 'menu_order' ];
 		
@@ -335,7 +336,7 @@ class Reorder_Admin {
 		
 		//Overwrite the orderby clause
 		global $wpdb;
-		$sql_orderby = sprintf( '%s.menu_order %s', $wpdb->posts, $menu_order_order );
+		$sql_orderby = sprintf( '%s.menu_order %s', $wpdb->posts, $menu_order_order ); //for devs: no sanitization required as tablename is from $wpdb and $menu_order_order is set to match only ASC or DESC.
 
 		//Return 
 		return $sql_orderby;		
@@ -377,11 +378,8 @@ class Reorder_Admin {
 	 * @see init_admin_settings
 	 *
 	 * @param array $input {
-	 		@type string $js_content Content to be parsed via Javascript.  Default 'entry-content'.
-	
-	 		@type string $twitter Twitter username.  Default ''.
-	 		@type bool $show_twitter Whether to show twitter share option.  Default true.
-	 		@type bool $show_facebook Whether to show facebook share option.  Default true
+	 		@type array $post_types
+	 		@type array $menu_order 
 	 }
 	 * @return array Sanitized array of options
 	 */
@@ -421,5 +419,5 @@ class Reorder_Admin {
 
 add_action( 'init', 'mn_reorder_admin_instantiate', 15 );
 function mn_reorder_admin_instantiate() {
-	Reorder_Admin::get_instance();
+	MN_Reorder_Admin::get_instance();
 }

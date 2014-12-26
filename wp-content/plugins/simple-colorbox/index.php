@@ -2,11 +2,12 @@
 /*
 
 Plugin Name: Simple Colorbox
-Plugin URI: http://geek.ryanhellyer.net/products/simple-colorbox/
+Plugin URI: https://geek.hellyer.kiwi/products/simple-colorbox/
 Description: Adds a Colorbox to your site with no configuration required.
 Author: Ryan Hellyer
-Version: 1.6
-Author URI: http://geek.ryanhellyer.net/
+Version: 1.6.1
+Author URI: https://geek.hellyer.kiwi/
+Text Domain: simple-colorbox
 
 Copyright (c) 2013 Ryan Hellyer
 
@@ -30,7 +31,7 @@ license.txt file included with this plugin for more information.
  */
 define( 'SIMPLECOLORBOX_DIR', dirname( __FILE__ ) . '/' ); // Plugin folder DIR
 define( 'SIMPLECOLORBOX_URL', plugins_url( '', __FILE__ ) ); // Plugin folder URL
-define( 'SIMPLECOLORBOX_VERSION', '1.6' );
+define( 'SIMPLECOLORBOX_VERSION', '1.6.1' );
 
 /**
  * Simple Colorbox class
@@ -151,7 +152,7 @@ class Simple_Colorbox {
 	 * Display notice about the plugin in head
 	 */
 	public function ad() {
-		echo "\n<!-- Simple Colorbox Plugin v" . SIMPLECOLORBOX_VERSION ." by Ryan Hellyer ... http://geek.ryanhellyer.net/products/simple-colorbox/ -->\n";
+		echo "\n<!-- Simple Colorbox Plugin v" . SIMPLECOLORBOX_VERSION ." by Ryan Hellyer ... https://geek.hellyer.kiwi/products/simple-colorbox/ -->\n";
 	}
 
 }

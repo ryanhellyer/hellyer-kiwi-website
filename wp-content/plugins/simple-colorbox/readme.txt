@@ -1,9 +1,10 @@
 === Simple Colorbox ===
 Contributors: ryanhellyer
-Donate link: http://geek.ryanhellyer.net/donate/
-Tags: colorbox, simple, lightbox, hover, layover, slideshow
+Donate link: https://geek.hellyer.kiwi/donate/
+Tags: colorbox, simple, lightbox, hover, layover, slideshow, jquery, image, images, picture, pictures, gallery, galleries
 Requires at least: 3.9
-Stable tag: 1.6
+Tested up to: 4.2
+Stable tag: 1.6.1
 
 Description: Adds a very simple Colorbox to your linked images.
 
@@ -13,7 +14,7 @@ Adds a very simple Colorbox to your linked images. This plugin is intended as an
 alternatives. Unlike most other plugins with similar functionality, this one does not have any settings or requirements whatsoever, 
 simple install, activate and yer done :)
 
-<strong>More information can be found on the <a href="http://geek.ryanhellyer.net/products/simple-colorbox/">Simple Colorbox plugin page</a>.</strong>
+<strong>More information can be found on the <a href="https://geek.hellyer.kiwi/products/simple-colorbox/">Simple Colorbox plugin page</a>.</strong>
 
 == Installation ==
 
@@ -43,6 +44,9 @@ Simply add title tags toy our images.
 It didn't! WordPress altered the way the media uploader handled title tags, which in turn confused users who were attempting to add image captions via the media uploader. The plugin did, does and should keep working with captions into the future.
 
 == Changelog ==
+
+= 1.6.1 =
+* Support for latest versions of WordPress
 
 = 1.6 =
 * Upgraded to latest version of Colorbox
