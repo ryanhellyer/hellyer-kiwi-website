@@ -7,7 +7,7 @@
  *
  * @package    	WPAS
  * @since      	0.0.1
- * @author     	Pulido Pereira Nuno Ricardo <pereira@nunoapps.com>
+ * @author     	Pulido Pereira Nuno Ricardo <pereira@nunoapps.com> and Ryan Hellyer <ryanhellyer@gmail.com>
  * @copyright   Copyright (c) 2007 - 2013, Pulido Pereira Nuno Ricardo
  * @link       	http://nunoapps.com/plugins/wp-api-shortcode
  * @license   	http://www.gnu.org/licenses/gpl-2.0.html
