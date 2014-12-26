@@ -99,7 +99,7 @@ class Add_Deprecated_Metabox {
 	function meta_boxes_save( $post_id, $post ) {
 
 		// Do nonce security check
-		if ( ! wp_verify_nonce( $_POST['_deprecated_nonce'], __FILE__ ) ) {
+		if ( isset( $_POST['_deprecated_nonce'] ) && ! wp_verify_nonce( $_POST['_deprecated_nonce'], __FILE__ ) ) {
 			return;
 		}
 
