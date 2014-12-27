@@ -6,7 +6,7 @@
  * @since Comic Glot 1.0
  */
 ?><!DOCTYPE html>
-<html manifest="<?php echo esc_url( home_url( '?manifest=' . get_the_ID() ) ); ?>">
+<html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
