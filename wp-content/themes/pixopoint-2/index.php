@@ -46,7 +46,7 @@ if ( have_posts() ) {
 		else { ?>
 			<div class="post_thumbnail"><?php
 			if ( !has_post_thumbnail() ) { ?>
-				<img src="http://www.gravatar.com/avatar/a084125c824d274ff40cb834cf9f544a?default=monsterid&size=100" alt="" />
+				<img src="https://www.gravatar.com/avatar/a084125c824d274ff40cb834cf9f544a?default=monsterid&size=100" alt="" />
 			<?php }
 			else {
 				the_post_thumbnail( 'home-post-thumbnail' );
