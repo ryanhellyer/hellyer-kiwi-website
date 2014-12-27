@@ -39,7 +39,7 @@ class Comic_Glot_Setup extends Comic_Glot_Core {
 		add_action( 'the_content',        array( $this, 'override_content' ) );
 		add_action( 'init',               array( $this, 'rewrites' ) );
 		add_action( 'query_vars',         array( $this, 'rewrite_query_vars' ) );
-		add_action( 'template_redirect',  array( $this, 'comic_template' ) );
+		add_action( 'template_redirect',  array( $this, 'comic_template' ), 11 );
 	}
 
 	/**
