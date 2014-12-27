@@ -11,6 +11,5 @@
 	// Regular footer code
 	wp_footer();
 ?>
-<!-- Number of queries = <?php echo get_num_queries(); ?>. Time to execute = <?php timer_stop(1); ?> -->
 </body>
 </html>
