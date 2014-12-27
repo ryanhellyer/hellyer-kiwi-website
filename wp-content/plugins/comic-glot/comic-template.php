@@ -37,19 +37,36 @@ if ( have_posts() ) {
 
 <div class="buttons">
 
-	<button onclick='mySwipe.prev()'><?php _e( 'Previous', 'comic-glot' ); ?></button> 
-	<button onclick='mySwipe.next()'><?php _e( 'Next', 'comic-glot' ); ?></button>
+	<button class="button" onclick='mySwipe.prev()'><?php _e( 'Previous', 'comic-glot' ); ?></button> 
+	<button class="button" onclick='mySwipe.next()'><?php _e( 'Next', 'comic-glot' ); ?></button>
 
 </div>
 
 <p>
-	<script>
-	var appCache = window.applicationCache;
-	if(2==appCache.status){
-		document.write('<?php _e( 'Served from che cache', 'comic-glot' ); ?>: ');
-	}
-	</script>
 	<?php the_title(); ?>
+	<script>
+
+	// Let user know if page served from cache or not
+	var appCache = window.applicationCache;
+	if(0!=appCache.status && 2!=appCache.status){
+		document.write(' <small>(<?php _e( 'served from the browser cache', 'comic-glot' ); ?>)</small>');
+	}
+
+	// Check if a new cache is available on page load.
+	window.addEventListener('load', function(e) {
+
+		window.applicationCache.addEventListener('updateready', function(e) {
+			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+				// Browser downloaded a new app cache.
+				if (confirm('A new version of this site is available. Load it?')) {
+					window.location.reload();
+				}
+			}
+		}, false);
+
+	}, false);
+
+	</script>
 </p>
 
 <?php
