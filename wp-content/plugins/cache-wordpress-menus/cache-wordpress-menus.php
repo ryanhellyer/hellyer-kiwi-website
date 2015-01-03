@@ -32,16 +32,36 @@ license.txt file included with this plugin for more information.
 class Cache_WordPress_Menus {
 
 	/**
-	 * Class constructor
+	 * Set the time key constant.
+	 */
+	const CACHE_KEY = 'cache-wordpress-menu-time';
+	const CACHE_TIME = 3600;
+
+	/**
+	 * Set variable.
+	 */
+	public $transient;
+
+	/**
+	 * Class constructor.
 	 */
 	public function __construct() {
 
 		// Create unique transient key for this page
-		$this->transient = 'nav-' . md5( $_SERVER['REQUEST_URI'] . var_export( $args, true ) );
+		$this->transient = 'nav-' . md5( get_option( self::CACHE_KEY ) . $_SERVER['REQUEST_URI'] . var_export( $args, true ) );
 
-		// Filter the menu output
-		add_filter( 'wp_nav_menu',     array( $this, 'set_cached_menu' ), 10, 2 );
-		add_filter( 'pre_wp_nav_menu', array( $this, 'get_cached_menu' ), 10, 2 );
+		// Load hooks and filters
+		add_action( 'wp_update_nav_menu', array( $this, 'refresh_cache' ) );
+		add_filter( 'wp_nav_menu',        array( $this, 'set_cached_menu' ), 10, 2 );
+		add_filter( 'pre_wp_nav_menu',    array( $this, 'get_cached_menu' ), 10, 2 );
+	}
+
+	/**
+	 * Refresh the cache.
+	 * Works by setting a time-stamp which is used for each menus transient hash.
+	 */
+	public function refresh_cache() {
+		update_option( self::CACHE_KEY, time() );
 	}
 
 	/**
@@ -53,7 +73,7 @@ class Cache_WordPress_Menus {
 	 */
 	public function set_cached_menu( $nav_menu, $args ) {
 
-		set_transient( $this->transient, $nav_menu, 30 );
+		set_transient( $this->transient, $nav_menu, 60 * 30 );
 
 		return $nav_menu;
 	}
