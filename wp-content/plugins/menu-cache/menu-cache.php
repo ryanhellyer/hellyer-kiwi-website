@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Cache WordPress Menus
-Plugin URI: http://geek.ryanhellyer.net/products/manifest-cache/
-Description: Caches WordPress nav menus
+Plugin Name: Menu Cache
+Plugin URI: http://geek.ryanhellyer.net/products/menu-cache/
+Description: Caches WordPress navigation menus
 Author: Ryan Hellyer
 Version: 1.0
 Author URI: https://geek.hellyer.kiwi/
@@ -29,7 +29,7 @@ license.txt file included with this plugin for more information.
  * @license http://www.gnu.org/licenses/gpl.html GPL
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
-class Cache_WordPress_Menus {
+class Menu_Cache {
 
 	/**
 	 * Set the time key constant.
@@ -97,4 +97,4 @@ class Cache_WordPress_Menus {
 	}
 
 }
-new Cache_WordPress_Menus();
+new Menu_Cache();
