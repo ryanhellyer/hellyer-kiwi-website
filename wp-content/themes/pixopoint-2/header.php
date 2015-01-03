@@ -41,12 +41,12 @@ if ( is_ssl() ) {
 		<div id="nav">
 			<?php 
 
-//if ( false === ( $menu = get_transient( 'menu' ) ) ) {
+if ( false === ( $menu = get_transient( 'menu' ) ) ) {
 
-	$menu = wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header', 'echo' => false, ) ); ?>
+	$menu = wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header', 'echo' => false, ) );
 
-//	set_transient( 'menu', $menu, 30 );
-//}
+	set_transient( 'menu', $menu, 30 );
+}
 echo $menu;
 
 ?>
