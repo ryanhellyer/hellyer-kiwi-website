@@ -40,18 +40,15 @@ if ( is_ssl() ) {
 		if ( ! is_page( DROPDOWNGEN_PAGEID ) ) { ?>
 		<div id="nav">
 			<?php 
-/*
-if ( false === ( $menu = get_transient( 'menu' ) ) ) {
-	ob_start();
 
-	wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header' ) ); ?>
+//if ( false === ( $menu = get_transient( 'menu' ) ) ) {
 
-	$menu = ob_get_contents();
-	ob_end_clean();
-	set_transient( 'menu', $menu, 30 );
-}
+	$menu = wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header', 'echo' => false, ) ); ?>
+
+//	set_transient( 'menu', $menu, 30 );
+//}
 echo $menu;
-*/
+
 ?>
 
 		</div>
