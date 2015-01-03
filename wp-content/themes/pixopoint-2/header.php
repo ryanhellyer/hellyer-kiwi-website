@@ -41,13 +41,30 @@ if ( is_ssl() ) {
 		<div id="nav">
 			<?php 
 
+$transient = 'menu-' . md5( $_SERVER['REQUEST_URI'] );
+if ( false === ( $menu = get_transient( $transient ) ) ) {
+
+	$menu = wp_nav_menu(
+		array(
+			'theme_location'  => 'primary',
+			'sort_column'     => 'menu_order',
+			'container_class' => 'wrapper menu-header',
+			'echo'            => false,
+		)
+	);
+
+	set_transient( $transient, $menu, 30 );
+}
+echo $menu;
+
+
 //if ( false === ( $menu = get_transient( 'menu' ) ) ) {
 
-	$menu = wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header', 'echo' => false, ) );
+//	$menu = wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header', 'echo' => false, ) );
 
 //	set_transient( 'menu', $menu, 30 );
 //}
-echo $menu;
+//echo $menu;
 
 ?>
 
