@@ -39,7 +39,21 @@ if ( is_ssl() ) {
 	if ( defined( 'DROPDOWNGEN_PAGEID' ) ) {
 		if ( ! is_page( DROPDOWNGEN_PAGEID ) ) { ?>
 		<div id="nav">
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header' ) ); ?>
+			<?php 
+/*
+if ( false === ( $menu = get_transient( 'menu' ) ) ) {
+	ob_start();
+
+	wp_nav_menu( array( 'theme_location' => 'primary', 'sort_column' => 'menu_order', 'container_class' => 'wrapper menu-header' ) ); ?>
+
+	$menu = ob_get_contents();
+	ob_end_clean();
+	set_transient( 'menu', $menu, 30 );
+}
+echo $menu;
+*/
+?>
+
 		</div>
 		<?php } else {
 			pixopoint_cssgeneratormenu();
