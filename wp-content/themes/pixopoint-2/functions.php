@@ -155,3 +155,14 @@ function numeric_pagination_shortcode( $pages = '', $range = 2 ) {
 	echo '</ul>';
 
 }
+
+
+/**
+ * Proper way to enqueue scripts and styles
+ */
+function pixopoint_style() {
+	wp_enqueue_style( 'pixopoint', get_template_directory_uri() . '/style24.css' );
+}
+
+add_action( 'wp_enqueue_scripts', 'pixopoint_style' );
+

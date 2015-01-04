@@ -3,7 +3,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php wp_title( '|' ); ?></title>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style24.css" media="screen" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no" />
 	<!--[if lt IE 9]><script src="https://ryan.hellyer.kiwi/wp-content/themes/hellish-simplicity/scripts/html5.js" type="text/javascript"></script><![endif]-->
 <?php wp_head(); ?>
