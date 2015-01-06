@@ -13,7 +13,7 @@ function ryanstestcode() {
 	$headers[] = 'Cc: John Q Codex <jqc@wordpress.org>';
 	$headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
 
-	$to = 'ryanhellyer@gmail.com';
+	$to = 'ryan@forsite.nu';
 	$subject = 'Test subject';
 	$message = 'This is a test string';
 	wp_mail( $to, $subject, $message, $headers );
