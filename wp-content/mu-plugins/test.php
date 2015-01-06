@@ -9,14 +9,9 @@ function ryanstestcode() {
 		return;
 	}
 
-	$headers[] = 'From: Me Myself <me@example.net>';
-	$headers[] = 'Cc: John Q Codex <jqc@wordpress.org>';
-	$headers[] = 'Cc: iluvwp@wordpress.org'; // note you can just use a simple email address
+	wp_mail( 'ryanhellyer@gmail.com', 'The subject KIWI', 'The message' );
+	wp_mail( 'ryan@forsite.nu', 'The subject KIWI', 'The message' );
 
-	$to = 'ryan@forsite.nu';
-	$subject = 'Test subject';
-	$message = 'This is a test string';
-	wp_mail( $to, $subject, $message, $headers );
 	echo 'Email sent!';
 	die;
 }
