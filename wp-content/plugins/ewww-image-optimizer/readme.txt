@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: image, attachment, optimize, optimization, lossless, lossy, photo, picture, seo, compression, gmagick, jpegtran, gifsicle, optipng, pngout, pngquant, jpegmini, tinypng, webp, wp-cli 
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3
 
 Reduce file sizes for images in WordPress including NextGEN, GRAND FlAGallery and more using lossless/lossy methods and image format conversion.
@@ -165,13 +165,16 @@ Pngout, JPEGmini, and Pngquant were recommended by EWWW IO users. Pngout (usuall
 == Changelog ==
 
 = IMPORTANT =
-NOTE: The WebP naming scheme has been changed to avoid conflicts when JPGs and PNGs have identical filenames. You will need to update your rewrite rules via the settings page, and run the WebP upgrade script. Every image in the Media Library with a WebP version using the old naming scheme will have a link to the upgrade process (in list view, not grid view).
+NOTE: The WebP naming scheme was changed in 2.0.1 to avoid filename conflicts. You will need to update your rewrite rules via the settings page, and run the WebP upgrade script. Every image in the Media Library with a WebP version using the old naming scheme will have a link to the upgrade process (in list view, not grid view).
 
 = future =
 * these are current feature requests, if you see something you like here, go vote for it in the support forum
 * full GMedia support (still waiting for more votes)
 * option to scan Media Library folders for current/previous month during scheduled optimization (already on roadmap)
 * If you would like to help translate this plugin in your language, get started here: http://translate.ewww.io/projects/ewww-image-optimizer/
+
+= 2.2.1 =
+* fixed: infinite loop on hosts where set_time_limit does not work
 
 = 2.2.0 =
 * added: wp-cli command to optimize via command-line, 'wp-cli help ewwwio optimize' for more details
