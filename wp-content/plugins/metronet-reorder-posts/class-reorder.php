@@ -200,7 +200,7 @@ final class MN_Reorder {
 	public function adjust_offset_pagination( $found_posts, $query ) {
 		//This sometimes will have a bug of showing an extra page, but it doesn't break anything, so leaving it for now.
 		if( $found_posts > $this->posts_per_page ) {
-			$num_pages = round($found_posts / $this->offset);
+			$num_pages = $found_posts / $this->offset;
 			$found_posts = (string)round( $num_pages * $this->posts_per_page );
 		}
 		return $found_posts;
@@ -246,7 +246,10 @@ final class MN_Reorder {
 		
 		//Update post if passed - Should run only on beginning of first iteration
 		if( $post_id > 0 && !isset( $_POST[ 'more_posts' ] ) ) {
-			wp_update_post( array( 'ID' => $post_id, 'post_parent' => $post_parent, 'menu_order' => $post_menu_order ) );	
+			$wpdb->update(
+				$wpdb->posts,
+				array( 'menu_order' => $post_menu_order, 'post_parent' => $post_parent ), array( 'ID' => $post_id )
+			);
 			$posts_to_exclude[] = $post_id;
 		}
 		
@@ -260,9 +263,12 @@ final class MN_Reorder {
 			'ignore_sticky_posts' => true,
 			'post_status' => $this->post_status,
 			'post_parent' => $post_parent,
-			'post__not_in' => $posts_to_exclude
+			'post__not_in' => $posts_to_exclude,
+			'update_post_term_cache' => false,
+			'update_post_meta_cache' => false
 		);
 		$posts = new WP_Query( $query_args );
+		
 		$start = $menu_order_start;
 		if ( $posts->have_posts() ) {
 			foreach( $posts->posts as $post ) {
@@ -273,7 +279,11 @@ final class MN_Reorder {
 				
 				if ( $post_id != $post->ID ) {
 					//Update post and counts
-					wp_update_post( array( 'ID' => $post->ID, 'menu_order' => $start, 'post_parent' => $post_parent ) );
+					$wpdb->update(
+						$wpdb->posts,
+						array( 'menu_order' => $start, 'post_parent' => $post_parent ),
+						array( 'ID'         => $post->ID )
+					);
 				}
 				$posts_to_exclude[] = $post->ID;
 				$start++;
@@ -369,6 +379,7 @@ final class MN_Reorder {
 	 * @global string $post_type
 	 */
 	public function output_interface() {
+		echo '<br />';
 		$post_count_obj = wp_count_posts( $this->post_type );
 		$post_count = isset( $post_count_obj->{$this->post_status} )  ?absint( $post_count_obj->{$this->post_status} ) : absint( $post_count_obj[ 'publish' ] );
 		if ( $post_count >= 1000 ) {
@@ -377,6 +388,11 @@ final class MN_Reorder {
 		?>
 		<div id="reorder-error"></div>
 		<div><img src="<?php echo esc_url( admin_url( 'images/loading.gif' ) ); ?>" id="loading-animation" /></div>
+		<div class="updated">
+			<p><strong>
+			<?php echo sprintf( __( 'Note:  reordering here does not change the order on your website without some code modifications.  Please see our <a target="_blank" href="%s">Wiki</a>.', 'metronet-reorder-posts' ), 'https://github.com/ronalfy/reorder-posts/wiki' ); ?>
+			</strong></p>
+		</div>
 		<?php echo esc_html( $this->initial ); ?>
 		<?php
 		//Output non hierarchical posts
