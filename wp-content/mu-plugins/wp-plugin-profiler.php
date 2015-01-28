@@ -1,4 +1,4 @@
 <?php
 
-require( 'plugin-profiler/plugin-profiler.php' );
+//require( 'plugin-profiler/plugin-profiler.php' );
 
