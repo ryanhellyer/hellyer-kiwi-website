@@ -59,7 +59,7 @@ Adjust the path to the library as needed
 
 */
 
-require 'lib/Predis/Autoloader.php';
+require 'Predis/Autoloader.php';
 Predis\Autoloader::register();
 
 
