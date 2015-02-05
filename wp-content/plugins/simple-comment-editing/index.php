@@ -4,7 +4,7 @@ Plugin Name: Simple Comment Editing
 Plugin URI: http://wordpress.org/extend/plugins/simple-comment-editing/
 Description: Simple comment editing for your users.
 Author: ronalfy
-Version: 1.2.2
+Version: 1.2.4
 Requires at least: 3.5
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
@@ -124,9 +124,11 @@ class Simple_Comment_Editing {
 		$comment_content .= '</div><!-- .sce-comment-edit-buttons -->';
 		$comment_content .= '</div><!-- .sce-textarea -->';
 		
-		
 		//End
 		$comment_content .= '</div><!-- .sce-edit-comment -->';
+		
+		//Status Area
+		$comment_content .= sprintf( '<div id="sce-edit-comment-status%d" class="sce-status" style="display: none;"></div><!-- .sce-status -->', $comment_id );
 		
 		return $comment_content;
 	
@@ -162,7 +164,7 @@ class Simple_Comment_Editing {
 	 			$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.js' );
 	 		}
 	 	}
-	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20140902', true );
+	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20150204', true );
 	 	wp_localize_script( 'simple-comment-editing', 'simple_comment_editing', array(
 	 		'minutes' => __( 'minutes', 'simple-comment-editing' ),
 	 		'minute' => __( 'minute', 'simple-comment-editing' ),
@@ -324,8 +326,18 @@ class Simple_Comment_Editing {
 			$comment_to_save['comment_approved'] = 'spam';
 		}
 		
-		//Now save the comment
+		//Update comment content with new content
 		$comment_to_save[ 'comment_content' ] = $new_comment_content;
+		
+		//Before save comment
+		$custom_error = apply_filters( 'sce_comment_check_errors', false, $comment_to_save ); //Filter expects a string returned - $comment_to_save is an associative array
+		if ( is_string( $custom_error ) && !empty( $custom_error ) ) {
+			$return[ 'errors' ] = true;
+	 		$return[ 'error' ] = esc_html( $custom_error );
+	 		die( json_encode( $return ) );		
+		}
+		
+		//Save the comment
 		wp_update_comment( $comment_to_save );
 		
 		//If the comment was marked as spam, return an error
