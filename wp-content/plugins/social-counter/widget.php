@@ -40,10 +40,10 @@ class Social_Counter extends WP_Widget {
         } 
         else {
             echo '<div class="sc_div">
-<img src="' . plugins_url('img/twitter.png', __FILE__) . '" alt="Twitter"/>' . $social->get_tweets($current_url) . '<br>
 <img src="' . plugins_url('img/linkedin.png', __FILE__) . '" alt="LinkedIn"/>' . $social->get_linkedin($current_url) . '<br>
-<img src="' . plugins_url('img/facebook.png', __FILE__) . '" alt="Facebook"/>' . $social->get_fb($current_url) . '<br>
 <img src="' . plugins_url('img/google.png', __FILE__) . '" alt="Google+"/>' . $social->get_plusones($current_url) . '<br>
+<img src="' . plugins_url('img/twitter.png', __FILE__) . '" alt="Twitter"/>' . $social->get_tweets($current_url) . '<br>
+<img src="' . plugins_url('img/facebook.png', __FILE__) . '" alt="Facebook"/>' . $social->get_fb($current_url) . '<br>
 <img src="' . plugins_url('img/stumbleupon.png', __FILE__) . '" alt="StumbleUpon"/>' . $social->get_stumble($current_url) . '<br>
 <img src="' . plugins_url('img/delicious.png', __FILE__) . '" alt="Delicious"/>' . $social->get_delicious($current_url) . '<br>
 <img src="' . plugins_url('img/reddit.png', __FILE__) . '" alt="Reddit"/>' . $social->get_reddit($current_url) . '<br>

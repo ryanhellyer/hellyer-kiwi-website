@@ -6,7 +6,7 @@ $json = json_decode($json_string, true);
 return isset($json['count'])?intval($json['count']):0;
 }
 function get_linkedin($url) {
-$json_string = $this->file_get_contents_curl('http://www.linkedin.com/countserv/count/share?url='.$url.'&format=json');
+$json_string = $this->file_get_contents_curl('https://www.linkedin.com/countserv/count/share?url='.$url.'&format=json','linkedin');
 $json = json_decode($json_string, true);
 return isset($json['count'])?intval($json['count']):0;
 }
@@ -37,21 +37,24 @@ $json = json_decode($json_string, true);
 return isset($json['count'])?intval($json['count']):0;
 }
 function get_plusones($url)  {
-$return_data = $this->file_get_contents_curl('https://clients6.google.com/rpc',$url);
+$return_data = $this->file_get_contents_curl('https://clients6.google.com/rpc','google',$url);
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, "");
 $json = json_decode($return_data, true);
 return isset($json[0]['result']['metadata']['globalCounts']['count'])?intval( $json[0]['result']['metadata']['globalCounts']['count'] ):0;
 }
-function file_get_contents_curl($url,$google_url = null){
+function file_get_contents_curl($url,$param = null,$google_url = null){
 $ch=curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-if($google_url != null){
+if($param == 'google'){
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_POSTFIELDS, '[{"method":"pos.plusones.get","id":"p","params":{"nolog":true,"id":"'.rawurldecode($google_url).'","source":"widget","userId":"@viewer","groupId":"@self"},"jsonrpc":"2.0","key":"p","apiVersion":"v1"}]');
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+}
+if($param == 'linkedin'){
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 }
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
