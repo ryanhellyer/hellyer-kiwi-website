@@ -1,6 +1,6 @@
 === Excerpt ===
 Contributors: ryanhellyer
-Tags: excerpt, custom, content, page, post, plugin, archive, search, home, front-page, taxonomy, tag, category, posts, pages, taxonomies
+Tags: excerpt, excerpts, custom, content, page, post, plugin, archive, search, home, front-page, taxonomy, tag, category, posts, pages, taxonomies
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.1
 Tested up to: 4.2

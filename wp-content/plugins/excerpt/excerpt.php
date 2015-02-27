@@ -1,12 +1,11 @@
 <?php
 /*
-Plugin Name: Convert content to excerpts
+Plugin Name: Excerpt
 Plugin URI: https://geek.hellyer.kiwi/plugins/
 Description: Converts areas which display content, to only display excerpts. Includes home, search and archive pages.
 Version: 1.0
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
-Text Domain: unique-headers
 License: GPL2
 
 ------------------------------------------------------------------------
