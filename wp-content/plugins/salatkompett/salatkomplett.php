@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Simple CMS
-Plugin URI: http://geek.ryanhellyer.net/simplecms/
-Description: The <a href="http://geek.ryanhellyer.net/products/simplecms/">Ryans Simple CMS Plugin</a> converts your WordPress admin panel into a simple CMS. It is aimed at web designers who want to provide a simple adminstration panel for their clients to update basic static websites.
+Plugin Name: Salat Komplett
+Plugin URI: https://geek.hellyer.kiwi/
+Description: Salat Komplett companion plugin.
 
 Author: Ryan Hellyer
-Version: 2.0
-Author URI: http://geek.ryanhellyer.net/
+Version: 1.0
+Author URI: https://geek.hellyer.kiwi/
 
-Copyright 2010 - 2013 Ryan Hellyer
+Copyright 2015 Ryan Hellyer
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,8 +21,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 */
-
-//define( 'SIMPLECMS_EVERYBODY', true ); // Add this line to your wp-config.php file to simplify the admin panel for admins and super admins
 
 
 /**
