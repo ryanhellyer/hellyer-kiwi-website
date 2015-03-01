@@ -24,21 +24,13 @@ GNU General Public License for more details.
 
 
 /**
- * Instantiate the class
+ * Salatt Komplett.
  * 
- * @since 1.8
- */
-new RyansSimpleCMS();
-
-
-/**
- * Ryans Simple CMS Setup
- * 
- * @copyright Copyright (c), Metronet
+ * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.8
  */
-class RyansSimpleCMS {
+class Salat_Komplett {
 
 	/**
 	 * Class constructor
@@ -54,7 +46,6 @@ class RyansSimpleCMS {
 		add_action( 'admin_menu',                 array( $this, 'remove_menus' ) );
 		add_action( 'wp_before_admin_bar_render', array( $this, 'remove_admin_bar_links' ) );
 		add_action( 'admin_menu',                 array( $this, 'remove_meta_boxes' ) );
-		add_action( 'wp_head',                    array( $this, 'simplecms_comments' ) );
 
 	}
 
@@ -74,7 +65,7 @@ class RyansSimpleCMS {
 	
 		global $wp_admin_bar;
 	
-		$wp_admin_bar->remove_menu( 'comments' );
+//		$wp_admin_bar->remove_menu( 'comments' );
 		$wp_admin_bar->remove_menu( 'new-content' );
 		$wp_admin_bar->remove_menu( 'blog-6-n' );
 		$wp_admin_bar->remove_menu( 'blog-6-c' );
@@ -92,7 +83,7 @@ class RyansSimpleCMS {
 	
 		// List of meta boxes
 		$meta_boxes = array(
-			'commentsdiv',
+//			'commentsdiv',
 			'trackbacksdiv',
 			'postcustom',
 //			'postexcerpt',
@@ -129,7 +120,7 @@ class RyansSimpleCMS {
 		$restricted_sub_level = array(
 			'edit-tags.php?taxonomy=category' =>'edit.php', // This doesn't actually do anything since posts aren't present, but left here so that you can see how to remove sub menus if needed in your own projects
 			'edit.php'                        => 'TOP',
-			'edit-comments.php'               => 'TOP',
+//			'edit-comments.php'               => 'TOP',
 			'tools.php'                       => 'TOP',
 			'link-manager.php'                => 'TOP',
 		);
@@ -148,21 +139,6 @@ class RyansSimpleCMS {
 			wp_redirect( admin_url( 'edit.php?post_type=page' ) );
 	
 	}
-	
-	/**
-	 * Add comments in header
-	 * 
-	 * @since 1.8
-	 * @updated 1.8
-	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
-	 */
-	function simplecms_comments() {
-		
-		// Add comments
-		echo "\n	<!-- Ryans Simple CMS plugin for WordPress ... http://geek.ryanhellyer.net/products/simplecms/ -->\n";
-	}
+
 }
-
-
-
-
+new Salat_Komplett;
