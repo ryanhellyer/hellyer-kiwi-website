@@ -26,9 +26,9 @@ add_action('plugins_loaded','wpgo_add_google_maps_docs');
  *
  */
 function wpgo_add_google_maps_docs() {
-	wp_embed_register_handler( 'googlemaps', '#https?://maps.google.com/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
+//	wp_embed_register_handler( 'googlemaps', '#https?://maps.google.com/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
 	wp_embed_register_handler( 'googlemaps', '#https?://www.google.com/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
-	wp_embed_register_handler( 'googlemaps', '#https?://www.google.de/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
+//	wp_embed_register_handler( 'googlemaps', '#https?://www.google.de/(maps)?.+#i', 'wpgo_embed_handler_googlemaps' );
 	wp_embed_register_handler( 'googledocs', '#https?://docs.google.com/(document|spreadsheet|presentation)/.*#i', 'wpgo_embed_handler_googledrive' );
 }
 
