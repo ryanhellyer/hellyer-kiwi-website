@@ -84,11 +84,11 @@ class Salat_Komplett {
 		// List of meta boxes
 		$meta_boxes = array(
 //			'commentsdiv',
-			'trackbacksdiv',
+//			'trackbacksdiv',
 			'postcustom',
 //			'postexcerpt',
-			'commentstatusdiv',
-			'commentsdiv',
+//			'commentstatusdiv',
+//			'commentsdiv',
 		);
 	
 		// Removing the meta boxes
