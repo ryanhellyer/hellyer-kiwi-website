@@ -4,10 +4,12 @@
 Plugin Name: Easy Contact Forms
 Description: Add a contact form to any post, page or text widget.  Emails will be sent to the post's author by default, or any email address you choose.
 Plugin URI: https://geek.hellyer.kiwi/plugins/easy-contact-forms
-AUthor: Automattic, Inc.
-Author URI: http://automattic.com/
+AUthor: Ryan Hellyer
+Author URI: https://geek.hellyer.kiwi/products/easy-contact-forms/
 Version: 2.4
 License: GPLv2 or later
+
+Based on the JetPack plugin by Automattic Inc, which was based on the Grunion plugin.
 */
 
 define( 'GRUNION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
