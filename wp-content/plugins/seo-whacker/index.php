@@ -2,13 +2,13 @@
 /*
 
 Plugin Name: SEO Whacker
-Plugin URI: http://geek.ryanhellyer.net/products/seo-whacker/
+Plugin URI: https://geek.hellyer.kiwi/plugins/seo-whacker/
 Description: Removes features from the WordPress SEO plugin which are often unrequired
 Author: Ryan Hellyer
-Version: 1.3
-Author URI: http://geek.ryanhellyer.net/
+Version: 1.4
+Author URI: https://geek.hellyer.kiwi/
 
-Copyright (c) 2014 Ryan Hellyer
+Copyright (c) 2015 Ryan Hellyer
 
 
 This program is free software; you can redistribute it and/or modify
@@ -159,3 +159,17 @@ function seowhacker_remove_menuitems( $submenu_pages ) {
 	return $submenu_pages;
 }
 add_filter( 'wpseo_submenu_pages', 'seowhacker_remove_menuitems' );
+
+/**
+ * Remove columns.
+ * Code is derived from code on this page http://tidyrepo.com/wordpress-seo-by-yoast/
+ *
+ * @author Ryan Hellyer <ryanhellyer@gmail.com>
+ * @since 1.4
+ * @return  bool False
+ */
+function seowhacker_remove_columns() {
+	return false;
+}
+add_filter( 'wpseo_use_page_analysis', 'seowhacker_remove_columns' );
+
