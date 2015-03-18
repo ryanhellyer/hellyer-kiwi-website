@@ -1,9 +1,9 @@
 === SEO Whacker ===
 Contributors: ryanhellyer
 Tags: seo, tooltips, pointers
-Donate link: http://geek.ryanhellyer.net/donate/
-Requires at least: 3.6
-Stable tag: 1.2
+Donate link: https://geek.hellyer.kiwi/donate/
+Requires at least: 4.2
+Stable tag: 1.4
 
 Removes features from the WordPress SEO plugin which are often unrequired
 
@@ -13,6 +13,8 @@ Install, activate. Done :)
 
 == History ==
 
+Version 1.4: Removed columns<br />
+Version 1.3: General bug fixes and improvements<br />
 Version 1.2: Fixed tool-tip blocker and removed some menu items<br />
 Version 1.1: Removed further unneeded (for most people) sections, including the admin bar and posts edit screen junk<br />
 Version 1.0.2: Fixed major bug which prevented the plugin from doing anything useful<br />
