@@ -1,3 +1,6 @@
+Note: This is simply a fork of the Grunion plugin found in the JetPack plugin. I am maintaining it for use on my own site, but will not be adding any features unless I can easily copy them over from JetPack.
+
+
 === Easy Contact Forms ===
 Contributors: ryanhellyer
 Tags: contact, form, contact form, plugins, plugin, email, WordPress.com

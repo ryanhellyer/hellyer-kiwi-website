@@ -12,6 +12,11 @@ License: GPLv2 or later
 Based on the JetPack plugin by Automattic Inc, which was based on the Grunion plugin.
 */
 
+// Getting rid of dumb JetPack error
+if ( ! defined( 'JETPACK__VERSION' ) ) {
+	define( 'JETPACK__VERSION', '999999' );
+}
+
 define( 'GRUNION_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUNION_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -1030,6 +1035,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
 			$r .= "\t\t<input type='hidden' name='action' value='grunion-contact-form' />\n";
 			$r .= "\t</p>\n";
+			$r = apply_filters( 'antispam-fields', $r );
 			$r .= "</form>\n";
 		}
 
@@ -1629,6 +1635,9 @@ class Grunion_Contact_Form_Field extends Crunion_Contact_Form_Shortcode {
 		if ( !$this->get_attribute( 'required' ) ) {
 			return;
 		}
+
+		// Anti-spam check, for Spam Destroyer plugin
+		do_action( 'antispam-check' );
 
 		$field_id    = $this->get_attribute( 'id' );
 		$field_type  = $this->get_attribute( 'type' );
