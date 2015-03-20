@@ -54,6 +54,8 @@ if ( 'plugin-information' != $tab )
 
 $body_id = $tab;
 
+wp_enqueue_script( 'updates' );
+
 /**
  * Fires before each tab on the Install Plugins screen is loaded.
  *
@@ -126,7 +128,10 @@ if ( $tab !== 'upload' ) {
  */
 do_action( "install_plugins_$tab", $paged ); ?>
 </div>
-<?php
+
+<?php 
+wp_print_request_filesystem_credentials_modal();
+
 /**
  * WordPress Administration Template Footer.
  */

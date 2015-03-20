@@ -171,7 +171,7 @@ $('.contextual-help-tabs').delegate('a', 'click', function(e) {
 });
 
 $(document).ready( function() {
-	var checks, first, last, checked, sliced, mobileEvent, transitionTimeout, focusedRowActions,
+	var checks, first, last, checked, sliced, mobileEvent, transitionTimeout, focusedRowActions, $firstHeading,
 		lastClicked = false,
 		pageInput = $('input.current-page'),
 		currentPage = pageInput.val(),
@@ -368,9 +368,10 @@ $(document).ready( function() {
 		});
 	}
 
-	// Move .updated and .error alert boxes. Don't move boxes designed to be inline.
-	$('div.wrap h2:first').nextAll('div.updated, div.error').addClass('below-h2');
-	$('div.updated, div.error').not('.below-h2, .inline').insertAfter( $('div.wrap h2:first') );
+	// Move .notice, .updated and .error alert boxes. Don't move boxes designed to be inline.
+	$firstHeading = $( 'div.wrap h2:first' );
+	$firstHeading.nextAll( 'div.updated, div.error, div.notice' ).addClass( 'below-h2' );
+	$( 'div.updated, div.error, div.notice' ).not( '.below-h2, .inline' ).insertAfter( $firstHeading );
 
 	// Init screen meta
 	screenMeta.init();
@@ -441,17 +442,22 @@ $(document).ready( function() {
 	});
 
 	// Show row actions on keyboard focus of its parent container element or any other elements contained within
-	$( 'td.post-title, td.title, td.comment, .bookmarks td.column-name, td.blogname, td.username, .dashboard-comment-wrap' ).focusin(function(){
-		clearTimeout( transitionTimeout );
-		focusedRowActions = $(this).find( '.row-actions' );
-		focusedRowActions.addClass( 'visible' );
-	}).focusout(function(){
-		// Tabbing between post title and .row-actions links needs a brief pause, otherwise
-		// the .row-actions div gets hidden in transit in some browsers (ahem, Firefox).
-		transitionTimeout = setTimeout(function(){
-			focusedRowActions.removeClass( 'visible' );
-		}, 30);
-	});
+	$( '#wpbody-content' ).on({
+		focusin: function() {
+			clearTimeout( transitionTimeout );
+			focusedRowActions = $( this ).find( '.row-actions' );
+			// transitionTimeout is necessary for Firefox, but Chrome won't remove the CSS class without a little help.
+			$( '.row-actions' ).not( this ).removeClass( 'visible' );
+			focusedRowActions.addClass( 'visible' );
+		},
+		focusout: function() {
+			// Tabbing between post title and .row-actions links needs a brief pause, otherwise
+			// the .row-actions div gets hidden in transit in some browsers (ahem, Firefox).
+			transitionTimeout = setTimeout( function() {
+				focusedRowActions.removeClass( 'visible' );
+			}, 30 );
+		}
+	}, 'td.post-title, td.title, td.comment, .tags td.column-name, .bookmarks td.column-name, td.blogname, .users-network td.column-blogs, td.username, .dashboard-comment-wrap' );
 
 	$('#default-password-nag-no').click( function() {
 		setUserSetting('default_password_nag', 'hide');
@@ -706,7 +712,8 @@ $(document).ready( function() {
 
 	window.wpResponsive = {
 		init: function() {
-			var self = this;
+			var self = this,
+				x, y;
 
 			// Modify functionality based on custom activate/deactivate event
 			$document.on( 'wp-responsive-activate.wp-responsive', function() {
@@ -721,12 +728,43 @@ $(document).ready( function() {
 			$( '#wp-admin-bar-menu-toggle' ).on( 'click.wp-responsive', function( event ) {
 				event.preventDefault();
 				$wpwrap.toggleClass( 'wp-responsive-open' );
-				if ( $wpwrap.hasClass( 'wp-responsive-open' ) ) {
+				if ( self.isOpen() ) {
 					$(this).find('a').attr( 'aria-expanded', 'true' );
 					$( '#adminmenu a:first' ).focus();
 				} else {
 					$(this).find('a').attr( 'aria-expanded', 'false' );
 				}
+			} );
+
+			$window.on( 'touchstart.wp-responsive', function( event ) {
+				var touches = event.originalEvent.touches;
+
+				if ( 1 !== touches.length ) {
+					return;
+				}
+
+				x = touches[0].clientX;
+				y = touches[0].clientY;
+			} );
+
+			$window.on( 'touchend.wp-responsive', function( event ) {
+				var touches = event.originalEvent.changedTouches,
+					isOpen = self.isOpen(),
+					distanceX;
+
+				if ( 1 === touches.length && x && y ) {
+					if ( ( window.isRtl && isOpen ) || ( ! window.isRtl && ! isOpen ) ) {
+						distanceX = touches[0].clientX - x;
+					} else {
+						distanceX = x - touches[0].clientX;
+					}
+
+					if ( distanceX > 30 && distanceX > Math.abs( touches[0].clientY - y ) ) {
+						$( '#wp-admin-bar-menu-toggle' ).trigger( 'click' );
+					}
+				}
+
+				x = y = 0;
 			} );
 
 			// Add menu events
@@ -750,6 +788,10 @@ $(document).ready( function() {
 					self.disableSortables();
 				}
 			});
+		},
+
+		isOpen: function() {
+			return $wpwrap.hasClass( 'wp-responsive-open' );
 		},
 
 		activate: function() {
