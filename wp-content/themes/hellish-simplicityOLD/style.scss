@@ -1,6 +1,8 @@
-/**
- * This is the original SASS build code for the CSS used in the theme.
- */
+/*
+
+This is the original SASS build code for the CSS used in the theme.
+
+*/
 
 
 $max_header_width: 1180px;
@@ -378,10 +380,6 @@ article {
 	border-bottom: $border;
 }
 
-article.last-post {
-	border-bottom: none;
-}
-
 .entry-content {
 	width: 100%;
 	overflow: auto;
@@ -630,15 +628,26 @@ ol.commentlist {
 	display: none;
 }
 
-label {
+.gform_wrapper label,
+.contact-form label,
+#respond label {
 	display: block;
 	line-height: 1.5em;
 	margin: 1.5em 0 0 0;
 }
 
-input[type=email],
-input[type=text],
-input[type=submit] {
+.gform_wrapper input[type=email],
+.gform_wrapper input[type=text],
+.gform_wrapper input[type=submit],
+.gform_wrapper textarea,
+.contact-form input[type=email],
+.contact-form input[type=text],
+.contact-form input[type=submit],
+.contact-form textarea,
+#respond input[type=email],
+#respond input[type=text],
+#respond input[type=submit],
+#respond textarea {
 	display: block;
 	margin: 0 0 0.8em;
 	padding: 0.5em 0.8em;
@@ -648,25 +657,39 @@ input[type=submit] {
 	color: #666;
 }
 
-input[type=email],
-input[type=text] {
+.gform_wrapper input[type=email],
+.contact-form input[type=email],
+#respond input[type=email],
+.gform_wrapper input[type=text],
+.contact-form input[type=text],
+#respond input[type=text] {
 	width: 300px;
 }
 
-textarea {
+.gform_wrapper textarea,
+.contact-form textarea,
+#respond textarea {
 	max-width: 700px;
 	width: 95%;
 	height: 200px;
 }
 
-input[type=email],
-input[type=text],
-textarea {
+.gform_wrapper input[type=email],
+.contact-form input[type=email],
+#respond input[type=email],
+.gform_wrapper input[type=text],
+.contact-form input[type=text],
+#respond input[type=text],
+.gform_wrapper textarea,
+.contact-form textarea,
+#respond textarea {
 	font-size: $font_reduced_size;
 	font-family: $font_sans_serif;
 }
 
-input[type=submit] {
+.gform_wrapper input[type=submit],
+.contact-form input[type=submit],
+#respond input[type=submit] {
 	font-size: 1.2em;
 	background: #eee;
 	color: #333;
@@ -676,7 +699,9 @@ input[type=submit] {
 	padding: 0.4em 1em;
 }
 
-input[type=submit]:hover {
+.gform_wrapper input[type=submit]:hover,
+.contact-form input[type=submit]:hover,
+#respond input[type=submit]:hover {
 	background: $red_colour;
 	color: #fff;
 	cursor: pointer;
@@ -691,12 +716,10 @@ input[type=submit]:hover {
 /* =Third party plugins
 -------------------------------------------------------------- */
 
-/* MetroShare plugin */
 .metro-tabs a {
 	height: 16px;
 }
 
-/* Subscribe to comments */
 #respond .subscribe-to-comments label {
 	display: inline;
 }

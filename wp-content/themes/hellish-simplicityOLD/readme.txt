@@ -1,6 +1,6 @@
 === Hellish Simplicity ===
 Contributors: ryanhellyer
-Donate link: https://geek.hellyer.kiwi/donate/
+Donate link: http://geek.ryanhellyer.net/donate/
 
 
 == Description ==
@@ -9,42 +9,6 @@ A clean simple design. Responsive design makes the theme look good on all device
 
 
 == Changelog ==
-
-== Version 1.7.7 ==
-March 21st 2015
-* Removed redundant spacer lines from end of last post in loops
-* Added German language translation
-
-== Version 1.7.6 ==
-February 17th 2015
-* Forced categories lists to not display when only one category used in total
-
-== Version 1.7.5 ==
-February 3rd 2015
-* Minified SCSS generated CSS
-
-== Version 1.7.4 ==
-January 21st 2015
-* Removed replicated text strings by moving strings to class variables
-* Removed admin header page. Customiser should be used instead
-
-== Version 1.7.3 ==
-December 18th 2015
-* Changed theme slug from hellish to hellish-simplicity
-* Removed pointless comment HTML code assistance
-* Removed redundant and blank code
-
-== Version 1.7.2 ==
-November 7th 2015
-* Adding additional escaping
-
-== Version 1.7.1 ==
-October 4th 2015
-* Changed theme slug from hellish to hellish-simplicity
-
-== Version 1.7 ==
-September 3rd 2015
-* Added extra escaping
 
 == Version 1.6.4 ==
 April 1st 2014
