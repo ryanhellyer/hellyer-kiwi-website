@@ -1,42 +1,26 @@
-/*
- * This is the Less build file
- * 
- * This file is not used by the theme itself, but was used to compile the
- * style.css file which is used within the theme. It has been provided here
- * to assist developers in editing the CSS in future.
+/**
+ * This is the original SASS build code for the CSS used in the theme.
  */
 
-/* =Less variables
--------------------------------------------------------------- */
-@max_header_width: 1180px;
-@max_page_width: 1080px;
-@border: 1px solid #ddd;
-@small-text: 0.8em;
-@red_colour: #d90000;
-#font {
-	.std_size() {
-		font-size: 1.0em;
-	}
-	.reduced_size() {
-		font-size: 0.9em;
-	}
-	.small_size() {
-		font-size: 0.8em;
-	}
-	.sans-serif() {
-		font-family: "Droid Sans", sans-serif;
-	}
-	.serif() {
-		font-family: "Droid Serif", serif;
-	}
+
+$max_header_width: 1180px;
+$max_page_width: 1080px;
+$border: 1px solid #ddd;
+$small-text: 0.8em;
+$red_colour: #d90000;
+$grey_colour: #ddd;
+$font_standard_size: 1.0em;
+$font_reduced_size: 0.9em;
+$font_small_size: 0.8em;
+$font_sans_serif: "Droid Sans", sans-serif;
+$font_serif: "Droid Serif", serif;
+
+@mixin rounded_corners($radius: 6px) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
 }
-.rounded-corners (@radius: 6px) {
-	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
-	-ms-border-radius: @radius;
-	-o-border-radius: @radius;
-	border-radius: @radius;
-}
+
 
 /* =Fonts
 -------------------------------------------------------------- */
@@ -63,21 +47,27 @@
 
 /* =Reset
 -------------------------------------------------------------- */
-body,meme,h1,h2,h3,h4,h5,h6,p,blockquote,a,img,dl,dt,dd,ol,ul,li,fieldset,form,legend,table,tbody,tfoot,thead,tr,th,td {
+body,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,a,img,dl,dt,dd,ol,ul,li,fieldset,form,legend,table,tbody,tfoot,thead,tr,th,td {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	outline: 0;
 	list-style: none;
 }
-
+body {
+	background: #fff; /* Ensures the background of the WordPress customizer is correct */
+}
 b,strong {
 	font-weight: bold;
 }
 
 /* =Force HTML5 elements block
 -------------------------------------------------------------- */
-header,nav,article,footer,address {
+header,
+nav,
+article,
+footer,
+address {
 	display: block;
 }
 
@@ -90,12 +80,10 @@ header,nav,article,footer,address {
 
 /* =Links
 -------------------------------------------------------------- */
-
 a {
 	text-decoration: none;
-	color: @red_colour;
+	color: $red_colour;
 }
-
 a:hover {
 	text-decoration: underline;
 }
@@ -106,20 +94,20 @@ a:hover {
 
 	display: block;
 	margin: 0 auto;
-	max-width: @max_header_width;
-	border-bottom: @border;
+	max-width: $max_header_width;
+	border-bottom: $border;
 	overflow: auto;
 
 	.hgroup {
-		overflow: auto;
+		overflow: hidden;
 		margin: 2em auto 1em auto;
-		max-width: @max_page_width;
+		max-width: $max_page_width;
 	}
 
 	h1 {
 
 		float: left;
-		#font > .sans-serif;
+		font-family: $font_sans_serif;
 		font-size: 2.8em;
 		line-height: 1.5em;
 		font-weight: bold;
@@ -135,7 +123,7 @@ a:hover {
 			}
 	
 			span {
-				color: @red_colour;
+				color: $red_colour;
 			}
 	
 			small {
@@ -147,13 +135,14 @@ a:hover {
 	}
 
 	h2 {
-		#font > .sans-serif;
-		#font > .std_size;
+		font-family: $font_sans_serif;
+		font-size: $font_standard_size;
+		font-style: italic;
+		line-height: 1.2em;
 		float: right;
 		font-weight: normal;
-		margin: 1.5em 2% 0 0;
+		margin: 1.5em 2% 0 2%;
 		color: #999;
-		font-style: italic;
 	}
 
 }
@@ -167,8 +156,8 @@ body.page-template-full-width-php #site-content {
 }
 
 #content-area {
-	#font > .std_size;
-	#font > .sans-serif;
+	font-size: $font_standard_size;
+	font-family: $font_sans_serif;
 	line-height: 1.8em;
 	color: #333;
 }
@@ -179,7 +168,7 @@ h3,
 h4,
 h5,
 h6 {
-	#font > .serif;
+	font-family: $font_serif;
 	color: #333;
 	font-weight: normal;
 	line-height: 1em;
@@ -233,8 +222,8 @@ dt,
 caption,
 th,
 td {
-	#font > .std_size;
-	#font > .sans-serif;
+	font-size: $font_standard_size;
+	font-family: $font_sans_serif;
 	color: #333;
 }
 
@@ -312,12 +301,12 @@ pre {
 	max-width: 100%;
 	overflow: auto;
 	font-family: monospace;
-	#font > .reduced_size;
+	font-size: $font_reduced_size;
 }
 
 input[type=text] {
-	border: @border;
-	.rounded-corners;
+	border: $border;
+	@include rounded_corners();
 	padding: 3% 4%;
 }
 
@@ -331,7 +320,7 @@ input[type=text] {
 	input[type=text] {
 		width: 90%;
 		max-width: 400px;
-		#font > .reduced_size;
+		font-size: $font_reduced_size;
 	}
 
 }
@@ -349,11 +338,11 @@ img {
 	margin: 0;
 }
 
-.wp-caption {
+body .wp-caption {
 	max-width: 94%;
 	margin: 1em auto;
 	padding: 2% 2% 0 2%;
-	border: 1px solid #dddddd;
+	border: $border;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	-ms-border-radius: 6px;
@@ -386,7 +375,11 @@ img {
 article {
 	margin: 0 0 2em 0;
 	padding: 0 0 2em 0;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: $border;
+}
+
+article.last-post {
+	border-bottom: none;
 }
 
 .entry-content {
@@ -394,6 +387,7 @@ article {
 	overflow: auto;
 }
 
+.thumbnail,
 .attachment-excerpt-thumb {
 	float: right;
 	max-width: 38%;
@@ -402,7 +396,7 @@ article {
 
 .entry-meta {
 	color: #888;
-	#font > .sans-serif;
+	font-family: $font_sans_serif;
 	font-size: 0.8em;
 }
 
@@ -458,7 +452,7 @@ td {
 
 #content-area {
 	margin: 0 auto;
-	max-width: @max_page_width;
+	max-width: $max_page_width;
 }
 
 #site-content {
@@ -472,7 +466,7 @@ td {
 	padding: 3%;
 	width: 24%;
 	float: right;
-	border-left: @border;
+	border-left: $border;
 
 	ul li {
 		line-height: 1.5em;
@@ -499,7 +493,7 @@ td {
 		height: 1.6em;
 		line-height: 1.6em;
 		text-align: center;
-		border: @border;
+		border: $border;
 	}
 
 	a {
@@ -511,7 +505,7 @@ td {
 	
 	li.active a,
 	li a:hover {
-		background: @red_colour;
+		background: $red_colour;
 		text-decoration: none;
 		color: #fff;
 	}
@@ -530,6 +524,7 @@ td {
 	}
 
 }
+
 ol.commentlist {
 
 	margin: 0;
@@ -541,11 +536,11 @@ ol.commentlist {
 	li.comment {
 		list-style: none;
 		background: #fafafa;
-		border: @border;
+		border: $border;
 		margin: 0 0 1.5em 0;
 		padding: 0;
-		.rounded-corners;
-		#font > .reduced_size;
+		@include rounded_corners();
+		font-size: $font_reduced_size;
 		color: #999;
 	}
 
@@ -563,7 +558,7 @@ ol.commentlist {
 	}
 
 	li.comment li.comment {
-		#font > .std_size;
+		font-size: $font_standard_size;
 		background: #f6f6f6;
 		margin: 1.5em 0 0 0;
 	}
@@ -578,21 +573,21 @@ ol.commentlist {
 
 	img.avatar {
 		float: right;
-		border: @border;
+		border: $border;
 		margin: 0 0 1.5em 1.5em;
 	}
 
 	.comment-reply-link {
 		background: #eee;
-		.rounded-corners;
-		border: @border;
-		#font > .small_size;
+		@include rounded_corners();
+		border: $border;
+		font-size: $font_small_size;
 		padding: 0.4em 0.8em;
 		color: #333;
 	}
 
 	.comment-reply-link:hover {
-		background: @red_colour;
+		background: $red_colour;
 		color: #fff;
 		text-decoration: none;
 	}
@@ -605,7 +600,7 @@ ol.commentlist {
 }
 
 .comment-meta {
-	#font > .small_size;
+	font-size: $font_small_size;
 }
 
 
@@ -617,6 +612,10 @@ ol.commentlist {
 #respond {
 	margin: 3em 0 2em 0;
 	overflow: auto;
+}
+
+.comment #respond {
+	margin: 3em 1.5em 2em 1.5em;
 }
 
 .gform_wrapper ul {
@@ -631,89 +630,75 @@ ol.commentlist {
 	display: none;
 }
 
-.gform_wrapper label,
-.contact-form label,
-#respond label {
+label {
 	display: block;
 	line-height: 1.5em;
 	margin: 1.5em 0 0 0;
 }
 
-.gform_wrapper input[type=email],
-.gform_wrapper input[type=text],
-.gform_wrapper input[type=submit],
-.gform_wrapper textarea,
-.contact-form input[type=email],
-.contact-form input[type=text],
-.contact-form input[type=submit],
-.contact-form textarea,
-#respond input[type=email],
-#respond input[type=text],
-#respond input[type=submit],
-#respond textarea {
+input[type=email],
+input[type=text],
+input[type=submit] {
 	display: block;
 	margin: 0 0 0.8em;
 	padding: 0.5em 0.8em;
-	.rounded-corners;
+	@include rounded_corners();
 	background: #fafafa;
-	border: @border;
+	border: $border;
 	color: #666;
 }
 
-.gform_wrapper input[type=email],
-.contact-form input[type=email],
-#respond input[type=email],
-.gform_wrapper input[type=text],
-.contact-form input[type=text],
-#respond input[type=text] {
+input[type=email],
+input[type=text] {
 	width: 300px;
 }
 
-.gform_wrapper textarea,
-.contact-form textarea,
-#respond textarea {
+textarea {
 	max-width: 700px;
 	width: 95%;
 	height: 200px;
 }
 
-.gform_wrapper input[type=email],
-.contact-form input[type=email],
-#respond input[type=email],
-.gform_wrapper input[type=text],
-.contact-form input[type=text],
-#respond input[type=text],
-.gform_wrapper textarea,
-.contact-form textarea,
-#respond textarea {
-	#font > .reduced_size;
-	#font > .sans-serif;
+input[type=email],
+input[type=text],
+textarea {
+	font-size: $font_reduced_size;
+	font-family: $font_sans_serif;
 }
 
-.gform_wrapper input[type=submit],
-.contact-form input[type=submit],
-#respond input[type=submit] {
+input[type=submit] {
 	font-size: 1.2em;
 	background: #eee;
 	color: #333;
-	border: @border;
-	.rounded-corners;
+	border: $border;
+	@include rounded_corners();
 	margin: 1.5em 0 0 0;
 	padding: 0.4em 1em;
 }
 
-.gform_wrapper input[type=submit]:hover,
-.contact-form input[type=submit]:hover,
-#respond input[type=submit]:hover {
-	background: @red_colour;
+input[type=submit]:hover {
+	background: $red_colour;
 	color: #fff;
 	cursor: pointer;
 }
 
 .comment-notes,
 .form-allowed-tags {
-	#font > .std_size;
+	font-size: $font_standard_size;
 	color: #999;
+}
+
+/* =Third party plugins
+-------------------------------------------------------------- */
+
+/* MetroShare plugin */
+.metro-tabs a {
+	height: 16px;
+}
+
+/* Subscribe to comments */
+#respond .subscribe-to-comments label {
+	display: inline;
 }
 
 /* =Footer
@@ -722,14 +707,14 @@ ol.commentlist {
 #site-footer {
 	clear: both;
 	margin: 0 auto;
-	max-width: @max_header_width;
+	max-width: $max_header_width;
 	text-align: center;
-	#font > .sans-serif;
-	#font > .std_size;
+	font-family: $font_sans_serif;
+	font-size: $font_standard_size;
 }
 
 #site-info {
-	border-top: @border;
+	border-top: $border;
 	padding: 1.6em 0;
 }
 
@@ -796,7 +781,7 @@ ol.commentlist {
 	
 	#sidebar {
 		float: left;
-		border-right: 1px solid #dddddd;
+		border-right: $border;
 		border-left: none;
 	}
 	
@@ -820,11 +805,3 @@ ol.commentlist {
 	}
 
 }
-
-/* =Redundant code for the WordPress.org theme review process
--------------------------------------------------------------- */
-
-.wp-caption-text,
-.sticky,
-.gallery-caption,
-.bypostauthor {}

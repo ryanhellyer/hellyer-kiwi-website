@@ -20,20 +20,21 @@ if ( have_posts() ) {
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header class="entry-header">
-				<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'hellish' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+				<h1 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'hellish-simplicity' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
 				<div class="entry-meta"><?php
+
 					// Get attachment
 					$metadata = wp_get_attachment_metadata();
 					printf( ' <span class="attachment-meta full-size-link"><a href="%1$s" title="%2$s">%3$s (%4$s &times; %5$s)</a></span>',
 						esc_url( wp_get_attachment_url() ),
-						esc_attr__( 'Link to full-size image', 'hellish' ),
-						__( 'Full resolution', 'hellish' ),
-						$metadata['width'],
-						$metadata['height']
+						esc_attr__( 'Link to full-size image', 'hellish-simplicity' ),
+						__( 'Full resolution', 'hellish-simplicity' ),
+						absint( $metadata['width'] ),
+						absint( $metadata['height'] )
 					);
 
 					// Edit link
-					edit_post_link( __( 'Edit', 'hellish' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' );
+					edit_post_link( __( 'Edit', 'hellish-simplicity' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' );
 					?>
 				</div><!-- .entry-meta -->
 			</header><!-- .entry-header -->
@@ -67,8 +68,9 @@ if ( have_posts() ) {
 		</article><!-- #post-<?php the_ID(); ?> --><?php
 
 		// If comments are open or we have at least one comment, load up the comment template
-		if ( comments_open() || '0' != get_comments_number() )
+		if ( comments_open() || '0' != get_comments_number() ) {
 			comments_template( '', true );
+		}
 
 	}
 
