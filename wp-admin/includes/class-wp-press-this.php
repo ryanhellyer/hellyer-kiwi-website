@@ -322,10 +322,10 @@ class WP_Press_This {
 
 		// HTTP 1.1 allows 8000 chars but the "de-facto" standard supported in all current browsers is 2048.
 		if ( strlen( $url ) > 2048 ) {
-			return ''; // Return empty rather than a trunacted/invalid URL
+			return ''; // Return empty rather than a truncated/invalid URL
 		}
 
-		// Does it look like an URL?
+		// Does not look like an URL.
 		if ( ! preg_match( '/^([!#$&-;=?-\[\]_a-z~]|%[0-9a-fA-F]{2})+$/', $url ) ) {
 			return '';
 		}
@@ -1002,21 +1002,17 @@ class WP_Press_This {
 			}
 		}
 
+		$default_html = array( 'quote' => '', 'link' => '', 'embed' => '' );
+
 		require_once( ABSPATH . WPINC . '/class-oembed.php' );
 		$oembed = _wp_oembed_get_object();
 
 		if ( ! empty( $data['u'] ) && $oembed->get_provider( $data['u'], array( 'discover' => false ) ) ) {
-			$default_html = array(
-				'quote' => '',
-				'link' => '',
-				'embed' => '<p>[embed]' . $data['u'] . '[/embed]</p>',
-			);
+			$default_html['embed'] = '<p>[embed]' . $data['u'] . '[/embed]</p>';
 		} else {
-			$default_html = array(
-				'quote' => '<blockquote>%1$s</blockquote>',
-				'link' => '<p>' . _x( 'Source:', 'Used in Press This to indicate where the content comes from.' ) .
-					' <em><a href="%1$s">%2$s</a></em></p>',
-			);
+			$default_html['quote'] = '<blockquote>%1$s</blockquote>';
+			$default_html['link'] = '<p>' . _x( 'Source:', 'Used in Press This to indicate where the content comes from.' ) .
+				' <em><a href="%1$s">%2$s</a></em></p>';
 		}
 
 		/**
