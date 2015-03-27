@@ -479,7 +479,9 @@ function wp_default_scripts( &$scripts ) {
 			'newPost' => __( 'Title' ),
 			'unexpectedError' => __( 'Sorry, but an unexpected error occurred.' ),
 			'saveAlert' => __( 'The changes you made will be lost if you navigate away from this page.' ),
+			/* translators: %d: nth embed found in a post */
 			'suggestedEmbedAlt' => __( 'Suggested embed #%d' ),
+			/* translators: %d: nth image found in a post */
 			'suggestedImgAlt' => __( 'Suggested image #%d' ),
 		) );
 
@@ -524,7 +526,7 @@ function wp_default_scripts( &$scripts ) {
 			'l10n'       => array(
 				'updating'      => __( 'Updating...' ),
 				'updated'       => __( 'Updated!' ),
-				'updateFailed'  => __( 'Update failed' ),
+				'updateFailed'  => __( 'Update failed.' ),
 				'updatingMsg'   => __( 'Updating... please wait.' ),
 				'updatedMsg'    => __( 'Update completed successfully.' ),
 			)
