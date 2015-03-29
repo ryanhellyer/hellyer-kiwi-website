@@ -598,14 +598,17 @@
 				}
 			});
 
-			section.container.find( '.themes-panel-back' ).on( 'click keydown', function( event ) {
+
+			$( '#customize-header-actions' ).on( 'click keydown', '.control-panel-back', function( event ) {
 				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
 					return;
 				}
 
 				event.preventDefault(); // Keep this AFTER the key filter above
 
-				section.collapse();
+				if ( section.expanded() ) {
+					section.collapse();
+				}
 			});
 
 			// Theme navigation in details view.
@@ -688,10 +691,10 @@
 				panel = this,
 				section = panel.container.closest( '.accordion-section' ),
 				overlay = section.closest( '.wp-full-overlay' ),
-				container = section.closest( '.accordion-container' ),
+				container = section.closest( '.wp-full-overlay-sidebar-content' ),
 				siblings = container.find( '.open' ),
 				topPanel = overlay.find( '#customize-theme-controls > ul > .accordion-section > .accordion-section-title' ).add( '#customize-info > .accordion-section-title' ),
-				backBtn = overlay.find( '.themes-panel-back' ),
+				backBtn = overlay.find( '.control-panel-back' ),
 				panelTitle = section.find( '.accordion-section-title' ).first(),
 				content = section.find( '.control-panel-content' );
 
@@ -1014,7 +1017,7 @@
 				panel = this,
 				section = panel.container.closest( '.accordion-section' ),
 				overlay = section.closest( '.wp-full-overlay' ),
-				container = section.closest( '.accordion-container' ),
+				container = section.closest( '.wp-full-overlay-sidebar-content' ),
 				siblings = container.find( '.open' ),
 				topPanel = overlay.find( '#customize-theme-controls > ul > .accordion-section > .accordion-section-title' ).add( '#customize-info > .accordion-section-title' ),
 				backBtn = overlay.find( '.control-panel-back' ),
