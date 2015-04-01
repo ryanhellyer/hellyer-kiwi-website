@@ -1,10 +1,9 @@
 === WordPress Beta Tester  ===
 Tags: beta, advanced, testing
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal%40ftwr%2eco%2euk&item_name=Peter%20Westwood%20WordPress%20Plugins&no_shipping=1&cn=Donation%20Notes&tax=0&currency_code=GBP&bn=PP%2dDonationsBF&charset=UTF%2d8
 Contributors: westi
-Tested up to: 3.8
+Tested up to: 4.2
 Requires at least: 3.0.5
-Stable Tag: 0.98
+Stable Tag: 1.0
 
 == Description ==
 This plugin provides an easy way to get involved with Beta testing WordPress.
@@ -13,11 +12,16 @@ Once installed it will enable you to upgrade your blog to the latest Beta or Rel
 
 By default once enabled it switches your blog onto the point release development track.
 
-For the more adventerous there is the option to switch to the bleeding edge of development
+For the more adventurous there is the option to switch to the bleeding edge of development.
 
-Don't forget to backup before your start!
+Don't forget to backup before you start!
 
 == Changelog ==
+
+= 1.0 =
+* Update tested up to version to 4.2.
+* Update screenshot.
+* Fix a couple typos.
 
 = 0.99 =
 * Add support for HTTPS urls on WP.org as well as non-HTTPS ones.
