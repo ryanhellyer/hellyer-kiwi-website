@@ -591,7 +591,7 @@
 			var section = this;
 
 			// Expand/Collapse section/panel.
-			section.container.find( '.accordion-section-title' ).on( 'click keydown', function( event ) {
+			section.container.find( '.change-theme, .customize-theme' ).on( 'click keydown', function( event ) {
 				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
 					return;
 				}
@@ -601,19 +601,6 @@
 					section.collapse();
 				} else {
 					section.expand();
-				}
-			});
-
-
-			$( '#customize-header-actions' ).on( 'click keydown', '.control-panel-back', function( event ) {
-				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
-					return;
-				}
-
-				event.preventDefault(); // Keep this AFTER the key filter above
-
-				if ( section.expanded() ) {
-					section.collapse();
 				}
 			});
 
@@ -646,14 +633,6 @@
 				event.preventDefault(); // Keep this AFTER the key filter above
 
 				section.closeDetails();
-			});
-
-			section.container.on( 'click keydown', '.theme-actions .button', function( event ) {
-				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
-					return;
-				}
-
-				$( '.wp-full-overlay' ).addClass( 'customize-loading' );
 			});
 
 			section.container.on( 'input', '#themes-filter', function( event ) {
@@ -700,8 +679,8 @@
 				container = section.closest( '.wp-full-overlay-sidebar-content' ),
 				siblings = container.find( '.open' ),
 				topPanel = overlay.find( '#customize-theme-controls > ul > .accordion-section > .accordion-section-title' ).add( '#customize-info > .accordion-section-title' ),
-				backBtn = overlay.find( '.control-panel-back' ),
-				panelTitle = section.find( '.accordion-section-title' ).first(),
+				customizeBtn = section.find( '.customize-theme' ),
+				changeBtn = section.find( '.change-theme' ),
 				content = section.find( '.control-panel-content' );
 
 			if ( expanded ) {
@@ -730,8 +709,7 @@
 					}
 				} );
 				topPanel.attr( 'tabindex', '-1' );
-				backBtn.attr( 'tabindex', '0' );
-				backBtn.focus();
+				customizeBtn.focus();
 			} else {
 				siblings.removeClass( 'open' );
 				section.removeClass( 'current-panel' );
@@ -743,8 +721,7 @@
 					}
 				} );
 				topPanel.attr( 'tabindex', '0' );
-				backBtn.attr( 'tabindex', '-1' );
-				panelTitle.focus();
+				changeBtn.focus();
 				container.scrollTop( 0 );
 			}
 		},
@@ -1907,15 +1884,21 @@
 					return;
 				}
 
-				api.section( control.section() ).showDetails( control.params.theme );
+				var previewUrl = $( this ).data( 'previewUrl' );
+
+				$( '.wp-full-overlay' ).addClass( 'customize-loading' );
+
+				window.parent.location = previewUrl;
 			});
 
-			control.container.on( 'click keydown', '.theme-actions .button', function( event ) {
+			control.container.on( 'click keydown', '.theme-actions .theme-details', function( event ) {
 				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
 					return;
 				}
 
-				$( '.wp-full-overlay' ).addClass( 'customize-loading' );
+				event.preventDefault(); // Keep this AFTER the key filter above
+
+				api.section( control.section() ).showDetails( control.params.theme );
 			});
 		},
 

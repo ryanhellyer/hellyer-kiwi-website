@@ -22,12 +22,35 @@
 			image.className = 'emoji';
 			image.setAttribute( 'data-mce-resize', 'false' );
 			image.setAttribute( 'data-mce-placeholder', '1' );
-			image.setAttribute( 'data-wp-emoji', image.alt );
+			image.setAttribute( 'data-wp-emoji', '1' );
 		}
 
 		function replaceEmoji( node ) {
-			wp.emoji.parse( node, { className: 'emoji _inserted-emoji' } );
-			tinymce.each( editor.dom.$( 'img._inserted-emoji', node ), setImgAttr );
+			var imgAttr = {
+				'data-mce-resize': 'false',
+				'data-mce-placeholder': '1',
+				'data-wp-emoji': '1'
+			};
+
+			wp.emoji.parse( node, { imgAttr: imgAttr } );
+		}
+
+		// Test if the node text contains emoji char(s) and replace.
+		function parseNode( node ) {
+			var selection, bookmark;
+
+			if ( node && twemoji.test( node.textContent || node.innerText ) ) {
+				if ( env.webkit ) {
+					selection = editor.selection;
+					bookmark = selection.getBookmark();
+				}
+
+				replaceEmoji( node );
+
+				if ( env.webkit ) {
+					selection.moveToBookmark( bookmark );
+				}
+			}
 		}
 
 		if ( isWin8 ) {
@@ -35,14 +58,8 @@
 			// That triggers the normal keyboard events, but not the 'input' event.
 			// Thankfully it sets keyCode 231 when the onscreen keyboard inserts any emoji.
 			editor.on( 'keyup', function( event ) {
-				var node;
-
 				if ( event.keyCode === 231 ) {
-					node = editor.selection.getNode();
-
-					if ( twemoji.test( node.textContent || node.innerText ) ) {
-						replaceEmoji( node );
-					}
+					parseNode( editor.selection.getNode() );
 				}
 			} );
 		} else if ( ! isWin ) {
@@ -58,21 +75,7 @@
 					return;
 				}
 
-				var bookmark,
-					selection = editor.selection,
-					node = selection.getNode();
-
-				if ( twemoji.test( node.textContent || node.innerText ) ) {
-					if ( env.webkit ) {
-						bookmark = selection.getBookmark();
-					}
-
-					replaceEmoji( node );
-
-					if ( env.webkit ) {
-						selection.moveToBookmark( bookmark );
-					}
-				}
+				parseNode( editor.selection.getNode() );
 			});
 		}
 
@@ -104,7 +107,15 @@
 
 		editor.on( 'postprocess', function( event ) {
 			if ( event.content ) {
-				event.content = event.content.replace( /<img[^>]+data-wp-emoji="([^"]+)"[^>]*>/g, '$1' );
+				event.content = event.content.replace( /<img[^>]+data-wp-emoji="[^>]+>/g, function( img ) {
+					var alt = img.match( /alt="([^"]+)"/ );
+
+					if ( alt && alt[1] ) {
+						return alt[1];
+					}
+
+					return img;
+				});
 			}
 		} );
 

@@ -57,7 +57,11 @@ function confirm_delete_users( $users ) {
 
 			if ( ! empty( $blogs ) ) {
 				?>
-				<td><fieldset><p><legend><?php printf( __( 'What should be done with content owned by %s?' ), '<em>' . $delete_user->user_login . '</em>' ); ?></legend></p>
+				<td><fieldset><p><legend><?php printf(
+					/* translators: user login */
+					__( 'What should be done with content owned by %s?' ),
+					'<em>' . $delete_user->user_login . '</em>'
+				); ?></legend></p>
 				<?php
 				foreach ( (array) $blogs as $key => $details ) {
 					$blog_users = get_users( array( 'blog_id' => $details->userblog_id, 'fields' => array( 'ID', 'user_login' ) ) );
@@ -276,7 +280,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
 if ( isset( $_REQUEST['updated'] ) && $_REQUEST['updated'] == 'true' && ! empty( $_REQUEST['action'] ) ) {
 	?>
-	<div id="message" class="updated"><p>
+	<div id="message" class="updated notice is-dismissible"><p>
 		<?php
 		switch ( $_REQUEST['action'] ) {
 			case 'delete':
