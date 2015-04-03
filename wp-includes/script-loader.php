@@ -478,7 +478,7 @@ function wp_default_scripts( &$scripts ) {
 		$scripts->add( 'press-this', "/wp-admin/js/press-this$suffix.js", array( 'jquery', 'tags-box' ), false, 1 );
 		did_action( 'init' ) && $scripts->localize( 'press-this', 'pressThisL10n', array(
 			'newPost' => __( 'Title' ),
-			'unexpectedError' => __( 'Sorry, but an unexpected error occurred.' ),
+			'serverError' => __( 'Connection lost or the server is busy. Please try again later.' ),
 			'saveAlert' => __( 'The changes you made will be lost if you navigate away from this page.' ),
 			/* translators: %d: nth embed found in a post */
 			'suggestedEmbedAlt' => __( 'Suggested embed #%d' ),
@@ -500,7 +500,7 @@ function wp_default_scripts( &$scripts ) {
 
 		$scripts->add( 'admin-widgets', "/wp-admin/js/widgets$suffix.js", array( 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-droppable' ), false, 1 );
 
-		$scripts->add( 'theme', "/wp-admin/js/theme$suffix.js", array( 'wp-backbone' ), false, 1 );
+		$scripts->add( 'theme', "/wp-admin/js/theme$suffix.js", array( 'wp-backbone', 'wp-a11y' ), false, 1 );
 
 		$scripts->add( 'inline-edit-post', "/wp-admin/js/inline-edit-post$suffix.js", array( 'jquery', 'suggest' ), false, 1 );
 		did_action( 'init' ) && $scripts->localize( 'inline-edit-post', 'inlineEditL10n', array(
