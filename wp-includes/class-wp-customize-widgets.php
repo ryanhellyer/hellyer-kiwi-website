@@ -105,10 +105,10 @@ final class WP_Customize_Widgets {
 	 * Get the widget setting type given a setting ID.
 	 *
 	 * @since 4.2.0
+	 * @access protected
 	 *
-	 * @param $setting_id
-	 *
-	 * @return string|null
+	 * @param $setting_id Setting ID.
+	 * @return string|null Setting type. Null otherwise.
 	 */
 	protected function get_setting_type( $setting_id ) {
 		static $cache = array();
@@ -128,6 +128,7 @@ final class WP_Customize_Widgets {
 	 * Inspect the incoming customized data for any widget settings, and dynamically add them up-front so widgets will be initialized properly.
 	 *
 	 * @since 4.2.0
+	 * @access public
 	 */
 	public function register_settings() {
 		$widget_setting_ids = array();
@@ -159,10 +160,11 @@ final class WP_Customize_Widgets {
 	 * Determine the arguments for a dynamically-created setting.
 	 *
 	 * @since 4.2.0
+	 * @access public
 	 *
-	 * @param false|array $args
-	 * @param string $setting_id
-	 * @return false|array
+	 * @param false|array $setting_args The arguments to the WP_Customize_Setting constructor.
+	 * @param string      $setting_id   ID for dynamic setting, usually coming from `$_POST['customized']`.
+	 * @return false|array Setting arguments, false otherwise.
 	 */
 	public function filter_customize_dynamic_setting_args( $args, $setting_id ) {
 		if ( $this->get_setting_type( $setting_id ) ) {
