@@ -14,6 +14,9 @@
  */
 class WP_Press_This {
 
+	// Used to trigger the bookmarklet update notice.
+	public $version = 8;
+
 	private $images = array();
 
 	private $embeds = array();
@@ -38,12 +41,6 @@ class WP_Press_This {
 	 */
 	public function site_settings() {
 		return array(
-			/*
-			 * Used to trigger the bookmarklet update notice. Needs to be set here and in
-			 * get_shortcut_link() in wp-includes/link-template.php.
-			 */
-			'version' => '8',
-
 			/**
 			 * Filter whether or not Press This should redirect the user in the parent window upon save.
 			 *
@@ -1322,10 +1319,18 @@ class WP_Press_This {
 
 	<div class="wrapper">
 		<div class="editor-wrapper">
-			<div class="alerts">
-				<p class="alert is-notice is-hidden should-upgrade-bookmarklet">
-					<?php printf( __( 'You should upgrade <a href="%s" target="_blank">your bookmarklet</a> to the latest version!' ), admin_url( 'tools.php' ) ); ?>
-				</p>
+			<div class="alerts" role="alert" aria-live="assertive" aria-relevant="all" aria-atomic="true">
+				<?php
+
+				if ( empty( $data['v'] ) || $this->version > $data['v'] ) {
+					?>
+					<p class="alert is-notice">
+						<?php printf( __( 'You should upgrade <a href="%s" target="_blank">your bookmarklet</a> to the latest version!' ), admin_url( 'tools.php' ) ); ?>
+					</p>
+					<?php
+				}
+
+				?>
 			</div>
 
 			<div id="app-container" class="editor">
