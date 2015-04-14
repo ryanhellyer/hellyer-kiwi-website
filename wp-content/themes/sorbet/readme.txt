@@ -51,6 +51,10 @@ You can add links to a multitude of social services to a toggle menu (the heart 
 
 == Changelog ==
 
+= 1.2 - April 13, 2015 =
+* Fixed drop-down menu on touch devices.
+* Added new translations.
+
 = 1.1 - November 27, 2014 =
 * Add support for the Eventbrite API plugin.
 

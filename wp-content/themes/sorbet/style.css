@@ -3,7 +3,7 @@
  * Author: WordPress.com
  * Author URI: https://wordpress.com/themes/
  * Description: Sorbet is a delicious treat for your blog or website. Colorful post formats help your content pop, while secondary information (navigation, search, social links, and widgets) is tucked neatly away in the header for easy access that doesn't crowd your content.
- * Version: 1.1
+ * Version: 1.2
  * License: GNU General Public License v2 or later
  * License URI: license.txt
  * Tags: blue, gray, green, orange, pink, red, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, rtl-language-support, sticky-post, translation-ready
@@ -1293,7 +1293,8 @@ a:hover, a:focus, a:active {
   padding-left: 0;
   position: relative;
 }
-.main-navigation ul li:hover > ul {
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.focus > ul {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1403,7 +1404,8 @@ a:hover, a:focus, a:active {
   .main-navigation ul ul ul a {
     padding-left: 54px;
   }
-  .main-navigation ul li:hover > ul {
+  .main-navigation ul li:hover > ul,
+  .main-navigation ul li.focus > ul {
     display: block;
   }
   .main-navigation li {
