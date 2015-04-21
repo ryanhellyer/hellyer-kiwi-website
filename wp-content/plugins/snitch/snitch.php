@@ -8,7 +8,7 @@ Author: Sergej M&uuml;ller
 Author URI: http://wpcoder.de
 Plugin URI: https://wordpress.org/extend/plugins/snitch/
 License: GPLv2 or later
-Version: 1.1.3
+Version: 1.1.4
 */
 
 /*
@@ -36,6 +36,7 @@ defined('ABSPATH') OR exit;
 
 /* Konstanten */
 define('SNITCH_FILE', __FILE__);
+define('SNITCH_DIR', dirname(__FILE__));
 define('SNITCH_BASE', plugin_basename(__FILE__));
 define('SNITCH_BLOCKED', 1);
 define('SNITCH_AUTHORIZED', -1);
@@ -84,7 +85,7 @@ function snitch_autoload($class) {
 		require_once(
 			sprintf(
 				'%s/inc/%s.class.php',
-				dirname(__FILE__),
+				SNITCH_DIR,
 				strtolower($class)
 			)
 		);
