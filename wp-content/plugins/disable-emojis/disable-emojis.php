@@ -28,4 +28,18 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
 
-remove_action( 'wp_head', 'disable_emoji_dequeue_script', 7 );
+/**
+ * Dequeue the Emoji script.
+ */
+function disable_emoji_dequeue_script() {
+	wp_dequeue_script( 'emoji' );
+}
+add_action( 'wp_print_scripts', 'disable_emoji_dequeue_script', 100 );
+
+/**
+ * Remove the emoji styles.
+ */
+//remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+//remove_action( 'wp_head', 'disable_emoji_dequeue_script', 7 );
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
