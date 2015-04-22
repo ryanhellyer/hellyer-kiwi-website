@@ -41,3 +41,4 @@ add_action( 'wp_print_scripts', 'disable_emoji_dequeue_script', 100 );
  */
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'admin_print_styles', 'print_emoji_styles', 20 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
