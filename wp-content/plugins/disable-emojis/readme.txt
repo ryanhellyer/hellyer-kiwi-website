@@ -4,7 +4,7 @@ Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.2
 Tested up to: 4.2
-Stable tag: 1.2
+Stable tag: 1.4
 
 
 This plugin disables the new emoji functionality in WordPress 4.2.
@@ -28,4 +28,8 @@ Visit the <a href="https://geek.hellyer.kiwi/plugins/disable-emojis/">Disable Em
 
 == Changelog ==
 
+Version 1.4: Updating to use Otto's code<br />
+Version 1.3: Removing extraneous styles<br />
+Version 1.2: Bug fix<br />
+Version 1.1: Updating to work with latest beta<br />
 Version 1.0: Initial release<br />
