@@ -3,7 +3,7 @@
 Plugin Name: Disable Emojis
 Plugin URI: https://geek.hellyer.kiwi/plugins/disable-emojis/
 Description: Disable Emojis
-Version: 1.0
+Version: 1.1
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 License: GPL2
@@ -39,7 +39,4 @@ add_action( 'wp_print_scripts', 'disable_emoji_dequeue_script', 100 );
 /**
  * Remove the emoji styles.
  */
-//remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-//remove_action( 'wp_head', 'disable_emoji_dequeue_script', 7 );
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );

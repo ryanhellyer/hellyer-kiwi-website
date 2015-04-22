@@ -4,7 +4,7 @@ Tags: emojis
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.2
 Tested up to: 4.2
-Stable tag: 1.0
+Stable tag: 1.1
 
 
 This plugin disables the new emoji functionality in WordPress 4.2.
