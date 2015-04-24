@@ -50,5 +50,10 @@ add_action( 'init', 'disable_emojis' );
  * @return   array             Difference betwen the two arrays
  */
 function disable_emojis_tinymce( $plugins ) {
-	return array_diff( $plugins, array( 'wpemoji' ) );
+	if ( is_array( $plugins ) ) {
+		return array_diff( $plugins, array( 'wpemoji' ) );
+	} else {
+		return array();
+	}
 }
+
