@@ -3,7 +3,7 @@
 Plugin Name: Disable Emojis
 Plugin URI: https://geek.hellyer.kiwi/plugins/disable-emojis/
 Description: Disable Emojis
-Version: 1.4
+Version: 1.5
 Author: Ryan Hellyer
 Author URI: https://geek.hellyer.kiwi/
 License: GPL2
