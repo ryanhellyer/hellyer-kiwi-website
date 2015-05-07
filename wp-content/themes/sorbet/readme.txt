@@ -51,6 +51,9 @@ You can add links to a multitude of social services to a toggle menu (the heart 
 
 == Changelog ==
 
+= 1.2.1 - May 7 2015 =
+* Removed example.html
+
 = 1.2 - April 13, 2015 =
 * Fixed drop-down menu on touch devices.
 * Added new translations.
