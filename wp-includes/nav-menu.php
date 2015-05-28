@@ -13,7 +13,7 @@
  * @since 3.0.0
  *
  * @param string $menu Menu ID, slug, or name.
- * @return object|false False if $menu param isn't supplied or term does not exist, menu object if successful.
+ * @return mixed false if $menu param isn't supplied or term does not exist, menu object if successful.
  */
 function wp_get_nav_menu_object( $menu ) {
 	if ( ! $menu )
@@ -65,8 +65,6 @@ function is_nav_menu( $menu ) {
  *
  * @since 3.0.0
  *
- * @global array $_wp_registered_nav_menus
- *
  * @param array $locations Associative array of menu location identifiers (like a slug) and descriptive text.
  */
 function register_nav_menus( $locations = array() ) {
@@ -79,8 +77,6 @@ function register_nav_menus( $locations = array() ) {
 
 /**
  * Unregisters a navigation menu for a theme.
- *
- * @global array $_wp_registered_nav_menus
  *
  * @param string $location The menu location identifier.
  * @return bool True on success, false on failure.
@@ -103,7 +99,7 @@ function unregister_nav_menu( $location ) {
  *
  * @since 3.0.0
  *
- * @param string $location    Menu location identifier, like a slug.
+ * @param string $location Menu location identifier, like a slug.
  * @param string $description Menu location descriptive text.
  */
 function register_nav_menu( $location, $description ) {
@@ -113,9 +109,6 @@ function register_nav_menu( $location, $description ) {
  * Returns an array of all registered navigation menus in a theme
  *
  * @since 3.0.0
- *
- * @global array $_wp_registered_nav_menus
- *
  * @return array
  */
 function get_registered_nav_menus() {
@@ -141,7 +134,6 @@ function get_nav_menu_locations() {
  * Whether a registered nav menu location has a menu assigned to it.
  *
  * @since 3.0.0
- *
  * @param string $location Menu location identifier.
  * @return bool Whether location has a menu.
  */
@@ -228,7 +220,7 @@ function wp_delete_nav_menu( $menu ) {
  *
  * @since 3.0.0
  *
- * @param int   $menu_id   The ID of the menu or "0" to create a new menu.
+ * @param int $menu_id The ID of the menu or "0" to create a new menu.
  * @param array $menu_data The array of menu data.
  * @return int|WP_Error Menu ID on success, WP_Error object on failure.
  */
@@ -306,9 +298,9 @@ function wp_update_nav_menu_object( $menu_id = 0, $menu_data = array() ) {
  *
  * @since 3.0.0
  *
- * @param int   $menu_id         The ID of the menu. Required. If "0", makes the menu item a draft orphan.
- * @param int   $menu_item_db_id The ID of the menu item. If "0", creates a new menu item.
- * @param array $menu_item_data  The menu item's data.
+ * @param int $menu_id The ID of the menu. Required. If "0", makes the menu item a draft orphan.
+ * @param int $menu_item_db_id The ID of the menu item. If "0", creates a new menu item.
+ * @param array $menu_item_data The menu item's data.
  * @return int|WP_Error The menu item's database ID or WP_Error object on failure.
  */
 function wp_update_nav_menu_item( $menu_id = 0, $menu_item_db_id = 0, $menu_item_data = array() ) {
@@ -494,8 +486,6 @@ function wp_get_nav_menus( $args = array() ) {
  * @since 3.0.0
  * @access private
  *
- * @global string $_menu_item_sort_prop
- *
  * @param object $a The first object to compare
  * @param object $b The second object to compare
  * @return int -1, 0, or 1 if $a is considered to be respectively less than, equal to, or greater than $b.
@@ -532,7 +522,10 @@ function _sort_nav_menu_items( $a, $b ) {
  * @return bool False if invalid, otherwise true.
  */
 function _is_valid_nav_menu_item( $item ) {
-	return empty( $item->_invalid );
+	if ( ! empty( $item->_invalid ) )
+		return false;
+
+	return true;
 }
 
 /**
@@ -540,12 +533,9 @@ function _is_valid_nav_menu_item( $item ) {
  *
  * @since 3.0.0
  *
- * @global string $_menu_item_sort_prop
- * @staticvar array $fetched
- *
  * @param string $menu Menu name, ID, or slug.
  * @param array  $args Optional. Arguments to pass to {@see get_posts()}.
- * @return false|array $items Array of menu items, otherwise false.
+ * @return mixed $items Array of menu items, otherwise false.
  */
 function wp_get_nav_menu_items( $menu, $args = array() ) {
 	$menu = wp_get_nav_menu_object( $menu );
@@ -595,10 +585,7 @@ function wp_get_nav_menu_items( $menu, $args = array() ) {
 
 		if ( ! empty( $terms ) ) {
 			foreach ( array_keys($terms) as $taxonomy ) {
-				get_terms( $taxonomy, array(
-					'include' => $terms[ $taxonomy ],
-					'hierarchical' => false,
-				) );
+				get_terms($taxonomy, array('include' => $terms[$taxonomy]) );
 			}
 		}
 		unset($terms);
@@ -792,9 +779,9 @@ function wp_setup_nav_menu_item( $menu_item ) {
  *
  * @since 3.0.0
  *
- * @param int    $object_id   The ID of the original object.
+ * @param int $object_id The ID of the original object.
  * @param string $object_type The type of object, such as "taxonomy" or "post_type."
- * @param string $taxonomy    If $object_type is "taxonomy", $taxonomy is the name of the tax that $object_id belongs to
+ * @param string $taxonomy If $object_type is "taxonomy", $taxonomy is the name of the tax that $object_id belongs to
  * @return array The array of menu item IDs; empty array if none;
  */
 function wp_get_associated_nav_menu_items( $object_id = 0, $object_type = 'post_type', $taxonomy = '' ) {
@@ -878,7 +865,8 @@ function _wp_delete_tax_menu_item( $object_id = 0, $tt_id, $taxonomy ) {
  *
  * @param string $new_status The new status of the post object.
  * @param string $old_status The old status of the post object.
- * @param object $post       The post object being transitioned from one status to another.
+ * @param object $post The post object being transitioned from one status to another.
+ * @return void
  */
 function _wp_auto_add_pages_to_menu( $new_status, $old_status, $post ) {
 	if ( 'publish' != $new_status || 'publish' == $old_status || 'page' != $post->post_type )

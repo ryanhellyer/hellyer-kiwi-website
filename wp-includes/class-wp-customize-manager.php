@@ -647,8 +647,6 @@ final class WP_Customize_Manager {
 	 * Removes the signature in case we experience a case where the Customizer was not properly executed.
 	 *
 	 * @since 3.4.0
-	 *
-	 * @return mixed
 	 */
 	public function remove_preview_signature( $return = null ) {
 		remove_action( 'shutdown', array( $this, 'customize_preview_signature' ), 1000 );
@@ -843,7 +841,7 @@ final class WP_Customize_Manager {
 	 *
 	 * @since 4.2.0
 	 *
-	 * @param array $setting_ids The setting IDs to add.
+	 * @param string $setting_ids The setting IDs to add.
 	 * @return WP_Customize_Setting The settings added.
 	 */
 	public function add_dynamic_settings( $setting_ids ) {
@@ -899,7 +897,7 @@ final class WP_Customize_Manager {
 	 * @since 3.4.0
 	 *
 	 * @param string $id Customize Setting ID.
-	 * @return WP_Customize_Setting|void The setting, if set.
+	 * @return WP_Customize_Setting
 	 */
 	public function get_setting( $id ) {
 		if ( isset( $this->settings[ $id ] ) ) {
@@ -944,7 +942,7 @@ final class WP_Customize_Manager {
 	 * @access public
 	 *
 	 * @param string $id Panel ID to get.
-	 * @return WP_Customize_Panel|void Requested panel instance, if set.
+	 * @return WP_Customize_Panel Requested panel instance.
 	 */
 	public function get_panel( $id ) {
 		if ( isset( $this->panels[ $id ] ) ) {
@@ -987,7 +985,7 @@ final class WP_Customize_Manager {
 	 * @since 3.4.0
 	 *
 	 * @param string $id Section ID.
-	 * @return WP_Customize_Section|void The section, if set.
+	 * @return WP_Customize_Section
 	 */
 	public function get_section( $id ) {
 		if ( isset( $this->sections[ $id ] ) )
@@ -1029,7 +1027,7 @@ final class WP_Customize_Manager {
 	 * @since 3.4.0
 	 *
 	 * @param string $id ID of the control.
-	 * @return WP_Customize_Control|void The control object, if set.
+	 * @return WP_Customize_Control $control The control object.
 	 */
 	public function get_control( $id ) {
 		if ( isset( $this->controls[ $id ] ) )
@@ -1515,7 +1513,7 @@ final class WP_Customize_Manager {
 	 * @since 3.4.0
 	 *
 	 * @param string $color
-	 * @return mixed
+	 * @return string
 	 */
 	public function _sanitize_header_textcolor( $color ) {
 		if ( 'blank' === $color )
@@ -1532,13 +1530,13 @@ final class WP_Customize_Manager {
 /**
  * Sanitizes a hex color.
  *
- * Returns either '', a 3 or 6 digit hex color (with #), or nothing.
+ * Returns either '', a 3 or 6 digit hex color (with #), or null.
  * For sanitizing values without a #, see sanitize_hex_color_no_hash().
  *
  * @since 3.4.0
  *
  * @param string $color
- * @return string|void
+ * @return string|null
  */
 function sanitize_hex_color( $color ) {
 	if ( '' === $color )
@@ -1547,6 +1545,8 @@ function sanitize_hex_color( $color ) {
 	// 3 or 6 hex digits, or the empty string.
 	if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) )
 		return $color;
+
+	return null;
 }
 
 /**

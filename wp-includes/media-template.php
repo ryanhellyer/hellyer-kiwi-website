@@ -136,8 +136,6 @@ function wp_underscore_video_template() {
  * Prints the templates used in the media manager.
  *
  * @since 3.5.0
- *
- * @global bool $is_IE
  */
 function wp_print_media_templates() {
 	global $is_IE;
@@ -205,7 +203,7 @@ function wp_print_media_templates() {
 			<div class="upload-ui">
 				<h3 class="upload-instructions drop-instructions"><?php _e( 'Drop files anywhere to upload' ); ?></h3>
 				<p class="upload-instructions drop-instructions"><?php _ex( 'or', 'Uploader: Drop files here - or - Select Files' ); ?></p>
-				<button type="button" class="browser button button-hero"><?php _e( 'Select Files' ); ?></button>
+				<a href="#" class="browser button button-hero"><?php _e( 'Select Files' ); ?></a>
 			</div>
 
 			<div class="upload-inline-status"></div>
@@ -275,6 +273,7 @@ function wp_print_media_templates() {
 	</script>
 
 	<script type="text/html" id="tmpl-uploader-status-error">
+		<span class="upload-error-label"><?php _e('Error'); ?></span>
 		<span class="upload-error-filename">{{{ data.filename }}}</span>
 		<span class="upload-error-message">{{ data.message }}</span>
 	</script>
@@ -330,7 +329,7 @@ function wp_print_media_templates() {
 
 				<div class="attachment-actions">
 					<# if ( 'image' === data.type && ! data.uploading && data.sizes && data.can.save ) { #>
-					<button type="button" class="button edit-attachment"><?php _e( 'Edit Image' ); ?></button>
+						<a class="button edit-attachment" href="#"><?php _e( 'Edit Image' ); ?></a>
 					<# } #>
 				</div>
 			</div>

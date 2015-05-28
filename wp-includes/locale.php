@@ -91,9 +91,6 @@ class WP_Locale {
 	 *
 	 * @since 2.1.0
 	 * @access private
-	 *
-	 * @global string $text_direction
-	 * @global string $wp_version
 	 */
 	function init() {
 		// The Weekdays
@@ -304,12 +301,6 @@ class WP_Locale {
 	 * @deprecated For backwards compatibility only.
 	 * @access private
 	 *
-	 * @global array $weekday
-	 * @global array $weekday_initial
-	 * @global array $weekday_abbrev
-	 * @global array $month
-	 * @global array $month_abbrev
-	 *
 	 * @since 2.1.0
 	 */
 	function register_globals() {
@@ -323,7 +314,10 @@ class WP_Locale {
 	/**
 	 * Constructor which calls helper methods to set up object variables
 	 *
+	 * @uses WP_Locale::init()
+	 * @uses WP_Locale::register_globals()
 	 * @since 2.1.0
+	 *
 	 */
 	function __construct() {
 		$this->init();
@@ -363,9 +357,6 @@ class WP_Locale {
  * Checks if current locale is RTL.
  *
  * @since 3.0.0
- *
- * @global WP_Locale $wp_locale
- *
  * @return bool Whether locale is RTL.
  */
 function is_rtl() {

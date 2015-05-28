@@ -68,7 +68,7 @@ var wpLink;
 				inputs.queryNoticeTextHint.addClass( 'screen-reader-text' ).hide();
 			} );
 
-			inputs.search.on( 'keyup input', function() {
+			inputs.search.keyup( function() {
 				var self = this;
 
 				window.clearTimeout( searchTimer );

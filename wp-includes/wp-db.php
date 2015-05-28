@@ -2893,13 +2893,11 @@ class wpdb {
 			return;
 
 		if ( $this->use_mysqli ) {
-			$num_fields = @mysqli_num_fields( $this->result );
-			for ( $i = 0; $i < $num_fields; $i++ ) {
+			for ( $i = 0; $i < @mysqli_num_fields( $this->result ); $i++ ) {
 				$this->col_info[ $i ] = @mysqli_fetch_field( $this->result );
 			}
 		} else {
-			$num_fields = @mysql_num_fields( $this->result );
-			for ( $i = 0; $i < $num_fields; $i++ ) {
+			for ( $i = 0; $i < @mysql_num_fields( $this->result ); $i++ ) {
 				$this->col_info[ $i ] = @mysql_fetch_field( $this->result, $i );
 			}
 		}

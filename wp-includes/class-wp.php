@@ -115,8 +115,6 @@ class WP {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @global WP_Rewrite $wp_rewrite
-	 *
 	 * @param array|string $extra_query_vars Set the extra query variables.
 	 */
 	public function parse_request($extra_query_vars = '') {
@@ -490,14 +488,13 @@ class WP {
 	 * be taken when naming global variables that might interfere with the
 	 * WordPress environment.
 	 *
-	 * @global WP_Query     $wp_query
-	 * @global string       $query_string Query string for the loop.
-	 * @global array        $posts The found posts.
+	 * @global string $query_string Query string for the loop.
+	 * @global array $posts The found posts.
 	 * @global WP_Post|null $post The current post, if available.
-	 * @global string       $request The SQL statement for the request.
-	 * @global int          $more Only set, if single page or post.
-	 * @global int          $single If single page or post. Only set, if single page or post.
-	 * @global WP_User      $authordata Only set, if author archive.
+	 * @global string $request The SQL statement for the request.
+	 * @global int $more Only set, if single page or post.
+	 * @global int $single If single page or post. Only set, if single page or post.
+	 * @global WP_User $authordata Only set, if author archive.
 	 *
 	 * @since 2.0.0
 	 */
@@ -536,8 +533,6 @@ class WP {
 	 * Set up the Loop based on the query variables.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @global WP_Query $wp_the_query
 	 */
 	public function query_posts() {
 		global $wp_the_query;
@@ -555,8 +550,6 @@ class WP {
 	 * Otherwise, issue a 200.
 	 *
 	 * @since 2.0.0
-	 *
-	 * @global WP_Query $wp_query
  	 */
 	public function handle_404() {
 		global $wp_query;
@@ -628,6 +621,7 @@ class WP {
 		 */
 		do_action_ref_array( 'wp', array( &$this ) );
 	}
+
 }
 
 /**
@@ -684,9 +678,7 @@ class WP_MatchesMapRegex {
 	 *
 	 * static helper function to ease use
 	 *
-	 * @static
 	 * @access public
-	 *
 	 * @param string $subject subject
 	 * @param array  $matches data used for substitution
 	 * @return string
@@ -718,4 +710,5 @@ class WP_MatchesMapRegex {
 		$index = intval(substr($matches[0], 9, -1));
 		return ( isset( $this->_matches[$index] ) ? urlencode($this->_matches[$index]) : '' );
 	}
+
 }
