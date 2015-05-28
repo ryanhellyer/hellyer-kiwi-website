@@ -126,7 +126,6 @@
 	overflow: hidden;
 	clip: rect(0 0 0 0);
 	border: 0;
-	word-wrap: normal !important; /* many screen reader and browser combinations announce broken words as they would appear visually */
 }
 
 .screen-reader-shortcut {
@@ -738,24 +737,23 @@ img.emoji {
 }
 
 /* @todo can we combine these into a class or use an existing dashicon one? */
-.welcome-panel .welcome-panel-close:before,
+#welcome-panel.welcome-panel .welcome-panel-close:before,
 .tagchecklist span a:before,
 #bulk-titles div a:before,
 .notice-dismiss:before {
 	background: none;
 	color: #b4b9be;
 	content: '\f153';
-	display: block;
+	display: block !important;
 	font: normal 16px/1 'dashicons';
 	speak: none;
-	height: 16px;
+	height: 20px;
 	text-align: center;
 	width: 20px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased !important;
 }
 
-.welcome-panel .welcome-panel-close:before {
+#welcome-panel.welcome-panel .welcome-panel-close:before {
 	margin: 0;
 }
 
@@ -764,8 +762,7 @@ img.emoji {
 	margin: 2px 0;
 }
 
-.welcome-panel .welcome-panel-close:hover:before,
-.welcome-panel .welcome-panel-close:focus:before,
+#welcome-panel.welcome-panel .welcome-panel-close:hover:before,
 .tagchecklist span a:hover:before,
 #bulk-titles div a:hover:before {
 	color: #c00;
@@ -934,7 +931,7 @@ th.action-links {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 12px 0 25px;
-	padding: 0 10px;
+	padding: 0 20px;
 	width: 100%;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
@@ -2037,17 +2034,14 @@ td.media-icon {
 	padding-bottom: 8px;
 }
 
-td.media-icon a {
-	display: inline-block;
-}
-
 td.media-icon img {
-	display: block;
 	max-width: 80px;
 	max-height: 60px;
 	width: auto;
 	height: auto;
-	border: 1px solid #e7e7e7;
+}
+
+td.image-icon img {
 	border: 1px solid rgba(0, 0, 0, 0.07);
 }
 

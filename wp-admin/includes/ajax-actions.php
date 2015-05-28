@@ -2714,23 +2714,14 @@ function wp_ajax_parse_embed() {
 	}
 
 	$shortcode = wp_unslash( $_POST['shortcode'] );
-
-	preg_match( '/' . get_shortcode_regex() . '/s', $shortcode, $matches );
-	$atts = shortcode_parse_atts( $matches[3] );
-	if ( ! empty( $matches[5] ) ) {
-		$url = $matches[5];
-	} elseif ( ! empty( $atts['src'] ) ) {
-		$url = $atts['src'];
-	} else {
-		$url = '';
-	}
+	$url = str_replace( '[embed]', '', str_replace( '[/embed]', '', $shortcode ) );
 
 	$parsed = false;
 	setup_postdata( $post );
 
 	$wp_embed->return_false_on_fail = true;
 
-	if ( is_ssl() && 0 === strpos( $url, 'http://' ) ) {
+	if ( is_ssl() && preg_match( '%^\\[embed[^\\]]*\\]http://%i', $shortcode ) ) {
 		// Admin is ssl and the user pasted non-ssl URL.
 		// Check if the provider supports ssl embeds and use that for the preview.
 		$ssl_shortcode = preg_replace( '%^(\\[embed[^\\]]*\\])http://%i', '$1https://', $shortcode );
@@ -2741,7 +2732,7 @@ function wp_ajax_parse_embed() {
 		}
 	}
 
-	if ( $url && ! $parsed ) {
+	if ( ! $parsed ) {
 		$parsed = $wp_embed->run_shortcode( $shortcode );
 	}
 
@@ -2783,8 +2774,7 @@ function wp_ajax_parse_embed() {
 	}
 
 	wp_send_json_success( array(
-		'body' => $parsed,
-		'attr' => $wp_embed->last_attr
+		'body' => $parsed
 	) );
 }
 
@@ -2902,7 +2892,6 @@ function wp_ajax_update_plugin() {
 		'oldVersion' => '',
 		'newVersion' => '',
 	);
-
 	$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
 	if ( $plugin_data['Version'] ) {
 		$status['oldVersion'] = sprintf( __( 'Version %s' ), $plugin_data['Version'] );
@@ -2922,15 +2911,10 @@ function wp_ajax_update_plugin() {
 		wp_update_plugins();
 	}
 
-	$skin = new Automatic_Upgrader_Skin();
-	$upgrader = new Plugin_Upgrader( $skin );
+	$upgrader = new Plugin_Upgrader( new Automatic_Upgrader_Skin() );
 	$result = $upgrader->bulk_upgrade( array( $plugin ) );
 
-	if ( is_array( $result ) && empty( $result[$plugin] ) && is_wp_error( $skin->result ) ) {
-		$result = $skin->result;
-	}
-
-	if ( is_array( $result ) && !empty( $result[ $plugin ] ) ) {
+	if ( is_array( $result ) ) {
 		$plugin_update_data = current( $result );
 
 		/*
@@ -2945,8 +2929,7 @@ function wp_ajax_update_plugin() {
  			wp_send_json_error( $status );
 		}
 
-		$plugin_data = get_plugins( '/' . $result[ $plugin ]['destination_name'] );
-		$plugin_data = reset( $plugin_data );
+		$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
 
 		if ( $plugin_data['Version'] ) {
 			$status['newVersion'] = sprintf( __( 'Version %s' ), $plugin_data['Version'] );

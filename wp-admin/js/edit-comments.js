@@ -397,7 +397,7 @@ commentReply = {
 			});
 		} else if ( action == 'add' ) {
 			$('#addhead, #addbtn', editRow).show();
-			$('#replyhead, #replybtn, #edithead, #savebtn', editRow).hide();
+			$('#replyhead, #replybtn, #edithead, #editbtn', editRow).hide();
 			$('#the-comment-list').prepend(editRow);
 			$('#replyrow').fadeIn(300);
 		} else {

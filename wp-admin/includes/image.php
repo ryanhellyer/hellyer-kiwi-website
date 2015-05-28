@@ -190,7 +190,8 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 	}
 
 	// Remove the blob of binary data from the array.
-	unset( $metadata['image']['data'] );
+	if ( isset( $metadata['image']['data'] ) )
+		unset( $metadata['image']['data'] );
 
 	/**
 	 * Filter the generated attachment meta data.

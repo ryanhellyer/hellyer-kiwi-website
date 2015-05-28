@@ -125,8 +125,7 @@ strong .post-com-count:after {
 	font-size: 1em;
 }
 
-#edithead .inside,
-#commentsdiv #edithead .inside {
+#edithead .inside {
 	float: left;
 	padding: 3px 0 2px 5px;
 	margin: 0;
@@ -358,11 +357,6 @@ table.fixed {
 	border-bottom: 0 none;
 }
 
-#commentsdiv #edithead .inside input {
-	vertical-align: middle;
-	width: 160px;
-}
-
 .sorting-indicator {
 	display: none;
 	width: 10px;
@@ -372,6 +366,7 @@ table.fixed {
 }
 
 .sorting-indicator:before {
+	background: none;
 	content: '\f142';
 	font: normal 20px/1 'dashicons';
 	speak: none;
@@ -395,14 +390,12 @@ table.fixed {
 }
 
 th.sorted.asc .sorting-indicator:before,
-th.desc:hover span.sorting-indicator:before,
-th.desc a:focus span.sorting-indicator:before {
+th.desc:hover span.sorting-indicator:before {
 	content: '\f142';
 }
 
 th.sorted.desc .sorting-indicator:before,
-th.asc:hover span.sorting-indicator:before,
-th.asc a:focus span.sorting-indicator:before {
+th.asc:hover span.sorting-indicator:before {
 	content: '\f140';
 }
 
@@ -483,12 +476,16 @@ th.sorted a span {
 	cursor: pointer;
 }
 
-th.sorted .sorting-indicator,
-th.desc:hover span.sorting-indicator,
-th.desc a:focus span.sorting-indicator,
-th.asc:hover span.sorting-indicator,
-th.asc a:focus span.sorting-indicator {
+th.sorted.asc .sorting-indicator,
+th.desc:hover span.sorting-indicator {
 	display: block;
+	background-position: 0 0;
+}
+
+th.sorted.desc .sorting-indicator,
+th.asc:hover span.sorting-indicator {
+	display: block;
+	background-position: -7px 0;
 }
 
 /* Bulk Actions */
@@ -566,16 +563,10 @@ th.asc a:focus span.sorting-indicator {
 }
 
 .tablenav .displaying-num {
-	margin-right: 7px;
+	margin-right: 2px;
 	color: #777;
 	font-size: 12px;
 	font-style: italic;
-}
-
-.tablenav .one-page .displaying-num {
-	display: inline-block;
-	margin-top: 2px;
-	margin-right: 0;
 }
 
 .tablenav .actions {
@@ -612,43 +603,43 @@ classes exist in paginate_links() but not seen in list table output. */
 
 .tablenav .view-switch {
 	float: right;
-	margin: 0 5px;
-	padding-top: 3px;
-	/* line-height in px same as .tablenav height */
-	line-height: 30px;
+	margin: 5px 16px 0 8px;
 }
 
 .wp-filter .view-switch {
 	display: inline-block;
 	vertical-align: middle;
-	padding: 12px 0;
-	margin: 0 8px 0 2px;
-}
-
-.media-toolbar.wp-filter .view-switch {
-	margin: 0 12px 0 2px;
+	padding: 15px 0;
+	margin: 0 20px 0 0;
 }
 
 .view-switch a {
-	float: left;
-	width: 28px;
-	height: 28px;
-	text-align: center;
-	line-height: 24px;
+	text-decoration: none;
 }
 
-.view-switch a:before {
+.view-switch > a {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+}
+
+.view-switch > a:before {
 	color: #b4b9be;
 	display: inline-block;
+	float: left;
 	font: normal 20px/1 'dashicons';
 	speak: none;
 	vertical-align: middle;
+	margin-left: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.view-switch a:hover:before,
-.view-switch a:focus:before {
+.view-switch > .view-list:before {
+	content: '\f163';
+}
+
+.view-switch a:hover:before {
 	color: #727272;
 }
 
@@ -656,15 +647,15 @@ classes exist in paginate_links() but not seen in list table output. */
 	color: #0073aa;
 }
 
-.view-switch .view-list:before {
-	content: '\f163';
+.view-switch > a + a {
+	margin-left: 5px;
 }
 
-.view-switch .view-excerpt:before {
+.view-switch > .view-excerpt:before {
 	content: '\f164';
 }
 
-.view-switch .view-grid:before {
+.view-switch > .view-grid:before {
 	content: '\f509';
 }
 
@@ -1552,12 +1543,6 @@ div.action-links,
 	.tablenav.top .actions,
 	.tablenav .view-switch {
 		display: none;
-	}
-
-	.view-switch a {
-		width: 36px;
-		height: 36px;
-		line-height: 33px;
 	}
 
 	/* Pagination */
