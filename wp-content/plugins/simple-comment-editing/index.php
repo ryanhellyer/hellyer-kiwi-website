@@ -4,7 +4,7 @@ Plugin Name: Simple Comment Editing
 Plugin URI: http://wordpress.org/extend/plugins/simple-comment-editing/
 Description: Simple comment editing for your users.
 Author: ronalfy
-Version: 1.2.4
+Version: 1.3.0
 Requires at least: 3.5
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
@@ -45,8 +45,26 @@ class Simple_Comment_Editing {
 		if ( is_admin() && !defined( 'DOING_AJAX' ) ) return false;
 		
 		//Set plugin defaults
-		$this->comment_time = intval( apply_filters( 'sce_comment_time', 5 ) );
+		$this->comment_time = $this->get_comment_time();
+		/**
+		* Filter: sce_loading_img
+		*
+		* Replace the loading image with a custom version.
+		*
+		* @since 1.0.0
+		*
+		* @param string  $image_url URL path to the loading image.
+		*/
 		$this->loading_img = esc_url( apply_filters( 'sce_loading_img', $this->get_plugin_url( '/images/loading.gif' ) ) );
+		/**
+		* Filter: sce_allow_delete
+		*
+		* Determine if users can delete their comments
+		*
+		* @since 1.1.0
+		*
+		* @param bool  $allow_delete True allows deletion, false does not
+		*/
 		$this->allow_delete = (bool)apply_filters( 'sce_allow_delete', $this->allow_delete );
 		
 		/* BEGIN ACTIONS */
@@ -83,8 +101,8 @@ class Simple_Comment_Editing {
 	public function add_edit_interface( $comment_content, $comment = false) {
 		if ( !$comment ) return $comment_content;
 				
-		$comment_id = $comment->comment_ID;
-		$post_id = $comment->comment_post_ID;
+		$comment_id = absint( $comment->comment_ID );
+		$post_id = absint( $comment->comment_post_ID );
 		
 		//Check to see if a user can edit their comment
 		if ( !$this->can_edit( $comment_id, $post_id ) ) return $comment_content;
@@ -94,42 +112,67 @@ class Simple_Comment_Editing {
 		$raw_content = $comment->comment_content; //For later usage in the textarea
 		
 		//Yay, user can edit - Add the initial wrapper
-		$comment_content = sprintf( '<div id="sce-comment%d" class="sce-comment">%s</div>', $comment_id, $comment_content );	
+		$comment_wrapper = sprintf( '<div id="sce-comment%d" class="sce-comment">%s</div>', $comment_id, $comment_content );	
 		
 		//Create Overall wrapper for JS interface
-		$comment_content .= sprintf( '<div id="sce-edit-comment%d" class="sce-edit-comment">', $comment_id );
+		$sce_content = sprintf( '<div id="sce-edit-comment%d" class="sce-edit-comment">', $comment_id );
 		
 		//Edit Button
-		$comment_content .= '<div class="sce-edit-button" style="display:none;">';
+		$sce_content .= '<div class="sce-edit-button" style="display:none;">';
 		$ajax_edit_url = add_query_arg( array( 'cid' => $comment_id, 'pid' => $post_id ) , wp_nonce_url( admin_url( 'admin-ajax.php' ), 'sce-edit-comment' . $comment_id ) );
-		$comment_content .= sprintf( '<a href="%s">%s</a>', $ajax_edit_url, esc_html__( 'Click to Edit', 'simple-comment-editing' ) );
-		$comment_content .= '<span class="sce-timer"></span>';
-		$comment_content .= '</div><!-- .sce-edit-button -->';
+		$sce_content .= sprintf( '<a href="%s">%s</a>', esc_url( $ajax_edit_url ), esc_html__( 'Click to Edit', 'simple-comment-editing' ) );
+		$sce_content .= '<span class="sce-timer"></span>';
+		$sce_content .= '</div><!-- .sce-edit-button -->';
 		
 		//Loading button
-		$comment_content .= '<div class="sce-loading" style="display: none;">';
-		$comment_content .= sprintf( '<img src="%1$s" title="%2$s" alt="%2$s" />', $this->loading_img, esc_attr__( 'Loading', 'simple-comment-editing' ) );
-		$comment_content .= '</div><!-- sce-loading -->';
+		$sce_content .= '<div class="sce-loading" style="display: none;">';
+		$sce_content .= sprintf( '<img src="%1$s" title="%2$s" alt="%2$s" />', esc_url( $this->loading_img ), esc_attr__( 'Loading', 'simple-comment-editing' ) );
+		$sce_content .= '</div><!-- sce-loading -->';
 		
 		//Textarea
-		$comment_content .= '<div class="sce-textarea" style="display: none;">';
-		$textarea_content = format_to_edit( $raw_content, 1 );
-		$textarea_content = apply_filters( 'comment_edit_pre', $textarea_content );
-		$comment_content .= '<div class="sce-comment-textarea">';
-		$comment_content .= sprintf( '<textarea class="sce-comment-text" cols="45" rows="8">%s</textarea>', esc_textarea( $raw_content ) );
-		$comment_content .= '</div><!-- .sce-comment-textarea -->';
-		$comment_content .= '<div class="sce-comment-edit-buttons">';
-		$comment_content .= sprintf( '<button class="sce-comment-save">%s</button>', esc_html__( 'Save', 'simple-comment-editing' ) );
-		$comment_content .= sprintf( '<button class="sce-comment-cancel">%s</button>', esc_html__( 'Cancel', 'simple-comment-editing' ) );
-		$comment_content .= '</div><!-- .sce-comment-edit-buttons -->';
-		$comment_content .= '</div><!-- .sce-textarea -->';
+		$textarea_content = '<div class="sce-textarea" style="display: none;">';
+		$textarea_content .= '<div class="sce-comment-textarea">';
+		$textarea_content .= sprintf( '<textarea class="sce-comment-text" cols="45" rows="8">%s</textarea>', esc_textarea( $raw_content ) );
+		$textarea_content .= '</div><!-- .sce-comment-textarea -->';
+		$textarea_content .= '%s</div><!-- .sce-textarea -->';
+		$textarea_button_content = '<div class="sce-comment-edit-buttons">';
+		$textarea_buttons = sprintf( '<button class="sce-comment-save">%s</button>', esc_html__( 'Save', 'simple-comment-editing' ) );
+		$textarea_buttons .= sprintf( '<button class="sce-comment-cancel">%s</button>', esc_html__( 'Cancel', 'simple-comment-editing' ) );
+		/**
+		* Filter: sce_buttons
+		*
+		* Filter to add button content
+		*
+		* @since 1.3.0
+		*
+		* @param string  $textarea_buttons Button HTML
+		* @param int       $comment_id        Comment ID
+		*/
+		$textarea_buttons = apply_filters( 'sce_buttons', $textarea_buttons, $comment_id );
+		$textarea_button_content .= $textarea_buttons . '</div><!-- .sce-comment-edit-buttons -->';
+		$textarea_content = sprintf( $textarea_content, $textarea_button_content );
+		
 		
 		//End
-		$comment_content .= '</div><!-- .sce-edit-comment -->';
+		$sce_content .= $textarea_content . '</div><!-- .sce-edit-comment -->';
 		
 		//Status Area
-		$comment_content .= sprintf( '<div id="sce-edit-comment-status%d" class="sce-status" style="display: none;"></div><!-- .sce-status -->', $comment_id );
+		$sce_content .= sprintf( '<div id="sce-edit-comment-status%d" class="sce-status" style="display: none;"></div><!-- .sce-status -->', $comment_id );
 		
+		/**
+		* Filter: sce_content
+		*
+		* Filter to overral sce output
+		*
+		* @since 1.3.0
+		*
+		* @param string  $sce_content SCE content 
+		* @param int       $comment_id Comment ID of the comment
+		*/
+		$sce_content = apply_filters( 'sce_content', $sce_content, $comment_id );
+		
+		//Return content
+		$comment_content = $comment_wrapper . $sce_content;
 		return $comment_content;
 	
 	} //end add_edit_interface
@@ -164,17 +207,16 @@ class Simple_Comment_Editing {
 	 			$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.js' );
 	 		}
 	 	}
-	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20150204', true );
+	 	include( 'class-sce-timer.php' );
+	 	$timer_internationalized = new SCE_Timer();
+	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20150618', true );
 	 	wp_localize_script( 'simple-comment-editing', 'simple_comment_editing', array(
-	 		'minutes' => __( 'minutes', 'simple-comment-editing' ),
-	 		'minute' => __( 'minute', 'simple-comment-editing' ),
 	 		'and' => __( 'and', 'simple-comment-editing' ),
-	 		'seconds' => __( 'seconds', 'simple-comment-editing' ),
-	 		'second' => __( 'second', 'simple-comment-editing' ),
 	 		'confirm_delete' => __( 'Do you want to delete this comment?', 'simple-comment-editing' ),
 	 		'comment_deleted' => __( 'Your comment has been removed.', 'simple-comment-editing' ),
 	 		'empty_comment' => $this->errors->get_error_message( 'comment_empty' ),
-	 		'allow_delete' => $this->allow_delete
+	 		'allow_delete' => $this->allow_delete,
+	 		'timer' => $timer_internationalized->get_timer_vars()
 	 	) );
 	 } //end add_scripts
 	 
@@ -330,6 +372,16 @@ class Simple_Comment_Editing {
 		$comment_to_save[ 'comment_content' ] = $new_comment_content;
 		
 		//Before save comment
+		/**
+		* Filter: sce_comment_check_errors
+		*
+		* Return a custom error message based on the saved comment
+		*
+		* @since 1.2.4
+		*
+		* @param bool  $custom_error Default custom error. Overwrite with a string
+		* @param array $comment_to_save Associative array of comment attributes
+		*/
 		$custom_error = apply_filters( 'sce_comment_check_errors', false, $comment_to_save ); //Filter expects a string returned - $comment_to_save is an associative array
 		if ( is_string( $custom_error ) && !empty( $custom_error ) ) {
 			$return[ 'errors' ] = true;
@@ -460,6 +512,15 @@ class Simple_Comment_Editing {
 		}
 		
 		//Now delete security keys (use the same names/techniques as Ajax Edit Comments
+		/**
+		* Filter: sce_security_key_min
+		*
+		* Determine how many security keys should be stored as post meta before garbage collection
+		*
+		* @since 1.0.0
+		*
+		* @param int  $num_keys How many keys to store
+		*/
 		$min_security_keys = absint( apply_filters( 'sce_security_key_min', 100 ) );
 		if ( $security_key_count >= $min_security_keys ) {
 			global $wpdb;
@@ -471,6 +532,35 @@ class Simple_Comment_Editing {
 		update_option( 'ajax-edit-comments_security_key_count', $security_key_count );
 	} //end comment_posted
 	
+	
+	/**
+	 * get_comment_time - Gets the comment time for editing - max 90 minutes
+	 * 
+	 *
+	 * @since 1.3.0
+	 *
+	 */
+	 public function get_comment_time() {
+		 if ( $this->comment_time > 0 ) {
+			return $this->comment_time;	 
+		}
+		/**
+		* Filter: sce_comment_time
+		*
+		* How long in minutes to edit a comment
+		*
+		* @since 1.0.0
+		*
+		* @param int  $minutes Time in minutes - Max 90 minutes
+		*/
+		$comment_time = absint( apply_filters( 'sce_comment_time', 5 ) );
+		if ( $comment_time > 90 ) {
+			$this->comment_time = 90; 	
+		} else {
+			$this->comment_time = $comment_time;
+		}
+		return $this->comment_time;
+	}
 	
 	
 	public function get_plugin_dir( $path = '' ) {

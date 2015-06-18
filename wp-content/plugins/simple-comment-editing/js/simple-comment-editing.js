@@ -123,7 +123,9 @@ jQuery( document ).ready( function( $ ) {
 				
 				//Update the timer and show the editing interface
 				$( element ).find( '.sce-timer' ).html( timer_text );
-				$( element ).show();
+				$( element ).show( 400, function() {
+					$( element ).trigger( 'sce.timer.loaded', element );
+				} );
 				
 				//Save state in textarea
 				sce.textareas[ response.comment_id ] = $( '#sce-edit-comment' + response.comment_id + ' textarea' ).val();
@@ -132,11 +134,13 @@ jQuery( document ).ready( function( $ ) {
 				sce.timers[ response.comment_id ] = {
 					minutes: minutes,
 					seconds: seconds,
-					timer: setInterval( function() {
+					start: new Date().getTime(),
+					time: 0,
+					timer: function() {
+						
 						timer_seconds = sce.timers[ response.comment_id ].seconds - 1;
 						timer_minutes = sce.timers[ response.comment_id ].minutes;
 						if ( timer_minutes <=0 && timer_seconds <= 0) { 
-							clearInterval( sce.timers[ response.comment_id ].timer );
 							
 							//Remove event handlers
 							$( element ).siblings( '.sce-textarea' ).off();	
@@ -144,6 +148,7 @@ jQuery( document ).ready( function( $ ) {
 								
 							//Remove elements
 							$( element ).parent().remove();
+							return;
 						} else {
 							if ( timer_seconds < 0 ) { 
 								timer_minutes -= 1; timer_seconds = 59;
@@ -152,8 +157,14 @@ jQuery( document ).ready( function( $ ) {
 							sce.timers[ response.comment_id ].seconds = timer_seconds;
 							sce.timers[ response.comment_id ].minutes = timer_minutes;
 						}
-					}, 1000 )
+						//Get accurate time
+						var timer_obj = sce.timers[ response.comment_id ];
+						timer_obj.time += 1000;
+						var diff = ( new Date().getTime() - timer_obj.start ) - timer_obj.time;
+						window.setTimeout( timer_obj.timer, ( 1000 - diff ) );
+					} 
 				};
+				window.setTimeout( sce.timers[ response.comment_id ].timer, 1000 );
 				
 				
 			}, 'json' );
@@ -164,12 +175,13 @@ jQuery( document ).ready( function( $ ) {
 		//Create timer text
 		var text = '&nbsp;&ndash;&nbsp;';
 		if (minutes >= 1) {
-		if (minutes >= 2) { text += minutes + " " + simple_comment_editing.minutes; } else { text += minutes + " " + simple_comment_editing.minute; }
-		if (seconds > 0) { text += " " + simple_comment_editing.and + " "; }
+			text += minutes + " " + simple_comment_editing.timer.minutes[ minutes ];
+			if ( seconds > 0 ) { 
+				text += " " + simple_comment_editing.and + " "; 
+			}
 		}
 		if (seconds > 0) {
-			if (seconds >= 2) { text += seconds + " " + simple_comment_editing.seconds; } else { text += seconds + " " + simple_comment_editing.second; }
-		
+			text += seconds + " " + simple_comment_editing.timer.seconds[ seconds ]; 
 		}
 		return text;
 	};
@@ -177,7 +189,18 @@ jQuery( document ).ready( function( $ ) {
 	sce.textareas = new Array();
 	$( '.sce-edit-button' ).simplecommentediting();
 	
+	$( '.sce-edit-button' ).on( 'sce.timer.loaded', SCE_comment_scroll );
 } );
+
+function SCE_comment_scroll( e, element ) {
+	var location = "" + window.location;
+	var pattern = /(#[^-]*\-[^&]*)/;
+	if ( pattern.test( location ) ) {
+		location = jQuery( "" + window.location.hash );
+		var targetOffset = location.offset().top;
+		jQuery( 'html,body' ).animate( {scrollTop: targetOffset}, 1000 );
+	}	
+}
 //Callback when comments have been updated (for wp-ajaxify-comments compatibility) - http://wordpress.org/plugins/wp-ajaxify-comments/faq/
 function SCE_comments_updated() {
 	jQuery( '.sce-edit-button' ).simplecommentediting();
