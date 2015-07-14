@@ -3,7 +3,7 @@ Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment, admin
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,13 +13,16 @@ Simple Comment Editing for your website.
 
 Simple Comment Editing gives anonymous users the ability to edit and/or delete their comments for a period of time.
 
-Simple Comment Editing is a stripped down version of <a href="http://wordpress.org/plugins/wp-ajax-edit-comments/">Ajax Edit Comments</a>.
+[youtube https://www.youtube.com/watch?v=KfKTVzEdClw]
 
-The biggest differences:
+YouTube video review from <a href="http://www.wpbeginner.com/plugins/allow-users-edit-comments-wordpress/">WPBeginner</a>.
+
+Simple Comment Editing features:
 <ol>
-<li>Only anonymous users (and logged in users who don't have permission to edit comments) can edit their comments for a period of time (the default is 5 minutes).</li>
-<li>There are no styles included with this plugin.  For most themes, the appearance is acceptable.  For advanced customization, see the "Other Notes" section.</li>
-<li>There are no options.  Some defaults can be overwritten using filters.</li>
+<li>No options. Install the plugin. It just works.
+<li>Anonymous users can edit comments for 5 minutes.</li>
+<li>No styling is necessary. For advanced customization, see the "Other Notes" section.</li>
+<li>Advanced customization can be achieved using filters.</li>
 </ol>
 
 <h3>Spread the Word</h3>
@@ -32,13 +35,14 @@ If you like this plugin, please help spread the word.  Rate the plugin.  Write a
 <li>Dutch (Netherlands) - Thanks <a href="https://github.com/senlin">Senlin</a></li>
 <li>French (France) - Thanks <a href="http://wordpress.org/support/profile/colin101">colin101</a>.</li>
 <li>German - Thanks Wilfried Kahrs.</li>
-<li>Norwegian Bokmål - Thanks <a href="http://www.metronet.no/menneskene/jan-hagen/">Jan Hagen</a>.</li>
-<li>Norwegian Nynorsk - Thanks <a href="http://www.metronet.no/menneskene/jan-hagen/">Jan Hagen</a>.</li>
+<li>Norwegian Bokmål - Thanks Jan Hagen.</li>
+<li>Norwegian Nynorsk - Thanks Jan Hagen.</li>
 <li>Persian - Thanks <a href="http://www.wordpress98.com/">Ali HajiMohamadi</a>.</li>
 <li>Portuguese (European) - Thanks <a href="https://twitter.com/porreirinha">Marco Pereirinha</a>.</li>
 <li>Romanian (with diacritics) - Thanks Vasile Ruscior.</li>
-<li>Russian - Thanks Natali_Z.</li>
+<li>Russian - Thanks Nataliya Zav'yalova (Наталия Завьялова).</li>
 <li>Serbian - Thanks <a href="https://twitter.com/lanche86">Milan Ivanovic</a>.</li>
+<li>Spanish - Thanks Google Translate :P</li>
 <li>Swedish - Thanks Håkan Persson.</li>
 </ul>
 
@@ -120,6 +124,11 @@ See "Other Notes".
 2. Textarea and Save/Cancel buttons.
 
 == Changelog ==
+
+= 1.3.2 =
+* Released 2015-07-13
+* Added filter sce_can_edit for more control over who can or cannot edit a comment.
+* Updated translations (Arabic, Dutch, French, German, Norwegian, Persian, Portuguese, Romanian, Russian, Serbian, Spanish, and Swedish).
 
 = 1.3.1 =
 * Released 2015-06-26
@@ -205,6 +214,9 @@ See "Other Notes".
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+Adding filter for editing permissions and updating translations.
 
 = 1.3.1 =
 Recommended upgrade. Fixes PHP warning when there is a percentage sign in a comment.
