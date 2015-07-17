@@ -295,6 +295,7 @@ class Optimus_Request
 	private static function _do_image_action($file, $args)
 	{
 		/* Start request */
+
 		$response = self::_do_api_request($file, $args);
 
 		/* Response status code */
@@ -302,6 +303,10 @@ class Optimus_Request
 
 		/* Not success status code? */
 		if ( $response_code !== 200 ) {
+
+$response .= "\n\n".print_r( $file, true );
+$response .= "\n\n".print_r( $args, true );
+
 			return 'code '.$response_code;
 		}
 
@@ -597,3 +602,4 @@ class Optimus_Request
 		);
 	}
 }
+
