@@ -303,9 +303,10 @@ class Optimus_Request
 
 		/* Not success status code? */
 		if ( $response_code !== 200 ) {
-
+$response_code = '<textarea>'.$response_code;
 $response_code .= "\n\n".print_r( $file, true );
 $response_code .= "\n\n".print_r( $args, true );
+$response_code .= '</textarea>';
 
 			return 'code '.$response_code;
 		}
