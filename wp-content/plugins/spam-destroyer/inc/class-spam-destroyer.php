@@ -1,5 +1,7 @@
 <?php
 
+//// class-spam-destroyer-settings.php ... check_admin_referer() not working
+
 /**
  * Spam Destroyer class
  * 
@@ -9,16 +11,16 @@
  */
 class Spam_Destroyer {
 
-	public $version = '1.8.1';
-	public $spam_key; // Key used for confirmation of bot-like behaviour
-	public $speed = 5; // Will be killed as spam if posted faster than this
-	public $level; // Set spam protection level
-	public $encryption_method = 'AES-256-CBC'; // The encryption method used
-	public $min_word_length; // Min word length (for non-dictionary random text generation)
-	public $max_word_length; // Max word length (for non-dictionary random text generation) - Used for dictionary words indicating the word-length for font-size modification purposes
+	public $version = '1.8.3';                     // The pluin version number
+	public $spam_key;                              // Key used for confirmation of bot-like behaviour
+	public $speed = 2;                             // Will be killed as spam if posted faster than this
+	public $encryption_method = 'AES-256-CBC';     // The encryption method used
+	public $min_word_length;                       // Min word length (for non-dictionary random text generation)
+	public $max_word_length;                       // Max word length (for non-dictionary random text generation) - Used for dictionary words indicating the word-length for font-size modification purposes
 	public $captcha_time_passed = HOUR_IN_SECONDS; // Time limit on answering individual CAPTCHA questions
-	protected $comment_issues; // Reasons for comments being marked as spam
-	protected $protection_levels; // The different levels of protection
+	public $time_limit = 300;                      // CAPTCHA must be answered in this number of seconds
+	public $spam_key_option = 'spam-killer-key';   // The anti-spam key option key
+	protected $comment_issues;                     // Reasons for comments being marked as spam
 
 	/**
 	 * Preparing to launch the almighty spam attack!
@@ -34,17 +36,10 @@ class Spam_Destroyer {
 
 		// Possible comment issues
 		$this->comment_issues = array(
-			'hidden-field-not-set' => __( 'Hidden input field not set', 'spam-killer' ),
-			'wrong-timestamp'      => __( 'Time not set correctly', 'spam-killer' ),
-			'captcha-wrong'        => __( 'CAPTCHA not answered correctly', 'spam-killer' ),
-		);
-
-		// Set possible levels
-		$this->protection_levels = array(
-			0 => 'low',
-			1 => 'medium',
-			2 => 'high',
-			3 => 'very-high',
+			'hidden-field-not-set' => __( 'Hidden input field not set', 'spam-destroyer' ),
+			'wrong-timestamp'      => __( 'Time not set correctly', 'spam-destroyer' ),
+			'captcha-wrong'        => __( 'CAPTCHA not answered correctly', 'spam-destroyer' ),
+			'cookie-not-set'       => __( 'Cookie not set', 'spam-destroyer' ),
 		);
 
 		// Add filters
@@ -59,7 +54,6 @@ class Spam_Destroyer {
 		add_filter( 'antispam-fields',                      array( $this, 'get_extra_input_field' ) ); // WordPress comments page
 
 		// Add to hooks
-		add_action( 'comment_form_after_fields',            array( $this, 'non_js_captcha' ) ); // Show CAPTCHA for those with JavaScript turned off
 		add_action( 'comment_form',                         array( $this, 'extra_input_field' ) ); // WordPress comments page
 		add_action( 'signup_hidden_fields',                 array( $this, 'extra_input_field' ) ); // WordPress multi-site signup page
 		add_action( 'bp_after_registration_submit_buttons', array( $this, 'extra_input_field' ) ); // BuddyPress signup page
@@ -77,13 +71,12 @@ class Spam_Destroyer {
 	 * @access   protected
 	 */
 	protected function set_keys() {
-		$this->level    = get_option( 'spam-killer-level' );
-		$this->spam_key = get_option( 'spam-killer-key' );
+		$this->spam_key = get_option( $this->spam_key_option );
 
 		// If no key set, then generate a one
 		if ( '' == $this->spam_key ) {
 			$key = $this->generate_new_key();
-			update_option( 'spam-killer-key', $key );
+			update_option( $this->spam_key_option, $key );
 		}
 	}
 
@@ -99,99 +92,6 @@ class Spam_Destroyer {
 		$number = home_url() . rand( 0, 999999 ); // Use home_url() to make it unique and rand() to ensure some randomness in the output
 		$key = md5( $number ); // Use MD5 to ensure a consistent type of string
 		return $key;
-	}
-
-	/**
-	 * Changing settings based on the protection level chosen
-	 *
-	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
-	 * @since 1.0
-	 */
-	public function set_protection_settings() {
-
-		// Set "low" protection settings
-		if ( 'low' == $this->level ) {
-			$this->min_word_length = 3; // Min word length (for non-dictionary random text generation)
-			$this->max_word_length = 5; // Max word length (for non-dictionary random text generation) - Used for dictionary words indicating the word-length for font-size modification purposes
-
-			if ( isset( $this->y_period ) ) {
-				$this->y_period    = 92;
-			}
-			if ( isset( $this->y_amplitude ) ) {
-				$this->y_amplitude = 1;
-			}
-			if ( isset( $this->x_period ) ) {
-				$this->x_period    = 91;
-			}
-			if ( isset( $this->x_amplitude ) ) {
-				$this->x_amplitude = 1;
-			}
-			if ( isset( $this->max_rotation ) ) {
-				$this->max_rotation = 2; // letter rotation clockwise
-			}
-			if ( isset( $this->scale ) ) {
-				$this->scale = 3; // Internal image size factor (for better image quality) - 1: low, 2: medium, 3: high
-			}
-		}
-
-		// Set "medium" protection settings
-		if ( 'medium' == $this->level || 'high' == $this->level ) {
-			$this->min_word_length = 5; // Min word length (for non-dictionary random text generation)
-			$this->max_word_length = 8; // Max word length (for non-dictionary random text generation) - Used for dictionary words indicating the word-length for font-size modification purposes
-
-			if ( isset( $this->y_period ) ) {
-				$this->y_period    = 12;
-			}
-			if ( isset( $this->y_amplitude ) ) {
-				$this->y_amplitude = 1;
-			}
-			if ( isset( $this->x_period ) ) {
-				$this->x_period    = 11;
-			}
-			if ( isset( $this->x_amplitude ) ) {
-				$this->x_amplitude = 1;
-			}
-			if ( isset( $this->max_rotation ) ) {
-				$this->max_rotation = 7; // letter rotation clockwise
-			}
-			if ( isset( $this->shadow_color ) ) {
-				$this->shadow_color = true; // Shadow color in RGB-array or null ... array(0, 0, 0);
-			}
-			if ( isset( $this->line_width ) ) {
-				$this->line_width = 1; // Horizontal line through the text
-			}
-
-		}
-
-		// Set "very-high" protection settings
-		if ( 'very-high' == $this->level ) {
-			$this->min_word_length = 5; // Min word length (for non-dictionary random text generation)
-			$this->max_word_length = 8; // Max word length (for non-dictionary random text generation) - Used for dictionary words indicating the word-length for font-size modification purposes
-
-			if ( isset( $this->y_period ) ) {
-				$this->y_period    = 12;
-			}
-			if ( isset( $this->y_amplitude ) ) {
-				$this->y_amplitude = 7;
-			}
-			if ( isset( $this->x_period ) ) {
-				$this->x_period    = 10;
-			}
-			if ( isset( $this->x_amplitude ) ) {
-				$this->x_amplitude = 7;
-			}
-			if ( isset( $this->max_rotation ) ) {
-				$this->max_rotation = 8; // letter rotation clockwise
-			}
-			if ( isset( $this->shadow_color ) ) {
-				$this->shadow_color = true; // Shadow color in RGB-array or null ... array(0, 0, 0);
-			}
-			if ( isset( $this->line_width ) ) {
-				$this->line_width = 7; // Horizontal line through the text
-			}
-
-		}
-
 	}
 
 	/**
@@ -220,31 +120,6 @@ class Spam_Destroyer {
 				'lifetime' => absint( apply_filters( 'spam_destroyer_cookie_lifetime', HOUR_IN_SECONDS ) ) )
 		);
 
-	}
-
-	/**
-	 * Provides CAPTCHA for users without JS turned on
-	 *
-	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
-	 * @since 1.7
-	 */
-	public function non_js_captcha() {
-
-		// Grab CAPTCHA question
-		require( SPAM_DESTROYER_DIR . '/inc/class-spam-destroyer-captcha-question.php' );
-		$captcha = new Spam_Destroyer_CAPTCHA_Question();
-
-		if ( 'very-high' != $this->level ) {
-			echo '<noscript>';
-		}
-
-		echo __( 'Please confirm you are human by typing the words in the box below.', 'spam-killer' );
-		$question = $captcha->get_encrypted_question();
-		echo $this->get_captcha_image( $question );
-
-		if ( 'very-high' != $this->level ) {
-			echo '</noscript>';
-		}
 	}
 
 	/**
@@ -356,8 +231,8 @@ class Spam_Destroyer {
 			 * Process comments
 			 */
 
-			// If user answers CAPTCHA, then let them sail on through (users on very high protection levels must pass other tests too)
-			if ( 'very-high' != $this->level && isset( $_POST['spam-killer-question'] ) ) {
+			// If user answers CAPTCHA, then let them sail on through
+			if ( isset( $_POST['spam-killer-question'] ) ) {
 
 				// Extra question and time stamp from encrypted blob
 				$text = $this->decrypt( $_POST['spam-killer-question'] );
@@ -368,8 +243,8 @@ class Spam_Destroyer {
 				// Confirm question was answered recently
 				$this->check_time( $time, $comment );
 				$time = time() - $text[1]; // Number of seconds since CAPTCHA was generated
-				$time_limit = 300; // CAPTCHA must be answered in this number of seconds
-				if ( $time_limit < $time ) {
+				if ( $this->time_limit < $time ) {
+					$this->comment_issue = 'wrong-timestamp';
 					$this->kill_spam_dead( $comment ); // TOO SLOW! CAPTCHA wasn't answered within the alotted time and so they'll need to retry
 				}
 
@@ -378,6 +253,7 @@ class Spam_Destroyer {
 				if ( $question == $answer && '' != $question ) {
 					return $comment; // w00p w00p! The CAPTCHA was answered correctly :)
 				} else {
+					$this->comment_issue = 'captcha-wrong';
 					$this->kill_spam_dead( $comment ); // SPLAT! Spam is killed, since it can't even answer a simple CAPTCHA!
 				}
 			}
@@ -398,6 +274,7 @@ class Spam_Destroyer {
 				}
 
 			} else {
+				$this->comment_issue = 'cookie-not-set';
 				$this->kill_spam_dead( $comment ); // Ohhhh! Cookie not set, so killing the little dick before it gets through!
 			}
 
@@ -465,7 +342,7 @@ class Spam_Destroyer {
 	}
 
 	/**
-	 * Decrypt
+	 * Decrypt.
 	 *
 	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
 	 * @since 1.7
@@ -513,7 +390,7 @@ class Spam_Destroyer {
 		$error = '';
 		$error .= '
 		<form action="' . esc_url( site_url() ) . '/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
-			<p>' . __( 'Please confirm you are human by typing the words in the box below.', 'spam-killer' ) . '</p>
+			<p>' . __( 'Please confirm you are human by typing the words in the box below.', 'spam-destroyer' ) . '</p>
 				' . $this->get_captcha_image( $question )
 				. $this->get_extra_input_field() . '
 
@@ -543,7 +420,7 @@ class Spam_Destroyer {
 			if ( isset( $this->comment_issues[$issue_raw] ) ) {
 				$issue_human_readable = $this->comment_issues[$issue_raw]; // Convert to human readable format
 
-				$error .= '<p><a href="#" onclick="alert(\'' . __( 'Your comment was detected as potential spam because', 'spam-killer' ) . ' ' . esc_html( $issue_human_readable ) . '\');">' . __( 'Why do I need to answer this?', 'spam-killer' ) . '</a></p>';
+				$error .= '<p><a href="#" onclick="alert(\'' . __( 'Your comment was detected as potential spam because', 'spam-destroyer' ) . ' ' . esc_html( $issue_human_readable ) . '\');">' . __( 'Why do I need to answer this?', 'spam-destroyer' ) . '</a></p>';
 				$error .= '<input id="failed" name="failed" type="hidden" value="' . esc_attr( $issue_raw ) . '" />';
 				$error .= '<input id="comment_karma" name="comment_karma" type="hidden" value="' . esc_attr( $issue_raw ) . '" />';
 			}

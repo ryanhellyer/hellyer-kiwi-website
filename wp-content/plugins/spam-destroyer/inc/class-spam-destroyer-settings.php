@@ -2,43 +2,37 @@
 
 /**
  * Spam Destroyer settings class
- * This adds settings to the options-discussion.php page
- * In common use, these settings should never need modified.
- * 
+ * This adds links to the plugins page.
+ * Allows for manually resetting the spam key.
+ *
  * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.8
  */
 class Spam_Destroyer_Settings extends Spam_Destroyer {
 
-	private $possible_levels;
+	public $nonce = 'spam-destroyer';
 
 	/**
 	 * Fire the constructor up :)
-	 *
-	 * @author Ryan Hellyer <ryanhellyer@gmail.com>
-	 * @since 1.8
 	 */
 	public function __construct() {
-
-		// Set the spam protection level
-		add_option( 'spam-killer-level', 'low' );
-
-		// Set the possible protection levels
-		$this->possible_levels = array(
-			'low'       => __( 'Low', 'spam-killer' ),
-			'medium'    => __( 'Medium', 'spam-killer' ),
-			'high'      => __( 'High', 'spam-killer' ),
-			'very-high' => __( 'Very high', 'spam-killer' ),
-		);
-
-		add_action( 'admin_init', array( $this, 'register_setting' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'plugins_page_meta' ), 10, 4 );
-
+		add_action( 'admin_init',      array( $this, 'reset_spam_key' ) );
 	}
 
 	/**
-	 * Add a settings page link to the plugin list
+	 * Add an admin notice, saying that spam key has been changed.
+	 */
+	public function key_change_notice() {
+		echo '
+		<div class="updated">
+			<p>' . __( 'The Spam Destroyer key has been reset.', 'spam-destroyer' ) . '</p>
+		</div>';
+	}
+
+	/**
+	 * Add a settings page link to the plugin list.
 	 *
 	 * The code was adapted from https://gist.github.com/lloc/5685040
 	 * The idea was adapted from the Minit plugin by Kaspars Dambis (http://kaspars.net/)
@@ -54,130 +48,53 @@ class Spam_Destroyer_Settings extends Spam_Destroyer {
 	    	return $plugin_meta;
 	    }
 
-	    // Add the settings page link
+		// Add the spam key reset link
 		$plugin_meta[] = sprintf( 
 			'<a href="%s">%s</a>',
-			admin_url( 'options-discussion.php#spam-destroyer-settings' ), 
-			__( 'Settings' ) 
+			wp_nonce_url( admin_url( 'plugins.php?reset_spam_key=true' ), $this->nonce ), 
+			__( 'Reset spam key', 'spam-destroyer' ) 
 		);
 
 		// Add the plugin page link
 		$plugin_meta[] = sprintf( 
 			'<a href="%s">%s</a>',
-			'http://geek.ryanhellyer.net/product/spam-destroyer/', 
+			'https://geek.hellyer.kiwi/plugins/spam-destroyer/', 
 			__( 'Plugin page' ) 
 		);
 
 		// Add the donations page link
 		$plugin_meta[] = sprintf( 
 			'<a href="%s">%s</a>',
-			'http://geek.ryanhellyer.net/donations/', 
-			__( 'Donate', 'spam-killer' ) 
+			'https://geek.hellyer.kiwi/donations/', 
+			__( 'Donate', 'spam-destroyer' ) 
 		);
 
 		return $plugin_meta;
 	}
 
 	/**
-	 * Tell WP we use a setting - and where.
+	 * Generate a new spam key.
 	 */
-	public function register_setting() {
+	public function reset_spam_key() {
 
-		// Create new section on discussion page
-		add_settings_section(
-			'spam-killer',
-			__( 'Anti-spam settings', 'spam-killer' ),
-			array( $this, 'description' ),
-			'discussion'
-		);
-
-		// Register the spam level settings
-		register_setting(
-			'discussion',
-			'spam-killer-level',
-			'trim'
-		);
-		add_settings_field(
-			'spam-killer-level',
-			__( 'Protection level', 'spam-killer' ),
-			array( $this, 'spam_level_field' ),
-			'discussion',
-			'spam-killer',
-			array ( 'label_for' => 'spam-killer' )
-		);
-
-		// Register the spam key settings
-		register_setting(
-			'discussion',
-			'spam-killer-key',
-			array( $this, 'generate_spam_key' )
-		);
-		add_settings_field(
-			'spam-killer-key',
-			__( 'Reset anti-spam key', 'spam-killer' ),
-			array( $this, 'spam_killer_field' ),
-			'discussion',
-			'spam-killer',
-			array ( 'label_for' => 'spam-killer' )
-		);
-
-	}
-
-	/**
-	 * Generate a new spam key
-	 *
-	 * @access  private
-	 * @param   string  $input   If input is 'on' then checkbox has been checked
-	 * @return  string  $output  The santized spam protection key
-	 */
-	private function generate_spam_key( $input ) {
-
-		if ( 'on' == $input ) {
-			$output = $this->generate_new_key();
-		} else {
-			$output = get_option( 'spam-killer-key' ); // If checkbox not checked, then just output existing value
+		// Bail out if not on correct page
+		if (
+//			! check_admin_referer( $this->nonce )
+//			||
+			! is_admin()
+			||
+			! isset( $_GET['reset_spam_key'] )
+			||
+			! current_user_can( 'manage_options' )
+		) {
+			return;
 		}
 
-		return $output;
-	}
+		// Delete the spam key - will be reset during next page load when not found
+		delete_option( $this->spam_key_option );
 
-	/**
-	 * Print the text before our field.
-	 */
-	public function description() {
-		echo '<p id="spam-destroyer-settings" class="description">' . __( 'Unless you experience a severe spam problem, these settings should never need modified.', 'spam-killer' ) . '</p>';
-	}
-
-	/**
-	 * Show the spam level field
-	 *
-	 * @param array $args
-	 */
-	public function spam_level_field( $args ) {
-
-		echo '
-		<select id="spam-killer-level" for="' . esc_attr( $args['label_for'] ) . '" name="spam-killer-level">';
-
-			// Output the various possible levels
-			foreach( $this->possible_levels as $value => $name ) {
-				echo '<option ' . selected( $value, get_option( 'spam-killer-level' ) ) . 'value="' . esc_attr( $value ) . '">' . esc_html( $name ) . '</option>';
-			}
-
-		echo '
-		</select>';
-	}
-
-	/**
-	 * Show the spam killer field
-	 *
-	 * @param array $args
-	 */
-	public function spam_killer_field( $args ) {
-
-		echo '
-		<input type="checkbox" id="spam-killer-key" name="spam-killer-key" />
-		<small><em>Current key: ' . esc_html( get_option( 'spam-killer-key' ) ) . '</em></small>
-		';
+		// Add admin notice about key change
+		add_action( 'admin_notices',   array( $this, 'key_change_notice' ) );
 	}
 
 }

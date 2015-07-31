@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Generate a CAPTCHA image
  *
@@ -25,7 +24,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	public $cache_expiry = 4; // The cache expiry time
 
 	/**
-	 * Font configuration
+	 * Font configuration.
 	 *
 	 * - font: TTF file
 	 * - spacing: relative pixel space between character
@@ -65,8 +64,8 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 		$this->init();
 	}
 
-	/*
-	 * Initialise image generation
+	/**
+	 * Initialise image generation.
 	 */
 	public function init() {
 
@@ -84,7 +83,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 
 }
 	/*
-	 * Create the image
+	 * Create the image.
 	 */
 	public function create_image() {
 		$ini = microtime( true );
@@ -123,7 +122,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Creates the image resources
+	 * Creates the image resources.
 	 */
 	protected function image_allocate() {
 		// Cleanup
@@ -158,7 +157,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Horizontal line insertion
+	 * Horizontal line insertion.
 	 */
 	protected function write_line() {
 
@@ -174,7 +173,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Text insertion
+	 * Text insertion.
 	 */
 	protected function write_text( $question, $fontcfg = array() ) {
 		if ( empty( $fontcfg ) ) {
@@ -228,7 +227,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Wave filter
+	 * Wave filter.
 	 */
 	protected function wave_image() {
 
@@ -266,7 +265,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Reduce the image to the final size
+	 * Reduce the image to the final size.
 	 */
 	protected function reduce_image() {
 		// Reduzco el tamaño de la imagen
@@ -288,7 +287,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * File generation
+	 * File generation.
 	 */
 	protected function write_image() {
 
@@ -306,7 +305,7 @@ class Spam_Destroyer_Generate_CAPTCHA extends Spam_Destroyer {
 	}
 
 	/**
-	 * Cleanup image
+	 * Cleanup image.
 	 */
 	protected function cleanup() {
 		imagedestroy( $this->im );
