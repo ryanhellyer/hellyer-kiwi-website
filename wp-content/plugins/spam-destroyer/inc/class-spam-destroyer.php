@@ -9,7 +9,7 @@
  */
 class Spam_Destroyer {
 
-	public $version = '1.8.4';                     // The pluin version number
+	public $version = '2.0';                     // The pluin version number
 	public $spam_key;                              // Key used for confirmation of bot-like behaviour
 	public $speed = 2;                             // Will be killed as spam if posted faster than this
 	public $encryption_method = 'AES-256-CBC';     // The encryption method used
@@ -400,7 +400,7 @@ class Spam_Destroyer {
 				</div>
 
 				<p class="form-submit">
-					<input name="submit" type="submit" id="submit" value="' . esc_attr( __( 'Submit answer' ) ) . '" />
+					<input type="submit" name="submit" class="button button-primary" id="submit" value="' . esc_attr( __( 'Submit answer' ) ) . '" />
 					<input type="hidden" name="comment_post_ID" value="' . esc_attr( $comment['comment_post_ID'] ) . '" id="comment_post_ID" />
 					<input type="hidden" name="comment_parent" id="comment_parent" value="' . esc_attr( $comment['comment_parent'] ) . '" />
 				</p>';
