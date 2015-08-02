@@ -739,12 +739,11 @@ function wpas_wpapi_shortcode_download_link_render( $atts ) {
 	global $wpas;
 
 	$slug = $wpas->shortcode_slug;
-
+//echo $slug;
 	if ( ! isset( $wpas->shortcode[ $slug ]->download_link ) || '' === $wpas->shortcode[ $slug ]->download_link )
 		return false;
 
-	return $wpas->shortcode[ $slug ]->download_link;
-
+	return '<strong><a href="' . esc_url( $wpas->shortcode[ $slug ]->download_link ) . '">Download the ' . do_shortcode( '[wpapi_name]' ) . ' plugin.</a></strong>';
 }
 
 /**
