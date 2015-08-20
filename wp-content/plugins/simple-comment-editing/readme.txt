@@ -1,9 +1,9 @@
 === Simple Comment Editing ===
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment, admin
-Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 1.3.3
+Requires at least: 4.0
+Tested up to: 4.3.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,64 +58,13 @@ You are welcome to help us out and <a href="https://github.com/ronalfy/simple-co
 == Frequently Asked Questions ==
 = Why doesn't this plugin come with any styles? =
 It's impossible to style an inline comment editor for every theme.  We've included basic HTML markup that is easily stylable to fit your theme.
+
 = Where are the options? =
 No options :) - Just simple comment editing.
 
-= How do you adjust the comment time? =
-Place and edit the following into your theme's `functions.php` file:
-`
-//Simple Comment Editing
-add_filter( 'sce_comment_time', 'edit_sce_comment_time' );
-function edit_sce_comment_time( $time_in_minutes ) {
-	return 60;
-}
-`
+= How do I customize this plugin? =
+For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a>. 
 
-
-= How do you change the loading Image? =
-`
-//Simple Comment Editing
-add_filter( 'sce_loading_img', 'edit_sce_loading_img' );
-function edit_sce_loading_img( $default_url ) {
-	return 'http://domain.com/new_loading_image.gif';
-}
-`
-
-= How do you disable the delete comment functionality? =
-`
-//Simple Comment Editing
-add_filter( 'sce_allow_delete', '__return_false' );
-`
-
-= Do you work with other plugins? =
-Yes, the plugin will work with WP-Ajaxify-Comments (http://wordpress.org/plugins/wp-ajaxify-comments/)
-
-Simply enable WP-Ajaxify-Comments, get it working per their settings, and add the Simple Comment Editing callback in the plugin's options.
-
-The callback is:
-`
-SCE_comments_updated();
-`
-
-= I want to style the editing interface.  Where do I start? =
-See "Other Notes".
-
-= What Browsers Have You Tested This In? =
-<ul>
-<li>IE 6-10</li>
-<li>Latest versions of Chrome, Firefox, and Safari</li>
-<li>iOS Safari</li>
-</ul>
-
-= What Themes Have You Tested This In? =
-<ul>
-<li>Twenty Ten</li>
-<li>Twenty Eleven</li>
-<li>Twenty Twelve</li>
-<li>Twenty Thirteen</li>
-<li>Genesis</li>
-<li>Genesis Mindstream</li>
-</ul>
 
 
 == Screenshots ==
@@ -124,6 +73,16 @@ See "Other Notes".
 2. Textarea and Save/Cancel buttons.
 
 == Changelog ==
+
+= 1.5.1 =
+* Released 2015-08-19
+* Forgot to update minified JS
+
+= 1.5.0 =
+* Released 2015-08-19
+* Adding hooks for the capability to add extra comment fields.
+* Added Epoch compatibility.
+* Added JS events so third-party plugins can integrate with SCE.
 
 = 1.3.3 =
 * Released 2015-07-22
@@ -219,112 +178,12 @@ See "Other Notes".
 
 == Upgrade Notice ==
 
-= 1.3.3 =
-Fixing JavaScript error that prevented editing a comment.
+= 1.5.1 =
+Minified JS updated. Integration update for third-party plugins. Extra fields and Ajax comment posting/editing are now possible.
 
-= 1.3.2 =
-Adding filter for editing permissions and updating translations.
+= 1.5.0 =
+Integration update for third-party plugins. Extra fields and Ajax comment posting/editing are now possible.
 
-= 1.3.1 =
-Recommended upgrade. Fixes PHP warning when there is a percentage sign in a comment.
+== Customization ==
 
-= 1.3.0 =
-Better timer internationalization, improved timer accuracy, custom content filters, and smooth scrolling.
-
-= 1.2.4 =
-Added status error message area.  Added filter for custom error messages when saving a comment.
-
-= 1.2.2 =
-Added Romanian and French languages.  Fixed a bug where cached pages showed other users they could edit a comment, but in reality, they could not (saving would have failed, so this is not a severe security problem, although upgrading is highly recommended).
-
-= 1.2.1 =
-Added Arabic and Czech languages.  Ensuring WordPress 4.0 compatibility.
-
-= 1.2.0 =
-Added Swedish translation.  Added better support for internationalization.  Removed barrier for admins/editors/authors to edit comments.
-
-= 1.1.2 =
-Added support for WP-Ajaxify-Comments
-
-= 1.1.1 =
-Fixed an error where users were erroneously being told their comment was marked as spam
-
-= 1.1.0 =
-Added JavaScript textarea save states when hitting the cancel button.  Allow commenters to delete their comments when they leave an empty comment.
-
-= 1.0.7 =
-Added Persian translation file
-
-= 1.0.6 =
-Added Serbian translation file
-
-= 1.0.5 =
-Added Portuguese translation file
-
-= 1.0.4 =
-Added German translation file
-
-= 1.0.3 =
-Fixed slashes being removed in the plugin
-
-= 1.0.2 =
-Fixed an internationalization bug and added Norwegian translations
-
-= 1.0.1 =
-Improved script loading performance
-
-= 1.0 =
-Initial Release
-
-== Styling ==
-The plugin doesn't come with any styles.  We leave it up to you to style the interface.  It doesn't look horribly ugly on most themes, but we leave the advanced customization up to you.
-
-== Styling the Edit Interface ==
-The overall editing interface has been wrapped in a `div` with class `sce-edit-comment`.
-
-`
-.sce-edit-comment { /* styles here */ }
-`
-
-== Styling the Edit Button ==
-The edit button and timer have been wrapped in a `div` with class `sce-edit-button`.
-
-`
-.sce-edit-button { /* styles here */ }
-.sce-edit-button a { /* styles here */ }
-.sce-edit-button .sce-timer { /* styles here */ }
-`
-
-== Styling the Loading Icon ==
-The loading icon has been wrapped in a `div` with class `sce-loading`.
-`
-.sce-loading { /* styles here */ }
-.sce-loading img { /* styles here */ }
-`
-
-== Styling the Textarea ==
-The textarea interface has been wrapped in a `div` with class `sce-textarea`.
-
-The actual `textarea` has been wrapped in a `div` with class `sce-comment-textarea`.
-The save/cancel buttons have been wrapped in a `div` with class `sce-comment-edit-buttons`.
-
-`
-.sce-textarea { /* styles here */ }
-.sce-textarea .sce-comment-textarea textarea { /* styles here */ }
-.sce-comment-edit-buttons { /* styles here */ }
-.sce-comment-edit-buttons .sce-comment-save { /* styles here */ }
-.sce-comment-edit-buttons .sce-comment-cancel { /* styles here */ }
-`
-
-== Testing the Styles ==
-Since most of the interface is hidden, it's a little hard to style.  Just place this into your stylesheet, and remove when you're done.
-`
-/* todo - remove me when done styling */
-.sce-edit-button,
-.sce-loading,
-.sce-textarea {
-	display: block !important;
-}
-`
-Have fun leaving lots of test comments :) - Recommended is to use the filter (in the FAQ section) to temporarily increase the comment editing time.  Make sure you leave the test comments when you're not logged in.
-
+For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a>. 

@@ -14,7 +14,7 @@ jQuery( document ).ready( function( $ ) {
 				$( element ).fadeOut( 'fast', function() {
 					$( element ).siblings( '.sce-textarea' ).find( 'button' ).prop( 'disabled', false );
 					$( element ).siblings( '.sce-textarea' ).fadeIn( 'fast', function() {
-						$( element ).siblings( '.sce-textarea' ).find( 'textarea' ).focus();
+						$( element ).siblings( '.sce-textarea' ).find( 'textarea:first' ).focus();
 					} );
 				} );
 			} );
@@ -72,12 +72,54 @@ jQuery( document ).ready( function( $ ) {
 						}
 					}
 					
-					$.post( ajax_url, { action: 'sce_save_comment', comment_content: comment_to_save, comment_id: ajax_params.cid, post_id: ajax_params.pid, nonce: ajax_params._wpnonce }, function( response ) {
+					/**
+					* Event: sce.comment.save.pre
+					*
+					* Event triggered before a comment is saved
+					*
+					* @since 1.4.0
+					*
+					* @param int $comment_id The Comment ID
+					* @param int $post_id The Post ID
+					*/
+					jQuery( 'body' ).triggerHandler( 'sce.comment.save.pre', [ ajax_params.cid, ajax_params.pid ] );
+					var ajax_save_params = {
+						action: 'sce_save_comment',
+						comment_content: comment_to_save, 
+						comment_id: ajax_params.cid, 
+						post_id: ajax_params.pid, 
+						nonce: ajax_params._wpnonce
+					};
+					
+					/**
+					* JSFilter: sce.comment.save.data
+					*
+					* Event triggered before a comment is saved
+					*
+					* @since 1.4.0
+					*
+					* @param object $ajax_save_params
+					*/
+					ajax_save_params = wp.hooks.applyFilters( 'sce.comment.save.data', ajax_save_params );
+					
+					$.post( ajax_url, ajax_save_params, function( response ) {
 						$( element ).siblings( '.sce-loading' ).fadeOut( 'fast', function() {
 							$( element ).fadeIn( 'fast', function() {
 								if ( !response.errors ) {
 									$( '#sce-comment' + ajax_params.cid ).html( response.comment_text ); //Update comment HTML
 									sce.textareas[ ajax_params.cid  ] = $( '#sce-edit-comment' + ajax_params.cid  + ' textarea' ).val(); //Update textarea placeholder
+									
+									/**
+									* Event: sce.comment.save
+									*
+									* Event triggered after a comment is saved
+									*
+									* @since 1.4.0
+									*
+									* @param int $comment_id The Comment ID
+									* @param int $post_id The Post ID
+									*/
+									jQuery( 'body' ).triggerHandler( 'sce.comment.save', [ ajax_params.cid, ajax_params.pid ] );
 								} else {
 									//Output error, maybe kill interface
 									if ( response.remove == true ) {
@@ -103,7 +145,7 @@ jQuery( document ).ready( function( $ ) {
 			2.  Display the result
 			3.  Set Interval
 			*/
-			$.post( ajax_url, { action: 'sce_get_time_left', comment_id: ajax_params.cid, post_id: ajax_params.pid }, function( response ) {
+			$.post( ajax_url, { action: 'sce_get_time_left', comment_id: ajax_params.cid, post_id: ajax_params.pid, _ajax_nonce: simple_comment_editing.nonce }, function( response ) {
 				//Set initial timer text
 				var minutes = parseInt( response.minutes );
 				var seconds = parseInt( response.seconds );
@@ -124,6 +166,15 @@ jQuery( document ).ready( function( $ ) {
 				//Update the timer and show the editing interface
 				$( element ).find( '.sce-timer' ).html( timer_text );
 				$( element ).show( 400, function() {
+					/**
+					* Event: sce.timer.loaded
+					*
+					* Event triggered after a commen's timer has been loaded
+					*
+					* @since 1.3.0
+					*
+					* @param jQuery Element of the comment
+					*/
 					$( element ).trigger( 'sce.timer.loaded', element );
 				} );
 				
@@ -185,11 +236,66 @@ jQuery( document ).ready( function( $ ) {
 		}
 		return text;
 	};
+	sce.set_comment_cookie = function( pid, cid, callback ) {
+		$.post( simple_comment_editing.ajax_url, { action: 'sce_get_cookie_var', post_id: pid, comment_id: cid, _ajax_nonce: simple_comment_editing.nonce	 }, function( response ) {
+			var date = new Date( response.expires );
+			date = date.toGMTString();
+			document.cookie = response.name+"="+response.value+ "; expires=" + date+"; path=" + response.path;
+				
+			if ( typeof callback == "function" ) {
+				callback( cid );	
+			}
+			
+		}, 'json' );
+	};
+	
 	sce.timers = new Array();
 	sce.textareas = new Array();
 	$( '.sce-edit-button' ).simplecommentediting();
 	
 	$( '.sce-edit-button' ).on( 'sce.timer.loaded', SCE_comment_scroll );
+	
+	//Third-party plugin compatibility
+	$( 'body' ).on( 'comment.posted', function( event, post_id, comment_id ) {
+		sce.set_comment_cookie( post_id, comment_id, function( comment_id ) {
+			$.post( simple_comment_editing.ajax_url, { action: 'sce_get_comment', comment_id: comment_id, _ajax_nonce: simple_comment_editing.nonce }, function( response ) {
+								
+				/**
+				* Event: sce.comment.loaded
+				*
+				* Event triggered after SCE has loaded a comment.
+				*
+				* @since 1.3.0
+				*
+				* @param object Comment Object
+				*/
+				$( 'body' ).trigger( 'sce.comment.loaded', [ response ] );
+				
+				/*
+				Once you capture the sce.comment.loaded event, you can replace the comment and enable SCE
+				$( '#comment-' + comment_id ).replaceWith( comment_html );
+				$( '#comment-' + comment_id ).find( '.sce-edit-button' ).simplecommentediting();
+				*/
+				
+			}, 'json' );	
+		} );
+	} );
+	
+	//EPOCH Compability
+	$( 'body' ).on( 'epoch.comment.posted', function( event, pid, cid ) {
+		//Ajax call to set SCE cookie
+		sce.set_comment_cookie( pid, cid, function( comment_id ) {
+			//Ajax call to get new comment and load it
+			$.post( simple_comment_editing.ajax_url, { action: 'sce_epoch_get_comment', comment_id: comment_id, _ajax_nonce: simple_comment_editing.nonce }, function( response ) {
+				comment = Epoch.parse_comment( response );
+				$( '#comment-' + comment_id ).replaceWith( comment );
+				$( '#comment-' + comment_id ).find( '.sce-edit-button' ).simplecommentediting();
+			}, 'json' );	
+		} );
+	} );
+	$( 'body' ).on( 'epoch.comments.loaded', function( e ) {
+		$( '.sce-edit-button' ).simplecommentediting();
+	} );
 } );
 
 function SCE_comment_scroll( e, element ) {
