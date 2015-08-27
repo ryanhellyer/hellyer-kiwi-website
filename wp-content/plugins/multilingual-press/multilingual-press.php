@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Multilingual Press Free
- * Plugin URI:  http://marketpress.com/product/multilingual-press-pro/?piwik_campaign=mlp&piwik_kwd=free
- * Description: Run WordPress Multisite with multiple languages.
+ * Plugin Name: MultilingualPress
+ * Plugin URI:  https://wordpress.org/plugins/multilingual-press/
+ * Description: Create a fast translation network on WordPress multisite. Run each language in a separate site, and connect the content in a lightweight user interface. Use a customizable widget to link to all sites.
  * Author:      Inpsyde GmbH
  * Author URI:  http://inpsyde.com
- * Version:     2.1.2
+ * Version:     2.2.0
  * Text Domain: multilingualpress
  * Domain Path: /languages
  * License:     GPLv3
@@ -14,55 +14,75 @@
 
 defined( 'ABSPATH' ) or die();
 
-if ( ! class_exists( 'Multilingual_Press' ) )
+if ( ! class_exists( 'Multilingual_Press' ) ) {
 	require plugin_dir_path( __FILE__ ) . 'inc/Multilingual_Press.php';
+}
 
 // Kick-Off
 add_action( 'plugins_loaded', 'mlp_init', 0 );
 
-
+/**
+ * Initialize the plugin.
+ *
+ * @wp-hook plugins_loaded
+ *
+ * @return void
+ */
 function mlp_init() {
 
-	global $wp_version, $wpdb, $pagenow;
+	global $pagenow, $wp_version, $wpdb;
 
-	$plugin_path   = plugin_dir_path( __FILE__ );
-	$plugin_url    = plugins_url( '/', __FILE__ );
+	$plugin_path = plugin_dir_path( __FILE__ );
+	$plugin_url = plugins_url( '/', __FILE__ );
 
-	if ( ! class_exists( 'Mlp_Load_Controller' ) )
+	$assets_base = 'assets';
+
+	if ( ! class_exists( 'Mlp_Load_Controller' ) ) {
 		require $plugin_path . 'inc/autoload/Mlp_Load_Controller.php';
+	}
 
-	$loader          = new Mlp_Load_Controller( $plugin_path . 'inc' );
-	$data            = new Mlp_Plugin_Properties;
-	$data->loader    = $loader->get_loader();
-	$data->locations = new Mlp_Internal_Locations;
+	$loader = new Mlp_Load_Controller( $plugin_path . 'inc' );
 
-	$data->locations->add_dir( $plugin_path, $plugin_url, 'plugin' );
+	$data = new Mlp_Plugin_Properties();
 
-	foreach ( array ( 'css', 'js', 'flags', 'images' ) as $type ) {
-		$data->locations->add_dir(
-			$plugin_path . $type,
-			$plugin_url  . $type,
+	$data->set( 'loader',$loader->get_loader() );
+
+	$locations = new Mlp_Internal_Locations();
+	$locations->add_dir( $plugin_path, $plugin_url, 'plugin' );
+	$assets_locations = array(
+		'css'    => 'css',
+		'js'     => 'js',
+		'images' => 'images',
+		'flags'  => 'images/flags',
+	);
+	foreach ( $assets_locations as $type => $dir ) {
+		$locations->add_dir(
+			$plugin_path . $assets_base . '/' . $dir,
+			$plugin_url . $assets_base . '/' . $dir,
 			$type
 		);
 	}
-	$data->plugin_file_path = __FILE__;
-	$data->plugin_base_name = plugin_basename( __FILE__ );
+	$data->set( 'locations',$locations );
+
+	$data->set( 'plugin_file_path', __FILE__ );
+	$data->set( 'plugin_base_name', plugin_basename( __FILE__ ) );
 
 	$headers = get_file_data(
 		__FILE__,
-		array (
+		array(
 			'text_domain_path' => 'Domain Path',
 			'plugin_uri'       => 'Plugin URI',
 			'plugin_name'      => 'Plugin Name',
 			'version'          => 'Version'
 		)
 	);
+	foreach ( $headers as $name => $value ) {
+		$data->set( $name, $value );
+	}
 
-	foreach ( $headers as $name => $value )
-		$data->$name = $value;
-
-	if ( ! mlp_pre_run_test( $pagenow, $data, $wp_version, $wpdb ) )
+	if ( ! mlp_pre_run_test( $pagenow, $data, $wp_version, $wpdb ) ) {
 		return;
+	}
 
 	$mlp = new Multilingual_Press( $data, $wpdb );
 	$mlp->setup();
@@ -75,48 +95,45 @@ function mlp_init() {
  * @param  Inpsyde_Property_List_Interface $data
  * @param  string                          $wp_version
  * @param  wpdb                            $wpdb
+ *
  * @return bool
  */
 function mlp_pre_run_test( $pagenow, Inpsyde_Property_List_Interface $data, $wp_version, wpdb $wpdb ) {
 
-	$self_check         = new Mlp_Self_Check( __FILE__, $pagenow );
+	$self_check = new Mlp_Self_Check( __FILE__, $pagenow );
 	$requirements_check = $self_check->pre_install_check(
-		 $data->plugin_name,
-		 $data->plugin_base_name,
-		 $wp_version
+		$data->get( 'plugin_name' ),
+		$data->get( 'plugin_base_name' ),
+		$wp_version
 	);
 
-	if ( Mlp_Self_Check::PLUGIN_DEACTIVATED === $requirements_check )
+	if ( Mlp_Self_Check::PLUGIN_DEACTIVATED === $requirements_check ) {
 		return FALSE;
+	}
 
-	$data->site_relations = new Mlp_Site_Relations( $wpdb, 'mlp_site_relations' );
+	$data->set( 'site_relations', new Mlp_Site_Relations( $wpdb, 'mlp_site_relations' ) );
 
 	if ( Mlp_Self_Check::INSTALLATION_CONTEXT_OK === $requirements_check ) {
 
 		$deactivator = new Mlp_Network_Plugin_Deactivation();
 
-		if ( 'MultilingualPress Pro' === $data->plugin_name ) {
-			$deactivator->deactivate( // remove the free version
-						array ( 'multilingual-press/multilingual-press.php' )
-			);
+		$last_version_option = get_site_option( 'mlp_version' );
+		$last_version = new Mlp_Semantic_Version_Number( $last_version_option );
+		$current_version = new Mlp_Semantic_Version_Number( $data->get( 'version' ) );
+		$upgrade_check = $self_check->is_current_version( $current_version, $last_version );
+		$updater = new Mlp_Update_Plugin_Data( $data, $wpdb, $current_version, $last_version );
+
+		if ( Mlp_Self_Check::NEEDS_INSTALLATION === $upgrade_check ) {
+			$updater->install_plugin();
 		}
 
-		$last_version_option = get_site_option( 'mlp_version' );
-		$last_version        = new Mlp_Semantic_Version_Number( $last_version_option );
-		$current_version     = new Mlp_Semantic_Version_Number( $data->version );
-		$upgrade_check       = $self_check->is_current_version( $current_version, $last_version );
-		$updater             = new Mlp_Update_Plugin_Data( $data, $wpdb, $current_version, $last_version );
-
-		if ( Mlp_Self_Check::NEEDS_INSTALLATION === $upgrade_check )
-			$updater->install_plugin();
-
-		if ( Mlp_Self_Check::NEEDS_UPGRADE === $upgrade_check )
+		if ( Mlp_Self_Check::NEEDS_UPGRADE === $upgrade_check ) {
 			$updater->update( $deactivator );
+		}
 	}
 
 	return TRUE;
 }
-
 
 /**
  * Write debug data to the error log.
@@ -125,19 +142,21 @@ function mlp_pre_run_test( $pagenow, Inpsyde_Property_List_Interface $data, $wp_
  *
  *     const MULTILINGUALPRESS_DEBUG = TRUE;
  *
- * @param  string $message
+ * @param string $message
+ *
  * @return void
  */
 function mlp_debug( $message ) {
 
-	if ( ! defined( 'MULTILINGUALPRESS_DEBUG' ) || ! MULTILINGUALPRESS_DEBUG )
+	if ( ! defined( 'MULTILINGUALPRESS_DEBUG' ) || ! MULTILINGUALPRESS_DEBUG ) {
 		return;
+	}
 
 	$date = date( 'H:m:s' );
 
 	error_log( "MultilingualPress: $date $message" );
 }
 
-
-if ( defined( 'MULTILINGUALPRESS_DEBUG' ) && MULTILINGUALPRESS_DEBUG )
+if ( defined( 'MULTILINGUALPRESS_DEBUG' ) && MULTILINGUALPRESS_DEBUG ) {
 	add_action( 'mlp_debug', 'mlp_debug' );
+}

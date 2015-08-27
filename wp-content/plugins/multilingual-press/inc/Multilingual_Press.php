@@ -16,67 +16,7 @@ class Multilingual_Press {
 	 * @since  0.1
 	 * @var    string
 	 */
-	protected $link_table = '';
-
-	/**
-	 * Array containing loaded modules
-	 *
-	 * @since  0.5
-	 * @var    array
-	 */
-	protected $loaded_modules = array ();
-
-	/**
-	 * array containing language codes and names
-	 *
-	 * @protected
-	 * @since  0.5
-	 * @var    array
-	 */
-	protected $lang_codes;
-
-	/**
-	 * The plugins textdomain path
-	 *
-	 * @static
-	 * @since 0.8
-	 * @var string
-	 */
-	public static $textdomainpath = '';
-
-	/**
-	 * The plugins Name
-	 *
-	 * @static
-	 * @since 0.4
-	 * @var string
-	 */
-	public static $plugin_name = '';
-
-	/**
-	 * The plugins plugin_base
-	 *
-	 * @static
-	 * @since 0.3
-	 * @var string
-	 */
-	public static $plugin_base_name = '';
-
-	/**
-	 * The plugins URL
-	 *
-	 * @static
-	 * @since 0.4
-	 * @var string
-	 */
-	public static $plugin_url = '';
-
-	/**
-	 * Local path to plugin directory.
-	 *
-	 * @var string
-	 */
-	private $plugin_dir_path;
+	private $link_table = '';
 
 	/**
 	 * Local path to plugin file.
@@ -106,10 +46,9 @@ class Multilingual_Press {
 	 */
 	public function __construct( Inpsyde_Property_List_Interface $data, wpdb $wpdb = NULL ) {
 
-		/**
-		 * Some has an old Free version active and activates the new Pro on top
-		 * of that. The old Free version tries now to create an instance of this
-		 * new version of the class, and the second parameter is missing.
+		/* Someone has an old Free version active and activates the new Pro on
+		 * top of that. The old Free version tries now to create an instance of
+		 * this new version of the class, and the second parameter is missing.
 		 * This is where we stop.
 		 */
 		if ( NULL === $wpdb )
@@ -128,60 +67,15 @@ class Multilingual_Press {
 	 */
 	public function setup() {
 
-		global $pagenow;
-
-
-		$this->link_table                  = $this->wpdb->base_prefix . 'multilingual_linked';
-
-		$this->plugin_dir_path             = $this->plugin_data->plugin_dir_path;
-		$this->plugin_file_path            = $this->plugin_data->plugin_file_path;
-		$this->plugin_data->module_manager = new Mlp_Module_Manager( 'state_modules' );
-		$this->plugin_data->site_manager   = new Mlp_Module_Manager( 'inpsyde_multilingual' );
-		$this->plugin_data->link_table     = $this->link_table;
-		$this->plugin_data->content_relations = new Mlp_Content_Relations(
-			$this->wpdb,
-			$this->plugin_data->site_relations,
-			$this->link_table
-		);
-		$this->plugin_data->language_api   = new Mlp_Language_Api(
-			$this->plugin_data,
-			'mlp_languages',
-			$this->plugin_data->site_relations,
-			$this->plugin_data->content_relations,
-			$this->wpdb
-		);
-		$this->plugin_data->assets = new Mlp_Assets( $this->plugin_data->locations );
+		$this->prepare_plugin_data();
 		$this->load_assets();
-
-		Mlp_Helpers::$link_table           = $this->link_table;
-		Mlp_Helpers::insert_dependency( 'site_relations', $this->plugin_data->site_relations );
-		Mlp_Helpers::insert_dependency( 'language_api',   $this->plugin_data->language_api );
-		Mlp_Helpers::insert_dependency( 'plugin_data',    $this->plugin_data );
-
+		$this->prepare_helpers();
 		$this->plugin_data->freeze(); // no changes allowed anymore
 
 		require 'functions.php';
 
-		// This check prevents the use of this plugin in a not-setted blog
-		if ( 'admin-post.php' != $pagenow
-			&& 'admin-ajax.php' != $pagenow
-			&& ! is_network_admin()
-			&& ! array_key_exists( get_current_blog_id(), get_site_option( 'inpsyde_multilingual', array () ) )
-			)
+		if ( ! $this->is_active_site() )
 			return;
-
-		// The Plugins Basename
-		// used by features/class-Multilingual_Press_Auto_Update.php only
-		self::$plugin_base_name = $this->plugin_data->plugin_base_name;
-
-		// The Plugins URL
-		self::$plugin_url = $this->plugin_data->plugin_uri;
-
-		// The Plugins Name
-		self::$plugin_name = $this->plugin_data->plugin_name;
-
-		// Textdomain Path
-		self::$textdomainpath = $this->plugin_data->text_domain_path;
 
 		// Hooks and filters
 		add_action( 'inpsyde_mlp_loaded', array ( $this, 'load_plugin_textdomain' ), 1 );
@@ -190,20 +84,15 @@ class Multilingual_Press {
 		$this->load_features();
 
 		/**
-		 * Kick-Off Init
-		 * @return  Void
+		 * Runs before internal actions are registered.
+		 *
+		 * @param Inpsyde_Property_List_Interface $plugin_data Plugin data object.
+		 * @param wpdb                            $wpdb        Database object.
 		 */
-		do_action( 'inpsyde_mlp_init', $this->plugin_data );
-
-		// Enqueue scripts
-		add_action( 'admin_enqueue_scripts', array ( $this, 'admin_scripts' ) );
+		do_action( 'inpsyde_mlp_init', $this->plugin_data, $this->wpdb );
 
 		// Cleanup upon blog delete
 		add_filter( 'delete_blog', array ( $this, 'delete_blog' ), 10, 2 );
-
-		// Checkup blog cleanup
-		add_filter( 'admin_head', array ( $this, 'checkup_blog_message' ) );
-		add_filter( 'wp_ajax_checkup_blogs', array ( $this, 'checkup_blog' ) );
 
 		// Check for errors
 		add_filter( 'all_admin_notices', array ( $this, 'check_for_user_errors_admin_notice' ) );
@@ -211,40 +100,51 @@ class Multilingual_Press {
 		add_action( 'wp_loaded', array ( $this, 'late_load' ), 0 );
 
 		/**
-		 * Everything loaded
-		 * @param   Inpsyde_Property_List_Interface
+		 * Runs after internal actions have been registered.
+		 *
+		 * @param Inpsyde_Property_List_Interface $plugin_data Plugin data object.
+		 * @param wpdb                            $wpdb        Database object.
 		 */
-		do_action( 'inpsyde_mlp_loaded', $this->plugin_data );
+		do_action( 'inpsyde_mlp_loaded', $this->plugin_data, $this->wpdb );
 
-		if ( is_admin() ) {
-
-			if ( $this->plugin_data->module_manager->has_modules() )
-				$this->load_module_settings_page();
-
-			if ( $this->plugin_data->site_manager->has_modules() )
-				$this->load_site_settings_page();
-
-			new Mlp_Network_Site_Settings_Controller( $this->plugin_data );
-
-			new Mlp_Network_New_Site_Controller( $this->plugin_data->language_api, $this->plugin_data->site_relations );
-		}
-		else {
-			// frontend-hooks
-			$hreflang = new Mlp_Hreflang_Header_Output( $this->plugin_data->language_api );
-			add_action( 'template_redirect', array ( $hreflang, 'http_header' ) );
-			add_action( 'wp_head', array ( $hreflang, 'wp_head' ) );
-		}
-
+		if ( is_admin() )
+			$this->run_admin_actions();
+		else
+			$this->run_frontend_actions();
 	}
 
+	/**
+	 * Check if the current context needs more MultilingualPress actions.
+	 *
+	 * @return bool
+	 */
+	private function is_active_site() {
+
+		global $pagenow;
+
+		if ( in_array( $pagenow, array ( 'admin-post.php', 'admin-ajax.php' ) ) )
+			return TRUE;
+
+		if ( is_network_admin() )
+			return TRUE;
+
+		$relations = get_site_option( 'inpsyde_multilingual', array () );
+
+		if ( array_key_exists( get_current_blog_id(), $relations ) )
+			return TRUE;
+
+		return FALSE;
+	}
 	/**
 	 * @return void
 	 */
 	public function late_load() {
 
 		/**
-		 * Late loading event for MLP
-		 * @param   Inpsyde_Property_List_Interface
+		 * Late loading event for MultilingualPress.
+		 *
+		 * @param Inpsyde_Property_List_Interface $plugin_data Plugin data object.
+		 * @param wpdb                            $wpdb        Database object.
 		 */
 		do_action( 'mlp_and_wp_loaded', $this->plugin_data, $this->wpdb );
 	}
@@ -259,50 +159,68 @@ class Multilingual_Press {
 	public function load_plugin_textdomain() {
 
 		$rel_path = dirname( plugin_basename( $this->plugin_file_path ) )
-				. $this->plugin_data->text_domain_path;
+				. $this->plugin_data->get( 'text_domain_path' );
 
 		load_plugin_textdomain( 'multilingualpress', FALSE, $rel_path );
 	}
 
 	/**
-	 * Register assets internally
+	 * Register assets internally.
 	 *
 	 * @return void
 	 */
 	public function load_assets() {
 
 		/** @type Mlp_Assets $assets */
-		$assets = $this->plugin_data->assets;
-		$assets->add( 'mlp_backend_js',   'backend.js', array ( 'jquery' ) );
-		$assets->add( 'mlp_backend_css',  'backend.css' );
-		$assets->add( 'mlp_frontend_js',  'frontend.js', array ( 'jquery' ) );
+		$assets = $this->plugin_data->get( 'assets' );
+
+		$l10n = array(
+			'mlpRelationshipControlL10n' => array(
+				'unsavedPostRelationships' => __(
+					'You have unsaved changes in your post relationships. The changes you made will be lost if you navigate away from this page.',
+					'multilingualpress'
+				),
+				'noPostSelected'           => __( 'Please select a post.', 'multilingualpress' ),
+			),
+		);
+		$assets->add( 'mlp_admin_js', 'admin.js', array( 'jquery' ), $l10n );
+
+		$assets->add( 'mlp_admin_css', 'admin.css' );
+
+		$assets->add( 'mlp_frontend_js', 'frontend.js', array( 'jquery' ) );
+
 		$assets->add( 'mlp_frontend_css', 'frontend.css' );
 
-		add_action( 'init', array ( $assets, 'register' ), 0 );
-
+		add_action( 'init', array( $assets, 'register' ), 0 );
 	}
 
 	/**
 	 * Create network settings page.
 	 *
-	 * @return  void
+	 * @return void
 	 */
 	private function load_module_settings_page() {
 
-		$settings = new Mlp_General_Settingspage( $this->plugin_data->module_manager, $this->plugin_data->assets );
-		add_action( 'plugins_loaded', array ( $settings, 'setup' ), 8 );
+		$settings = new Mlp_General_Settingspage(
+			$this->plugin_data->get( 'module_manager' ),
+			$this->plugin_data->get( 'assets' )
+		);
+		add_action( 'plugins_loaded', array( $settings, 'setup' ), 8 );
 	}
 
 	/**
 	 * Create site settings page.
 	 *
-	 * @return  void
+	 * @return void
 	 */
 	private function load_site_settings_page() {
 
-		$settings = new Mlp_General_Settingspage( $this->plugin_data->site_manager, $this->plugin_data->assets );
+		$settings = new Mlp_General_Settingspage(
+			$this->plugin_data->get( 'site_manager' ),
+			$this->plugin_data->get( 'assets' )
+		);
 		$settings->setup();
-		add_action( 'plugins_loaded', array ( $settings, 'setup' ), 8 );
+		add_action( 'plugins_loaded', array( $settings, 'setup' ), 8 );
 	}
 
 	/**
@@ -315,27 +233,20 @@ class Multilingual_Press {
 	protected function load_features() {
 
 		$found = array ();
-		$dirs  = array (
-			'core',
-			'pro'
-		);
 
-		foreach ( $dirs as $dir ) {
+		$path = $this->plugin_data->get( 'plugin_dir_path' ) . "/inc";
 
-			$path = $this->plugin_data->plugin_dir_path . "/inc/$dir";
+		if ( ! is_readable( $path ) )
+			return $found;
 
-			if ( ! is_readable( $path ) )
-				continue;
+		$files = glob( "$path/feature.*.php" );
 
-			$files = glob( "$path/feature.*.php" );
+		if ( empty ( $files ) )
+			return $found;
 
-			if ( empty ( $files ) )
-				continue;
-
-			foreach ( $files as $file ) {
-				$found[] = $file;
-				require $file;
-			}
+		foreach ( $files as $file ) {
+			$found[] = $file;
+			require $file;
 		}
 
 		// We need the return value for tests.
@@ -343,223 +254,60 @@ class Multilingual_Press {
 	}
 
 	/**
-	 * Load admin javascript and CSS
+	 * Remove deleted blog from 'inpsyde_multilingual' site option and clean up linked elements table.
 	 *
-	 * @global	$pagenow | current page identifier
-	 * @return  void
-	 */
-	public function admin_scripts() {
-
-		global $pagenow;
-
-		// We only need our Scripts on our pages
-		$pages = array (
-			'site-info.php',
-			'site-users.php',
-			'site-themes.php',
-			'site-settings.php',
-			'settings.php',
-			'post-new.php',
-			'post.php'
-		);
-
-		if ( in_array ( $pagenow, $pages ) ) {
-			//wp_enqueue_script( 'mlp-js', $this->plugin_data->js_url . 'multilingual_press.js' );
-			wp_localize_script( 'mlp_backend_js', 'mlp_loc', $this->localize_script() );
-			//wp_enqueue_style( 'mlp-admin-css' );
-		}
-	}
-
-	/**
-	 * Make localized strings available in javascript
+	 * @wp-hook delete_blog
 	 *
-	 * @access  public
-	 * @since	0.1
-	 * @uses	wp_create_nonce
-	 * @global	$pagenow | current page identifier
-	 * @return	array $loc | Array containing localized strings
-	 */
-	public function localize_script() {
-
-		if ( isset( $_GET[ 'id' ] ) )
-			$blog_id = $_GET[ 'id' ];
-		else
-			$blog_id = 0;
-
-		$loc = array (
-			'tab_label'							=> __( 'MultilingualPress', 'multilingualpress' ),
-			'blog_id'							=> intval( $blog_id ),
-			'ajax_tab_nonce'					=> wp_create_nonce( 'mlp_tab_nonce' ),
-			'ajax_form_nonce'					=> wp_create_nonce( 'mlp_form_nonce' ),
-			'ajax_select_nonce'					=> wp_create_nonce( 'mlp_select_nonce' ),
-			'ajax_switch_language_nonce'		=> wp_create_nonce( 'mlp_switch_language_nonce' ),
-			'ajax_check_single_nonce'			=> wp_create_nonce( 'mlp_check_single_nonce' )
-		);
-
-		return $loc;
-	}
-
-	/**
-	 * Delete removed blogs from site_option 'inpsyde_multilingual'
-	 * and cleanup linked elements table
+	 * @param int $blog_id ID of the deleted blog.
 	 *
-	 * @param	int $blog_id
-	 * @since	0.3
-	 * @uses	get_site_option, update_site_option
-	 * @global	$wpdb | WordPress Database Wrapper
-	 * @return	void
+	 * @return void
 	 */
 	public function delete_blog( $blog_id ) {
 
 		global $wpdb;
 
-		$current_blog_id = $blog_id;
+		// Delete relations
+		$site_relations = $this->plugin_data->get( 'site_relations' );
+		$site_relations->delete_relation( $blog_id );
 
-		// Update Blog Relationships
-		// Get blogs related to the current blog
-		$all_blogs = get_site_option( 'inpsyde_multilingual' );
-
-		if ( ! $all_blogs )
-			$all_blogs = array ();
-
-		// The user defined new relationships for this blog. We add it's own ID
-		// for internal purposes
-		$data[ 'related_blogs' ][] = $current_blog_id;
-
-		// Loop through related blogs
-		foreach ( $all_blogs as $blog_id => $blog_data ) {
-
-			if ( $current_blog_id != $blog_id )
-				$this->plugin_data->site_relations->delete_relation( $blog_id );
-		}
-
-		// Update site_option
-		$blogs = (array) get_site_option( 'inpsyde_multilingual', array () );
-
-		if ( ! empty ( $blogs ) && array_key_exists( $current_blog_id, $blogs ) ) {
-			unset( $blogs[ $current_blog_id ] );
+		// Update site option
+		$blogs = (array) get_site_option( 'inpsyde_multilingual', array() );
+		if ( isset( $blogs[ $blog_id ] ) ) {
+			unset( $blogs[ $blog_id ] );
 			update_site_option( 'inpsyde_multilingual', $blogs );
 		}
 
-		// Cleanup linked elements table
-		$wpdb->query(
-			 $wpdb->prepare(
-				  'DELETE FROM ' . $this->link_table . ' WHERE `ml_source_blogid` = %d OR `ml_blogid` = %d',
-					$blog_id,
-					$blog_id
-			 )
-		);
+		// Clean up linked elements table
+		$sql = "
+			DELETE
+			FROM {$this->link_table}
+			WHERE ml_source_blogid = %d
+				OR ml_blogid = %d";
+		$sql = $wpdb->prepare( $sql, $blog_id, $blog_id );
+		$wpdb->query( $sql );
 	}
 
 	/**
-	 * returns an error-nag with an ajax-link for the blog cleanup
-	 * if there is a problem
+	 * Use the current blog's language for the html tag.
 	 *
-	 * @access	public
-	 * @since	0.8
-	 * @uses	get_site_option, is_super_admin, _e
-	 * @return	void
-	 */
-	public function checkup_blog_message() {
-
-		$is_checkup_message = get_site_option( 'multilingual_press_check_db', FALSE );
-
-		if ( ! $is_checkup_message or ! is_super_admin() )
-			return;
-
-		$msg = __(
-			'We found invalid MultilingualPress Data in your System. <a href="#" id="multilingual_press_checkup_link">Please try a repair.</a>',
-			'multilingualpress'
-		);
-
-		$notice = new Mlp_Admin_Notice(
-			$msg,
-			array (
-				'id' => 'multilingual_press_checkup'
-			)
-		);
-
-		add_filter( 'admin_notices',  array ( $notice, 'show' ) );
-	}
-
-	/**
-	 * Checks the blog for invalid data
+	 * @wp-hook language_attributes
 	 *
-	 * @access	public
-	 * @since	0.8
-	 * @uses	get_site_option, is_super_admin, _e, delete_site_option
-	 * @return	void
+	 * @param string $output Language attributes HTML.
+	 *
+	 * @return string
 	 */
-	public function checkup_blog() {
+	public function language_attributes( $output ) {
 
-		// Message
-		?>
-		<p><?php _e( 'Cleanup runs. Please stand by.', 'multilingualpress' ); ?></p>
-		<?php
-
-		// Update Blog Relationships
-		// Get blogs related to the current blog
-		$all_blogs = get_site_option( 'inpsyde_multilingual' );
-
-		if ( ! $all_blogs )
-			$all_blogs = array ();
-
-		$cleanup_blogs = array ();
-
-		// Loop through related blogs
-		foreach ( $all_blogs as $blog_id => $blog_data ) {
-			// Does this blog exists?
-			$blog_details = get_blog_details( $blog_id );
-			if ( empty( $blog_details ) )
-				$cleanup_blogs[] = (int) $blog_id;
+		$site_language = Mlp_Helpers::get_current_blog_language();
+		if ( ! $site_language ) {
+			return $output;
 		}
 
-		// We found blogs so we have to check em up
-		if ( 0 < count( $cleanup_blogs ) ) {
-			?><p><?php _e( sprintf( '%d Corrupt Blogs found. Fixing ...', count( $cleanup_blogs ) ), 'multilingualpress' ); ?></p><?php
+		$language = get_bloginfo( 'language' );
 
-			// Loop throug the blogs array
-			foreach ( $all_blogs as $blog_id => $blog_data ) {
+		$site_language = str_replace( '_', '-', $site_language );
 
-				// Loop throug corrupt blogs
-				foreach ( $cleanup_blogs as $blog_to_clean ) {
-
-					// 1. Get related blogs' current relationships
-					$current_rel = $this->plugin_data->site_relations->get_related_sites( $blog_id, FALSE );
-
-					if ( empty ( $current_rel ) )
-						continue;
-
-					// We have relationships
-
-					// 2. Compare old to new relationships
-					// Get the key of the current blog in the relationships array of the looped blog
-					$key = array_search( $blog_to_clean, $current_rel );
-
-					// These blogs should not be connected. Delete
-					// possibly existing connection
-					if ( FALSE !== $key && NULL !== $key )
-						$this->plugin_data->site_relations->delete_relation( $current_rel[ $key ] );
-				}
-			}
-
-			?><p><?php _e( 'Relationships have been deleted.' , 'multilingualpress' ); ?></p><?php
-
-			// Update site_option
-			$blogs = get_site_option( 'inpsyde_multilingual' );
-			foreach ( $cleanup_blogs as $blog_to_clean ) {
-
-				if ( array_key_exists( $blog_to_clean, $blogs ) )
-					unset( $blogs[ $blog_to_clean ] );
-
-			}
-			update_site_option( 'inpsyde_multilingual', $blogs );
-
-			?><p><?php _e( 'All done!' , 'multilingualpress' ); ?></p><?php
-		}
-
-		delete_site_option( 'multilingual_press_check_db' );
-		die;
+		return str_replace( $language, $site_language, $output );
 	}
 
 	/**
@@ -611,4 +359,100 @@ class Multilingual_Press {
 
 		return FALSE;
 	}
+
+	/**
+	 * @return void
+	 */
+	private function run_admin_actions() {
+
+		$module_manager = $this->plugin_data->get( 'module_manager' );
+		if ( $module_manager->has_modules() ) {
+			$this->load_module_settings_page();
+		}
+
+		$site_manager = $this->plugin_data->get( 'site_manager' );
+		if ( $site_manager->has_modules() ) {
+			$this->load_site_settings_page();
+		}
+
+		new Mlp_Network_Site_Settings_Controller( $this->plugin_data );
+
+		new Mlp_Network_New_Site_Controller(
+			$this->plugin_data->get( 'language_api' ),
+			$this->plugin_data->get( 'site_relations' )
+		);
+	}
+
+	/**
+	 * @return void
+	 */
+	private function run_frontend_actions() {
+
+		// Use correct language for html element
+		add_filter( 'language_attributes', array( $this, 'language_attributes' ) );
+
+		// frontend-hooks
+		$hreflang = new Mlp_Hreflang_Header_Output( $this->plugin_data->get( 'language_api' ) );
+		add_action(
+			'template_redirect',
+			array (
+				$hreflang,
+				'http_header'
+			)
+		);
+		add_action(
+			'wp_head',
+			array (
+				$hreflang,
+				'wp_head'
+			)
+		);
+	}
+
+	/**
+	 * @return void
+	 */
+	private function prepare_plugin_data() {
+
+		$site_relations = $this->plugin_data->get( 'site_relations' );
+		$table_list = new Mlp_Db_Table_List( $this->wpdb );
+
+		$this->link_table = $this->wpdb->base_prefix . 'multilingual_linked';
+		$this->plugin_file_path = $this->plugin_data->get( 'plugin_file_path' );
+		$this->plugin_data->set( 'module_manager', new Mlp_Module_Manager( 'state_modules' ) );
+		$this->plugin_data->set( 'site_manager', new Mlp_Module_Manager( 'inpsyde_multilingual' ) );
+		$this->plugin_data->set( 'table_list', $table_list );
+		$this->plugin_data->set( 'link_table', $this->link_table );
+		$this->plugin_data->set(
+			'content_relations',
+			new Mlp_Content_Relations(
+				$this->wpdb,
+				$site_relations,
+				new Mlp_Db_Table_Name( $this->link_table, $table_list )
+			)
+		);
+		$this->plugin_data->set(
+			'language_api',
+			new Mlp_Language_Api(
+				$this->plugin_data,
+				'mlp_languages',
+				$site_relations,
+				$this->plugin_data->get( 'content_relations' ),
+				$this->wpdb
+			)
+		);
+		$this->plugin_data->set( 'assets', new Mlp_Assets( $this->plugin_data->get( 'locations' ) ) );
+	}
+
+	/**
+	 * @return void
+	 */
+	private function prepare_helpers() {
+
+		Mlp_Helpers::$link_table = $this->link_table;
+		Mlp_Helpers::insert_dependency( 'site_relations', $this->plugin_data->get( 'site_relations' ) );
+		Mlp_Helpers::insert_dependency( 'language_api', $this->plugin_data->get( 'language_api' ) );
+		Mlp_Helpers::insert_dependency( 'plugin_data', $this->plugin_data );
+	}
+
 }
