@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-08-26 08:51:09+0000\n"
+"PO-Revision-Date: 2015-08-30 16:28:49+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1088,13 +1088,13 @@ msgstr "Editor-Menü (falls aktiviert)"
 msgid "Focus shortcuts:"
 msgstr "Fokus-Tastenkombinationen:"
 
-#: wp-includes/class-wp-editor.php:1015
-msgid "Rich Text Area. Press Alt-Shift-H for help"
-msgstr "Rich Text-Bereich. Drücke Alt-Shift-H für Hilfe."
-
 #: wp-includes/class-wp-editor.php:1046
 msgid "Elements path"
 msgstr "Elemente-Pfad"
+
+#: wp-includes/class-wp-editor.php:1015
+msgid "Rich Text Area. Press Alt-Shift-H for help"
+msgstr "Rich Text-Bereich. Drücke Alt + Shift + H für Hilfe."
 
 #. translators: 1: month, 2: day of month
 #: wp-includes/date.php:457
@@ -2471,10 +2471,6 @@ msgctxt "custom headers"
 msgid "Suggested"
 msgstr "Vorgeschlagen"
 
-#: wp-includes/class-wp-editor.php:1014
-msgid "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off."
-msgstr "Einfügen erfolgt jetzt im reinen Text-Modus. Inhalte werden nun als reiner Text eingefügt bis du diese Option abschaltest."
-
 #: wp-includes/class-wp-customize-control.php:1241
 msgid "Randomizing uploaded headers"
 msgstr "Zufällig hochgeladenes Header-Bild"
@@ -2498,6 +2494,10 @@ msgstr "Die angegebene Zeichenfolge konnte nicht gefunden werden."
 #: wp-includes/class-wp-editor.php:964
 msgid "Header cell"
 msgstr "Tabellen-Kopfzelle"
+
+#: wp-includes/class-wp-editor.php:1014
+msgid "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off."
+msgstr "Einfügen erfolgt jetzt im reinen Text-Modus. Inhalte werden als reiner Text eingefügt, bis du diese Option abschaltest."
 
 #: wp-includes/general-template.php:2959
 msgctxt "admin color scheme"
@@ -6964,19 +6964,6 @@ msgid_plural "%s topics"
 msgstr[0] "%s Thema"
 msgstr[1] "%s Themen"
 
-#: wp-includes/comment-template.php:1394
-msgid "Log in to Reply"
-msgstr "Zum Antworten anmelden"
-
-#: wp-includes/comment-template.php:1572
-msgid "Click here to cancel reply."
-msgstr "Hier klicken, um die Antwort abzubrechen."
-
-#: wp-includes/comment-template.php:1661 wp-includes/comment-template.php:2265
-#: wp-includes/theme-compat/comments.php:68
-msgid "Leave a Reply to %s"
-msgstr "Hinterlasse einen Kommentar zu %s"
-
 #: wp-includes/comment-template.php:1928
 msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
 msgstr "<cite class=\"fn\">%s</cite> <span class=\"says\">sagt:</span>"
@@ -7115,11 +7102,6 @@ msgstr "Die Benutzung von <code>user_level</code> in Plugins und Themes ist vera
 msgid "Powered by WordPress, state-of-the-art semantic personal publishing platform."
 msgstr "Powered by WordPress, state-of-the-art semantic personal publishing platform."
 
-#: wp-includes/comment-template.php:1660 wp-includes/comment-template.php:2264
-#: wp-includes/theme-compat/comments.php:68
-msgid "Leave a Reply"
-msgstr "Hinterlasse eine Antwort"
-
 #: wp-includes/comment-template.php:2255
 #: wp-includes/theme-compat/comments.php:75
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
@@ -7209,6 +7191,24 @@ msgstr "Schreib einen Kommentar"
 #: wp-includes/comment-template.php:1505
 msgid "Log in to leave a Comment"
 msgstr "Melde dich an, um einen Kommentar zu schreiben"
+
+#: wp-includes/comment-template.php:1661 wp-includes/comment-template.php:2265
+#: wp-includes/theme-compat/comments.php:68
+msgid "Leave a Reply to %s"
+msgstr "Schreib einen Kommentar zu %s"
+
+#: wp-includes/comment-template.php:1394
+msgid "Log in to Reply"
+msgstr "Zum Kommentieren anmelden"
+
+#: wp-includes/comment-template.php:1572
+msgid "Click here to cancel reply."
+msgstr "Hier klicken, um das Kommentieren abzubrechen."
+
+#: wp-includes/comment-template.php:1660 wp-includes/comment-template.php:2264
+#: wp-includes/theme-compat/comments.php:68
+msgid "Leave a Reply"
+msgstr "Schreibe einen Kommentar"
 
 #: wp-comments-post.php:115
 msgid "Sorry, you must be logged in to post a comment."
