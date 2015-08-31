@@ -3,7 +3,7 @@ Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot, ipm
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 
 Create a fast translation network on WordPress multisite.
 
@@ -50,6 +50,11 @@ when you don't use widgets or a sidebar.
 without affecting the output of the front-end.
 - Show posts with incomplete translations in a dashboard widget.
 
+= Premium Version =
+
+Our [premium-version](http://marketpress.com/product/multilingual-press-pro/) offers premium support to save your time.
+The features are the same, but you support the development and get help from the developers of the plugin.
+
 = WPML to MultilingualPress =
 
 If you would like to switch from the WPML plugin to MultilingualPress, you can use the helping hands of
@@ -94,6 +99,12 @@ because it creates a lock-in: you would lose access to your content after the pl
 4. Language switcher widget.
 
 == Changelog ==
+
+= 2.2.1 =
+- Handle deletion of post relations no matter from what site, see
+[issue #156](https://github.com/inpsyde/multilingual-press/issues/156), props kraftner.
+- Bugfix auto-selecting the first remote term without relationships.
+- Improve validity check for table names (don't be more restrictive than WP core).
 
 = 2.2.0 =
 - **Merge MultilingualPress Free and Pro.**
