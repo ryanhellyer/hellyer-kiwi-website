@@ -3,7 +3,7 @@ Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot, ipm
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 
 Create a fast translation network on WordPress multisite.
 
@@ -93,12 +93,25 @@ because it creates a lock-in: you would lose access to your content after the pl
 
 == Screenshots ==
 
-1. Language manager.
-2. Site settings.
-3. Post editor with translation preview.
-4. Language switcher widget.
+1. New columns in the site list table for the _Relationships_ (i.e., connections with other sites) and the _Site Language_.
+2. New settings tab on the _Edit Site_ page.
+3. New settings tab on the _Add New Site_ page.
+4. Plugin settings, including Custom Post Type translation.
+5. The _Language Manager_.
+6. Dashboard widget informing about currently untranslated posts.
+7. Translate a post directly from the _Edit Post_ page, and set the translation status and _Trasher_ setting.
+8. Translate a term directly from the _Add New Category_ page.
+9. Edit term translations on the _Edit Category_ page.
+10. New user settings for the sitewide _Backend Language_ and the _Language Redirect_.
+11. New _Language Switcher_ widget.
+12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
 
 == Changelog ==
+
+= 2.2.2 =
+- Bugfix term auto-selecting, again.
+- Use `realpath()` for plugin file in requirements check to allow for symlinked plugin folder, see
+[issue #162](https://github.com/inpsyde/multilingual-press/issues/162), props jackblackCH.
 
 = 2.2.1 =
 - Handle deletion of post relations no matter from what site, see
