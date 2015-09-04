@@ -33,7 +33,7 @@ msgstr "Toggle section: %s"
 #. Asian characters), enter 'characters_excluding_spaces' or
 #. 'characters_including_spaces'. Otherwise, enter 'words'. Do not translate
 #. into your own language.
-#: wp-includes/formatting.php:2859 wp-includes/script-loader.php:409
+#: wp-includes/formatting.php:2862 wp-includes/script-loader.php:409
 msgctxt "Word count type. Do not translate!"
 msgid "words"
 msgstr "words"
@@ -181,7 +181,7 @@ msgstr "Your password reset link has expired. Please request a new link below."
 msgid "Username may not be longer than 60 characters."
 msgstr "Username may not be longer than 60 characters."
 
-#: wp-includes/pluggable.php:1722
+#: wp-includes/pluggable.php:1730
 msgid "To set your password, visit the following address:"
 msgstr "To set your password, visit the following address:"
 
@@ -287,6 +287,10 @@ msgstr ""
 "All at ###SITENAME###\n"
 "###SITEURL###"
 
+#: wp-includes/user.php:2217
+msgid "[%s] Notice of Password Change"
+msgstr "[%s] Notice of Password Change"
+
 #. translators: Do not translate USERNAME, ADMIN_EMAIL, EMAIL, SITENAME,
 #. SITEURL: those are placeholders.
 #: wp-includes/user.php:2202
@@ -316,10 +320,6 @@ msgstr ""
 "Regards,\n"
 "All at ###SITENAME###\n"
 "###SITEURL###"
-
-#: wp-includes/user.php:2217
-msgid "[%s] Notice of Password Change"
-msgstr "[%s] Notice of Password Change"
 
 #: wp-includes/script-loader.php:109
 msgid "Inserted text"
@@ -824,7 +824,7 @@ msgstr "<strong>ERROR</strong>: The password you entered for the username <stron
 msgid "Customizer"
 msgstr "Customiser"
 
-#: wp-includes/taxonomy.php:4277
+#: wp-includes/taxonomy.php:4280
 msgid "Could not split shared term."
 msgstr "Could not split shared term."
 
@@ -892,7 +892,7 @@ msgstr "<strong>Could not find site %1$s.</strong> Searched for table %2$s in da
 
 #: wp-includes/class-wp-customize-nav-menus.php:120
 #: wp-includes/class-wp-customize-nav-menus.php:327
-#: wp-includes/class-wp-customize-setting.php:1160 wp-includes/nav-menu.php:737
+#: wp-includes/class-wp-customize-setting.php:1160 wp-includes/nav-menu.php:739
 msgid "Custom Link"
 msgstr "Custom Link"
 
@@ -901,35 +901,9 @@ msgstr "Custom Link"
 msgid "<strong>Database tables are missing.</strong> This means that MySQL is not running, WordPress was not installed properly, or someone deleted %s. You really should look at your database now."
 msgstr "<strong>Database tables are missing.</strong> This means that MySQL is not running, WordPress was not installed properly, or someone deleted %s. You really should look at your database now."
 
-#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
-#. those are placeholders.
-#: wp-includes/ms-functions.php:2140
-msgid ""
-"Howdy USERNAME,\n"
-"\n"
-"Your new account is set up.\n"
-"\n"
-"You can log in with the following information:\n"
-"Username: USERNAME\n"
-"Password: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Thanks!\n"
-"\n"
-"--The Team @ SITE_NAME"
-msgstr ""
-"Kia ora USERNAME,\n"
-"\n"
-"Your new account is set up.\n"
-"\n"
-"You can log in with the following information:\n"
-"Username: USERNAME\n"
-"Password: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Thanks!\n"
-"\n"
-"--The Team @ SITE_NAME"
+#: wp-includes/media.php:3042
+msgid "Drag and drop to reorder media files."
+msgstr "Drag and drop to reorder media files."
 
 #. translators: Do not translate USERNAME, SITE_NAME, BLOG_URL, PASSWORD: those
 #. are placeholders.
@@ -965,9 +939,35 @@ msgstr ""
 "\n"
 "--The Team @ SITE_NAME"
 
-#: wp-includes/media.php:3042
-msgid "Drag and drop to reorder media files."
-msgstr "Drag and drop to reorder media files."
+#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
+#. those are placeholders.
+#: wp-includes/ms-functions.php:2140
+msgid ""
+"Howdy USERNAME,\n"
+"\n"
+"Your new account is set up.\n"
+"\n"
+"You can log in with the following information:\n"
+"Username: USERNAME\n"
+"Password: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Thanks!\n"
+"\n"
+"--The Team @ SITE_NAME"
+msgstr ""
+"Kia ora USERNAME,\n"
+"\n"
+"Your new account is set up.\n"
+"\n"
+"You can log in with the following information:\n"
+"Username: USERNAME\n"
+"Password: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Thanks!\n"
+"\n"
+"--The Team @ SITE_NAME"
 
 #. translators: 1: 'text_direction' argument, 2: bloginfo() function name, 3:
 #. is_rtl() function name
@@ -1178,86 +1178,86 @@ msgstr "Installed"
 msgid "No alignment"
 msgstr "No alignment"
 
-#: wp-includes/general-template.php:1241
+#: wp-includes/general-template.php:1240
 msgid "Archives: %s"
 msgstr "Archives: %s"
 
 #. translators: 1: Taxonomy singular name, 2: Current taxonomy term
-#: wp-includes/general-template.php:1245
+#: wp-includes/general-template.php:1244
 msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
-#: wp-includes/general-template.php:1236
+#: wp-includes/general-template.php:1235
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr "Audio"
 
-#: wp-includes/general-template.php:1238
+#: wp-includes/general-template.php:1237
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr "Chats"
 
-#: wp-includes/general-template.php:1234
+#: wp-includes/general-template.php:1233
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr "Statuses"
 
-#: wp-includes/general-template.php:1232
+#: wp-includes/general-template.php:1231
 msgctxt "post format archive title"
 msgid "Links"
 msgstr "Links"
 
-#: wp-includes/general-template.php:1228
+#: wp-includes/general-template.php:1227
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr "Videos"
 
-#: wp-includes/general-template.php:1230
+#: wp-includes/general-template.php:1229
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr "Quotes"
 
-#: wp-includes/general-template.php:1224
+#: wp-includes/general-template.php:1223
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr "Galleries"
 
-#: wp-includes/general-template.php:1226
+#: wp-includes/general-template.php:1225
 msgctxt "post format archive title"
 msgid "Images"
 msgstr "Images"
 
-#: wp-includes/general-template.php:1217
+#: wp-includes/general-template.php:1216
 msgid "Month: %s"
 msgstr "Month: %s"
 
-#: wp-includes/general-template.php:1219
+#: wp-includes/general-template.php:1218
 msgid "Day: %s"
 msgstr "Day: %s"
 
-#: wp-includes/general-template.php:1219
+#: wp-includes/general-template.php:1218
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "F j, Y"
 
-#: wp-includes/general-template.php:1222
+#: wp-includes/general-template.php:1221
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr "Asides"
 
-#: wp-includes/general-template.php:1215
+#: wp-includes/general-template.php:1214
 msgid "Year: %s"
 msgstr "Year: %s"
 
-#: wp-includes/general-template.php:1213
+#: wp-includes/general-template.php:1212
 msgid "Author: %s"
 msgstr "Author: %s"
 
-#: wp-includes/general-template.php:1211
+#: wp-includes/general-template.php:1210
 msgid "Tag: %s"
 msgstr "Tag: %s"
 
-#: wp-includes/general-template.php:1209
+#: wp-includes/general-template.php:1208
 msgid "Category: %s"
 msgstr "Category: %s"
 
@@ -1419,7 +1419,7 @@ msgstr "(no label)"
 
 #. translators: %s: taxonomy label, %l: list of terms formatted as per
 #. $term_template
-#: wp-includes/taxonomy.php:4594
+#: wp-includes/taxonomy.php:4733
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -2036,17 +2036,17 @@ msgid "Search"
 msgstr "Search"
 
 #. translators: used to join items in a list with more than 2 items
-#: wp-includes/formatting.php:3894
+#: wp-includes/formatting.php:3897
 msgid "%s, %s"
 msgstr "%s, %s"
 
 #. translators: used to join last two items in a list with more than 2 times
-#: wp-includes/formatting.php:3896
+#: wp-includes/formatting.php:3899
 msgid "%s, and %s"
 msgstr "%s, and %s"
 
 #. translators: used to join items in a list with only 2 items
-#: wp-includes/formatting.php:3898
+#: wp-includes/formatting.php:3901
 msgid "%s and %s"
 msgstr "%s and %s"
 
@@ -2183,7 +2183,7 @@ msgstr "Add to video playlist"
 msgid "Add to Video Playlist"
 msgstr "Add to Video Playlist"
 
-#: wp-includes/nav-menu.php:351
+#: wp-includes/nav-menu.php:353
 msgid "Invalid menu ID."
 msgstr "Invalid menu ID."
 
@@ -2500,22 +2500,22 @@ msgstr "Show invisible characters"
 msgid "Insert Read More tag"
 msgstr "Insert Read More tag"
 
-#: wp-includes/general-template.php:2960
+#: wp-includes/general-template.php:2959
 msgctxt "admin color scheme"
 msgid "Sunrise"
 msgstr "Sunrise"
 
-#: wp-includes/general-template.php:2966
+#: wp-includes/general-template.php:2965
 msgctxt "admin color scheme"
 msgid "Ectoplasm"
 msgstr "Ectoplasm"
 
-#: wp-includes/general-template.php:2972
+#: wp-includes/general-template.php:2971
 msgctxt "admin color scheme"
 msgid "Ocean"
 msgstr "Ocean"
 
-#: wp-includes/general-template.php:2978
+#: wp-includes/general-template.php:2977
 msgctxt "admin color scheme"
 msgid "Coffee"
 msgstr "Coffee"
@@ -2580,17 +2580,17 @@ msgctxt "Open Sans font: on or off"
 msgid "on"
 msgstr "on"
 
-#: wp-includes/general-template.php:2932
+#: wp-includes/general-template.php:2931
 msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Default"
 
-#: wp-includes/general-template.php:2942
+#: wp-includes/general-template.php:2941
 msgctxt "admin color scheme"
 msgid "Light"
 msgstr "Light"
 
-#: wp-includes/general-template.php:2954
+#: wp-includes/general-template.php:2953
 msgctxt "admin color scheme"
 msgid "Midnight"
 msgstr "Midnight"
@@ -2701,19 +2701,19 @@ msgstr "Unmute"
 msgid "Captions/Subtitles"
 msgstr "Captions/Subtitles"
 
-#: wp-includes/formatting.php:2751
+#: wp-includes/formatting.php:2754
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s week"
 msgstr[1] "%s weeks"
 
-#: wp-includes/formatting.php:2756
+#: wp-includes/formatting.php:2759
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] "%s month"
 msgstr[1] "%s months"
 
-#: wp-includes/formatting.php:2761
+#: wp-includes/formatting.php:2764
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s year"
@@ -2722,7 +2722,7 @@ msgstr[1] "%s years"
 #. translators: %d: ID of a post
 #: wp-includes/class-wp-customize-nav-menus.php:137
 #: wp-includes/class-wp-customize-nav-menus.php:266
-#: wp-includes/nav-menu.php:714 wp-includes/nav-menu.php:778
+#: wp-includes/nav-menu.php:716 wp-includes/nav-menu.php:780
 #: wp-includes/post-template.php:1422 wp-includes/post-template.php:1513
 msgid "#%d (no title)"
 msgstr "#%d (no title)"
@@ -3265,7 +3265,7 @@ msgid "There is a revision of this post that is more recent."
 msgstr "There is a revision of this post that is more recent."
 
 #. translators: 1: blog name, 2: separator(raquo), 3: post type name
-#: wp-includes/general-template.php:2336
+#: wp-includes/general-template.php:2335
 msgid "%1$s %2$s %3$s Feed"
 msgstr "%1$s %2$s %3$s Feed"
 
@@ -3647,7 +3647,7 @@ msgstr "Image default align"
 msgid "Sorry, you are not allowed to edit this post."
 msgstr "Sorry, you are not allowed to edit this post."
 
-#: wp-includes/post.php:3960 wp-includes/script-loader.php:485
+#: wp-includes/post.php:3961 wp-includes/script-loader.php:485
 #: wp-includes/script-loader.php:548
 msgctxt "tag delimiter"
 msgid ","
@@ -3726,18 +3726,18 @@ msgstr "Sorry, one of the given taxonomies is not supported by the post type."
 msgid "Sorry, you are not allowed to stick this post."
 msgstr "Sorry, you are not allowed to stick this post."
 
-#: wp-includes/general-template.php:1215
+#: wp-includes/general-template.php:1214
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
 
-#: wp-includes/general-template.php:1217
+#: wp-includes/general-template.php:1216
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "F Y"
 
 #. translators: opening curly double quote
-#: wp-includes/formatting.php:88 wp-includes/formatting.php:4145
+#: wp-includes/formatting.php:88 wp-includes/formatting.php:4148
 msgctxt "opening curly double quote"
 msgid "&#8220;"
 msgstr "&#8220;"
@@ -3906,7 +3906,7 @@ msgstr "Documentation"
 msgid "Support Forums"
 msgstr "Support Forums"
 
-#: wp-includes/formatting.php:2848 wp-includes/general-template.php:2854
+#: wp-includes/formatting.php:2851 wp-includes/general-template.php:2853
 msgid "&hellip;"
 msgstr "&hellip;"
 
@@ -3961,12 +3961,12 @@ msgstr "This is larger than the maximum size. Please try another."
 msgid "This file is not an image. Please try another."
 msgstr "This file is not an image. Please try another."
 
-#: wp-includes/general-template.php:2948
+#: wp-includes/general-template.php:2947
 msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Blue"
 
-#: wp-includes/formatting.php:3680
+#: wp-includes/formatting.php:3683
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "The timezone you have entered is not valid. Please select a valid timezone."
 
@@ -4085,7 +4085,7 @@ msgstr "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgid "(This message was added in version %s.)"
 msgstr "(This message was added in version %s.)"
 
-#: wp-includes/class-wp-xmlrpc-server.php:6057
+#: wp-includes/class-wp-xmlrpc-server.php:6058
 msgid "Sorry, you cannot publish this post."
 msgstr "Sorry, you cannot publish this post."
 
@@ -4191,7 +4191,7 @@ msgstr "Shortlink"
 #: wp-includes/class-wp-xmlrpc-server.php:1339
 #: wp-includes/class-wp-xmlrpc-server.php:3828
 #: wp-includes/class-wp-xmlrpc-server.php:4945
-#: wp-includes/class-wp-xmlrpc-server.php:5300
+#: wp-includes/class-wp-xmlrpc-server.php:5301
 msgid "Invalid attachment ID."
 msgstr "Invalid attachment ID."
 
@@ -4621,8 +4621,8 @@ msgid "Sorry, you are not allowed to publish posts on this site."
 msgstr "Sorry, you are not allowed to publish posts on this site."
 
 #: wp-includes/class-wp-xmlrpc-server.php:3120
-#: wp-includes/class-wp-xmlrpc-server.php:5601
-#: wp-includes/class-wp-xmlrpc-server.php:5836
+#: wp-includes/class-wp-xmlrpc-server.php:5602
+#: wp-includes/class-wp-xmlrpc-server.php:5837
 msgid "Sorry, you must be able to edit posts on this site in order to view categories."
 msgstr "Sorry, you must be able to edit posts on this site in order to view categories."
 
@@ -4674,7 +4674,7 @@ msgstr "The site is already active."
 
 #: wp-includes/class-wp-xmlrpc-server.php:2903
 #: wp-includes/class-wp-xmlrpc-server.php:4403
-#: wp-includes/class-wp-xmlrpc-server.php:5488
+#: wp-includes/class-wp-xmlrpc-server.php:5489
 msgid "Sorry, you cannot edit posts on this site."
 msgstr "Sorry, you cannot edit posts on this site."
 
@@ -4706,7 +4706,7 @@ msgstr "Sorry, that site is reserved!"
 msgid "That site is currently reserved but may be available in a couple days."
 msgstr "That site is currently reserved but may be available in a couple days."
 
-#: wp-includes/pluggable.php:1702
+#: wp-includes/pluggable.php:1705
 msgid "New user registration on your site %s:"
 msgstr "New user registration on your site %s:"
 
@@ -4738,19 +4738,19 @@ msgstr "The site you have requested is not installed properly. Please contact th
 msgid "The menu name <strong>%s</strong> conflicts with another menu name. Please try another."
 msgstr "The menu name <strong>%s</strong> conflicts with another menu name. Please try another."
 
-#: wp-includes/nav-menu.php:346
+#: wp-includes/nav-menu.php:348
 msgid "The given object ID is not that of a menu item."
 msgstr "The given object ID is not that of a menu item."
 
-#: wp-includes/formatting.php:3511
+#: wp-includes/formatting.php:3514
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 
-#: wp-includes/formatting.php:3612
+#: wp-includes/formatting.php:3615
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 
-#: wp-includes/formatting.php:3625
+#: wp-includes/formatting.php:3628
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 
@@ -4770,7 +4770,7 @@ msgstr "This file is too big. Files must be less than %d KB in size."
 msgid "Your email address will not be published."
 msgstr "Your email address will not be published."
 
-#: wp-includes/class-http.php:195 wp-includes/class-wp-xmlrpc-server.php:6112
+#: wp-includes/class-http.php:195 wp-includes/class-wp-xmlrpc-server.php:6113
 msgid "A valid URL was not provided."
 msgstr "A valid URL was not provided."
 
@@ -4831,7 +4831,7 @@ msgstr "Are you sure you want to install this plugin?"
 msgid "Use as featured image"
 msgstr "Use as featured image"
 
-#: wp-includes/general-template.php:934
+#: wp-includes/general-template.php:933
 msgid "Page %s"
 msgstr "Page %s"
 
@@ -5100,11 +5100,11 @@ msgstr "You must be registered to comment"
 #: wp-includes/class-wp-xmlrpc-server.php:4185
 #: wp-includes/class-wp-xmlrpc-server.php:4347
 #: wp-includes/class-wp-xmlrpc-server.php:5064
-#: wp-includes/class-wp-xmlrpc-server.php:5355
-#: wp-includes/class-wp-xmlrpc-server.php:5881
-#: wp-includes/class-wp-xmlrpc-server.php:5935
-#: wp-includes/class-wp-xmlrpc-server.php:6054 wp-includes/post.php:3172
-#: wp-includes/post.php:3631 wp-includes/revision.php:265
+#: wp-includes/class-wp-xmlrpc-server.php:5356
+#: wp-includes/class-wp-xmlrpc-server.php:5882
+#: wp-includes/class-wp-xmlrpc-server.php:5936
+#: wp-includes/class-wp-xmlrpc-server.php:6055 wp-includes/post.php:3172
+#: wp-includes/post.php:3632 wp-includes/revision.php:265
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
 
@@ -5127,21 +5127,21 @@ msgstr "You are not allowed to update options."
 #: wp-includes/class-wp-xmlrpc-server.php:1676
 #: wp-includes/class-wp-xmlrpc-server.php:4188
 #: wp-includes/class-wp-xmlrpc-server.php:4350
-#: wp-includes/class-wp-xmlrpc-server.php:5358
-#: wp-includes/class-wp-xmlrpc-server.php:5712
-#: wp-includes/class-wp-xmlrpc-server.php:5938
+#: wp-includes/class-wp-xmlrpc-server.php:5359
+#: wp-includes/class-wp-xmlrpc-server.php:5713
+#: wp-includes/class-wp-xmlrpc-server.php:5939
 msgid "Sorry, you cannot edit this post."
 msgstr "Sorry, you cannot edit this post."
 
 #: wp-includes/class-wp-xmlrpc-server.php:4411
-#: wp-includes/class-wp-xmlrpc-server.php:5786
+#: wp-includes/class-wp-xmlrpc-server.php:5787
 msgid "Either there are no posts, or something went wrong."
 msgstr "Either there are no posts, or something went wrong."
 
 #: wp-includes/class-wp-xmlrpc-server.php:4565
 #: wp-includes/class-wp-xmlrpc-server.php:4636
-#: wp-includes/class-wp-xmlrpc-server.php:5455
-#: wp-includes/class-wp-xmlrpc-server.php:6002
+#: wp-includes/class-wp-xmlrpc-server.php:5456
+#: wp-includes/class-wp-xmlrpc-server.php:6003
 msgid "Sorry, no such post."
 msgstr "Sorry, no such post."
 
@@ -5166,50 +5166,50 @@ msgstr "Sorry, you do not have the right to publish this page."
 msgid "Sorry, your entry could not be edited. Something wrong happened."
 msgstr "Sorry, your entry could not be edited. Something wrong happened."
 
-#: wp-includes/class-wp-xmlrpc-server.php:5703
+#: wp-includes/class-wp-xmlrpc-server.php:5704
 msgid "Could not write file %1$s (%2$s)"
 msgstr "Could not write file %1$s (%2$s)"
 
-#: wp-includes/class-wp-xmlrpc-server.php:5884
+#: wp-includes/class-wp-xmlrpc-server.php:5885
 msgid "Sorry, you can not edit this post."
 msgstr "Sorry, you can not edit this post."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6117
+#: wp-includes/class-wp-xmlrpc-server.php:6118
 msgid "Is there no link to us?"
 msgstr "Is there no link to us?"
 
-#: wp-includes/class-wp-xmlrpc-server.php:6152
-#: wp-includes/class-wp-xmlrpc-server.php:6159
-#: wp-includes/class-wp-xmlrpc-server.php:6166
-#: wp-includes/class-wp-xmlrpc-server.php:6305
+#: wp-includes/class-wp-xmlrpc-server.php:6153
+#: wp-includes/class-wp-xmlrpc-server.php:6160
+#: wp-includes/class-wp-xmlrpc-server.php:6167
+#: wp-includes/class-wp-xmlrpc-server.php:6306
 msgid "The specified target URL cannot be used as a target. It either doesn&#8217;t exist, or it is not a pingback-enabled resource."
 msgstr "The specified target URL cannot be used as a target. It either doesn&#8217;t exist, or it is not a pingback-enabled resource."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6162
+#: wp-includes/class-wp-xmlrpc-server.php:6163
 msgid "The source URL and the target URL cannot both point to the same resource."
 msgstr "The source URL and the target URL cannot both point to the same resource."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6170
+#: wp-includes/class-wp-xmlrpc-server.php:6171
 msgid "The pingback has already been registered."
 msgstr "The pingback has already been registered."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6194
+#: wp-includes/class-wp-xmlrpc-server.php:6195
 msgid "The source URL does not exist."
 msgstr "The source URL does not exist."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6214
+#: wp-includes/class-wp-xmlrpc-server.php:6215
 msgid "We cannot find a title on that page."
 msgstr "We cannot find a title on that page."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6250
+#: wp-includes/class-wp-xmlrpc-server.php:6251
 msgid "The source URL does not contain a link to the target URL, and so cannot be used as a source."
 msgstr "The source URL does not contain a link to the target URL, and so cannot be used as a source."
 
-#: wp-includes/class-wp-xmlrpc-server.php:6279
+#: wp-includes/class-wp-xmlrpc-server.php:6280
 msgid "Pingback from %1$s to %2$s registered. Keep the web talking! :-)"
 msgstr "Pingback from %1$s to %2$s registered. Keep the web talking! :-)"
 
-#: wp-includes/class-wp-xmlrpc-server.php:6312
+#: wp-includes/class-wp-xmlrpc-server.php:6313
 msgid "The specified target URL does not exist."
 msgstr "The specified target URL does not exist."
 
@@ -5428,19 +5428,19 @@ msgid "Protected Comments: Please enter your password to view comments."
 msgstr "Protected Comments: Please enter your password to view comments."
 
 #. translators: min=minute
-#: wp-includes/formatting.php:2736
+#: wp-includes/formatting.php:2739
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] "%s min"
 msgstr[1] "%s mins"
 
-#: wp-includes/formatting.php:2741
+#: wp-includes/formatting.php:2744
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] "%s hour"
 msgstr[1] "%s hours"
 
-#: wp-includes/formatting.php:2746
+#: wp-includes/formatting.php:2749
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s day"
@@ -5542,71 +5542,71 @@ msgid "Site Admin"
 msgstr "Site Admin"
 
 #. translators: 1: separator, 2: search phrase
-#: wp-includes/general-template.php:896
+#: wp-includes/general-template.php:895
 msgid "Search Results %1$s %2$s"
 msgstr "Search Results %1$s %2$s"
 
-#: wp-includes/general-template.php:901
+#: wp-includes/general-template.php:900
 msgid "Page not found"
 msgstr "Page not found"
 
 #. translators: 1: month name, 2: 4-digit year
-#: wp-includes/general-template.php:1476 wp-includes/media.php:2968
+#: wp-includes/general-template.php:1475 wp-includes/media.php:2968
 msgid "%1$s %2$d"
 msgstr "%1$s %2$d"
 
 #. translators: Calendar caption: 1: month name, 2: 4-digit year
-#: wp-includes/general-template.php:1687
+#: wp-includes/general-template.php:1686
 msgctxt "calendar caption"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 #. translators: Separator between blog name and feed type in feed links
-#: wp-includes/general-template.php:2301 wp-includes/general-template.php:2324
+#: wp-includes/general-template.php:2300 wp-includes/general-template.php:2323
 msgctxt "feed link"
 msgid "&raquo;"
 msgstr "&raquo;"
 
 #. translators: 1: blog title, 2: separator (raquo)
-#: wp-includes/general-template.php:2303
+#: wp-includes/general-template.php:2302
 msgid "%1$s %2$s Feed"
 msgstr "%1$s %2$s Feed"
 
 #. translators: 1: blog title, 2: separator (raquo)
-#: wp-includes/general-template.php:2305
+#: wp-includes/general-template.php:2304
 msgid "%1$s %2$s Comments Feed"
 msgstr "%1$s %2$s Comments Feed"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: post title
-#: wp-includes/general-template.php:2326
+#: wp-includes/general-template.php:2325
 msgid "%1$s %2$s %3$s Comments Feed"
 msgstr "%1$s %2$s %3$s Comments Feed"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: category name
-#: wp-includes/general-template.php:2328
+#: wp-includes/general-template.php:2327
 msgid "%1$s %2$s %3$s Category Feed"
 msgstr "%1$s %2$s %3$s Category Feed"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: tag name
-#: wp-includes/general-template.php:2330
+#: wp-includes/general-template.php:2329
 msgid "%1$s %2$s %3$s Tag Feed"
 msgstr "%1$s %2$s %3$s Tag Feed"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: author name
-#: wp-includes/general-template.php:2332
+#: wp-includes/general-template.php:2331
 msgid "%1$s %2$s Posts by %3$s Feed"
 msgstr "%1$s %2$s Posts by %3$s Feed"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: search phrase
-#: wp-includes/general-template.php:2334
+#: wp-includes/general-template.php:2333
 msgid "%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed"
 msgstr "%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed"
 
-#: wp-includes/general-template.php:2768
+#: wp-includes/general-template.php:2767
 msgid "&laquo; Previous"
 msgstr "&laquo; Previous"
 
-#: wp-includes/general-template.php:2769
+#: wp-includes/general-template.php:2768
 msgid "Next &raquo;"
 msgstr "Next &raquo;"
 
@@ -6287,16 +6287,16 @@ msgstr "Password Lost and Changed for user: %s"
 msgid "[%s] Password Lost/Changed"
 msgstr "[%s] Password Lost/Changed"
 
-#: wp-includes/pluggable.php:1703 wp-includes/pluggable.php:1721
+#: wp-includes/pluggable.php:1706 wp-includes/pluggable.php:1729
 #: wp-login.php:371
 msgid "Username: %s"
 msgstr "Username: %s"
 
-#: wp-includes/pluggable.php:1706
+#: wp-includes/pluggable.php:1709
 msgid "[%s] New User Registration"
 msgstr "[%s] New User Registration"
 
-#: wp-includes/pluggable.php:1727
+#: wp-includes/pluggable.php:1735
 msgid "[%s] Your username and password info"
 msgstr "[%s] Your username and password info"
 
@@ -6414,7 +6414,7 @@ msgstr "Could not update post in the database"
 msgid "Could not insert post into the database"
 msgstr "Could not insert post into the database"
 
-#: wp-includes/post.php:3508
+#: wp-includes/post.php:3509
 msgid "The page template is invalid."
 msgstr "The page template is invalid."
 
@@ -6616,7 +6616,7 @@ msgid "Invalid Taxonomy"
 msgstr "Invalid Taxonomy"
 
 #: wp-includes/taxonomy.php:1353 wp-includes/taxonomy.php:3457
-#: wp-includes/taxonomy.php:4462
+#: wp-includes/taxonomy.php:4601
 msgid "Empty Term"
 msgstr "Empty Term"
 
@@ -6639,7 +6639,7 @@ msgstr "Could not insert term into the database"
 msgid "The slug &#8220;%s&#8221; is already in use by another term"
 msgstr "The slug &#8220;%s&#8221; is already in use by another term"
 
-#: wp-includes/taxonomy.php:4665
+#: wp-includes/taxonomy.php:4804
 msgid "Invalid object ID"
 msgstr "Invalid object ID"
 
@@ -7471,7 +7471,7 @@ msgid "Sidebar"
 msgstr "Sidebar"
 
 #: wp-includes/default-widgets.php:306 wp-includes/default-widgets.php:318
-#: wp-includes/general-template.php:1247
+#: wp-includes/general-template.php:1246
 #: wp-includes/theme-compat/sidebar.php:57
 msgid "Archives"
 msgstr "Archives"
@@ -7637,7 +7637,7 @@ msgid "Uncategorized"
 msgstr "Uncategorised"
 
 #: wp-includes/pluggable.php:1465 wp-includes/pluggable.php:1595
-#: wp-includes/pluggable.php:1704
+#: wp-includes/pluggable.php:1707
 msgid "E-mail: %s"
 msgstr "E-mail: %s"
 
@@ -7744,6 +7744,6 @@ msgstr "Log Out"
 
 #: wp-includes/class-wp-xmlrpc-server.php:3822
 #: wp-includes/class-wp-xmlrpc-server.php:3870
-#: wp-includes/class-wp-xmlrpc-server.php:5665
+#: wp-includes/class-wp-xmlrpc-server.php:5666
 msgid "You do not have permission to upload files."
 msgstr "You do not have permission to upload files."
