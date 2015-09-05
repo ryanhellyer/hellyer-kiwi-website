@@ -4,7 +4,7 @@ Theme URI: https://wordpress.org/themes/twentysixteen/
 Author: the WordPress team
 Author URI: https://wordpress.org/
 Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 0.1.20150904
+Version: 0.1.20150905
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, sticky-post, threaded-comments, translation-ready
@@ -375,10 +375,6 @@ blockquote p {
 	margin-bottom: 1.4736842105em;
 }
 
-blockquote > p:last-child {
-	margin-bottom: 0;
-}
-
 blockquote cite,
 blockquote small {
 	color: #1a1a1a;
@@ -402,6 +398,10 @@ blockquote cite {
 blockquote strong,
 blockquote b {
 	font-weight: 400;
+}
+
+blockquote > :last-child {
+	margin-bottom: 0;
 }
 
 address {
@@ -430,6 +430,11 @@ pre {
 	white-space: pre;
 	white-space: pre-wrap;
 	word-wrap: break-word;
+}
+
+code {
+	background-color: #e8e8e8;
+	padding: 0.125em 0.25em;
 }
 
 abbr,
@@ -603,6 +608,7 @@ input[type="submit"][disabled]:focus {
 	color: #fff;
 	font-family: Montserrat, sans-serif;
 	font-weight: 700;
+	letter-spacing: 0.046875em;
 	line-height: 1;
 	padding: 0.75em 0.875em 0.625em;
 	text-transform: uppercase;
@@ -657,6 +663,7 @@ textarea:focus {
 	font-family: Montserrat, sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
+	letter-spacing: 0.076923077em;
 	line-height: 1.6153846154;
 	display: block;
 	margin-bottom: 1.75em;
@@ -705,7 +712,6 @@ a:active {
 	outline: 0;
 }
 
-.entry-intro a,
 .entry-content a,
 .entry-summary a,
 .page-content a,
@@ -719,8 +725,6 @@ a:active {
 	box-shadow: 0 1px 0 0 currentColor;
 }
 
-.entry-intro a:hover,
-.entry-intro a:focus,
 .entry-content a:hover,
 .entry-content a:focus,
 .entry-summary a:hover,
@@ -1032,6 +1036,7 @@ a:active {
 	color: #757575;
 	font-size: 13px;
 	font-size: 0.8125rem;
+	letter-spacing: 0.076923077em;
 	line-height: 1.6153846154;
 	margin-bottom: 0.5384615385em;
 	text-transform: uppercase;
@@ -1085,6 +1090,7 @@ a:active {
 .pagination .page-numbers {
 	display: none;
 	font-weight: 700;
+	letter-spacing: 0.013157895em;
 	line-height: 1;
 	margin: 0 0.7368421053em 0 -0.7368421053em;
 	padding: 0.8157894737em 0.7368421053em 0.3947368421em;
@@ -1283,8 +1289,6 @@ blockquote.aligncenter {
 .entry-content:after,
 .entry-summary:before,
 .entry-summary:after,
-.entry-intro:before,
-.entry-intro:after,
 .comment-content:before,
 .comment-content:after,
 .site-content:before,
@@ -1308,7 +1312,6 @@ article[class^="post-"]:after,
 .clear:after,
 .entry-content:after,
 .entry-summary:after,
-.entry-intro:after,
 .comment-content:after,
 .site-content:after,
 .site-footer:after,
@@ -1339,6 +1342,7 @@ article[class^="post-"]:after,
 	font-family: Montserrat, sans-serif;
 	font-size: 16px;
 	font-size: 1rem;
+	letter-spacing: 0.046875em;
 	line-height: 1.3125;
 	margin: 0 0 1.75em;
 	text-transform: uppercase;
@@ -1605,64 +1609,8 @@ a.post-thumbnail:focus {
 	opacity: 0.85;
 }
 
-.entry-intro {
-	color: #757575;
-	font-size: 19px;
-	font-size: 1.1875rem;
-	line-height: 1.4736842105;
-	margin: 0 7.6923% 1.4736842105em;
-	word-wrap: break-word;
-}
-
-.entry-header + .entry-intro {
-	margin-top: -0.368421053em
-}
-
-.entry-intro > :last-child {
-	margin-bottom: 0;
-}
-
-.entry-intro p,
-.entry-intro address,
-.entry-intro hr,
-.entry-intro ul,
-.entry-intro ol,
-.entry-intro dl,
-.entry-intro dd,
-.entry-intro table {
-	margin-bottom: 1.4736842105em;
-}
-
-.entry-intro li > ul,
-.entry-intro li > ol {
-	margin-bottom: 0;
-}
-
-.entry-intro th,
-.entry-intro td {
-	padding: 0.3684210526em;
-}
-
-.entry-intro fieldset {
-	margin-bottom: 1.4736842105em;
-	padding: 0.3684210526em;
-}
-
-.entry-intro .alignleft {
-	margin: 0.2631578947em 1.4736842105em 1.2105263158em 0;
-}
-
-.entry-intro .alignright {
-	margin: 0.2631578947em 0 1.4736842105em 1.2105263158em;
-}
-
-.entry-intro .aligncenter {
-	margin-bottom: 1.4736842105em;
-}
-
 .entry-content,
 .entry-summary,
-.entry-intro,
 .page-content,
 .comment-content,
 .textwidget {
@@ -1671,7 +1619,6 @@ a.post-thumbnail:focus {
 
 .entry-content h1,
 .entry-summary h1,
-.entry-intro h1,
 .page-content h1,
 .comment-content h1,
 .textwidget h1 {
@@ -1684,7 +1631,6 @@ a.post-thumbnail:focus {
 
 .entry-content h2,
 .entry-summary h2,
-.entry-intro h2,
 .page-content h2,
 .comment-content h2,
 .textwidget h2 {
@@ -1697,7 +1643,6 @@ a.post-thumbnail:focus {
 
 .entry-content h3,
 .entry-summary h3,
-.entry-intro h3,
 .page-content h3,
 .comment-content h3,
 .textwidget h3 {
@@ -1714,9 +1659,6 @@ a.post-thumbnail:focus {
 .entry-summary h4,
 .entry-summary h5,
 .entry-summary h6,
-.entry-intro h4,
-.entry-intro h5,
-.entry-intro h6,
 .page-content h4,
 .page-content h5,
 .page-content h6,
@@ -1735,17 +1677,15 @@ a.post-thumbnail:focus {
 
 .entry-content h4,
 .entry-summary h4,
-.entry-intro h4,
 .page-content h4,
 .comment-content h4,
 .textwidget h4 {
-	letter-spacing: 0.13333em;
+	letter-spacing: 0.140625em;
 	text-transform: uppercase;
 }
 
 .entry-content h6,
 .entry-summary h6,
-.entry-intro h6,
 .page-content h6,
 .comment-content h6,
 .textwidget h6 {
@@ -1764,12 +1704,6 @@ a.post-thumbnail:focus {
 .entry-summary h4,
 .entry-summary h5,
 .entry-summary h6,
-.entry-intro h1,
-.entry-intro h2,
-.entry-intro h3,
-.entry-intro h4,
-.entry-intro h5,
-.entry-intro h6,
 .page-content h1,
 .page-content h2,
 .page-content h3,
@@ -1803,12 +1737,6 @@ a.post-thumbnail:focus {
 .entry-summary h4:first-child,
 .entry-summary h5:first-child,
 .entry-summary h6:first-child,
-.entry-intro h1:first-child,
-.entry-intro h2:first-child,
-.entry-intro h3:first-child,
-.entry-intro h4:first-child,
-.entry-intro h5:first-child,
-.entry-intro h6:first-child,
 .page-content h1:first-child,
 .page-content h2:first-child,
 .page-content h3:first-child,
@@ -1830,9 +1758,59 @@ a.post-thumbnail:focus {
 	margin-top: 0;
 }
 
+body:not(.search-results) .entry-summary {
+	color: #757575;
+	font-size: 19px;
+	font-size: 1.1875rem;
+	line-height: 1.4736842105;
+	margin-bottom: 1.4736842105em;
+}
+
+body:not(.search-results) .entry-header + .entry-summary {
+	margin-top: -0.736842105em;
+}
+
+body:not(.search-results) .entry-summary p,
+body:not(.search-results) .entry-summary address,
+body:not(.search-results) .entry-summary hr,
+body:not(.search-results) .entry-summary ul,
+body:not(.search-results) .entry-summary ol,
+body:not(.search-results) .entry-summary dl,
+body:not(.search-results) .entry-summary dd,
+body:not(.search-results) .entry-summary table {
+	margin-bottom: 1.4736842105em;
+}
+
+body:not(.search-results) .entry-summary li > ul,
+body:not(.search-results) .entry-summary li > ol {
+	margin-bottom: 0;
+}
+
+body:not(.search-results) .entry-summary th,
+body:not(.search-results) .entry-summary td {
+	padding: 0.3684210526em;
+}
+
+body:not(.search-results) .entry-summary fieldset {
+	margin-bottom: 1.4736842105em;
+	padding: 0.3684210526em;
+}
+
+body:not(.search-results) .entry-summary .alignleft {
+	margin: 0.2631578947em 1.4736842105em 1.4736842105em 0;
+}
+
+body:not(.search-results) .entry-summary .alignright {
+	margin: 0.2631578947em 0 1.4736842105em 1.4736842105em;
+}
+
+body:not(.search-results) .entry-summary .aligncenter {
+	margin-bottom: 1.4736842105em;
+}
+
 .entry-content > :last-child,
 .entry-summary > :last-child,
-.entry-intro > :last-child,
+body:not(.search-results) .entry-summary > :last-child,
 .page-content > :last-child,
 .comment-content > :last-child,
 .textwidget > :last-child {
@@ -1931,6 +1909,7 @@ a.post-thumbnail:focus {
 	font-family: Montserrat, sans-serif;
 	font-size: 13px;
 	font-size: 0.8125rem;
+	letter-spacing: 0.076923077em;
 	line-height: 1.6153846154;
 	margin-bottom: 0.5384615385em;
 	text-transform: uppercase;
@@ -2223,6 +2202,7 @@ body:not(.error404):not(.search-no-results) .page-header {
 	font-size: 13px;
 	font-size: 0.8125rem;
 	display: block;
+	letter-spacing: 0.076923077em;
 	line-height: 1.6153846154;
 	margin-bottom: 0.5384615385em;
 	text-transform: uppercase;
@@ -2347,7 +2327,6 @@ body:not(.error404):not(.search-no-results) .page-header {
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
 .entry-summary .wp-smiley,
-.entry-intro .wp-smiley,
 .comment-content .wp-smiley {
 	border: none;
 	margin-bottom: 0;
@@ -2357,7 +2336,6 @@ body:not(.error404):not(.search-no-results) .page-header {
 
 .entry-content a img,
 .entry-summary a img,
-.entry-intro a img,
 .page-content a img,
 .comment-content a img,
 .textwidget a img {
@@ -2713,7 +2691,6 @@ p > video {
 	}
 
 	.entry-header,
-	.entry-intro,
 	.post-thumbnail,
 	.entry-content,
 	.entry-summary,
@@ -2736,7 +2713,6 @@ p > video {
 
 	.entry-content blockquote:not(.alignleft):not(.alignright),
 	.entry-summary blockquote,
-	.entry-intro blockquote,
 	.page-content blockquote,
 	.comment-content blockquote {
 		margin-left: -1.473684211em;
@@ -2744,7 +2720,6 @@ p > video {
 
 	.entry-content blockquote blockquote,
 	.entry-summary blockquote blockquote,
-	.entry-intro blockquote blockquote,
 	.page-content blockquote blockquote,
 	.comment-content blockquote blockquote {
 		margin-left: 0;
@@ -2752,12 +2727,10 @@ p > video {
 
 	.entry-content ul,
 	.entry-summary ul,
-	.entry-intro ul,
 	.page-content ul,
 	.comment-content ul,
 	.entry-content ol,
 	.entry-summary ol,
-	.entry-intro ol,
 	.page-content ol,
 	.comment-content ol {
 		margin-left: 0;
@@ -2774,8 +2747,8 @@ p > video {
 		margin-left: 1.25em;
 	}
 
-	.entry-intro li > ul,
-	.entry-intro blockquote > ul {
+	body:not(.search-results) .entry-summary li > ul,
+	body:not(.search-results) .entry-summary blockquote > ul {
 		margin-left: 1.157894737em;
 	}
 
@@ -2790,8 +2763,8 @@ p > video {
 		margin-left: 1.5em;
 	}
 
-	.entry-intro li > ol,
-	.entry-intro blockquote > ol {
+	body:not(.search-results) .entry-summary li > ol,
+	body:not(.search-results) .entry-summary blockquote > ol {
 		margin-left: 1.473684211em;
 	}
 
@@ -2993,7 +2966,6 @@ p > video {
 	}
 
 	.entry-header,
-	.entry-intro,
 	.post-thumbnail,
 	.entry-content,
 	.entry-summary,
@@ -3133,11 +3105,11 @@ p > video {
 	}
 
 	.widget .alignleft {
-		margin: 0.2307692308em 1.6153846154em 1.3846153846em 0;
+		margin: 0.2307692308em 1.6153846154em 1.6153846154em 0;
 	}
 
 	.widget .alignright {
-		margin: 0.2307692308em 0 1.6153846154em 1.3846153846em;
+		margin: 0.2307692308em 0 1.6153846154em 1.6153846154em;
 	}
 
 	.widget .aligncenter {
@@ -3169,6 +3141,10 @@ p > video {
 
 	.textwidget h3 {
 		margin-top: 2.625em;
+	}
+
+	.textwidget h4 {
+		letter-spacing: 0.153846154em;
 	}
 
 	.textwidget h4,
@@ -3221,7 +3197,6 @@ p > video {
 	}
 
 	.no-sidebar .entry-header,
-	.no-sidebar .entry-intro,
 	.no-sidebar .entry-content,
 	.no-sidebar .entry-summary,
 	.no-sidebar .entry-footer,
@@ -3294,17 +3269,8 @@ p > video {
 		margin-bottom: 2.625em;
 	}
 
-	.entry-intro {
-		margin-bottom: 2.210526316em;
-	}
-
-	.entry-header + .entry-intro {
-		margin-top: -1.105263158em;
-	}
-
 	.entry-content h1,
 	.entry-summary h1,
-	.entry-intro h1,
 	.page-content h1,
 	.comment-content h1 {
 		font-size: 33px;
@@ -3316,7 +3282,6 @@ p > video {
 
 	.entry-content h2,
 	.entry-summary h2,
-	.entry-intro h2,
 	.page-content h2,
 	.comment-content h2 {
 		font-size: 28px;
@@ -3328,7 +3293,6 @@ p > video {
 
 	.entry-content h3,
 	.entry-summary h3,
-	.entry-intro h3,
 	.page-content h3,
 	.comment-content h3 {
 		font-size: 23px;
@@ -3339,14 +3303,19 @@ p > video {
 	}
 
 	.entry-content h4,
+	.entry-summary h4,
+	.entry-intro h4,
+	.page-content h4,
+	.comment-content h4 {
+		letter-spacing: 0.131578947em;
+	}
+
+	.entry-content h4,
 	.entry-content h5,
 	.entry-content h6,
 	.entry-summary h4,
 	.entry-summary h5,
 	.entry-summary h6,
-	.entry-intro h4,
-	.entry-intro h5,
-	.entry-intro h6,
 	.page-content h4,
 	.page-content h5,
 	.page-content h6,
@@ -3358,6 +3327,14 @@ p > video {
 		line-height: 1.1052631579;
 		margin-top: 2.9473684211em;
 		margin-bottom: 1.473684211em;
+	}
+
+	body:not(.search-results) .entry-summary {
+		margin-bottom: 2.210526316em;
+	}
+
+	body:not(.search-results) .entry-header + .entry-summary {
+		margin-top: -1.105263158em;
 	}
 
 	.author-info {
@@ -3451,39 +3428,39 @@ p > video {
  */
 
 @media screen and (min-width: 75em) {
-	.entry-intro {
+	body:not(.search-results) .entry-summary {
 		font-size: 23px;
 		font-size: 1.4375rem;
 		line-height: 1.5217391304;
 		margin-bottom: 1.826086957em;
 	}
 
-	.entry-header + .entry-intro {
+	body:not(.search-results) .entry-header + .entry-summary {
 		margin-top: -0.913043478em;
 	}
 
-	.entry-intro p,
-	.entry-intro address,
-	.entry-intro hr,
-	.entry-intro ul,
-	.entry-intro ol,
-	.entry-intro dl,
-	.entry-intro dd,
-	.entry-intro table {
+	body:not(.search-results) .entry-summary p,
+	body:not(.search-results) .entry-summary address,
+	body:not(.search-results) .entry-summary hr,
+	body:not(.search-results) .entry-summary ul,
+	body:not(.search-results) .entry-summary ol,
+	body:not(.search-results) .entry-summary dl,
+	body:not(.search-results) .entry-summary dd,
+	body:not(.search-results) .entry-summary table {
 		margin-bottom: 1.5217391304em;
 	}
 
-	.entry-intro li > ul,
-	.entry-intro blockquote > ul {
+	body:not(.search-results) .entry-summary li > ul,
+	body:not(.search-results) .entry-summary blockquote > ul {
 		margin-left: 0.956521739em;
 	}
 
-	.entry-intro li > ol,
-	.entry-intro blockquote > ol {
+	body:not(.search-results) .entry-summary li > ol,
+	body:not(.search-results) .entry-summary blockquote > ol {
 		margin-left: 1.52173913em;
 	}
 
-	.entry-intro blockquote {
+	body:not(.search-results) .entry-summary blockquote {
 		font-size: 23px;
 		font-size: 1.4375rem;
 		line-height: 1.5217391304;
@@ -3491,19 +3468,19 @@ p > video {
 		padding-left: 1.347826087em;
 	}
 
-	.entry-intro blockquote cite,
-	.entry-intro blockquote small {
+	body:not(.search-results) .entry-summary blockquote cite,
+	body:not(.search-results) .entry-summary blockquote small {
 		font-size: 19px;
 		font-size: 1.1875rem;
 		line-height: 1.8421052632;
 	}
 
-	.entry-intro th,
-	.entry-intro td {
+	body:not(.search-results) .entry-summary th,
+	body:not(.search-results) .entry-summary td {
 		padding: 0.3043478261em;
 	}
 
-	.entry-intro pre {
+	body:not(.search-results) .entry-summary pre {
 		font-size: 16px;
 		font-size: 1rem;
 		line-height: 1.75;
@@ -3511,42 +3488,42 @@ p > video {
 		padding: 1.75em;
 	}
 
-	.entry-intro fieldset {
+	body:not(.search-results) .entry-summary fieldset {
 		margin-bottom: 1.5217391304em;
 		padding: 0.3043478261em;
 	}
 
-	.entry-intro h1 {
+	body:not(.search-results) .entry-summary h1 {
 		margin-top: 2.121212121em;
 		margin-bottom: 1.060606061em;
 	}
 
-	.entry-intro h2 {
+	body:not(.search-results) .entry-summary h2 {
 		margin-top: 2.5em;
 		margin-bottom: 1.25em;
 	}
 
-	.entry-intro h3 {
+	body:not(.search-results) .entry-summary h3 {
 		margin-top: 3.043478261em;
 		margin-bottom: 1.52173913em;
 	}
 
-	.entry-intro h4,
-	.entry-intro h5,
-	.entry-intro h6 {
+	body:not(.search-results) .entry-summary h4,
+	body:not(.search-results) .entry-summary h5,
+	body:not(.search-results) .entry-summary h6 {
 		margin-top: 3.684210526em;
 		margin-bottom: 1.842105263em;
 	}
 
-	.entry-intro .alignleft {
-		margin: 0.2608695652em 1.5217391304em 1.2608695652em 0;
+	body:not(.search-results) .entry-summary .alignleft {
+		margin: 0.2608695652em 1.5217391304em 1.5217391304em 0;
 	}
 
-	.entry-intro .alignright {
-		margin: 0.2608695652em 0 1.5217391304em 1.2608695652em;
+	body:not(.search-results) .entry-summary .alignright {
+		margin: 0.2608695652em 0 1.5217391304em 1.5217391304em;
 	}
 
-	.entry-intro .aligncenter {
+	body:not(.search-results) .entry-summary .aligncenter {
 		margin-bottom: 1.5217391304em;
 	}
 }
