@@ -194,14 +194,13 @@ endif;
  *
  * @since Twenty Sixteen 1.0
  *
- * @return bool True of there is more than one category, false otherwise.
+ * @return bool True if there is more than one category, false otherwise.
  */
 function twentysixteen_categorized_blog() {
 	if ( false === ( $all_the_cool_cats = get_transient( 'twentysixteen_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
-			'hide_empty' => 1,
 
 			// We only need to know if there is more than one category.
 			'number'     => 2,

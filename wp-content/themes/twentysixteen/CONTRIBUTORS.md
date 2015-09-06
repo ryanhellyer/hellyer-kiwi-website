@@ -3,3 +3,5 @@
 @grapplerulrich
 @davidakennedy
 @frank-klein
+@tywayne
+@wenthemes
