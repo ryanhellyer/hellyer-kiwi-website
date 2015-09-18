@@ -4,7 +4,7 @@ Theme URI: https://wordpress.org/themes/twentysixteen/
 Author: the WordPress team
 Author URI: https://wordpress.org/
 Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 0.1.20150917
+Version: 0.1.20150918
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, sticky-post, threaded-comments, translation-ready
@@ -1324,8 +1324,8 @@ blockquote.aligncenter {
 .site-content:after,
 .site-footer:before,
 .site-footer:after,
-article[class^="post-"]:before,
-article[class^="post-"]:after,
+.site-main > article:before,
+.site-main > article:after,
 .primary-menu:before,
 .primary-menu:after,
 .social-links-menu:before,
@@ -1344,7 +1344,7 @@ article[class^="post-"]:after,
 .comment-content:after,
 .site-content:after,
 .site-footer:after,
-article[class^="post-"]:after,
+.site-main > article:after,
 .primary-menu:after,
 .social-links-menu:after,
 .textwidget:after,
@@ -1364,6 +1364,7 @@ article[class^="post-"]:after,
 	word-wrap: break-word;
 }
 
+.widget-area > :last-child,
 .widget > :last-child {
 	margin-bottom: 0;
 }
@@ -1596,7 +1597,7 @@ article[class^="post-"]:after,
  * 11.2 - Posts and pages
  */
 
-article[class^="post-"] {
+.site-main > article {
 	margin-bottom: 3.5em;
 	position: relative;
 }
@@ -2069,6 +2070,10 @@ body:not(.error404):not(.search-no-results) .page-header {
 	margin: 0 7.6923%;
 }
 
+.content-bottom-widgets .widget-area {
+	margin-bottom: 3.5em;
+}
+
 
 /**
  * 11.3 - Post Formats
@@ -2322,10 +2327,6 @@ body:not(.error404):not(.search-no-results) .page-header {
 	padding: 0 7.6923%;
 }
 
-.sidebar > :last-child {
-	margin-bottom: 0;
-}
-
 
 /**
  * 11.6 - Footer
@@ -2547,7 +2548,11 @@ p > video {
 }
 
 .widecolumn .mu_alert {
-	margin-bottom: 1.6em;
+	margin-bottom: 1.75em;
+}
+
+.widecolumn  .mu_register .mu_alert {
+	padding: 0.875em;
 }
 
 .widecolumn form,
@@ -2558,6 +2563,7 @@ p > video {
 .widecolumn h2 {
 	font-size: 23px;
 	font-size: 1.4375rem;
+	font-weight: 900;
 	line-height: 1.2173913043;
 	margin-bottom: 1.2173913043em;
 }
@@ -2577,7 +2583,9 @@ p > video {
 	font-size: 13px;
 	font-size: 0.8125rem;
 	font-weight: 400;
+	letter-spacing: 0.076923077em;
 	line-height: 1.6153846154;
+	text-transform: uppercase;
 }
 
 .widecolumn .mu_register label {
@@ -2745,7 +2753,7 @@ p > video {
 		font-weight: 400;
 	}
 
-	article[class^="post-"] {
+	.site-main > article {
 		margin-bottom: 5.25em;
 	}
 
@@ -2834,11 +2842,6 @@ p > video {
 		width: -webkit-calc(50% - 0.736842105em);
 		width: calc(50% - 0.736842105em);
 	}
-
-	.comments-area {
-		margin-bottom: 5.25em;
-	}
-
 	.comment-author {
 		margin-bottom: 0;
 	}
@@ -2859,15 +2862,13 @@ p > video {
 		padding-top: 3.5em;
 	}
 
-	.sidebar {
-		margin-bottom: 5.25em;
-		padding-right: 23.0769%;
-	}
-
-	.widget {
+	.comments-area,
+	.widget,
+	.content-bottom-widgets .widget-area {
 		margin-bottom: 5.25em;
 	}
 
+	.sidebar,
 	.widecolumn {
 		margin-bottom: 5.25em;
 		padding-right: 23.0769%;
@@ -3330,7 +3331,11 @@ p > video {
 		margin-bottom: 5.894736842em;
 	}
 
-	article[class^="post-"] {
+	.widget {
+		margin-bottom: 4.307692308em;
+	}
+
+	.site-main > article {
 		margin-bottom: 7.0em;
 	}
 
@@ -3512,23 +3517,14 @@ p > video {
 		width: 15%;
 	}
 
-	.comments-area {
-		margin-bottom: 7.0em;
-	}
-
 	.comment-list + .comment-respond,
 	.comment-navigation + .comment-respond {
 		padding-top: 5.25em;
 	}
 
-	.sidebar {
-		margin-bottom: 7.0em;
-	}
-
-	.widget {
-		margin-bottom: 4.307692308em;
-	}
-
+	.comments-area,
+	.sidebar,
+	.content-bottom-widgets .widget-area,
 	.widecolumn {
 		margin-bottom: 7.0em;
 	}

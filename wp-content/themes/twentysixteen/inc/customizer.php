@@ -46,7 +46,7 @@ function twentysixteen_custom_header_and_background() {
 	 *     @type int    $width                  Width in pixels of the custom header image. Default 1200.
 	 *     @type int    $height                 Height in pixels of the custom header image. Default 280.
 	 *     @type bool   $flex-height            Whether to allow flexible-height header images. Default true.
-	 *     @type string $wp-head-callback       Callback function used to styles the header image and text
+	 *     @type string $wp-head-callback       Callback function used to style the header image and text
 	 *                                          displayed on the blog.
 	 * }
 	 */
@@ -355,7 +355,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_color_scheme_css' );
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_control_js() {
-	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150917', true );
+	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150918', true );
 	wp_localize_script( 'color-scheme-control', 'colorScheme', twentysixteen_get_color_schemes() );
 }
 add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_control_js' );
@@ -366,7 +366,7 @@ add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_contr
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_preview_js() {
-	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150917', true );
+	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150918', true );
 }
 add_action( 'customize_preview_init', 'twentysixteen_customize_preview_js' );
 
