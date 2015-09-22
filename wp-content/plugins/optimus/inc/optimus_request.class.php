@@ -9,7 +9,7 @@ defined('ABSPATH') OR exit;
 * Optimus_Request
 *
 * @since 1.1.7
-* @change  1.3.8
+* @change  1.4.0
 */
 
 class Optimus_Request
@@ -295,7 +295,6 @@ class Optimus_Request
 	private static function _do_image_action($file, $args)
 	{
 		/* Start request */
-
 		$response = self::_do_api_request($file, $args);
 
 		/* Response status code */
@@ -303,11 +302,6 @@ class Optimus_Request
 
 		/* Not success status code? */
 		if ( $response_code !== 200 ) {
-//$response_code = '<textarea>'.$response_code;
-//$response_code .= "\n\n".print_r( $file, true );
-//$response_code .= "\n\n".print_r( $args, true );
-//$response_code .= '</textarea>';
-
 			return 'code '.$response_code;
 		}
 
@@ -508,7 +502,7 @@ class Optimus_Request
 	* Return Optimus quota for a plugin type
 	*
 	* @since   1.1.0
-	* @change  1.3.5
+	* @change  1.4.0
 	*
 	* @return  array  Optimus quota
 	*/
@@ -519,7 +513,8 @@ class Optimus_Request
 		$quota = array(
 			/* Optimus */
 			false => array(
-				'image/jpeg' => 100 * 1024
+				'image/jpeg' => 100 * 1024,
+				'image/png'  => 100 * 1024
 			),
 
 			/* Optimus HQ */
@@ -603,4 +598,3 @@ class Optimus_Request
 		);
 	}
 }
-

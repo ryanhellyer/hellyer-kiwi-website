@@ -2,7 +2,7 @@
 Contributors: keycdn
 Tags: images, optimize, compress, progressive, performance, png, jpeg, webp
 Requires at least: 3.8
-Tested up to: 4.2.2
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +24,7 @@ Optimus reduces the file size of uploaded media files. Depending on the image an
 
 
 > #### There are three different versions of Optimus:
-> 1. **Optimus** *(Free)* as base version with limitations (e.g. max of 100kb for JPEGs)
+> 1. **Optimus** *(Free)* as base version with limitations (e.g. max of 100kb)
 > 2. **Optimus HQ** *(Premium)* with expanded functionality for personal projects
 > 3. **Optimus HQ PRO** *(Premium)* as professional solution for customer websites
 >
@@ -54,7 +54,7 @@ Optimus optional support the conversion of images to the thrifty [*WebP* image f
 * Faster load times for blog pages
 * Support for WooCommerce
 * WordPress multisite-support
-* Bulk optimization
+* [Bulk optimization](https://optimus.io/support/image-bulk-optimization/) (optimize existing images)
 
 
 = Privacy =
@@ -97,6 +97,9 @@ Optimus optional support the conversion of images to the thrifty [*WebP* image f
 
 
 == Changelog ==
+
+= 1.4.0 =
+* Added PNG in the free version and the manual optimization setting
 
 = 1.3.9 =
 * Bug fixing and activation update
