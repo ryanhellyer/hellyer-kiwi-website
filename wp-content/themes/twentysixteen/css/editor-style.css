@@ -419,14 +419,15 @@ a {
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	max-width: 33.33%;
+}
+
+.gallery-columns-1 .gallery-item {
+	max-width: 100%;
 }
 
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;
-}
-
-.gallery-columns-3 .gallery-item {
-	max-width: 33.33%;
 }
 
 .gallery-columns-4 .gallery-item {
@@ -497,16 +498,16 @@ body.rtl {
 }
 
 .rtl blockquote {
-	border-left: none;
 	border-right: 4px solid currentColor;
+	border-left: none;
 	margin: 0 0 28px 0;
-	padding-left: 0;
 	padding-right: 21px;
+	padding-left: 0;
 }
 
 .rtl blockquote > blockquote {
-	margin-left: auto;
 	margin-right: 0;
+	margin-left: auto;
 }
 
 .rtl ul,
