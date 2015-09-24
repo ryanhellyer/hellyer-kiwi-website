@@ -4,7 +4,7 @@ Theme URI: https://wordpress.org/themes/twentysixteen/
 Author: the WordPress team
 Author URI: https://wordpress.org/
 Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 0.1.20150923
+Version: 0.1.20150924
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, sticky-post, threaded-comments, translation-ready
@@ -872,6 +872,7 @@ a:active {
 .social-navigation a {
 	border: 1px solid #e8e8e8;
 	border-radius: 50%;
+	color: #1a1a1a;
 	display: block;
 	height: 35px;
 	position: relative;
@@ -879,7 +880,6 @@ a:active {
 }
 
 .social-navigation a:before {
-	color: #1a1a1a;
 	content: "\f415";
 	height: 33px;
 	line-height: 33px;
@@ -1359,7 +1359,6 @@ blockquote:after,
 	border-top: 4px solid #1a1a1a;
 	margin-bottom: 3.5em;
 	padding-top: 1.75em;
-	word-wrap: break-word;
 }
 
 .widget-area > :last-child,
@@ -1488,6 +1487,10 @@ blockquote:after,
 	position: relative;
 }
 
+.site-content {
+	word-wrap: break-word;
+}
+
 .site-main {
 	margin-bottom: 3.5em;
 }
@@ -1530,12 +1533,12 @@ blockquote:after,
 	margin: 0;
 }
 
-.site-title a {
+.site-branding .site-title a {
 	color: #1a1a1a;
 }
 
-.site-title a:hover,
-.site-title a:focus {
+.site-branding .site-title a:hover,
+.site-branding .site-title a:focus {
 	color: #007acc;
 }
 
@@ -1601,10 +1604,10 @@ blockquote:after,
 }
 
 .entry-header,
-.entry-footer,
-.page-content,
+.entry-summary,
 .entry-content,
-.entry-summary {
+.entry-footer,
+.page-content {
 	margin-right: 7.6923%;
 	margin-left: 7.6923%;
 }
@@ -1640,14 +1643,6 @@ blockquote:after,
 a.post-thumbnail:hover,
 a.post-thumbnail:focus {
 	opacity: 0.85;
-}
-
-.entry-content,
-.entry-summary,
-.page-content,
-.comment-content,
-.textwidget {
-	word-wrap: break-word;
 }
 
 .entry-content h1,
@@ -1778,7 +1773,6 @@ a.post-thumbnail:focus {
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
-	word-wrap: break-word;
 }
 
 body:not(.search-results) .entry-summary {
@@ -1868,10 +1862,6 @@ body:not(.search-results) .entry-summary > :last-child,
 	width: 42px;
 }
 
-.author-description {
-	word-wrap: break-word;
-}
-
 .author-description > :last-child {
 	margin-bottom: 0;
 }
@@ -1945,8 +1935,15 @@ body:not(.search-results) .entry-summary > :last-child,
 	text-transform: uppercase;
 }
 
+/*
+IE8 and earlier will drop any block with CSS3 selectors. Do not
+combine these styles with the next block.
+*/
 .sticky .posted-on,
-.byline,
+.byline {
+	display: none;
+}
+
 .updated:not(.published) {
 	display: none;
 }
@@ -1956,13 +1953,20 @@ body:not(.search-results) .entry-summary > :last-child,
 	display: inline;
 }
 
-.page-header {
-	margin: 0 7.6923% 3.5em;
+.tags-links a:before {
+	content: "\0023";
 }
 
-body:not(.error404):not(.search-no-results) .page-header {
+.page-header {
 	border-top: 4px solid #1a1a1a;
+	margin: 0 7.6923% 3.5em;
 	padding-top: 1.75em;
+}
+
+body.error404 .page-header,
+body.search-no-results .page-header {
+	border-top: 0;
+	padding-top: 0;
 }
 
 .page-title {
@@ -2796,11 +2800,6 @@ p > video {
 		margin-left: 1.25em;
 	}
 
-	body:not(.search-results) .entry-summary li > ul,
-	body:not(.search-results) .entry-summary blockquote > ul {
-		margin-left: 1.157894737em;
-	}
-
 	.entry-content li > ol,
 	.entry-summary li > ol,
 	.comment-content li > ol,
@@ -2808,6 +2807,11 @@ p > video {
 	.entry-summary blockquote > ol,
 	.comment-content blockquote > ol {
 		margin-left: 1.5em;
+	}
+
+	body:not(.search-results) .entry-summary li > ul,
+	body:not(.search-results) .entry-summary blockquote > ul {
+		margin-left: 1.157894737em;
 	}
 
 	body:not(.search-results) .entry-summary li > ol,
@@ -3390,14 +3394,6 @@ p > video {
 		margin-bottom: 1.473684211em;
 	}
 
-	body:not(.search-results) .entry-summary {
-		margin-bottom: 2.210526316em;
-	}
-
-	body:not(.search-results) .entry-header + .entry-summary {
-		margin-top: -1.105263158em;
-	}
-
 	.author-info {
 		border-bottom: 0;
 		padding-bottom: 0;
@@ -3405,6 +3401,14 @@ p > video {
 
 	.entry-footer {
 		margin-top: 4.3076923077em;
+	}
+
+	body:not(.search-results) .entry-summary {
+		margin-bottom: 2.210526316em;
+	}
+
+	body:not(.search-results) .entry-header + .entry-summary {
+		margin-top: -1.105263158em;
 	}
 
 	body:not(.search-results) article:not(.type-page) .entry-content {
@@ -3736,14 +3740,14 @@ p > video {
 	body,
 	blockquote cite,
 	blockquote small,
-	.site-title a,
+	.site-branding .site-title a,
 	.entry-title a,
 	.comment-author {
 		color: #1a1a1a !important; /* Make sure color schemes don't affect to print */
 	}
 
 	blockquote,
-	body:not(.error404):not(.search-no-results) .page-header,
+	.page-header,
 	.comments-title {
 		border-color: #1a1a1a !important; /* Make sure color schemes don't affect to print */
 	}

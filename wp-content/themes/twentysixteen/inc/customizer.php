@@ -81,7 +81,7 @@ function twentysixteen_header_style() {
 				margin: 0 auto 0 0;
 			}
 
-			.site-title,
+			.site-branding .site-title,
 			.site-description {
 				clip: rect(1px, 1px, 1px, 1px);
 				position: absolute;
@@ -355,7 +355,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_color_scheme_css' );
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_control_js() {
-	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150923', true );
+	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150924', true );
 	wp_localize_script( 'color-scheme-control', 'colorScheme', twentysixteen_get_color_schemes() );
 }
 add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_control_js' );
@@ -366,7 +366,7 @@ add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_contr
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_preview_js() {
-	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150923', true );
+	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150924', true );
 }
 add_action( 'customize_preview_init', 'twentysixteen_customize_preview_js' );
 
@@ -453,8 +453,8 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.post-navigation a:focus .post-title,
 	.tagcloud a:hover,
 	.tagcloud a:focus,
-	.site-title a:hover,
-	.site-title a:focus,
+	.site-branding .site-title a:hover,
+	.site-branding .site-title a:focus,
 	.entry-title a:hover,
 	.entry-title a:focus,
 	.entry-footer a:hover,
@@ -526,12 +526,12 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.main-navigation a,
 	.menu-toggle,
 	.dropdown-toggle,
-	.social-navigation a:before,
+	.social-navigation a,
 	.post-navigation a,
 	.pagination a:hover,
 	.pagination a:focus,
 	.widget-title a,
-	.site-title a,
+	.site-branding .site-title a,
 	.entry-title a,
 	.page-links > .page-links-title,
 	.comment-author,
@@ -548,7 +548,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.post-navigation div + div,
 	.pagination,
 	.widget,
-	body:not(.error404):not(.search-no-results) .page-header,
+	.page-header,
 	.page-links a,
 	.comments-title,
 	.comment-reply-title {
@@ -567,6 +567,15 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	}
 
 	/* Secondary Text Color */
+
+	/*
+	IE8 and earlier will drop any block with CSS3 selectors. Do not
+	combine these styles with the next block.
+	*/
+	body:not(.search-results) .entry-summary {
+		color: {$colors['secondary_text_color']};
+	}
+
 	blockquote,
 	.post-password-form label,
 	a:hover,
@@ -579,7 +588,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.widget_rss .rss-date,
 	.widget_rss cite,
 	.site-description,
-	body:not(.search-results) .entry-summary,
 	.author-bio,
 	.entry-footer,
 	.entry-footer a,
@@ -639,11 +647,13 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.comment-list .trackback,
 	.comment-reply-link,
 	.no-comments {
+		border-color: {$colors['main_text_color']}; /* Fallback for IE7 and IE8 */
 		border-color: {$colors['border_color']};
 	}
 
 	hr,
 	code {
+		background-color: {$colors['main_text_color']}; /* Fallback for IE7 and IE8 */
 		background-color: {$colors['border_color']};
 	}
 
@@ -813,8 +823,8 @@ function twentysixteen_link_color_css() {
 		.post-navigation a:focus .post-title,
 		.tagcloud a:hover,
 		.tagcloud a:focus,
-		.site-title a:hover,
-		.site-title a:focus,
+		.site-branding .site-title a:hover,
+		.site-branding .site-title a:focus,
 		.entry-title a:hover,
 		.entry-title a:focus,
 		.entry-footer a:hover,
@@ -916,7 +926,7 @@ function twentysixteen_main_text_color_css() {
 	}
 
 	// If we get this far, we have a custom color scheme.
-	$border_color        = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.1)', $main_text_color_rgb );
+	$border_color = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.1)', $main_text_color_rgb );
 
 	$css = '
 		/* Custom Main Text Color */
@@ -927,12 +937,12 @@ function twentysixteen_main_text_color_css() {
 		.main-navigation a,
 		.menu-toggle,
 		.dropdown-toggle,
-		.social-navigation a:before,
+		.social-navigation a,
 		.post-navigation a,
 		.pagination a:hover,
 		.pagination a:focus,
 		.widget-title a,
-		.site-title a,
+		.site-branding .site-title a,
 		.entry-title a,
 		.page-links > .page-links-title,
 		.comment-author,
@@ -949,7 +959,7 @@ function twentysixteen_main_text_color_css() {
 		.post-navigation div + div,
 		.pagination,
 		.widget,
-		body:not(.error404):not(.search-no-results) .page-header,
+		.page-header,
 		.page-links a,
 		.comments-title,
 		.comment-reply-title {
@@ -998,11 +1008,13 @@ function twentysixteen_main_text_color_css() {
 		.comment-list .trackback,
 		.comment-reply-link,
 		.no-comments {
+			border-color: %1$s; /* Fallback for IE7 and IE8 */
 			border-color: %2$s;
 		}
 
 		hr,
 		code {
+			background-color: %1$s; /* Fallback for IE7 and IE8 */
 			background-color: %2$s;
 		}
 
@@ -1042,6 +1054,15 @@ function twentysixteen_secondary_text_color_css() {
 
 	$css = '
 		/* Custom Secondary Text Color */
+
+		/*
+		IE8 and earlier will drop any block with CSS3 selectors. Do not
+		combine these styles with the next block.
+		*/
+		body:not(.search-results) .entry-summary {
+			color: %1$s;
+		}
+
 		blockquote,
 		.post-password-form label,
 		a:hover,
@@ -1054,7 +1075,6 @@ function twentysixteen_secondary_text_color_css() {
 		.widget_rss .rss-date,
 		.widget_rss cite,
 		.site-description,
-		body:not(.search-results) .entry-summary,
 		.author-bio,
 		.entry-footer,
 		.entry-footer a,
