@@ -4,7 +4,7 @@ Theme URI: https://wordpress.org/themes/twentysixteen/
 Author: the WordPress team
 Author URI: https://wordpress.org/
 Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 0.1.20150924
+Version: 0.1.20150925
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, sticky-post, threaded-comments, translation-ready
@@ -114,15 +114,6 @@ strong {
 	font-weight: 700;
 }
 
-dfn {
-	font-style: italic;
-}
-
-mark {
-	background: #ff0;
-	color: #000;
-}
-
 small {
 	font-size: 80%;
 }
@@ -157,18 +148,12 @@ figure {
 
 hr {
 	box-sizing: content-box;
-	height: 0;
-}
-
-pre {
-	overflow: auto;
 }
 
 code,
 kbd,
 pre,
 samp {
-	font-family: monospace, monospace;
 	font-size: 1em;
 }
 
@@ -182,7 +167,6 @@ textarea {
 	margin: 0;
 }
 
-button,
 select {
 	text-transform: none;
 }
@@ -261,16 +245,6 @@ textarea {
 
 optgroup {
 	font-weight: bold;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-td,
-th {
-	padding: 0;
 }
 
 
@@ -444,7 +418,9 @@ acronym {
 
 mark,
 ins {
-	background: #fff9c0;
+	background: #007acc;
+	color: #fff;
+	padding: 0.125em 0.25em;
 	text-decoration: none;
 }
 
@@ -784,6 +760,7 @@ a:active {
 	color: #1a1a1a;
 	display: block;
 	line-height: 1.3125;
+	outline-offset: -1px;
 	padding: 0.84375em 0;
 }
 
@@ -815,7 +792,7 @@ a:active {
 }
 
 .main-navigation .menu-item-has-children > a {
-	margin-right: 50px;
+	margin-right: 56px;
 }
 
 .dropdown-toggle {
@@ -845,6 +822,15 @@ a:active {
 .dropdown-toggle:hover,
 .dropdown-toggle:focus {
 	color: #007acc;
+}
+
+.dropdown-toggle:focus {
+	outline: thin dotted;
+	outline-offset: -1px;
+}
+
+.dropdown-toggle:focus:after {
+	border-color: transparent;
 }
 
 .dropdown-toggle.toggled-on:after {
@@ -1117,7 +1103,6 @@ a:active {
 
 .pagination .page-numbers {
 	display: none;
-	font-weight: 700;
 	letter-spacing: 0.013157895em;
 	line-height: 1;
 	margin: 0 0.7368421053em 0 -0.7368421053em;
@@ -1127,6 +1112,7 @@ a:active {
 
 .pagination .current {
 	display: inline-block;
+	font-weight: 700;
 }
 
 .pagination .prev,
@@ -1572,11 +1558,16 @@ blockquote:after,
 }
 
 .menu-toggle.toggled-on,
-.menu-toggle.toggled-on:hover,
-.menu-toggle.toggled-on:focus {
+.menu-toggle.toggled-on:hover {
 	background-color: #1a1a1a;
 	border-color: #1a1a1a;
 	color: #fff;
+}
+
+.menu-toggle.toggled-on:focus {
+	background-color: transparent;
+	border-color: #007acc;
+	color: #007acc;
 }
 
 .header-image {
@@ -1935,16 +1926,16 @@ body:not(.search-results) .entry-summary > :last-child,
 	text-transform: uppercase;
 }
 
-/*
-IE8 and earlier will drop any block with CSS3 selectors. Do not
-combine these styles with the next block.
-*/
-.sticky .posted-on,
-.byline {
+/**
+ * IE8 and earlier will drop any block with CSS3 selectors.
+ * Do not combine these styles with the next block.
+ */
+.updated:not(.published) {
 	display: none;
 }
 
-.updated:not(.published) {
+.sticky .posted-on,
+.byline {
 	display: none;
 }
 
@@ -2274,7 +2265,8 @@ body.search-no-results .page-header {
 }
 
 .required {
-	color: #c0392b;
+	color: #007acc;
+	font-family: Merriweather, Georgia, serif;
 }
 
 .comment-reply-title small {
@@ -2623,7 +2615,7 @@ p > video {
  * 14.0 - Media Queries
  */
 
-/*
+/**
  * Does the same thing as <meta name="viewport" content="width=device-width">,
  * but in the future W3C standard way. -ms- prefix is required for IE10+ to
  * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
@@ -2734,7 +2726,6 @@ p > video {
 
 	.pagination .page-numbers {
 		display: inline-block;
-		font-weight: 400;
 	}
 
 	.site-main > article {
@@ -2809,16 +2800,6 @@ p > video {
 		margin-left: 1.5em;
 	}
 
-	body:not(.search-results) .entry-summary li > ul,
-	body:not(.search-results) .entry-summary blockquote > ul {
-		margin-left: 1.157894737em;
-	}
-
-	body:not(.search-results) .entry-summary li > ol,
-	body:not(.search-results) .entry-summary blockquote > ol {
-		margin-left: 1.473684211em;
-	}
-
 	.comment-author {
 		margin-bottom: 0;
 	}
@@ -2849,6 +2830,16 @@ p > video {
 	.widecolumn {
 		margin-bottom: 5.25em;
 		padding-right: 23.0769%;
+	}
+
+	body:not(.search-results) .entry-summary li > ul,
+	body:not(.search-results) .entry-summary blockquote > ul {
+		margin-left: 1.157894737em;
+	}
+
+	body:not(.search-results) .entry-summary li > ol,
+	body:not(.search-results) .entry-summary blockquote > ol {
+		margin-left: 1.473684211em;
 	}
 }
 
@@ -3403,6 +3394,18 @@ p > video {
 		margin-top: 4.3076923077em;
 	}
 
+	.comment-list + .comment-respond,
+	.comment-navigation + .comment-respond {
+		padding-top: 5.25em;
+	}
+
+	.comments-area,
+	.sidebar,
+	.content-bottom-widgets .widget-area,
+	.widecolumn {
+		margin-bottom: 7.0em;
+	}
+
 	body:not(.search-results) .entry-summary {
 		margin-bottom: 2.210526316em;
 	}
@@ -3484,18 +3487,6 @@ p > video {
 		margin-right: -100%;
 		margin-left: 15%;
 		width: 15%;
-	}
-
-	.comment-list + .comment-respond,
-	.comment-navigation + .comment-respond {
-		padding-top: 5.25em;
-	}
-
-	.comments-area,
-	.sidebar,
-	.content-bottom-widgets .widget-area,
-	.widecolumn {
-		margin-bottom: 7.0em;
 	}
 }
 

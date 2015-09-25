@@ -355,7 +355,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_color_scheme_css' );
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_control_js() {
-	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150924', true );
+	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150925', true );
 	wp_localize_script( 'color-scheme-control', 'colorScheme', twentysixteen_get_color_schemes() );
 }
 add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_control_js' );
@@ -366,7 +366,7 @@ add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_contr
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_preview_js() {
-	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150924', true );
+	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150925', true );
 }
 add_action( 'customize_preview_init', 'twentysixteen_customize_preview_js' );
 
@@ -401,6 +401,8 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 		background-color: {$colors['page_background_color']};
 	}
 
+	mark,
+	ins,
 	button,
 	button[disabled]:hover,
 	button[disabled]:focus,
@@ -415,7 +417,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	input[type="submit"][disabled]:focus,
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
-	.menu-toggle.toggled-on:focus,
 	.pagination .prev,
 	.pagination .next,
 	.pagination .prev:hover,
@@ -442,6 +443,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	input[type="reset"]:focus,
 	input[type="submit"]:hover,
 	input[type="submit"]:focus,
+	.menu-toggle.toggled-on:focus,
 	a,
 	.main-navigation a:hover,
 	.main-navigation a:focus,
@@ -466,11 +468,14 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.comment-reply-link,
 	.comment-reply-link:hover,
 	.comment-reply-link:focus,
+	.required,
 	.site-info a:hover,
 	.site-info a:focus {
 		color: {$colors['link_color']};
 	}
 
+	mark,
+	ins,
 	button,
 	button[disabled]:hover,
 	button[disabled]:focus,
@@ -514,7 +519,8 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.tagcloud a:hover,
 	.tagcloud a:focus,
 	.menu-toggle:hover,
-	.menu-toggle:focus {
+	.menu-toggle:focus,
+	.menu-toggle.toggled-on:focus {
 		border-color: {$colors['link_color']};
 	}
 
@@ -543,7 +549,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	blockquote,
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
-	.menu-toggle.toggled-on:focus,
 	.post-navigation,
 	.post-navigation div + div,
 	.pagination,
@@ -557,7 +562,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
-	.menu-toggle.toggled-on:focus,
 	.pagination:before,
 	.pagination:after,
 	.pagination .prev,
@@ -568,10 +572,10 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 
 	/* Secondary Text Color */
 
-	/*
-	IE8 and earlier will drop any block with CSS3 selectors. Do not
-	combine these styles with the next block.
-	*/
+	/**
+	 * IE8 and earlier will drop any block with CSS3 selectors.
+	 * Do not combine these styles with the next block.
+	 */
 	body:not(.search-results) .entry-summary {
 		color: {$colors['secondary_text_color']};
 	}
@@ -737,6 +741,8 @@ function twentysixteen_page_background_color_css() {
 			background-color: %1$s;
 		}
 
+		mark,
+		ins,
 		button,
 		button[disabled]:hover,
 		button[disabled]:focus,
@@ -751,7 +757,6 @@ function twentysixteen_page_background_color_css() {
 		input[type="submit"][disabled]:focus,
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
-		.menu-toggle.toggled-on:focus,
 		.pagination .prev,
 		.pagination .next,
 		.pagination .prev:hover,
@@ -812,6 +817,7 @@ function twentysixteen_link_color_css() {
 		input[type="reset"]:focus,
 		input[type="submit"]:hover,
 		input[type="submit"]:focus,
+		.menu-toggle.toggled-on:focus,
 		a,
 		.main-navigation a:hover,
 		.main-navigation a:focus,
@@ -836,11 +842,14 @@ function twentysixteen_link_color_css() {
 		.comment-reply-link,
 		.comment-reply-link:hover,
 		.comment-reply-link:focus,
+		.required,
 		.site-info a:hover,
 		.site-info a:focus {
 			color: %1$s;
 		}
 
+		mark,
+		ins,
 		button,
 		button[disabled]:hover,
 		button[disabled]:focus,
@@ -884,7 +893,8 @@ function twentysixteen_link_color_css() {
 		.tagcloud a:hover,
 		.tagcloud a:focus,
 		.menu-toggle:hover,
-		.menu-toggle:focus {
+		.menu-toggle:focus,
+		.menu-toggle.toggled-on:focus {
 			border-color: %1$s;
 		}
 
@@ -954,7 +964,6 @@ function twentysixteen_main_text_color_css() {
 		blockquote,
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
-		.menu-toggle.toggled-on:focus,
 		.post-navigation,
 		.post-navigation div + div,
 		.pagination,
@@ -968,7 +977,6 @@ function twentysixteen_main_text_color_css() {
 
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
-		.menu-toggle.toggled-on:focus,
 		.pagination:before,
 		.pagination:after,
 		.pagination .prev,
@@ -1055,10 +1063,10 @@ function twentysixteen_secondary_text_color_css() {
 	$css = '
 		/* Custom Secondary Text Color */
 
-		/*
-		IE8 and earlier will drop any block with CSS3 selectors. Do not
-		combine these styles with the next block.
-		*/
+		/**
+		 * IE8 and earlier will drop any block with CSS3 selectors.
+		 * Do not combine these styles with the next block.
+		 */
 		body:not(.search-results) .entry-summary {
 			color: %1$s;
 		}
