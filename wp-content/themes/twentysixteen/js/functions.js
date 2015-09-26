@@ -54,7 +54,7 @@
 	( function() {
 
 		// Return early if menuToggle is missing.
-		if ( ! menuToggle ) {
+		if ( ! menuToggle.length ) {
 			return;
 		}
 
@@ -72,7 +72,7 @@
 
 	// Fix sub-menus for touch devices and better focus for hidden submenu items for accessibility.
 	( function() {
-		if ( ! siteNavigation || ! siteNavigation.children().length ) {
+		if ( ! siteNavigation.length || ! siteNavigation.children().length ) {
 			return;
 		}
 

@@ -72,23 +72,22 @@ function twentysixteen_header_style() {
 	// If the header text option is untouched, let's bail.
 	if ( display_header_text() ) {
 		return;
+	}
 
 	// If the header text has been hidden.
-	} else {
 	?>
-		<style type="text/css" id="twentysixteen-header-css">
-			.site-branding {
-				margin: 0 auto 0 0;
-			}
+	<style type="text/css" id="twentysixteen-header-css">
+		.site-branding {
+			margin: 0 auto 0 0;
+		}
 
-			.site-branding .site-title,
-			.site-description {
-				clip: rect(1px, 1px, 1px, 1px);
-				position: absolute;
-			}
-		</style>
+		.site-branding .site-title,
+		.site-description {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute;
+		}
+	</style>
 	<?php
-	}
 }
 endif; // twentysixteen_header_style
 
@@ -198,7 +197,7 @@ function twentysixteen_get_color_schemes() {
 				'#ffffff',
 				'#007acc',
 				'#1a1a1a',
-				'#757575',
+				'#686868',
 			),
 		),
 		'dark' => array(
@@ -298,7 +297,7 @@ function twentysixteen_sanitize_color_scheme( $value ) {
 	$color_schemes = twentysixteen_get_color_scheme_choices();
 
 	if ( ! array_key_exists( $value, $color_schemes ) ) {
-		$value = 'default';
+		return 'default';
 	}
 
 	return $value;
@@ -337,7 +336,7 @@ function twentysixteen_color_scheme_css() {
 		'link_color'            => $color_scheme[2],
 		'main_text_color'       => $color_scheme[3],
 		'secondary_text_color'  => $color_scheme[4],
-		'border_color'          => vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.1)', $color_textcolor_rgb ),
+		'border_color'          => vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.2)', $color_textcolor_rgb ),
 
 	);
 
@@ -355,7 +354,7 @@ add_action( 'wp_enqueue_scripts', 'twentysixteen_color_scheme_css' );
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_control_js() {
-	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150925', true );
+	wp_enqueue_script( 'color-scheme-control', get_template_directory_uri() . '/js/color-scheme-control.js', array( 'customize-controls', 'iris', 'underscore', 'wp-util' ), '20150926', true );
 	wp_localize_script( 'color-scheme-control', 'colorScheme', twentysixteen_get_color_schemes() );
 }
 add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_control_js' );
@@ -366,7 +365,7 @@ add_action( 'customize_controls_enqueue_scripts', 'twentysixteen_customize_contr
  * @since Twenty Sixteen 1.0
  */
 function twentysixteen_customize_preview_js() {
-	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150925', true );
+	wp_enqueue_script( 'twentysixteen-customize-preview', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '20150926', true );
 }
 add_action( 'customize_preview_init', 'twentysixteen_customize_preview_js' );
 
@@ -388,7 +387,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 		'border_color'          => '',
 	) );
 
-	$css = <<<CSS
+	return <<<CSS
 	/* Color Scheme */
 
 	/* Background Color */
@@ -417,6 +416,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	input[type="submit"][disabled]:focus,
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
+	.menu-toggle.toggled-on:focus,
 	.pagination .prev,
 	.pagination .next,
 	.pagination .prev:hover,
@@ -435,15 +435,8 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	}
 
 	/* Link Color */
-	button:hover,
-	button:focus,
-	input[type="button"]:hover,
-	input[type="button"]:focus,
-	input[type="reset"]:hover,
-	input[type="reset"]:focus,
-	input[type="submit"]:hover,
-	input[type="submit"]:focus,
-	.menu-toggle.toggled-on:focus,
+	.menu-toggle:hover,
+	.menu-toggle:focus,
 	a,
 	.main-navigation a:hover,
 	.main-navigation a:focus,
@@ -476,18 +469,14 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 
 	mark,
 	ins,
-	button,
-	button[disabled]:hover,
-	button[disabled]:focus,
-	input[type="button"],
-	input[type="button"][disabled]:hover,
-	input[type="button"][disabled]:focus,
-	input[type="reset"],
-	input[type="reset"][disabled]:hover,
-	input[type="reset"][disabled]:focus,
-	input[type="submit"],
-	input[type="submit"][disabled]:hover,
-	input[type="submit"][disabled]:focus,
+	button:hover,
+	button:focus,
+	input[type="button"]:hover,
+	input[type="button"]:focus,
+	input[type="reset"]:hover,
+	input[type="reset"]:focus,
+	input[type="submit"]:hover,
+	input[type="submit"]:focus,
 	.pagination .prev:hover,
 	.pagination .prev:focus,
 	.pagination .next:hover,
@@ -498,18 +487,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 		background-color: {$colors['link_color']};
 	}
 
-	button,
-	button[disabled]:hover,
-	button[disabled]:focus,
-	input[type="button"],
-	input[type="button"][disabled]:hover,
-	input[type="button"][disabled]:focus,
-	input[type="reset"],
-	input[type="reset"][disabled]:hover,
-	input[type="reset"][disabled]:focus,
-	input[type="submit"],
-	input[type="submit"][disabled]:hover,
-	input[type="submit"][disabled]:focus,
 	input[type="text"]:focus,
 	input[type="email"]:focus,
 	input[type="url"]:focus,
@@ -519,8 +496,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	.tagcloud a:hover,
 	.tagcloud a:focus,
 	.menu-toggle:hover,
-	.menu-toggle:focus,
-	.menu-toggle.toggled-on:focus {
+	.menu-toggle:focus {
 		border-color: {$colors['link_color']};
 	}
 
@@ -549,6 +525,7 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	blockquote,
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
+	.menu-toggle.toggled-on:focus,
 	.post-navigation,
 	.post-navigation div + div,
 	.pagination,
@@ -560,8 +537,21 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 		border-color: {$colors['main_text_color']};
 	}
 
+	button,
+	button[disabled]:hover,
+	button[disabled]:focus,
+	input[type="button"],
+	input[type="button"][disabled]:hover,
+	input[type="button"][disabled]:focus,
+	input[type="reset"],
+	input[type="reset"][disabled]:hover,
+	input[type="reset"][disabled]:focus,
+	input[type="submit"],
+	input[type="submit"][disabled]:hover,
+	input[type="submit"][disabled]:focus,
 	.menu-toggle.toggled-on,
 	.menu-toggle.toggled-on:hover,
+	.menu-toggle.toggled-on:focus,
 	.pagination:before,
 	.pagination:after,
 	.pagination .prev,
@@ -688,8 +678,6 @@ function twentysixteen_get_color_scheme_css( $colors ) {
 	}
 
 CSS;
-
-	return $css;
 }
 
 
@@ -757,6 +745,7 @@ function twentysixteen_page_background_color_css() {
 		input[type="submit"][disabled]:focus,
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
+		.menu-toggle.toggled-on:focus,
 		.pagination .prev,
 		.pagination .next,
 		.pagination .prev:hover,
@@ -809,15 +798,8 @@ function twentysixteen_link_color_css() {
 
 	$css = '
 		/* Custom Link Color */
-		button:hover,
-		button:focus,
-		input[type="button"]:hover,
-		input[type="button"]:focus,
-		input[type="reset"]:hover,
-		input[type="reset"]:focus,
-		input[type="submit"]:hover,
-		input[type="submit"]:focus,
-		.menu-toggle.toggled-on:focus,
+		.menu-toggle:hover,
+		.menu-toggle:focus,
 		a,
 		.main-navigation a:hover,
 		.main-navigation a:focus,
@@ -850,18 +832,14 @@ function twentysixteen_link_color_css() {
 
 		mark,
 		ins,
-		button,
-		button[disabled]:hover,
-		button[disabled]:focus,
-		input[type="button"],
-		input[type="button"][disabled]:hover,
-		input[type="button"][disabled]:focus,
-		input[type="reset"],
-		input[type="reset"][disabled]:hover,
-		input[type="reset"][disabled]:focus,
-		input[type="submit"],
-		input[type="submit"][disabled]:hover,
-		input[type="submit"][disabled]:focus,
+		button:hover,
+		button:focus,
+		input[type="button"]:hover,
+		input[type="button"]:focus,
+		input[type="reset"]:hover,
+		input[type="reset"]:focus,
+		input[type="submit"]:hover,
+		input[type="submit"]:focus,
 		.pagination .prev:hover,
 		.pagination .prev:focus,
 		.pagination .next:hover,
@@ -872,18 +850,6 @@ function twentysixteen_link_color_css() {
 			background-color: %1$s;
 		}
 
-		button,
-		button[disabled]:hover,
-		button[disabled]:focus,
-		input[type="button"],
-		input[type="button"][disabled]:hover,
-		input[type="button"][disabled]:focus,
-		input[type="reset"],
-		input[type="reset"][disabled]:hover,
-		input[type="reset"][disabled]:focus,
-		input[type="submit"],
-		input[type="submit"][disabled]:hover,
-		input[type="submit"][disabled]:focus,
 		input[type="text"]:focus,
 		input[type="email"]:focus,
 		input[type="url"]:focus,
@@ -893,8 +859,7 @@ function twentysixteen_link_color_css() {
 		.tagcloud a:hover,
 		.tagcloud a:focus,
 		.menu-toggle:hover,
-		.menu-toggle:focus,
-		.menu-toggle.toggled-on:focus {
+		.menu-toggle:focus {
 			border-color: %1$s;
 		}
 
@@ -936,7 +901,7 @@ function twentysixteen_main_text_color_css() {
 	}
 
 	// If we get this far, we have a custom color scheme.
-	$border_color = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.1)', $main_text_color_rgb );
+	$border_color = vsprintf( 'rgba( %1$s, %2$s, %3$s, 0.2)', $main_text_color_rgb );
 
 	$css = '
 		/* Custom Main Text Color */
@@ -964,6 +929,7 @@ function twentysixteen_main_text_color_css() {
 		blockquote,
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
+		.menu-toggle.toggled-on:focus,
 		.post-navigation,
 		.post-navigation div + div,
 		.pagination,
@@ -975,8 +941,21 @@ function twentysixteen_main_text_color_css() {
 			border-color: %1$s;
 		}
 
+		button,
+		button[disabled]:hover,
+		button[disabled]:focus,
+		input[type="button"],
+		input[type="button"][disabled]:hover,
+		input[type="button"][disabled]:focus,
+		input[type="reset"],
+		input[type="reset"][disabled]:hover,
+		input[type="reset"][disabled]:focus,
+		input[type="submit"],
+		input[type="submit"][disabled]:hover,
+		input[type="submit"][disabled]:focus,
 		.menu-toggle.toggled-on,
 		.menu-toggle.toggled-on:hover,
+		.menu-toggle.toggled-on:focus,
 		.pagination:before,
 		.pagination:after,
 		.pagination .prev,
@@ -990,7 +969,6 @@ function twentysixteen_main_text_color_css() {
 		pre,
 		abbr,
 		acronym,
-		hr,
 		table,
 		th,
 		td,
