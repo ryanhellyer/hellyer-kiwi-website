@@ -31,9 +31,11 @@ jQuery(document).ready( function($) {
  		}
 		$('<div class="lwa-loading"></div>').prependTo(form);
 		//Make Ajax Call
+		var form_action = form.attr('action');
+		if( typeof LWA !== 'undefined' ) form_action = LWA.ajaxurl;
 		$.ajax({
 			type : 'POST',
-			url : form.attr('action'),
+			url : form_action,
 			data : form.serialize(),
 			success : function(data){
 				lwaAjax( data, statusElement );

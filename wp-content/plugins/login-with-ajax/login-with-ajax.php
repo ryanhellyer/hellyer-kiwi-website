@@ -4,11 +4,12 @@ Plugin Name: Login With Ajax
 Plugin URI: http://wordpress.org/extend/plugins/login-with-ajax/
 Description: Ajax driven login widget. Customisable from within your template folder, and advanced settings from the admin area.
 Author: Marcus Sykes
-Version: 3.1.4
+Version: 3.1.5
 Author URI: http://msyk.es
 Tags: Login, Ajax, Redirect, BuddyPress, MU, WPMU, sidebar, admin, widget
+Text Domain: login-with-ajax
 
-Copyright (C) 2009 NetWebLogic LLC
+Copyright (C) 2015 NetWebLogic LLC
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,6 +24,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+define('LOGIN_WITH_AJAX_VERSION', '3.1.5');
 class LoginWithAjax {
 
 	/**
@@ -101,8 +103,12 @@ class LoginWithAjax {
 			//Enqueue scripts - Only one script enqueued here.... theme JS takes priority, then default JS
 			if( !is_admin() ) {
 			    $js_url = defined('WP_DEBUG') && WP_DEBUG ? 'login-with-ajax.source.js':'login-with-ajax.js';
-				wp_enqueue_script( "login-with-ajax", self::locate_template_url($js_url), array( 'jquery' ) );
-				wp_enqueue_style( "login-with-ajax", self::locate_template_url('widget.css') );
+				wp_enqueue_script( "login-with-ajax", self::locate_template_url($js_url), array( 'jquery' ), LOGIN_WITH_AJAX_VERSION );
+				wp_enqueue_style( "login-with-ajax", self::locate_template_url('widget.css'), array(), LOGIN_WITH_AJAX_VERSION );
+        		$schema = is_ssl() ? 'https':'http';
+        		$js_vars = array('ajaxurl' => admin_url('admin-ajax.php', $schema));
+        		//calendar translations
+        		wp_localize_script('login-with-ajax', 'LWA', apply_filters('lwa_js_vars', $js_vars));
 			}
 
 			//Add logout/in redirection
@@ -197,9 +203,6 @@ class LoginWithAjax {
 	public static function register(){
 	    $return = array();
 	    if( get_option('users_can_register') ){
-		    if( !function_exists('register_new_user') ){
-		        include_once('registration.php'); //in ajax we don't have access to this function, so include our own copy of the function
-		    }
 			$errors = register_new_user($_REQUEST['user_login'], $_REQUEST['user_email']);
 			if ( !is_wp_error($errors) ) {
 				//Success
@@ -222,9 +225,15 @@ class LoginWithAjax {
 		return $return;
 	}
 
-	// Reads ajax login creds via POSt, calls the login script and interprets the result
+	// Reads ajax login creds via POST, calls the login script and interprets the result
 	public static function remember(){
 		$return = array(); //What we send back
+		//if we're not on wp-login.php, we need to load it since retrieve_password() is located there
+		if( !function_exists('retrieve_password') ){
+		    ob_start();
+		    include_once(ABSPATH.'wp-login.php');
+		    ob_clean();
+		}
 		$result = retrieve_password();
 		if ( $result === true ) {
 			//Password correctly remembered
@@ -245,12 +254,12 @@ class LoginWithAjax {
 		return $return;
 	}
 
-	//Added fix for
+	//Added fix for WPML
 	public static function logoutUrl( $logout_url ){
 		//Add ICL if necessary
 		if( defined('ICL_LANGUAGE_CODE') ){
 			$logout_url .= ( strstr($logout_url,'?') !== false ) ? '&amp;':'?';
-			$logout_url .= 'icl_language_code='.ICL_LANGUAGE_CODE;
+			$logout_url .= 'lang='.ICL_LANGUAGE_CODE;
 		}
 		return $logout_url;
 	}
@@ -287,10 +296,11 @@ class LoginWithAjax {
 			$redirect = $data['logout_redirect'];
 		}
 		//WPML global redirect
-		if( !empty($_REQUEST['icl_language_code']) ){
-			$code = $_REQUEST['icl_language_code'];
-			if( isset($data["logout_redirect_".$code]) ){
-				$redirect = $data["logout_redirect_".$code];
+		$lang = !empty($_REQUEST['lang']) ? $_REQUEST['lang']:'';
+		$lang = apply_filters('lwa_lang', $lang);
+		if( !empty($lang) ){
+			if( isset($data["logout_redirect_".$lang]) ){
+				$redirect = $data["logout_redirect_".$lang];
 			}
 		}
 		//Role based redirect
@@ -302,20 +312,20 @@ class LoginWithAjax {
 				$redirect = $data["role_logout"][$user_role];
 			}
 			//Check for language redirects based on roles
-			if( !empty($_REQUEST['icl_language_code']) ){
-				if( isset($data["role_logout"][$user_role."_".$code]) ){
-					$redirect = $data["role_logout"][$user_role."_".$code];
+			if( !empty($lang) ){
+				if( isset($data["role_logout"][$user_role."_".$lang]) ){
+					$redirect = $data["role_logout"][$user_role."_".$lang];
 				}
 			}
 		}
 		//final replaces
 		if( !empty($redirect) ){
 			$redirect = str_replace("%LASTURL%", $_SERVER['HTTP_REFERER'], $redirect);
-			if( !empty($_REQUEST['icl_language_code']) ){
-				$redirect = str_replace("%LANG%", $code.'/', $redirect);
+			if( !empty($lang) ){
+				$redirect = str_replace("%LANG%", $lang.'/', $redirect);
 			}
 		}
-		return $redirect;
+		return esc_url_raw($redirect);
 	}
 
 	public static function loginRedirect( $redirect, $redirect_notsurewhatthisis, $user ){
@@ -337,11 +347,10 @@ class LoginWithAjax {
 			$redirect = $data["login_redirect"];
 		}
 		//WPML global redirect
-		if( !empty($_REQUEST['icl_language_code']) ){
-			$code = $_REQUEST['icl_language_code'];
-			if( isset($data["login_redirect_".$code]) ){
-				$redirect = $data["login_redirect_".$code];
-			}
+		$lang = !empty($_REQUEST['lang']) ? $_REQUEST['lang']:'';
+		$lang = apply_filters('lwa_lang', $lang);
+		if( !empty($lang) && isset($data["login_redirect_".$lang]) ){
+			$redirect = $data["login_redirect_".$lang];
 		}
 		//Role based redirects
 		if( strtolower(get_class($user)) == "wp_user" ){
@@ -350,20 +359,18 @@ class LoginWithAjax {
 				$redirect = $data["role_login"][$user_role];
 			}
 			//Check for language redirects based on roles
-			if( !empty($_REQUEST['icl_language_code']) ){
-				if( isset($data["role_login"][$user_role."_".$code]) ){
-					$redirect = $data["role_login"][$user_role."_".$code];
-				}
+			if( !empty($lang) && isset($data["role_login"][$user_role."_".$lang]) ){
+				$redirect = $data["role_login"][$user_role."_".$lang];
 			}
 			//Do user string replacements
 			$redirect = str_replace('%USERNAME%', $user->user_login, $redirect);
 		}
 		//Do string replacements
 		$redirect = str_replace("%LASTURL%", wp_get_referer(), $redirect);
-		if( !empty($_REQUEST['icl_language_code']) ){
-			$redirect = str_replace("%LANG%", $code.'/', $redirect);
+		if( !empty($lang) ){
+			$redirect = str_replace("%LANG%", $lang.'/', $redirect);
 		}
-		return $redirect;
+		return esc_url_raw($redirect);
 	}
 
 	/*
@@ -387,11 +394,22 @@ class LoginWithAjax {
 			$template_loc = ($template_loc == '' && self::$template) ? self::$templates[self::$template].'/widget_in.php':$template_loc;
 			include ( $template_loc != '' && file_exists($template_loc) ) ? $template_loc : 'widget/default/widget_in.php';
 		}else{
+		    //quick/easy WPML fix, should eventually go into a seperate file
+		    if(  defined('ICL_LANGUAGE_CODE') ){
+		        if( !function_exists('lwa_wpml_input_var') ){
+                    function lwa_wpml_input_var(){ echo '<input type="hidden" name="lang" id="lang" value="'.esc_attr(ICL_LANGUAGE_CODE).'" />'; }
+		        }
+		        foreach( array('login_form','lwa_register_form', 'lostpassword_form') as $action ) add_action($action, 'lwa_wpml_input_var');
+		    }
 			//Firstly check for template in theme with no template folder (legacy)
 			$template_loc = locate_template( array('plugins/login-with-ajax/widget_out.php') );
 			//First check for custom templates or theme template default
 			$template_loc = ($template_loc == '' && self::$template) ? self::$templates[self::$template].'/widget_out.php' : $template_loc;
 			include ( $template_loc != '' && file_exists($template_loc) ) ? $template_loc : 'widget/default/widget_out.php';
+			//quick/easy WPML fix, should eventually go into a seperate file
+			if(  defined('ICL_LANGUAGE_CODE') ){
+			    foreach( array('login_form','lwa_register_form', 'lostpassword_form') as $action ) remove_action($action, 'lwa_wpml_input_var');
+			}
 		}
 	}
 
@@ -401,18 +419,18 @@ class LoginWithAjax {
 			'profile_link' => true,
 			'template' => 'default',
 			'registration' => true,
-			'redirect' => true,
+			'redirect' => false,
 			'remember' => true
 		);
 		self::widget(shortcode_atts($defaults, $atts));
 		return ob_get_clean();
 	}
 
-	public static function new_user_notification($user_login, $plaintext_pass, $user_email, $blogname){
+	public static function new_user_notification($user_login, $login_link, $user_email, $blogname){
 		//Copied out of /wp-includes/pluggable.php
 		$message = self::$data['notification_message'];
 		$message = str_replace('%USERNAME%', $user_login, $message);
-		$message = str_replace('%PASSWORD%', $plaintext_pass, $message);
+		$message = str_replace('%PASSWORD%', $login_link, $message);
 		$message = str_replace('%BLOGNAME%', $blogname, $message);
 		$message = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $message);
 
@@ -491,6 +509,12 @@ class LoginWithAjax {
 add_action( 'init', 'LoginWithAjax::init' );
 add_action( 'widgets_init', 'LoginWithAjax::widgets_init' );
 
+//Installation and Updates
+$lwa_data = get_option('lwa_data');
+if( version_compare( get_option('lwa_version',0), LOGIN_WITH_AJAX_VERSION, '<' ) ){
+    include_once('lwa-install.php');
+}
+
 //Add translation
 function lwa_load_plugin_textdomain(){
 	load_plugin_textdomain('login-with-ajax', false, "login-with-ajax/langs");
@@ -503,7 +527,6 @@ if(is_admin()){
 }
 
 //Include pluggable functions file if user specifies in settings
-$lwa_data = get_option('lwa_data');
 if( !empty($lwa_data['notification_override']) ){
 	include_once('pluggable.php');
 }
