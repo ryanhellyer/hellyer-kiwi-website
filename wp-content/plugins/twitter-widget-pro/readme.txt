@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: twitter, widget, feed
 Requires at least: 3.0
 Tested up to: 4.3
-Stable tag: 2.7.0
+Stable tag: 2.8.0
 
 A widget that properly handles twitter feeds, including parsing @username, #hashtags, and URLs into links.
 
@@ -12,8 +12,7 @@ A widget that properly handles twitter feeds, including parsing @username, #hash
 
 A widget that properly handles twitter feeds, including parsing @username, #hashtag, and URLs into links.  It supports displaying profiles images, and even lets you control whether to display the time and date of a tweet or how log ago it happened (about 5 hours ago, etc).
 
-<a href="http://ran.ge/wordpress-plugin/twitter-widget-pro/">Twitter Widget Pro</a>
-Brought to you by <a href="http://ran.ge/" title="WordPress Development">Ran.ge</a>
+<a href="http://aarondcampbell.com/wordpress-plugin/twitter-widget-pro/">Twitter Widget Pro</a>
 
 == Installation ==
 
@@ -120,7 +119,7 @@ There are plenty of CSS classes throughout the HTML that is generated, and you c
 
 = Why can't I display a friends feed anymore? =
 
-Aparently the database queries required to display the friends feed was causing twitter to crash, so they removed it.  Unfortunately, this is outside my control.
+Apparently the database queries required to display the friends feed was causing twitter to crash, so they removed it.  Unfortunately, this is outside my control.
 
 == Screenshots ==
 
@@ -130,6 +129,9 @@ Aparently the database queries required to display the friends feed was causing 
 4. By using some (X)HTML in the title element and adding a few styles and a background image, you could make it look like this.
 
 == Upgrade Notice ==
+
+= 2.8.0 =
+Updates to make the plugin translatable with the new translate.wordpress.org
 
 = 2.7.0 =
 Updates to avoid notices in WordPress 4.3 and PHP 7
@@ -153,6 +155,11 @@ Fix potential conflict with other oAuth plugins
 Upgrade to the new Twitter API and add support for lists
 
 == Changelog ==
+
+= 2.8.0 =
+* Move to a static text domain
+* Move away from my plugin framework
+* Fix a leftover Range link
 
 = 2.7.0 =
 * Use __contrsuct instead of WP_Widget->WP_Widget
