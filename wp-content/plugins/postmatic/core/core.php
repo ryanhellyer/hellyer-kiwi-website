@@ -84,6 +84,7 @@ class Prompt_Core {
 			'enable_optins' => false,
 			'enable_skimlinks' => false,
 			'skimlinks_publisher_id' => '',
+			'emails_per_chunk' => 25,
 		);
 		$default_options = array_merge( $default_options, Prompt_Optins::options_fields() );
 		self::prevent_options_errors();

@@ -91,12 +91,23 @@ abstract class Prompt_Meta_Subscribable_Object implements Prompt_Interface_Subsc
 		$table = $wpdb->$table_property;
 
 		$query = $wpdb->prepare(
-			"SELECT {$id_field} FROM {$table} WHERE meta_key=%s AND meta_value LIKE %s",
+			"SELECT {$id_field}, meta_value FROM {$table} WHERE meta_key=%s AND meta_value LIKE %s",
 			self::SUBSCRIBED_META_KEY,
-			'%i:' . $user_id . ';%'
+			'%i:%;%i:' . $user_id . ';%'
 		);
 
-		return $wpdb->get_col( $query );
+		$results = $wpdb->get_results( $query );
+
+		// The above query can still misinterpret indices for values, we must unserialize to be sure
+		$ids = array();
+		foreach ( $results as $result ) {
+			$user_ids = unserialize( $result->meta_value );
+			if ( in_array( $user_id, $user_ids ) ) {
+				$ids[] = $result->$id_field;
+			}
+		}
+
+		return $ids;
 	}
 
 	protected function _all_subscriber_ids() {
@@ -107,7 +118,7 @@ abstract class Prompt_Meta_Subscribable_Object implements Prompt_Interface_Subsc
 
 		$sql_format = "SELECT DISTINCT {$wpdb->users}.id " .
 			"FROM {$wpdb->users} " .
-			"JOIN {$table} ON meta_key=%s AND meta_value LIKE CONCAT( '%%i:', {$wpdb->users}.id, ';%%' )";
+			"JOIN {$table} ON meta_key=%s AND meta_value LIKE CONCAT( '%%i:%%;i:', {$wpdb->users}.id, ';%%' )";
 
 		$query = $wpdb->prepare( $sql_format, self::SUBSCRIBED_META_KEY );
 

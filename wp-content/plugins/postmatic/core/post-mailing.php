@@ -5,7 +5,7 @@ class Prompt_Post_Mailing {
 	/**
 	 * Send email notifications for a post.
 	 *
-	 * Sends up to 25 unsent notifications, and schedules another batch if there are more.
+	 * Sends up to emails_per_chunk unsent notifications, and schedules another batch if there are more.
 	 *
 	 * @param WP_Post|int $post
 	 * @param string $signature Optional identifier for this batch
@@ -19,7 +19,7 @@ class Prompt_Post_Mailing {
 
 		$recipient_ids = $prompt_post->unsent_recipient_ids();
 
-		$chunks = array_chunk( $recipient_ids, 25 );
+		$chunks = array_chunk( $recipient_ids, Prompt_Core::$options->get( 'emails_per_chunk' ) );
 
 		if ( empty( $chunks[0] ) )
 			return;

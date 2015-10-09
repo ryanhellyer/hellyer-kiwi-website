@@ -73,7 +73,7 @@ class Prompt_Subscription_Mailing {
 		// Block other processes from sending this chunk
 		self::set_delivered_chunk( $users_data, $chunk );
 
-		$chunks = array_chunk( $users_data, 30 );
+		$chunks = array_chunk( $users_data, Prompt_Core::$options->get( 'emails_per_chunk' ) );
 
 		$emails = array();
 

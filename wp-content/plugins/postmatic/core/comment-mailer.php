@@ -27,7 +27,7 @@ class Prompt_Comment_Mailer {
 	/**
 	 * Send new comment notifications.
 	 *
-	 * Sends up to 25 unsent notifications, and schedules another batch if there are more.
+	 * Sends up to emails_per_chunk unsent notifications, and schedules another batch if there are more.
 	 */
 	public function send_notifications() {
 
@@ -37,7 +37,7 @@ class Prompt_Comment_Mailer {
 
 		$unsent_ids = array_diff( $this->flood_controlled_recipient_ids(), $this->sent_recipient_ids() );
 
-		$chunks = array_chunk( $unsent_ids, 25 );
+		$chunks = array_chunk( $unsent_ids, Prompt_Core::$options->get( 'emails_per_chunk' ) );
 
 		if ( empty( $chunks[0] ) ) {
 			return;

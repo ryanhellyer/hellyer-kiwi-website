@@ -339,6 +339,10 @@ img.featured {
   padding-bottom: 20px;
 }
 
+ul.essb_links_list {
+  width: 100%;
+}
+
 .sd-social-icon .sd-content ul li a {
   width: 40px;
   padding: 0;
@@ -400,6 +404,11 @@ img.featured {
   margin-right: 10px;
 }
 .sd-like {display: none !important;}
+
+.ssba-wrap {
+  display: block;
+  min-height: 40px;
+}
 
 /*Jetpack tiled gallery*/
 .gallery-row {width: 675px !important; float: none !important;}

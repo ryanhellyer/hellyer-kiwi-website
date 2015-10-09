@@ -1,6 +1,6 @@
 === Postmatic - Post and comment subscriptions that invite you to hit reply. Now with Optins. ===
 Contributors: Postmatic
-Tags: email, notification, notify, posts, subscribe, subscription, email, subscribe to comments, commenting, reply, email, optins, popups, optin forms, opt-in, subscribe form, comments, posts, reply, subscribe, mail, listserve, mailing, subscriptions, newsletter, newsletters, email newsletter, email subscription, newsletter signup, post notification, newsletter alert, auto newsletter, automatic post notification, email newsletters, email signup, auto post notifications, subscribe widget, signup widget, email subscription, newsletter plugin, widget, subscription, emailing, mandrill, mailchimp, mailgun, email comming, reply to email, email replies, engagement, invite, invitations, jetpack, subscribe2
+Tags: email, notification, notify, posts, subscribe, subscription, email, subscribe to comments, commenting, reply, email, optins, popups, optin forms, opt-in, subscribe form, comments, posts, reply, subscribe, mail, listserve, mailing, subscriptions, newsletter, newsletters, email newsletter, email subscription, newsletter signup, post notification, newsletter alert, auto newsletter, automatic post notification, email newsletters, email signup, auto post notifications, subscribe widget, signup widget, email subscription, newsletter plugin, widget, subscription, emailing, mandrill, mailchimp, mailgun, email commenting, reply to email, email replies, engagement, invite, invitations
 Requires at least: 3.9
 Tested up to: 4.3
 Stable tag: trunk
@@ -83,6 +83,16 @@ Find a few hundred more answers at our [big FAQ](http://gopostmatic.com/faq/).
 15. The optin configuration screeen.
 
 == Changelog ==
+
+= 1.4.9 =
+
+- Nothing too exciting here. We've increased the timeout to reach our api which should reduce the number of messages not finding their way home.
+- Site admins can now manually unsubscribe users from conversations. Useful for a certain kinds of subscriber.
+- Updated Italian translation.
+- Updated German translation.
+- Added support for Simple Share Buttons Adder.
+- More fixes for more social sharing buttons.
+
 
 = 1.4.8 =
 

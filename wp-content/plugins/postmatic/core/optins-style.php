@@ -34,6 +34,20 @@ class Prompt_Optins_Style {
 				),
 				'label' => __( 'Dark', 'Postmatic' ),
 			),
+			'spruce' => array(
+				'colors' => array(
+					'background' => '#727362',
+					'background-image' => 'e-white.png',
+					'button-background' => '#883435',
+					'accent' => '#9D9D8A',
+					'button-type' => '#fff',
+					'type' => '#fff',
+					'grad-start' => '#727362',	
+					'grad-end' => '#727362',
+					'border-color' => '#727362',
+				),
+			'label' => __( 'Spruce', 'Postmatic' ),
+			),
 			'orange' => array(
 				'colors' => array(
 					'background' => '#EB593C',
