@@ -3,8 +3,8 @@ Contributors: nosilver4u
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MKMQKCBFFG3WW
 Tags: image, attachment, optimize, optimization, lossless, lossy, photo, picture, seo, compression, gmagick, jpegtran, gifsicle, optipng, pngout, pngquant, jpegmini, tinyjpg, tinypng, webp, wp-cli 
 Requires at least: 3.5
-Tested up to: 4.3
-Stable tag: 2.5.1
+Tested up to: 4.3.1
+Stable tag: 2.5.2
 License: GPLv3
 
 Reduce file sizes for images in WordPress including NextGEN, GRAND FlAGallery and more using lossless/lossy methods and image format conversion.
@@ -90,9 +90,9 @@ In progress translations:
 Vietnamese  
 Indonesian  
 Hebrew  
-Lithuanian
 
-If you would like to help translate this plugin (new or existing translations), register for an account at our online translation hub: http://translate.ewww.io/
+If you would like to help translate this plugin (new or existing translations), you can do so here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer
+To receive updates when new strings are available for translation, you can signup here: https://ewww.io/register/
 
 == Installation ==
 
@@ -105,10 +105,18 @@ If you would like to help translate this plugin (new or existing translations), 
 1. *Recommended* Visit the settings page to enable/disable specific tools and turn on advanced optimization features.
 1. Done!
 
-EWWW IO Installation and Configuration:
-[youtube http://www.youtube.com/watch?v=CLBjjcaJ2pw]
+EWWW IO - Getting Started
+[youtube https://www.youtube.com/watch?v=DhqP1HpDLxs]
+EWWW IO - Advanced Settings
+[youtube https://www.youtube.com/watch?v=MJZMzjOOXiM]
+EWWW IO - Converting Images
+[youtube https://www.youtube.com/watch?v=xAGtdv3vrYg]
+EWWW IO - WebP
+[youtube https://www.youtube.com/watch?v=OeYJgTy3D94]
+EWWW IO - Cloud API Walkthrough
+[youtube https://www.youtube.com/watch?v=ii57FjHnSpI]
 Using EWWW IO:
-[youtube http://www.youtube.com/watch?v=1AvyVeE4kUo]
+[youtube https://www.youtube.com/watch?v=uELM25v-qgU]
 
 = Installing pngout =
 
@@ -127,7 +135,7 @@ http://ewww.io/2014/12/06/the-plugin-says-im-missing-something/
 
 In general, these lists only apply to shared hosting services. If the providers below have VPS or dedicated server options, those will likely work just fine. If you have any contributions or corrections to these lists, please contact me via the form at https://ewww.io
 
-Webhosts where things work out of the box.
+Webhosts where things work (mostly) out of the box.
 
 * [A2 Hosting](https://partners.a2hosting.com/solutions.php?id=5959&url=638): EWWW IO is installed automatically for new sites, and is fully supported by A2 (referral link). Their Prime+SSD hosting is very nice (and still cheap).
 * [Bluehost](http://www.bluehost.com)
@@ -140,6 +148,7 @@ Webhosts where things work out of the box.
 * [iFastNet](https://ifastnet.com/portal/) (with custom php.ini from customer support)
 * [Namecheap](http://www.namecheap.com)
 * [OVH](http://www.ovh.co.uk)
+* [Spry Servers](https://www.spryservers.net) (even with PHP 7)
 * [WebFaction](http://www.webfaction.com)
 
 Webhosts where the plugin will only work in cloud mode or only some tools are installed locally.
@@ -205,7 +214,16 @@ Pngout, TinyJPG/TinyPNG, JPEGmini, and Pngquant were recommended by EWWW IO user
 == Changelog ==
 
 * feature requests are sticky at the top of the support forums, vote for the ones you like: https://wordpress.org/support/plugin/ewww-image-optimizer
-* If you would like to help translate this plugin in your language, get started here: http://translate.ewww.io/projects/ewww-image-optimizer/
+* If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
+
+= 2.5.2 =
+* new: all our installation videos have been re-done so that they are up-to-date and answer some common questions
+* changed: much faster scanning for Scan & Optimize when ewwwio table is large
+* fixed: check WP_CONTENT_DIR setting if wp_upload_dir() is reporting the wrong upload directory
+* fixed: translations for fr_BE and uk (Ukrainian)
+* fixed: .htaccess installer for webp rules
+* fixed: alt webp rewriting gets stuck when <head> tag has a space: <head >
+* fixed: notice thrown when trying to call unregister_setting before any settings were actually registered for EWWW
 
 = 2.5.1 =
 * added: Portuguese (Portugal) translation for pt_PT thanks to Celso Azevedo

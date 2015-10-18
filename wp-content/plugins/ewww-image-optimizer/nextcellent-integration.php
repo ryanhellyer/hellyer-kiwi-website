@@ -70,7 +70,7 @@ class ewwwngg {
 			}
 			ewww_image_optimizer($filename);
 			ewwwio_debug_message( "ngg_Thumbnail saved: $filename" );
-			$image_size = filesize($filename);
+			$image_size = ewww_image_optimizer_filesize( $filename );
 			ewwwio_debug_message( "image editor size: $image_size" );
 		}
 		ewww_image_optimizer_debug_log();
@@ -188,8 +188,8 @@ class ewwwngg {
 			// get the mimetype of the image
 			$type = ewww_image_optimizer_mimetype($file_path, 'i');
 			// retrieve the human-readable filesize of the image
-			$file_size = size_format(filesize($file_path), 2);
-			$file_size = str_replace('B ', 'B', $file_size);
+			$file_size = size_format( ewww_image_optimizer_filesize( $file_path ), 2 );
+			$file_size = str_replace( 'B ', 'B', $file_size );
 			//$file_size = ewww_image_optimizer_format_bytes(filesize($file_path));
 			$valid = true;
 			// check to see if we have a tool to handle the mimetype detected
