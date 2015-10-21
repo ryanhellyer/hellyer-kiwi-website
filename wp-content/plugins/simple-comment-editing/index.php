@@ -4,7 +4,7 @@ Plugin Name: Simple Comment Editing
 Plugin URI: http://wordpress.org/extend/plugins/simple-comment-editing/
 Description: Simple comment editing for your users.
 Author: Ronald Huereca
-Version: 1.8.1
+Version: 1.8.3
 Requires at least: 4.1
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
@@ -283,7 +283,16 @@ class Simple_Comment_Editing {
 	 	$query = $wpdb->prepare( "SELECT ( $comment_time * 60 - (UNIX_TIMESTAMP('" . current_time('mysql') . "') - UNIX_TIMESTAMP(comment_date))) comment_time FROM {$wpdb->comments} where comment_ID = %d", $comment_id );
 	 	$comment_time_result = $wpdb->get_row( $query, ARRAY_A );
 	 	
-	 	$time_left = absint( $comment_time_result[ 'comment_time' ] );
+	 	$time_left = $comment_time_result[ 'comment_time' ];
+	 	if ( $time_left < 0 ) {
+    	 	$response = array(
+    			'minutes' => 0,
+    			'comment_id' => $comment_id, 
+    			'seconds' => 0,
+    			'can_edit' => false
+    		);
+    		die( json_encode( $response ) );
+        }
 	 	$minutes = floor( $time_left / 60 );
 		$seconds = $time_left - ( $minutes * 60 );
 		$response = array(
@@ -561,8 +570,9 @@ class Simple_Comment_Editing {
 		//Check to see if time has elapsed for the comment
 		$comment_timestamp = strtotime( $comment->comment_date );
 		$time_elapsed = current_time( 'timestamp', get_option( 'gmt_offset' ) ) - $comment_timestamp;
-		$minuted_elapsed = round( ( ( ( $time_elapsed % 604800 ) % 86400 )  % 3600 ) / 60 );
-		if ( ( $minuted_elapsed - $this->comment_time ) > 0 ) return false;
+		$minutes_elapsed = ( ( ( $time_elapsed % 604800 ) % 86400 )  % 3600 ) / 60;
+		
+		if ( ( $minutes_elapsed - $this->comment_time ) >= 0 ) return false;
 		
 		$comment_date_gmt = date( 'Y-m-d', strtotime( $comment->comment_date_gmt ) );
 		$cookie_hash = md5( $comment->comment_author_IP . $comment_date_gmt . $comment->user_id . $comment->comment_agent );
