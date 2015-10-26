@@ -258,6 +258,7 @@ class Spam_Destroyer {
 
 			// Check the hidden input field against the key
 			if ( $_POST['killer_value'] != $this->spam_key ) {
+echo $_POST['killer_value']."\n";
 echo $this->spam_key;die;
 				$this->comment_issue = 'hidden-field-not-set';
 				$this->kill_spam_dead( $comment ); // BOOM! Silly billy didn't have the correct input field so killing it before it reaches your eyes.
