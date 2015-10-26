@@ -9,7 +9,7 @@
  */
 class Spam_Destroyer {
 
-	public $version = '2.0';                     // The pluin version number
+	public $version = '2.0';                       // The pluin version number
 	public $spam_key;                              // Key used for confirmation of bot-like behaviour
 	public $speed = 2;                             // Will be killed as spam if posted faster than this
 	public $encryption_method = 'AES-256-CBC';     // The encryption method used
@@ -258,6 +258,7 @@ class Spam_Destroyer {
 
 			// Check the hidden input field against the key
 			if ( $_POST['killer_value'] != $this->spam_key ) {
+echo $this->spam_key;die;
 				$this->comment_issue = 'hidden-field-not-set';
 				$this->kill_spam_dead( $comment ); // BOOM! Silly billy didn't have the correct input field so killing it before it reaches your eyes.
 			}
