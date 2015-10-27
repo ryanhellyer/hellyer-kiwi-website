@@ -354,11 +354,11 @@ class Spam_Destroyer {
 
 		if ( function_exists( 'openssl_decrypt' ) ) {
 			$text = openssl_decrypt(
-				$text, // The text to be decrypted
+				$text,                    // The text to be decrypted
 				$this->encryption_method, // The cipher method
-				$this->spam_key, // The password
-				0, // Options - leave at 0
-				'ik3m3mfmenektn37' // Initialization vector
+				$this->spam_key,          // The password
+				0,                        // Options - leave at 0
+				'ik3m3mfmenektn37'        // Initialization vector
 			);
 		}
 
