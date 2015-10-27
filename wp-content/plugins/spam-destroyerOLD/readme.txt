@@ -3,7 +3,7 @@ Contributors: ryanhellyer, bjornjohansen, dimadin, brianlayman, forsite
 Donate link: http://geek.ryanhellyer.net/products/spam-destroyer/
 Tags: spam, comments, anti-spam, antispam, buddypress, bbpress, kill, destroy, eliminate, registration, register, registrate, captcha
 Requires at least: 4.0
-Tested up to: 4.5
+Tested up to: 4.4
 Stable tag: 2.0.2
 Text Domain: spam-destroyer
 License: GPLv2 or later
