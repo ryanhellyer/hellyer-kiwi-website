@@ -49,6 +49,10 @@ class DotOrg_Plugin_Review {
 
 	/**
 	 * Seconds to words.
+	 * Returns a human readable string to describe the number of seconds.
+	 *
+	 * @param   int     $seconds  The number of seconds
+	 * @return  string            A written description of the time
 	 */
 	public function seconds_to_words( $seconds ) {
 
