@@ -71,7 +71,7 @@ class ewwwngg {
 			wp_die( __( 'Access denied.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 		}?> 
 		<div class="wrap">
-                <div id="icon-upload" class="icon32"></div><h2><?php _e('Bulk Thumbnail Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?></h2>
+                <div id="icon-upload" class="icon32"></div><h1><?php _e('Bulk Thumbnail Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?></h1>
 <?php		$images = unserialize ($_POST['ewww_attachments']);
 		// initialize $current, and $started time
 		$started = time();
@@ -231,7 +231,7 @@ class ewwwngg {
                 }
                 ?>
 		<div class="wrap">
-                <div id="icon-upload" class="icon32"></div><h2><?php _e('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?></h2>
+                <div id="icon-upload" class="icon32"></div><h1><?php _e('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?></h1>
                 <?php
                 // Retrieve the value of the 'bulk resume' option and set the button text for the form to use
                 $resume = get_option('ewww_image_optimizer_bulk_ngg_resume');

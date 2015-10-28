@@ -8,7 +8,7 @@ function ewww_image_optimizer_bulk_preview() {
 	$upload_import = true;
 ?>
 	<div class="wrap"> 
-	<div id="icon-upload" class="icon32"><br /></div><h2><?php _e( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h2>
+	<div id="icon-upload" class="icon32"><br /></div><h1><?php _e( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h1>
 <?php	// Retrieve the value of the 'bulk resume' option and set the button text for the form to use
 	$resume = get_option( 'ewww_image_optimizer_bulk_resume' );
 	if ( empty( $resume ) ) {
@@ -41,7 +41,7 @@ function ewww_image_optimizer_bulk_preview() {
 			<p><label for="ewww-delay" style="font-weight: bold"><?php _e( 'Choose how long to pause between images (in seconds, 0 = disabled)', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></label>&emsp;<input type="text" id="ewww-delay" name="ewww-delay" value="<?php if ( $delay = ewww_image_optimizer_get_option ( 'ewww_image_optimizer_delay' ) ) { echo $delay; } else { echo 0; } ?>"></p>
 			<div id="ewww-delay-slider" style="width:50%"></div>
 		</form>
-		<h3><?php _e( 'Optimize Media Library', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h3>
+		<h2><?php _e( 'Optimize Media Library', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h3>
 <?php		if ( $fullsize_count < 1 ) {
 			echo '<p>' . __( 'You do not appear to have uploaded any images yet.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . '</p>';
 		} else { ?>

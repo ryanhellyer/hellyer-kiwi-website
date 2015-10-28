@@ -26,7 +26,7 @@ function ewww_image_optimizer_aux_images () {
 	}
 	date_default_timezone_set( $site_timezone );
 	?>
-	<h3><?php _e( 'Optimize Everything Else', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h3>
+	<h2><?php _e( 'Optimize Everything Else', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></h2>
 		<div id="ewww-aux-forms"><p class="ewww-bulk-info"><?php _e( 'Use this tool to optimize images outside of the Media Library and galleries where we have full integration. Examples: theme images, BuddyPress, WP Symposium, and any folders that you have specified on the settings page.', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></p>
 		<?php if ( ! empty( $db_convert ) ) { ?>
 			<p class="ewww-bulk-info"><?php _e( 'The database schema has changed, you need to convert to the new format.', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></p>

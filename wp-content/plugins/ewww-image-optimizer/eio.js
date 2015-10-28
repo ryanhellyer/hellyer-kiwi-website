@@ -360,7 +360,7 @@ jQuery(document).ready(function($) {
 		$('#ewww-bulk-stop').show();
 		$('.ewww-bulk-form').hide();
 		$('.ewww-bulk-info').hide();
-		$('h3').hide();
+		$('h2').hide();
 	        $.post(ajaxurl, ewww_init_data, function(response) {
 	                $('#ewww-bulk-loading').html(response);
 			$('#ewww-bulk-progressbar').progressbar({ max: ewww_attachments.length });
@@ -478,7 +478,7 @@ jQuery(document).ready(function($) {
 			$('#ewww-table-info').show();
 			$('.ewww-bulk-form').show();
 			$('.ewww-media-info').show();
-			$('h3').show();
+			$('h2').show();
 			if (ewww_aux == true) {
 				$('#ewww-aux-first').hide();
 				$('#ewww-aux-again').show();

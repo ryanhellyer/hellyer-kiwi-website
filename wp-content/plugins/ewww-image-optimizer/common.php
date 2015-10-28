@@ -1,9 +1,10 @@
 <?php
 // common functions for Standard and Cloud plugins
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '252.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '253.0' );
 
 // TODO: escape all html attributes properly, with esc_attr() or esc_attr__()
+// TODO: imagemagick settings here: http://www.smashingmagazine.com/2015/06/efficient-image-resizing-with-imagemagick/
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -165,11 +166,13 @@ function ewww_image_optimizer_buffer_end() {
 function ewww_image_optimizer_filter_page_output( $buffer ) {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	if ( empty ( $buffer ) || is_admin() ) {
+		ewww_image_optimizer_debug_log();
 		return $buffer;
 	}
 	// modify buffer here, and then return the updated code
 	if ( class_exists( 'DOMDocument' ) ) {
 		if ( preg_match( '/<\?xml/', $buffer ) ) {
+			ewww_image_optimizer_debug_log();
 			return $buffer;
 		}
 		$expanded_head = false;
@@ -179,6 +182,7 @@ function ewww_image_optimizer_filter_page_output( $buffer ) {
 			preg_match( '/.+<head [^>]*>/s', $buffer, $html_head );
 			if ( empty( $html_head ) ) {
 				ewwwio_debug_message( 'did not find expanded head tag either' );
+				ewww_image_optimizer_debug_log();
 				return $buffer;
 			}
 		}
@@ -192,6 +196,7 @@ function ewww_image_optimizer_filter_page_output( $buffer ) {
 			$buffer = mb_convert_encoding( $buffer, 'HTML-ENTITIES', 'UTF-8' );
 		} elseif ( ! defined( 'LIBXML_VERSION' ) ) {
 			ewwwio_debug_message( 'cannot detect libxml version' );
+			ewww_image_optimizer_debug_log();
 			return $buffer;
 		}
 		if ( preg_match( '/<.DOCTYPE.+xhtml/', $buffer ) ) {
@@ -208,14 +213,34 @@ function ewww_image_optimizer_filter_page_output( $buffer ) {
 			if ( $image->parentNode->tagName == 'noscript' ) {
 				continue;
 			}
+			$srcset = '';
 			ewwwio_debug_message( 'parsing an image' );
 			$home_url = get_site_url();
 			$file = $image->getAttribute( 'src' );
 			$filepath = ABSPATH . str_replace( $home_url, '', $file );
+			ewwwio_debug_message( "the image is at $filepath" );
 			if ( file_exists( $filepath . '.webp' ) ) {
 				$nscript = $html->createElement( 'noscript' );
 				$nscript->setAttribute( 'data-img', $file );
 				$nscript->setAttribute( 'data-webp', $file . '.webp' );
+				if ( $image->getAttribute( 'srcset' ) ) {
+					$srcset = $image->getAttribute( 'srcset' );
+					preg_match_all( '/http\S+/', $srcset, $srcset_urls );
+					if ( ! empty( $srcset_urls ) ) {
+						ewwwio_debug_message( 'found srcset urls' );
+						$srcset_webp = $srcset;
+						foreach ( $srcset_urls[0] as $srcurl ) {
+							$srcfilepath = ABSPATH . str_replace( $home_url, '', $srcurl );
+							ewwwio_debug_message( "looking for srcurl on disk: $srcfilepath" );
+							if ( file_exists( $srcfilepath . '.webp' ) ) {
+								$srcset_webp = preg_replace( "|$srcurl|", $srcurl . '.webp', $srcset_webp );
+								ewwwio_debug_message( "replacing $srcurl in $srcset_webp" );
+							}
+						}
+						$nscript->setAttribute( 'data-srcset-webp', $srcset_webp );
+					}
+					$nscript->setAttribute( 'data-srcset-img', $image->getAttribute( 'srcset' ) );
+				}
 				if ( $image->getAttribute( 'align' ) )
 					$nscript->setAttribute( 'data-align', $image->getAttribute( 'align' ) );
 				if ( $image->getAttribute( 'alt' ) )
@@ -268,6 +293,8 @@ function ewww_image_optimizer_filter_page_output( $buffer ) {
 					$nscript->setAttribute('data-title', $image->getAttribute('title'));
 				if ( $image->getAttribute('translate') )
 					$nscript->setAttribute('data-translate', $image->getAttribute('translate'));
+				if ( $image->getAttribute('sizes') )
+					$nscript->setAttribute('data-sizes', $image->getAttribute('sizes'));
 				$nscript->setAttribute('class', 'ewww_webp');
 				$image->parentNode->replaceChild($nscript, $image);
 				$nscript->appendChild($image);
@@ -331,6 +358,7 @@ function ewww_image_optimizer_filter_page_output( $buffer ) {
 //		ewwwio_debug_message( substr( $buffer, 0, 500 ) );
 //		ewww_image_optimizer_debug_log();
 	}
+	ewww_image_optimizer_debug_log();
 	return $buffer;
 }
 
@@ -857,6 +885,7 @@ function ewww_image_optimizer_auto() {
 		$delay = ewww_image_optimizer_get_option( 'ewww_image_optimizer_delay' );		
 		$attachments = get_option( 'ewww_image_optimizer_aux_attachments' );
 		if ( ! empty( $attachments ) ) {
+			global $wpdb;
 			$query = "SELECT path,image_size FROM $wpdb->ewwwio_images";
 			$already_optimized = $wpdb->get_results( $query, ARRAY_A );
 			foreach ( $attachments as $attachment ) {
@@ -1086,7 +1115,7 @@ function ewww_image_optimizer_retina ( $id, $retina_path ) {
 // list IMS images and optimization status
 function ewww_image_optimizer_ims() {
 	$ims_columns = get_column_headers('ims_gallery');
-	echo "<div class='wrap'><h3>" . __('Image Store Optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</h3>";
+	echo "<div class='wrap'><h1>" . __('Image Store Optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</h1>";
 	if (empty($_REQUEST['ewww_gid'])) {
 		$galleries = get_posts( array(
 	                'numberposts' => -1,
@@ -1169,7 +1198,7 @@ function ewww_image_optimizer_webp_load_jquery() {
 function ewww_image_optimizer_webp_inline_script() {
 ?>
 <script>
-function check_webp_feature(t,a){var e={lossy:"UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",lossless:"UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",alpha:"UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",animation:"UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"},A=new Image;A.onload=function(){var t=A.width>0&&A.height>0;a(t)},A.onerror=function(){a(!1)},A.src="data:image/webp;base64,"+e[t]}function ewww_load_images(t){!function(a){t&&(a(".batch-image img, .image-wrapper a, .ngg-pro-masonry-item a").each(function(){var t=a(this).attr("data-webp");"undefined"!=typeof t&&t!==!1&&a(this).attr("data-src",t);var t=a(this).attr("data-webp-thumbnail");"undefined"!=typeof t&&t!==!1&&a(this).attr("data-thumbnail",t)}),a(".image-wrapper a, .ngg-pro-masonry-item a").each(function(){var t=a(this).attr("data-webp");"undefined"!=typeof t&&t!==!1&&a(this).attr("href",t)})),a(".ewww_webp").each(function(){var e=document.createElement("img");t?a(e).attr("src",a(this).attr("data-webp")):a(e).attr("src",a(this).attr("data-img"));var A=a(this).attr("data-align");"undefined"!=typeof A&&A!==!1&&a(e).attr("align",A);var A=a(this).attr("data-alt");"undefined"!=typeof A&&A!==!1&&a(e).attr("alt",A);var A=a(this).attr("data-border");"undefined"!=typeof A&&A!==!1&&a(e).attr("border",A);var A=a(this).attr("data-crossorigin");"undefined"!=typeof A&&A!==!1&&a(e).attr("crossorigin",A);var A=a(this).attr("data-height");"undefined"!=typeof A&&A!==!1&&a(e).attr("height",A);var A=a(this).attr("data-hspace");"undefined"!=typeof A&&A!==!1&&a(e).attr("hspace",A);var A=a(this).attr("data-ismap");"undefined"!=typeof A&&A!==!1&&a(e).attr("ismap",A);var A=a(this).attr("data-longdesc");"undefined"!=typeof A&&A!==!1&&a(e).attr("longdesc",A);var A=a(this).attr("data-usemap");"undefined"!=typeof A&&A!==!1&&a(e).attr("usemap",A);var A=a(this).attr("data-vspace");"undefined"!=typeof A&&A!==!1&&a(e).attr("vspace",A);var A=a(this).attr("data-width");"undefined"!=typeof A&&A!==!1&&a(e).attr("width",A);var A=a(this).attr("data-accesskey");"undefined"!=typeof A&&A!==!1&&a(e).attr("accesskey",A);var A=a(this).attr("data-class");"undefined"!=typeof A&&A!==!1&&a(e).attr("class",A);var A=a(this).attr("data-contenteditable");"undefined"!=typeof A&&A!==!1&&a(e).attr("contenteditable",A);var A=a(this).attr("data-contextmenu");"undefined"!=typeof A&&A!==!1&&a(e).attr("contextmenu",A);var A=a(this).attr("data-dir");"undefined"!=typeof A&&A!==!1&&a(e).attr("dir",A);var A=a(this).attr("data-draggable");"undefined"!=typeof A&&A!==!1&&a(e).attr("draggable",A);var A=a(this).attr("data-dropzone");"undefined"!=typeof A&&A!==!1&&a(e).attr("dropzone",A);var A=a(this).attr("data-hidden");"undefined"!=typeof A&&A!==!1&&a(e).attr("hidden",A);var A=a(this).attr("data-id");"undefined"!=typeof A&&A!==!1&&a(e).attr("id",A);var A=a(this).attr("data-lang");"undefined"!=typeof A&&A!==!1&&a(e).attr("lang",A);var A=a(this).attr("data-spellcheck");"undefined"!=typeof A&&A!==!1&&a(e).attr("spellcheck",A);var A=a(this).attr("data-style");"undefined"!=typeof A&&A!==!1&&a(e).attr("style",A);var A=a(this).attr("data-tabindex");"undefined"!=typeof A&&A!==!1&&a(e).attr("tabindex",A);var A=a(this).attr("data-title");"undefined"!=typeof A&&A!==!1&&a(e).attr("title",A);var A=a(this).attr("data-translate");"undefined"!=typeof A&&A!==!1&&a(e).attr("translate",A),a(this).after(e)})}(jQuery)}check_webp_feature("alpha",ewww_load_images);
+function check_webp_feature(t,a){var e={lossy:"UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",lossless:"UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",alpha:"UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",animation:"UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"},r=new Image;r.onload=function(){var t=r.width>0&&r.height>0;a(t)},r.onerror=function(){a(!1)},r.src="data:image/webp;base64,"+e[t]}function ewww_load_images(t){!function(a){t&&(a(".batch-image img, .image-wrapper a, .ngg-pro-masonry-item a").each(function(){var t=a(this).attr("data-webp");"undefined"!=typeof t&&t!==!1&&a(this).attr("data-src",t);var t=a(this).attr("data-webp-thumbnail");"undefined"!=typeof t&&t!==!1&&a(this).attr("data-thumbnail",t)}),a(".image-wrapper a, .ngg-pro-masonry-item a").each(function(){var t=a(this).attr("data-webp");"undefined"!=typeof t&&t!==!1&&a(this).attr("href",t)})),a(".ewww_webp").each(function(){var e=document.createElement("img");if(t){a(e).attr("src",a(this).attr("data-webp"));var r=a(this).attr("data-srcset-webp");"undefined"!=typeof r&&r!==!1&&a(e).attr("srcset",r)}else{a(e).attr("src",a(this).attr("data-img"));var r=a(this).attr("data-srcset-img");"undefined"!=typeof r&&r!==!1&&a(e).attr("srcset",r)}var r=a(this).attr("data-align");"undefined"!=typeof r&&r!==!1&&a(e).attr("align",r);var r=a(this).attr("data-alt");"undefined"!=typeof r&&r!==!1&&a(e).attr("alt",r);var r=a(this).attr("data-border");"undefined"!=typeof r&&r!==!1&&a(e).attr("border",r);var r=a(this).attr("data-crossorigin");"undefined"!=typeof r&&r!==!1&&a(e).attr("crossorigin",r);var r=a(this).attr("data-height");"undefined"!=typeof r&&r!==!1&&a(e).attr("height",r);var r=a(this).attr("data-hspace");"undefined"!=typeof r&&r!==!1&&a(e).attr("hspace",r);var r=a(this).attr("data-ismap");"undefined"!=typeof r&&r!==!1&&a(e).attr("ismap",r);var r=a(this).attr("data-longdesc");"undefined"!=typeof r&&r!==!1&&a(e).attr("longdesc",r);var r=a(this).attr("data-usemap");"undefined"!=typeof r&&r!==!1&&a(e).attr("usemap",r);var r=a(this).attr("data-vspace");"undefined"!=typeof r&&r!==!1&&a(e).attr("vspace",r);var r=a(this).attr("data-width");"undefined"!=typeof r&&r!==!1&&a(e).attr("width",r);var r=a(this).attr("data-accesskey");"undefined"!=typeof r&&r!==!1&&a(e).attr("accesskey",r);var r=a(this).attr("data-class");"undefined"!=typeof r&&r!==!1&&a(e).attr("class",r);var r=a(this).attr("data-contenteditable");"undefined"!=typeof r&&r!==!1&&a(e).attr("contenteditable",r);var r=a(this).attr("data-contextmenu");"undefined"!=typeof r&&r!==!1&&a(e).attr("contextmenu",r);var r=a(this).attr("data-dir");"undefined"!=typeof r&&r!==!1&&a(e).attr("dir",r);var r=a(this).attr("data-draggable");"undefined"!=typeof r&&r!==!1&&a(e).attr("draggable",r);var r=a(this).attr("data-dropzone");"undefined"!=typeof r&&r!==!1&&a(e).attr("dropzone",r);var r=a(this).attr("data-hidden");"undefined"!=typeof r&&r!==!1&&a(e).attr("hidden",r);var r=a(this).attr("data-id");"undefined"!=typeof r&&r!==!1&&a(e).attr("id",r);var r=a(this).attr("data-lang");"undefined"!=typeof r&&r!==!1&&a(e).attr("lang",r);var r=a(this).attr("data-spellcheck");"undefined"!=typeof r&&r!==!1&&a(e).attr("spellcheck",r);var r=a(this).attr("data-style");"undefined"!=typeof r&&r!==!1&&a(e).attr("style",r);var r=a(this).attr("data-tabindex");"undefined"!=typeof r&&r!==!1&&a(e).attr("tabindex",r);var r=a(this).attr("data-title");"undefined"!=typeof r&&r!==!1&&a(e).attr("title",r);var r=a(this).attr("data-translate");"undefined"!=typeof r&&r!==!1&&a(e).attr("translate",r);var r=a(this).attr("data-sizes");"undefined"!=typeof r&&r!==!1&&a(e).attr("sizes",r),a(this).after(e)})}(jQuery)}check_webp_feature("alpha",ewww_load_images);
 </script>
 <?php
 }
@@ -1181,17 +1210,6 @@ function ewww_image_optimizer_media_scripts($hook) {
 		wp_enqueue_style('jquery-ui-tooltip-custom', plugins_url('jquery-ui-1.10.1.custom.css', __FILE__));
 	}
 }
-
-// TODO: get rid of this function
-// used to output any debug messages available
-/*function ewww_image_optimizer_debug() {
-	if (ewww_image_optimizer_get_option('ewww_image_optimizer_debug')) {
-		global $ewww_debug;
-		echo '<div style="background-color:#ffff99;position:relative;bottom:60px;padding:5px 20px 10px;margin:0 0 15px 0px"><h3>Debug Log</h3>' . $ewww_debug . '</div>';
-		//echo '<div style="background-color:#ffff99;position:relative;bottom:60px;padding:5px 20px 10px;margin:0 0 15px 160px"><h3>Debug Log</h3>' . $ewww_debug . '</div>';
-	}
-	ewwwio_memory( __FUNCTION__ );
-}*/
 
 // used to output debug messages to a logfile in the plugin folder in cases where output to the screen is a bad idea
 function ewww_image_optimizer_debug_log() {
@@ -1575,7 +1593,7 @@ function ewww_image_optimizer_cloud_verify ( $cache = true, $api_key = '' ) {
 	if ( empty( $api_key ) ) {
 		$api_key = ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_key');
 	}
-	if (empty($api_key)) {
+	if ( empty( $api_key ) ) {
 		update_site_option('ewww_image_optimizer_cloud_jpg', '');
 		update_site_option('ewww_image_optimizer_cloud_png', '');
 		update_site_option('ewww_image_optimizer_cloud_gif', '');
@@ -2946,7 +2964,7 @@ function ewww_image_optimizer_display_unoptimized_media() {
 	update_option( 'ewww_image_optimizer_bulk_resume', '' );
 	$attachments = ewww_image_optimizer_count_optimized( 'media', true );
 	update_option( 'ewww_image_optimizer_bulk_resume', $bulk_resume );
-	echo "<div class='wrap'><h3>" . __('Unoptimized Images', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</h3>";
+	echo "<div class='wrap'><h1>" . __('Unoptimized Images', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</h1>";
 	printf( '<p>' . __( 'We have %d images to optimize.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . '</p>', count( $attachments ) );
 	if ( count( $attachments ) != 0 ) {
 		sort($attachments, SORT_NUMERIC);
@@ -3171,7 +3189,7 @@ function ewww_image_optimizer_options () {
 //		".ewww-name-spacer { background-color: #1e4378; margin: 0 0 0 -20px; padding-left: 10px; }\n" .
 	"</style>\n";
 	$output[] = "<div class='wrap'>\n";
-	$output[] = "<h2>EWWW Image Optimizer</h2>\n";
+	$output[] = "<h1>EWWW Image Optimizer</h1>\n";
 	$output[] = "<div id='ewww-container-left' style='float: left; margin-right: 225px;'>\n";
 	$output[] = "<p><a href='https://wordpress.org/extend/plugins/ewww-image-optimizer/'>" . __('Plugin Home Page', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</a> | " .
 		"<a href='https://wordpress.org/extend/plugins/ewww-image-optimizer/installation/'>" .  __('Installation Instructions', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</a> | " .
@@ -3190,10 +3208,10 @@ function ewww_image_optimizer_options () {
 	}
 	$output[] = "<div id='ewww-widgets' class='metabox-holder'><div class='meta-box-sortables'><div id='ewww-status' class='postbox'>\n" .
 		"<div class='handlediv' title='" . esc_attr__('Click to toggle') . "'><br></div>" .
-		"<h3 class='hndle'>" . __('Plugin Status', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&emsp;" .
+		"<h2 class='hndle'>" . __('Plugin Status', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&emsp;" .
 			"<span id='ewww-status-ok' style='display: none; color: green;'>" . __('All Clear', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</span>" . 
 			"<span id='ewww-status-attention' style='color: red;'>" . __('Requires Attention', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</span>"  .
-		"</h3>\n" .
+		"</h2>\n" .
 			"<div class='inside'>" .
 			"<b>" . __('Total Savings:', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</b> <span id='ewww-total-savings'>" . size_format( ewww_image_optimizer_savings(), 2 ) . "</span><br>";
 			if (ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_key')) {
@@ -3580,7 +3598,7 @@ function ewww_image_optimizer_options () {
 		}
 		$output[] = "</div><!-- end container left -->\n";
 		$output[] = "<div id='ewww-container-right' style='border: 1px solid #e5e5e5; float: right; margin-left: -215px; padding: 0em 1.5em 1em; background-color: #fff; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04); display: inline-block; width: 174px;'>\n" .
-			"<h3>" . __( 'Support EWWW I.O.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</h3>\n" .
+			"<h2>" . __( 'Support EWWW I.O.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</h2>\n" .
 			"<p>" . __( 'Would you like to help support development of this plugin?', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</p>\n" .
 			"<p><a href='https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/'>" . __( 'Help translate EWWW I.O.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</a></p>\n" .
 			"<p><a href='https://wordpress.org/support/view/plugin-reviews/ewww-image-optimizer#postform'>" . __( 'Write a review.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</a></p>\n" .

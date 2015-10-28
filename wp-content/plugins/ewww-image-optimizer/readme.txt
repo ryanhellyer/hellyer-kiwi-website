@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: image, attachment, optimize, optimization, lossless, lossy, photo, picture, seo, compression, gmagick, jpegtran, gifsicle, optipng, pngout, pngquant, jpegmini, tinyjpg, tinypng, webp, wp-cli 
 Requires at least: 3.5
 Tested up to: 4.3.1
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 License: GPLv3
 
 Reduce file sizes for images in WordPress including NextGEN, GRAND FlAGallery and more using lossless/lossy methods and image format conversion.
@@ -215,6 +215,13 @@ Pngout, TinyJPG/TinyPNG, JPEGmini, and Pngquant were recommended by EWWW IO user
 
 * feature requests are sticky at the top of the support forums, vote for the ones you like: https://wordpress.org/support/plugin/ewww-image-optimizer
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
+
+= 2.5.3 =
+* fixed: wpdb call causes error during scheduled optimization
+* fixed: mismatched CN for SSL certs on cloud servers
+* changed: French, Bulgarian, Romanian, German and Polish translations have been moved to language packs for auto-updating
+* changed: allow 755 or greater permissions instead of only 755 for local binaries
+* added: Alt WebP Rewriting supports new srcset and sizes attributes in WordPress 4.4
 
 = 2.5.2 =
 * new: all our installation videos have been re-done so that they are up-to-date and answer some common questions
