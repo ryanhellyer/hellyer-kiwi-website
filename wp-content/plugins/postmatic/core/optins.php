@@ -347,7 +347,9 @@ class Prompt_Optins extends Prompt_Core {
 	 * @return bool
 	 */
 	protected static function should_add_inpost() {
-		if ( ! is_single() ) {
+		$enable_post_types = apply_filters( 'prompt/optins/inpost_post_types', array( 'post' ) );
+
+		if ( ! is_singular( $enable_post_types ) ) {
 			return false;
 		}
 

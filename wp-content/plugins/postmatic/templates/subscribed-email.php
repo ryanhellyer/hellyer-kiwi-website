@@ -31,16 +31,13 @@
 
 <?php if ( $latest_post ) : ?>
 	<h2><?php the_title(); ?></h2>
-	<div>
+	<div class="postmatic-content">
 		<?php the_content(); ?>
 		<p class="aligncenter">
 			<a href="<?php the_permalink(); ?>" class="btn-secondary"><?php _e( 'View this post online', 'Postmatic' ); ?></a>
 		</p>
 	</div>
 
-	<p id="button"><a href="<?php the_permalink(); ?>#comments" class="btn-secondary">
-			<?php _e( 'View this conversation online', 'Postmatic' ); ?></a>
-	</p>
 <?php elseif ( $comments ) : ?>
 
 	<h3><?php __( "Want to catch up? Here are the 30 most recent comments:", 'Postmatic' ); ?></h3>

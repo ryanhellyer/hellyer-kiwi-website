@@ -27,15 +27,31 @@ class Prompt_Rescheduler {
 	 */
 	public function found_temporary_error() {
 
-		if ( ! is_wp_error( $this->job_result ) )
-			return false;
+		if ( $this->is_service_unavailable() ) {
+			return true;
+		}
 
-		if ( 'http_request_failed' != $this->job_result->get_error_code() )
+		if ( ! is_wp_error( $this->job_result ) ) {
 			return false;
+		}
 
-		$error_message_pattern = '/(Failed to connect|Couldn\'t resolve host|name lookup timed out|couldn\'t connect to host)/';
-		if ( ! preg_match( $error_message_pattern, $this->job_result->get_error_message() ) )
+		if ( 'http_request_failed' != $this->job_result->get_error_code() ) {
 			return false;
+		}
+
+		$error_message_patterns = array(
+			'Failed to connect',
+			'Couldn\'t resolve host',
+			'name lookup timed out',
+			'couldn\'t connect to host',
+			'Connection refused',
+		);
+
+		$error_message_pattern = '/(' . implode( '|', $error_message_patterns ) . ')/';
+
+		if ( ! preg_match( $error_message_pattern, $this->job_result->get_error_message() ) ) {
+			return false;
+		}
 
 		return true;
 	}
@@ -68,5 +84,25 @@ class Prompt_Rescheduler {
 		$args[] = $next_wait;
 
 		wp_schedule_single_event( $retry_time, $hook, $args );
+	}
+
+	/**
+	 * Whether the job result indicates that the service is unavailable and will return.
+	 *
+	 * @since 1.4.10
+	 *
+	 * @return boolean
+	 */
+	protected function is_service_unavailable() {
+
+		if ( !is_array( $this->job_result ) ) {
+			return false;
+		}
+
+		if ( !isset( $this->job_result['response']['code'] ) ) {
+			return false;
+		}
+
+		return ( 503 == $this->job_result['response']['code'] );
 	}
 }

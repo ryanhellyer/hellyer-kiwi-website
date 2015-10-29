@@ -28,7 +28,7 @@
 <?php endif; ?>
 
 <div class="padded">
-<div id="the_content">
+<div id="the_content postmatic-content">
 	<?php $excerpt_only ? the_excerpt() : the_content(); ?>
 </div>
 

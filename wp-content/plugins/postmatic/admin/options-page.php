@@ -420,12 +420,12 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	}
 
 	protected function site_matches( $url ) {
-		$url_parts = parse_url( $url );
+		$url_parts = parse_url( strtolower( $url ) );
 
 		if ( !isset( $url_parts['host'] ) or !isset( $url_parts['path'] ) )
 			return false;
 
-		$ajax_url_parts = parse_url( admin_url( 'admin-ajax.php' ) );
+		$ajax_url_parts = parse_url( strtolower( admin_url( 'admin-ajax.php' ) ) );
 
 		return ( $url_parts['host'] === $ajax_url_parts['host'] and $url_parts['path'] === $ajax_url_parts['path'] );
 	}

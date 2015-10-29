@@ -268,14 +268,14 @@
 		}
 
 		function set_manual_recipients() {
-			var input_text = $manual_addresses_input.val(),
-				recipients = input_text.split( /\s*[,\n\r]\s*/ );
+			var input_text = $manual_addresses_input.val();
 
 			if ( !input_text ) {
 				set_recipients( [] );
 				return;
 			}
 
+			var recipients = input_text.split( /\s*[,\n\r]\s*/ );
 			set_recipients( recipients );
 		}
 

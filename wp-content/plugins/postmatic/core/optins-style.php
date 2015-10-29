@@ -90,6 +90,20 @@ class Prompt_Optins_Style {
 				),
 				'label' => __( 'Green', 'Postmatic' ),
 			),
+			'lilac' => array(
+				'colors' => array(
+					'background' => '#eaecee',
+					'background-image' => 'e-white.png',
+					'button-background' => '#967095',
+					'accent' => '#eaecee',
+					'button-type' => '#fff',
+					'type' => '#171717',
+					'grad-end' => '#eaecee',	
+					'grad-start' => '#ffffff',
+					'border-color' => '#eaecee',
+				),
+				'label' => __( 'Lilac', 'Postmatic' ),
+			),
 		);
 	}
 

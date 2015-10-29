@@ -84,10 +84,18 @@ Find a few hundred more answers at our [big FAQ](http://gopostmatic.com/faq/).
 
 == Changelog ==
 
+= 1.4.10 =
+
+- The below-the-post optin now will only show up on the 'posts' content type.
+- Added initial support for Shortcodes Ultimate column layouts, pullquotes, and other box-related doohikies. Improved styling of all coming soon.
+- Improved support for Ultimate Book Blogger, including the book-info shortcode.
+- New optin style: lilac. Want a style for your site? Let us know. We're happy to cook more up.
+- Lots of under the hood tweaks and api changes as we gear up for 2.0.
+
 = 1.4.9 =
 
 - Nothing too exciting here. We've increased the timeout to reach our api which should reduce the number of messages not finding their way home.
-- Site admins can now manually unsubscribe users from conversations. Useful for a certain kinds of subscriber.
+- Site admins can now manually unsubscribe users from conversations. Useful for a certain kind of subscriber.
 - Updated Italian translation.
 - Updated German translation.
 - Added support for Simple Share Buttons Adder.

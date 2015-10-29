@@ -64,8 +64,9 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 
 		$reply = call_user_func( $this->implementation, $url, $request );
 
-		if ( !is_wp_error( $reply ) and isset( $reply['response']['code'] ) and 400 == $reply['response']['code'] )
+		if ( !is_wp_error( $reply ) and isset( $reply['response']['code'] ) and 410 == $reply['response']['code'] ) {
 			Prompt_Core::$options->set( 'upgrade_required', true );
+		}
 
 		return $reply;
 	}
