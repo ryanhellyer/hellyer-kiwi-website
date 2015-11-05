@@ -2,13 +2,50 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-11-01 17:32:22+0000\n"
+"PO-Revision-Date: 2015-11-05 14:43:21+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/1.0-alpha-1100\n"
 "Project-Id-Version: Administration\n"
+
+#: wp-admin/theme-install.php:154
+msgid "If you have marked themes as favorites on WordPress.org, you can browse them here."
+msgstr "If you have marked themes as favourites on WordPress.org, you can browse them here."
+
+#: wp-admin/theme-install.php:142
+msgctxt "themes"
+msgid "Favorites"
+msgstr "Favourites"
+
+#: wp-admin/maint/repair.php:31
+msgid "Allow automatic database repair"
+msgstr "Allow automatic database repair"
+
+#: wp-admin/maint/repair.php:67
+msgid "Database repair results"
+msgstr "Database repair results"
+
+#: wp-admin/maint/repair.php:59
+msgid "Check secret keys"
+msgstr "Check secret keys"
+
+#: wp-admin/maint/repair.php:150
+msgid "WordPress database repair"
+msgstr "WordPress database repair"
+
+#: wp-admin/setup-config.php:133
+msgid "Before getting started"
+msgstr "Before getting started"
+
+#: wp-admin/setup-config.php:159
+msgid "Setup your database connection"
+msgstr "Setup your database connection"
+
+#: wp-admin/setup-config.php:349
+msgid "Successful database connection"
+msgstr "Successful database connection"
 
 #. translators: %s: walker class name
 #: wp-admin/includes/nav-menu.php:907
@@ -106,7 +143,7 @@ msgstr "%s files"
 msgid "Filter themes list"
 msgstr "Filter themes list"
 
-#: wp-admin/theme-install.php:176
+#: wp-admin/theme-install.php:191
 msgid "Themes list"
 msgstr "Themes list"
 
@@ -847,7 +884,7 @@ msgstr "Log Out Everywhere Else"
 
 #. translators: The non-breaking space prevents 1Password from thinking the
 #. text "log in" should trigger a password save prompt.
-#: wp-admin/install.php:151
+#: wp-admin/install.php:152
 msgid "You will need this password to log&nbsp;in. Please store it in a secure location."
 msgstr "You will need this password to log&nbsp;in. Please store it in a secure location."
 
@@ -873,7 +910,7 @@ msgstr[1] "%s approved comments"
 msgid "No comments"
 msgstr "No Comments"
 
-#: wp-admin/includes/ajax-actions.php:3189
+#: wp-admin/includes/ajax-actions.php:3198
 msgid "Image could not be processed."
 msgstr "Image could not be processed."
 
@@ -914,7 +951,7 @@ msgstr "Network Activate %s"
 msgid "Activate %s"
 msgstr "Activate %s"
 
-#: wp-admin/install.php:169 wp-admin/user-edit.php:489
+#: wp-admin/install.php:170 wp-admin/user-edit.php:489
 #: wp-admin/user-new.php:435
 msgid "Confirm use of weak password"
 msgstr "Confirm use of weak password"
@@ -923,13 +960,13 @@ msgstr "Confirm use of weak password"
 msgid "A password reset link will be sent to the user via email."
 msgstr "A password reset link will be sent to the user via email."
 
-#: wp-admin/install.php:165 wp-admin/user-edit.php:485
+#: wp-admin/install.php:166 wp-admin/user-edit.php:485
 #: wp-admin/user-new.php:431
 msgid "Confirm Password"
 msgstr "Confirm Password"
 
 #. Translators: 1: wp-config.php; 2: Secret key service URL.
-#: wp-admin/maint/repair.php:56
+#: wp-admin/maint/repair.php:62
 msgid "While you are editing your %1$s file, take a moment to make sure you have all 8 keys and that they are unique. You can generate these using the <a href=\"%2$s\">WordPress.org secret key service</a>."
 msgstr "While you are editing your %1$s file, take a moment to make sure you have all 8 keys and that they are unique. You can generate these using the <a href=\"%2$s\">WordPress.org secret key service</a>."
 
@@ -943,7 +980,7 @@ msgstr "Site Icons"
 msgid "Show more details"
 msgstr "Show more details"
 
-#: wp-admin/install.php:248
+#: wp-admin/install.php:249
 msgid "The constant DO_NOT_UPGRADE_GLOBAL_TABLES cannot be defined when installing WordPress."
 msgstr "The constant DO_NOT_UPGRADE_GLOBAL_TABLES cannot be defined when installing WordPress."
 
@@ -1261,7 +1298,7 @@ msgstr "You cannot update because <a href=\"https://codex.wordpress.org/Version_
 msgid "You cannot update because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s."
 msgstr "You cannot update because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s."
 
-#: wp-admin/install.php:229
+#: wp-admin/install.php:230
 msgid "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s."
 msgstr "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s."
 
@@ -1273,11 +1310,11 @@ msgstr "<a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> 
 msgid "<a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> is available! Please notify the site administrator."
 msgstr "<a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> is available! Please notify the site administrator."
 
-#: wp-admin/install.php:231
+#: wp-admin/install.php:232
 msgid "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires PHP version %2$s or higher. You are running version %3$s."
 msgstr "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires PHP version %2$s or higher. You are running version %3$s."
 
-#: wp-admin/install.php:233
+#: wp-admin/install.php:234
 msgid "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s."
 msgstr "You cannot install because <a href=\"https://codex.wordpress.org/Version_%1$s\">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s."
 
@@ -1572,7 +1609,7 @@ msgstr "Open Press This"
 msgid "Follow the link to open Press This. Then add it to your device&#8217;s bookmarks or home screen."
 msgstr "Follow the link to open Press This. Then add it to your device&#8217;s bookmarks or home screen."
 
-#: wp-admin/theme-install.php:250
+#: wp-admin/theme-install.php:265
 msgid "This theme has not been rated yet."
 msgstr "This theme has not been rated yet."
 
@@ -1793,11 +1830,11 @@ msgstr "M j, Y @ H:i"
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:333
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:353
 #: wp-admin/includes/class-wp-ms-users-list-table.php:285
-#: wp-admin/includes/class-wp-posts-list-table.php:969
+#: wp-admin/includes/class-wp-posts-list-table.php:956
 msgid "Y/m/d g:i:s a"
 msgstr "Y/m/d g:i:s a"
 
-#: wp-admin/includes/ajax-actions.php:3123
+#: wp-admin/includes/ajax-actions.php:3132
 msgid "Unable to connect to the filesystem. Please confirm your credentials."
 msgstr "Unable to connect to the filesystem. Please confirm your credentials."
 
@@ -1886,7 +1923,7 @@ msgstr "You can set the language, and the translation files will be automaticall
 msgid "Mystery Person"
 msgstr "Mystery Person"
 
-#: wp-admin/install.php:126
+#: wp-admin/install.php:127
 msgid "Usernames can have only alphanumeric characters, spaces, underscores, hyphens, periods, and the @ symbol."
 msgstr "Usernames can have only alphanumeric characters, spaces, underscores, hyphens, periods, and the @ symbol."
 
@@ -1936,24 +1973,24 @@ msgstr "All categories"
 msgid "Filter by comment type"
 msgstr "Filter by comment type"
 
-#: wp-admin/includes/ajax-actions.php:3038
+#: wp-admin/includes/ajax-actions.php:3047
 msgid "You are now logged out everywhere else."
 msgstr "You are now logged out everywhere else."
 
 #. translators: 1: User's display name.
-#: wp-admin/includes/ajax-actions.php:3042
+#: wp-admin/includes/ajax-actions.php:3051
 msgid "%s has been logged out."
 msgstr "%s has been logged out."
 
-#: wp-admin/includes/ajax-actions.php:3030
+#: wp-admin/includes/ajax-actions.php:3039
 msgid "Could not log out user sessions. Please try again."
 msgstr "Could not log out user sessions. Please try again."
 
-#: wp-admin/includes/ajax-actions.php:2937
+#: wp-admin/includes/ajax-actions.php:2946
 msgid "This preview is unavailable in the editor."
 msgstr "This preview is unavailable in the editor."
 
-#: wp-admin/includes/ajax-actions.php:2006
+#: wp-admin/includes/ajax-actions.php:2008
 msgid "You don't have permission to attach files to this post."
 msgstr "You don't have permission to attach files to this post."
 
@@ -2067,7 +2104,7 @@ msgstr "Note:"
 msgid "The %s constant in your %s file is no longer needed."
 msgstr "The %s constant in your %s file is no longer needed."
 
-#: wp-admin/install.php:287
+#: wp-admin/install.php:288
 msgid "Welcome to the famous five-minute WordPress installation process! Just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world."
 msgstr "Welcome to the famous five-minute WordPress installation process! Just fill in the information below and you will be on your way to using the most extendable and powerful personal publishing platform in the world."
 
@@ -2105,21 +2142,21 @@ msgstr "Hour"
 msgid "Minute"
 msgstr "Minute"
 
-#: wp-admin/setup-config.php:142
+#: wp-admin/setup-config.php:143
 msgid "We&#8217;re going to use this information to create a <code>wp-config.php</code> file."
 msgstr "We&#8217;re going to use this information to create a <code>wp-config.php</code> file."
 
-#: wp-admin/theme-install.php:220
+#: wp-admin/theme-install.php:235
 msgctxt "theme"
 msgid "Already Installed"
 msgstr "Already Installed"
 
-#: wp-admin/theme-install.php:228
+#: wp-admin/theme-install.php:243
 msgctxt "Button label for a theme"
 msgid "Previous"
 msgstr "Previous"
 
-#: wp-admin/theme-install.php:229
+#: wp-admin/theme-install.php:244
 msgctxt "Button label for a theme"
 msgid "Next"
 msgstr "Next"
@@ -2144,7 +2181,7 @@ msgstr "Add the user without sending an email that requires their confirmation."
 msgid "The WordPress team is willing to help you. Forward this email to %s and the team will work with you to make sure your site is working."
 msgstr "The WordPress team is willing to help you. Forward this email to %s and the team will work with you to make sure your site is working."
 
-#: wp-admin/includes/ajax-actions.php:2907
+#: wp-admin/includes/ajax-actions.php:2916
 msgid "%s failed to embed."
 msgstr "%s failed to embed."
 
@@ -2224,11 +2261,11 @@ msgstr "The Customiser allows you to preview changes to your site before publish
 msgid "If you reach out to us, we'll also ensure you'll never have this problem again."
 msgstr "If you reach out to us, we'll also ensure you'll never have this problem again."
 
-#: wp-admin/theme-install.php:170
+#: wp-admin/theme-install.php:185
 msgid "Filtering by:"
 msgstr "Filtering by:"
 
-#: wp-admin/theme-install.php:53 wp-admin/theme-install.php:180
+#: wp-admin/theme-install.php:53 wp-admin/theme-install.php:195
 #: wp-admin/themes.php:142 wp-admin/themes.php:290
 msgid "No themes found. Try a different search."
 msgstr "No themes found. Try a different search."
@@ -2295,7 +2332,7 @@ msgstr "Latest"
 msgid "Remove allows you to remove a user from your site. It does not delete their content. You can also remove multiple users at once by using Bulk Actions."
 msgstr "Remove allows you to remove a user from your site. It does not delete their content. You can also remove multiple users at once by using Bulk Actions."
 
-#: wp-admin/maint/repair.php:131
+#: wp-admin/maint/repair.php:140
 msgid "https://wordpress.org/support/forum/how-to-and-troubleshooting"
 msgstr "https://wordpress.org/support/forum/how-to-and-troubleshooting"
 
@@ -2311,7 +2348,7 @@ msgstr "Search Themes"
 msgid "Search themes..."
 msgstr "Search themes..."
 
-#: wp-admin/theme-install.php:210
+#: wp-admin/theme-install.php:225
 msgctxt "theme"
 msgid "Details &amp; Preview"
 msgstr "Details &amp; Preview"
@@ -2348,7 +2385,7 @@ msgstr "&larr; Return to editor"
 msgid "You are not allowed to add this item."
 msgstr "You are not allowed to add this item."
 
-#: wp-admin/includes/ajax-actions.php:1757
+#: wp-admin/includes/ajax-actions.php:1759
 msgid "Type"
 msgstr "Type"
 
@@ -2972,23 +3009,23 @@ msgstr "Preparing to install the latest version&#8230;"
 msgid "Copying the required files&#8230;"
 msgstr "Copying the required files&#8230;"
 
-#: wp-admin/install.php:319
+#: wp-admin/install.php:320
 msgid "Please provide a valid username."
 msgstr "Please provide a valid username."
 
-#: wp-admin/install.php:322
+#: wp-admin/install.php:323
 msgid "The username you provided has invalid characters."
 msgstr "The username you provided has invalid characters."
 
-#: wp-admin/install.php:326
+#: wp-admin/install.php:327
 msgid "Your passwords do not match. Please try again."
 msgstr "Your passwords do not match. Please try again."
 
-#: wp-admin/install.php:330
+#: wp-admin/install.php:331
 msgid "You must provide an email address."
 msgstr "You must provide an email address."
 
-#: wp-admin/install.php:334
+#: wp-admin/install.php:335
 msgid "Sorry, that isn&#8217;t a valid email address. Email addresses look like <code>username@example.com</code>."
 msgstr "Sorry, that isn&#8217;t a valid email address. Email addresses look like <code>username@example.com</code>."
 
@@ -3183,7 +3220,7 @@ msgstr "Attachment"
 msgid "Repeat New Password"
 msgstr "Repeat New Password"
 
-#: wp-admin/install.php:156 wp-admin/user-new.php:425
+#: wp-admin/install.php:157 wp-admin/user-new.php:425
 msgid "Repeat Password"
 msgstr "Repeat Password"
 
@@ -3490,7 +3527,7 @@ msgstr "or <a href=\"%s\">create a new menu</a>."
 msgid "Thank you for Updating! Please visit the <a href=\"%s\">Upgrade Network</a> page to update all your sites."
 msgstr "Thank you for Updating! Please visit the <a href=\"%s\">Upgrade Network</a> page to update all your sites."
 
-#: wp-admin/setup-config.php:347
+#: wp-admin/setup-config.php:350
 msgid "All right, sparky! You&#8217;ve made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;"
 msgstr "All right! You&#8217;ve made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;"
 
@@ -3534,7 +3571,7 @@ msgstr "Look Up"
 msgid "For PHP files, you can use the Documentation dropdown to select from functions recognized in that file. Look Up takes you to a web page with reference material about that particular function."
 msgstr "For PHP files, you can use the Documentation dropdown to select from functions recognized in that file. Look Up takes you to a web page with reference material about that particular function."
 
-#: wp-admin/includes/class-wp-posts-list-table.php:937
+#: wp-admin/includes/class-wp-posts-list-table.php:924
 #: wp-admin/includes/misc.php:742
 msgid "%s is currently editing"
 msgstr "%s is currently editing"
@@ -3608,7 +3645,7 @@ msgid "Uploaded to"
 msgstr "Uploaded to"
 
 #: wp-admin/custom-background.php:374 wp-admin/custom-header.php:812
-#: wp-admin/includes/ajax-actions.php:2026
+#: wp-admin/includes/ajax-actions.php:2028
 msgid "The uploaded file is not a valid image. Please try again."
 msgstr "The uploaded file is not a valid image. Please try again."
 
@@ -3749,7 +3786,7 @@ msgstr "View your site"
 msgid "Uploaded on: <b>%1$s</b>"
 msgstr "Uploaded on: <b>%1$s</b>"
 
-#: wp-admin/includes/plugin-install.php:309
+#: wp-admin/includes/plugin-install.php:309 wp-admin/theme-install.php:157
 msgid "Your WordPress.org username:"
 msgstr "Your WordPress.org username:"
 
@@ -3768,22 +3805,22 @@ msgstr "Welcome to WordPress %1$s. You will be redirected to the About WordPress
 msgid "You can also control the display of your content in RSS feeds, including the maximum numbers of posts to display and whether to show full text or a summary."
 msgstr "You can also control the display of your content in RSS feeds, including the maximum numbers of posts to display and whether to show full text or a summary."
 
-#: wp-admin/install.php:180 wp-admin/install.php:183
+#: wp-admin/install.php:181 wp-admin/install.php:184
 #: wp-admin/options-reading.php:31 wp-admin/options-reading.php:111
 #: wp-admin/options-reading.php:112
 msgid "Search Engine Visibility"
 msgstr "Search Engine Visibility"
 
-#: wp-admin/install.php:187 wp-admin/options-reading.php:115
+#: wp-admin/install.php:188 wp-admin/options-reading.php:115
 msgid "Allow search engines to index this site"
 msgstr "Allow search engines to index this site"
 
-#: wp-admin/install.php:189 wp-admin/install.php:196
+#: wp-admin/install.php:190 wp-admin/install.php:197
 #: wp-admin/options-reading.php:117 wp-admin/options-reading.php:137
 msgid "Discourage search engines from indexing this site"
 msgstr "Discourage search engines from indexing this site"
 
-#: wp-admin/install.php:197 wp-admin/options-reading.php:138
+#: wp-admin/install.php:198 wp-admin/options-reading.php:138
 msgid "It is up to search engines to honor this request."
 msgstr "It is up to search engines to honour this request."
 
@@ -3795,19 +3832,19 @@ msgstr "If you know what you&#8217;re looking for, Search is your best bet. The 
 msgid "If you want to install a plugin that you&#8217;ve downloaded elsewhere, click the Upload link in the upper left. You will be prompted to upload the .zip package, and once uploaded, you can activate the new plugin."
 msgstr "If you want to install a plugin that you&#8217;ve downloaded elsewhere, click the Upload link in the upper left. You will be prompted to upload the .zip package, and once uploaded, you can activate the new plugin."
 
-#: wp-admin/setup-config.php:143
+#: wp-admin/setup-config.php:144
 msgid "If for any reason this automatic file creation doesn&#8217;t work, don&#8217;t worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>."
 msgstr "If for any reason this automatic file creation does not work, do not worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>."
 
-#: wp-admin/setup-config.php:159
+#: wp-admin/setup-config.php:161
 msgid "Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host."
 msgstr "Below you should enter your database connection details. If you are not sure about these, contact your host."
 
-#: wp-admin/setup-config.php:310
+#: wp-admin/setup-config.php:312
 msgid "Sorry, but I can&#8217;t write the <code>wp-config.php</code> file."
 msgstr "Sorry, but I can not write the <code>wp-config.php</code> file."
 
-#: wp-admin/setup-config.php:317
+#: wp-admin/setup-config.php:319
 msgid "After you&#8217;ve done that, click &#8220;Run the install.&#8221;"
 msgstr "After you have done that, click &#8220;Run the install.&#8221;"
 
@@ -3819,7 +3856,7 @@ msgstr "Settings saved and theme activated. <a href=\"%s\">Visit site</a>"
 msgid "If you have marked plugins as favorites on WordPress.org, you can browse them here."
 msgstr "If you have marked plugins as favourites on WordPress.org, you can browse them here."
 
-#: wp-admin/includes/plugin-install.php:311
+#: wp-admin/includes/plugin-install.php:311 wp-admin/theme-install.php:159
 msgid "Get Favorites"
 msgstr "Get Favourites"
 
@@ -3930,7 +3967,7 @@ msgstr "Select comment"
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:256
 #: wp-admin/includes/class-wp-ms-users-list-table.php:206
 #: wp-admin/includes/class-wp-plugins-list-table.php:681
-#: wp-admin/includes/class-wp-posts-list-table.php:839
+#: wp-admin/includes/class-wp-posts-list-table.php:826
 #: wp-admin/includes/class-wp-terms-list-table.php:338
 #: wp-admin/includes/class-wp-users-list-table.php:430
 msgid "Select %s"
@@ -3974,7 +4011,7 @@ msgstr "Or choose an image from your media library:"
 
 #: wp-admin/customize.php:153
 #: wp-admin/includes/class-wp-theme-install-list-table.php:341
-#: wp-admin/theme-install.php:260
+#: wp-admin/theme-install.php:275
 msgid "Collapse"
 msgstr "Collapse"
 
@@ -3998,7 +4035,7 @@ msgstr "This theme is already installed and is up to date"
 
 #: wp-admin/includes/class-wp-theme-install-list-table.php:282
 #: wp-admin/includes/class-wp-theme-install-list-table.php:405
-#: wp-admin/theme-install.php:231
+#: wp-admin/theme-install.php:246
 msgctxt "theme"
 msgid "Installed"
 msgstr "Installed"
@@ -4051,11 +4088,11 @@ msgstr "If your theme has more than one default header image, or you have upload
 msgid "For most themes, the header text is your Site Title and Tagline, as defined in the <a href=\"%1$s\">General Settings</a> section."
 msgstr "For most themes, the header text is your Site Title and Tagline, as defined in the <a href=\"%1$s\">General Settings</a> section."
 
-#: wp-admin/install.php:242 wp-admin/install.php:248
+#: wp-admin/install.php:243 wp-admin/install.php:249
 msgid "Configuration Error"
 msgstr "Configuration Error"
 
-#: wp-admin/install.php:242
+#: wp-admin/install.php:243
 msgid "Your <code>wp-config.php</code> file has an empty database table prefix, which is not supported."
 msgstr "Your <code>wp-config.php</code> file has an empty database table prefix, which is not supported."
 
@@ -4084,7 +4121,7 @@ msgstr "Search for themes by keyword."
 msgid "Find a theme based on specific features."
 msgstr "Find a theme based on specific features."
 
-#: wp-admin/setup-config.php:146
+#: wp-admin/setup-config.php:147
 msgid "In all likelihood, these items were supplied to you by your Web Host. If you don&#8217;t have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;"
 msgstr "In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you are all ready&hellip;"
 
@@ -4136,13 +4173,13 @@ msgstr "All"
 #: wp-admin/includes/class-wp-media-list-table.php:144
 #: wp-admin/includes/class-wp-media-list-table.php:653
 #: wp-admin/includes/class-wp-posts-list-table.php:422
-#: wp-admin/includes/class-wp-posts-list-table.php:1218
+#: wp-admin/includes/class-wp-posts-list-table.php:1205
 msgid "Restore"
 msgstr "Restore"
 
 #: wp-admin/includes/class-wp-media-list-table.php:446
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:533
-#: wp-admin/includes/class-wp-posts-list-table.php:976
+#: wp-admin/includes/class-wp-posts-list-table.php:963
 #: wp-admin/includes/plugin-install.php:550 wp-admin/includes/revision.php:209
 #: wp-admin/includes/revision.php:251
 msgid "%s ago"
@@ -4379,7 +4416,7 @@ msgstr "Suggested height is <strong>%1$d pixels</strong>."
 msgid "Images should be at least <strong>%1$d pixels</strong> tall."
 msgstr "Images should be at least <strong>%1$d pixels</strong> tall."
 
-#: wp-admin/install.php:286
+#: wp-admin/install.php:109 wp-admin/install.php:287
 msgctxt "Howdy"
 msgid "Welcome"
 msgstr "Welcome"
@@ -4605,77 +4642,77 @@ msgstr "The file 'wp-config.php' already exists one level above your WordPress i
 msgid "WordPress &rsaquo; Setup Configuration File"
 msgstr "WordPress &rsaquo; Setup Configuration File"
 
-#: wp-admin/setup-config.php:133
+#: wp-admin/setup-config.php:134
 msgid "Welcome to WordPress. Before getting started, we need some information on the database. You will need to know the following items before proceeding."
 msgstr "Welcome to WordPress. Before getting started, we need some information on the database. You will need to know the following items before proceeding."
 
-#: wp-admin/setup-config.php:135
+#: wp-admin/setup-config.php:136
 msgid "Database name"
 msgstr "Database name"
 
-#: wp-admin/setup-config.php:136
+#: wp-admin/setup-config.php:137
 msgid "Database username"
 msgstr "Database username"
 
-#: wp-admin/setup-config.php:137
+#: wp-admin/setup-config.php:138
 msgid "Database password"
 msgstr "Database password"
 
-#: wp-admin/setup-config.php:138
+#: wp-admin/setup-config.php:139
 msgid "Database host"
 msgstr "Database host"
 
-#: wp-admin/setup-config.php:139
+#: wp-admin/setup-config.php:140
 msgid "Table prefix (if you want to run more than one WordPress in a single database)"
 msgstr "Table prefix (if you want to run more than one WordPress in a single database)"
 
-#: wp-admin/setup-config.php:148
+#: wp-admin/setup-config.php:149
 msgid "Let&#8217;s go!"
 msgstr "Let&#8217;s go!"
 
-#: wp-admin/setup-config.php:162
+#: wp-admin/setup-config.php:164
 msgid "Database Name"
 msgstr "Database Name"
 
-#: wp-admin/setup-config.php:164
+#: wp-admin/setup-config.php:166
 msgid "The name of the database you want to run WP in."
 msgstr "The name of the database you want to run WP in."
 
-#: wp-admin/setup-config.php:168
+#: wp-admin/setup-config.php:170
 msgctxt "example username"
 msgid "username"
 msgstr "username"
 
-#: wp-admin/setup-config.php:169
+#: wp-admin/setup-config.php:171
 msgid "Your MySQL username"
 msgstr "Your MySQL username"
 
-#: wp-admin/setup-config.php:173
+#: wp-admin/setup-config.php:175
 msgctxt "example password"
 msgid "password"
 msgstr "password"
 
-#: wp-admin/setup-config.php:174
+#: wp-admin/setup-config.php:176
 msgid "&hellip;and your MySQL password."
 msgstr "&hellip;and your MySQL password."
 
-#: wp-admin/setup-config.php:177
+#: wp-admin/setup-config.php:179
 msgid "Database Host"
 msgstr "Database Host"
 
-#: wp-admin/setup-config.php:182
+#: wp-admin/setup-config.php:184
 msgid "Table Prefix"
 msgstr "Table Prefix"
 
-#: wp-admin/setup-config.php:184
+#: wp-admin/setup-config.php:186
 msgid "If you want to run multiple WordPress installations in a single database, change this."
 msgstr "If you want to run multiple WordPress installations in a single database, change this."
 
-#: wp-admin/setup-config.php:311
+#: wp-admin/setup-config.php:313
 msgid "You can create the <code>wp-config.php</code> manually and paste the following text into it."
 msgstr "You can create the <code>wp-config.php</code> manually and paste the following text into it."
 
-#: wp-admin/setup-config.php:318 wp-admin/setup-config.php:349
+#: wp-admin/setup-config.php:320 wp-admin/setup-config.php:352
 msgid "Run the install"
 msgstr "Run the install"
 
@@ -4683,11 +4720,11 @@ msgstr "Run the install"
 msgid "Sorry, I need a wp-config-sample.php file to work from. Please re-upload this file to your WordPress installation."
 msgstr "Sorry, I need a wp-config-sample.php file to work from. Please re-upload this file to your WordPress installation."
 
-#: wp-admin/setup-config.php:179
+#: wp-admin/setup-config.php:181
 msgid "You should be able to get this info from your web host, if <code>localhost</code> doesn&#8217;t work."
 msgstr "You should be able to get this info from your web host, if <code>localhost</code> doesn&#8217;t work."
 
-#: wp-admin/maint/repair.php:30
+#: wp-admin/maint/repair.php:33
 msgid "To allow use of this page to automatically repair database problems, please add the following line to your <code>wp-config.php</code> file. Once this line is added to your config, reload this page."
 msgstr "To allow use of this page to automatically repair database problems, please add the following line to your <code>wp-config.php</code> file. Once this line is added to your config, reload this page."
 
@@ -4738,7 +4775,7 @@ msgid "You can export a file of your site&#8217;s content in order to import it 
 msgstr "You can export a file of your site&#8217;s content in order to import it into another installation or platform. The export file will be an XML file format called WXR. Posts, pages, comments, custom fields, categories, and tags can be included. You can choose for the WXR file to include only certain posts or pages by setting the dropdown filters to limit the export by category, author, date range by month, or publishing status."
 
 #. translators: 1: table name, 2: error message,
-#: wp-admin/maint/repair.php:101
+#: wp-admin/maint/repair.php:110
 msgid "Failed to repair the %1$s table. Error: %2$s"
 msgstr "Failed to repair the %1$s table. Error: %2$s"
 
@@ -4784,7 +4821,7 @@ msgid "Image could not be processed. Please go back and try again."
 msgstr "Image could not be processed. Please go back and try again."
 
 #. translators: 1: table name, 2: error message,
-#: wp-admin/maint/repair.php:91
+#: wp-admin/maint/repair.php:100
 msgid "The %1$s table is not okay. It is reporting the following error: %2$s. WordPress will attempt to repair this table&hellip;"
 msgstr "The %1$s table is not okay. It is reporting the following error: %2$s. WordPress will attempt to repair this table&hellip;"
 
@@ -4792,11 +4829,11 @@ msgstr "The %1$s table is not okay. It is reporting the following error: %2$s. W
 msgid "There is an autosave of this post that is more recent than the version below. <a href=\"%s\">View the autosave</a>"
 msgstr "There is an autosave of this post that is more recent than the version below. <a href=\"%s\">View the autosave</a>"
 
-#: wp-admin/maint/repair.php:137
+#: wp-admin/maint/repair.php:146
 msgid "Repairs complete. Please remove the following line from wp-config.php to prevent this page from being used by unauthorized users."
 msgstr "Repairs complete. Please remove the following line from wp-config.php to prevent this page from being used by unauthorized users."
 
-#: wp-admin/maint/repair.php:143
+#: wp-admin/maint/repair.php:155
 msgid "WordPress can automatically look for some common database problems and repair them. Repairing can take a while, so please be patient."
 msgstr "WordPress can automatically look for some common database problems and repair them. Repairing can take a while, so please be patient."
 
@@ -4816,7 +4853,7 @@ msgstr "<strong>Warning:</strong> Making changes to active plugins is not recomm
 msgid "Enter the email address of an existing user on this network to invite them to this site. That person will be sent an email asking them to confirm the invite."
 msgstr "Enter the email address of an existing user on this network to invite them to this site. That person will be sent an email asking them to confirm the invite."
 
-#: wp-admin/maint/repair.php:146
+#: wp-admin/maint/repair.php:158
 msgid "WordPress can also attempt to optimize the database. This improves performance in some situations. Repairing and optimizing the database can take a long time and the database will be locked while optimizing."
 msgstr "WordPress can also attempt to optimise the database. This improves performance in some situations. Repairing and optimizing the database can take a long time and the database will be locked while optimizing."
 
@@ -5285,27 +5322,27 @@ msgid "%s plugin"
 msgstr "%s plugin"
 
 #. translators: %s: table name
-#: wp-admin/maint/repair.php:120
+#: wp-admin/maint/repair.php:129
 msgid "Successfully optimized the %s table."
 msgstr "Successfully optimised the %s table."
 
 #. translators: 1: table name, 2: error message,
-#: wp-admin/maint/repair.php:123
+#: wp-admin/maint/repair.php:132
 msgid "Failed to optimize the %1$s table. Error: %2$s"
 msgstr "Failed to optimise the %1$s table. Error: %2$s"
 
 #. translators: %s: table name
-#: wp-admin/maint/repair.php:98
+#: wp-admin/maint/repair.php:107
 msgid "Successfully repaired the %s table."
 msgstr "Successfully repaired the %s table."
 
 #. translators: %s: table name
-#: wp-admin/maint/repair.php:88
+#: wp-admin/maint/repair.php:97
 msgid "The %s table is okay."
 msgstr "The %s table is okay."
 
 #. translators: %s: table name
-#: wp-admin/maint/repair.php:113
+#: wp-admin/maint/repair.php:122
 msgid "The %s table is already optimized."
 msgstr "The %s table is already optimised."
 
@@ -5526,7 +5563,7 @@ msgstr "Attributes"
 
 #: wp-admin/includes/class-wp-theme-install-list-table.php:409
 #: wp-admin/includes/dashboard.php:1193 wp-admin/includes/network.php:286
-#: wp-admin/theme-install.php:215 wp-admin/theme-install.php:233
+#: wp-admin/theme-install.php:230 wp-admin/theme-install.php:248
 msgid "Install"
 msgstr "Install"
 
@@ -5553,8 +5590,8 @@ msgid "Deactivate"
 msgstr "Deactivate"
 
 #: wp-admin/about.php:102 wp-admin/credits.php:25 wp-admin/freedoms.php:24
-#: wp-admin/includes/ajax-actions.php:3071
-#: wp-admin/includes/ajax-actions.php:3113
+#: wp-admin/includes/ajax-actions.php:3080
+#: wp-admin/includes/ajax-actions.php:3122
 #: wp-admin/includes/class-wp-ms-themes-list-table.php:493
 #: wp-admin/includes/class-wp-plugins-list-table.php:726
 #: wp-admin/includes/update.php:186 wp-admin/includes/update.php:210
@@ -5568,7 +5605,7 @@ msgstr "User added."
 #: wp-admin/includes/class-wp-media-list-table.php:644
 #: wp-admin/includes/class-wp-media-list-table.php:663
 #: wp-admin/includes/class-wp-ms-users-list-table.php:346
-#: wp-admin/includes/class-wp-posts-list-table.php:1234
+#: wp-admin/includes/class-wp-posts-list-table.php:1221
 #: wp-admin/includes/class-wp-terms-list-table.php:438
 msgid "View"
 msgstr "View"
@@ -5600,7 +5637,7 @@ msgstr "Customizing This Display"
 msgid "Title and Post Editor"
 msgstr "Title and Post Editor"
 
-#: wp-admin/install.php:190 wp-admin/options-reading.php:118
+#: wp-admin/install.php:191 wp-admin/options-reading.php:118
 msgid "Note: Neither of these options blocks access to your site &mdash; it is up to search engines to honor your request."
 msgstr "Note: Neither of these options blocks access to your site &mdash; it is up to search engines to honor your request."
 
@@ -5991,7 +6028,7 @@ msgstr "Super admin privileges cannot be removed because this user has the netwo
 msgid "You only have one theme installed right now. Live a little! You can choose from over 1,000 free themes in the WordPress.org Theme Directory at any time: just click on the <a href=\"%s\">Install Themes</a> tab above."
 msgstr "You only have one theme installed right now. Live a little! You can choose from over 1,000 free themes in the WordPress.org Theme Directory at any time: just click on the <a href=\"%s\">Install Themes</a> tab above."
 
-#: wp-admin/maint/repair.php:141
+#: wp-admin/maint/repair.php:153
 msgid "One or more database tables are unavailable. To allow WordPress to attempt to repair these tables, press the &#8220;Repair Database&#8221; button. Repairing can take a while, so please be patient."
 msgstr "One or more database tables are unavailable. To allow WordPress to attempt to repair these tables, press the &#8220;Repair Database&#8221; button. Repairing can take a while, so please be patient."
 
@@ -6057,8 +6094,8 @@ msgstr "Plugin updated successfully."
 msgid "Update Theme"
 msgstr "Update Theme"
 
-#: wp-admin/includes/ajax-actions.php:3105
-#: wp-admin/includes/ajax-actions.php:3134
+#: wp-admin/includes/ajax-actions.php:3114
+#: wp-admin/includes/ajax-actions.php:3143
 #: wp-admin/includes/class-wp-upgrader.php:799
 msgid "Plugin update failed."
 msgstr "Plugin update failed."
@@ -6185,7 +6222,7 @@ msgstr "Check Again"
 msgid "The update process is starting. This process may take a while on some hosts, so please be patient."
 msgstr "The update process is starting. This process may take a while on some hosts, so please be patient."
 
-#: wp-admin/theme-install.php:150
+#: wp-admin/theme-install.php:165
 msgid "Apply Filters"
 msgstr "Apply Filters"
 
@@ -6678,24 +6715,24 @@ msgstr "Image Upload Error"
 msgid "You need JavaScript to choose a part of the image."
 msgstr "You need JavaScript to choose a part of the image."
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1212
+#: wp-admin/includes/class-wp-posts-list-table.php:1199
 msgid "Edit this item"
 msgstr "Edit this item"
 
 #: wp-admin/includes/class-wp-comments-list-table.php:589
-#: wp-admin/includes/class-wp-posts-list-table.php:1213
+#: wp-admin/includes/class-wp-posts-list-table.php:1200
 msgid "Edit this item inline"
 msgstr "Edit this item inline"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1218
+#: wp-admin/includes/class-wp-posts-list-table.php:1205
 msgid "Restore this item from the Trash"
 msgstr "Restore this item from the Trash"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1220
+#: wp-admin/includes/class-wp-posts-list-table.php:1207
 msgid "Move this item to the Trash"
 msgstr "Move this item to the Trash"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1222
+#: wp-admin/includes/class-wp-posts-list-table.php:1209
 msgid "Delete this item permanently"
 msgstr "Delete this item permanently"
 
@@ -6941,7 +6978,7 @@ msgstr "New WordPress Site"
 msgid "You do not have sufficient permissions to update themes for this site."
 msgstr "You do not have sufficient permissions to update themes for this site."
 
-#: wp-admin/includes/ajax-actions.php:3075 wp-admin/update.php:24
+#: wp-admin/includes/ajax-actions.php:3084 wp-admin/update.php:24
 #: wp-admin/update.php:50 wp-admin/update.php:71
 msgid "You do not have sufficient permissions to update plugins for this site."
 msgstr "You do not have sufficient permissions to update plugins for this site."
@@ -7002,12 +7039,12 @@ msgid "No items."
 msgstr "No items."
 
 #. translators: %s: asterisk symbol (*)
-#: wp-admin/includes/schema.php:1075
+#: wp-admin/includes/schema.php:1068
 msgid "To use a subdomain configuration, you must have a wildcard entry in your DNS. This usually means adding a %s hostname record pointing at your web server in your DNS configuration tool."
 msgstr "To use a subdomain configuration, you must have a wildcard entry in your DNS. This usually means adding a %s hostname record pointing at your web server in your DNS configuration tool."
 
 #. translators: %s: host name
-#: wp-admin/includes/schema.php:1064
+#: wp-admin/includes/schema.php:1057
 msgid "The installer attempted to contact a random hostname (%s) on your domain."
 msgstr "The installer attempted to contact a random hostname (%s) on your domain."
 
@@ -7017,7 +7054,7 @@ msgstr "The menu item has been successfully deleted."
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:231
 #: wp-admin/includes/class-wp-theme-install-list-table.php:145
-#: wp-admin/setup-config.php:217
+#: wp-admin/setup-config.php:219
 msgid "Try again"
 msgstr "Try again"
 
@@ -7190,7 +7227,7 @@ msgstr "Update Now"
 msgid "Grant this user super admin privileges for the Network."
 msgstr "Grant this user super admin privileges for the Network."
 
-#: wp-admin/install.php:149 wp-admin/user-edit.php:170
+#: wp-admin/install.php:150 wp-admin/user-edit.php:170
 msgid "Important:"
 msgstr "Important:"
 
@@ -7227,7 +7264,7 @@ msgstr "You do not have sufficient permissions to manage plugins for this site."
 msgid "In a few words, explain what this site is about."
 msgstr "In a few words, explain what this site is about."
 
-#: wp-admin/install.php:180 wp-admin/install.php:183
+#: wp-admin/install.php:181 wp-admin/install.php:184
 #: wp-admin/options-reading.php:31 wp-admin/options-reading.php:111
 #: wp-admin/options-reading.php:112
 msgid "Site Visibility"
@@ -7258,28 +7295,28 @@ msgstr "Save Menu"
 msgid "Updating Theme %1$s (%2$d/%3$d)"
 msgstr "Updating Theme %1$s (%2$d/%3$d)"
 
-#: wp-admin/includes/schema.php:899
+#: wp-admin/includes/schema.php:892
 msgid "You must provide a domain name."
 msgstr "You must provide a domain name."
 
-#: wp-admin/includes/schema.php:901
+#: wp-admin/includes/schema.php:894
 msgid "You must provide a name for your network of sites."
 msgstr "You must provide a name for your network of sites."
 
-#: wp-admin/includes/schema.php:905
+#: wp-admin/includes/schema.php:898
 msgid "The network already exists."
 msgstr "The network already exists."
 
 #. translators: %s: error message
-#: wp-admin/includes/schema.php:1069
+#: wp-admin/includes/schema.php:1062
 msgid "This resulted in an error message: %s"
 msgstr "This resulted in an error message: %s"
 
-#: wp-admin/includes/schema.php:1079
+#: wp-admin/includes/schema.php:1072
 msgid "You can still use your site but any subdomain you create may not be accessible. If you know your DNS is correct, ignore this message."
 msgstr "You can still use your site but any subdomain you create may not be accessible. If you know your DNS is correct, ignore this message."
 
-#: wp-admin/includes/schema.php:909
+#: wp-admin/includes/schema.php:902
 msgid "You must provide a valid email address."
 msgstr "You must provide a valid email address."
 
@@ -8452,7 +8489,7 @@ msgstr "Port"
 msgid "Screen Options"
 msgstr "Screen Options"
 
-#: wp-admin/includes/theme-install.php:101 wp-admin/theme-install.php:144
+#: wp-admin/includes/theme-install.php:101 wp-admin/theme-install.php:145
 msgid "Feature Filter"
 msgstr "Feature Filter"
 
@@ -8541,7 +8578,7 @@ msgstr "Details"
 msgid "Theme Install"
 msgstr "Theme Install"
 
-#: wp-admin/includes/theme.php:608 wp-admin/theme-install.php:252
+#: wp-admin/includes/theme.php:608 wp-admin/theme-install.php:267
 #: wp-admin/themes.php:425
 msgid "Version: %s"
 msgstr "Version: %s"
@@ -8630,35 +8667,35 @@ msgstr "<strong>ERROR</strong>: Passwords may not contain the character \"\\\"."
 msgid "WordPress &rsaquo; Installation"
 msgstr "WordPress &rsaquo; Installation"
 
-#: wp-admin/install.php:122
+#: wp-admin/install.php:123
 msgid "User(s) already exists."
 msgstr "User(s) already exists."
 
-#: wp-admin/install.php:177
+#: wp-admin/install.php:178
 msgid "Double-check your email address before continuing."
 msgstr "Double-check your email address before continuing."
 
-#: wp-admin/install.php:203
+#: wp-admin/install.php:204
 msgid "Install WordPress"
 msgstr "Install WordPress"
 
-#: wp-admin/install.php:237
+#: wp-admin/install.php:238
 msgid "Insufficient Requirements"
 msgstr "Insufficient Requirements"
 
-#: wp-admin/install.php:289
+#: wp-admin/install.php:290
 msgid "Information needed"
 msgstr "Information needed"
 
-#: wp-admin/install.php:290
+#: wp-admin/install.php:291
 msgid "Please provide the following information. Don&#8217;t worry, you can always change these settings later."
 msgstr "Please provide the following information. Don&#8217;t worry, you can always change these settings later."
 
-#: wp-admin/install.php:343
+#: wp-admin/install.php:344
 msgid "Success!"
 msgstr "Success!"
 
-#: wp-admin/install.php:345
+#: wp-admin/install.php:346
 msgid "WordPress has been installed. Were you expecting more steps? Sorry to disappoint."
 msgstr "WordPress has been installed. Were you expecting more steps? Sorry to disappoint."
 
@@ -8693,11 +8730,11 @@ msgstr "Link not found."
 msgid "WordPress &rsaquo; Database Repair"
 msgstr "WordPress &rsaquo; Database Repair"
 
-#: wp-admin/maint/repair.php:131
+#: wp-admin/maint/repair.php:140
 msgid "Some database problems could not be repaired. Please copy-and-paste the following list of errors to the <a href=\"%s\">WordPress support forums</a> to get additional assistance."
 msgstr "Some database problems could not be repaired. Please copy-and-paste the following list of errors to the <a href=\"%s\">WordPress support forums</a> to get additional assistance."
 
-#: wp-admin/maint/repair.php:145
+#: wp-admin/maint/repair.php:157
 msgid "Repair Database"
 msgstr "Repair Database"
 
@@ -8780,7 +8817,7 @@ msgstr "Reading"
 msgid "Permalinks"
 msgstr "Permalinks"
 
-#: wp-admin/setup-config.php:167
+#: wp-admin/setup-config.php:169
 msgid "User Name"
 msgstr "User Name"
 
@@ -8800,7 +8837,7 @@ msgstr "Welcome to WordPress. This is your first post. Edit or delete it, then s
 msgid "Organize my uploads into month- and year-based folders"
 msgstr "Organise my uploads into month- and year-based folders"
 
-#: wp-admin/maint/repair.php:147
+#: wp-admin/maint/repair.php:159
 msgid "Repair and Optimize Database"
 msgstr "Repair and Optimise Database"
 
@@ -8863,7 +8900,7 @@ msgstr "<strong>ERROR</strong>: Please enter the same password in both password 
 msgid "<strong>ERROR</strong>: Please enter an email address."
 msgstr "<strong>ERROR</strong>: Please enter an email address."
 
-#: wp-admin/install.php:175
+#: wp-admin/install.php:176
 msgid "Your Email"
 msgstr "Your Email"
 
@@ -8941,25 +8978,25 @@ msgstr "Choose a file from your computer:"
 msgid "Maximum size: %s"
 msgstr "Maximum size: %s"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1593
-#: wp-admin/includes/class-wp-posts-list-table.php:1596
+#: wp-admin/includes/class-wp-posts-list-table.php:1580
+#: wp-admin/includes/class-wp-posts-list-table.php:1583
 #: wp-admin/includes/template-functions.php:1668
 msgid "Sticky"
 msgstr "Sticky"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1597
+#: wp-admin/includes/class-wp-posts-list-table.php:1584
 msgid "Not Sticky"
 msgstr "Not Sticky"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1605
+#: wp-admin/includes/class-wp-posts-list-table.php:1592
 msgid "Make this post sticky"
 msgstr "Make this post sticky"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:986
+#: wp-admin/includes/class-wp-posts-list-table.php:973
 msgid "Missed schedule"
 msgstr "Missed schedule"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:991
+#: wp-admin/includes/class-wp-posts-list-table.php:978
 msgid "Last Modified"
 msgstr "Last Modified"
 
@@ -8999,42 +9036,42 @@ msgstr "Relationship"
 msgid "Visible"
 msgstr "Visible"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1333
+#: wp-admin/includes/class-wp-posts-list-table.php:1320
 msgid "Bulk Edit"
 msgstr "Bulk Edit"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1379
-#: wp-admin/includes/class-wp-posts-list-table.php:1459
-#: wp-admin/includes/class-wp-posts-list-table.php:1495
-#: wp-admin/includes/class-wp-posts-list-table.php:1533
-#: wp-admin/includes/class-wp-posts-list-table.php:1542
-#: wp-admin/includes/class-wp-posts-list-table.php:1574
-#: wp-admin/includes/class-wp-posts-list-table.php:1595
-#: wp-admin/includes/class-wp-posts-list-table.php:1623
+#: wp-admin/includes/class-wp-posts-list-table.php:1366
+#: wp-admin/includes/class-wp-posts-list-table.php:1446
+#: wp-admin/includes/class-wp-posts-list-table.php:1482
+#: wp-admin/includes/class-wp-posts-list-table.php:1520
+#: wp-admin/includes/class-wp-posts-list-table.php:1529
+#: wp-admin/includes/class-wp-posts-list-table.php:1561
+#: wp-admin/includes/class-wp-posts-list-table.php:1582
+#: wp-admin/includes/class-wp-posts-list-table.php:1610
 msgid "&mdash; No Change &mdash;"
 msgstr "&mdash; No Change &mdash;"
 
 #. translators: Between password field and private checkbox on post quick edit
 #. interface
-#: wp-admin/includes/class-wp-posts-list-table.php:1405
+#: wp-admin/includes/class-wp-posts-list-table.php:1392
 msgid "&ndash;OR&ndash;"
 msgstr "&ndash;OR&ndash;"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1534
-#: wp-admin/includes/class-wp-posts-list-table.php:1543
+#: wp-admin/includes/class-wp-posts-list-table.php:1521
+#: wp-admin/includes/class-wp-posts-list-table.php:1530
 msgid "Allow"
 msgstr "Allow"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1535
-#: wp-admin/includes/class-wp-posts-list-table.php:1544
+#: wp-admin/includes/class-wp-posts-list-table.php:1522
+#: wp-admin/includes/class-wp-posts-list-table.php:1531
 msgid "Do not allow"
 msgstr "Do not allow"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1556
+#: wp-admin/includes/class-wp-posts-list-table.php:1543
 msgid "Allow Comments"
 msgstr "Allow Comments"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1561
+#: wp-admin/includes/class-wp-posts-list-table.php:1548
 msgid "Allow Pings"
 msgstr "Allow Pings"
 
@@ -9073,27 +9110,27 @@ msgctxt "User role"
 msgid "Subscriber"
 msgstr "Subscriber"
 
-#: wp-admin/includes/schema.php:988
+#: wp-admin/includes/schema.php:981
 msgid "Welcome to <a href=\"SITE_URL\">SITE_NAME</a>. This is your first post. Edit or delete it, then start blogging!"
 msgstr "Welcome to <a href=\"SITE_URL\">SITE_NAME</a>. This is your first post. Edit or delete it, then start blogging!"
 
-#: wp-admin/includes/schema.php:1060
+#: wp-admin/includes/schema.php:1053
 msgid "Warning! Wildcard DNS may not be configured correctly!"
 msgstr "Warning! Wildcard DNS may not be configured correctly!"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1333
+#: wp-admin/includes/class-wp-posts-list-table.php:1320
 #: wp-admin/includes/class-wp-terms-list-table.php:561
 msgid "Quick Edit"
 msgstr "Quick Edit"
 
 #: wp-admin/includes/class-wp-comments-list-table.php:589
-#: wp-admin/includes/class-wp-posts-list-table.php:1213
+#: wp-admin/includes/class-wp-posts-list-table.php:1200
 #: wp-admin/includes/class-wp-terms-list-table.php:433
 msgid "Quick&nbsp;Edit"
 msgstr "Quick&nbsp;Edit"
 
 #. translators: manage posts column name
-#: wp-admin/includes/class-wp-posts-list-table.php:540
+#: wp-admin/includes/class-wp-posts-list-table.php:530
 msgctxt "column name"
 msgid "Title"
 msgstr "Title"
@@ -9390,16 +9427,16 @@ msgstr "child"
 msgid "kin"
 msgstr "kin"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1447
+#: wp-admin/includes/class-wp-posts-list-table.php:1434
 #: wp-admin/includes/meta-boxes.php:795 wp-admin/includes/meta-boxes.php:796
 msgid "Parent"
 msgstr "Parent"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1453
+#: wp-admin/includes/class-wp-posts-list-table.php:1440
 msgid "Main Page (no parent)"
 msgstr "Main Page (no parent)"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1499
+#: wp-admin/includes/class-wp-posts-list-table.php:1486
 #: wp-admin/includes/meta-boxes.php:827
 msgid "Default Template"
 msgstr "Default Template"
@@ -9616,7 +9653,7 @@ msgstr "Menu order"
 msgid "Date/Time"
 msgstr "Date/Time"
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1482
+#: wp-admin/includes/class-wp-posts-list-table.php:1469
 #: wp-admin/includes/media.php:1219 wp-admin/includes/media.php:2224
 #: wp-admin/includes/meta-boxes.php:834 wp-admin/includes/meta-boxes.php:835
 msgid "Order"
@@ -10105,7 +10142,7 @@ msgstr "Return to Plugin Installer"
 msgid "Successfully installed the theme <strong>%1$s %2$s</strong>."
 msgstr "Successfully installed the theme <strong>%1$s %2$s</strong>."
 
-#: wp-admin/includes/class-wp-posts-list-table.php:1231
+#: wp-admin/includes/class-wp-posts-list-table.php:1218
 #: wp-admin/includes/class-wp-theme-install-list-table.php:256
 msgid "Preview &#8220;%s&#8221;"
 msgstr "Preview &#8220;%s&#8221;"
@@ -10489,7 +10526,7 @@ msgstr "You do not have permission to customize headers."
 
 #: wp-admin/includes/class-wp-links-list-table.php:189
 #: wp-admin/includes/class-wp-media-list-table.php:387
-#: wp-admin/includes/class-wp-posts-list-table.php:919
+#: wp-admin/includes/class-wp-posts-list-table.php:906
 #: wp-admin/includes/class-wp-terms-list-table.php:378
 #: wp-admin/includes/dashboard.php:552
 msgid "Edit &#8220;%s&#8221;"
@@ -10499,19 +10536,19 @@ msgstr "Edit &#8220;%s&#8221;"
 #: wp-admin/includes/class-wp-media-list-table.php:147
 #: wp-admin/includes/class-wp-media-list-table.php:639
 #: wp-admin/includes/class-wp-media-list-table.php:655
-#: wp-admin/includes/class-wp-posts-list-table.php:1220
+#: wp-admin/includes/class-wp-posts-list-table.php:1207
 #: wp-admin/includes/meta-boxes.php:337
 msgid "Trash"
 msgstr "Trash"
 
 #: wp-admin/includes/class-wp-media-list-table.php:644
 #: wp-admin/includes/class-wp-media-list-table.php:663
-#: wp-admin/includes/class-wp-posts-list-table.php:1234
+#: wp-admin/includes/class-wp-posts-list-table.php:1221
 msgid "View &#8220;%s&#8221;"
 msgstr "View &#8220;%s&#8221;"
 
 #: wp-admin/includes/class-wp-media-list-table.php:438
-#: wp-admin/includes/class-wp-posts-list-table.php:966
+#: wp-admin/includes/class-wp-posts-list-table.php:953
 msgid "Unpublished"
 msgstr "Unpublished"
 
@@ -10579,7 +10616,7 @@ msgid "Move to Trash"
 msgstr "Move to Trash"
 
 #: wp-admin/includes/class-wp-comments-list-table.php:344
-#: wp-admin/includes/class-wp-posts-list-table.php:1540
+#: wp-admin/includes/class-wp-posts-list-table.php:1527
 msgid "Pings"
 msgstr "Pings"
 
@@ -10590,11 +10627,11 @@ msgstr "Pings"
 msgid "Filter"
 msgstr "Filter"
 
-#: wp-admin/edit-form-advanced.php:634 wp-admin/includes/ajax-actions.php:2237
+#: wp-admin/edit-form-advanced.php:634 wp-admin/includes/ajax-actions.php:2239
 msgid "Last edited by %1$s on %2$s at %3$s"
 msgstr "Last edited by %1$s on %2$s at %3$s"
 
-#: wp-admin/edit-form-advanced.php:636 wp-admin/includes/ajax-actions.php:2239
+#: wp-admin/edit-form-advanced.php:636 wp-admin/includes/ajax-actions.php:2241
 msgid "Last edited on %1$s at %2$s"
 msgstr "Last edited on %1$s at %2$s"
 
@@ -10624,7 +10661,7 @@ msgstr "Discussion"
 
 #: wp-admin/edit-form-advanced.php:308 wp-admin/edit-tag-form.php:115
 #: wp-admin/edit-tags.php:472
-#: wp-admin/includes/class-wp-posts-list-table.php:1351
+#: wp-admin/includes/class-wp-posts-list-table.php:1338
 #: wp-admin/includes/class-wp-terms-list-table.php:179
 #: wp-admin/includes/class-wp-terms-list-table.php:569
 #: wp-admin/includes/meta-boxes.php:722
@@ -10802,26 +10839,26 @@ msgstr "Saving is disabled: %s is currently editing this page."
 msgid "Saving is disabled: %s is currently editing this post."
 msgstr "Saving is disabled: %s is currently editing this post."
 
-#: wp-admin/includes/ajax-actions.php:1711
-#: wp-admin/includes/ajax-actions.php:1716
+#: wp-admin/includes/ajax-actions.php:1713
+#: wp-admin/includes/ajax-actions.php:1718
 #: wp-admin/includes/edit-tag-messages.php:18
 msgid "Item not updated."
 msgstr "Item not updated."
 
-#: wp-admin/includes/ajax-actions.php:1757
-#: wp-admin/includes/class-wp-posts-list-table.php:578
-#: wp-admin/includes/class-wp-posts-list-table.php:1360
+#: wp-admin/includes/ajax-actions.php:1759
+#: wp-admin/includes/class-wp-posts-list-table.php:568
+#: wp-admin/includes/class-wp-posts-list-table.php:1347
 msgid "Date"
 msgstr "Date"
 
-#: wp-admin/edit-form-comment.php:76 wp-admin/includes/ajax-actions.php:1757
-#: wp-admin/includes/class-wp-posts-list-table.php:1571
+#: wp-admin/edit-form-comment.php:76 wp-admin/includes/ajax-actions.php:1759
+#: wp-admin/includes/class-wp-posts-list-table.php:1558
 msgid "Status"
 msgstr "Status"
 
-#: wp-admin/includes/ajax-actions.php:1769
-#: wp-admin/includes/class-wp-posts-list-table.php:988
-#: wp-admin/includes/class-wp-posts-list-table.php:1578
+#: wp-admin/includes/ajax-actions.php:1771
+#: wp-admin/includes/class-wp-posts-list-table.php:975
+#: wp-admin/includes/class-wp-posts-list-table.php:1565
 #: wp-admin/includes/meta-boxes.php:88 wp-admin/includes/meta-boxes.php:111
 #: wp-admin/includes/template-functions.php:1671
 msgid "Scheduled"
