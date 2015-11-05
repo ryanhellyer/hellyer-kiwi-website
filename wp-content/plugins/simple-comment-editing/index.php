@@ -4,7 +4,7 @@ Plugin Name: Simple Comment Editing
 Plugin URI: http://wordpress.org/extend/plugins/simple-comment-editing/
 Description: Simple comment editing for your users.
 Author: Ronald Huereca
-Version: 1.9.0
+Version: 1.9.1
 Requires at least: 4.1
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
@@ -231,14 +231,16 @@ class Simple_Comment_Editing {
 	 	
 	 	
 	 	$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.min.js' );
+	 	$hooks_script_url = $this->get_plugin_url( '/js/event-manager.min.js' );
 	 	if ( defined( 'SCRIPT_DEBUG' ) ) {
 	 		if ( SCRIPT_DEBUG == true ) {
 	 			$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.js' );
+	 			$hooks_script_url = $this->get_plugin_url( '/js/event-manager.js' );
 	 		}
 	 	}
 	 	require_once( 'class-sce-timer.php' );
 	 	$timer_internationalized = new SCE_Timer();
-	 	wp_enqueue_script( 'wp-hooks', $this->get_plugin_url( '/js/event-manager.js' ) ); //https://core.trac.wordpress.org/attachment/ticket/21170/21170-2.patch
+	 	wp_enqueue_script( 'wp-hooks', $hooks_script_url, array(), '20151103', true ); //https://core.trac.wordpress.org/attachment/ticket/21170/21170-2.patch
 	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20151021', true );
 	 	
 	 	wp_localize_script( 'simple-comment-editing', 'simple_comment_editing', array(
@@ -593,7 +595,7 @@ class Simple_Comment_Editing {
 			
 			if ( $user->ID != $comment->user_id ) {
 				return false;
-			}						
+			}				
 
 			$meta_hash = get_user_meta( $user->ID, '_' . $comment_id, true );	
 			if ( $meta_hash !== $cookie_hash ) {
