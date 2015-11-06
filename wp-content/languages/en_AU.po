@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-11-04 23:11:29+0000\n"
+"PO-Revision-Date: 2015-11-05 23:32:48+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +15,10 @@ msgstr ""
 msgctxt "text direction"
 msgid "ltr"
 msgstr "ltr"
+
+#: wp-includes/class-wp-term.php:166
+msgid "Term ID is shared between multiple taxonomies"
+msgstr "Term ID is shared between multiple taxonomies"
 
 #. translators: month name, genitive
 #: wp-includes/locale.php:161
@@ -58,8 +62,8 @@ msgctxt "genitive"
 msgid "December"
 msgstr "December"
 
-#: wp-includes/taxonomy-functions.php:1591
-#: wp-includes/taxonomy-functions.php:1673
+#: wp-includes/taxonomy-functions.php:1578
+#: wp-includes/taxonomy-functions.php:1660
 msgid "Term meta cannot be added to terms that are shared between taxonomies."
 msgstr "Term meta cannot be added to terms that are shared between taxonomies."
 
@@ -183,38 +187,38 @@ msgstr "Mission complete. Message %s deleted."
 msgid "Author:"
 msgstr "Author:"
 
-#: wp-includes/wp-db.php:1648
+#: wp-includes/wp-db.php:1649
 msgid "Are you sure that the database server is not under particularly heavy load?"
 msgstr "Are you sure that the database server is not under particularly heavy load?"
 
 #. translators: %s: database host
-#: wp-includes/wp-db.php:1642
+#: wp-includes/wp-db.php:1643
 msgid "This means that we lost contact with the database server at %s. This could mean your host&#8217;s database server is down."
 msgstr "This means that we lost contact with the database server at %s. This could mean your host&#8217;s database server is down."
 
-#: wp-includes/wp-db.php:1638
+#: wp-includes/wp-db.php:1639
 msgid "Error reconnecting to the database"
 msgstr "Error reconnecting to the database"
 
 #. translators: %s: support forums URL
-#: wp-includes/wp-db.php:1549 wp-includes/wp-db.php:1653
+#: wp-includes/wp-db.php:1550 wp-includes/wp-db.php:1654
 msgid "If you&#8217;re unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress Support Forums</a>."
 msgstr "If you&#8217;re unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress Support Forums</a>."
 
-#: wp-includes/wp-db.php:1544 wp-includes/wp-db.php:1647
+#: wp-includes/wp-db.php:1545 wp-includes/wp-db.php:1648
 msgid "Are you sure that the database server is running?"
 msgstr "Are you sure that the database server is running?"
 
-#: wp-includes/wp-db.php:1543
+#: wp-includes/wp-db.php:1544
 msgid "Are you sure that you have typed the correct hostname?"
 msgstr "Are you sure that you have typed the correct hostname?"
 
-#: wp-includes/wp-db.php:1542
+#: wp-includes/wp-db.php:1543
 msgid "Are you sure you have the correct username and password?"
 msgstr "Are you sure you have the correct username and password?"
 
 #. translators: 1: wp-config.php. 2: database host
-#: wp-includes/wp-db.php:1536
+#: wp-includes/wp-db.php:1537
 msgid "This either means that the username and password information in your %1$s file is incorrect or we can&#8217;t contact the database server at %2$s. This could mean your host&#8217;s database server is down."
 msgstr "This either means that the username and password information in your %1$s file is incorrect or we can&#8217;t contact the database server at %2$s. This could mean your host&#8217;s database server is down."
 
@@ -303,7 +307,8 @@ msgstr "%1$s (since %2$s; %3$s)"
 msgid "%1$s (since %2$s; no alternative available)"
 msgstr "%1$s (since %2$s; no alternative available)"
 
-#: wp-includes/shortcodes.php:99
+#. translators: %s: shortcode name
+#: wp-includes/shortcodes.php:100
 msgid "Invalid shortcode name: %s. Do not use spaces or reserved characters: & / < > [ ]"
 msgstr "Invalid shortcode name: %s. Do not use spaces or reserved characters: & / < > [ ]"
 
@@ -594,12 +599,12 @@ msgstr "Embedded WordPress Post"
 msgid "When in reorder mode, additional controls to reorder widgets will be available in the widgets list above."
 msgstr "When in reorder mode, additional controls to reorder widgets will be available in the widgets list above."
 
-#: wp-includes/customize/class-wp-customize-themes-section.php:73
-#: wp-includes/customize/class-wp-customize-themes-section.php:74
+#: wp-includes/customize/class-wp-customize-themes-section.php:75
+#: wp-includes/customize/class-wp-customize-themes-section.php:76
 msgid "Search installed themes&hellip;"
 msgstr "Search installed themes&hellip;"
 
-#: wp-includes/comment-template.php:2095
+#: wp-includes/comment-template.php:2101
 msgid "<a href=\"%1$s\" aria-label=\"Logged in as %2$s. Edit your profile.\">Logged in as %2$s</a>. <a href=\"%3$s\">Log out?</a>"
 msgstr "<a href=\"%1$s\" aria-label=\"Logged in as %2$s. Edit your profile.\">Logged in as %2$s</a>. <a href=\"%3$s\">Log out?</a>"
 
@@ -820,7 +825,7 @@ msgstr "Add to menu: %1$s (%2$s)"
 msgid "When starting a new paragraph with one of these formatting shortcuts followed by a space, the formatting will be applied automatically. Press Backspace or Escape to undo."
 msgstr "When starting a new paragraph with one of these formatting shortcuts followed by a space, the formatting will be applied automatically. Press Backspace or Escape to undo."
 
-#: wp-includes/wp-db.php:1334 wp-includes/wp-db.php:1351
+#: wp-includes/wp-db.php:1335 wp-includes/wp-db.php:1352
 msgid "WordPress database error:"
 msgstr "WordPress database error:"
 
@@ -860,12 +865,12 @@ msgid "%1$s (%2$d)"
 msgstr "%1$s (%2$d)"
 
 #: wp-includes/customize/class-wp-customize-themes-section.php:45
-#: wp-includes/customize/class-wp-customize-themes-section.php:62
+#: wp-includes/customize/class-wp-customize-themes-section.php:64
 msgid "Previewing theme"
 msgstr "Previewing theme"
 
 #: wp-includes/customize/class-wp-customize-themes-section.php:43
-#: wp-includes/customize/class-wp-customize-themes-section.php:60
+#: wp-includes/customize/class-wp-customize-themes-section.php:62
 msgid "Active theme"
 msgstr "Active theme"
 
@@ -983,7 +988,8 @@ msgstr ""
 msgid "No tags"
 msgstr "No tags"
 
-#: wp-includes/shortcodes.php:317
+#. translators: %s: shortcode tag
+#: wp-includes/shortcodes.php:319
 msgid "Attempting to parse a shortcode without a valid callback: %s"
 msgstr "Attempting to parse a shortcode without a valid callback: %s"
 
@@ -1124,7 +1130,7 @@ msgid "Menu Options"
 msgstr "Menu Options"
 
 #: wp-includes/class-wp-customize-section.php:236
-#: wp-includes/customize/class-wp-customize-themes-section.php:53
+#: wp-includes/customize/class-wp-customize-themes-section.php:55
 msgid "Customizing"
 msgstr "Customising"
 
@@ -1450,7 +1456,7 @@ msgstr "%s updated!"
 msgid "Updating %s..."
 msgstr "Updating %s..."
 
-#: wp-includes/customize/class-wp-customize-themes-section.php:49
+#: wp-includes/customize/class-wp-customize-themes-section.php:50
 msgctxt "theme"
 msgid "Change"
 msgstr "Change"
@@ -1517,7 +1523,7 @@ msgstr "Update completed successfully."
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Taxonomy names must be between 1 and 32 characters in length."
 
-#: wp-includes/taxonomy-functions.php:3971
+#: wp-includes/taxonomy-functions.php:3958
 msgid "Could not split shared term."
 msgstr "Could not split shared term."
 
@@ -1633,12 +1639,12 @@ msgid "Link Text"
 msgstr "Link Text"
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1442
+#: wp-includes/comment-template.php:1448
 msgid "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
 
 #. translators: 1: Number of comments 2: post title
-#: wp-includes/comment-template.php:1447
+#: wp-includes/comment-template.php:1453
 msgid "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
 msgid_plural "%1$s Comments<span class=\"screen-reader-text\"> on %2$s</span>"
 msgstr[0] "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
@@ -1649,7 +1655,7 @@ msgid "Select Year"
 msgstr "Select Year"
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1453
+#: wp-includes/comment-template.php:1459
 msgid "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
 
@@ -1666,7 +1672,7 @@ msgid "Select Post"
 msgstr "Select Post"
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1437
+#: wp-includes/comment-template.php:1443
 msgid "No Comments<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "No Comments<span class=\"screen-reader-text\"> on %s</span>"
 
@@ -1683,7 +1689,7 @@ msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %
 msgstr "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s function instead."
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:102
-#: wp-includes/customize/class-wp-customize-themes-section.php:68
+#: wp-includes/customize/class-wp-customize-themes-section.php:70
 msgid "Theme Details"
 msgstr "Theme Details"
 
@@ -1755,11 +1761,13 @@ msgstr "The following values do not describe a valid date: month %1$s, day %2$s.
 msgid "You need to pass an array of types."
 msgstr "You need to pass an array of types."
 
-#: wp-includes/wp-db.php:1135
+#. translators: %s: database access abstraction class, usually wpdb or a class
+#. extending wpdb
+#: wp-includes/wp-db.php:1136
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s must set a database connection for use with escaping."
 
-#: wp-includes/taxonomy-functions.php:2652
+#: wp-includes/taxonomy-functions.php:2639
 msgid "A term with the name provided already exists in this taxonomy."
 msgstr "A term with the name and slug already exists in this taxonomy."
 
@@ -1923,7 +1931,7 @@ msgstr "Do not pass style tags to wp_add_inline_style()."
 msgid "The following values do not describe a valid date: year %1$s, month %2$s, day %3$s."
 msgstr "The following values do not describe a valid date: year %1$s, month %2$s, day %3$s."
 
-#: wp-includes/comment-template.php:1544
+#: wp-includes/comment-template.php:1550
 msgid "Reply to %s"
 msgstr "Reply to %s"
 
@@ -2068,7 +2076,7 @@ msgstr "(no label)"
 
 #. translators: %s: taxonomy label, %l: list of terms formatted as per
 #. $term_template
-#: wp-includes/taxonomy-functions.php:4457
+#: wp-includes/taxonomy-functions.php:4444
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -2786,7 +2794,7 @@ msgstr "Show Images"
 msgid "Crop Image"
 msgstr "Crop Image"
 
-#: wp-includes/wp-db.php:1251
+#: wp-includes/wp-db.php:1252
 msgid "The query argument of %s must have a placeholder."
 msgstr "The query argument of %s must have a placeholder."
 
@@ -3066,7 +3074,7 @@ msgid "Randomize uploaded headers"
 msgstr "Randomise uploaded headers"
 
 #: wp-includes/admin-bar.php:145 wp-includes/wp-db.php:1085
-#: wp-includes/wp-db.php:1550 wp-includes/wp-db.php:1654 wp-login.php:781
+#: wp-includes/wp-db.php:1551 wp-includes/wp-db.php:1655 wp-login.php:781
 msgid "https://wordpress.org/support/"
 msgstr "https://wordpress.org/support/"
 
@@ -3841,7 +3849,7 @@ msgstr "Select Colour"
 msgid "Current Color"
 msgstr "Current Colour"
 
-#: wp-includes/taxonomy-functions.php:2878
+#: wp-includes/taxonomy-functions.php:2865
 msgid "Could not insert term relationship into the database"
 msgstr "Could not insert term relationship into the database"
 
@@ -3955,7 +3963,7 @@ msgstr "Select File"
 
 #: wp-includes/admin-bar.php:359
 #: wp-includes/customize/class-wp-customize-theme-control.php:85
-#: wp-includes/customize/class-wp-customize-themes-section.php:65
+#: wp-includes/customize/class-wp-customize-themes-section.php:67
 msgid "Customize"
 msgstr "Customise"
 
@@ -4113,8 +4121,8 @@ msgstr "This taxonomy is not hierarchical."
 
 #: wp-includes/class-wp-xmlrpc-server.php:1878
 #: wp-includes/class-wp-xmlrpc-server.php:1976
-#: wp-includes/taxonomy-functions.php:2575
-#: wp-includes/taxonomy-functions.php:3167
+#: wp-includes/taxonomy-functions.php:2562
+#: wp-includes/taxonomy-functions.php:3154
 msgid "Parent term does not exist."
 msgstr "Parent term does not exist."
 
@@ -4248,7 +4256,7 @@ msgstr "Sorry, you are not allowed to edit this post."
 msgid "Edit Site"
 msgstr "Edit Site"
 
-#: wp-includes/post-functions.php:3749 wp-includes/script-loader.php:498
+#: wp-includes/post-functions.php:3750 wp-includes/script-loader.php:498
 #: wp-includes/script-loader.php:562
 msgctxt "tag delimiter"
 msgid ","
@@ -4505,9 +4513,16 @@ msgid "Database Error"
 msgstr "Database Error"
 
 #: wp-includes/functions.php:3508 wp-includes/ms-load.php:286
-#: wp-includes/wp-db.php:1532
+#: wp-includes/wp-db.php:1533
 msgid "Error establishing a database connection"
 msgstr "Error establishing a database connection"
+
+#. translators: %s: number of comments
+#: wp-includes/comment-template.php:874
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] "%s Comment"
+msgstr[1] "%s Comments"
 
 #: wp-includes/admin-bar.php:128
 msgid "WordPress.org"
@@ -4881,9 +4896,10 @@ msgstr "Manage Comments"
 msgid "Invalid post."
 msgstr "Invalid post."
 
-#: wp-includes/post-functions.php:3238
-msgid "Invalid taxonomy: %s"
-msgstr "Invalid taxonomy: %s"
+#. translators: %s: taxonomy name
+#: wp-includes/post-functions.php:3239
+msgid "Invalid taxonomy: %s."
+msgstr "Invalid taxonomy: %s."
 
 #: wp-includes/query.php:2535
 msgid "\"caller_get_posts\" is deprecated. Use \"ignore_sticky_posts\" instead."
@@ -5145,7 +5161,7 @@ msgstr "<strong>Conflicting values for the constants VHOST and SUBDOMAIN_INSTALL
 msgid "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username."
 msgstr "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username."
 
-#: wp-includes/comment-template.php:2079
+#: wp-includes/comment-template.php:2085
 msgid "Required fields are marked %s"
 msgstr "Required fields are marked %s"
 
@@ -5300,7 +5316,7 @@ msgstr "The WordPress address you entered did not appear to be a valid URL. Plea
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 
-#: wp-includes/taxonomy-functions.php:2649
+#: wp-includes/taxonomy-functions.php:2636
 msgid "A term with the name provided already exists with this parent."
 msgstr "A term with the name provided already exists with this parent."
 
@@ -5312,7 +5328,7 @@ msgstr "An error occurred adding you to this site. Back to the <a href=\"%s\">ho
 msgid "This file is too big. Files must be less than %d KB in size."
 msgstr "This file is too big. Files must be less than %d KB in size."
 
-#: wp-includes/comment-template.php:2096
+#: wp-includes/comment-template.php:2102
 msgid "Your email address will not be published."
 msgstr "Your email address will not be published."
 
@@ -5329,7 +5345,7 @@ msgstr "Could not calculate resized image dimensions"
 msgid "Use <code>get_the_author()</code> instead if you do not want the value echoed."
 msgstr "Use <code>get_the_author()</code> instead if you do not want the value echoed."
 
-#: wp-includes/comment-template.php:1089
+#: wp-includes/comment-template.php:1095
 msgid "Use <code>get_trackback_url()</code> instead if you do not want the value echoed."
 msgstr "Use <code>get_trackback_url()</code> instead if you do not want the value echoed."
 
@@ -5578,7 +5594,7 @@ msgstr "Allow new users to sign up"
 #: wp-includes/class-wp-xmlrpc-server.php:5953
 #: wp-includes/class-wp-xmlrpc-server.php:6007
 #: wp-includes/class-wp-xmlrpc-server.php:6126
-#: wp-includes/post-functions.php:2932 wp-includes/post-functions.php:3419
+#: wp-includes/post-functions.php:2932 wp-includes/post-functions.php:3420
 #: wp-includes/revision.php:265
 msgid "Invalid post ID."
 msgstr "Invalid post ID."
@@ -5751,11 +5767,11 @@ msgstr "Your PHP installation appears to be missing the MySQL extension which is
 msgid "<strong>ERROR</strong>: <code>$table_prefix</code> in <code>wp-config.php</code> can only contain numbers, letters, and underscores."
 msgstr "<strong>ERROR</strong>: <code>$table_prefix</code> in <code>wp-config.php</code> can only contain numbers, letters, and underscores."
 
-#: wp-includes/wp-db.php:1320
+#: wp-includes/wp-db.php:1321
 msgid "WordPress database error %1$s for query %2$s made by %3$s"
 msgstr "WordPress database error %1$s for query %2$s made by %3$s"
 
-#: wp-includes/wp-db.php:1322
+#: wp-includes/wp-db.php:1323
 msgid "WordPress database error %1$s for query %2$s"
 msgstr "WordPress database error %1$s for query %2$s"
 
@@ -5806,15 +5822,15 @@ msgstr ", "
 #: wp-includes/class-wp-xmlrpc-server.php:1956
 #: wp-includes/class-wp-xmlrpc-server.php:2047
 #: wp-includes/class-wp-xmlrpc-server.php:2118
-#: wp-includes/taxonomy-functions.php:2566
+#: wp-includes/taxonomy-functions.php:2553
 msgid "Invalid term ID"
 msgstr "Invalid term ID"
 
-#: wp-includes/comment-template.php:2109
+#: wp-includes/comment-template.php:2115
 msgid "Cancel reply"
 msgstr "Cancel reply"
 
-#: wp-includes/comment-template.php:2110
+#: wp-includes/comment-template.php:2116
 msgid "Post Comment"
 msgstr "Post Comment"
 
@@ -6856,7 +6872,7 @@ msgstr "Could not update post in the database"
 msgid "Could not insert post into the database"
 msgstr "Could not insert post into the database"
 
-#: wp-includes/post-functions.php:3284
+#: wp-includes/post-functions.php:3285
 msgid "The page template is invalid."
 msgstr "The page template is invalid."
 
@@ -7022,29 +7038,29 @@ msgid "Saving Draft&#8230;"
 msgstr "Saving Draft&#8230;"
 
 #: wp-includes/taxonomy-functions.php:750
-#: wp-includes/taxonomy-functions.php:3140
-#: wp-includes/taxonomy-functions.php:4325
+#: wp-includes/taxonomy-functions.php:3127
+#: wp-includes/taxonomy-functions.php:4312
 msgid "Empty Term"
 msgstr "Empty Term"
 
-#: wp-includes/taxonomy-functions.php:2569
-#: wp-includes/taxonomy-functions.php:3164
+#: wp-includes/taxonomy-functions.php:2556
+#: wp-includes/taxonomy-functions.php:3151
 msgid "A name is required for this term"
 msgstr "A name is required for this term"
 
-#: wp-includes/taxonomy-functions.php:2660
+#: wp-includes/taxonomy-functions.php:2647
 msgid "Could not insert term into the database"
 msgstr "Could not insert term into the database"
 
-#: wp-includes/taxonomy-functions.php:2931
+#: wp-includes/taxonomy-functions.php:2918
 msgid "Invalid Taxonomy"
 msgstr "Invalid Taxonomy"
 
-#: wp-includes/taxonomy-functions.php:3224
+#: wp-includes/taxonomy-functions.php:3211
 msgid "The slug &#8220;%s&#8221; is already in use by another term"
 msgstr "The slug &#8220;%s&#8221; is already in use by another term"
 
-#: wp-includes/taxonomy-functions.php:4528
+#: wp-includes/taxonomy-functions.php:4515
 msgid "Invalid object ID"
 msgstr "Invalid object ID"
 
@@ -7090,7 +7106,7 @@ msgstr "<strong>ERROR</strong>: The email address isn&#8217;t correct."
 msgid "Sidebar %d"
 msgstr "Sidebar %d"
 
-#: wp-includes/wp-db.php:3107
+#: wp-includes/wp-db.php:3108
 msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 
@@ -7349,7 +7365,7 @@ msgid "Sites"
 msgstr "Sites"
 
 #: wp-includes/admin-bar.php:430 wp-includes/admin-bar.php:723
-#: wp-includes/customize/class-wp-customize-themes-section.php:54
+#: wp-includes/customize/class-wp-customize-themes-section.php:56
 msgid "Themes"
 msgstr "Themes"
 
@@ -7444,44 +7460,40 @@ msgstr "For some strange yet very annoying reason, this post could not be edited
 msgid "Sorry, you do not have the right to delete this post."
 msgstr "Sorry, you do not have the right to delete this post."
 
-#: wp-includes/comment-template.php:872
-msgid "% Comments"
-msgstr "% Comments"
-
-#: wp-includes/comment-template.php:874
+#: wp-includes/comment-template.php:880
 msgid "No Comments"
 msgstr "No Comments"
 
-#: wp-includes/comment-template.php:876
+#: wp-includes/comment-template.php:882
 msgid "1 Comment"
 msgstr "1 Comment"
 
-#: wp-includes/comment-template.php:1462
+#: wp-includes/comment-template.php:1468
 msgid "Enter your password to view comments."
 msgstr "Enter your password to view comments."
 
-#: wp-includes/comment-template.php:1545
+#: wp-includes/comment-template.php:1551
 msgid "Log in to Reply"
 msgstr "Log in to Reply"
 
-#: wp-includes/comment-template.php:1656
+#: wp-includes/comment-template.php:1662
 msgid "Leave a Comment"
 msgstr "Leave a Comment"
 
-#: wp-includes/comment-template.php:1657
+#: wp-includes/comment-template.php:1663
 msgid "Log in to leave a Comment"
 msgstr "Log in to leave a Comment"
 
-#: wp-includes/comment-template.php:1725
+#: wp-includes/comment-template.php:1731
 msgid "Click here to cancel reply."
 msgstr "Click here to cancel reply."
 
-#: wp-includes/comment-template.php:1812 wp-includes/comment-template.php:2103
+#: wp-includes/comment-template.php:1818 wp-includes/comment-template.php:2109
 #: wp-includes/theme-compat/comments.php:75
 msgid "Leave a Reply"
 msgstr "Leave a Reply"
 
-#: wp-includes/comment-template.php:1813 wp-includes/comment-template.php:2104
+#: wp-includes/comment-template.php:1819 wp-includes/comment-template.php:2110
 #: wp-includes/theme-compat/comments.php:75
 msgid "Leave a Reply to %s"
 msgstr "Leave a Reply to %s"
@@ -7505,17 +7517,17 @@ msgstr "%1$s at %2$s"
 msgid "(Edit)"
 msgstr "(Edit)"
 
-#: wp-includes/comment-template.php:2073
+#: wp-includes/comment-template.php:2079
 #: wp-includes/theme-compat/comments-popup.php:81 wp-login.php:721
 msgid "Email"
 msgstr "Email"
 
-#: wp-includes/comment-template.php:2075
+#: wp-includes/comment-template.php:2081
 #: wp-includes/theme-compat/comments.php:102
 msgid "Website"
 msgstr "Website"
 
-#: wp-includes/comment-template.php:2093
+#: wp-includes/comment-template.php:2099
 #: wp-includes/theme-compat/comments.php:82
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "You must be <a href=\"%s\">logged in</a> to post a comment."
@@ -7759,6 +7771,7 @@ msgstr "Cancel"
 msgid "Anonymous"
 msgstr "Anonymous"
 
+#: wp-includes/class-wp-term.php:179
 #: wp-includes/class-wp-xmlrpc-server.php:1851
 #: wp-includes/class-wp-xmlrpc-server.php:1938
 #: wp-includes/class-wp-xmlrpc-server.php:2034
@@ -7767,29 +7780,29 @@ msgstr "Anonymous"
 #: wp-includes/class-wp-xmlrpc-server.php:2258
 #: wp-includes/taxonomy-functions.php:665
 #: wp-includes/taxonomy-functions.php:754
-#: wp-includes/taxonomy-functions.php:918
-#: wp-includes/taxonomy-functions.php:1091
-#: wp-includes/taxonomy-functions.php:2300
-#: wp-includes/taxonomy-functions.php:2551
-#: wp-includes/taxonomy-functions.php:2794
-#: wp-includes/taxonomy-functions.php:3127
+#: wp-includes/taxonomy-functions.php:905
+#: wp-includes/taxonomy-functions.php:1078
+#: wp-includes/taxonomy-functions.php:2287
+#: wp-includes/taxonomy-functions.php:2538
+#: wp-includes/taxonomy-functions.php:2781
+#: wp-includes/taxonomy-functions.php:3114
 msgid "Invalid taxonomy"
 msgstr "Invalid taxonomy"
 
-#: wp-includes/comment-template.php:1035 wp-includes/comment-template.php:2091
+#: wp-includes/comment-template.php:1041 wp-includes/comment-template.php:2097
 msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: wp-includes/comment-template.php:1036
+#: wp-includes/comment-template.php:1042
 msgid "Trackback"
 msgstr "Trackback"
 
-#: wp-includes/comment-template.php:1037
+#: wp-includes/comment-template.php:1043
 msgid "Pingback"
 msgstr "Pingback"
 
-#: wp-includes/comment-template.php:1543 wp-includes/script-loader.php:488
+#: wp-includes/comment-template.php:1549 wp-includes/script-loader.php:488
 msgid "Reply"
 msgstr "Reply"
 
@@ -7799,7 +7812,7 @@ msgstr "Reply"
 msgid "Edit"
 msgstr "Edit"
 
-#: wp-includes/comment-template.php:2071
+#: wp-includes/comment-template.php:2077
 #: wp-includes/theme-compat/comments-popup.php:76
 #: wp-includes/theme-compat/comments.php:96
 msgid "Name"
