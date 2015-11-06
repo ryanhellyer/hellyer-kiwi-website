@@ -2,13 +2,67 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-11-05 14:43:21+0000\n"
+"PO-Revision-Date: 2015-11-06 15:33:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/1.0-alpha-1100\n"
 "Project-Id-Version: Administration\n"
+
+#. translators: 1: localhost 2: localhost.localdomain
+#: wp-admin/includes/network.php:254
+msgid "Because you are using %1$s, the sites in your WordPress network must use sub-directories. Consider using %2$s if you wish to use sub-domains."
+msgstr "Because you are using %1$s, the sites in your WordPress network must use sub-directories. Consider using %2$s if you wish to use sub-domains."
+
+#. translators: %s: wp-content/uploads
+#: wp-admin/options-media.php:110
+msgid "Default is %s"
+msgstr "Default is %s"
+
+#: wp-admin/includes/network.php:192
+msgid "Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories."
+msgstr "Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories."
+
+#: wp-admin/includes/network.php:193
+msgid "You cannot change this later."
+msgstr "You cannot change this later."
+
+#. translators: 1: mod_rewrite, 2: mod_rewrite documentation URL, 3: Google
+#. search for mod_rewrite
+#: wp-admin/includes/network.php:181
+msgid "If %1$s is disabled, ask your administrator to enable that module, or look at the <a href=\"%2$s\">Apache documentation</a> or <a href=\"%3$s\">elsewhere</a> for help setting it up."
+msgstr "If %1$s is disabled, ask your administrator to enable that module, or look at the <a href=\"%2$s\">Apache documentation</a> or <a href=\"%3$s\">elsewhere</a> for help setting it up."
+
+#. translators: %s: mod_rewrite
+#: wp-admin/includes/network.php:165
+msgid "Please make sure the Apache %s module is installed as it will be used at the end of this installation."
+msgstr "Please make sure the Apache %s module is installed as it will be used at the end of this installation."
+
+#. translators: %s: mod_rewrite
+#: wp-admin/includes/network.php:172
+msgid "It looks like the Apache %s module is not installed."
+msgstr "It looks like the Apache %s module is not installed."
+
+#. translators: %s: style.css
+#: wp-admin/includes/class-wp-upgrader.php:1655
+msgid "The theme is missing the %s stylesheet."
+msgstr "The theme is missing the %s stylesheet."
+
+#. translators: %s: style.css
+#: wp-admin/includes/class-wp-upgrader.php:1666
+msgid "The %s stylesheet doesn&#8217;t contain a valid theme header."
+msgstr "The %s stylesheet doesn&#8217;t contain a valid theme header."
+
+#. translators: %s: index.php
+#: wp-admin/includes/class-wp-upgrader.php:1676
+msgid "The theme is missing the %s file."
+msgstr "The theme is missing the %s file."
+
+#. translators: 1: .po 2: .mo
+#: wp-admin/includes/class-wp-upgrader.php:2108
+msgid "The language pack is missing either the %1$s or %2$s files."
+msgstr "The language pack is missing either the %1$s or %2$s files."
 
 #: wp-admin/theme-install.php:154
 msgid "If you have marked themes as favorites on WordPress.org, you can browse them here."
@@ -81,10 +135,6 @@ msgstr "Standard time begins on: %s."
 #: wp-admin/includes/class-wp-plugins-list-table.php:452
 msgid "Files in the %s directory are executed automatically."
 msgstr "Files in the %s directory are executed automatically."
-
-#: wp-admin/includes/network.php:167
-msgid "If <code>mod_rewrite</code> is disabled, ask your administrator to enable that module, or look at the <a href=\"http://httpd.apache.org/docs/mod/mod_rewrite.html\">Apache documentation</a> or <a href=\"http://www.google.com/search?q=apache+mod_rewrite\">elsewhere</a> for help setting it up."
-msgstr "If <code>mod_rewrite</code> is disabled, ask your administrator to enable that module, or look at the <a href=\"http://httpd.apache.org/docs/mod/mod_rewrite.html\">Apache documentation</a> or <a href=\"http://www.google.com/search?q=apache+mod_rewrite\">elsewhere</a> for help setting it up."
 
 #: wp-admin/edit-tags.php:21 wp-admin/edit-tags.php:27 wp-admin/options.php:50
 msgid "You are not allowed to manage these items."
@@ -221,7 +271,7 @@ msgstr "Toggle panel: %s"
 msgid "Get Version %s"
 msgstr "Get Version %s"
 
-#: wp-admin/includes/network.php:549
+#: wp-admin/includes/network.php:575
 msgid "Once you complete these steps, your network is enabled and configured. You will have to log in again."
 msgstr "Once you complete these steps, your network is enabled and configured. You will have to log in again."
 
@@ -239,169 +289,153 @@ msgid "Saving revision&hellip;"
 msgstr "Saving revision&hellip;"
 
 #. translators: 1: a filename like .htaccess. 2: a file path.
-#: wp-admin/includes/network.php:494 wp-admin/includes/network.php:534
+#: wp-admin/includes/network.php:520 wp-admin/includes/network.php:560
 msgid "Add the following to your %1$s file in %2$s, <strong>replacing</strong> other WordPress rules:"
 msgstr "Add the following to your %1$s file in %2$s, <strong>replacing</strong> other WordPress rules:"
 
 #. translators: 1: wp-config.php 2: location of wp-config file
-#: wp-admin/includes/network.php:380
+#: wp-admin/includes/network.php:406
 msgid "Add the following to your %1$s file in %2$s <strong>above</strong> the line reading <code>/* That&#8217;s all, stop editing! Happy blogging. */</code>:"
 msgstr "Add the following to your %1$s file in %2$s <strong>above</strong> the line reading <code>/* That&#8217;s all, stop editing! Happy blogging. */</code>:"
 
 #. translators: 1: wp-config.php
-#: wp-admin/includes/network.php:419
+#: wp-admin/includes/network.php:445
 msgid "This unique authentication key is also missing from your %s file."
 msgstr "This unique authentication key is also missing from your %s file."
 
 #. translators: 1: wp-config.php
-#: wp-admin/includes/network.php:425
+#: wp-admin/includes/network.php:451
 msgid "These unique authentication keys are also missing from your %s file."
 msgstr "These unique authentication keys are also missing from your %s file."
 
-#: wp-admin/includes/network.php:430
+#: wp-admin/includes/network.php:456
 msgid "To make your installation more secure, you should also add:"
 msgstr "To make your installation more secure, you should also add:"
 
-#: wp-admin/includes/network.php:338
+#: wp-admin/includes/network.php:364
 msgid "Please complete the configuration steps. To create a new network, you will need to empty or remove the network database tables."
 msgstr "Please complete the configuration steps. To create a new network, you will need to empty or remove the network database tables."
 
-#: wp-admin/includes/network.php:349
+#: wp-admin/includes/network.php:375
 msgid "Enabling the Network"
 msgstr "Enabling the Network"
 
-#: wp-admin/includes/network.php:350
+#: wp-admin/includes/network.php:376
 msgid "Complete the following steps to enable the features for creating a network of sites."
 msgstr "Complete the following steps to enable the features for creating a network of sites."
 
 #. translators: 1: wp-config.php 2: .htaccess
 #. translators: 1: wp-config.php 2: web.config
-#: wp-admin/includes/network.php:355 wp-admin/includes/network.php:362
+#: wp-admin/includes/network.php:381 wp-admin/includes/network.php:388
 msgid "<strong>Caution:</strong> We recommend you back up your existing %1$s and %2$s files."
 msgstr "<strong>Caution:</strong> We recommend you back up your existing %1$s and %2$s files."
 
 #. translators: 1: wp-config.php
-#: wp-admin/includes/network.php:369
+#: wp-admin/includes/network.php:395
 msgid "<strong>Caution:</strong> We recommend you back up your existing %s file."
 msgstr "<strong>Caution:</strong> We recommend you back up your existing %s file."
 
-#: wp-admin/includes/network.php:250
+#: wp-admin/includes/network.php:276
 msgid "Because your install is not new, the sites in your WordPress network must use sub-domains."
 msgstr "Because your install is not new, the sites in your WordPress network must use sub-domains."
 
-#: wp-admin/includes/network.php:268
+#: wp-admin/includes/network.php:294
 msgid "Network Title"
 msgstr "Network Title"
 
-#: wp-admin/includes/network.php:272
+#: wp-admin/includes/network.php:298
 msgid "What would you like to call your network?"
 msgstr "What would you like to call your network?"
 
-#: wp-admin/includes/network.php:277
+#: wp-admin/includes/network.php:303
 msgid "Network Admin Email"
 msgstr "Network Admin Email"
 
-#: wp-admin/includes/network.php:281
+#: wp-admin/includes/network.php:307
 msgid "Your email address."
 msgstr "Your email address."
 
-#: wp-admin/includes/network.php:332
+#: wp-admin/includes/network.php:358
 msgid "The original configuration steps are shown here for reference."
 msgstr "The original configuration steps are shown here for reference."
 
-#: wp-admin/includes/network.php:337
+#: wp-admin/includes/network.php:363
 msgid "An existing WordPress network was detected."
 msgstr "An existing WordPress network was detected."
 
-#: wp-admin/includes/network.php:241
+#: wp-admin/includes/network.php:267
 msgid "Because your install is in a directory, the sites in your WordPress network must use sub-directories."
 msgstr "Because your install is in a directory, the sites in your WordPress network must use sub-directories."
 
-#: wp-admin/includes/network.php:249
+#: wp-admin/includes/network.php:275
 msgid "Sub-domain Install"
 msgstr "Sub-domain Install"
 
-#: wp-admin/includes/network.php:234 wp-admin/includes/network.php:244
-#: wp-admin/includes/network.php:251
+#: wp-admin/includes/network.php:260 wp-admin/includes/network.php:270
+#: wp-admin/includes/network.php:277
 msgid "The main site in a sub-directory install will need to use a modified permalink structure, potentially breaking existing links."
 msgstr "The main site in a sub-directory install will need to use a modified permalink structure, potentially breaking existing links."
 
-#: wp-admin/includes/network.php:231
-msgid "Because you are using <code>localhost</code>, the sites in your WordPress network must use sub-directories. Consider using <code>localhost.localdomain</code> if you wish to use sub-domains."
-msgstr "Because you are using <code>localhost</code>, the sites in your WordPress network must use sub-directories. Consider using <code>localhost.localdomain</code> if you wish to use sub-domains."
-
 #. translators: 1: site url 2: host name 3. www
-#: wp-admin/includes/network.php:206
+#: wp-admin/includes/network.php:227
 msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
 msgstr "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
 
 #. translators: %s: host name
-#: wp-admin/includes/network.php:217 wp-admin/includes/network.php:261
+#: wp-admin/includes/network.php:238 wp-admin/includes/network.php:287
 msgid "The internet address of your network will be %s."
 msgstr "The internet address of your network will be %s."
 
-#: wp-admin/includes/network.php:225
+#: wp-admin/includes/network.php:246
 msgid "Network Details"
 msgstr "Network Details"
 
-#: wp-admin/includes/network.php:229 wp-admin/includes/network.php:239
+#: wp-admin/includes/network.php:250 wp-admin/includes/network.php:265
 msgid "Sub-directory Install"
 msgstr "Sub-directory Install"
 
-#: wp-admin/includes/network.php:203 wp-admin/includes/network.php:213
-#: wp-admin/includes/network.php:257
+#: wp-admin/includes/network.php:224 wp-admin/includes/network.php:234
+#: wp-admin/includes/network.php:283
 msgid "Server Address"
 msgstr "Server Address"
 
-#: wp-admin/includes/network.php:173
+#: wp-admin/includes/network.php:194
 msgid "You will need a wildcard DNS record if you are going to use the virtual host (sub-domain) functionality."
 msgstr "You will need a wildcard DNS record if you are going to use the virtual host (sub-domain) functionality."
 
-#: wp-admin/includes/network.php:177
+#: wp-admin/includes/network.php:198
 msgid "Sub-domains"
 msgstr "Sub-domains"
 
 #. translators: 1: hostname
-#: wp-admin/includes/network.php:180
+#: wp-admin/includes/network.php:201
 msgctxt "subdomain examples"
 msgid "like <code>site1.%1$s</code> and <code>site2.%1$s</code>"
 msgstr "like <code>site1.%1$s</code> and <code>site2.%1$s</code>"
 
-#: wp-admin/includes/network.php:185
+#: wp-admin/includes/network.php:206
 msgid "Sub-directories"
 msgstr "Sub-directories"
 
 #. translators: 1: hostname
-#: wp-admin/includes/network.php:188
+#: wp-admin/includes/network.php:209
 msgctxt "subdirectory examples"
 msgid "like <code>%1$s/site1</code> and <code>%1$s/site2</code>"
 msgstr "like <code>%1$s/site1</code> and <code>%1$s/site2</code>"
 
-#: wp-admin/includes/network.php:198 wp-admin/includes/network.php:500
-#: wp-admin/includes/network.php:540
+#: wp-admin/includes/network.php:219 wp-admin/includes/network.php:526
+#: wp-admin/includes/network.php:566
 msgid "Subdirectory networks may not be fully compatible with custom wp-content directories."
 msgstr "Subdirectory networks may not be fully compatible with custom wp-content directories."
 
-#: wp-admin/includes/network.php:172
-msgid "Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories. <strong>You cannot change this later.</strong>"
-msgstr "Please choose whether you would like sites in your WordPress network to use sub-domains or sub-directories. <strong>You cannot change this later.</strong>"
-
-#: wp-admin/includes/network.php:171
+#: wp-admin/includes/network.php:191
 msgid "Addresses of Sites in your Network"
 msgstr "Addresses of Sites in your Network"
 
-#: wp-admin/includes/network.php:163
-msgid "Please make sure the Apache <code>mod_rewrite</code> module is installed as it will be used at the end of this installation."
-msgstr "Please make sure the Apache <code>mod_rewrite</code> module is installed as it will be used at the end of this installation."
-
-#: wp-admin/includes/network.php:165 wp-admin/includes/network.php:198
-#: wp-admin/includes/network.php:234 wp-admin/includes/network.php:244
+#: wp-admin/includes/network.php:170 wp-admin/includes/network.php:219
+#: wp-admin/includes/network.php:260 wp-admin/includes/network.php:270
 msgid "Warning!"
 msgstr "Warning!"
-
-#: wp-admin/includes/network.php:165
-msgid "It looks like the Apache <code>mod_rewrite</code> module is not installed."
-msgstr "It looks like the Apache <code>mod_rewrite</code> module is not installed."
 
 #: wp-admin/includes/network.php:151
 msgid "Fill in the information below and you&#8217;ll be on your way to creating a network of WordPress sites. We will create configuration files in the next step."
@@ -428,8 +462,8 @@ msgstr "Welcome to the Network installation process!"
 msgid "The constant DO_NOT_UPGRADE_GLOBAL_TABLES cannot be defined when creating a network."
 msgstr "The constant DO_NOT_UPGRADE_GLOBAL_TABLES cannot be defined when creating a network."
 
-#: wp-admin/includes/network.php:113 wp-admin/includes/network.php:337
-#: wp-admin/includes/network.php:500 wp-admin/includes/network.php:540
+#: wp-admin/includes/network.php:113 wp-admin/includes/network.php:363
+#: wp-admin/includes/network.php:526 wp-admin/includes/network.php:566
 msgid "Warning:"
 msgstr "Warning:"
 
@@ -708,15 +742,15 @@ msgstr "Post published."
 msgid "View page"
 msgstr "View page"
 
-#: wp-admin/edit-comments.php:169
+#: wp-admin/edit-comments.php:172
 msgid "Filter comments list"
 msgstr "Filter comments list"
 
-#: wp-admin/edit-comments.php:170
+#: wp-admin/edit-comments.php:173
 msgid "Comments list navigation"
 msgstr "Comments list navigation"
 
-#: wp-admin/edit-comments.php:171
+#: wp-admin/edit-comments.php:174
 msgid "Comments list"
 msgstr "Comments list"
 
@@ -728,11 +762,11 @@ msgstr "Preview post"
 msgid "Preview page"
 msgstr "Preview page"
 
-#: wp-admin/edit-comments.php:156
+#: wp-admin/edit-comments.php:159
 msgid "In the <strong>Submitted On</strong> column, the date and time the comment was left on your site appears. Clicking on the date/time link will take you to that comment on your live site."
 msgstr "In the <strong>Submitted On</strong> column, the date and time the comment was left on your site appears. Clicking on the date/time link will take you to that comment on your live site."
 
-#: wp-admin/edit-comments.php:154
+#: wp-admin/edit-comments.php:157
 msgid "In the <strong>Comment</strong> column, hovering over any comment gives you options to approve, reply (and approve), quick edit, edit, spam mark, or trash that comment."
 msgstr "In the <strong>Comment</strong> column, hovering over any comment gives you options to approve, reply (and approve), quick edit, edit, spam mark, or trash that comment."
 
@@ -744,13 +778,15 @@ msgstr "The current theme does not support a flexible sized header image."
 msgid "You are not allowed to edit comments."
 msgstr "You are not allowed to edit comments."
 
-#: wp-admin/edit-comments.php:121
-msgid "Comments (%s) on &#8220;%s&#8221;"
-msgstr "Comments (%s) on &#8220;%s&#8221;"
-
-#: wp-admin/edit-comments.php:132
+#. translators: %s: comments count
+#: wp-admin/edit-comments.php:135
 msgid "Comments (%s)"
 msgstr "Comments (%s)"
+
+#. translators: 1: comments count 2: post title
+#: wp-admin/edit-comments.php:121
+msgid "Comments (%1$s) on &#8220;%2$s&#8221;"
+msgstr "Comments (%1$s) on &#8220;%2$s&#8221;"
 
 #. translators: %s: comment link
 #: wp-admin/comment.php:187
@@ -1169,7 +1205,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Media_Add_New_Screen\" target=\"_b
 msgid "<a href=\"https://codex.wordpress.org/Users_Screen\" target=\"_blank\">Documentation on Managing Users</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Users_Screen\" target=\"_blank\">Documentation on Managing Users</a>"
 
-#: wp-admin/comment.php:51 wp-admin/edit-comments.php:162
+#: wp-admin/comment.php:51 wp-admin/edit-comments.php:165
 msgid "<a href=\"https://codex.wordpress.org/Administration_Screens#Comments\" target=\"_blank\">Documentation on Comments</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Administration_Screens#Comments\" target=\"_blank\">Documentation on Comments</a>"
 
@@ -1225,7 +1261,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Roles_and_Capabilities\" target=\"
 msgid "<a href=\"https://codex.wordpress.org/Using_Permalinks\" target=\"_blank\">Documentation on Using Permalinks</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Using_Permalinks\" target=\"_blank\">Documentation on Using Permalinks</a>"
 
-#: wp-admin/edit-comments.php:164
+#: wp-admin/edit-comments.php:167
 msgid "<a href=\"https://codex.wordpress.org/Keyboard_Shortcuts\" target=\"_blank\">Documentation on Keyboard Shortcuts</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Keyboard_Shortcuts\" target=\"_blank\">Documentation on Keyboard Shortcuts</a>"
 
@@ -1241,7 +1277,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Dashboard_My_Sites_Screen\" target
 msgid "<a href=\"https://codex.wordpress.org/Keyboard_Shortcuts\" target=\"_blank\">More information</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Keyboard_Shortcuts\" target=\"_blank\">More information</a>"
 
-#: wp-admin/edit-comments.php:163
+#: wp-admin/edit-comments.php:166
 msgid "<a href=\"https://codex.wordpress.org/Comment_Spam\" target=\"_blank\">Documentation on Comment Spam</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Comment_Spam\" target=\"_blank\">Documentation on Comment Spam</a>"
 
@@ -1700,7 +1736,7 @@ msgstr "Suggested media"
 msgid "Back to post options"
 msgstr "Back to post options"
 
-#: wp-admin/includes/class-wp-upgrader.php:3452
+#: wp-admin/includes/class-wp-upgrader.php:3476
 msgid ""
 "BETA TESTING?\n"
 "=============\n"
@@ -1724,7 +1760,7 @@ msgstr ""
 "\n"
 "Thanks! -- The WordPress Team"
 
-#: wp-admin/includes/class-wp-upgrader.php:3470
+#: wp-admin/includes/class-wp-upgrader.php:3494
 msgid ""
 "UPDATE LOG\n"
 "=========="
@@ -1853,6 +1889,10 @@ msgstr "<a href=\"%1$s\">%2$s at %3$s</a>"
 #: wp-admin/includes/class-wp-comments-list-table.php:406
 msgid "In Response To"
 msgstr "In Response To"
+
+#: wp-admin/setup-config.php:145
+msgid "Need more help? <a href='https://codex.wordpress.org/Editing_wp-config.php'>We got it</a>."
+msgstr "Need more help? <a href='https://codex.wordpress.org/Editing_wp-config.php'>We got it</a>."
 
 #: wp-admin/user-edit.php:502
 msgid "You are only logged in at this location."
@@ -2177,7 +2217,7 @@ msgstr "The grid view for the Media Library requires JavaScript. <a href=\"uploa
 msgid "Add the user without sending an email that requires their confirmation."
 msgstr "Add the user without sending an email that requires their confirmation."
 
-#: wp-admin/includes/class-wp-upgrader.php:3282
+#: wp-admin/includes/class-wp-upgrader.php:3306
 msgid "The WordPress team is willing to help you. Forward this email to %s and the team will work with you to make sure your site is working."
 msgstr "The WordPress team is willing to help you. Forward this email to %s and the team will work with you to make sure your site is working."
 
@@ -2257,7 +2297,7 @@ msgstr "Contributors"
 msgid "The Customizer allows you to preview changes to your site before publishing them. You can also navigate to different pages on your site to preview them."
 msgstr "The Customiser allows you to preview changes to your site before publishing them. You can also navigate to different pages on your site to preview them."
 
-#: wp-admin/includes/class-wp-upgrader.php:3295
+#: wp-admin/includes/class-wp-upgrader.php:3319
 msgid "If you reach out to us, we'll also ensure you'll never have this problem again."
 msgstr "If you reach out to us, we'll also ensure you'll never have this problem again."
 
@@ -2278,7 +2318,7 @@ msgstr "To crop the image, click on it and drag to make your selection."
 msgid "You can proportionally scale the original image. For best results, scaling should be done before you crop, flip, or rotate. Images can only be scaled down, not up."
 msgstr "You can proportionally scale the original image. For best results, scaling should be done before you crop, flip, or rotate. Images can only be scaled down, not up."
 
-#: wp-admin/edit-comments.php:152
+#: wp-admin/edit-comments.php:155
 msgid "A red bar on the left means the comment is waiting for you to moderate it."
 msgstr "A red bar on the left means the comment is waiting for you to moderate it."
 
@@ -2394,7 +2434,7 @@ msgid "Thank you for creating with <a href=\"%s\">WordPress</a>."
 msgstr "Thank you for creating with <a href=\"%s\">WordPress</a>."
 
 #: wp-admin/comment.php:52 wp-admin/custom-background.php:101
-#: wp-admin/custom-header.php:128 wp-admin/edit-comments.php:165
+#: wp-admin/custom-header.php:128 wp-admin/edit-comments.php:168
 #: wp-admin/edit-form-advanced.php:382 wp-admin/edit-form-advanced.php:398
 #: wp-admin/edit-form-advanced.php:414 wp-admin/edit-link-form.php:66
 #: wp-admin/edit-tags.php:278 wp-admin/edit.php:225 wp-admin/edit.php:246
@@ -2503,13 +2543,6 @@ msgid_plural "%s Pages"
 msgstr[0] "%s Page"
 msgstr[1] "%s Pages"
 
-#: wp-admin/includes/ajax-actions.php:367
-#: wp-admin/includes/ajax-actions.php:1068 wp-admin/includes/dashboard.php:258
-msgid "%s Comment"
-msgid_plural "%s Comments"
-msgstr[0] "%s Comment"
-msgstr[1] "%s Comments"
-
 #. translators: Number of comments in moderation
 #: wp-admin/includes/ajax-actions.php:371
 #: wp-admin/includes/ajax-actions.php:1072 wp-admin/includes/dashboard.php:263
@@ -2610,36 +2643,36 @@ msgid "This screen shows an individual user all of their sites in this network, 
 msgstr "This screen shows an individual user all of their sites in this network, and also allows that user to set a primary site. They can use the links under each site to visit either the frontend or the dashboard for that site."
 
 #. translators: 1: Error code, 2: Error message.
-#: wp-admin/includes/class-wp-upgrader.php:3494
+#: wp-admin/includes/class-wp-upgrader.php:3518
 msgid "Rollback Error: [%1$s] %2$s"
 msgstr "Rollback Error: [%1$s] %2$s"
 
 #. translators: 1: Error code, 2: Error message.
-#: wp-admin/includes/class-wp-upgrader.php:3497
+#: wp-admin/includes/class-wp-upgrader.php:3521
 msgid "Error: [%1$s] %2$s"
 msgstr "Error: [%1$s] %2$s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3417
+#: wp-admin/includes/class-wp-upgrader.php:3441
 msgid "The following plugins were successfully updated:"
 msgstr "The following plugins were successfully updated:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3418
+#: wp-admin/includes/class-wp-upgrader.php:3442
 msgid "The following themes were successfully updated:"
 msgstr "The following themes were successfully updated:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3419
+#: wp-admin/includes/class-wp-upgrader.php:3443
 msgid "The following translations were successfully updated:"
 msgstr "The following translations were successfully updated:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3430
+#: wp-admin/includes/class-wp-upgrader.php:3454
 msgid "The following plugins failed to update:"
 msgstr "The following plugins failed to update:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3431
+#: wp-admin/includes/class-wp-upgrader.php:3455
 msgid "The following themes failed to update:"
 msgstr "The following themes failed to update:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3432
+#: wp-admin/includes/class-wp-upgrader.php:3456
 msgid "The following translations failed to update:"
 msgstr "The following translations failed to update:"
 
@@ -2698,31 +2731,31 @@ msgstr "<strong>Quick Draft</strong> &mdash; Allows you to create a new post and
 msgid "Activity"
 msgstr "Activity"
 
-#: wp-admin/includes/class-wp-upgrader.php:3378
+#: wp-admin/includes/class-wp-upgrader.php:3402
 msgid "WordPress site: %s"
 msgstr "WordPress site: %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3384
+#: wp-admin/includes/class-wp-upgrader.php:3408
 msgid "SUCCESS: WordPress was successfully updated to %s"
 msgstr "SUCCESS: WordPress was successfully updated to %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3386
+#: wp-admin/includes/class-wp-upgrader.php:3410
 msgid "FAILED: WordPress failed to update to %s"
 msgstr "FAILED: WordPress failed to update to %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3424
+#: wp-admin/includes/class-wp-upgrader.php:3448
 msgid "SUCCESS: %s"
 msgstr "SUCCESS: %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3438
+#: wp-admin/includes/class-wp-upgrader.php:3462
 msgid "FAILED: %s"
 msgstr "FAILED: %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:3465
+#: wp-admin/includes/class-wp-upgrader.php:3489
 msgid "[%s] There were failures during background updates"
 msgstr "[%s] There were failures during background updates"
 
-#: wp-admin/includes/class-wp-upgrader.php:3467
+#: wp-admin/includes/class-wp-upgrader.php:3491
 msgid "[%s] Background updates have finished"
 msgstr "[%s] Background updates have finished"
 
@@ -2781,21 +2814,21 @@ msgid "Manage Uploads"
 msgstr "Manage Uploads"
 
 #: wp-admin/includes/class-wp-upgrader.php:143
-#: wp-admin/includes/class-wp-upgrader.php:2240
+#: wp-admin/includes/class-wp-upgrader.php:2264
 #: wp-admin/includes/update-core.php:839 wp-admin/includes/update-core.php:914
 #: wp-admin/includes/update-core.php:937
 msgid "The update cannot be installed because we will be unable to copy some files. This is usually due to inconsistent file permissions."
 msgstr "The update cannot be installed because we will be unable to copy some files. This is usually due to inconsistent file permissions."
 
-#: wp-admin/includes/class-wp-upgrader.php:3244
+#: wp-admin/includes/class-wp-upgrader.php:3268
 msgid "WordPress %s is also now available."
 msgstr "WordPress %s is also now available."
 
-#: wp-admin/includes/class-wp-upgrader.php:3268
+#: wp-admin/includes/class-wp-upgrader.php:3292
 msgid "Your site at %1$s experienced a critical failure while trying to update WordPress to version %2$s."
 msgstr "Your site at %1$s experienced a critical failure while trying to update WordPress to version %2$s."
 
-#: wp-admin/includes/class-wp-upgrader.php:3308
+#: wp-admin/includes/class-wp-upgrader.php:3332
 msgid "Your site was running version %s."
 msgstr "Your site was running version %s."
 
@@ -2805,91 +2838,91 @@ msgid "Update Translations"
 msgstr "Update Translations"
 
 #: wp-admin/includes/class-wp-upgrader-skins.php:808
-#: wp-admin/includes/class-wp-upgrader.php:2890
+#: wp-admin/includes/class-wp-upgrader.php:2914
 msgid "Updating translations for %1$s (%2$s)&#8230;"
 msgstr "Updating translations for %1$s (%2$s)&#8230;"
 
-#: wp-admin/includes/class-wp-upgrader.php:2889
+#: wp-admin/includes/class-wp-upgrader.php:2913
 msgid "Translations for %s"
 msgstr "Translations for %s"
 
 #. translators: 1: Site name, 2: WordPress version number.
-#: wp-admin/includes/class-wp-upgrader.php:3207
+#: wp-admin/includes/class-wp-upgrader.php:3231
 msgid "[%1$s] Your site has updated to WordPress %2$s"
 msgstr "[%1$s] Your site has updated to WordPress %2$s"
 
 #. translators: 1: Site name, 2: WordPress version number.
-#: wp-admin/includes/class-wp-upgrader.php:3213
+#: wp-admin/includes/class-wp-upgrader.php:3237
 msgid "[%1$s] WordPress %2$s is available. Please update!"
 msgstr "[%1$s] WordPress %2$s is available. Please update!"
 
 #. translators: 1: Site name.
-#: wp-admin/includes/class-wp-upgrader.php:3218
+#: wp-admin/includes/class-wp-upgrader.php:3242
 msgid "[%1$s] URGENT: Your site may be down due to a failed update"
 msgstr "[%1$s] URGENT: Your site may be down due to a failed update"
 
-#: wp-admin/includes/class-wp-upgrader.php:3233
+#: wp-admin/includes/class-wp-upgrader.php:3257
 msgid "Howdy! Your site at %1$s has been updated automatically to WordPress %2$s."
 msgstr "Your site at %1$s has been updated automatically to WordPress %2$s."
 
-#: wp-admin/includes/class-wp-upgrader.php:3236
+#: wp-admin/includes/class-wp-upgrader.php:3260
 msgid "No further action is needed on your part."
 msgstr "No further action is needed on your part."
 
-#: wp-admin/includes/class-wp-upgrader.php:3240
+#: wp-admin/includes/class-wp-upgrader.php:3264
 msgid "For more on version %s, see the About WordPress screen:"
 msgstr "For more on version %s, see the About WordPress screen:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3253
+#: wp-admin/includes/class-wp-upgrader.php:3277
 msgid "Please update your site at %1$s to WordPress %2$s."
 msgstr "Please update your site at %1$s to WordPress %2$s."
 
-#: wp-admin/includes/class-wp-upgrader.php:3260
+#: wp-admin/includes/class-wp-upgrader.php:3284
 msgid "We tried but were unable to update your site automatically."
 msgstr "We tried but were unable to update your site automatically."
 
-#: wp-admin/includes/class-wp-upgrader.php:3245
-#: wp-admin/includes/class-wp-upgrader.php:3262
+#: wp-admin/includes/class-wp-upgrader.php:3269
+#: wp-admin/includes/class-wp-upgrader.php:3286
 msgid "Updating is easy and only takes a few moments:"
 msgstr "Updating is easy and only takes a few moments:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3270
+#: wp-admin/includes/class-wp-upgrader.php:3294
 msgid "Your site at %1$s experienced a critical failure while trying to update to the latest version of WordPress, %2$s."
 msgstr "Your site at %1$s experienced a critical failure while trying to update to the latest version of WordPress, %2$s."
 
-#: wp-admin/includes/class-wp-upgrader.php:3272
+#: wp-admin/includes/class-wp-upgrader.php:3296
 msgid "This means your site may be offline or broken. Don't panic; this can be fixed."
 msgstr "This means your site may be offline or broken. Don't panic; this can be fixed."
 
-#: wp-admin/includes/class-wp-upgrader.php:3274
+#: wp-admin/includes/class-wp-upgrader.php:3298
 msgid "Please check out your site now. It's possible that everything is working. If it says you need to update, you should do so:"
 msgstr "Please check out your site now. It's possible that everything is working. If it says you need to update, you should do so:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3291 wp-admin/update-core.php:529
+#: wp-admin/includes/class-wp-upgrader.php:3315 wp-admin/update-core.php:529
 msgid "Keeping your site updated is important for security. It also makes the internet a safer place for you and your readers."
 msgstr "Keeping your site updated is important for security. It also makes the internet a safer place for you and your readers."
 
-#: wp-admin/includes/class-wp-upgrader.php:3285
+#: wp-admin/includes/class-wp-upgrader.php:3309
 msgid "If you experience any issues or need support, the volunteers in the WordPress.org support forums may be able to help."
 msgstr "If you experience any issues or need support, the volunteers in the WordPress.org support forums may be able to help."
 
-#: wp-admin/includes/class-wp-upgrader.php:3300
+#: wp-admin/includes/class-wp-upgrader.php:3324
 msgid "You also have some plugins or themes with updates available. Update them now:"
 msgstr "You also have some plugins or themes with updates available. Update them now:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3304
+#: wp-admin/includes/class-wp-upgrader.php:3328
 msgid "The WordPress Team"
 msgstr "The WordPress Team"
 
-#: wp-admin/includes/class-wp-upgrader.php:3309
+#: wp-admin/includes/class-wp-upgrader.php:3333
 msgid "We have some data that describes the error your site encountered."
 msgstr "We have some data that describes the error your site encountered."
 
-#: wp-admin/includes/class-wp-upgrader.php:3310
+#: wp-admin/includes/class-wp-upgrader.php:3334
 msgid "Your hosting company, support forum volunteers, or a friendly developer may be able to use this information to help you:"
 msgstr "Your hosting company, support forum volunteers, or a friendly developer may be able to use this information to help you:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3323
+#: wp-admin/includes/class-wp-upgrader.php:3347
 msgid "Error code: %s"
 msgstr "Error code: %s"
 
@@ -2921,31 +2954,31 @@ msgstr "Translations"
 msgid "Your translations are all up to date."
 msgstr "Your translations are all up to date."
 
-#: wp-admin/includes/class-wp-upgrader.php:1896
+#: wp-admin/includes/class-wp-upgrader.php:1914
 msgid "Some of your translations need updating. Sit tight for a few more seconds while we update them as well."
 msgstr "Some of your translations need updating. Sit tight for a few more seconds while we update them as well."
 
-#: wp-admin/includes/class-wp-upgrader.php:1897
+#: wp-admin/includes/class-wp-upgrader.php:1915
 msgid "The translation is up to date."
 msgstr "The translation is up to date."
 
-#: wp-admin/includes/class-wp-upgrader.php:1899
+#: wp-admin/includes/class-wp-upgrader.php:1917
 msgid "Downloading translation from <span class=\"code\">%s</span>&#8230;"
 msgstr "Downloading translation from <span class=\"code\">%s</span>&#8230;"
 
-#: wp-admin/includes/class-wp-upgrader.php:1901
+#: wp-admin/includes/class-wp-upgrader.php:1919
 msgid "Translation update failed."
 msgstr "Translation update failed."
 
-#: wp-admin/includes/class-wp-upgrader.php:1902
+#: wp-admin/includes/class-wp-upgrader.php:1920
 msgid "Translation updated successfully."
 msgstr "Translation updated successfully."
 
-#: wp-admin/includes/class-wp-upgrader.php:2879
+#: wp-admin/includes/class-wp-upgrader.php:2903
 msgid "Updating theme: %s"
 msgstr "Updating theme: %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:2885
+#: wp-admin/includes/class-wp-upgrader.php:2909
 msgid "Updating plugin: %s"
 msgstr "Updating plugin: %s"
 
@@ -2973,23 +3006,19 @@ msgstr "Create a brand new user and add them to this site."
 msgid "Looking for %1$s in %2$s"
 msgstr "Looking for %1$s in %2$s"
 
-#: wp-admin/includes/class-wp-upgrader.php:2089
-msgid "The language pack is missing either the <code>.po</code> or <code>.mo</code> files."
-msgstr "The language pack is missing either the <code>.po</code> or <code>.mo</code> files."
-
-#: wp-admin/includes/class-wp-upgrader.php:2150
+#: wp-admin/includes/class-wp-upgrader.php:2174
 msgid "Attempting to roll back to previous version."
 msgstr "Attempting to roll back to previous version."
 
-#: wp-admin/includes/class-wp-upgrader.php:2151
+#: wp-admin/includes/class-wp-upgrader.php:2175
 msgid "Due to an error during updating, WordPress has rolled back to your previous version."
 msgstr "Due to an error during updating, WordPress has rolled back to your previous version."
 
-#: wp-admin/includes/class-wp-upgrader.php:2872
+#: wp-admin/includes/class-wp-upgrader.php:2896
 msgid "Updating to WordPress %s"
 msgstr "Updating to WordPress %s"
 
-#: wp-admin/includes/class-wp-upgrader.php:2873
+#: wp-admin/includes/class-wp-upgrader.php:2897
 msgid "WordPress %s"
 msgstr "WordPress %s"
 
@@ -3685,7 +3714,7 @@ msgstr "Learn more about getting started"
 msgid "File URL:"
 msgstr "File URL:"
 
-#: wp-admin/edit-comments.php:155
+#: wp-admin/edit-comments.php:158
 msgid "In the <strong>In Response To</strong> column, there are three elements. The text is the name of the post that inspired the comment, and links to the post editor for that entry. The View Post link leads to that post on your live site. The small bubble with the number in it shows the number of approved comments that post has received. If there are pending comments, a red notification circle with the number of pending comments is displayed. Clicking the notification circle will filter the comments screen to show only pending comments on that post."
 msgstr "In the <strong>In Response To</strong> column, there are three elements. The text is the name of the post that inspired the comment, and links to the post editor for that entry. The View Post link leads to that post on your live site. The small bubble with the number in it shows the number of approved comments that post has received. If there are pending comments, a red notification circle with the number of pending comments is displayed. Clicking the notification circle will filter the comments screen to show only pending comments on that post."
 
@@ -4108,7 +4137,7 @@ msgstr "User deleted."
 msgid "New user created. <a href=\"%s\">Edit user</a>"
 msgstr "New user created. <a href=\"%s\">Edit user</a>"
 
-#: wp-admin/includes/class-wp-upgrader.php:2149 wp-admin/includes/file.php:630
+#: wp-admin/includes/class-wp-upgrader.php:2173 wp-admin/includes/file.php:630
 #: wp-admin/includes/file.php:736
 msgid "Could not copy files. You may have run out of disk space."
 msgstr "Could not copy files. You may have run out of disk space."
@@ -4145,7 +4174,7 @@ msgstr "Customize &#8220;%s&#8221;"
 msgid "About"
 msgstr "About"
 
-#: wp-admin/edit-comments.php:244 wp-admin/edit-comments.php:250
+#: wp-admin/edit-comments.php:265 wp-admin/edit-comments.php:271
 #: wp-admin/includes/class-wp-comments-list-table.php:585
 #: wp-admin/includes/dashboard.php:602
 msgid "Edit comment"
@@ -4993,7 +5022,7 @@ msgstr "User Roles"
 msgid "To add a new user to your site, fill in the form on this screen and click the Add New User button at the bottom."
 msgstr "To add a new user to your site, fill in the form on this screen and click the Add New User button at the bottom."
 
-#: wp-admin/edit-comments.php:150
+#: wp-admin/edit-comments.php:153
 msgid "Moderating Comments"
 msgstr "Moderating Comments"
 
@@ -5149,15 +5178,15 @@ msgstr "All the files you&#8217;ve uploaded are listed in the Media Library, wit
 msgid "Pages are similar to posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts. Pages are not categorized or tagged, but can have a hierarchy. You can nest pages under other pages by making one the &#8220;Parent&#8221; of the other, creating a group of pages."
 msgstr "Pages are similar to posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts. Pages are not categorized or tagged, but can have a hierarchy. You can nest pages under other pages by making one the &#8220;Parent&#8221; of the other, creating a group of pages."
 
-#: wp-admin/edit-comments.php:157
+#: wp-admin/edit-comments.php:160
 msgid "Many people take advantage of keyboard shortcuts to moderate their comments more quickly. Use the link to the side to learn more."
 msgstr "Many people take advantage of keyboard shortcuts to moderate their comments more quickly. Use the link to the side to learn more."
 
-#: wp-admin/edit-comments.php:146
+#: wp-admin/edit-comments.php:149
 msgid "You can manage comments made on your site similar to the way you manage posts and other content. This screen is customizable in the same ways as other management screens, and you can act on comments using the on-hover action links or the Bulk Actions."
 msgstr "You can manage comments made on your site similar to the way you manage posts and other content. This screen is customizable in the same ways as other management screens, and you can act on comments using the on-hover action links or the Bulk Actions."
 
-#: wp-admin/edit-comments.php:153
+#: wp-admin/edit-comments.php:156
 msgid "In the <strong>Author</strong> column, in addition to the author&#8217;s name, email address, and blog URL, the commenter&#8217;s IP address is shown. Clicking on this link will show you all the comments made from this IP address."
 msgstr "In the <strong>Author</strong> column, in addition to the author&#8217;s name, email address, and blog URL, the commenter&#8217;s IP address is shown. Clicking on this link will show you all the comments made from this IP address."
 
@@ -5288,18 +5317,6 @@ msgstr "The plugin contains no files."
 msgid "No valid plugins were found."
 msgstr "No valid plugins were found."
 
-#: wp-admin/includes/class-wp-upgrader.php:1653
-msgid "The theme is missing the <code>style.css</code> stylesheet."
-msgstr "The theme is missing the <code>style.css</code> stylesheet."
-
-#: wp-admin/includes/class-wp-upgrader.php:1662
-msgid "The theme is missing the <code>index.php</code> file."
-msgstr "The theme is missing the <code>index.php</code> file."
-
-#: wp-admin/includes/class-wp-upgrader.php:1658
-msgid "The <code>style.css</code> stylesheet doesn't contain a valid theme header."
-msgstr "The <code>style.css</code> stylesheet doesn't contain a valid theme header."
-
 #: wp-admin/includes/media.php:1067
 msgid "Attachment Post URL"
 msgstr "Attachment Post URL"
@@ -5406,7 +5423,7 @@ msgid "You can use the following controls to arrange your Dashboard screen to su
 msgstr "You can use the following controls to arrange your Dashboard screen to suit your workflow. This is true on most other administration screens as well."
 
 #: wp-admin/comment.php:43 wp-admin/custom-background.php:90
-#: wp-admin/custom-header.php:100 wp-admin/edit-comments.php:144
+#: wp-admin/custom-header.php:100 wp-admin/edit-comments.php:147
 #: wp-admin/edit-form-advanced.php:403 wp-admin/edit-link-form.php:56
 #: wp-admin/edit-tags.php:239 wp-admin/edit.php:186 wp-admin/edit.php:231
 #: wp-admin/export.php:47 wp-admin/import.php:21
@@ -5434,7 +5451,8 @@ msgstr "<strong>Drag and Drop</strong> &mdash; To rearrange the boxes, drag and 
 msgid "Updates %s"
 msgstr "Updates %s"
 
-#: wp-admin/edit-comments.php:190 wp-admin/edit-tags.php:311
+#. translators: %s: search keywords
+#: wp-admin/edit-comments.php:197 wp-admin/edit-tags.php:311
 #: wp-admin/edit.php:307 wp-admin/link-manager.php:78 wp-admin/plugins.php:515
 #: wp-admin/upload.php:224 wp-admin/users.php:479
 msgid "Search results for &#8220;%s&#8221;"
@@ -5505,7 +5523,7 @@ msgid "Role"
 msgstr "Role"
 
 #: wp-admin/comment.php:50 wp-admin/custom-background.php:99
-#: wp-admin/custom-header.php:126 wp-admin/edit-comments.php:161
+#: wp-admin/custom-header.php:126 wp-admin/edit-comments.php:164
 #: wp-admin/edit-form-advanced.php:380 wp-admin/edit-form-advanced.php:395
 #: wp-admin/edit-form-advanced.php:412 wp-admin/edit-link-form.php:64
 #: wp-admin/edit-tags.php:269 wp-admin/edit.php:223 wp-admin/edit.php:244
@@ -5562,7 +5580,7 @@ msgid "Attributes"
 msgstr "Attributes"
 
 #: wp-admin/includes/class-wp-theme-install-list-table.php:409
-#: wp-admin/includes/dashboard.php:1193 wp-admin/includes/network.php:286
+#: wp-admin/includes/dashboard.php:1193 wp-admin/includes/network.php:312
 #: wp-admin/theme-install.php:230 wp-admin/theme-install.php:248
 msgid "Install"
 msgstr "Install"
@@ -6118,8 +6136,8 @@ msgstr "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thick
 
 #: wp-admin/includes/class-wp-upgrader.php:794
 #: wp-admin/includes/class-wp-upgrader.php:1260
-#: wp-admin/includes/class-wp-upgrader.php:1898
-#: wp-admin/includes/class-wp-upgrader.php:2145
+#: wp-admin/includes/class-wp-upgrader.php:1916
+#: wp-admin/includes/class-wp-upgrader.php:2169
 msgid "Update package not available."
 msgstr "Update package not available."
 
@@ -6871,7 +6889,9 @@ msgstr "Mark as Spam"
 msgid "Remove Background Image"
 msgstr "Remove Background Image"
 
-#: wp-admin/edit-comments.php:126 wp-admin/edit-comments.php:180
+#. translators: %s: post title
+#. translators: %s: link to post
+#: wp-admin/edit-comments.php:127 wp-admin/edit-comments.php:184
 msgid "Comments on &#8220;%s&#8221;"
 msgstr "Comments on &#8220;%s&#8221;"
 
@@ -7144,13 +7164,15 @@ msgstr "You are not allowed to restore this item from the Trash."
 msgid "Error in moving to Trash."
 msgstr "Error in moving to Trash."
 
-#: wp-admin/edit-comments.php:236
+#. translators: %s: number of comments restored from the Trash
+#: wp-admin/edit-comments.php:254
 msgid "%s comment restored from the Trash"
 msgid_plural "%s comments restored from the Trash"
 msgstr[0] "%s comment restored from the Trash"
 msgstr[1] "%s comments restored from the Trash"
 
-#: wp-admin/edit-comments.php:232
+#. translators: %s: number of comments moved to the Trash
+#: wp-admin/edit-comments.php:249
 msgid "%s comment moved to the Trash."
 msgid_plural "%s comments moved to the Trash."
 msgstr[0] "%s comment moved to the Trash."
@@ -7345,7 +7367,7 @@ msgstr "The password you chose during the install."
 msgid "User already exists. Password inherited."
 msgstr "User already exists. Password inherited."
 
-#: wp-admin/includes/class-wp-upgrader.php:2920
+#: wp-admin/includes/class-wp-upgrader.php:2944
 #: wp-admin/includes/update-core.php:1203 wp-admin/update-core.php:477
 msgid "WordPress updated successfully"
 msgstr "WordPress updated successfully"
@@ -7486,7 +7508,7 @@ msgstr "Moderate Comment"
 msgid "This comment is currently approved."
 msgstr "This comment is currently approved."
 
-#: wp-admin/edit-comments.php:244
+#: wp-admin/edit-comments.php:265
 msgid "This comment is already approved."
 msgstr "This comment is already approved."
 
@@ -7498,15 +7520,15 @@ msgstr "This comment is currently in the Trash."
 msgid "Repeat"
 msgstr "Repeat"
 
-#: wp-admin/edit-comments.php:247
+#: wp-admin/edit-comments.php:268
 msgid "This comment is already in the Trash."
 msgstr "This comment is already in the Trash."
 
-#: wp-admin/edit-comments.php:247
+#: wp-admin/edit-comments.php:268
 msgid "View Trash"
 msgstr "View Trash"
 
-#: wp-admin/edit-comments.php:250
+#: wp-admin/edit-comments.php:271
 msgid "This comment is already marked as spam."
 msgstr "This comment is already marked as spam."
 
@@ -7894,7 +7916,7 @@ msgstr "Compatibility with WordPress %1$s: %2$d%% (%3$d \"works\" votes out of %
 msgid "Compatibility with WordPress %1$s: Unknown"
 msgstr "Compatibility with WordPress %1$s: Unknown"
 
-#: wp-admin/includes/class-wp-upgrader.php:2918 wp-admin/update-core.php:472
+#: wp-admin/includes/class-wp-upgrader.php:2942 wp-admin/update-core.php:472
 msgid "Installation Failed"
 msgstr "Installation Failed"
 
@@ -8344,15 +8366,11 @@ msgstr "Uploading Files"
 msgid "Store uploads in this folder"
 msgstr "Store uploads in this folder"
 
-#: wp-admin/options-media.php:108
-msgid "Default is <code>wp-content/uploads</code>"
-msgstr "Default is <code>wp-content/uploads</code>"
-
-#: wp-admin/options-media.php:113
+#: wp-admin/options-media.php:116
 msgid "Full URL path to files"
 msgstr "Full URL path to files"
 
-#: wp-admin/options-media.php:115
+#: wp-admin/options-media.php:118
 msgid "Configuring this is optional. By default, it should be blank."
 msgstr "Configuring this is optional. By default, it should be blank."
 
@@ -8833,7 +8851,7 @@ msgstr "Yes, delete these files"
 msgid "Welcome to WordPress. This is your first post. Edit or delete it, then start writing!"
 msgstr "Welcome to WordPress. This is your first post. Edit or delete it, then start writing!"
 
-#: wp-admin/options-media.php:123
+#: wp-admin/options-media.php:126
 msgid "Organize my uploads into month- and year-based folders"
 msgstr "Organise my uploads into month- and year-based folders"
 
@@ -10081,8 +10099,8 @@ msgstr "Press This"
 msgid "Return to Themes page"
 msgstr "Return to Themes page"
 
-#: wp-admin/includes/class-wp-upgrader.php:2514
-#: wp-admin/includes/class-wp-upgrader.php:2548
+#: wp-admin/includes/class-wp-upgrader.php:2538
+#: wp-admin/includes/class-wp-upgrader.php:2572
 msgid "Please select a file"
 msgstr "Please select a file"
 
@@ -10110,11 +10128,11 @@ msgstr "Configure"
 msgid "Theme installed successfully."
 msgstr "Theme installed successfully."
 
-#: wp-admin/includes/class-wp-upgrader.php:2144
+#: wp-admin/includes/class-wp-upgrader.php:2168
 msgid "WordPress is at the latest version."
 msgstr "WordPress is at the latest version."
 
-#: wp-admin/includes/class-wp-upgrader.php:2148
+#: wp-admin/includes/class-wp-upgrader.php:2172
 msgid "Could not copy files."
 msgstr "Could not copy files."
 
@@ -10159,8 +10177,8 @@ msgstr "Return to Theme Installer"
 
 #: wp-admin/includes/class-wp-upgrader.php:796
 #: wp-admin/includes/class-wp-upgrader.php:1262
-#: wp-admin/includes/class-wp-upgrader.php:1900
-#: wp-admin/includes/class-wp-upgrader.php:2147
+#: wp-admin/includes/class-wp-upgrader.php:1918
+#: wp-admin/includes/class-wp-upgrader.php:2171
 msgid "Unpacking the update&#8230;"
 msgstr "Unpacking the update&#8230;"
 
@@ -10263,7 +10281,7 @@ msgstr "The plugin is at the latest version."
 
 #: wp-admin/includes/class-wp-upgrader.php:795
 #: wp-admin/includes/class-wp-upgrader.php:1261
-#: wp-admin/includes/class-wp-upgrader.php:2146
+#: wp-admin/includes/class-wp-upgrader.php:2170
 msgid "Downloading update from <span class=\"code\">%s</span>&#8230;"
 msgstr "Downloading update from <span class=\"code\">%s</span>&#8230;"
 
@@ -10297,7 +10315,7 @@ msgid "Invalid Data provided."
 msgstr "Invalid Data provided."
 
 #: wp-admin/includes/class-wp-upgrader.php:128
-#: wp-admin/includes/class-wp-upgrader.php:2912 wp-admin/includes/file.php:534
+#: wp-admin/includes/class-wp-upgrader.php:2936 wp-admin/includes/file.php:534
 #: wp-admin/includes/plugin.php:796 wp-admin/includes/theme.php:55
 msgid "Could not access filesystem."
 msgstr "Could not access filesystem."
@@ -10480,25 +10498,29 @@ msgstr "(Unattached)"
 msgid "Attach"
 msgstr "Attach"
 
-#: wp-admin/edit-comments.php:220
+#. translators: %s: number of comments approved
+#: wp-admin/edit-comments.php:232
 msgid "%s comment approved"
 msgid_plural "%s comments approved"
 msgstr[0] "%s comment approved"
 msgstr[1] "%s comments approved"
 
-#: wp-admin/edit-comments.php:224
+#. translators: %s: number of comments marked as spam
+#: wp-admin/edit-comments.php:238
 msgid "%s comment marked as spam."
 msgid_plural "%s comments marked as spam."
 msgstr[0] "%s comment marked as spam."
 msgstr[1] "%s comments marked as spam."
 
-#: wp-admin/edit-comments.php:228
+#. translators: %s: number of comments restored from the spam
+#: wp-admin/edit-comments.php:243
 msgid "%s comment restored from the spam"
 msgid_plural "%s comments restored from the spam"
 msgstr[0] "%s comment restored from the spam"
 msgstr[1] "%s comments restored from the spam"
 
-#: wp-admin/edit-comments.php:239
+#. translators: %s: number of comments permanently deleted
+#: wp-admin/edit-comments.php:259
 msgid "%s comment permanently deleted"
 msgid_plural "%s comments permanently deleted"
 msgstr[0] "%s comment permanently deleted"
@@ -10582,7 +10604,7 @@ msgstr "Post updated."
 msgid "Post saved."
 msgstr "Post saved."
 
-#: wp-admin/edit-comments.php:264
+#: wp-admin/edit-comments.php:285
 msgid "Search Comments"
 msgstr "Search Comments"
 
@@ -10906,7 +10928,7 @@ msgstr "Draft saved at %s."
 msgid "Someone"
 msgstr "Someone"
 
-#: wp-admin/comment.php:250 wp-admin/edit-comments.php:202
+#: wp-admin/comment.php:250 wp-admin/edit-comments.php:213
 #: wp-admin/includes/comment.php:49
 msgid "You are not allowed to edit comments on this post."
 msgstr "You are not allowed to edit comments on this post."
