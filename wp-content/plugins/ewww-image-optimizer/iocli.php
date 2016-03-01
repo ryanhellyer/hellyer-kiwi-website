@@ -274,7 +274,7 @@ function ewww_image_optimizer_scan_other () {
 		// collect a list of images for buddypress
 		if ( ! function_exists( 'is_plugin_active' ) ) {
 			// need to include the plugin library for the is_plugin_active function
-			ewww_image_optimizer_require( ABSPATH . 'wp-admin/includes/plugin.php' );
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		}
 		if (is_plugin_active('buddypress/bp-loader.php') || is_plugin_active_for_network('buddypress/bp-loader.php')) {
 			// get the value of the wordpress upload directory
@@ -418,7 +418,7 @@ function ewww_image_optimizer_bulk_flag( $delay = 0 ) {
 	// set the resume flag to indicate the bulk operation is in progress
 	update_option('ewww_image_optimizer_bulk_flag_resume', 'true');
 	// need this file to work with flag meta
-	ewww_image_optimizer_require( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
+	require_once( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
 	foreach ( $ids as $id ) {
 		sleep( $delay );
 		// record the starting time for the current image (in microseconds)
@@ -568,7 +568,7 @@ function ewww_image_optimizer_bulk_next( $delay, $attachments ) {
 	// toggle the resume flag to indicate an operation is in progress
 	update_option('ewww_image_optimizer_bulk_ngg_resume', 'true');
 	// need this file to work with metadata
-	ewww_image_optimizer_require( WP_CONTENT_DIR . '/plugins/nextcellent-gallery-nextgen-legacy/lib/meta.php' );
+	require_once( WP_CONTENT_DIR . '/plugins/nextcellent-gallery-nextgen-legacy/lib/meta.php' );
 	foreach ( $attachments as $id ) {
 		sleep( $delay );
 		// find out what time we started, in microseconds

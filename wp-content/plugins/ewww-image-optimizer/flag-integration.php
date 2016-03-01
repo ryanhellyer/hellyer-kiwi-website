@@ -75,16 +75,16 @@ class ewwwflag {
 		// Retrieve the value of the 'bulk resume' option and set the button text for the form to use
 		$resume = get_option('ewww_image_optimizer_bulk_flag_resume');
 		if (empty($resume)) {
-			$button_text = __('Start optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN);
+			$button_text = esc_attr__('Start optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 		} else {
-			$button_text = __('Resume previous bulk operation', EWWW_IMAGE_OPTIMIZER_DOMAIN);
+			$button_text = esc_attr__('Resume previous bulk operation', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 		}
 		?>
 		<div id="ewww-bulk-loading"></div>
 		<div id="ewww-bulk-progressbar"></div>
 		<div id="ewww-bulk-counter"></div>
 		<form id="ewww-bulk-stop" style="display:none;" method="post" action="">
-			<br /><input type="submit" class="button-secondary action" value="<?php _e('Stop Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?>" />
+			<br /><input type="submit" class="button-secondary action" value="<?php esc_attr_e('Stop Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN); ?>" />
 		</form>
 		<div id="ewww-bulk-status"></div>
 		<form class="ewww-bulk-form">
@@ -173,9 +173,9 @@ class ewwwflag {
 		// store the IDs to optimize in the options table of the db
 		update_option('ewww_image_optimizer_bulk_flag_attachments', $ids);
 		// add the EWWW IO javascript
-		wp_enqueue_script('ewwwbulkscript', plugins_url('/eio.js', __FILE__), array('jquery', 'jquery-ui-progressbar', 'jquery-ui-slider'));
+		wp_enqueue_script('ewwwbulkscript', plugins_url('/includes/eio.js', __FILE__), array('jquery', 'jquery-ui-progressbar', 'jquery-ui-slider'));
 		// add the styling for the progressbar
-		wp_enqueue_style('jquery-ui-progressbar', plugins_url('jquery-ui-1.10.1.custom.css', __FILE__));
+		wp_enqueue_style('jquery-ui-progressbar', plugins_url('/includes/jquery-ui-1.10.1.custom.css', __FILE__));
 		// encode the IDs for javascript use
 		$ids = json_encode($ids);
 		// prepare a few variables to be used by the javascript code
@@ -261,8 +261,8 @@ class ewwwflag {
 		// and clean it up a bit
 		$sendback = preg_replace('|[^a-z0-9-~+_.?#=&;,/:]|i', '', $sendback);
 		// send the user back where they came from
-		wp_redirect($sendback);
-		exit(0);
+		wp_redirect( $sendback );
+		exit( 0 );
 	}
 
 	/* initialize bulk operation */
@@ -272,10 +272,10 @@ class ewwwflag {
 			wp_die( __( 'Access denied.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 		}
 		// set the resume flag to indicate the bulk operation is in progress
-		update_option('ewww_image_optimizer_bulk_flag_resume', 'true');
-		$loading_image = plugins_url('/wpspin.gif', __FILE__);
+		update_option( 'ewww_image_optimizer_bulk_flag_resume', 'true' );
+		$loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 		// output the initial message letting the user know we are starting
-		echo "<p>" . __('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
+		echo "<p>" . __( 'Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
 		die();
 	}
 
@@ -286,11 +286,11 @@ class ewwwflag {
 			wp_die( __( 'Access token has expired, please reload the page.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 		}
 		// need this file to work with flag meta
-		ewww_image_optimizer_require( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
+		require_once( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
 		$id = $_POST['ewww_attachment'];
 		// retrieve the meta for the current ID
 		$meta = new flagMeta($id);
-		$loading_image = plugins_url('/wpspin.gif', __FILE__);
+		$loading_image = plugins_url('/images/wpspin.gif', __FILE__);
 		// retrieve the filename for the current image ID
 		$file_name = esc_html($meta->image->filename);
 		// and let the user know which image we are working on currently
@@ -310,15 +310,15 @@ class ewwwflag {
 			sleep($_REQUEST['ewww_sleep']);
 		}
 		// need this file to work with flag meta
-		ewww_image_optimizer_require( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
+		require_once( WP_CONTENT_DIR . '/plugins/flash-album-gallery/lib/meta.php' );
 		// record the starting time for the current image (in microseconds)
 		$started = microtime(true);
 		$id = $_POST['ewww_attachment'];
 		// get the image meta for the current ID
-		$meta = new flagMeta($id);
+		$meta = new flagMeta( $id );
 		$file_path = $meta->image->imagePath;
 		// optimize the full-size version
-		$fres = ewww_image_optimizer($file_path, 3, false, false, true);
+		$fres = ewww_image_optimizer( $file_path, 3, false, false, true );
 		global $ewww_exceed;
 		if ( ! empty ( $ewww_exceed ) ) {
 			echo '-9exceeded';
@@ -448,11 +448,7 @@ class ewwwflag {
 		}
 	}
 }
+
+global $ewwwflag;
+$ewwwflag = new ewwwflag();
 }
-//add_action( 'init', 'ewwwflag' );
-
-//function ewwwflag() {
-	global $ewwwflag;
-	$ewwwflag = new ewwwflag();
-//}
-

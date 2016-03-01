@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: image, attachment, optimize, optimization, lossless, lossy, photo, picture, seo, compression, gmagick, jpegtran, gifsicle, optipng, pngout, pngquant, jpegmini, tinyjpg, tinypng, webp, wp-cli 
 Requires at least: 3.5
 Tested up to: 4.4.1
-Stable tag: 2.5.7
+Stable tag: 2.5.9
 License: GPLv3
 
 Reduce file sizes for images in WordPress including NextGEN, GRAND FlAGallery, FooGallery and more using lossless/lossy methods and image format conversion.
@@ -42,7 +42,7 @@ All optimized images are stored in the database so that the plugin does not atte
 
 = WP Image Editor = 
 
-All images created by the built-in WP_Image_Editor class will be automatically optimized. Current implementations are GD, Imagick, and Gmagick. Images optimized via this class include Meta Slider, BuddyPress Activity Plus (thumbs), WP Retina 2x, Imsanity, Simple Image Sizes, Hammy, Animated GIF Resize and probably countless others. If you are not sure if a plugin uses WP_Image_Editor, post your question in the support forums.
+All images created by the built-in WP_Image_Editor class will be automatically optimized. Current implementations are GD, Imagick, and Gmagick. Images optimized via this class include Animated GIF Resize, BuddyPress Activity Plus (thumbs), Easy Watermark, Hammy, Imsanity, MediaPress, Meta Slider, MyArcadePlugin, OTF Regenerate Thumbnails, Regenerate Thumbnails, Simple Image Sizes, WP Retina 2x, WP RSS Aggregator and probably countless others. If you are not sure if a plugin uses WP_Image_Editor, post your question in the support forums.
 
 = Optimize Everything Else =
 
@@ -71,6 +71,10 @@ Features optimization on upload capability, re-optimization, and bulk optimizing
 = Image Store =
 
 Uploads are automatically optimized. Look for Optimize under the Image Store (Galleries) menu to see status of optimization and for re-optimization and bulk-optimization options. Using the Bulk Optimization tool under Media Library automatically includes all Image Store uploads.
+
+= CDN Support =
+
+Uploads to Amazon S3, Azure Storage, Cloudinary, and DreamSpeed CDN are optimized. All pull mode CDNs like Cloudflare, MaxCDN, and Sucuri CloudProxy are also supported.
 
 = Translations =
 
@@ -218,6 +222,17 @@ Pngout, TinyJPG/TinyPNG, JPEGmini, and Pngquant were recommended by EWWW IO user
 
 * feature requests are sticky at the top of the support forums, vote for the ones you like: https://wordpress.org/support/plugin/ewww-image-optimizer
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
+
+= 2.5.9 =
+* fixed: warnings when attempting to unlink (delete) a non-existent test file
+* fixed: deep checking was not enabled for pngquant and cwebp (optional utilities)
+
+= 2.5.8 =
+* added: advanced checking for binaries using sample images when version output is suppressed
+* fixed: CPU overload causing 503 errors related to WebP function and output buffering parameters
+* fixed: call to old debug function in Image Store Optimize page
+* fixed: notices if action2 is not specified from Media Library bulk action drop-down
+* changed: streamlined binary checking to allow -custom and -alt binaries for all tools, including Windows
 
 = 2.5.7 =
 * fixed: MySQL column index too large when collation is utf8mb4 prevents table creation and throws warnings on upgrades

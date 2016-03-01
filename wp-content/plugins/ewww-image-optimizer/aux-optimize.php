@@ -6,9 +6,9 @@ function ewww_image_optimizer_aux_images () {
 	// Retrieve the value of the 'aux resume' option and set the button text for the form to use
 	$aux_resume = get_option( 'ewww_image_optimizer_aux_resume' );
 	if ( empty( $aux_resume ) ) {
-		$button_text = __( 'Scan and optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN );
+		$button_text = esc_attr__( 'Scan and optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 	} else {
-		$button_text = __( 'Resume previous optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN );
+		$button_text = esc_attr__( 'Resume previous optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 	}
 	// find out if the auxiliary image table has anything in it
 	$already_optimized = ewww_image_optimizer_aux_images_table_count();
@@ -16,7 +16,7 @@ function ewww_image_optimizer_aux_images () {
 	$convert_query = "SELECT image_md5 FROM $wpdb->ewwwio_images WHERE image_md5 <> ''";
 	$db_convert = $wpdb->get_results( $convert_query, ARRAY_N );
 	// generate the WP spinner image for display
-	$loading_image = plugins_url( '/wpspin.gif', __FILE__ );
+	$loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 	// check the last time the auxiliary optimizer was run
 	$lastaux = get_option( 'ewww_image_optimizer_aux_last' );
 	// set the timezone according to the blog settings
@@ -43,7 +43,7 @@ function ewww_image_optimizer_aux_images () {
 		<?php } ?>
 			<form id="ewww-aux-start" class="ewww-bulk-form" method="post" action="">
 				<input id="ewww-aux-first" type="submit" class="button-secondary action" value="<?php echo $button_text; ?>" />
-				<input id="ewww-aux-again" type="submit" class="button-secondary action" style="display:none" value="<?php _e( 'Optimize Again', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?>" />
+				<input id="ewww-aux-again" type="submit" class="button-secondary action" style="display:none" value="<?php esc_attr_e( 'Optimize Again', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?>" />
 			</form>
 <?php		// if the 'bulk resume' option was not empty, offer to reset it so the user can start back from the beginning
 		if ( ! empty( $aux_resume ) ) {
@@ -102,7 +102,7 @@ function ewww_image_optimizer_import_init() {
 	$import_todo += $wpdb->get_var( "SELECT COUNT(posts.ID) FROM $wpdb->postmeta metas INNER JOIN $wpdb->posts posts ON posts.ID = metas.post_id WHERE posts.post_mime_type LIKE '%image%' AND metas.meta_key = '_wp_attachment_metadata' AND metas.meta_value LIKE '%ewww_image_optimizer%'" );
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		// need to include the plugin library for the is_plugin_active function
-		ewww_image_optimizer_require( ABSPATH . 'wp-admin/includes/plugin.php' );
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	}
 	if ( is_plugin_active( 'nextgen-gallery/nggallery.php' ) || is_plugin_active_for_network( 'nextgen-gallery/nggallery.php' ) ) {
 		$nextgen_data = ewww_image_optimizer_get_plugin_version( trailingslashit( WP_PLUGIN_DIR ) . 'nextgen-gallery/nggallery.php' );
@@ -392,7 +392,7 @@ function ewww_image_optimizer_aux_images_table() {
 	$alternate = true;
 	foreach ( $already_optimized as $optimized_image ) {
 		$image_name = str_replace( ABSPATH, '', $optimized_image[0] );
-		$image_url = trailingslashit( get_site_url() ) . $image_name;
+		$image_url = esc_url( trailingslashit( get_site_url() ) . $image_name );
 		$savings = $optimized_image[1];
 		// if the path given is not the absolute path
 		if ( file_exists( $optimized_image[0] ) ) {
@@ -445,7 +445,7 @@ function ewww_image_optimizer_image_scan( $dir ) {
 	$optimized_list = array();
 	foreach( $already_optimized as $optimized ) {
 		$optimized_path = $optimized['path'];
-		$optimized_list[$optimized_path] = $optimized['image_size'];
+		$optimized_list[ $optimized_path ] = $optimized['image_size'];
 	}
 	$file_counter = 0;
 	if ( ewww_image_optimizer_stl_check() ) {
@@ -460,7 +460,7 @@ function ewww_image_optimizer_image_scan( $dir ) {
 	//			ewwwio_debug_message( "skipping hidden file: $path" );
 				continue;
 			}
-			if ( preg_match( '/\.(conf|crt|css|docx|eot|exe|git|gitignore|gitmodules|gz|hgignore|hgsub|hgsubstate|hgtags|htaccess|htm|html|ico|ini|js|json|key|less|lock|log|map|md|mo|mp3|mp4|otf|pdf|pem|php|po|pot|sample|scss|sh|svg|svnignore|swf|template|tiff|tmp|tpl|ttf|txt|vcl|woff|woff2|webp|xap|xml|yml|zip)$/', $path ) ) {
+			if ( preg_match( '/\.(conf|crt|css|docx|eot|exe|git|gitignore|gitmodules|gz|hgignore|hgsub|hgsubstate|hgtags|htaccess|htm|html|ico|ini|js|json|key|less|lock|log|map|md|mo|mp3|mp4|otf|pdf|pem|php|po|pot|sample|scss|sh|svg|svnignore|swf|template|tiff|tmp|tpl|ttf|txt|url|vcl|woff|woff2|webp|xap|xml|yml|zip)$/', $path ) ) {
 	//			ewwwio_debug_message( "not a usable extension: $path" );
 				continue;
 			}
@@ -553,7 +553,7 @@ function ewww_image_optimizer_aux_images_script( $hook ) {
 		}
 		if ( ! function_exists( 'is_plugin_active' ) ) {
 			// need to include the plugin library for the is_plugin_active function
-			ewww_image_optimizer_require( ABSPATH . 'wp-admin/includes/plugin.php' );
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		}
 		// collect a list of images for buddypress
 		if ( is_plugin_active( 'buddypress/bp-loader.php' ) || is_plugin_active_for_network( 'buddypress/bp-loader.php' ) ) {
@@ -698,7 +698,7 @@ function ewww_image_optimizer_aux_images_initialize( $auto = false ) {
 	// let the user know that we are beginning
 	if ( ! $auto ) {
 		// generate the WP spinner image for display
-		$loading_image = plugins_url( '/wpspin.gif', __FILE__ );
+		$loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 		echo "<p>" . __( 'Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
 		ewwwio_memory( __FUNCTION__ );
 		die();
@@ -714,7 +714,7 @@ function ewww_image_optimizer_aux_images_filename() {
 		wp_die( __( 'Access denied.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 	}
 	// generate the WP spinner image for display
-	$loading_image = plugins_url( '/wpspin.gif', __FILE__ );
+	$loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 	// let the user know that we are beginning
 	echo "<p>" . __( 'Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <b>" . preg_replace( ":\\\':", "'", $_POST['ewww_attachment'] ) . "</b>&nbsp;<img src='$loading_image' alt='loading'/></p>";
 	ewwwio_memory( __FUNCTION__ );
