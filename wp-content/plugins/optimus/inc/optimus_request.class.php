@@ -267,9 +267,19 @@ class Optimus_Request
 
 		/* Average values */
 		if ( $received ) {
+
+			/* Reallocate optimization results */
+			if ( !empty($upload_data['optimus']['profit']) and ( $upload_data['optimus']['profit'] > max($diff_filesizes) ) ) {
+				$profit = $upload_data['optimus']['profit'];
+				$quantity = $upload_data['optimus']['quantity'];
+			} else {
+				$profit = max($diff_filesizes);
+				$quantity = round( $received * 100 / $ordered );
+			}
+
 			$upload_data['optimus'] = array(
-				'profit'   => max($diff_filesizes),
-				'quantity' => round( $received * 100 / $ordered ),
+				'profit'   => $profit,
+				'quantity' => $quantity,
 				'webp'	   => $options['webp_convert']
 			);
 		}
@@ -300,7 +310,7 @@ class Optimus_Request
 		/* Response status code */
 		$response_code = (int)wp_remote_retrieve_response_code($response);
 
-		/* Not success status code? */
+		/* Not success status code? $response->get_error_message() */
 		if ( $response_code !== 200 ) {
 			return 'code '.$response_code;
 		}
@@ -346,7 +356,7 @@ class Optimus_Request
 	* Optimus API request
 	*
 	* @since   1.1.4
-	* @change  1.3.5
+	* @change  1.4.3
 	*
 	* @param   string  $file  Image file
 	* @param   array   $args  Request arguments
@@ -366,7 +376,7 @@ class Optimus_Request
 			),
 			array(
 				'body'	  => file_get_contents($file),
-				'timeout' => 30
+				'timeout' => 180
 			)
 		);
 	}

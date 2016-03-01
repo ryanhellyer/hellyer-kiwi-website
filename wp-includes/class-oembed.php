@@ -59,9 +59,7 @@ class WP_oEmbed {
 			'#https?://vine.co/v/.*#i'                            => array( 'https://vine.co/oembed.{format}',                           true  ),
 			'#https?://(www\.)?soundcloud\.com/.*#i'              => array( 'http://soundcloud.com/oembed',                              true  ),
 			'#https?://(.+?\.)?slideshare\.net/.*#i'              => array( 'https://www.slideshare.net/api/oembed/2',                   true  ),
-			'#https?://instagr(\.am|am\.com)/p/.*#i'              => array( 'https://api.instagram.com/oembed',                          true  ),
-			'#https?://(www\.)?rdio\.com/.*#i'                    => array( 'http://www.rdio.com/api/oembed/',                           true  ),
-			'#https?://rd\.io/x/.*#i'                             => array( 'http://www.rdio.com/api/oembed/',                           true  ),
+			'#https?://(www\.)?instagr(\.am|am\.com)/p/.*#i'      => array( 'https://api.instagram.com/oembed',                          true  ),
 			'#https?://(open|play)\.spotify\.com/.*#i'            => array( 'https://embed.spotify.com/oembed/',                         true  ),
 			'#https?://(.+\.)?imgur\.com/.*#i'                    => array( 'http://api.imgur.com/oembed',                               true  ),
 			'#https?://(www\.)?meetu(\.ps|p\.com)/.*#i'           => array( 'http://api.meetup.com/oembed',                              true  ),
@@ -77,6 +75,7 @@ class WP_oEmbed {
 			'#https?://(www\.)?reverbnation\.com/.*#i'            => array( 'https://www.reverbnation.com/oembed',                       true  ),
 			'#https?://videopress.com/v/.*#'                      => array( 'https://public-api.wordpress.com/oembed/1.0/?for=' . $host, true  ),
 			'#https?://(www\.)?reddit\.com/r/[^/]+/comments/.*#i' => array( 'https://www.reddit.com/oembed',                             true  ),
+			'#https?://(www\.)?speakerdeck\.com/.*#i'             => array( 'https://speakerdeck.com/oembed.{format}',                   true  ),
 		);
 
 		if ( ! empty( self::$early_providers['add'] ) ) {
@@ -123,8 +122,6 @@ class WP_oEmbed {
 		 * | SoundCloud   | soundcloud.com       |  Yes  | 3.5.0     |
 		 * | Dailymotion  | dai.ly               |  No   | 3.6.0     |
 		 * | Flickr       | flic.kr              |  Yes  | 3.6.0     |
-		 * | Rdio         | rdio.com             |  Yes  | 3.6.0     |
-		 * | Rdio         | rd.io                |  Yes  | 3.6.0     |
 		 * | Spotify      | spotify.com          |  Yes  | 3.6.0     |
 		 * | Imgur        | imgur.com            |  Yes  | 3.9.0     |
 		 * | Meetup.com   | meetup.com           |  Yes  | 3.9.0     |
@@ -145,6 +142,7 @@ class WP_oEmbed {
 		 * | ReverbNation | reverbnation.com     |  Yes  | 4.4.0     |
 		 * | VideoPress   | videopress.com       |  Yes  | 4.4.0     |
 		 * | Reddit       | reddit.com           |  Yes  | 4.4.0     |
+		 * | Speaker Deck | speakerdeck.com      |  Yes  | 4.4.0     |
 		 *
 		 * No longer supported providers:
 		 *
@@ -154,6 +152,8 @@ class WP_oEmbed {
 		 * | Viddler      | viddler.com          |  Yes  | 2.9.0     | 4.0.0     |
 		 * | Revision3    | revision3.com        |  No   | 2.9.0     | 4.2.0     |
 		 * | Blip         | blip.tv              |  No   | 2.9.0     | 4.4.0     |
+		 * | Rdio         | rdio.com             |  Yes  | 3.6.0     | 4.4.1     |
+		 * | Rdio         | rd.io                |  Yes  | 3.6.0     | 4.4.1     |
 		 *
 		 * @see wp_oembed_add_provider()
 		 *

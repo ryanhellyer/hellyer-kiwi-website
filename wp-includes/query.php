@@ -297,26 +297,6 @@ function is_tax( $taxonomy = '', $term = '' ) {
 }
 
 /**
- * Whether the current URL is within the comments popup window.
- *
- * @since 1.5.0
- *
- * @global WP_Query $wp_query Global WP_Query instance.
- *
- * @return bool
- */
-function is_comments_popup() {
-	global $wp_query;
-
-	if ( ! isset( $wp_query ) ) {
-		_doing_it_wrong( __FUNCTION__, __( 'Conditional query tags do not work before the query is run. Before then, they always return false.' ), '3.1' );
-		return false;
-	}
-
-	return $wp_query->is_comments_popup();
-}
-
-/**
  * Is the query for an existing date archive?
  *
  * @since 1.5.0
@@ -862,6 +842,7 @@ function the_comment() {
  * @link https://codex.wordpress.org/Function_Reference/WP_Query Codex page.
  *
  * @since 1.5.0
+ * @since 4.5.0 Removed the `$comments_popup` property.
  */
 class WP_Query {
 
@@ -1230,15 +1211,6 @@ class WP_Query {
 	public $is_embed = false;
 
 	/**
-	 * Set if query is within comments popup window.
-	 *
-	 * @since 1.5.0
-	 * @access public
-	 * @var bool
-	 */
-	public $is_comments_popup = false;
-
-	/**
 	 * Set if query is paged
 	 *
 	 * @since 1.5.0
@@ -1389,7 +1361,6 @@ class WP_Query {
 		$this->is_trackback = false;
 		$this->is_home = false;
 		$this->is_404 = false;
-		$this->is_comments_popup = false;
 		$this->is_paged = false;
 		$this->is_admin = false;
 		$this->is_attachment = false;
@@ -1441,6 +1412,7 @@ class WP_Query {
 	 * Fills in the query variables, which do not exist within the parameter.
 	 *
 	 * @since 2.1.0
+	 * @since 4.4.0 Removed the `comments_popup` public query variable.
 	 * @access public
 	 *
 	 * @param array $array Defined query variables.
@@ -1476,7 +1448,6 @@ class WP_Query {
 			, 'feed'
 			, 'tb'
 			, 'paged'
-			, 'comments_popup'
 			, 'meta_key'
 			, 'meta_value'
 			, 'preview'
@@ -1485,6 +1456,7 @@ class WP_Query {
 			, 'title'
 			, 'fields'
 			, 'menu_order'
+			, 'embed'
 		);
 
 		foreach ( $keys as $key ) {
@@ -1511,6 +1483,7 @@ class WP_Query {
 	 *              array key to `$orderby`.
 	 * @since 4.4.0 Introduced `$post_name__in` and `$title` parameters. `$s` was updated to support excluded
 	 *              search terms, by prepending a hyphen.
+	 * @since 4.5.0 Removed the `$comments_popup` parameter.
 	 * @access public
 	 *
 	 * @param string|array $query {
@@ -1529,7 +1502,6 @@ class WP_Query {
 	 *     @type string       $category_name           Use category slug (not name, this or any children).
 	 *     @type int          $comments_per_page       The number of comments to return per page.
 	 *                                                 Default 'comments_per_page' option.
-	 *     @type int|string   $comments_popup          Whether the query is within the comments popup. Default empty.
 	 *     @type array        $date_query              An associative array of WP_Date_Query arguments.
 	 *                                                 {@see WP_Date_Query::__construct()}
 	 *     @type int          $day                     Day of the month. Default empty. Accepts numbers 1-31.
@@ -1546,7 +1518,7 @@ class WP_Query {
 	 *     @type string       $meta_compare            Comparison operator to test the 'meta_value'.
 	 *     @type string       $meta_key                Custom field key.
 	 *     @type array        $meta_query              An associative array of WP_Meta_Query arguments.
-	 *                                                 {@see WP_Meta_Query->queries}
+	 *                                                 {@see WP_Meta_Query}
 	 *     @type string       $meta_value              Custom field value.
 	 *     @type int          $meta_value_num          Custom field value number.
 	 *     @type int          $menu_order              The menu order of the posts.
@@ -1785,14 +1757,15 @@ class WP_Query {
 		if ( '' != $qv['feed'] )
 			$this->is_feed = true;
 
+		if ( '' != $qv['embed'] ) {
+			$this->is_embed = true;
+		}
+
 		if ( '' != $qv['tb'] )
 			$this->is_trackback = true;
 
 		if ( '' != $qv['paged'] && ( intval($qv['paged']) > 1 ) )
 			$this->is_paged = true;
-
-		if ( '' != $qv['comments_popup'] )
-			$this->is_comments_popup = true;
 
 		// if we're previewing inside the write screen
 		if ( '' != $qv['preview'] )
@@ -1811,7 +1784,7 @@ class WP_Query {
 		if ( $this->is_feed && ( !empty($qv['withcomments']) || ( empty($qv['withoutcomments']) && $this->is_singular ) ) )
 			$this->is_comment_feed = true;
 
-		if ( !( $this->is_singular || $this->is_archive || $this->is_search || $this->is_feed || $this->is_trackback || $this->is_404 || $this->is_admin || $this->is_comments_popup || $this->is_robots ) )
+		if ( !( $this->is_singular || $this->is_archive || $this->is_search || $this->is_feed || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || $this->is_trackback || $this->is_404 || $this->is_admin || $this->is_robots ) )
 			$this->is_home = true;
 
 		// Correct is_* for page_on_front and page_for_posts
@@ -1820,6 +1793,9 @@ class WP_Query {
 			// pagename can be set and empty depending on matched rewrite rules. Ignore an empty pagename.
 			if ( isset($_query['pagename']) && '' == $_query['pagename'] )
 				unset($_query['pagename']);
+
+			unset( $_query['embed'] );
+
 			if ( empty($_query) || !array_diff( array_keys($_query), array('preview', 'page', 'paged', 'cpage') ) ) {
 				$this->is_page = true;
 				$this->is_home = false;
@@ -1833,11 +1809,25 @@ class WP_Query {
 		}
 
 		if ( '' != $qv['pagename'] ) {
-			$this->queried_object = get_page_by_path($qv['pagename']);
-			if ( !empty($this->queried_object) )
+			$this->queried_object = get_page_by_path( $qv['pagename'] );
+
+			if ( $this->queried_object && 'attachment' == $this->queried_object->post_type ) {
+				if ( preg_match( "/^[^%]*%(?:postname)%/", get_option( 'permalink_structure' ) ) ) {
+					// See if we also have a post with the same slug
+					$post = get_page_by_path( $qv['pagename'], OBJECT, 'post' );
+					if ( $post ) {
+						$this->queried_object = $post;
+						$this->is_page = false;
+						$this->is_single = true;
+					}
+				}
+			}
+
+			if ( ! empty( $this->queried_object ) ) {
 				$this->queried_object_id = (int) $this->queried_object->ID;
-			else
-				unset($this->queried_object);
+			} else {
+				unset( $this->queried_object );
+			}
 
 			if  ( 'page' == get_option('show_on_front') && isset($this->queried_object_id) && $this->queried_object_id == get_option('page_for_posts') ) {
 				$this->is_page = false;
@@ -1877,7 +1867,7 @@ class WP_Query {
 		if ( '404' == $qv['error'] )
 			$this->set_404();
 
-		$this->is_embed = isset( $qv['embed'] ) && ( $this->is_singular || $this->is_404 );
+		$this->is_embed = $this->is_embed && ( $this->is_singular || $this->is_404 );
 
 		$this->query_vars_hash = md5( serialize( $this->query_vars ) );
 		$this->query_vars_changed = false;
@@ -1900,7 +1890,7 @@ class WP_Query {
 	 * @access protected
 	 * @since 3.1.0
 	 *
-	 * @param array &$q The query variables
+	 * @param array $q The query variables. Passed by reference.
 	 */
 	public function parse_tax_query( &$q ) {
 		if ( ! empty( $q['tax_query'] ) && is_array( $q['tax_query'] ) ) {
@@ -2286,7 +2276,7 @@ class WP_Query {
 				$like = '%' . $wpdb->esc_like( $q['s'] ) . '%';
 			}
 
-			$search_orderby = '(CASE ';
+			$search_orderby = '';
 
 			// sentence match in 'post_title'
 			if ( $like ) {
@@ -2307,7 +2297,10 @@ class WP_Query {
 			if ( $like ) {
 				$search_orderby .= $wpdb->prepare( "WHEN $wpdb->posts.post_content LIKE %s THEN 4 ", $like );
 			}
-			$search_orderby .= 'ELSE 5 END)';
+
+			if ( $search_orderby ) {
+				$search_orderby = '(CASE ' . $search_orderby . 'ELSE 5 END)';
+			}
 		} else {
 			// single word or sentence search
 			$search_orderby = reset( $q['search_orderby_title'] ) . ' DESC';
@@ -2757,9 +2750,6 @@ class WP_Query {
 			$where .= " AND $wpdb->posts.post_name IN ('" . implode( "' ,'", $q['post_name__in'] ) . "')";
 		}
 
-		if ( intval($q['comments_popup']) )
-			$q['p'] = absint($q['comments_popup']);
-
 		// If an attachment is requested by number, let it supersede any post number.
 		if ( $q['attachment_id'] )
 			$q['p'] = absint($q['attachment_id']);
@@ -2793,7 +2783,7 @@ class WP_Query {
 		}
 
 		// If a search pattern is specified, load the posts that match.
-		if ( ! empty( $q['s'] ) ) {
+		if ( strlen( $q['s'] ) ) {
 			$search = $this->parse_search( $q );
 		}
 
@@ -3214,7 +3204,7 @@ class WP_Query {
 				$cgroupby = "$wpdb->comments.comment_id";
 			} else { // Other non singular e.g. front
 				$cjoin = "JOIN $wpdb->posts ON ( $wpdb->comments.comment_post_ID = $wpdb->posts.ID )";
-				$cwhere = "WHERE post_status = 'publish' AND comment_approved = '1'";
+				$cwhere = "WHERE ( post_status = 'publish' OR ( post_status = 'inherit' && post_type = 'attachment' ) ) AND comment_approved = '1'";
 				$cgroupby = '';
 			}
 
@@ -3665,7 +3655,6 @@ class WP_Query {
 				$this->is_attachment = true;
 			}
 			$post_status_obj = get_post_status_object($status);
-			//$type = get_post_type($this->posts[0]);
 
 			// If the post_status was specifically requested, let it pass through.
 			if ( !$post_status_obj->public && ! in_array( $status, $q_status ) ) {
@@ -3791,6 +3780,9 @@ class WP_Query {
 	 * @access private
 	 *
 	 * @global wpdb $wpdb WordPress database abstraction object.
+	 *
+	 * @param array  $q      Query variables.
+	 * @param string $limits LIMIT clauses of the query.
 	 */
 	private function set_found_posts( $q, $limits ) {
 		global $wpdb;
@@ -4370,11 +4362,14 @@ class WP_Query {
 	 * Whether the current URL is within the comments popup window.
 	 *
 	 * @since 3.1.0
+	 * @deprecated 4.5.0
 	 *
 	 * @return bool
 	 */
 	public function is_comments_popup() {
-		return (bool) $this->is_comments_popup;
+		_deprecated_function( __FUNCTION__, '4.5' );
+
+		return false;
 	}
 
 	/**
@@ -4971,6 +4966,10 @@ class WP_Query {
  */
 function wp_old_slug_redirect() {
 	global $wp_query, $wp_rewrite;
+
+	if ( get_queried_object() ) {
+		return;
+	}
 
 	if ( '' !== $wp_query->query_vars['name'] ) :
 		global $wpdb;

@@ -90,13 +90,14 @@ function add_shortcode($tag, $func) {
 	global $shortcode_tags;
 
 	if ( '' == trim( $tag ) ) {
-		$message = __( 'Invalid shortcode name.  Empty name given.' );
+		$message = __( 'Invalid shortcode name: Empty name given.' );
 		_doing_it_wrong( __FUNCTION__, $message, '4.4.0' );
 		return;
 	}
 
-	if ( 0 !== preg_match( '@[<>&/\[\]\x00-\x20]@', $tag ) ) {
-		$message = sprintf( __( 'Invalid shortcode name: %s  Do not use spaces or reserved chars: & / < > [ ]' ), $tag );
+	if ( 0 !== preg_match( '@[<>&/\[\]\x00-\x20=]@', $tag ) ) {
+		/* translators: 1: shortcode name, 2: space separated list of reserved characters */
+		$message = sprintf( __( 'Invalid shortcode name: %1$s. Do not use spaces or reserved characters: %2$s' ), $tag, '& / < > [ ] =' );
 		_doing_it_wrong( __FUNCTION__, $message, '4.4.0' );
 		return;
 	}
@@ -209,7 +210,7 @@ function do_shortcode( $content, $ignore_html = false ) {
 		return $content;
 
 	// Find all registered tag names in $content.
-	preg_match_all( '@\[([^<>&/\[\]\x00-\x20]++)@', $content, $matches );
+	preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $matches );
 	$tagnames = array_intersect( array_keys( $shortcode_tags ), $matches[1] );
 
 	if ( empty( $tagnames ) ) {
@@ -314,6 +315,7 @@ function do_shortcode_tag( $m ) {
 	$attr = shortcode_parse_atts( $m[3] );
 
 	if ( ! is_callable( $shortcode_tags[ $tag ] ) ) {
+		/* translators: %s: shortcode tag */
 		$message = sprintf( __( 'Attempting to parse a shortcode without a valid callback: %s' ), $tag );
 		_doing_it_wrong( __FUNCTION__, $message, '4.3.0' );
 		return $m[0];
@@ -576,7 +578,7 @@ function strip_shortcodes( $content ) {
 		return $content;
 
 	// Find all registered tag names in $content.
-	preg_match_all( '@\[([^<>&/\[\]\x00-\x20]++)@', $content, $matches );
+	preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $content, $matches );
 	$tagnames = array_intersect( array_keys( $shortcode_tags ), $matches[1] );
 
 	if ( empty( $tagnames ) ) {
@@ -595,9 +597,12 @@ function strip_shortcodes( $content ) {
 }
 
 /**
+ * Strips a shortcode tag based on RegEx matches against post content.
  *
- * @param array $m
- * @return string|false
+ * @since 3.3.0
+ *
+ * @param array $m RegEx matches against post content.
+ * @return string|false The content stripped of the tag, otherwise false.
  */
 function strip_shortcode_tag( $m ) {
 	// allow [[foo]] syntax for escaping a tag

@@ -109,14 +109,16 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 		}
 
 		$subscribed_post_ids = Prompt_Post::subscribed_object_ids( $this->id );
-		if ( ! empty( $subscribed_post_ids ) and isset( $options['prompt_post_subscribed'] ) ) {
-			$unsubscribe_post_ids = array_diff( $subscribed_post_ids, $options['prompt_post_subscribed'] );
+		if ( ! empty( $subscribed_post_ids ) ) {
+			$checked_post_ids = isset( $options['prompt_post_subscribed'] ) ? $options['prompt_post_subscribed'] : array();
+			$unsubscribe_post_ids = array_diff( $subscribed_post_ids, $checked_post_ids );
 			$this->unsubscribe_from_posts( $unsubscribe_post_ids );
 		}
 
 		$subscribed_author_ids = self::subscribed_object_ids( $this->id );
-		if ( ! empty( $subscribed_author_ids ) and isset( $options['prompt_author_subscribed'] ) ) {
-			$unsubscribed_author_ids = array_diff( $subscribed_author_ids, $options['prompt_author_subscribed'] );
+		if ( ! empty( $subscribed_author_ids ) ) {
+			$checked_author_ids = isset( $options['prompt_author_subscribed'] ) ? $options['prompt_author_subscribed'] : array();
+			$unsubscribed_author_ids = array_diff( $subscribed_author_ids, $checked_author_ids );
 			$this->unsubscribe_from_authors( $unsubscribed_author_ids );
 		}
 	}

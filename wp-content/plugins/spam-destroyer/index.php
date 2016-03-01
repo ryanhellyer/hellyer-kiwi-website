@@ -4,8 +4,8 @@ Plugin Name: Spam Destroyer
 Plugin URI: http://geek.ryanhellyer.net/products/spam-destroyer/
 Description: Kills spam dead in it's tracks
 Author: Ryan Hellyer
-Version: 2.0.4
-Author URI: http://geek.ryanhellyer.net/
+Version: 2.0.6
+Author URI: http://geek.ryanhelly6er.net/
 
 Copyright (c) 2015 Ryan Hellyer
 
@@ -56,6 +56,7 @@ if ( isset( $_GET['captcha'] ) ) {
 if ( is_admin() ) {
 
 	require( 'inc/class-spam-destroyer-settings.php' );
+/*
 	require( 'inc/class-dotorg-plugin-review.php' );
 	new DotOrg_Plugin_Review(
 		array(
@@ -64,5 +65,5 @@ if ( is_admin() ) {
 			'time_limit'  => WEEK_IN_SECONDS,  // The time limit at which notice is shown
 		)
 	);
-
+*/
 }

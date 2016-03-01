@@ -194,15 +194,14 @@ if ( $comment->comment_approved != '0' ) { // if not unapproved
 <tr>
 	<th scope="row"><?php _e( 'Submitted on' ); ?></th>
 	<td>
-	<?php
-		/* translators: 2: comment date, 3: comment time */
-		printf( __( '<a href="%1$s">%2$s at %3$s</a>' ),
-			esc_url( get_comment_link( $comment ) ),
-			/* translators: comment date format. See http://php.net/date */
-			get_comment_date( __( 'Y/m/d' ), $comment ),
-			get_comment_date( get_option( 'time_format' ), $comment )
-		);
-	?>
+		<a href="<?php echo esc_url( get_comment_link( $comment ) ); ?>"><?php
+			/* translators: 1: comment date, 2: comment time */
+			printf( __( '%1$s at %2$s' ),
+				/* translators: comment date format. See http://php.net/date */
+				get_comment_date( __( 'Y/m/d' ), $comment ),
+				get_comment_date( __( 'g:i a' ), $comment )
+			);
+		?></a>
 	</td>
 </tr>
 <tr>
@@ -215,7 +214,7 @@ if ( $comment->comment_approved != '0' ) { // if not unapproved
 
 <p>
 	<?php submit_button( $button, 'primary', 'submit', false ); ?>
-	<a href="<?php echo admin_url('edit-comments.php'); ?>" class="button-cancel"><?php esc_attr_e( 'Cancel' ); ?></a></td>
+	<a href="<?php echo admin_url('edit-comments.php'); ?>" class="button-cancel"><?php esc_attr_e( 'Cancel' ); ?></a>
 </p>
 
 <?php wp_nonce_field( $nonce_action ); ?>

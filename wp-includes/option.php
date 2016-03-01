@@ -16,6 +16,9 @@
  *
  * If the option was serialized then it will be unserialized when it is returned.
  *
+ * Any scalar values will be returned as strings. You may coerce the return type of a given option by registering a
+ * 'option_{$option}' filter callback.
+ *
  * @since 1.5.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
@@ -712,30 +715,30 @@ function set_transient( $transient, $value, $expiration = 0 ) {
 		$result = wp_cache_set( $transient, $value, 'transient', $expiration );
 	} else {
 		$transient_timeout = '_transient_timeout_' . $transient;
-		$transient = '_transient_' . $transient;
-		if ( false === get_option( $transient ) ) {
+		$transient_option = '_transient_' . $transient;
+		if ( false === get_option( $transient_option ) ) {
 			$autoload = 'yes';
 			if ( $expiration ) {
 				$autoload = 'no';
 				add_option( $transient_timeout, time() + $expiration, '', 'no' );
 			}
-			$result = add_option( $transient, $value, '', $autoload );
+			$result = add_option( $transient_option, $value, '', $autoload );
 		} else {
 			// If expiration is requested, but the transient has no timeout option,
 			// delete, then re-create transient rather than update.
 			$update = true;
 			if ( $expiration ) {
 				if ( false === get_option( $transient_timeout ) ) {
-					delete_option( $transient );
+					delete_option( $transient_option );
 					add_option( $transient_timeout, time() + $expiration, '', 'no' );
-					$result = add_option( $transient, $value, '', 'no' );
+					$result = add_option( $transient_option, $value, '', 'no' );
 					$update = false;
 				} else {
 					update_option( $transient_timeout, time() + $expiration );
 				}
 			}
 			if ( $update ) {
-				$result = update_option( $transient, $value );
+				$result = update_option( $transient_option, $value );
 			}
 		}
 	}

@@ -158,6 +158,10 @@ class Prompt_Outbound_Handling {
 	 */
 	protected static function ignore_published_post( $post_id ) {
 
+		if ( self::is_wpml_translation( $post_id ) ) {
+			return true;
+		}
+
 		if ( ! function_exists( 'pll_default_language' ) )
 			return false;
 
@@ -166,6 +170,35 @@ class Prompt_Outbound_Handling {
 		$post_slug = pll_get_post_language( $post_id, 'slug' );
 
 		return ( $default_slug !== $post_slug );
+	}
+
+	/**
+	 * Whether a post is a WPML post in a language other than the default.
+	 *
+	 * @since 1.5.0
+	 *
+	 * @param int $post_id
+	 * @return bool
+	 */
+	protected static function is_wpml_translation( $post_id ) {
+
+		$wpml_language = apply_filters( 'wpml_default_language', null );
+
+		if ( !$wpml_language ) {
+			return false;
+		}
+
+		$default_language = apply_filters( 'wpml_post_language_details', null, $post_id );
+
+		if ( !$default_language ) {
+			return false;
+		}
+
+		if ( empty( $wpml_language['language_code'] ) or empty( $wpml_language['language_code'] ) ) {
+			return false;
+		}
+
+		return ( $wpml_language['language_code'] != $default_language['language_code'] );
 	}
 
 }

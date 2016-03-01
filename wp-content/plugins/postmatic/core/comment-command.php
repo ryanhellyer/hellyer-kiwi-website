@@ -15,14 +15,8 @@ class Prompt_Comment_Command implements Prompt_Interface_Command {
 	protected $message;
 	/** @var  int */
 	protected $parent_comment_id;
-	/** @var  Prompt_Email_Text_Cleaner */
-	protected $cleaner;
 	/** @var  string */
 	protected $message_text;
-
-	public function __construct( Prompt_Email_Text_Cleaner $cleaner = null ) {
-		$this->cleaner = $cleaner ? $cleaner : new Prompt_Email_Text_Cleaner();
-	}
 
 	public function set_keys( $keys ) {
 		$this->keys = $keys;
@@ -93,8 +87,9 @@ class Prompt_Comment_Command implements Prompt_Interface_Command {
 	}
 
 	protected function get_message_text() {
-		if ( !$this->message_text )
-			$this->message_text = $this->cleaner->strip( $this->message->message );
+		if ( !$this->message_text ) {
+			$this->message_text = $this->message->message;
+		}
 
 		return $this->message_text;
 	}

@@ -877,8 +877,14 @@ p.pagenav {
 .row-actions {
 	color: #ddd;
 	font-size: 13px;
-	visibility: hidden;
 	padding: 2px 0 0;
+	position: relative;
+	right: -9999em;
+}
+
+/* ticket #34150 */
+.rtl .row-actions a {
+	display: inline-block;
 }
 
 .row-actions .network_only,
@@ -886,11 +892,12 @@ p.pagenav {
 	color: #000;
 }
 
+.no-js .row-actions,
 tr:hover .row-actions,
 .mobile .row-actions,
 .row-actions.visible,
 div.comment-item:hover .row-actions {
-	visibility: visible;
+	position: static;
 }
 
 /* deprecated */
@@ -1573,6 +1580,21 @@ div.action-links,
 	display: inline;
 }
 
+.plugin-card-update-failed .update-now {
+	font-weight: 600;
+}
+
+.plugin-card-update-failed .notice-error {
+	margin: 0;
+	padding-right: 16px;
+	-webkit-box-shadow: 0 -1px 0 #dedede;
+	box-shadow: 0 -1px 0 #dedede;
+}
+
+.plugin-card-update-failed .plugin-card-bottom {
+	display: none;
+}
+
 .plugin-card .column-rating {
 	line-height: 23px;
 }
@@ -1642,16 +1664,20 @@ div.action-links,
 
 /* ms */
 /* Background Color for Site Status */
-.wp-list-table .site-deleted {
+.wp-list-table .site-deleted,
+.wp-list-table tr.site-deleted {
 	background: #ff8573;
 }
-.wp-list-table .site-spammed {
+.wp-list-table .site-spammed,
+.wp-list-table tr.site-spammed {
 	background: #faafaa;
 }
-.wp-list-table .site-archived {
+.wp-list-table .site-archived,
+.wp-list-table tr.site-archived {
 	background: #ffebe8;
 }
-.wp-list-table .site-mature {
+.wp-list-table .site-mature,
+.wp-list-table tr.site-mature {
 	background: #fecac2;
 }
 
@@ -1776,7 +1802,7 @@ div.action-links,
 
 	.tablenav-pages .pagination-links a,
 	.tablenav-pages-navspan {
-		padding: 9px 16px 12px;
+		padding: 9px 11px 12px;
 		font-size: 18px;
 	}
 
@@ -2066,6 +2092,12 @@ div.action-links,
 		padding-top: 2px;
 	}
 
+	#wpbody-content .wp-list-table.plugins .plugin-title,
+	#wpbody-content .wp-list-table.plugins .theme-title {
+		padding-left: 12px;
+		white-space: normal;
+	}
+
 	.wp-list-table.plugins .plugin-title,
 	.wp-list-table.plugins .theme-title {
 		padding-top: 13px;
@@ -2123,7 +2155,7 @@ div.action-links,
 	.wp-list-table.plugins .plugin-title strong,
 	.wp-list-table.plugins .theme-title strong {
 		font-size: 1.4em;
-		line-height: 1.6em;
+		line-height: 1.5;
 	}
 
 	/* Add New plugins page */

@@ -22,7 +22,7 @@ class Prompt_Admin_Invite_Options_Tab extends Prompt_Admin_Options_Tab {
 			$subject = sanitize_text_field( wp_unslash( $_POST['invite_subject'] ) );
 			Prompt_Core::$options->set( 'invite_subject', $subject );
 
-			$message = wp_unslash( $_POST['invite_introduction'] );
+			$message = wp_kses_post( wp_unslash( $_POST['invite_introduction'] ) );
 			Prompt_Core::$options->set( 'invite_introduction', $message );
 			$message = wpautop( $message );
 

@@ -85,6 +85,7 @@ class Prompt_Core {
 			'enable_skimlinks' => false,
 			'skimlinks_publisher_id' => '',
 			'emails_per_chunk' => 25,
+			'subscribed_introduction' => '',
 		);
 		$default_options = array_merge( $default_options, Prompt_Optins::options_fields() );
 		self::prevent_options_errors();
@@ -113,6 +114,13 @@ class Prompt_Core {
 			self::$activate_notice = new Prompt_Admin_Activate_Notice( $key, self::$settings_page );
 		}
 
+		/**
+		 * Fires when Postmatic has loaded.
+		 *
+		 * This happens after plugins are loaded {@see 'plugins_loaded'}, and always fires when Postmatic is active.
+		 *
+		 * @since 1.0.0
+		 */
 		do_action( 'prompt/core_loaded' );
 	}
 
@@ -203,6 +211,15 @@ class Prompt_Core {
 		add_shortcode( 'postmatic_subscribe_widget', array( 'Prompt_Subscribe_Widget_Shortcode', 'render' ) );
 
 		add_image_size( 'prompt-post-featured', 1420, 542, true );
+
+		/**
+		 * Fires after Postmatic has added its main hooks.
+		 *
+		 * This only happens when a key has been entered.
+		 *
+		 * @since 1.4.11
+		 */
+		do_action( 'prompt/hooks_added' );
 	}
 
 	public static function detect_version_change() {

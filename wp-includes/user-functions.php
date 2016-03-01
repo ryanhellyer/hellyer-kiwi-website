@@ -758,6 +758,7 @@ function count_users($strategy = 'time') {
 		foreach ( $avail_roles as $this_role => $name ) {
 			$select_count[] = $wpdb->prepare( "COUNT(NULLIF(`meta_value` LIKE %s, false))", '%' . $wpdb->esc_like( '"' . $this_role . '"' ) . '%');
 		}
+		$select_count[] = "COUNT(NULLIF(`meta_value` = 'a:0:{}', false))";
 		$select_count = implode(', ', $select_count);
 
 		// Add the meta_value index to the selection list, then run the query.
@@ -773,10 +774,10 @@ function count_users($strategy = 'time') {
 			}
 		}
 
+		$role_counts['none'] = (int) $row[$col++];
+
 		// Get the meta_value index from the end of the result set.
 		$total_users = (int) $row[$col];
-
-		$role_counts['none'] = ( $total_users - array_sum( $role_counts ) );
 
 		$result['total_users'] = $total_users;
 		$result['avail_roles'] =& $role_counts;
@@ -1287,7 +1288,7 @@ function wp_insert_user( $userdata ) {
 		}
 
 		// hashed in wp_update_user(), plaintext if called directly
-		$user_pass = $userdata['user_pass'];
+		$user_pass = ! empty( $userdata['user_pass'] ) ? $userdata['user_pass'] : $old_user_data->user_pass;
 	} else {
 		$update = false;
 		// Hash the password
@@ -1328,9 +1329,11 @@ function wp_insert_user( $userdata ) {
 	 *
 	 * @param array $usernames Array of blacklisted usernames.
 	 */
-	if ( in_array( $user_login, apply_filters( 'illegal_user_logins', array() ) ) ) {
+	$illegal_logins = (array) apply_filters( 'illegal_user_logins', array() );
+
+	if ( in_array( strtolower( $user_login ), array_map( 'strtolower', $illegal_logins ) ) ) {
 		return new WP_Error( 'illegal_user_login', __( 'Sorry, that username is not allowed.' ) );
-	}	
+	}
 
 	/*
 	 * If a nicename is provided, remove unsafe user characters before using it.

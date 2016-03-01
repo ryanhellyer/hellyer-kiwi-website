@@ -95,14 +95,16 @@ class Prompt_Rescheduler {
 	 */
 	protected function is_service_unavailable() {
 
-		if ( !is_array( $this->job_result ) ) {
+		$data = is_wp_error( $this->job_result ) ? $this->job_result->get_error_data() : $this->job_result;
+
+		if ( !is_array( $data ) ) {
 			return false;
 		}
 
-		if ( !isset( $this->job_result['response']['code'] ) ) {
+		if ( !isset( $data['response']['code'] ) ) {
 			return false;
 		}
 
-		return ( 503 == $this->job_result['response']['code'] );
+		return ( 503 == $data['response']['code'] );
 	}
 }

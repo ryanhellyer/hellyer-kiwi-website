@@ -391,9 +391,9 @@ class wpdb {
 	 */
 	public $termmeta;
 
-	/*
-	 * Global and Multisite tables
-	 */
+	//
+	// Global and Multisite tables
+	//
 
 	/**
 	 * WordPress User Metadata table
@@ -1044,9 +1044,9 @@ class wpdb {
 			$dbh = $this->dbh;
 
 		if ( $this->use_mysqli ) {
-			$success = @mysqli_select_db( $dbh, $db );
+			$success = mysqli_select_db( $dbh, $db );
 		} else {
-			$success = @mysql_select_db( $db, $dbh );
+			$success = mysql_select_db( $db, $dbh );
 		}
 		if ( ! $success ) {
 			$this->ready = false;
@@ -1132,6 +1132,7 @@ class wpdb {
 
 		$class = get_class( $this );
 		if ( function_exists( '__' ) ) {
+			/* translators: %s: database access abstraction class, usually wpdb or a class extending wpdb */
 			_doing_it_wrong( $class, sprintf( __( '%s must set a database connection for use with escaping.' ), $class ), E_USER_NOTICE );
 		} else {
 			_doing_it_wrong( $class, sprintf( '%s must set a database connection for use with escaping.', $class ), E_USER_NOTICE );
@@ -1483,11 +1484,7 @@ class wpdb {
 				}
 			}
 
-			if ( WP_DEBUG ) {
-				mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
-			} else {
-				@mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
-			}
+			mysqli_real_connect( $this->dbh, $host, $this->dbuser, $this->dbpassword, null, $port, $socket, $client_flags );
 
 			if ( $this->dbh->connect_errno ) {
 				$this->dbh = null;
@@ -1513,11 +1510,7 @@ class wpdb {
 				}
 			}
 		} else {
-			if ( WP_DEBUG ) {
-				$this->dbh = mysql_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new_link, $client_flags );
-			} else {
-				$this->dbh = @mysql_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new_link, $client_flags );
-			}
+			$this->dbh = mysql_connect( $this->dbhost, $this->dbuser, $this->dbpassword, $new_link, $client_flags );
 		}
 
 		if ( ! $this->dbh && $allow_bail ) {
@@ -1588,11 +1581,11 @@ class wpdb {
 	 */
 	public function check_connection( $allow_bail = true ) {
 		if ( $this->use_mysqli ) {
-			if ( @mysqli_ping( $this->dbh ) ) {
+			if ( ! empty( $this->dbh ) && mysqli_ping( $this->dbh ) ) {
 				return true;
 			}
 		} else {
-			if ( @mysql_ping( $this->dbh ) ) {
+			if ( ! empty( $this->dbh ) && mysql_ping( $this->dbh ) ) {
 				return true;
 			}
 		}
@@ -1769,12 +1762,12 @@ class wpdb {
 		} else {
 			$num_rows = 0;
 			if ( $this->use_mysqli && $this->result instanceof mysqli_result ) {
-				while ( $row = @mysqli_fetch_object( $this->result ) ) {
+				while ( $row = mysqli_fetch_object( $this->result ) ) {
 					$this->last_result[$num_rows] = $row;
 					$num_rows++;
 				}
 			} elseif ( is_resource( $this->result ) ) {
-				while ( $row = @mysql_fetch_object( $this->result ) ) {
+				while ( $row = mysql_fetch_object( $this->result ) ) {
 					$this->last_result[$num_rows] = $row;
 					$num_rows++;
 				}
@@ -1804,10 +1797,10 @@ class wpdb {
 			$this->timer_start();
 		}
 
-		if ( $this->use_mysqli ) {
-			$this->result = @mysqli_query( $this->dbh, $query );
-		} else {
-			$this->result = @mysql_query( $query, $this->dbh );
+		if ( ! empty( $this->dbh ) && $this->use_mysqli ) {
+			$this->result = mysqli_query( $this->dbh, $query );
+		} elseif ( ! empty( $this->dbh ) ) {
+			$this->result = mysql_query( $query, $this->dbh );
 		}
 		$this->num_queries++;
 
@@ -2810,11 +2803,21 @@ class wpdb {
 						$charset = $value['charset'];
 					}
 
+					if ( $this->charset ) {
+						$connection_charset = $this->charset;
+					} else {
+						if ( $this->use_mysqli ) {
+							$connection_charset = mysqli_character_set_name( $this->dbh );
+						} else {
+							$connection_charset = mysql_client_encoding();
+						}
+					}
+
 					if ( is_array( $value['length'] ) ) {
-						$queries[ $col ] = $this->prepare( "CONVERT( LEFT( CONVERT( %s USING $charset ), %.0f ) USING {$this->charset} )", $value['value'], $value['length']['length'] );
+						$queries[ $col ] = $this->prepare( "CONVERT( LEFT( CONVERT( %s USING $charset ), %.0f ) USING $connection_charset )", $value['value'], $value['length']['length'] );
 					} else if ( 'binary' !== $charset ) {
 						// If we don't have a length, there's no need to convert binary - it will always return the same result.
-						$queries[ $col ] = $this->prepare( "CONVERT( CONVERT( %s USING $charset ) USING {$this->charset} )", $value['value'] );
+						$queries[ $col ] = $this->prepare( "CONVERT( CONVERT( %s USING $charset ) USING $connection_charset )", $value['value'] );
 					}
 
 					unset( $data[ $col ]['db'] );
@@ -3005,14 +3008,14 @@ class wpdb {
 			return;
 
 		if ( $this->use_mysqli ) {
-			$num_fields = @mysqli_num_fields( $this->result );
+			$num_fields = mysqli_num_fields( $this->result );
 			for ( $i = 0; $i < $num_fields; $i++ ) {
-				$this->col_info[ $i ] = @mysqli_fetch_field( $this->result );
+				$this->col_info[ $i ] = mysqli_fetch_field( $this->result );
 			}
 		} else {
-			$num_fields = @mysql_num_fields( $this->result );
+			$num_fields = mysql_num_fields( $this->result );
 			for ( $i = 0; $i < $num_fields; $i++ ) {
-				$this->col_info[ $i ] = @mysql_fetch_field( $this->result, $i );
+				$this->col_info[ $i ] = mysql_fetch_field( $this->result, $i );
 			}
 		}
 	}

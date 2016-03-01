@@ -80,7 +80,6 @@ themes.view.Appearance = wp.Backbone.View.extend({
 		// Render and append
 		this.view.render();
 		this.$el.empty().append( this.view.el ).addClass( 'rendered' );
-		this.$el.append( '<br class="clear"/>' );
 	},
 
 	// Defines search element container
@@ -838,7 +837,7 @@ themes.view.Preview = themes.view.Details.extend({
 // a wrapper that will hold all the theme elements
 themes.view.Themes = wp.Backbone.View.extend({
 
-	className: 'themes',
+	className: 'themes wp-clearfix',
 	$overlay: $( 'div.theme-overlay' ),
 
 	// Number to keep track of scroll position
@@ -846,7 +845,7 @@ themes.view.Themes = wp.Backbone.View.extend({
 	index: 0,
 
 	// The theme count element
-	count: $( '.wp-core-ui .theme-count' ),
+	count: $( '.wrap .theme-count' ),
 
 	// The live themes count
 	liveThemeCount: 0,
@@ -1333,7 +1332,7 @@ themes.view.InstallerSearch =  themes.view.Search.extend({
 		}
 
 		$( '.filter-links li > a.current' ).removeClass( 'current' );
-		$( 'body' ).removeClass( 'show-filters filters-applied' );
+		$( 'body' ).removeClass( 'show-filters filters-applied show-favorites-form' );
 
 		// Get the themes by sending Ajax POST request to api.wordpress.org/themes
 		// or searching the local cache
@@ -1356,7 +1355,9 @@ themes.view.Installer = themes.view.Appearance.extend({
 		'click .filter-drawer .apply-filters': 'applyFilters',
 		'click .filter-group [type="checkbox"]': 'addFilter',
 		'click .filter-drawer .clear-filters': 'clearFilters',
-		'click .filtered-by': 'backToFilters'
+		'click .filtered-by': 'backToFilters',
+		'click .favorites-form-submit' : 'saveUsername',
+		'keyup #wporg-username-input': 'saveUsername'
 	},
 
 	// Initial render method
@@ -1448,6 +1449,12 @@ themes.view.Installer = themes.view.Appearance.extend({
 		$( '.filter-links li > a, .theme-filter' ).removeClass( this.activeClass );
 		$( '[data-sort="' + sort + '"]' ).addClass( this.activeClass );
 
+		if ( 'favorites' === sort ) {
+			$ ( 'body' ).addClass( 'show-favorites-form' );
+		} else {
+			$ ( 'body' ).removeClass( 'show-favorites-form' );
+		}
+
 		this.browse( sort );
 	},
 
@@ -1507,6 +1514,33 @@ themes.view.Installer = themes.view.Appearance.extend({
 		// Get the themes by sending Ajax POST request to api.wordpress.org/themes
 		// or searching the local cache
 		this.collection.query( request );
+	},
+
+	// Save the user's WordPress.org username and get his favorite themes.
+	saveUsername: function ( event ) {
+		var username = $( '#wporg-username-input' ).val(),
+			request = { browse: 'favorites', user: username },
+			that = this;
+
+		if ( event ) {
+			event.preventDefault();
+		}
+
+		// save username on enter
+		if ( event.type === 'keyup' && event.which !== 13 ) {
+			return;
+		}
+
+		return wp.ajax.send( 'save-wporg-username', {
+			data: {
+				username: username
+			},
+			success: function () {
+				// Get the themes by sending Ajax POST request to api.wordpress.org/themes
+				// or searching the local cache
+				that.collection.query( request );
+			}
+		} );
 	},
 
 	// Get the checked filters

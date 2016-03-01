@@ -2,7 +2,7 @@
 Contributors: Postmatic
 Tags: email, notification, notify, posts, subscribe, subscription, email, subscribe to comments, commenting, reply, email, optins, popups, optin forms, opt-in, subscribe form, comments, posts, reply, subscribe, mail, listserve, mailing, subscriptions, newsletter, newsletters, email newsletter, email subscription, newsletter signup, post notification, newsletter alert, auto newsletter, automatic post notification, email newsletters, email signup, auto post notifications, subscribe widget, signup widget, email subscription, newsletter plugin, widget, subscription, emailing, mandrill, mailchimp, mailgun, email commenting, reply to email, email replies, engagement, invite, invitations
 Requires at least: 3.9
-Tested up to: 4.3
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,31 @@ Find a few hundred more answers at our [big FAQ](http://gopostmatic.com/faq/).
 15. The optin configuration screeen.
 
 == Changelog ==
+
+= 1.4.12.1 =
+
+- Just a quick fix for the optins option screen. It got obliterated in our previous release. If you want to blame Dylan you can. If you want to blame Jason you might be closer to the truth. It's kind of gray though.
+- Some updates to the Russian translation
+- We adjusted the breakpoint on the Topbar optin for better mobile compatibility. 
+- We hunted down every last string that was not translatable and made it so they are. Thanks again, Dmitry. 
+
+= 1.4.12 =
+
+- We've added the ability to incentivize your opt-in forms with ebooks, how-tos, or whatever by customizing the subscription confirmation message. Very handy for helping your list grow. See [our blog post](http://gopostmatic.com/2015/12/offer-subscrip…stmatic-1-4-12)
+- With the above we've also changed the subscription confirmation message to no longer show your previous post. It wasn't a real winning feature anyway.
+- We've added support for [Add Widget After the Content](http://gopostmatic.com/2015/12/offer-subscrip…stmatic-1-4-12). That is to say widgets which are set by it will not show up in your Postmatic email. So we support it by not supporting it. Which is to say its safe to use.
+- Even more improvements to stripping out signatures on incoming replies. We've moved all of that up to our servers so we can now tweak things in realtime.
+- We've got a Russian translation! Many thanks to Dmitry Kornyukhov. He is seriously the [Best Russian Translator](http://bestrussiantranslator.com/).
+
+= 1.4.11 =
+
+- Added improved support for Simple Share Button Adder
+- Added more signature stripping for fancy html signatures
+- We're all WordPress 4.4 ready now
+- Cleaned up output from Flare
+- Cleand up output from WP Author Box
+- Cleaned up output of whatever sharing plugin it is you are using, BobWP!
+- More Postmatic 2.0 preparedness
 
 = 1.4.10 =
 

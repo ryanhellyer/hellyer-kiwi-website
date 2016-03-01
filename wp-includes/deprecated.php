@@ -1064,14 +1064,16 @@ function links_popup_script($text = 'Links', $width=400, $height=400, $file='lin
 }
 
 /**
+ * Legacy function that retrieved the value of a link's link_rating field.
+ *
  * @since 1.0.1
  * @deprecated 2.1.0 Use sanitize_bookmark_field()
  * @see sanitize_bookmark_field()
  *
- * @param object $link
- * @return mixed
+ * @param object $link Link object.
+ * @return mixed Value of the 'link_rating' field, false otherwise.
  */
-function get_linkrating($link) {
+function get_linkrating( $link ) {
 	_deprecated_function( __FUNCTION__, '2.1', 'sanitize_bookmark_field()' );
 	return sanitize_bookmark_field('link_rating', $link->link_rating, $link->link_id, 'display');
 }
@@ -1195,7 +1197,7 @@ function create_user($username, $password, $email) {
  * Unused function.
  *
  * @deprecated 2.5.0
-*/
+ */
 function gzip_compression() {
 	_deprecated_function( __FUNCTION__, '2.5' );
 	return false;
@@ -1613,7 +1615,7 @@ function get_the_author_ID() {
  * @since 0.71
  * @deprecated 2.8.0 Use the_author_meta()
  * @see the_author_meta()
-*/
+ */
 function the_author_ID() {
 	_deprecated_function( __FUNCTION__, '2.8', 'the_author_meta(\'ID\')' );
 	the_author_meta('ID');
@@ -1755,12 +1757,20 @@ function translate_with_context( $text, $domain = 'default' ) {
 }
 
 /**
- * A version of _n(), which supports contexts.
+ * Legacy version of _n(), which supports contexts.
+ *
  * Strips everything from the translation after the last bar.
  *
  * @since 2.7.0
  * @deprecated 3.0.0 Use _nx()
  * @see _nx()
+ *
+ * @param string $single The text to be used if the number is singular.
+ * @param string $plural The text to be used if the number is plural.
+ * @param int    $number The number to compare against to use either the singular or plural form.
+ * @param string $domain Optional. Text domain. Unique identifier for retrieving translated strings.
+ *                       Default 'default'.
+ * @return string The translated singular or plural form.
  */
 function _nc( $single, $plural, $number, $domain = 'default' ) {
 	_deprecated_function( __FUNCTION__, '2.9', '_nx()' );
@@ -1962,17 +1972,20 @@ function get_attachment_innerHTML($id = 0, $fullsize = false, $max_dims = false)
 }
 
 /**
- * Retrieve bookmark data based on ID.
+ * Retrieves bookmark data based on ID.
  *
  * @since 2.0.0
  * @deprecated 2.1.0 Use get_bookmark()
  * @see get_bookmark()
  *
- * @param int $bookmark_id ID of link
- * @param string $output OBJECT, ARRAY_N, or ARRAY_A
- * @return object|array
+ * @param int    $bookmark_id ID of link
+ * @param string $output      Optional. Type of output. Accepts OBJECT, ARRAY_N, or ARRAY_A.
+ *                            Default OBJECT.
+ * @param string $filter      Optional. How to filter the link for output. Accepts 'raw', 'edit',
+ *                            'attribute', 'js', 'db', or 'display'. Default 'raw'.
+ * @return object|array Bookmark object or array, depending on the type specified by `$output`.
  */
-function get_link($bookmark_id, $output = OBJECT, $filter = 'raw') {
+function get_link( $bookmark_id, $output = OBJECT, $filter = 'raw' ) {
 	_deprecated_function( __FUNCTION__, '2.1', 'get_bookmark()' );
 	return get_bookmark($bookmark_id, $output, $filter);
 }
@@ -2035,10 +2048,16 @@ function js_escape( $text ) {
 }
 
 /**
- * Escaping for HTML blocks.
+ * Legacy escaping for HTML blocks.
  *
  * @deprecated 2.8.0 Use esc_html()
  * @see esc_html()
+ *
+ * @param string       $string        String to escape.
+ * @param string       $quote_style   Unused.
+ * @param false|string $charset       Unused.
+ * @param false        $double_encode Whether to double encode. Unused.
+ * @return string Escaped `$string`.
  */
 function wp_specialchars( $string, $quote_style = ENT_NOQUOTES, $charset = false, $double_encode = false ) {
 	_deprecated_function( __FUNCTION__, '2.8', 'esc_html()' );
@@ -2079,10 +2098,10 @@ function attribute_escape( $text ) {
  * @deprecated 2.8.0 Use wp_register_sidebar_widget()
  * @see wp_register_sidebar_widget()
  *
- * @param string|int $name Widget ID.
- * @param callable $output_callback Run when widget is called.
- * @param string $classname Classname widget option.
- * @param mixed $params ,... Widget parameters.
+ * @param string|int $name            Widget ID.
+ * @param callable   $output_callback Run when widget is called.
+ * @param string     $classname       Optional. Classname widget option. Default empty.
+ * @param mixed      $params ,...     Widget parameters.
  */
 function register_sidebar_widget($name, $output_callback, $classname = '') {
 	_deprecated_function( __FUNCTION__, '2.8', 'wp_register_sidebar_widget()' );
@@ -2337,8 +2356,8 @@ function update_usermeta( $user_id, $meta_key, $meta_value ) {
  * @deprecated 3.1.0 Use get_users()
  * @see get_users()
  *
- * @global wpdb $wpdb WordPress database abstraction object.
- * @uses $blog_id The Blog id of the blog for those that use more than one blog
+ * @global wpdb $wpdb    WordPress database abstraction object.
+ * @global int  $blog_id The Blog id of the blog for those that use more than one blog
  *
  * @param int $id Blog ID.
  * @return array List of users that are part of that Blog ID
@@ -2378,6 +2397,10 @@ function automatic_feed_links( $add = true ) {
  * @since 1.5.0
  * @deprecated 3.0.0 Use get_the_author_meta()
  * @see get_the_author_meta()
+ *
+ * @param string    $field User meta field.
+ * @param false|int $user Optional. User ID to retrieve the field for. Default false (current user).
+ * @return string The author's field from the current author's DB object.
  */
 function get_profile( $field, $user = false ) {
 	_deprecated_function( __FUNCTION__, '3.0', 'get_the_author_meta()' );
@@ -2389,11 +2412,14 @@ function get_profile( $field, $user = false ) {
 }
 
 /**
- * Number of posts user has written.
+ * Retrieves the number of posts a user has written.
  *
  * @since 0.71
  * @deprecated 3.0.0 Use count_user_posts()
  * @see count_user_posts()
+ *
+ * @param int $userid User to count posts for.
+ * @return int Number of posts the given user has written.
  */
 function get_usernumposts( $userid ) {
 	_deprecated_function( __FUNCTION__, '3.0', 'count_user_posts()' );
@@ -2422,8 +2448,8 @@ function funky_javascript_callback($matches) {
  * @since 1.5.0
  * @deprecated 3.0.0
  *
- * @uses $is_macIE
- * @uses $is_winIE
+ * @global $is_macIE
+ * @global $is_winIE
  *
  * @param string $text Text to be made safe.
  * @return string Fixed text.
@@ -2529,16 +2555,18 @@ function wp_timezone_supported() {
 }
 
 /**
- * Display editor: TinyMCE, HTML, or both.
+ * Displays an editor: TinyMCE, HTML, or both.
  *
  * @since 2.1.0
  * @deprecated 3.3.0 Use wp_editor()
  * @see wp_editor()
  *
- * @param string $content Textarea content.
- * @param string $id Optional, default is 'content'. HTML ID attribute value.
- * @param string $prev_id Optional, not used
- * @param bool $media_buttons Optional, default is true. Whether to display media buttons.
+ * @param string $content       Textarea content.
+ * @param string $id            Optional. HTML ID attribute value. Default 'content'.
+ * @param string $prev_id       Optional. Unused.
+ * @param bool   $media_buttons Optional. Whether to display media buttons. Default true.
+ * @param int    $tab_index     Optional. Unused.
+ * @param bool   $extended      Optional. Unused.
  * @param int $tab_index Optional, not used
  */
 function the_editor($content, $id = 'content', $prev_id = 'title', $media_buttons = true, $tab_index = 2, $extended = true) {
@@ -3637,155 +3665,54 @@ function force_ssl_login( $force = null ) {
 }
 
 /**
- * Formerly used to display or retrieve page title for all areas of blog.
+ * Retrieve path of comment popup template in current or parent template.
  *
- * By default, the page title will display the separator before the page title,
- * so that the blog title will be before the page title. This is not good for
- * title display, since the blog title shows up on most tabs and not what is
- * important, which is the page that the user is looking at.
+ * @since 1.5.0
+ * @deprecated 4.5.0
  *
- * There are also SEO benefits to having the blog title after or to the 'right'
- * or the page title. However, it is mostly common sense to have the blog title
- * to the right with most browsers supporting tabs. You can achieve this by
- * using the seplocation parameter and setting the value to 'right'. This change
- * was introduced around 2.5.0, in case backwards compatibility of themes is
- * important.
- *
- * @since 1.0.0
- * @deprecated 4.4.0 Use `add_theme_support( 'title-tag' )`
- * @see add_theme_support()
- *
- * @param string $sep         Optional, default is '&raquo;'. How to separate the various items
- *                            within the page title.
- * @param bool   $display     Optional, default is true. Whether to display or retrieve title.
- * @param string $seplocation Optional. Direction to display title, 'right'.
- * @return string|null String on retrieve, null when displaying.
+ * @return string Full path to comments popup template file.
  */
-function wp_title( $sep = '&raquo;', $display = true, $seplocation = '' ) {
-	_deprecated_function( __FUNCTION__, '4.4', 'add_theme_support( \'title-tag\' )' );
+function get_comments_popup_template() {
+	_deprecated_function( __FUNCTION__, '4.5' );
 
-	global $wp_locale;
+	return '';
+}
 
-	$m        = get_query_var( 'm' );
-	$year     = get_query_var( 'year' );
-	$monthnum = get_query_var( 'monthnum' );
-	$day      = get_query_var( 'day' );
-	$search   = get_query_var( 's' );
-	$title    = '';
+/**
+ * Whether the current URL is within the comments popup window.
+ *
+ * @since 1.5.0
+ * @deprecated 4.5.0
+ *
+ * @return bool
+ */
+function is_comments_popup() {
+	_deprecated_function( __FUNCTION__, '4.5' );
 
-	$t_sep = '%WP_TITILE_SEP%'; // Temporary separator, for accurate flipping, if necessary
+	return false;
+}
 
-	// If there is a post
-	if ( is_single() || ( is_home() && ! is_front_page() ) || ( is_page() && ! is_front_page() ) ) {
-		$title = single_post_title( '', false );
-	}
+/**
+ * Display the JS popup script to show a comment.
+ *
+ * @since 0.71
+ * @deprecated 4.5.0
+ */
+function comments_popup_script() {
+	_deprecated_function( __FUNCTION__, '4.5' );
+}
 
-	// If there's a post type archive
-	if ( is_post_type_archive() ) {
-		$post_type = get_query_var( 'post_type' );
-		if ( is_array( $post_type ) ) {
-			$post_type = reset( $post_type );
-		}
-		$post_type_object = get_post_type_object( $post_type );
-		if ( ! $post_type_object->has_archive ) {
-			$title = post_type_archive_title( '', false );
-		}
-	}
-
-	// If there's a category or tag
-	if ( is_category() || is_tag() ) {
-		$title = single_term_title( '', false );
-	}
-
-	// If there's a taxonomy
-	if ( is_tax() ) {
-		$term = get_queried_object();
-		if ( $term ) {
-			$tax   = get_taxonomy( $term->taxonomy );
-			$title = single_term_title( $tax->labels->name . $t_sep, false );
-		}
-	}
-
-	// If there's an author
-	if ( is_author() && ! is_post_type_archive() ) {
-		$author = get_queried_object();
-		if ( $author ) {
-			$title = $author->display_name;
-		}
-	}
-
-	// Post type archives with has_archive should override terms.
-	if ( is_post_type_archive() && $post_type_object->has_archive ) {
-		$title = post_type_archive_title( '', false );
-	}
-
-	// If there's a month
-	if ( is_archive() && ! empty( $m ) ) {
-		$my_year  = substr( $m, 0, 4 );
-		$my_month = $wp_locale->get_month( substr( $m, 4, 2 ) );
-		$my_day   = intval( substr( $m, 6, 2 ) );
-		$title    = $my_year . ( $my_month ? $t_sep . $my_month : '' ) . ( $my_day ? $t_sep . $my_day : '' );
-	}
-
-	// If there's a year
-	if ( is_archive() && ! empty( $year ) ) {
-		$title = $year;
-		if ( ! empty( $monthnum ) ) {
-			$title .= $t_sep . $wp_locale->get_month( $monthnum );
-		}
-		if ( ! empty( $day ) ) {
-			$title .= $t_sep . zeroise( $day, 2 );
-		}
-	}
-
-	// If it's a search
-	if ( is_search() ) {
-		/* translators: 1: separator, 2: search phrase */
-		$title = sprintf( __( 'Search Results %1$s %2$s' ), $t_sep, strip_tags( $search ) );
-	}
-
-	// If it's a 404 page
-	if ( is_404() ) {
-		$title = __( 'Page not found' );
-	}
-
-	$prefix = '';
-	if ( ! empty( $title ) ) {
-		$prefix = " $sep ";
-	}
-
-	/**
-	 * Filter the parts of the page title.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param array $title_array Parts of the page title.
-	 */
-	$title_array = apply_filters( 'wp_title_parts', explode( $t_sep, $title ) );
-
-	// Determines position of the separator and direction of the breadcrumb
-	if ( 'right' == $seplocation ) { // sep on right, so reverse the order
-		$title_array = array_reverse( $title_array );
-		$title       = implode( " $sep ", $title_array ) . $prefix;
-	} else {
-		$title = $prefix . implode( " $sep ", $title_array );
-	}
-
-	/**
-	 * Filter the text of the page title.
-	 *
-	 * @since 2.0.0
-	 *
-	 * @param string $title Page title.
-	 * @param string $sep Title separator.
-	 * @param string $seplocation Location of the separator (left or right).
-	 */
-	$title = apply_filters( 'wp_title', $title, $sep, $seplocation );
-
-	// Send it out
-	if ( $display ) {
-		echo $title;
-	} else {
-		return $title;
-	}
+/**
+ * Adds element attributes to open links in new windows.
+ *
+ * @since 0.71
+ * @deprecated 4.5.0
+ *
+ * @param string $text Content to replace links to open in a new window.
+ * @return string Content that has filtered links.
+ */
+function popuplinks( $text ) {
+	_deprecated_function( __FUNCTION__, '4.5' );
+	$text = preg_replace('/<a (.+?)>/i', "<a $1 target='_blank' rel='external'>", $text);
+	return $text;
 }

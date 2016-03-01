@@ -20,7 +20,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	/** @var  string shortcut for $this->options->get( 'prompt_key' ) */
 	protected $key;
 
-	/** @var  Prompt_Admin_Conditional_Notice[]  */
+	/** @var  Prompt_Admin_Conditional_Notice[] */
 	protected $notices;
 
 	/** @var  boolean */
@@ -64,7 +64,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		if ( is_null( $this->notices ) )
 			$this->add_notices();
 
-		foreach( $this->notices as $notice ) {
+		foreach ( $this->notices as $notice ) {
 			$notice->process_dismissal();
 		}
 
@@ -192,7 +192,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			return;
 		}
 
-		foreach( $this->notices as $notice ) {
+		foreach ( $this->notices as $notice ) {
 			$notice->maybe_display();
 		}
 
@@ -220,7 +220,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		$key = $this->validate_key( $this->key );
 		if ( is_wp_error( $key ) )
-			return html( 'div class="error"',  html( 'p', $key->get_error_message() ) );
+			return html( 'div class="error"', html( 'p', $key->get_error_message() ) );
 
 		return '';
 	}
@@ -234,7 +234,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			return '';
 
 		$rows = array();
-		foreach( $log as $entry ) {
+		foreach ( $log as $entry ) {
 
 			$rows[] = html( 'tr',
 				html( 'td', date( 'Y-m-d H:i:s e', $entry['time'] ) ),
@@ -255,7 +255,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 				html( 'table class="wp-list-table widefat"',
 					implode( '', $rows )
 				),
-				html( 'input', array( 'type' => 'hidden', 'name' => 'error_alert',  'value' => '1' ) ),
+				html( 'input', array( 'type' => 'hidden', 'name' => 'error_alert', 'value' => '1' ) ),
 				get_submit_button( __( 'Dismiss', 'Postmatic' ), 'primary large', 'dismiss_errors' ),
 				get_submit_button( __( 'Submit A Bug Report', 'Postmatic' ), 'left', 'submit_errors' )
 			)
@@ -268,7 +268,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		$panels = '';
 
 		$submitted_slug = $this->submitted_tab ? $this->submitted_tab->slug() : '';
-		foreach( $this->tabs as $slug => $tab ) {
+		foreach ( $this->tabs as $slug => $tab ) {
 			$tabs .= html(
 				'li',
 				array( 'class' => $slug == $submitted_slug ? 'ui-tabs-active' : '' ),
@@ -297,28 +297,10 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 	protected function display_key_prompt() {
 
-		$base_url = defined( 'PROMPT_RSS_BASE_URL' ) ? PROMPT_RSS_BASE_URL : Prompt_Enum_Urls::HOME;
+		$new_site_url = Prompt_Enum_Urls::MANAGE . '/sites/link?ajax_url=' . urlencode( admin_url( 'admin-ajax.php' ) );
 
-		$feed_url = $base_url . '/targets/get-a-key/feed/?post_type=update';
-
-		$signup_url = Prompt_Enum_Urls::MANAGE . '/signup';
-
-		$new_site_url = Prompt_Enum_Urls::MANAGE . '/sites/link?ajax_url=' . urlencode( admin_url( 'admin-ajax.php') );
-
-		$feed = new Prompt_Admin_Feed( $feed_url );
-
-		$content = $feed->item_content();
-
-
-		if ( $content )
-			$content = str_replace( $signup_url, $new_site_url, $content );
-
-		if ( ! $content ) {
-
-			$template = new Prompt_Template( 'get-a-key.php' );
-			$content = $template->render( compact( 'new_site_url' ) );
-
-		}
+		$template = new Prompt_Template( 'get-a-key.php' );
+		$content = $template->render( compact( 'new_site_url' ) );
 
 		echo $content;
 	}
@@ -342,8 +324,9 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	}
 
 	public function validate_key( $key ) {
-		if ( empty( $key ) )
+		if ( empty( $key ) ) {
 			return '';
+		}
 
 		$key = preg_replace( '/\s/', '', sanitize_text_field( $key ) );
 
@@ -351,12 +334,23 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		$response = $client->get( '/site' );
 
-		if ( is_wp_error( $response ) or !in_array( $response['response']['code'], array( 200, 401 ) ) ) {
+		if ( is_wp_error( $response ) or !in_array( $response['response']['code'], array( 200, 401, 503 ) ) ) {
 			return Prompt_Logging::add_error(
 				'key_http_error',
 				__( 'There\'s a problem verifying your key. Please try later or report this error.', 'Postmatic' ),
 				$response
 			);
+		}
+
+		if ( 503 == $response['response']['code'] ) {
+			$message = sprintf(
+				__(
+					'Postmatic service is temporarily unavailable, see <a href="%s">our twitter feed</a> for updates.',
+					'Postmatic'
+				),
+				Prompt_Enum_Urls::TWITTER
+			);
+			return new WP_Error( 'service_unavailable', $message );
 		}
 
 		if ( 401 == $response['response']['code'] ) {
@@ -373,7 +367,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		$configuration = json_decode( $response['body'] );
 
-		if ( ! self::site_matches( $configuration->site->url ) ) {
+		if ( !self::site_matches( $configuration->site->url ) ) {
 			$message = sprintf(
 				__(
 					'Your key was registered for a different site. Please request a key for this site\'s dedicated use, or <a href="%s" target="_blank">contact us</a> for assistance. Thanks!',
@@ -413,7 +407,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	 */
 	public function is_current_page() {
 
-		if ( ! did_action( 'current_screen' ) )
+		if ( !did_action( 'current_screen' ) )
 			trigger_error( 'is_current_page() is not available until after the load-(page) action' );
 
 		return $this->is_current_page;
@@ -450,7 +444,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			'subject' => sprintf( 'Error submission from %s', get_option( 'blogname' ) ),
 			'text' => json_encode( $message ),
 			'message_type' => Prompt_Enum_Message_Types::ADMIN,
-		));
+		) );
 
 		$sent = Prompt_Factory::make_mailer( Prompt_Enum_Email_Transports::LOCAL )->send_one( $email );
 
@@ -573,10 +567,10 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		if ( $this->key )
 			return;
 
-		if ( ! current_user_can( $this->args['capability'] ) )
+		if ( !current_user_can( $this->args['capability'] ) )
 			return;
 
-		if ( ! $this->options->get( 'redirect_to_options_page' ) )
+		if ( !$this->options->get( 'redirect_to_options_page' ) )
 			return;
 
 		$this->options->set( 'redirect_to_options_page', false );

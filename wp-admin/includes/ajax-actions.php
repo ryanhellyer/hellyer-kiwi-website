@@ -289,7 +289,7 @@ function wp_ajax_autocomplete_user() {
 	foreach ( $users as $user ) {
 		$return[] = array(
 			/* translators: 1: user_login, 2: user_email */
-			'label' => sprintf( __( '%1$s (%2$s)' ), $user->user_login, $user->user_email ),
+			'label' => sprintf( _x( '%1$s (%2$s)', 'user autocomplete result' ), $user->user_login, $user->user_email ),
 			'value' => $user->$field,
 		);
 	}
@@ -1196,7 +1196,7 @@ function wp_ajax_add_menu_item() {
 	/** This filter is documented in wp-admin/includes/nav-menu.php */
 	$walker_class_name = apply_filters( 'wp_edit_nav_menu_walker', 'Walker_Nav_Menu_Edit', $_POST['menu'] );
 
-	if ( ! class_exists( $walker_class_name, false ) )
+	if ( ! class_exists( $walker_class_name ) )
 		wp_die( 0 );
 
 	if ( ! empty( $menu_items ) ) {
@@ -1237,7 +1237,7 @@ function wp_ajax_add_meta() {
 			$post_data['post_type'] = $post->post_type;
 			$post_data['post_status'] = 'draft';
 			$now = current_time('timestamp', 1);
-			$post_data['post_title'] = sprintf( __( 'Draft created on %1$s at %2$s' ), date( get_option( 'date_format' ), $now ), date( get_option( 'time_format' ), $now ) );
+			$post_data['post_title'] = sprintf( __( 'Draft created on %1$s at %2$s' ), date( __( 'F j, Y' ), $now ), date( __( 'g:i a' ), $now ) );
 
 			$pid = edit_post( $post_data );
 			if ( $pid ) {
@@ -1586,7 +1586,7 @@ function wp_ajax_sample_permalink() {
  * @global WP_List_Table $wp_list_table
  */
 function wp_ajax_inline_save() {
-	global $wp_list_table;
+	global $wp_list_table, $mode;
 
 	check_ajax_referer( 'inlineeditnonce', '_inline_edit' );
 
@@ -1658,6 +1658,8 @@ function wp_ajax_inline_save() {
 	edit_post();
 
 	$wp_list_table = _get_list_table( 'WP_Posts_List_Table', array( 'screen' => $_POST['screen'] ) );
+
+	$mode = $_POST['post_view'] === 'excerpt' ? 'excerpt' : 'list';
 
 	$level = 0;
 	$request_post = array( get_post( $_POST['post_ID'] ) );
@@ -2225,11 +2227,11 @@ function wp_ajax_wp_fullscreen_save_post() {
 	}
 
 	if ( $post ) {
-		$last_date = mysql2date( get_option('date_format'), $post->post_modified );
-		$last_time = mysql2date( get_option('time_format'), $post->post_modified );
+		$last_date = mysql2date( __( 'F j, Y' ), $post->post_modified );
+		$last_time = mysql2date( __( 'g:i a' ), $post->post_modified );
 	} else {
-		$last_date = date_i18n( get_option('date_format') );
-		$last_time = date_i18n( get_option('time_format') );
+		$last_date = date_i18n( __( 'F j, Y' ) );
+		$last_time = date_i18n( __( 'g:i a' ) );
 	}
 
 	if ( $last_id = get_post_meta( $post_id, '_edit_last', true ) ) {
@@ -2568,7 +2570,7 @@ function wp_ajax_send_attachment_to_editor() {
 	$rel = '';
 	$url = empty( $attachment['url'] ) ? '' : $attachment['url'];
 	if ( strpos( $url, 'attachment_id') || get_attachment_link( $id ) == $url ) {
-		$rel = ' rel="attachment wp-att-' . $id . '"';
+		$rel = 'attachment wp-att-' . $id;
 	}
 
 	remove_filter( 'media_send_to_editor', 'image_media_send_to_editor' );
@@ -2591,7 +2593,7 @@ function wp_ajax_send_attachment_to_editor() {
 	} else {
 		$html = isset( $attachment['post_title'] ) ? $attachment['post_title'] : '';
 		if ( ! empty( $url ) ) {
-			$html = '<a href="' . esc_url( $url ) . '"' . $rel . '>' . $html . '</a>';
+			$html = '<a href="' . esc_url( $url ) . '"' . 'rel="' . esc_attr( $rel ) . '">' . $html . '</a>';
 		}
 	}
 
@@ -2704,9 +2706,9 @@ function wp_ajax_heartbeat() {
 		 *
 		 * @since 3.6.0
 		 *
-		 * @param array|object $response  The Heartbeat response object or array.
-		 * @param array        $data      The $_POST data sent.
-		 * @param string       $screen_id The screen id.
+		 * @param array  $response  The Heartbeat response.
+		 * @param array  $data      The $_POST data sent.
+		 * @param string $screen_id The screen id.
 		 */
 		$response = apply_filters( 'heartbeat_received', $response, $data, $screen_id );
 	}
@@ -2716,8 +2718,8 @@ function wp_ajax_heartbeat() {
 	 *
 	 * @since 3.6.0
 	 *
-	 * @param array|object $response  The Heartbeat response object or array.
-	 * @param string       $screen_id The screen id.
+	 * @param array  $response  The Heartbeat response.
+	 * @param string $screen_id The screen id.
 	 */
 	$response = apply_filters( 'heartbeat_send', $response, $screen_id );
 
@@ -2728,8 +2730,8 @@ function wp_ajax_heartbeat() {
 	 *
 	 * @since 3.6.0
 	 *
-	 * @param array|object $response  The Heartbeat response object or array.
-	 * @param string       $screen_id The screen id.
+	 * @param array  $response  The Heartbeat response.
+	 * @param string $screen_id The screen id.
 	 */
 	do_action( 'heartbeat_tick', $response, $screen_id );
 
@@ -2818,6 +2820,13 @@ function wp_ajax_query_themes() {
 		'per_page' => 20,
 		'fields'   => $theme_field_defaults
 	) );
+
+	if ( isset( $args['browse'] ) && 'favorites' === $args['browse'] && ! isset( $args['user'] ) ) {
+		$user = get_user_option( 'wporg_favorites' );
+		if ( $user ) {
+			$args['user'] = $user;
+		}
+	}
 
 	$old_filter = isset( $args['browse'] ) ? $args['browse'] : 'search';
 
@@ -3287,4 +3296,23 @@ function wp_ajax_crop_image() {
  */
 function wp_ajax_generate_password() {
 	wp_send_json_success( wp_generate_password( 24 ) );
+}
+
+/**
+ * Ajax handler for saving the user's WordPress.org username.
+ *
+ * @since 4.4.0
+ */
+function wp_ajax_save_wporg_username() {
+	if ( ! current_user_can( 'install_themes' ) && ! current_user_can( 'install_plugins' ) ) {
+		wp_send_json_error();
+	}
+
+	$username = isset( $_REQUEST['username'] ) ? wp_unslash( $_REQUEST['username'] ) : false;
+
+	if ( ! $username ) {
+		wp_send_json_error();
+	}
+
+	wp_send_json_success( update_user_meta( get_current_user_id(), 'wporg_favorites', $username ) );
 }

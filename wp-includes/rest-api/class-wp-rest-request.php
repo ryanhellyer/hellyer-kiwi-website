@@ -341,7 +341,7 @@ class WP_REST_Request implements ArrayAccess {
 	 * Used when checking parameters in get_param().
 	 *
 	 * @since 4.4.0
-	 * @access public
+	 * @access protected
 	 *
 	 * @return array List of types to check, in order of priority.
 	 */
@@ -847,17 +847,17 @@ class WP_REST_Request implements ArrayAccess {
 				$valid_check = call_user_func( $arg['validate_callback'], $param, $this, $key );
 
 				if ( false === $valid_check ) {
-					$invalid_params[ $key ] = __( 'Invalid param.' );
+					$invalid_params[ $key ] = __( 'Invalid parameter.' );
 				}
 
 				if ( is_wp_error( $valid_check ) ) {
-					$invalid_params[] = sprintf( '%s (%s)', $key, $valid_check->get_error_message() );
+					$invalid_params[ $key ] = $valid_check->get_error_message();
 				}
 			}
 		}
 
 		if ( $invalid_params ) {
-			return new WP_Error( 'rest_invalid_param', sprintf( __( 'Invalid parameter(s): %s' ), implode( ', ', $invalid_params ) ), array( 'status' => 400, 'params' => $invalid_params ) );
+			return new WP_Error( 'rest_invalid_param', sprintf( __( 'Invalid parameter(s): %s' ), implode( ', ', array_keys( $invalid_params ) ) ), array( 'status' => 400, 'params' => $invalid_params ) );
 		}
 
 		return true;

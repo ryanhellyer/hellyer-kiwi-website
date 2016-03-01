@@ -584,7 +584,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		endif;
 		?>
 	</h1>
-	<h2 class="nav-tab-wrapper">
+	<h2 class="nav-tab-wrapper wp-clearfix">
 		<a href="<?php echo admin_url( 'nav-menus.php' ); ?>" class="nav-tab<?php if ( ! isset( $_GET['action'] ) || isset( $_GET['action'] ) && 'locations' != $_GET['action'] ) echo ' nav-tab-active'; ?>"><?php esc_html_e( 'Edit Menus' ); ?></a>
 		<?php if ( $num_locations && $menu_count ) : ?>
 			<a href="<?php echo esc_url( add_query_arg( array( 'action' => 'locations' ), admin_url( 'nav-menus.php' ) ) ); ?>" class="nav-tab<?php if ( $locations_screen ) echo ' nav-tab-active'; ?>"><?php esc_html_e( 'Manage Locations' ); ?></a>
@@ -798,9 +798,15 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 										<dt class="howto"><?php _e( 'Theme locations' ); ?></dt>
 										<?php foreach ( $locations as $location => $description ) : ?>
 										<dd class="checkbox-input">
-											<input type="checkbox"<?php checked( isset( $menu_locations[ $location ] ) && $menu_locations[ $location ] == $nav_menu_selected_id ); ?> name="menu-locations[<?php echo esc_attr( $location ); ?>]" id="locations-<?php echo esc_attr( $location ); ?>" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" /> <label for="locations-<?php echo esc_attr( $location ); ?>"><?php echo $description; ?></label>
+											<input type="checkbox"<?php checked( isset( $menu_locations[ $location ] ) && $menu_locations[ $location ] == $nav_menu_selected_id ); ?> name="menu-locations[<?php echo esc_attr( $location ); ?>]" id="locations-<?php echo esc_attr( $location ); ?>" value="<?php echo esc_attr( $nav_menu_selected_id ); ?>" />
+											<label for="locations-<?php echo esc_attr( $location ); ?>"><?php echo $description; ?></label>
 											<?php if ( ! empty( $menu_locations[ $location ] ) && $menu_locations[ $location ] != $nav_menu_selected_id ) : ?>
-											<span class="theme-location-set"> <?php printf( __( "(Currently set to: %s)" ), wp_get_nav_menu_object( $menu_locations[ $location ] )->name ); ?> </span>
+												<span class="theme-location-set"><?php 
+													/* translators: %s: menu name */
+													printf( _x( '(Currently set to: %s)', 'menu location' ),
+														wp_get_nav_menu_object( $menu_locations[ $location ] )->name
+													);
+												?></span>
 											<?php endif; ?>
 										</dd>
 										<?php endforeach; ?>

@@ -57,12 +57,21 @@ class Prompt_Wp_Mailer extends Prompt_Mailer {
 
 	protected function send_prepared( Prompt_Email $email ) {
 
+		if ( !is_email( $email->get_to_address() ) ) {
+			Prompt_Logging::add_error(
+				Prompt_Enum_Error_Codes::OUTBOUND,
+				__( 'Attempted to send to an invalid email address.', 'Postmatic' ),
+				compact( 'email' )
+			);
+			return false;
+		}
+
 		$this->local_mailer->clearAllRecipients();
 		$this->local_mailer->clearCustomHeaders();
 		$this->local_mailer->clearReplyTos();
 
 		$this->local_mailer->From = $email->get_from_address();
-		$this->local_mailer->FromName =  $email->get_from_name();
+		$this->local_mailer->FromName = $email->get_from_name();
 
 		$this->local_mailer->addAddress( $email->get_to_address(), $email->get_to_name() );
 
@@ -128,7 +137,7 @@ class Prompt_Wp_Mailer extends Prompt_Mailer {
 
 		$result_messages = $results->outboundMessages;
 
-		for( $i = 0; $i < count( $result_messages ); $i += 1 ) {
+		for ( $i = 0; $i < count( $result_messages ); $i += 1 ) {
 			$emails[$i]->set_reply_address( Prompt_Email::address( $result_messages[$i]->reply_to ) );
 			$emails[$i]->set_reply_name( Prompt_Email::name( $result_messages[$i]->reply_to ) );
 		}

@@ -408,7 +408,31 @@ ul.essb_links_list {
 .ssba-wrap {
   display: block;
   min-height: 40px;
+  margin: 35px 0;
+  text-align: left !important;
 }
+
+.ssba-wrap div {
+  text-align: left !important;
+}
+
+.ssba-wrap a {
+  display: block;
+  width: 35px; height: 35px;
+  margin: 35px 5px 20px 0 !important;
+}
+
+.ssba-wrap img {
+  width: 50px;
+  height: 50px;
+  height: auto;
+}
+
+/*flare*/
+.flare-horizontal {display: none;}
+
+/*wp author box*/
+#wpautbox-below,.mashsb-container {display: none;}
 
 /*Jetpack tiled gallery*/
 .gallery-row {width: 675px !important; float: none !important;}
@@ -652,8 +676,15 @@ a.sw_CTT span.sw-ctt-btn {
 
 /*Juiz social share*/
 .juiz_sps_maybe_hidden_text {display: none;}
-
 .pmcc-comments-report-link {display: none !important;}
+
+/*Subtitle*/
+.entry-subtitle {display:block;font-size:85%;margin-top:5px;}
+
+/*after post widgets*/
+.awac-wrapper, .widget_prompt_subscribe_widget {
+  display: none;
+}
 
 /*Mobile syles*/
     @media only screen and (max-width: 480px) {

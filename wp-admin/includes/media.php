@@ -158,11 +158,11 @@ function get_image_send_to_editor( $id, $caption, $title, $align, $url = '', $re
  * @param string $html
  * @param integer $id
  * @param string $caption image caption
- * @param string $alt image alt attribute
  * @param string $title image title attribute
  * @param string $align image css alignment property
  * @param string $url image src url
  * @param string $size image size (thumbnail, medium, large, full or added with add_image_size() )
+ * @param string $alt image alt attribute
  * @return string
  */
 function image_add_caption( $html, $id, $caption, $title, $align, $url, $size, $alt = '' ) {
@@ -248,7 +248,7 @@ function media_send_to_editor($html) {
 ?>
 <script type="text/javascript">
 var win = window.dialogArguments || opener || parent || top;
-win.send_to_editor('<?php echo addslashes($html); ?>');
+win.send_to_editor( <?php echo wp_json_encode( $html ); ?> );
 </script>
 <?php
 	exit;
@@ -1455,7 +1455,7 @@ function get_media_item( $attachment_id, $args = null ) {
 			<td>
 			<p><strong>" . __('File name:') . "</strong> $filename</p>
 			<p><strong>" . __('File type:') . "</strong> $post->post_mime_type</p>
-			<p><strong>" . __('Upload date:') . "</strong> " . mysql2date( get_option('date_format'), $post->post_date ). '</p>';
+			<p><strong>" . __('Upload date:') . "</strong> " . mysql2date( __( 'F j, Y' ), $post->post_date ). '</p>';
 			if ( !empty( $media_dims ) )
 				$item .= "<p><strong>" . __('Dimensions:') . "</strong> $media_dims</p>\n";
 
@@ -1484,7 +1484,9 @@ function get_media_item( $attachment_id, $args = null ) {
 			$delete = "<a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-post_' . $attachment_id ) . "' id='del[$attachment_id]' class='delete-permanently'>" . __( 'Delete Permanently' ) . '</a>';
 		} elseif ( !MEDIA_TRASH ) {
 			$delete = "<a href='#' class='del-link' onclick=\"document.getElementById('del_attachment_$attachment_id').style.display='block';return false;\">" . __( 'Delete' ) . "</a>
-			 <div id='del_attachment_$attachment_id' class='del-attachment' style='display:none;'><p>" . sprintf( __( 'You are about to delete <strong>%s</strong>.' ), $filename ) . "</p>
+			 <div id='del_attachment_$attachment_id' class='del-attachment' style='display:none;'>" .
+			 /* translators: %s: file name */
+			'<p>' . sprintf( __( 'You are about to delete %s.' ), '<strong>' . $filename . '</strong>' ) . "</p>
 			 <a href='" . wp_nonce_url( "post.php?action=delete&amp;post=$attachment_id", 'delete-post_' . $attachment_id ) . "' id='del[$attachment_id]' class='button'>" . __( 'Continue' ) . "</a>
 			 <a href='#' class='button' onclick=\"this.parentNode.style.display='none';return false;\">" . __( 'Cancel' ) . "</a>
 			 </div>";
@@ -2686,6 +2688,8 @@ function multisite_over_quota_message() {
  * Displays the image and editor in the post editor
  *
  * @since 3.5.0
+ *
+ * @param WP_Post $post A post object.
  */
 function edit_form_image_editor( $post ) {
 	$open = isset( $_GET['image-editor'] );
@@ -2699,7 +2703,7 @@ function edit_form_image_editor( $post ) {
 	$alt_text = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
 
 	$att_url = wp_get_attachment_url( $post->ID ); ?>
-	<div class="wp_attachment_holder">
+	<div class="wp_attachment_holder wp-clearfix">
 	<?php
 	if ( wp_attachment_is_image( $post->ID ) ) :
 		$image_edit_button = '';
@@ -2711,7 +2715,7 @@ function edit_form_image_editor( $post ) {
 
 		<div class="imgedit-response" id="imgedit-response-<?php echo $attachment_id; ?>"></div>
 
-		<div<?php if ( $open ) echo ' style="display:none"'; ?> class="wp_attachment_image" id="media-head-<?php echo $attachment_id; ?>">
+		<div<?php if ( $open ) echo ' style="display:none"'; ?> class="wp_attachment_image wp-clearfix" id="media-head-<?php echo $attachment_id; ?>">
 			<p id="thumbnail-head-<?php echo $attachment_id; ?>"><img class="thumbnail" src="<?php echo set_url_scheme( $thumb_url[0] ); ?>" style="max-width:100%" alt="" /></p>
 			<p><?php echo $image_edit_button; ?></p>
 		</div>
@@ -2776,7 +2780,7 @@ function edit_form_image_editor( $post ) {
 		);
 	?>
 
-	<label for="content"><strong><?php _e( 'Description' ); ?></strong><?php
+	<label for="attachment_content"><strong><?php _e( 'Description' ); ?></strong><?php
 	if ( preg_match( '#^(audio|video)/#', $post->post_mime_type ) ) {
 		echo ': ' . __( 'Displayed on attachment pages.' );
 	} ?></label>
@@ -2810,8 +2814,8 @@ function attachment_submitbox_metadata() {
 	$att_url = wp_get_attachment_url( $post->ID );
 ?>
 	<div class="misc-pub-section misc-pub-attachment">
-			<label for="attachment_url"><?php _e( 'File URL:' ); ?></label>
-			<input type="text" class="widefat urlfield" readonly="readonly" name="attachment_url" value="<?php echo esc_attr($att_url); ?>" />
+		<label for="attachment_url"><?php _e( 'File URL:' ); ?></label>
+		<input type="text" class="widefat urlfield" readonly="readonly" name="attachment_url" id="attachment_url" value="<?php echo esc_attr( $att_url ); ?>" />
 	</div>
 	<div class="misc-pub-section misc-pub-filename">
 		<?php _e( 'File name:' ); ?> <strong><?php echo $filename; ?></strong>

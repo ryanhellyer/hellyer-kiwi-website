@@ -73,7 +73,7 @@ WPSetThumbnailHTML = function(html){
 
 WPSetThumbnailID = function(id){
 	var field = $('input[value="_thumbnail_id"]', '#list-table');
-	if ( field.size() > 0 ) {
+	if ( field.length > 0 ) {
 		$('#meta\\[' + field.attr('id').match(/[0-9]+/) + '\\]\\[value\\]').text(id);
 	}
 };
@@ -131,7 +131,7 @@ $(document).on( 'heartbeat-send.refresh-lock', function( e, data ) {
 				}
 
 				if ( received.lock_error.avatar_src ) {
-					avatar = $('<img class="avatar avatar-64 photo" width="64" height="64" />').attr( 'src', received.lock_error.avatar_src.replace(/&amp;/g, '&') );
+					avatar = $( '<img class="avatar avatar-64 photo" width="64" height="64" alt="" />' ).attr( 'src', received.lock_error.avatar_src.replace( /&amp;/g, '&' ) );
 					wrap.find('div.post-locked-avatar').empty().append( avatar );
 				}
 
@@ -412,7 +412,7 @@ jQuery(document).ready( function($) {
 	if ( $('#tagsdiv-post_tag').length ) {
 		window.tagBox && window.tagBox.init();
 	} else {
-		$('#side-sortables, #normal-sortables, #advanced-sortables').children('div.postbox').each(function(){
+		$('.meta-box-sortables').children('div.postbox').each(function(){
 			if ( this.id.indexOf('tagsdiv-') === 0 ) {
 				window.tagBox && window.tagBox.init();
 				return false;

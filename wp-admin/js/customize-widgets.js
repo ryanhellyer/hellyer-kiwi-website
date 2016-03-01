@@ -959,7 +959,7 @@
 		 * comparing the loaded form with the sanitized form, whose fields will
 		 * be aligned to copy the sanitized over. The elements returned by this
 		 * are passed into this._getInputsSignature(), and they are iterated
-		 * over when copying sanitized values over to the the form loaded.
+		 * over when copying sanitized values over to the form loaded.
 		 *
 		 * @param {jQuery} container element in which to look for inputs
 		 * @returns {jQuery} inputs
@@ -2001,7 +2001,8 @@
 					is_new: ! isExistingWidget,
 					width: widget.get( 'width' ),
 					height: widget.get( 'height' ),
-					is_wide: widget.get( 'is_wide' )
+					is_wide: widget.get( 'is_wide' ),
+					active: true
 				},
 				previewer: self.setting.previewer
 			} );

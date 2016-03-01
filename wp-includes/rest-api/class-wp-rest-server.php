@@ -162,12 +162,19 @@ class WP_REST_Server {
 			$status = 500;
 		}
 
-		$data = array();
+		$errors = array();
 
 		foreach ( (array) $error->errors as $code => $messages ) {
 			foreach ( (array) $messages as $message ) {
-				$data[] = array( 'code' => $code, 'message' => $message, 'data' => $error->get_error_data( $code ) );
+				$errors[] = array( 'code' => $code, 'message' => $message, 'data' => $error->get_error_data( $code ) );
 			}
+		}
+
+		$data = $errors[0];
+		if ( count( $errors ) > 1 ) {
+			// Remove the primary error.
+			array_shift( $errors );
+			$data['additional_errors'] = $errors;
 		}
 
 		$response = new WP_REST_Response( $data, $status );
@@ -198,7 +205,7 @@ class WP_REST_Server {
 
 		$error = compact( 'code', 'message' );
 
-		return wp_json_encode( array( $error ) );
+		return wp_json_encode( $error );
 	}
 
 	/**
@@ -228,6 +235,20 @@ class WP_REST_Server {
 		$this->send_header( 'X-Content-Type-Options', 'nosniff' );
 		$this->send_header( 'Access-Control-Expose-Headers', 'X-WP-Total, X-WP-TotalPages' );
 		$this->send_header( 'Access-Control-Allow-Headers', 'Authorization' );
+
+		/**
+		 * Send nocache headers on authenticated requests.
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param bool $rest_send_nocache_headers Whether to send no-cache headers.
+		 */
+		$send_no_cache_headers = apply_filters( 'rest_send_nocache_headers', is_user_logged_in() );
+		if ( $send_no_cache_headers ) {
+			foreach ( wp_get_nocache_headers() as $header => $header_value ) {
+				$this->send_header( $header, $header_value );
+			}
+		}
 
 		/**
 		 * Filter whether the REST API is enabled.
@@ -763,17 +784,18 @@ class WP_REST_Server {
 		$path   = $request->get_route();
 
 		foreach ( $this->get_routes() as $route => $handlers ) {
+			$match = preg_match( '@^' . $route . '$@i', $path, $args );
+
+			if ( ! $match ) {
+				continue;
+			}
+
 			foreach ( $handlers as $handler ) {
 				$callback  = $handler['callback'];
 				$response = null;
 
-				if ( empty( $handler['methods'][ $method ] ) ) {
-					continue;
-				}
-
-				$match = preg_match( '@^' . $route . '$@i', $path, $args );
-
-				if ( ! $match ) {
+				$checked_method = 'HEAD' === $method ? 'GET' : $method;
+				if ( empty( $handler['methods'][ $checked_method ] ) ) {
 					continue;
 				}
 
@@ -782,6 +804,8 @@ class WP_REST_Server {
 				}
 
 				if ( ! is_wp_error( $response ) ) {
+					// Remove the redundant preg_match argument.
+					unset( $args[0] );
 
 					$request->set_url_params( $args );
 					$request->set_attributes( $handler );
@@ -1064,6 +1088,12 @@ class WP_REST_Server {
 					if ( isset( $opts['default'] ) ) {
 						$arg_data['default'] = $opts['default'];
 					}
+					if ( isset( $opts['enum'] ) ) {
+						$arg_data['enum'] = $opts['enum'];
+					}
+					if ( isset( $opts['description'] ) ) {
+						$arg_data['description'] = $opts['description'];
+					}
 					$endpoint_data['args'][ $key ] = $arg_data;
 				}
 			}
@@ -1143,7 +1173,7 @@ class WP_REST_Server {
 	 *
 	 * @return string Raw request data.
 	 */
-	public function get_raw_data() {
+	public static function get_raw_data() {
 		global $HTTP_RAW_POST_DATA;
 
 		/*

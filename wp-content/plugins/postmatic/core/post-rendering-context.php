@@ -106,6 +106,12 @@ class Prompt_Post_Rendering_Context {
 	public function alternate_versions_menu() {
 		global $polylang;
 
+		$wpml_selector = $this->wpml_language_selector_html();
+
+		if ( $wpml_selector ) {
+			return $wpml_selector;
+		}
+		
 		if ( ! class_exists( 'PLL_Switcher' ) )
 			return '';
 
@@ -186,5 +192,17 @@ class Prompt_Post_Rendering_Context {
 		if ( class_exists( 'Jetpack' ) )
 			$this->modifiers[] = new Prompt_Jetpack_Post_Rendering_Modifier();
 
+	}
+
+	/**
+	 *
+	 * @since 1.5.0
+	 *
+	 * @return string
+	 */
+	protected function wpml_language_selector_html() {
+		ob_start();
+		do_action( 'wp_footer_language_selector' );
+		return ob_get_clean();
 	}
 }

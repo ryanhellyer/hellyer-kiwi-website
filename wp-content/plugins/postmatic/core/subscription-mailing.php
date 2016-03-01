@@ -261,6 +261,15 @@ class Prompt_Subscription_Mailing {
 		$prompt_subscriber = new Prompt_User( $subscriber );
 		$subscriber = $prompt_subscriber->get_wp_user();
 
+		if ( !$subscriber or !is_email( $subscriber->user_email ) ) {
+			Prompt_Logging::add_error(
+					'invalid_subscriber',
+					__( 'Tried to notify an invalid subscriber.', 'Postmatic' ),
+					compact( 'subscriber', 'object', 'un' )
+			);
+			return;
+		}
+
 		$email = new Prompt_Email( array(
 			'to_address' => $subscriber->user_email,
 			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
@@ -273,7 +282,6 @@ class Prompt_Subscription_Mailing {
 			);
 			$template_file = "unsubscribed-email.php";
 			$filter = 'prompt/unsubscribed_email';
-			$latest_post = null;
 			$comments = array();
 
 		} else {
@@ -283,7 +291,6 @@ class Prompt_Subscription_Mailing {
 			);
 			$template_file = "subscribed-email.php";
 			$filter = 'prompt/subscribed_email';
-			$latest_post = self::latest_post( $object );
 			$comments = self::comments( $object );
 
 		}
@@ -294,7 +301,7 @@ class Prompt_Subscription_Mailing {
 		$template_data = array(
 			'subscriber' => $prompt_subscriber->get_wp_user(),
 			'object' => $object,
-			'latest_post' => $latest_post,
+			'subscribed_introduction' => Prompt_Core::$options->get( 'subscribed_introduction' ),
 			'comments' => $comments,
 			'subject' => $email->get_subject(),
 		);
@@ -306,20 +313,13 @@ class Prompt_Subscription_Mailing {
 		 *
 		 *      @type WP_User $object The object subscribed to
 		 *      @type Prompt_Interface_Subscribable $object The object subscribed to
-		 *      @type WP_Post $latest_post For site and author subscriptions, the latest relevant post.
+		 *      @type string $subscribed_introduction Custom introductory content.
 		 *      @type array $comments For post subscriptions, the comments on the post so far.
 		 * }
 		 */
 		$template_data = apply_filters( $filter . '/template_data', $template_data );
 
-		if ( $latest_post ) {
-			$post_rendering_context = new Prompt_Post_Rendering_Context( $latest_post );
-			$post_rendering_context->setup();
-		}
-
-		$post_id = 0;
-		if ( $latest_post or is_a( $object, 'Prompt_Post' ) )
-			$post_id = $latest_post ? $latest_post->ID : $object->id();
+		$post_id = ( $object instanceof Prompt_Post ) ? $object->id() : 0;
 
 		$command = new Prompt_Confirmation_Command();
 		$command->set_post_id( $post_id );
@@ -330,10 +330,6 @@ class Prompt_Subscription_Mailing {
 		Prompt_Command_Handling::add_command_metadata( $command, $email );
 
 		self::render_email( $email, $text_template, $html_template, $template_data );
-
-		if ( $latest_post ) {
-			$post_rendering_context->reset();
-		}
 
 		/**
 		 * Filter subscription notification email.
@@ -420,37 +416,6 @@ class Prompt_Subscription_Mailing {
 	) {
 		$email->set_text( $text_template->render( $template_data ) );
 		$email->set_html( $html_template->render( $template_data ) );
-	}
-
-	/**
-	 * @param Prompt_Interface_Subscribable $object
-	 * @return WP_Post
-	 */
-	protected static function latest_post( Prompt_Interface_Subscribable $object ) {
-
-		if ( is_a( $object, 'Prompt_Post' ) )
-			return null;
-
-		if ( Prompt_Enum_Email_Transports::LOCAL == Prompt_Core::$options->get( 'email_transport' ) )
-			return null;
-
-		$query = array(
-			'posts_per_page' => 1,
-			'post_type' => Prompt_Core::$options->get( 'site_subscription_post_types' ),
-			'meta_query' => array(
-				Prompt_Post::sent_posts_meta_clause(),
-			)
-		);
-
-		if ( is_a( $object, 'Prompt_User' ) )
-			$query['post_author'] = $object->id();
-
-		$posts = get_posts( $query );
-
-		if ( empty( $posts ) )
-			return null;
-
-		return $posts[0];
 	}
 
 	protected static function comments( Prompt_Interface_Subscribable $object ) {

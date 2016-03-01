@@ -51,7 +51,7 @@ function options_general_add_js() {
 
 		$("input[name='date_format']").click(function(){
 			if ( "date_format_custom_radio" != $(this).attr("id") )
-				$( "input[name='date_format_custom']" ).val( $( this ).val() ).siblings( '.example' ).text( $( this ).parent( 'label' ).text() );
+				$( "input[name='date_format_custom']" ).val( $( this ).val() ).siblings( '.example' ).text( $( this ).parent( 'label' ).children( '.format-i18n' ).text() );
 		});
 		$("input[name='date_format_custom']").focus(function(){
 			$( '#date_format_custom_radio' ).prop( 'checked', true );
@@ -59,7 +59,7 @@ function options_general_add_js() {
 
 		$("input[name='time_format']").click(function(){
 			if ( "time_format_custom_radio" != $(this).attr("id") )
-				$( "input[name='time_format_custom']" ).val( $( this ).val() ).siblings( '.example' ).text( $( this ).parent( 'label' ).text() );
+				$( "input[name='time_format_custom']" ).val( $( this ).val() ).siblings( '.example' ).text( $( this ).parent( 'label' ).children( '.format-i18n' ).text() );
 		});
 		$("input[name='time_format_custom']").focus(function(){
 			$( '#time_format_custom_radio' ).prop( 'checked', true );
@@ -138,25 +138,4 @@ function options_reading_add_js() {
 function options_reading_blog_charset() {
 	echo '<input name="blog_charset" type="text" id="blog_charset" value="' . esc_attr( get_option( 'blog_charset' ) ) . '" class="regular-text" />';
 	echo '<p class="description">' . __( 'The <a href="https://codex.wordpress.org/Glossary#Character_set">character encoding</a> of your site (UTF-8 is recommended)' ) . '</p>';
-}
-
-/**
- * Render the week starts on setting.
- *
- * @global WP_Locale $wp_locale
- *
- * @since 4.4.0
- */
-function options_general_start_of_week() {
-	global $wp_locale;
-	?>
-	<select name="start_of_week" id="start_of_week">
-		<?php
-		$start_of_week = get_option( 'start_of_week' );
-		for ( $day_index = 0; $day_index <= 6; $day_index++ ) {
-			echo "\n\t<option value='" . esc_attr( $day_index ) . "'" . selected( $start_of_week, $day_index, false ) . ">" . $wp_locale->get_weekday( $day_index ) . '</option>';
-		}
-		?>
-	</select>
-	<?php
 }

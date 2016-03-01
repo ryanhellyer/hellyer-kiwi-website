@@ -229,7 +229,7 @@ if ( ! $ct->errors() || ( 1 == count( $ct->errors()->get_error_codes() )
 ?>
 
 <div class="theme-browser">
-	<div class="themes">
+	<div class="themes wp-clearfix">
 
 <?php
 /*
@@ -282,7 +282,6 @@ foreach ( $themes as $theme ) :
 	<?php } ?>
 </div>
 <?php endforeach; ?>
-	<br class="clear" />
 	</div>
 </div>
 <div class="theme-overlay"></div>
@@ -387,7 +386,7 @@ $can_install = current_user_can( 'install_themes' );
 
 	<# if ( data.active ) { #>
 		<# if ( data.actions.customize ) { #>
-			<a class="button button-primary customize load-customize hide-if-no-customize" href="{{ data.actions.customize }}"><?php _e( 'Customize' ); ?></a>
+			<a class="button button-primary customize load-customize hide-if-no-customize" href="{{{ data.actions.customize }}}"><?php _e( 'Customize' ); ?></a>
 		<# } #>
 	<# } else { #>
 		<a class="button button-secondary activate" href="{{{ data.actions.activate }}}"><?php _e( 'Activate' ); ?></a>

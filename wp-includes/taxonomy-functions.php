@@ -384,7 +384,8 @@ function register_taxonomy( $taxonomy, $object_type, $args = array() ) {
 		return new WP_Error( 'taxonomy_length_invalid', __( 'Taxonomy names must be between 1 and 32 characters in length.' ) );
 	}
 
-	if ( false !== $args['query_var'] && false !== $args['public'] && ! empty( $wp ) ) {
+	// Non-public taxonomies should not register query vars, except in the admin.
+	if ( false !== $args['query_var'] && ( is_admin() || false !== $args['public'] ) && ! empty( $wp ) ) {
 		if ( true === $args['query_var'] )
 			$args['query_var'] = $taxonomy;
 		else
@@ -540,7 +541,29 @@ function get_taxonomy_labels( $tax ) {
 	);
 	$nohier_vs_hier_defaults['menu_name'] = $nohier_vs_hier_defaults['name'];
 
-	return _get_custom_object_labels( $tax, $nohier_vs_hier_defaults );
+	$labels = _get_custom_object_labels( $tax, $nohier_vs_hier_defaults );
+
+	$taxonomy = $tax->name;
+
+	$default_labels = clone $labels;
+
+	/**
+	 * Filter the labels of a specific taxonomy.
+	 *
+	 * The dynamic portion of the hook name, `$taxonomy`, refers to the taxonomy slug.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @see get_taxonomy_labels() for the full list of taxonomy labels.
+	 *
+	 * @param object $labels Object with labels for the taxonomy as member variables.
+	 */
+	$labels = apply_filters( "taxonomy_labels_{$taxonomy}", $labels );
+
+	// Ensure that the filtered labels contain all required default values.
+	$labels = (object) array_merge( (array) $default_labels, (array) $labels );
+
+	return $labels;
 }
 
 /**
@@ -742,25 +765,12 @@ function get_term( $term, $taxonomy = '', $output = OBJECT, $filter = 'raw' ) {
 			$_term = WP_Term::get_instance( $term->term_id );
 		}
 	} else {
-		$_term = WP_Term::get_instance( $term );
+		$_term = WP_Term::get_instance( $term, $taxonomy );
 	}
 
-	// If `$taxonomy` was provided, make sure it matches the taxonomy of the located term.
-	if ( $_term && $taxonomy && $taxonomy !== $_term->taxonomy ) {
-		// If there are two terms with the same ID, split the other one to a new term.
-		$new_term_id = _split_shared_term( $_term->term_id, $_term->term_taxonomy_id );
-
-		// If no split occurred, this is an invalid request. Return null (not WP_Error) for back compat.
-		if ( $new_term_id === $_term->term_id ) {
-			return null;
-
-		// The term has been split. Refetch the term from the proper taxonomy.
-		} else {
-			return get_term( $_term->term_id, $taxonomy, $output, $filter );
-		}
-	}
-
-	if ( ! $_term ) {
+	if ( is_wp_error( $_term ) ) {
+		return $_term;
+	} elseif ( ! $_term ) {
 		return null;
 	}
 
@@ -1556,12 +1566,17 @@ function get_terms( $taxonomies, $args = '' ) {
  * @param mixed  $meta_value Metadata value.
  * @param bool   $unique     Optional. Whether to bail if an entry with the same key is found for the term.
  *                           Default false.
- * @return int|bool Meta ID on success, false on failure.
+ * @return int|WP_Error|bool Meta ID on success. WP_Error when term_id is ambiguous between taxonomies.
+ *                           False on failure.
  */
 function add_term_meta( $term_id, $meta_key, $meta_value, $unique = false ) {
 	// Bail if term meta table is not installed.
 	if ( get_option( 'db_version' ) < 34370 ) {
 		return false;
+	}
+
+	if ( wp_term_is_shared( $term_id ) ) {
+		return new WP_Error( 'ambiguous_term_id', __( 'Term meta cannot be added to terms that are shared between taxonomies.'), $term_id );
 	}
 
 	$added = add_metadata( 'term', $term_id, $meta_key, $meta_value, $unique );
@@ -1633,12 +1648,17 @@ function get_term_meta( $term_id, $key = '', $single = false ) {
  * @param string $meta_key   Metadata key.
  * @param mixed  $meta_value Metadata value.
  * @param mixed  $prev_value Optional. Previous value to check before removing.
- * @return int|bool Meta ID if the key didn't previously exist. True on successful update. False on failure.
+ * @return int|WP_Error|bool Meta ID if the key didn't previously exist. True on successful update.
+ *                           WP_Error when term_id is ambiguous between taxonomies. False on failure.
  */
 function update_term_meta( $term_id, $meta_key, $meta_value, $prev_value = '' ) {
 	// Bail if term meta table is not installed.
 	if ( get_option( 'db_version' ) < 34370 ) {
 		return false;
+	}
+
+	if ( wp_term_is_shared( $term_id ) ) {
+		return new WP_Error( 'ambiguous_term_id', __( 'Term meta cannot be added to terms that are shared between taxonomies.'), $term_id );
 	}
 
 	$updated = update_metadata( 'term', $term_id, $meta_key, $meta_value, $prev_value );
@@ -2035,6 +2055,8 @@ function wp_delete_object_term_relationships( $object_id, $taxonomies ) {
  * If the term is a parent of other terms, then the children will be updated to
  * that term's parent.
  *
+ * Metadata associated with the term will be deleted.
+ *
  * The `$args` 'default' will only override the terms found, if there is only one
  * term found. Any other and the found terms are used.
  *
@@ -2152,6 +2174,11 @@ function wp_delete_term( $term, $taxonomy, $args = array() ) {
 	$tax_object = get_taxonomy( $taxonomy );
 	foreach ( $tax_object->object_type as $object_type )
 		clean_object_term_cache( $objects, $object_type );
+
+	$term_meta_ids = $wpdb->get_col( $wpdb->prepare( "SELECT meta_id FROM $wpdb->termmeta WHERE term_id = %d ", $term ) );
+	foreach ( $term_meta_ids as $mid ) {
+		delete_metadata_by_mid( 'term', $mid );
+	}
 
 	/**
 	 * Fires immediately before a term taxonomy ID is deleted.
@@ -3985,6 +4012,18 @@ function _split_shared_term( $term_id, $term_taxonomy_id, $record = true ) {
 		update_option( '_split_terms', $split_term_data );
 	}
 
+	// If we've just split the final shared term, set the "finished" flag.
+	$shared_terms_exist = $wpdb->get_results(
+		"SELECT tt.term_id, t.*, count(*) as term_tt_count FROM {$wpdb->term_taxonomy} tt
+		 LEFT JOIN {$wpdb->terms} t ON t.term_id = tt.term_id
+		 GROUP BY t.term_id
+		 HAVING term_tt_count > 1
+		 LIMIT 1"
+	);
+	if ( ! $shared_terms_exist ) {
+		update_option( 'finished_splitting_shared_terms', true );
+	}
+
 	/**
 	 * Fires after a previously shared taxonomy term is split into two separate terms.
 	 *
@@ -4230,6 +4269,29 @@ function wp_get_split_term( $old_term_id, $taxonomy ) {
 	}
 
 	return $term_id;
+}
+
+/**
+ * Determine whether a term is shared between multiple taxonomies.
+ *
+ * Shared taxonomy terms began to be split in 4.3, but failed cron tasks or other delays in upgrade routines may cause
+ * shared terms to remain.
+ *
+ * @since 4.4.0
+ *
+ * @param int $term_id
+ * @return bool
+ */
+function wp_term_is_shared( $term_id ) {
+	global $wpdb;
+
+	if ( get_option( 'finished_splitting_shared_terms' ) ) {
+		return false;
+	}
+
+	$tt_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_taxonomy WHERE term_id = %d", $term_id ) );
+
+	return $tt_count > 1;
 }
 
 /**

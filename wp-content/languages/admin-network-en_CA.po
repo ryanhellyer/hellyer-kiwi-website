@@ -2,13 +2,22 @@
 # This file is distributed under the same license as the Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-11-01 10:22:50+0000\n"
+"PO-Revision-Date: 2015-11-26 00:00:19+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/1.0-alpha-1100\n"
 "Project-Id-Version: Network Admin\n"
+
+#: wp-admin/network/site-users.php:329 wp-admin/network/user-new.php:106
+msgid "A password reset link will be sent to the user via email."
+msgstr "A password reset link will be sent to the user via email."
+
+#. translators: 1: NOBLOGREDIRECT 2: wp-config.php
+#: wp-admin/network/settings.php:142
+msgid "If registration is disabled, please set %1$s in %2$s to a URL you will redirect visitors to if they visit a non-existent site."
+msgstr "If registration is disabled, please set %1$s in %2$s to a URL you will redirect visitors to if they visit a non-existent site."
 
 #: wp-admin/network/site-users.php:41
 msgid "Site users list navigation"
@@ -189,11 +198,11 @@ msgstr "Delete Themes"
 msgid "New registrations settings"
 msgstr "New registrations settings"
 
-#: wp-admin/network/settings.php:298
+#: wp-admin/network/settings.php:304
 msgid "Size in kilobytes"
 msgstr "Size in kilobytes"
 
-#: wp-admin/network/settings.php:288
+#: wp-admin/network/settings.php:294
 msgid "Allowed file types. Separate types by spaces."
 msgstr "Allowed file types. Separate types by spaces."
 
@@ -201,7 +210,7 @@ msgstr "Allowed file types. Separate types by spaces."
 msgid "Set site attributes"
 msgstr "Set site attributes"
 
-#: wp-admin/network/settings.php:361
+#: wp-admin/network/settings.php:367
 msgid "Enable menus"
 msgstr "Enable menus"
 
@@ -449,11 +458,11 @@ msgstr "Network Settings"
 msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
 msgstr "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
 
-#: wp-admin/network/settings.php:160
+#: wp-admin/network/settings.php:166
 msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add New\" page."
 msgstr "Allow site administrators to add new users to their site via the \"Users &rarr; Add New\" page."
 
-#: wp-admin/network/settings.php:309
+#: wp-admin/network/settings.php:315
 msgid "Language Settings"
 msgstr "Language Settings"
 
@@ -670,17 +679,13 @@ msgstr "You can make an existing user an additional super admin by going to the 
 msgid "The following words are reserved for use by WordPress functions and cannot be used as blog names: <code>%s</code>"
 msgstr "The following words are reserved for use by WordPress functions and cannot be used as blog names: <code>%s</code>"
 
-#: wp-admin/network/settings.php:182
+#: wp-admin/network/settings.php:188
 msgid "If you want to limit site registrations to certain domains. One domain per line."
 msgstr "If you want to limit site registrations to certain domains. One domain per line."
 
-#: wp-admin/network/settings.php:193
+#: wp-admin/network/settings.php:199
 msgid "If you want to ban domains from site registrations. One domain per line."
 msgstr "If you want to ban domains from site registrations. One domain per line."
-
-#: wp-admin/network/settings.php:140
-msgid "If registration is disabled, please set <code>NOBLOGREDIRECT</code> in <code>wp-config.php</code> to a URL you will redirect visitors to if they visit a non-existent site."
-msgstr "If registration is disabled, please set <code>NOBLOGREDIRECT</code> in <code>wp-config.php</code> to a URL you will redirect visitors to if they visit a non-existent site."
 
 #: wp-admin/network/site-new.php:40
 msgid "Can&#8217;t create an empty site."
@@ -754,36 +759,36 @@ msgstr "There was an error creating the user."
 msgid "You are not allowed to change the current site."
 msgstr "You are not allowed to change the current site."
 
-#: wp-admin/network/settings.php:296
+#: wp-admin/network/settings.php:302
 msgctxt "File size in kilobytes"
 msgid "%s KB"
 msgstr "%s KB"
 
-#: wp-admin/network/settings.php:284
+#: wp-admin/network/settings.php:290
 msgid "Upload file types"
 msgstr "Upload file types"
 
-#: wp-admin/network/settings.php:276
+#: wp-admin/network/settings.php:282
 msgid "Limit total size of files uploaded to %s MB"
 msgstr "Limit total size of files uploaded to %s MB"
 
-#: wp-admin/network/settings.php:257
+#: wp-admin/network/settings.php:263
 msgid "The author of the first comment on a new site."
 msgstr "The author of the first comment on a new site."
 
-#: wp-admin/network/settings.php:228
+#: wp-admin/network/settings.php:234
 msgid "The first post on a new site."
 msgstr "The first post on a new site."
 
-#: wp-admin/network/settings.php:238
+#: wp-admin/network/settings.php:244
 msgid "The first page on a new site."
 msgstr "The first page on a new site."
 
-#: wp-admin/network/settings.php:248
+#: wp-admin/network/settings.php:254
 msgid "The first comment on a new site."
 msgstr "The first comment on a new site."
 
-#: wp-admin/network/settings.php:266
+#: wp-admin/network/settings.php:272
 msgid "The URL for the first comment on a new site."
 msgstr "The URL for the first comment on a new site."
 
@@ -807,7 +812,7 @@ msgstr "Both sites and user accounts can be registered."
 msgid "User accounts may be registered."
 msgstr "User accounts may be registered."
 
-#: wp-admin/network/settings.php:339
+#: wp-admin/network/settings.php:345
 msgid "Enable administration menus"
 msgstr "Enable administration menus"
 
@@ -815,11 +820,11 @@ msgstr "Enable administration menus"
 msgid "Operational Settings"
 msgstr "Operational Settings"
 
-#: wp-admin/network/settings.php:271
+#: wp-admin/network/settings.php:277
 msgid "Upload Settings"
 msgstr "Upload Settings"
 
-#: wp-admin/network/settings.php:199
+#: wp-admin/network/settings.php:205
 msgid "New Site Settings"
 msgstr "New Site Settings"
 
@@ -835,7 +840,7 @@ msgstr "Missing or invalid site address."
 msgid "Missing email address."
 msgstr "Missing email address."
 
-#: wp-admin/network/settings.php:274
+#: wp-admin/network/settings.php:280
 msgid "Site upload space"
 msgstr "Site upload space"
 
@@ -843,15 +848,15 @@ msgstr "Site upload space"
 msgid "[%s] New Site Created"
 msgstr "[%s] New Site Created"
 
-#: wp-admin/network/settings.php:208
+#: wp-admin/network/settings.php:214
 msgid "The welcome email sent to new site owners."
 msgstr "The welcome email sent to new site owners."
 
-#: wp-admin/network/settings.php:153
+#: wp-admin/network/settings.php:159
 msgid "Send the network admin an email notification every time someone registers a site or user account."
 msgstr "Send the network admin an email notification every time someone registers a site or user account."
 
-#: wp-admin/network/settings.php:169
+#: wp-admin/network/settings.php:175
 msgid "Users are not allowed to register these sites. Separate names by spaces."
 msgstr "Users are not allowed to register these sites. Separate names by spaces."
 
@@ -875,23 +880,23 @@ msgstr "A new user will be created if the above email address is not in the data
 msgid "The username and password will be mailed to this email address."
 msgstr "The username and password will be mailed to this email address."
 
-#: wp-admin/network/settings.php:243
+#: wp-admin/network/settings.php:249
 msgid "First Comment"
 msgstr "First Comment"
 
-#: wp-admin/network/settings.php:253
+#: wp-admin/network/settings.php:259
 msgid "First Comment Author"
 msgstr "First Comment Author"
 
-#: wp-admin/network/settings.php:262
+#: wp-admin/network/settings.php:268
 msgid "First Comment URL"
 msgstr "First Comment URL"
 
-#: wp-admin/network/settings.php:294
+#: wp-admin/network/settings.php:300
 msgid "Max upload file size"
 msgstr "Max upload file size"
 
-#: wp-admin/network/settings.php:312
+#: wp-admin/network/settings.php:318
 msgid "Default Language"
 msgstr "Default Language"
 
@@ -915,39 +920,39 @@ msgstr "Duplicated username or email address."
 msgid "Allow new registrations"
 msgstr "Allow new registrations"
 
-#: wp-admin/network/settings.php:147
+#: wp-admin/network/settings.php:153
 msgid "Registration notification"
 msgstr "Registration notification"
 
-#: wp-admin/network/settings.php:158
+#: wp-admin/network/settings.php:164
 msgid "Add New Users"
 msgstr "Add New Users"
 
-#: wp-admin/network/settings.php:165
+#: wp-admin/network/settings.php:171
 msgid "Banned Names"
 msgstr "Banned Names"
 
-#: wp-admin/network/settings.php:175
+#: wp-admin/network/settings.php:181
 msgid "Limited Email Registrations"
 msgstr "Limited Email Registrations"
 
-#: wp-admin/network/settings.php:188
+#: wp-admin/network/settings.php:194
 msgid "Banned Email Domains"
 msgstr "Banned Email Domains"
 
-#: wp-admin/network/settings.php:203
+#: wp-admin/network/settings.php:209
 msgid "Welcome Email"
 msgstr "Welcome Email"
 
-#: wp-admin/network/settings.php:213
+#: wp-admin/network/settings.php:219
 msgid "Welcome User Email"
 msgstr "Welcome User Email"
 
-#: wp-admin/network/settings.php:218
+#: wp-admin/network/settings.php:224
 msgid "The welcome email sent to new users."
 msgstr "The welcome email sent to new users."
 
-#: wp-admin/network/settings.php:233
+#: wp-admin/network/settings.php:239
 msgid "First Page"
 msgstr "First Page"
 

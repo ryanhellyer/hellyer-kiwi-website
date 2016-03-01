@@ -568,7 +568,7 @@ class Prompt_Optins_Style {
 		cursor:pointer
 		}
 		
-		@media only screen and (max-width : 600px) {
+		@media only screen and (max-width : 800px) {
 		#postmatic-optin-topbar {
 		height: 70px !important;
 		}

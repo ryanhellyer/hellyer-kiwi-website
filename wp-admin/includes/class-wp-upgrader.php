@@ -460,12 +460,14 @@ class WP_Upgrader {
 		 * Filter the source file location for the upgrade package.
 		 *
 		 * @since 2.8.0
+		 * @since 4.4.0 The $hook_extra parameter became available.
 		 *
 		 * @param string      $source        File source location.
-		 * @param string      $remote_source Remove file source location.
+		 * @param string      $remote_source Remote file source location.
 		 * @param WP_Upgrader $this          WP_Upgrader instance.
+		 * @param array       $hook_extra    Extra arguments passed to hooked filters.
 		 */
-		$source = apply_filters( 'upgrader_source_selection', $source, $remote_source, $this );
+		$source = apply_filters( 'upgrader_source_selection', $source, $remote_source, $this, $args['hook_extra'] );
 
 		if ( is_wp_error( $source ) ) {
 			return $source;
@@ -747,6 +749,64 @@ class WP_Upgrader {
 			$this->skin->feedback('maintenance_end');
 			$wp_filesystem->delete($file);
 		}
+	}
+
+	/**
+ 	 * Create a Lock using WordPress options.
+ 	 *
+ 	 * @since 4.5.0
+ 	 * @access public
+ 	 *
+ 	 * @param string $lock_name       The name of this unique lock.
+ 	 * @param int    $release_timeout The duration in seconds to respect an existing lock. Default: 1 hour.
+ 	 * @return bool
+ 	 */
+	public function create_lock( $lock_name, $release_timeout = null ) {
+		global $wpdb;
+		if ( ! $release_timeout ) {
+			$release_timeout = HOUR_IN_SECONDS;
+		}
+		$lock_option = $lock_name . '.lock';
+
+		// Try to lock
+		$lock_result = $wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO `$wpdb->options` ( `option_name`, `option_value`, `autoload` ) VALUES (%s, %s, 'no') /* LOCK */", $lock_option, time() ) );
+
+		if ( ! $lock_result ) {
+			$lock_result = get_option( $lock_option );
+
+			// If we couldn't create a lock, and there isn't a lock, bail
+			if ( ! $lock_result ) {
+				return false;
+			}
+
+			// Check to see if the lock is still valid
+			if ( $lock_result > ( time() - $release_timeout ) ) {
+				return false;
+			}
+
+			// There must exist an expired lock, clear it and re-gain it.
+			$this->release_lock( $lock_name );
+
+			return $this->create_lock( $lock_name, $release_timeout );
+		}
+
+		// Update the lock, as by this point we've definitely got a lock, just need to fire the actions
+		update_option( $lock_option, time() );
+
+		return true;
+	}
+
+	/**
+ 	 * Release a lock created by `WP_Upgrader::create_lock()`.
+ 	 *
+ 	 * @since 4.5.0
+ 	 * @access public
+ 	 *
+ 	 * @param string $lock_name The name of this unique lock.
+ 	 * @return bool
+ 	 */
+	public function release_lock( $lock_name ) {
+		return delete_option( $lock_name . '.lock' );
 	}
 
 }
@@ -1649,17 +1709,35 @@ class Theme_Upgrader extends WP_Upgrader {
 			return $source;
 
 		// A proper archive should have a style.css file in the single subdirectory
-		if ( ! file_exists( $working_directory . 'style.css' ) )
-			return new WP_Error( 'incompatible_archive_theme_no_style', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>style.css</code> stylesheet.' ) );
+		if ( ! file_exists( $working_directory . 'style.css' ) ) {
+			return new WP_Error( 'incompatible_archive_theme_no_style', $this->strings['incompatible_archive'],
+				/* translators: %s: style.css */
+				sprintf( __( 'The theme is missing the %s stylesheet.' ),
+					'<code>style.css</code>'
+				)
+			);
+		}
 
 		$info = get_file_data( $working_directory . 'style.css', array( 'Name' => 'Theme Name', 'Template' => 'Template' ) );
 
-		if ( empty( $info['Name'] ) )
-			return new WP_Error( 'incompatible_archive_theme_no_name', $this->strings['incompatible_archive'], __( "The <code>style.css</code> stylesheet doesn't contain a valid theme header." ) );
+		if ( empty( $info['Name'] ) ) {
+			return new WP_Error( 'incompatible_archive_theme_no_name', $this->strings['incompatible_archive'],
+				/* translators: %s: style.css */
+				sprintf( __( 'The %s stylesheet doesn&#8217;t contain a valid theme header.' ),
+					'<code>style.css</code>'
+				)
+			);
+		}
 
 		// If it's not a child theme, it must have at least an index.php to be legit.
-		if ( empty( $info['Template'] ) && ! file_exists( $working_directory . 'index.php' ) )
-			return new WP_Error( 'incompatible_archive_theme_no_index', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>index.php</code> file.' ) );
+		if ( empty( $info['Template'] ) && ! file_exists( $working_directory . 'index.php' ) ) {
+			return new WP_Error( 'incompatible_archive_theme_no_index', $this->strings['incompatible_archive'],
+				/* translators: %s: index.php */
+				sprintf( __( 'The theme is missing the %s file.' ),
+					'<code>index.php</code>'
+				)
+			);
+		}
 
 		return $source;
 	}
@@ -2084,9 +2162,15 @@ class Language_Pack_Upgrader extends WP_Upgrader {
 				$mo = true;
 		}
 
-		if ( ! $mo || ! $po )
+		if ( ! $mo || ! $po ) {
 			return new WP_Error( 'incompatible_archive_pomo', $this->strings['incompatible_archive'],
-				__( 'The language pack is missing either the <code>.po</code> or <code>.mo</code> files.' ) );
+				/* translators: 1: .po 2: .mo */
+				sprintf( __( 'The language pack is missing either the %1$s or %2$s files.' ),
+					'<code>.po</code>',
+					'<code>.mo</code>'
+				)
+			);
+		}
 
 		return $source;
 	}
@@ -2142,6 +2226,7 @@ class Core_Upgrader extends WP_Upgrader {
 	 */
 	public function upgrade_strings() {
 		$this->strings['up_to_date'] = __('WordPress is at the latest version.');
+		$this->strings['locked'] = __('Another update is currently in progress.');
 		$this->strings['no_package'] = __('Update package not available.');
 		$this->strings['downloading_package'] = __('Downloading update from <span class="code">%s</span>&#8230;');
 		$this->strings['unpack_package'] = __('Unpacking the update&#8230;');
@@ -2226,25 +2311,38 @@ class Core_Upgrader extends WP_Upgrader {
 		else
 			$to_download = 'full';
 
+		// Lock to prevent multiple Core Updates occuring
+		$lock = $this->create_lock( 'core_updater', 15 * MINUTE_IN_SECONDS );
+		if ( ! $lock ) {
+			return new WP_Error( 'locked', $this->strings['locked'] );
+		}
+
 		$download = $this->download_package( $current->packages->$to_download );
-		if ( is_wp_error($download) )
+		if ( is_wp_error( $download ) ) {
+			$this->release_lock( 'core_updater' );
 			return $download;
+		}
 
 		$working_dir = $this->unpack_package( $download );
-		if ( is_wp_error($working_dir) )
+		if ( is_wp_error( $working_dir ) ) {
+			$this->release_lock( 'core_updater' );
 			return $working_dir;
+		}
 
 		// Copy update-core.php from the new version into place.
 		if ( !$wp_filesystem->copy($working_dir . '/wordpress/wp-admin/includes/update-core.php', $wp_dir . 'wp-admin/includes/update-core.php', true) ) {
 			$wp_filesystem->delete($working_dir, true);
+			$this->release_lock( 'core_updater' );
 			return new WP_Error( 'copy_failed_for_update_core_file', __( 'The update cannot be installed because we will be unable to copy some files. This is usually due to inconsistent file permissions.' ), 'wp-admin/includes/update-core.php' );
 		}
 		$wp_filesystem->chmod($wp_dir . 'wp-admin/includes/update-core.php', FS_CHMOD_FILE);
 
 		require_once( ABSPATH . 'wp-admin/includes/update-core.php' );
 
-		if ( ! function_exists( 'update_core' ) )
+		if ( ! function_exists( 'update_core' ) ) {
+			$this->release_lock( 'core_updater' );
 			return new WP_Error( 'copy_failed_space', $this->strings['copy_failed_space'] );
+		}
 
 		$result = update_core( $working_dir, $wp_dir );
 
@@ -2318,6 +2416,8 @@ class Core_Upgrader extends WP_Upgrader {
 
 			wp_version_check( $stats );
 		}
+
+		$this->release_lock( 'core_updater' );
 
 		return $result;
 	}
@@ -2912,8 +3012,13 @@ class WP_Automatic_Updater {
 			$upgrade_result = new WP_Error( 'fs_unavailable', __( 'Could not access filesystem.' ) );
 		}
 
-		// Core doesn't output this, so let's append it so we don't get confused.
 		if ( 'core' == $type ) {
+			if ( is_wp_error( $upgrade_result ) && ( 'up_to_date' == $upgrade_result->get_error_code() || 'locked' == $upgrade_result->get_error_code() ) ) {
+				// These aren't actual errors, treat it as a skipped-update instead to avoid triggering the post-core update failure routines.
+				return false;
+			}
+
+			// Core doesn't output this, so let's append it so we don't get confused.
 			if ( is_wp_error( $upgrade_result ) ) {
 				$skin->error( __( 'Installation Failed' ), $upgrade_result );
 			} else {
@@ -2949,25 +3054,8 @@ class WP_Automatic_Updater {
 		if ( ! is_main_network() || ! is_main_site() )
 			return;
 
-		$lock_name = 'auto_updater.lock';
-
-		// Try to lock
-		$lock_result = $wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO `$wpdb->options` ( `option_name`, `option_value`, `autoload` ) VALUES (%s, %s, 'no') /* LOCK */", $lock_name, time() ) );
-
-		if ( ! $lock_result ) {
-			$lock_result = get_option( $lock_name );
-
-			// If we couldn't create a lock, and there isn't a lock, bail
-			if ( ! $lock_result )
-				return;
-
-			// Check to see if the lock is still valid
-			if ( $lock_result > ( time() - HOUR_IN_SECONDS ) )
-				return;
-		}
-
-		// Update the lock, as by this point we've definitely got a lock, just need to fire the actions
-		update_option( $lock_name, time() );
+		if ( ! $this->create_lock( 'auto_updater' ) )
+			return;
 
 		// Don't automatically run these thins, as we'll handle it ourselves
 		remove_action( 'upgrader_process_complete', array( 'Language_Pack_Upgrader', 'async_upgrade' ), 20 );
@@ -3066,8 +3154,7 @@ class WP_Automatic_Updater {
 			do_action( 'automatic_updates_complete', $this->update_results );
 		}
 
-		// Clear the lock
-		delete_option( $lock_name );
+		$this->release_lock( 'auto_updater' );
 	}
 
 	/**
@@ -3137,7 +3224,7 @@ class WP_Automatic_Updater {
 		 * the issue could actually be on WordPress.org's side.) If that one fails, then email.
 		 */
 		$send = true;
-  		$transient_failures = array( 'incompatible_archive', 'download_failed', 'insane_distro' );
+  		$transient_failures = array( 'incompatible_archive', 'download_failed', 'insane_distro', 'locked' );
   		if ( in_array( $error_code, $transient_failures ) && ! get_site_option( 'auto_core_update_failed' ) ) {
   			wp_schedule_single_event( time() + HOUR_IN_SECONDS, 'wp_maybe_auto_update' );
   			$send = false;
@@ -3391,24 +3478,6 @@ class WP_Automatic_Updater {
 
 		// Plugins, Themes, Translations
 		foreach ( array( 'plugin', 'theme', 'translation' ) as $type ) {
-
-			/**
-			 * Filter to control whether a notification email is sent to the site admin email address for
-			 * plugin, theme, and translation updates.
-			 *
-			 * By default, this only has an effect when automatic background updates are enabled and a
-			 * development version of WordPress is in use.
-			 *
-			 * @since 4.4.0
-			 *
-			 * @param bool                 $notify Whether the site administrator is notified.
-			 * @param string               $type   The type of update. One of 'plugin', 'theme', or 'translation'.
-			 * @param WP_Automatic_Updater $this   The WP_Automatic_Updater instance.
-			 */
-			if ( ! apply_filters( 'send_update_notification_email', true, $type, $this ) ) {
-				continue;
-			}
-
 			if ( ! isset( $this->update_results[ $type ] ) )
 				continue;
 			$success_items = wp_list_filter( $this->update_results[ $type ], array( 'result' => true ) );
@@ -3441,10 +3510,6 @@ class WP_Automatic_Updater {
 				}
 			}
 			$body[] = '';
-		}
-
-		if ( empty( $body ) ) {
-			return;
 		}
 
 		$site_title = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );

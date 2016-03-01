@@ -312,7 +312,7 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_styles() {
-		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20151101' );
+		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20151204' );
 	}
 
 	/**
@@ -394,7 +394,7 @@ final class MN_Reorder {
 		<?php
 		//Output non hierarchical posts
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 0;
-		if ( $page == 0 || $page = 1 ) {
+		if ( $page == 0 || $page == 1 ) {
 			$offset = 0;	
 		} elseif ( $page > 1 ) {
 			$offset = $this->offset * ( $page - 1 );

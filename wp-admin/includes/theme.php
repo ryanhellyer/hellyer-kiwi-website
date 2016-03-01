@@ -163,18 +163,20 @@ function get_theme_update_available( $theme ) {
 		$theme_name = $theme->display('Name');
 		$details_url = add_query_arg(array('TB_iframe' => 'true', 'width' => 1024, 'height' => 800), $update['url']); //Theme browser inside WP? replace this, Also, theme preview JS will override this on the available list.
 		$update_url = wp_nonce_url( admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $stylesheet ) ), 'upgrade-theme_' . $stylesheet );
-		$update_onclick = 'onclick="if ( confirm(\'' . esc_js( __("Updating this theme will lose any customizations you have made. 'Cancel' to stop, 'OK' to update.") ) . '\') ) {return true;}return false;"';
 
 		if ( !is_multisite() ) {
 			if ( ! current_user_can('update_themes') ) {
-				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>.' ) . '</strong></p>',
-					$theme_name, esc_url( $details_url ), esc_attr( $theme['Name'] ), $update['new_version'] );
+				/* translators: 1: theme name, 2: theme details URL, 3: theme version number */
+				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox">View version %3$s details</a>.' ) . '</strong></p>',
+					$theme_name, esc_url( $details_url ), $update['new_version'] );
 			} elseif ( empty( $update['package'] ) ) {
-				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>. <em>Automatic update is unavailable for this theme.</em>' ) . '</strong></p>',
-					$theme_name, esc_url( $details_url ), esc_attr( $theme['Name'] ), $update['new_version'] );
+				/* translators: 1: theme name, 2: theme details URL, 3: theme version number */
+				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox">View version %3$s details</a>. <em>Automatic update is unavailable for this theme.</em>' ) . '</strong></p>',
+					$theme_name, esc_url( $details_url ), $update['new_version'] );
 			} else {
-				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a> or <a href="%5$s">update now</a>.' ) . '</strong></p>',
-					$theme_name, esc_url( $details_url ), esc_attr( $theme['Name'] ), $update['new_version'], $update_url, $update_onclick );
+				/* translators: 1: theme name, 2: theme details URL, 3: theme version number, 4: theme update URL */
+				$html = sprintf( '<p><strong>' . __( 'There is a new version of %1$s available. <a href="%2$s" class="thickbox">View version %3$s details</a> or <a href="%4$s">update now</a>.' ) . '</strong></p>',
+					$theme_name, esc_url( $details_url ), $update['new_version'], $update_url );
 			}
 		}
 	}
@@ -187,7 +189,7 @@ function get_theme_update_available( $theme ) {
  *
  * @since 3.1.0
  *
- * @param bool $api Optional. Whether try to fetch tags from the WP.org API. Defaults to true.
+ * @param bool $api Optional. Whether try to fetch tags from the WordPress.org API. Defaults to true.
  * @return array Array of features keyed by category with translations keyed by slug.
  */
 function get_theme_feature_list( $api = true ) {
@@ -525,6 +527,16 @@ function wp_prepare_themes_for_js( $themes = null ) {
 			$parents[ $slug ] = $theme->parent()->get_stylesheet();
 		}
 
+		$customize_action = null;
+		if ( current_user_can( 'edit_theme_options' ) && current_user_can( 'customize' ) ) {
+			$customize_action = esc_url( add_query_arg(
+				array(
+					'return' => urlencode( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
+				),
+				wp_customize_url( $slug )
+			) );
+		}
+
 		$prepared_themes[ $slug ] = array(
 			'id'           => $slug,
 			'name'         => $theme->display( 'Name' ),
@@ -540,7 +552,7 @@ function wp_prepare_themes_for_js( $themes = null ) {
 			'update'       => get_theme_update_available( $theme ),
 			'actions'      => array(
 				'activate' => current_user_can( 'switch_themes' ) ? wp_nonce_url( admin_url( 'themes.php?action=activate&amp;stylesheet=' . $encoded_slug ), 'switch-theme_' . $slug ) : null,
-				'customize' => ( current_user_can( 'edit_theme_options' ) && current_user_can( 'customize' ) ) ? wp_customize_url( $slug ) : null,
+				'customize' => $customize_action,
 				'delete'   => current_user_can( 'delete_themes' ) ? wp_nonce_url( admin_url( 'themes.php?action=delete&amp;stylesheet=' . $encoded_slug ), 'delete-theme_' . $slug ) : null,
 			),
 		);

@@ -1012,6 +1012,8 @@ function register_post_type( $post_type, $args = array() ) {
 	 */
 	$args = apply_filters( 'register_post_type_args', $args, $post_type );
 
+	$has_edit_link = ! empty( $args['_edit_link'] );
+
 	// Args prefixed with an underscore are reserved for internal use.
 	$defaults = array(
 		'labels'               => array(),
@@ -1081,6 +1083,11 @@ function register_post_type( $post_type, $args = array() ) {
 	// If not set, default to false.
 	if ( null === $args->map_meta_cap )
 		$args->map_meta_cap = false;
+
+	// If there's no specified edit link and no UI, remove the edit link.
+	if ( ! $args->show_ui && ! $has_edit_link ) {
+		$args->_edit_link = '';
+	}
 
 	$args->cap = get_post_type_capabilities( $args );
 	unset( $args->capabilities );
@@ -1411,6 +1418,7 @@ function get_post_type_labels( $post_type_object ) {
  *
  * @param object $object                  A custom-something object.
  * @param array  $nohier_vs_hier_defaults Hierarchical vs non-hierarchical default labels.
+ * @return object Object containing labels for the given custom-something object.
  */
 function _get_custom_object_labels( $object, $nohier_vs_hier_defaults ) {
 	$object->labels = (array) $object->labels;
@@ -3234,7 +3242,8 @@ function wp_insert_post( $postarr, $wp_error = false ) {
 		foreach ( $postarr['tax_input'] as $taxonomy => $tags ) {
 			$taxonomy_obj = get_taxonomy($taxonomy);
 			if ( ! $taxonomy_obj ) {
-				_doing_it_wrong( __FUNCTION__, sprintf( __( 'Invalid taxonomy: %s' ), $taxonomy ), '4.4.0' );
+				/* translators: %s: taxonomy name */
+				_doing_it_wrong( __FUNCTION__, sprintf( __( 'Invalid taxonomy: %s.' ), $taxonomy ), '4.4.0' );
 				continue;
 			}
 
@@ -4287,7 +4296,15 @@ function get_page_uri( $page ) {
 		}
 	}
 
-	return $uri;
+	/**
+	 * Filter the URI for a page.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param string  $uri  Page URI.
+	 * @param WP_Post $page Page object.
+	 */
+	return apply_filters( 'get_page_uri', $uri, $page );
 }
 
 /**

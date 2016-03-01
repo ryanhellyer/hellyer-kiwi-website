@@ -129,30 +129,6 @@ class WP_Posts_List_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Get the value of the 'orderby' query var.
-	 *
-	 * @access protected
-	 * @since 4.4.0
-	 *
-	 * @return string The value of 'orderby'.
-	 */
-	protected function get_orderby() {
-		return strtolower( get_query_var( 'orderby' ) );
-	}
-
-	/**
-	 * Get the value of the 'order' query var.
-	 *
-	 * @access protected
-	 * @since 4.4.0
-	 *
-	 * @return string The value of 'order'.
-	 */
-	protected function get_order() {
-		return strtolower( get_query_var( 'order' ) );
-	}
-
-	/**
 	 *
 	 * @global array    $avail_post_stati
 	 * @global WP_Query $wp_query
@@ -175,6 +151,8 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 		if ( $this->hierarchical_display ) {
 			$total_items = $wp_query->post_count;
+		} elseif ( $wp_query->found_posts || $this->get_pagenum() === 1 ) {
+			$total_items = $wp_query->found_posts;
 		} else {
 			$post_counts = (array) wp_count_posts( $post_type, 'readable' );
 
@@ -194,8 +172,6 @@ class WP_Posts_List_Table extends WP_List_Table {
 			}
 		}
 
-		$total_pages = ceil( $total_items / $per_page );
-
 		if ( ! empty( $_REQUEST['mode'] ) ) {
 			$mode = $_REQUEST['mode'] === 'excerpt' ? 'excerpt' : 'list';
 			set_user_setting ( 'posts_list_mode', $mode );
@@ -207,7 +183,6 @@ class WP_Posts_List_Table extends WP_List_Table {
 
 		$this->set_pagination_args( array(
 			'total_items' => $total_items,
-			'total_pages' => $total_pages,
 			'per_page' => $per_page
 		) );
 	}
@@ -490,7 +465,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 		 * list table.
 		 *
 		 * @since 4.4.0
-		 * 
+		 *
 		 * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
 		 */
 		do_action( 'manage_posts_extra_tablenav', $which );
@@ -505,16 +480,6 @@ class WP_Posts_List_Table extends WP_List_Table {
 			return 'delete_all';
 
 		return parent::current_action();
-	}
-
-	/**
-	 * @global string $mode
-	 * @param string $which
-	 */
-	protected function pagination( $which ) {
-		global $mode;
-
-		parent::pagination( $which );
 	}
 
 	/**
@@ -647,13 +612,10 @@ class WP_Posts_List_Table extends WP_List_Table {
 	}
 
 	/**
-	 * @global string $mode
 	 * @param array $posts
 	 * @param int $level
 	 */
 	private function _display_rows( $posts, $level = 0 ) {
-		global $mode;
-
 		// Create array of post IDs.
 		$post_ids = array();
 
@@ -915,8 +877,14 @@ class WP_Posts_List_Table extends WP_List_Table {
 		$title = _draft_or_post_title();
 
 		if ( $can_edit_post && $post->post_status != 'trash' ) {
-			$edit_link = get_edit_post_link( $post->ID );
-			echo '<a class="row-title" href="' . $edit_link . '" title="' . esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $title ) ) . '">' . $pad . $title . '</a>';
+			printf(
+				'<a class="row-title" href="%s" aria-label="%s">%s%s</a>',
+				get_edit_post_link( $post->ID ),
+				/* translators: %s: post title */
+				esc_attr( sprintf( __( '&#8220;%s&#8221; (Edit)' ), $title ) ),
+				$pad,
+				$title
+			);
 		} else {
 			echo $pad . $title;
 		}
@@ -1207,31 +1175,74 @@ class WP_Posts_List_Table extends WP_List_Table {
 		$post_type_object = get_post_type_object( $post->post_type );
 		$can_edit_post = current_user_can( 'edit_post', $post->ID );
 		$actions = array();
+		$title = _draft_or_post_title();
 
 		if ( $can_edit_post && 'trash' != $post->post_status ) {
-			$actions['edit'] = '<a href="' . get_edit_post_link( $post->ID ) . '" title="' . esc_attr__( 'Edit this item' ) . '">' . __( 'Edit' ) . '</a>';
-			$actions['inline hide-if-no-js'] = '<a href="#" class="editinline" title="' . esc_attr__( 'Edit this item inline' ) . '">' . __( 'Quick&nbsp;Edit' ) . '</a>';
+			$actions['edit'] = sprintf(
+				'<a href="%s" aria-label="%s">%s</a>',
+				get_edit_post_link( $post->ID ),
+				/* translators: %s: post title */
+				esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $title ) ),
+				__( 'Edit' )
+			);
+			$actions['inline hide-if-no-js'] = sprintf(
+				'<a href="#" class="editinline" aria-label="%s">%s</a>',
+				/* translators: %s: post title */
+				esc_attr( sprintf( __( 'Quick edit &#8220;%s&#8221; inline' ), $title ) ),
+				__( 'Quick&nbsp;Edit' )
+			);
 		}
 
 		if ( current_user_can( 'delete_post', $post->ID ) ) {
-			if ( 'trash' === $post->post_status )
-				$actions['untrash'] = "<a title='" . esc_attr__( 'Restore this item from the Trash' ) . "' href='" . wp_nonce_url( admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=untrash', $post->ID ) ), 'untrash-post_' . $post->ID ) . "'>" . __( 'Restore' ) . "</a>";
-			elseif ( EMPTY_TRASH_DAYS )
-				$actions['trash'] = "<a class='submitdelete' title='" . esc_attr__( 'Move this item to the Trash' ) . "' href='" . get_delete_post_link( $post->ID ) . "'>" . __( 'Trash' ) . "</a>";
-			if ( 'trash' === $post->post_status || !EMPTY_TRASH_DAYS )
-				$actions['delete'] = "<a class='submitdelete' title='" . esc_attr__( 'Delete this item permanently' ) . "' href='" . get_delete_post_link( $post->ID, '', true ) . "'>" . __( 'Delete Permanently' ) . "</a>";
+			if ( 'trash' === $post->post_status ) {
+				$actions['untrash'] = sprintf(
+					'<a href="%s" aria-label="%s">%s</a>',
+					wp_nonce_url( admin_url( sprintf( $post_type_object->_edit_link . '&amp;action=untrash', $post->ID ) ), 'untrash-post_' . $post->ID ),
+					/* translators: %s: post title */
+					esc_attr( sprintf( __( 'Restore &#8220;%s&#8221; from the Trash' ), $title ) ),
+					__( 'Restore' )
+				);
+			} elseif ( EMPTY_TRASH_DAYS ) {
+				$actions['trash'] = sprintf(
+					'<a href="%s" class="submitdelete" aria-label="%s">%s</a>',
+					get_delete_post_link( $post->ID ),
+					/* translators: %s: post title */
+					esc_attr( sprintf( __( 'Move &#8220;%s&#8221; to the Trash' ), $title ) ),
+					_x( 'Trash', 'verb' )
+				);
+			}
+			if ( 'trash' === $post->post_status || ! EMPTY_TRASH_DAYS ) {
+				$actions['delete'] = sprintf(
+					'<a href="%s" class="submitdelete" aria-label="%s">%s</a>',
+					get_delete_post_link( $post->ID, '', true ),
+					/* translators: %s: post title */
+					esc_attr( sprintf( __( 'Delete &#8220;%s&#8221; permanently' ), $title ) ),
+					__( 'Delete Permanently' )
+				);
+			}
 		}
 
 		if ( is_post_type_viewable( $post_type_object ) ) {
-			$title = _draft_or_post_title();
 			if ( in_array( $post->post_status, array( 'pending', 'draft', 'future' ) ) ) {
 				if ( $can_edit_post ) {
 					$unpublished_link = set_url_scheme( get_permalink( $post ) );
 					$preview_link = get_preview_post_link( $post, array(), $unpublished_link );
-					$actions['view'] = '<a href="' . esc_url( $preview_link ) . '" title="' . esc_attr( sprintf( __( 'Preview &#8220;%s&#8221;' ), $title ) ) . '" rel="permalink">' . __( 'Preview' ) . '</a>';
+					$actions['view'] = sprintf(
+						'<a href="%s" rel="permalink" aria-label="%s">%s</a>',
+						esc_url( $preview_link ),
+						/* translators: %s: post title */
+						esc_attr( sprintf( __( 'Preview &#8220;%s&#8221;' ), $title ) ),
+						__( 'Preview' )
+					);
 				}
 			} elseif ( 'trash' != $post->post_status ) {
-				$actions['view'] = '<a href="' . get_permalink( $post->ID ) . '" title="' . esc_attr( sprintf( __( 'View &#8220;%s&#8221;' ), $title ) ) . '" rel="permalink">' . __( 'View' ) . '</a>';
+				$actions['view'] = sprintf(
+					'<a href="%s" rel="permalink" aria-label="%s">%s</a>',
+					get_permalink( $post->ID ),
+					/* translators: %s: post title */
+					esc_attr( sprintf( __( 'View &#8220;%s&#8221;' ), $title ) ),
+					__( 'View' )
+				);
 			}
 		}
 
@@ -1373,7 +1384,8 @@ class WP_Posts_List_Table extends WP_List_Table {
 					'name' => 'post_author',
 					'class'=> 'authors',
 					'multi' => 1,
-					'echo' => 0
+					'echo' => 0,
+					'show' => 'display_name_with_login',
 				);
 				if ( $bulk )
 					$users_opt['show_option_none'] = __( '&mdash; No Change &mdash;' );

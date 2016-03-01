@@ -4,10 +4,10 @@ Theme URI: https://wordpress.org/themes/twentysixteen/
 Author: the WordPress team
 Author URI: https://wordpress.org/
 Description: Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere.
-Version: 0.1.20150828
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Tags: black, blue, gray, red, white, yellow, dark, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
 Text Domain: twentysixteen
 
 This theme, like WordPress, is licensed under the GPL.
@@ -459,7 +459,7 @@ hr {
 	background-color: #d1d1d1;
 	border: 0;
 	height: 1px;
-	margin-bottom: 1.75em;
+	margin: 0 0 1.75em;
 }
 
 ul,
@@ -1174,10 +1174,10 @@ a:active {
 .pagination .prev:before,
 .pagination .next:before {
 	font-size: 32px;
-	height: 52px;
+	height: 53px;
 	line-height: 52px;
 	position: relative;
-	width: 52px;
+	width: 53px;
 }
 
 .pagination .prev:hover,
@@ -1487,7 +1487,6 @@ blockquote:after,
 	border-radius: 2px;
 	display: inline-block;
 	font-family: Montserrat, "Helvetica Neue", sans-serif;
-	font-size: inherit !important;
 	line-height: 1;
 	margin: 0 0.1875em 0.4375em 0;
 	padding: 0.5625em 0.4375em 0.5em;
@@ -1517,6 +1516,11 @@ blockquote:after,
 
 .site-content {
 	word-wrap: break-word;
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+	outline: 0;
 }
 
 .site-main {
@@ -1684,6 +1688,11 @@ blockquote:after,
 a.post-thumbnail:hover,
 a.post-thumbnail:focus {
 	opacity: 0.85;
+}
+
+.entry-content,
+.entry-summary {
+	border-color: #d1d1d1;
 }
 
 .entry-content h1,
@@ -1888,10 +1897,10 @@ body:not(.search-results) .entry-summary > :last-child,
 }
 
 .author-info {
-	border-top: 1px solid #d1d1d1;
-	border-bottom: 1px solid #d1d1d1;
+	border-color: inherit;
+	border-style: solid;
+	border-width: 1px 0 1px 0;
 	clear: both;
-	margin-top: 1.75em;
 	padding-top: 1.75em;
 	padding-bottom: 1.75em;
 }
@@ -1951,7 +1960,7 @@ body:not(.search-results) .entry-summary > :last-child,
 	color: #007acc;
 }
 
-.entry-footer > span:not(:first-child):before {
+.entry-footer > span:not(:last-child):after {
 	content: "\002f";
 	display: inline-block;
 	opacity: 0.7;
@@ -2569,12 +2578,12 @@ p > video {
 	width: auto;
 }
 
-.widecolumn .mu_alert {
-	margin-bottom: 1.75em;
-}
-
-.widecolumn  .mu_register .mu_alert {
-	padding: 0.875em;
+.widecolumn .mu_register .mu_alert {
+	background: transparent;
+	border-color: #d1d1d1;
+	color: inherit;
+	margin-bottom: 3.5em;
+	padding: 1.75em;
 }
 
 .widecolumn form,
@@ -2928,12 +2937,12 @@ p > video {
 		margin: 0 -0.875em;
 	}
 
-	.main-navigation .primary-menu {
+	.main-navigation .primary-menu,
+	.main-navigation .primary-menu > li {
 		border: 0;
 	}
 
-	.main-navigation li {
-		border: 0;
+	.main-navigation .primary-menu > li {
 		float: left;
 	}
 
@@ -3447,12 +3456,8 @@ p > video {
 	}
 
 	.author-info {
-		border-bottom: 0;
+		border-bottom-width: 0;
 		padding-bottom: 0;
-	}
-
-	.entry-footer {
-		margin-top: 4.3076923077em;
 	}
 
 	.comment-list + .comment-respond,
@@ -3509,7 +3514,7 @@ p > video {
 		width: 21.42857143%;
 	}
 
-	body:not(.search-results) article:not(.type-page) .entry-footer > span:not(:first-child):before {
+	body:not(.search-results) article:not(.type-page) .entry-footer > span:not(:last-child):after {
 		display: none;
 	}
 

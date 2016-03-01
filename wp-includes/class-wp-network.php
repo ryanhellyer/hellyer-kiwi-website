@@ -23,9 +23,11 @@ class WP_Network {
 	/**
 	 * Network ID.
 	 *
+	 * A numeric string, for compatibility reasons.
+	 *
 	 * @since 4.4.0
 	 * @access public
-	 * @var int
+	 * @var string
 	 */
 	public $id;
 
@@ -53,9 +55,11 @@ class WP_Network {
 	 * Named "blog" vs. "site" for legacy reasons. A main site is mapped to
 	 * the network when the network is created.
 	 *
+	 * A numeric string, for compatibility reasons.
+	 *
 	 * @since 4.4.0
 	 * @access public
-	 * @var int
+	 * @var string
 	 */
 	public $blog_id = 0;
 
@@ -64,7 +68,7 @@ class WP_Network {
 	 *
 	 * @since 4.4.0
 	 * @access public
-	 * @var int
+	 * @var string
 	 */
 	public $cookie_domain = '';
 
@@ -169,7 +173,14 @@ class WP_Network {
 	}
 
 	/**
-	 * Retrieve a network by its domain and path.
+	 * Retrieve the closest matching network for a domain and path.
+	 *
+	 * This will not necessarily return an exact match for a domain and path. Instead, it
+	 * breaks the domain and path into pieces that are then used to match the closest
+	 * possibility from a query.
+	 *
+	 * The intent of this method is to match a network during bootstrap for a
+	 * requested site address.
 	 *
 	 * @since 4.4.0
 	 * @access public
