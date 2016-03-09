@@ -19,7 +19,7 @@
 			<?php do_action( 'sorbet_credits' ); ?>
 			<a href="http://wordpress.org/" rel="generator"><?php printf( __( 'Proudly powered by %s', 'sorbet' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'sorbet' ), 'Sorbet', '<a href="https://wordpress.com/themes/" rel="designer">WordPress.com</a>' ); ?>
+			<?php printf( __( 'Theme: %1$s by %2$s.', 'sorbet' ), 'Sorbet', '<a href="http://wordpress.com/themes/sorbet/" rel="designer">WordPress.com</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
