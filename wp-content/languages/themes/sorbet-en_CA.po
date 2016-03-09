@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Sorbet package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-11-22 17:01:11+0000\n"
+"PO-Revision-Date: 2016-03-08 22:42:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/1.0-alpha-1100\n"
+"X-Generator: GlotPress/1.1.0-alpha\n"
 "Project-Id-Version: Sorbet\n"
 
 #. Theme Name of the plugin/theme
@@ -37,21 +37,21 @@ msgctxt "label"
 msgid "Search for:"
 msgstr "Search for:"
 
-#: search.php:16
-msgid "Search Results for: %s"
-msgstr "Search Results for: %s"
-
 #: inc/template-tags.php:143
 msgid "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 msgstr "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 
-#: inc/template-tags.php:138 inc/template-tags.php:149
-msgid "View all posts by %s"
-msgstr "View all posts by %s"
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "Search Results for: %s"
 
 #: inc/template-tags.php:134
 msgid "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">Featured</a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%3$s\" title=\"%4$s\" rel=\"author\">%5$s</a></span></span>"
 msgstr "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">Featured</a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%3$s\" title=\"%4$s\" rel=\"author\">%5$s</a></span></span>"
+
+#: inc/template-tags.php:138 inc/template-tags.php:149
+msgid "View all posts by %s"
+msgstr "View all posts by %s"
 
 #: inc/template-tags.php:116
 msgctxt "1: date, 2: time"
@@ -66,10 +66,6 @@ msgstr "Your comment is awaiting moderation."
 msgid "%s <span class=\"says\">says:</span>"
 msgstr "%s <span class=\"says\">says:</span>"
 
-#: inc/template-tags.php:82
-msgid "Pingback:"
-msgstr "Pingback:"
-
 #: inc/template-tags.php:59
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
@@ -80,14 +76,18 @@ msgctxt "Next post link"
 msgid "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
 msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
 
-#: inc/template-tags.php:56
-msgid "Post navigation"
-msgstr "Post navigation"
+#: inc/template-tags.php:82
+msgid "Pingback:"
+msgstr "Pingback:"
 
 #: inc/template-tags.php:31
 msgctxt "Newer posts"
 msgid "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
 msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
+
+#: inc/template-tags.php:56
+msgid "Post navigation"
+msgstr "Post navigation"
 
 #: inc/template-tags.php:27
 msgctxt "Older posts"
@@ -118,25 +118,17 @@ msgstr "Social Links"
 msgid "Widgets"
 msgstr "Widgets"
 
-#: header.php:37
-msgid "Menu"
-msgstr "Menu"
-
 #. translators: If there are characters in your language that are not supported
 #. by PT Serif, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:176
+#: functions.php:173
 msgctxt "PT Serif font: on or off"
 msgid "on"
 msgstr "on"
 
-#. translators: If there are characters in your language that are not supported
-#. by Source Sans Pro, translate this to 'off'. Do not translate into your
-#. own language.
-#: functions.php:167
-msgctxt "Source Sans Pro font: on or off"
-msgid "on"
-msgstr "on"
+#: header.php:37
+msgid "Menu"
+msgstr "Menu"
 
 #: functions.php:85
 msgid "Header Column 1"
@@ -149,6 +141,14 @@ msgstr "Header Column 2"
 #: functions.php:101
 msgid "Header Column 3"
 msgstr "Header Column 3"
+
+#. translators: If there are characters in your language that are not supported
+#. by Source Sans Pro, translate this to 'off'. Do not translate into your
+#. own language.
+#: functions.php:164
+msgctxt "Source Sans Pro font: on or off"
+msgid "on"
+msgstr "on"
 
 #: functions.php:77
 msgid "Sidebar"
@@ -170,10 +170,6 @@ msgstr "Primary Menu"
 msgid "Theme: %1$s by %2$s."
 msgstr "Theme: %1$s by %2$s."
 
-#: footer.php:20
-msgid "Proudly powered by %s"
-msgstr "Proudly powered by %s"
-
 #: eventbrite/eventbrite-index.php:37 eventbrite/eventbrite-single.php:24
 msgid "All events"
 msgstr "All events"
@@ -181,6 +177,10 @@ msgstr "All events"
 #: eventbrite/eventbrite-index.php:37 eventbrite/eventbrite-single.php:24
 msgid "Eventbrite events"
 msgstr "Eventbrite events"
+
+#: footer.php:20
+msgid "Proudly powered by %s"
+msgstr "Proudly powered by %s"
 
 #: content.php:49
 msgid "% Comments"
@@ -330,14 +330,14 @@ msgstr "It looks like nothing was found at this location. Maybe try one of the l
 msgid "Oops! That page can&rsquo;t be found."
 msgstr "Oops! That page can&rsquo;t be found."
 
-#. Author URI of the plugin/theme
-msgid "https://wordpress.com/themes/"
-msgstr "https://wordpress.com/themes/"
-
 #. Author of the plugin/theme
-msgid "WordPress.com"
-msgstr "WordPress.com"
+msgid "Automattic"
+msgstr "Automattic"
 
 #. Theme URI of the plugin/theme
 msgid "https://wordpress.com/themes/sorbet/"
 msgstr "https://wordpress.com/themes/sorbet/"
+
+#. Author URI of the plugin/theme
+msgid "https://wordpress.com/themes/"
+msgstr "https://wordpress.com/themes/"
