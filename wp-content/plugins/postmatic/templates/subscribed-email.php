@@ -15,15 +15,13 @@
 	<p><?php echo $object->subscription_description(); ?></p>
 
 
-	<h3>
-		<?php
-		if ( $object instanceof Prompt_Site or $object instanceof Prompt_User ) :
-			printf( $subscribed_introduction );
-		elseif ( $comments ) :
-			_e( 'Here is what others have to say. Reply to add your thoughts.', 'Postmatic' );
-		endif;
-		?>
-	</h3>
+	<?php
+	if ( $object instanceof Prompt_Site or $object instanceof Prompt_User ) :
+		printf( $subscribed_introduction );
+	elseif ( $comments ) :
+		printf( '<h3>%s</h3>', __( 'Here is what others have to say. Reply to add your thoughts.', 'Postmatic' ) );
+	endif;
+	?>
 
 	<?php if ( $comments ) : ?>
 

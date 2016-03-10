@@ -40,11 +40,10 @@ No browsers. Easy.
 = Key Features =
 
 * Start building your subscriber list by reaching out to past commenters or using 35 different Optins including popups, top bars, sliders, and after-the-post.		
-* Posts are converted into fully responsive html emails on the fly. We support images, video, shortcodes, and oEmbed.
-* We handle email delivery through partnerships with Mailchimp and Rackspace. Lists with thousands of subscribers are no trouble atll.
+* Posts are converted into fully responsive html emails on the fly.
+* Users can reply to new post notifications to leave a comment.
 * Replies are posted as comments in as little as 6 seconds.
-* Intelligent comment templates provide conversational context and threaded commenting.
-* Comment moderation via email (approve, trash, spam) with a single reply.
+* Users commenting from your posts can subscribe to new comment notifications and reply to each to send back a response.
 * Single-click migration tools for Jetpack, MailPoet, and Mailchimp lists.
 * An incredible invitation system that turns past commenters into subscribers.
 * Postmatic strictly adheres to WordPress best practices. It uses the native commenting and user systems. We’re just a magical email gateway.
@@ -83,6 +82,17 @@ Find a few hundred more answers at our [big FAQ](http://gopostmatic.com/faq/).
 15. The optin configuration screeen.
 
 == Changelog ==
+
+= 1.4.13 =
+
+A quick update to patch a few bugs while we continue to focus on Postmatic 2. Keep an eye on [our blog](http://gopostmatic.com/blog) for news.
+
+- Fixed the white background on edit post screen in wp-admin
+- Improvements to formatting and auto_p on the thankyou message which gets sent when a user subscribes
+- Added support for WPML to our widget and optins
+- Added x-Postmatic-Site-Url header to outbound emails
+- Misc widget fixes
+- Misc translation string fixes
 
 = 1.4.12.1 =
 

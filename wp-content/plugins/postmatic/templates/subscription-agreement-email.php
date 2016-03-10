@@ -46,6 +46,7 @@ $recipient = esc_html(
 
 	<p>
 		<?php
+		/* translators: here 'agree' should exactly match the translation of single word elsewhere */
 		_e(
 			'<span class="alert">To confirm your subscription, please reply to this email with the word <strong>agree</strong></span>.',
 			'Postmatic'

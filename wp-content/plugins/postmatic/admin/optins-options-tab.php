@@ -354,12 +354,6 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 			)
 		);
 
-		if ( isset( $values[ 'optins_inpost_ids' ] ) ) {
-			if ( is_array( $values[ 'optins_inpost_ids' ] ) ) {
-				$values[ 'optins_inpost_ids' ] = implode( ',', $values[ 'optins_inpost_ids' ] );
-			}
-		}
-
 		$rows[] = html(
 			'div class="optin-enable" id="optin-select-inline"',
 			html(
@@ -417,19 +411,6 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 						),
 						$values
 					)
-				),
-				html(
-					'div id="inpost-ids"',
-					$this->input(
-						array(
-							'type' => 'text',
-							'name' => 'optins_inpost_ids',
-							'value' => 'all'
-						),
-						$values
-	
-					),
-					__( 'IDs (comma separated) of posts to show in. Or use "all" to use on all posts.', 'Postmatic')
 				),
 				html (
 					'div id="inpost-theme" class="theme-chooser"',
@@ -513,29 +494,6 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 
 		if ( isset( $new_data[ 'optins_bottom_time' ]  ) ) {
 			$valid_data[ 'optins_bottom_time'  ] = intval( $new_data['optins_bottom_time'] );
-		}
-
-		if ( isset( $new_data[ 'optins_inpost_ids' ]  ) ) {
-			if ( 'all' == $new_data[ 'optins_inpost_ids' ] ) {
-				$valid_data[ 'optins_inpost_ids' ] = $new_data[ 'optins_inpost_ids' ];
-			} else {
-				$_maybe = $new_data[ 'optins_inpost_ids' ];
-				$_maybe = preg_replace( '/[^,;0-9]|[,;]$/s', '', $_maybe );
-				if ( $_maybe ) {
-					$haz_comma = strpos( $_maybe, ',' );
-					if ( $haz_comma )
-					if ( 0 < intval( $_maybe ) ) {
-						if ( preg_match( '/^\d+(?:,\d+)*$/', $_maybe ) ) {
-							$valid_data[ 'optins_inpost_ids' ] = explode( ',', $_maybe );
-						}
-					}else{
-						$valid_data[ 'optins_inpost_ids' ] = array( $_maybe );
-					}
-
-				}
-
-			}
-
 		}
 
 		$types = array_keys( Prompt_Optins::types() );

@@ -182,23 +182,21 @@ class Prompt_Outbound_Handling {
 	 */
 	protected static function is_wpml_translation( $post_id ) {
 
-		$wpml_language = apply_filters( 'wpml_default_language', null );
+		$wpml_language_code = apply_filters( 'wpml_default_language', null );
 
-		if ( !$wpml_language ) {
+		if ( !$wpml_language_code ) {
 			return false;
 		}
 
-		$default_language = apply_filters( 'wpml_post_language_details', null, $post_id );
+		$wpml_language_code = isset( $wpml_language_code['language_code'] ) ? $wpml_language_code['language_code'] : $wpml_language_code;
 
-		if ( !$default_language ) {
+		$post_language = apply_filters( 'wpml_post_language_details', null, $post_id );
+
+		if ( !$post_language or empty( $post_language['language_code'] ) ) {
 			return false;
 		}
 
-		if ( empty( $wpml_language['language_code'] ) or empty( $wpml_language['language_code'] ) ) {
-			return false;
-		}
-
-		return ( $wpml_language['language_code'] != $default_language['language_code'] );
+		return ( $wpml_language_code != $post_language['language_code'] );
 	}
 
 }

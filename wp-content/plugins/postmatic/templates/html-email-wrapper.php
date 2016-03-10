@@ -332,7 +332,7 @@ img.featured {
 }
 
 .sd-social-icon ul li span {
-  display: none !important;
+  display: none !important; height: 0 !important;
 }
 
 .sharedaddy {
@@ -403,7 +403,7 @@ ul.essb_links_list {
   float: left;
   margin-right: 10px;
 }
-.sd-like {display: none !important;}
+.sd-like {display: none !important; height: 0 !important;}
 
 .ssba-wrap {
   display: block;
@@ -429,10 +429,10 @@ ul.essb_links_list {
 }
 
 /*flare*/
-.flare-horizontal {display: none;}
+.flare-horizontal {display: none !important; height: 0 !important;}
 
 /*wp author box*/
-#wpautbox-below,.mashsb-container {display: none;}
+#wpautbox-below,.mashsb-container {display: none !important; height: 0 !important;}
 
 /*Jetpack tiled gallery*/
 .gallery-row {width: 675px !important; float: none !important;}
@@ -499,7 +499,7 @@ ul.essb_links_list {
   height: 90%;
 }
 
-.et_social_inline {display: none !important;}
+.et_social_inline {display: none !important; height: 0 !important;}
 
 /*zemanta related posts*/
 div.zem_rp_wrap {
@@ -558,7 +558,7 @@ ul.dpe-flexible-posts li a img {
 .wpurp-responsive-desktop,.wpurp-recipe-image,.wpurp-recipe-servings-changer {display: none;}
 
 /*Hupso social*/
-.hupso_toolbar {display: none;}
+.hupso_toolbar {display: none !important; height: 0 !important;}
 
 /*Official twitter plugin*/
 .twitter-share .twitter-share-button {
@@ -582,7 +582,7 @@ ul.dpe-flexible-posts li a img {
 }
 
 .nc_socialPanel .totes, .nc_socialPanel .sw_count {
-  display: none !important;
+  display: none !important; height: 0 !important;
 }
 
 .nc_socialPanel .nc_tweetContainer {
@@ -619,7 +619,7 @@ ul.dpe-flexible-posts li a img {
   background: #3A589E;
 }
 .nc_pinterest {
-  display: none !important;
+  display: none !important; height: 0 !important;
 }
 .nc_tweetContainer.linkedIn a {
   background: #0D77B7;
@@ -669,21 +669,21 @@ a.sw_CTT span.sw-ctt-btn {
 .darth_vendor_container a {
     display: block;
     float: left;
-    width: 50%;
+    width: 49%;
     border: 1px solid #F6F6F6;
     box-sizing: border-box;
 }
 
 /*Juiz social share*/
-.juiz_sps_maybe_hidden_text {display: none;}
-.pmcc-comments-report-link {display: none !important;}
+.juiz_sps_maybe_hidden_text {display: none !important; height: 0 !important;}
+.pmcc-comments-report-link {display: none !important; height: 0 !important;}
 
 /*Subtitle*/
 .entry-subtitle {display:block;font-size:85%;margin-top:5px;}
 
 /*after post widgets*/
 .awac-wrapper, .widget_prompt_subscribe_widget {
-  display: none;
+  display: none !important; height: 0 !important;
 }
 
 /*Mobile syles*/
@@ -726,7 +726,7 @@ a.sw_CTT span.sw-ctt-btn {
     #content img {float: none !important; margin: 10px auto !important;}
     img.avatar {float: left !important;}
     #content img.avatar, #content img.reply-icon {float: left !important; clear: left !important; margin: 0 10px 0 0 !important;}
-    .gallery br {display:none !important; clear: none !important;}
+    .gallery br {display: none !important; height: 0 !important; clear: none !important;}
     .gallery-item, .ngg-gallery-thumbnail-box {margin: 5px auto !important; float: none !important; display: block !important; width: 100% !important; text-align: center !important;}
     .gallery-item img, .ngg-gallery-thumbnail-box img {margin: 0 auto !important; display: block !important;}
     .gallery-caption {width: auto !important; text-align: center;}
@@ -770,7 +770,7 @@ img.avatar {width: 48px !important; height: 48px !important; max-height: 48px !i
 .depth-3 {margin-left: 25px; margin-bottom: 15px;}
 .depth-4 {margin-left: 25px; margin-bottom: 15px;}
 .depth-5 {margin-left: 25px; margin-bottom: 15px;}
-.the-reply, {margin-bottom: 25px;}
+.the-reply {margin-bottom: 25px;}
 .reply-content {margin-left: 60px;}
 .comment blockquote, .previous-comments blockquote, .reply-content blockquote {
   background: #fff;

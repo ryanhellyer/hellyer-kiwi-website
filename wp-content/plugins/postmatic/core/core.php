@@ -156,6 +156,7 @@ class Prompt_Core {
 
 		add_action( 'wp_ajax_nopriv_prompt/pull-updates',       array( 'Prompt_Web_Api_Handling', 'receive_pull_updates' ) );
 		add_action( 'wp_ajax_nopriv_prompt/pull-configuration', array( 'Prompt_Web_Api_Handling', 'receive_pull_configuration' ) );
+		add_action( 'wp_ajax_nopriv_prompt/ping',               array( 'Prompt_Web_Api_Handling', 'receive_ping' ) );
 
 		add_action( 'transition_post_status',           array( 'Prompt_Outbound_Handling', 'action_transition_post_status' ), 10, 3 );
 		add_action( 'wp_insert_comment',                array( 'Prompt_Outbound_Handling', 'action_wp_insert_comment' ), 10, 2 );
