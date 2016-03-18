@@ -6,7 +6,7 @@ jQuery(document).ready(function($){
 		var height = 0.906666667 * width;
 
 		$('.related-posts article').css( 'height', height+'px' );
-		$('#featured-featured-image').css( 'height', window.outerHeight+'px' );
+		$('#ryans-featured-image').css( 'height', window.outerHeight+'px' );
 
 	}
 	else {
