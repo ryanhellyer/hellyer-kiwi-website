@@ -6,8 +6,7 @@ jQuery(document).ready(function($){
 		var height = 0.906666667 * width;
 
 		$('.related-posts article').css( 'height', height+'px' );
-		$('#ryans-featured-image').css( 'height', window.innerHeight+'px' );
-alert(window.innerHeight);
+		$('#static-featured-image').css( 'height', window.innerHeight+'px' );
 	}
 	else {
 		$('body').removeClass('mobile');		
