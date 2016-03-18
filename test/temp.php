@@ -92,7 +92,7 @@ img.emoji {
 <li class="alignright menu-item menu-item-type-custom menu-item-object-custom menu-item-1172450"><a target="_blank" href="https://www.facebook.com/Zeilenmagazine" itemprop="url"><span class="bullet"></span><span itemprop="name">Facebook</span></a></li>
 <li class="alignright menu-item menu-item-type-custom menu-item-object-custom menu-item-1172451"><a target="_blank" href="https://www.youtube.com/user/zeilen" itemprop="url"><span class="bullet"></span><span itemprop="name">YouTube</span></a></li>
 <li class="alignright menu-item search-item"><form class="search-form" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" method="get" action="http://newzeilen.dma.nl/" role="search"><meta itemprop="target" content="http://newzeilen.dma.nl/?s={s}"/><label class="search-form-label screen-reader-text" for="searchform-56ebe61c40fb1">Zoek op deze website</label><input itemprop="query-input" type="search" name="s" id="searchform-56ebe61c40fb1" placeholder="Zoek op deze website &#x2026;" /><input type="submit" value="Zoek" /></form></li></ul></div></nav><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"></main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primaire Sidebar" itemscope itemtype="http://schema.org/WPSideBar" id="genesis-sidebar-primary"><h2 class="genesis-sidebar-title screen-reader-text">Primaire Sidebar</h2></aside>
-		<div id="static-featured-image" style="background:linear-gradient( rgba(15, 15, 15, 0.5), rgba(15, 15, 15, 0.5) ), url(http://newzeilen.dma.nl/wp-content/uploads/2016/03/NSR-scheveningen.jpg);" >
+		<div id="ryans-featured-image" style="background:linear-gradient( rgba(15, 15, 15, 0.5), rgba(15, 15, 15, 0.5) ), url(http://newzeilen.dma.nl/wp-content/uploads/2016/03/NSR-scheveningen.jpg);" >
 
 			<div id="static-header"><h2 class="entry-title" itemprop="headline"><a href="http://newzeilen.dma.nl/nieuws/nsr/" rel="bookmark">North Sea Regatta wil duurzaam evenement</a></h2> 
 				<div class="author-meta">
@@ -667,7 +667,7 @@ var cop_session = {"expiresDefault":"14","expiresAfterOptin":"60"};
 <script type='text/javascript' src='http://newzeilen.dma.nl/wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=2.2.7'></script>
 <script type='text/javascript' src='http://newzeilen.dma.nl/wp-content/themes/zeilen/scripts/hamburger.js?ver=1.0'></script>
 <script type='text/javascript' src='http://newzeilen.dma.nl/wp-content/themes/zeilen/scripts/scroll.js?ver=1.0'></script>
-<script type='text/javascript' src='http://newzeilen.dma.nl/wp-content/themes/zeilen/scripts/mobile.js?ver=1.0'></script>
+<script type='text/javascript' src='temp.js'></script>
 <script type='text/javascript' src='http://newzeilen.dma.nl/wp-includes/js/wp-embed.min.js?ver=4.4.2'></script>
 <script type='text/javascript' src='http://stats.wp.com/e-201611.js' async defer></script>
 <script type='text/javascript'>
