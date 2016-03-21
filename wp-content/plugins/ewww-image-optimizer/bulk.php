@@ -302,17 +302,17 @@ function ewww_image_optimizer_bulk_script( $hook ) {
         // initialize the $attachments variable
         $attachments = array();
         // check to see if we are supposed to reset the bulk operation and verify we are authorized to do so
-	if (!empty($_REQUEST['ewww_reset']) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' )) {
+	if ( ! empty( $_REQUEST['ewww_reset'] ) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) ) {
 		// set the 'bulk resume' option to an empty string to reset the bulk operation
-		update_option('ewww_image_optimizer_bulk_resume', '');
+		update_option( 'ewww_image_optimizer_bulk_resume', '' );
 	}
         // check to see if we are supposed to reset the bulk operation and verify we are authorized to do so
-	if (!empty($_REQUEST['ewww_reset_aux']) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-aux-images' )) {
+	if ( ! empty( $_REQUEST['ewww_reset_aux'] ) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-aux-images' ) ) {
 		// set the 'bulk resume' option to an empty string to reset the bulk operation
-		update_option('ewww_image_optimizer_aux_resume', '');
+		update_option( 'ewww_image_optimizer_aux_resume', '' );
 	}
         // check to see if we are supposed to convert the auxiliary images table and verify we are authorized to do so
-	if (!empty($_REQUEST['ewww_convert']) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-aux-images' )) {
+	if ( ! empty( $_REQUEST['ewww_convert'] ) && wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-aux-images' ) ) {
 		ewww_image_optimizer_aux_images_convert();
 	}
 	global $wpdb;
@@ -352,7 +352,7 @@ function ewww_image_optimizer_bulk_script( $hook ) {
 	$image_count = ewww_image_optimizer_aux_images_table_count();
 	// submit a couple variables to the javascript to work with
 	wp_localize_script('ewwwbulkscript', 'ewww_vars', array(
-			'_wpnonce' => wp_create_nonce('ewww-image-optimizer-bulk'),
+			'_wpnonce' => wp_create_nonce( 'ewww-image-optimizer-bulk' ),
 			'attachments' => count( $attachments ),
 			'image_count' => $image_count,
 			'count_string' => sprintf( esc_html__( '%d images', EWWW_IMAGE_OPTIMIZER_DOMAIN ), $image_count ),

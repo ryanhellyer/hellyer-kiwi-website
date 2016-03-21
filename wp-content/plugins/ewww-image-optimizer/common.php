@@ -3,8 +3,9 @@
 
 // TODO: can we possibly change settings for jpg/png/gif to say something like no compression/original quality/best compression...
 // TODO: ajaxify one-click actions
+// TODO: implement final phase of webp - forced webp with cdn url matching
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '260.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '261.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -1926,7 +1927,9 @@ function ewww_image_optimizer_check_table( $file, $orig_size ) {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	global $wpdb;
 	$already_optimized = false;
+	ewwwio_debug_message( "checking for $file with size: $orig_size" );
 	$query = $wpdb->prepare( "SELECT path,results FROM $wpdb->ewwwio_images WHERE path = %s AND image_size = '$orig_size'", $file );
+//	ewwwio_debug_message( "using this search: $query" );
 	$already_optimized = $wpdb->get_results( $query, ARRAY_A );
 	if ( ! empty( $already_optimized ) ) { // && empty( $_REQUEST['ewww_force'] ) ) { the core function already checks for this, and overrides it if a new image needs converting
 		$prev_string = " - " . __( 'Previously Optimized', EWWW_IMAGE_OPTIMIZER_DOMAIN );
@@ -1994,6 +1997,7 @@ function ewww_image_optimizer_update_table( $attachment, $opt_size, $orig_size, 
 				'image_size' => $opt_size,
 				'orig_size' => $orig_size,
 				'results' => $results_msg,
+				'updated' => date( 'Y-m-d H:i:s' ),
 				'updates' => 1,
 			) );
 	} else {
@@ -2252,6 +2256,110 @@ function ewww_image_optimizer_remote_fetch( $id, $meta ) {
 	}
 }
 
+function ewww_image_optimizer_check_table_as3cf( $meta, $ID, $s3_path ) {
+	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
+	$local_path = get_attached_file( $ID, true );
+	ewwwio_debug_message( "unfiltered local path: $local_path" );
+	if ( $local_path !== $s3_path ) {
+		ewww_image_optimizer_update_table_as3cf( $local_path, $s3_path );
+	}
+	if ( isset( $meta['sizes'] ) ) {
+		ewwwio_debug_message( 'updating s3 resizes' );
+		// meta sizes don't contain a path, so we calculate one
+		$local_dir = trailingslashit( dirname( $local_path ) );
+		$s3_dir = trailingslashit( dirname( $s3_path ) );
+		// process each resized version
+		$processed = array();
+		foreach ( $meta['sizes'] as $size => $data ) {
+			if ( strpos( $size, 'webp') === 0 ) {
+				continue;
+			}
+			// check through all the sizes we've processed so far
+			foreach ( $processed as $proc => $scan ) {
+				// if a previous resize had identical dimensions
+				if ( $scan['height'] === $data['height'] && $scan['width'] === $data['width'] ) {
+					// found a duplicate resize
+					continue;
+				}
+			}
+			// if this is a unique size
+			$local_resize_path = $local_dir . $data['file'];
+			$s3_resize_path = $s3_dir . $data['file'];
+			if ( $local_resize_path !== $s3_resize_path ) {
+				ewww_image_optimizer_update_table_as3cf( $local_resize_path, $s3_resize_path );
+			}
+			// store info on the sizes we've processed, so we can check the list for duplicate sizes
+			$processed[ $size ]['width'] = $data['width'];
+			$processed[ $size ]['height'] = $data['height'];
+		}
+	}
+	global $wpdb;
+	$wpdb->flush();
+}
+
+function ewww_image_optimizer_update_table_as3cf( $local_path, $s3_path ) {
+	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
+	global $wpdb;
+	// first we need to see if anything matches the old local path
+	$local_query = $wpdb->prepare( "SELECT id,path,orig_size,results FROM $wpdb->ewwwio_images WHERE path = %s", $local_path );
+	$local_images = $wpdb->get_results( $local_query, ARRAY_A );
+	ewwwio_debug_message( "looking for $local_path" );
+	if ( ! empty( $local_images ) ) {
+		foreach ( $local_images as $local_image ) {
+			if ( $local_image['path'] !== $local_path ) {
+				ewwwio_debug_message( "{$local_image['path']} does not match $local_path, continuing our search" );
+			} else {
+				ewwwio_debug_message( "found $local_path in db" );
+				// when we find a match by the local path, we need to find out if there are already records for the s3 path
+				$s3_query = $wpdb->prepare( "SELECT id,path,orig_size FROM $wpdb->ewwwio_images WHERE path = %s", $s3_path );
+				$s3_images = $wpdb->get_results( $s3_query, ARRAY_A );
+				ewwwio_debug_message( "looking for $s3_path" );
+				foreach ( $s3_images as $s3_image ) {
+					if ( $s3_image['path'] === $s3_path ) {
+						$found_s3_image = $s3_image;
+						break;
+					}
+				}
+				// if we found records for both local and s3 paths, we delete the local record, but store the original size in the s3 record
+				if ( ! empty( $found_s3_image ) && is_array( $found_s3_image ) ) {
+					ewwwio_debug_message( "found $s3_path in db" );
+					$wpdb->delete( $wpdb->ewwwio_images,
+						array(
+							'id' => $local_image['id'],
+						),
+						array(
+							'%d'
+						)
+					);
+					if ( $local_image['orig_size'] > $found_s3_image['orig_size'] ) {
+						$wpdb->update( $wpdb->ewwwio_images,
+							array(
+								'orig_size' => $local_image['orig_size'],
+								'results' => $local_image['results'],
+							),
+							array(
+								'id' => $found_s3_image['id'],
+							)
+						);
+					}
+				// if we just found a local path and no s3 match, then we just update the path in the table to the s3 path
+				} else {
+					ewwwio_debug_message( "just updating local to s3" );
+					$wpdb->update( $wpdb->ewwwio_images,
+						array(
+							'path' => $s3_path,
+						),
+						array(
+							'id' => $local_image['id'],
+						)
+					);
+				}
+				break;
+			}
+		}
+	}
+}	
+
 /**
  * Read the image paths from an attachment's meta data and process each image
  * with ewww_image_optimizer().
@@ -2291,6 +2399,9 @@ function ewww_image_optimizer_resize_from_meta_data( $meta, $ID = null, $log = t
 			$meta['ewww_image_optimizer'] = __( 'Could not find image', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 			return $meta;
 		}
+	}
+	if ( ! $new_image && class_exists( 'Amazon_S3_And_CloudFront' ) && strpos( $file_path, 's3:' ) === 0 ) {
+		ewww_image_optimizer_check_table_as3cf( $meta, $ID, $file_path );
 	}
 	ewwwio_debug_message( "retrieved file path: $file_path" );
 	// see if this is a new image and Imsanity resized it (which means it could be already optimized)
@@ -2370,7 +2481,7 @@ function ewww_image_optimizer_resize_from_meta_data( $meta, $ID = null, $log = t
 		$processed = array();
 		foreach ( $meta['sizes'] as $size => $data ) {
 			ewwwio_debug_message( "processing size: $size" );
-			if ( preg_match( '/webp/', $size ) ) {
+			if ( strpos( $size, 'webp') === 0 ) {
 				continue;
 			}
 			if ( ! empty( $disabled_sizes[ $size ] ) ) {
@@ -2830,7 +2941,7 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 			esc_html_e( 'Azure Storage image', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 			$ewww_cdn = true;
 		}
-		if ( class_exists( 'Amazon_S3_And_CloudFront' ) && strpos( get_attached_file( $id ), 'http' ) === 0 ) {
+		if ( class_exists( 'Amazon_S3_And_CloudFront' ) && preg_match( '/^(http|s3):/', get_attached_file( $id ) ) ) {
 			esc_html_e( 'Amazon S3 image', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 			$ewww_cdn = true;
 		}

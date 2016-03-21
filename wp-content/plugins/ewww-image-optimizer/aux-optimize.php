@@ -13,8 +13,14 @@ function ewww_image_optimizer_aux_images () {
 	// find out if the auxiliary image table has anything in it
 	$already_optimized = ewww_image_optimizer_aux_images_table_count();
 	// see if the auxiliary image table needs converting from md5sums to image sizes
-	$convert_query = "SELECT image_md5 FROM $wpdb->ewwwio_images WHERE image_md5 <> ''";
-	$db_convert = $wpdb->get_results( $convert_query, ARRAY_N );
+	$column_query = "SHOW COLUMNS FROM $wpdb->ewwwio_images LIKE 'image_md5'";
+	$column = $wpdb->get_row( $column_query, ARRAY_N );
+	if ( ! empty( $column ) ) {
+		ewwwio_debug_message( "image_md5 column exists, checking for image_md5 values"  );
+		$convert_query = "SELECT image_md5 FROM $wpdb->ewwwio_images WHERE image_md5 <> ''";
+		$db_convert = $wpdb->get_results( $convert_query, ARRAY_N );
+	}
+//	ewwwio_debug_message( print_r( $column, true ) );
 	// generate the WP spinner image for display
 	$loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 	// check the last time the auxiliary optimizer was run
@@ -98,7 +104,7 @@ function ewww_image_optimizer_aux_images_table() {
 	} 
 	global $wpdb;
 	$offset = 50 * (int) $_POST['ewww_offset'];
-	$query = "SELECT path,results,gallery,id FROM $wpdb->ewwwio_images ORDER BY id DESC LIMIT $offset,50";
+	$query = "SELECT path,results,image_size,id FROM $wpdb->ewwwio_images ORDER BY id DESC LIMIT $offset,50";
 	$already_optimized = $wpdb->get_results( $query, ARRAY_N );
         $upload_info = wp_upload_dir();
 	$upload_path = $upload_info['basedir'];
@@ -107,13 +113,13 @@ function ewww_image_optimizer_aux_images_table() {
 	foreach ( $already_optimized as $optimized_image ) {
 		$image_name = str_replace( ABSPATH, '', $optimized_image[0] );
 		$image_url = esc_url( trailingslashit( get_site_url() ) . $image_name );
-		$savings = $optimized_image[1];
+		$savings = esc_html( $optimized_image[1] );
 		// if the path given is not the absolute path
 		if ( file_exists( $optimized_image[0] ) ) {
 			// retrieve the mimetype of the attachment
 			$type = ewww_image_optimizer_mimetype( $optimized_image[0], 'i' );
 			// get a human readable filesize
-			$file_size = size_format( filesize( $optimized_image[0] ), 2 );
+			$file_size = size_format( $optimized_image[2], 2 );
 			$file_size = str_replace( '.00 B ', ' B', $file_size );
 ?>			<tr<?php if ( $alternate ) { echo " class='alternate'"; } ?> id="ewww-image-<?php echo $optimized_image[3]; ?>">
 				<td style='width:80px' class='column-icon'><img width='50' height='50' src="<?php echo $image_url; ?>" /></td>
@@ -122,10 +128,24 @@ function ewww_image_optimizer_aux_images_table() {
 				<td><?php echo "$savings <br>" . sprintf( esc_html__( 'Image Size: %s', EWWW_IMAGE_OPTIMIZER_DOMAIN ), $file_size ); ?><br><a class="removeimage" onclick="ewwwRemoveImage( <?php echo $optimized_image[3]; ?> )"><?php esc_html_e( 'Remove from table', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></a></td>
 			</tr>
 <?php			$alternate = ! $alternate;
+		} elseif ( strpos( $optimized_image[0], 's3' ) === 0 ) {
+			// retrieve the mimetype of the attachment
+			$type = esc_html__( 'Amazon S3 image', EWWW_IMAGE_OPTIMIZER_DOMAIN );
+			// get a human readable filesize
+			$file_size = size_format( $optimized_image[2], 2 );
+			$file_size = str_replace( '.00 B ', ' B', $file_size );
+?>			<tr<?php if ( $alternate ) { echo " class='alternate'"; } ?> id="ewww-image-<?php echo $optimized_image[3]; ?>">
+				<td style='width:80px' class='column-icon'>&nbsp;</td>
+				<td class='title'><?php echo $image_name; ?></td>
+				<td><?php echo $type; ?></td>
+				<td><?php echo "$savings <br>" . sprintf( esc_html__( 'Image Size: %s', EWWW_IMAGE_OPTIMIZER_DOMAIN ), $file_size ); ?><br><a class="removeimage" onclick="ewwwRemoveImage( <?php echo $optimized_image[3]; ?> )"><?php esc_html_e( 'Remove from table', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></a></td>
+			</tr>
+<?php			$alternate = ! $alternate;
 		}
 	}
 	echo '</table>';
 	ewwwio_memory( __FUNCTION__ );
+	ewww_image_optimizer_debug_log();
 	die();
 }
 

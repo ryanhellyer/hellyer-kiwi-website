@@ -32,7 +32,7 @@ class ewwwngg {
 		if ( ! defined( 'NGGFOLDER' ) ) {
 			return;
 		}
-		add_submenu_page(NGGFOLDER, esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), 'NextGEN Manage gallery', 'ewww-ngg-bulk', array (&$this, 'ewww_ngg_bulk_preview'));
+		add_submenu_page(NGGFOLDER, esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), apply_filters( 'ewww_image_optimizer_manual_permissions', '' ), 'ewww-ngg-bulk', array (&$this, 'ewww_ngg_bulk_preview'));
 	}
 
 	/* ngg_added_new_image hook */
