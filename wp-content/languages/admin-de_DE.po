@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-03-30 21:18:18+0000\n"
+"PO-Revision-Date: 2016-04-03 09:34:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -260,12 +260,13 @@ msgstr "Rezensionen"
 msgid "Read all reviews on WordPress.org or write your own!"
 msgstr "Lies alle Bewertungen auf WordPress.org oder schreib deine Eigene!"
 
-#. translators: 1: number of stars, 2: number of reviews
+#. translators: 1: number of stars (used to determine singular/plural), 2:
+#. number of reviews
 #: wp-admin/includes/plugin-install.php:588
-msgid "Reviews with %1$d star: %2$d. Opens in a new window."
-msgid_plural "Reviews with %1$d stars: %2$d. Opens in a new window."
-msgstr[0] "Rezensionen mit %1$d Stern: %2$d. Wird in neuem Fenster geöffnet."
-msgstr[1] "Rezensionen mit %1$d Sternen: %2$d. Wird in neuem Fenster geöffnet."
+msgid "Reviews with %1$d star: %2$s. Opens in a new window."
+msgid_plural "Reviews with %1$d stars: %2$s. Opens in a new window."
+msgstr[0] "Rezensionen mit %1$d Stern: %2$s. Wird in neuem Fenster geöffnet."
+msgstr[1] "Rezensionen mit %1$d Sternen: %2$s. Wird in neuem Fenster geöffnet."
 
 #: wp-admin/includes/post.php:1423
 msgid "Click the image to edit or update"
@@ -277,7 +278,7 @@ msgstr "An bestehenden Inhalt anhängen"
 
 #: wp-admin/includes/theme-install.php:146
 msgid "Theme zip file"
-msgstr "Zipdatei des Themes"
+msgstr "Theme zip-Datei"
 
 #: wp-admin/includes/image-edit.php:50
 msgid "Scale Image Help"
@@ -2562,7 +2563,7 @@ msgstr "Das Seitenverhältnis ist die Bildhöhe in Relation zur Bildbreite. Du k
 
 #: wp-admin/includes/image-edit.php:111
 msgid "Once you have made your selection, you can adjust it by entering the size in pixels. The minimum selection size is the thumbnail size as set in the Media settings."
-msgstr "Sobald du deine Auswahl getroffen hast, kannst du sie anpassen, indem du die Größe in Pixeln angibst. Die kleinste Auswahlgröße ist die Größe der Vorschaubilder, so wie sie in den Medien-Einstellungen festgelegt ist."
+msgstr "Sobald du deine Auswahl getroffen hast, kannst du sie anpassen, indem du die Größe in Pixel angibst. Die kleinste Auswahlgröße ist die Größe der Vorschaubilder, sowie sie in den Medien-Einstellungen festgelegt ist."
 
 #: wp-admin/includes/image-edit.php:151
 msgid "You can edit the image while preserving the thumbnail. For example, you may wish to have a square thumbnail that displays just a section of the image."
@@ -3211,7 +3212,7 @@ msgstr "muss der Kommentar manuell genehmigt werden."
 
 #: wp-admin/options-media.php:49
 msgid "The sizes listed below determine the maximum dimensions in pixels to use when adding an image to the Media Library."
-msgstr "Die unten aufgeführten Größen bestimmen die maximalen Abmessungen in Pixeln, die beim Hinzufügen von Bildern zur Mediathek verwendet werden."
+msgstr "Die unten aufgeführten Größen bestimmen die maximalen Abmessungen in Pixel, die beim Hinzufügen von Bildern zur Mediathek verwendet werden."
 
 #: wp-admin/theme-editor.php:33
 msgid "Upgrading to a newer version of the same theme will override changes made here. To avoid this, consider creating a <a href=\"%s\" target=\"_blank\">child theme</a> instead."
@@ -3475,7 +3476,7 @@ msgstr "Füge Menüeinträge aus der linken Spalte hinzu."
 
 #: wp-admin/includes/plugin-install.php:213
 msgid "Plugins extend and expand the functionality of WordPress. You may automatically install plugins from the <a href=\"%1$s\">WordPress Plugin Directory</a> or upload a plugin in .zip format via <a href=\"%2$s\">this page</a>."
-msgstr "Plugins erweitern die Funktionalität von WordPress. Du kannst Plugins automatisch vom <a href=\"%1$s\">WordPress Plugin-Verzeichnis</a> installieren oder ein Plugin im .zip Format auf <a href=\"%2$s\">dieser Seite</a> hochladen."
+msgstr "Plugins erweitern die Funktionalität von WordPress. Du kannst Plugins automatisch vom <a href=\"%1$s\">WordPress Plugin-Verzeichnis</a> installieren oder ein Plugin im .zip-Format auf <a href=\"%2$s\">dieser Seite</a> hochladen."
 
 #. Plugin URI of the plugin/theme
 msgid "http://wordpress.org/plugins/hello-dolly/"
@@ -6355,7 +6356,7 @@ msgstr "Neue Website anlegen"
 
 #: wp-admin/custom-header.php:526
 msgid "Images of exactly <strong>%1$d &times; %2$d pixels</strong> will be used as-is."
-msgstr "Bilder von genau <strong>%1$d × %2$d Pixeln</strong> werden benutzt, wie sie sind."
+msgstr "Bilder von genau <strong>%1$d &times; %2$d Pixel</strong> werden benutzt, wie sie sind."
 
 #: wp-admin/custom-header.php:823
 msgid "Crop and Publish"
@@ -7549,7 +7550,7 @@ msgstr "Themes finden"
 
 #: wp-admin/includes/theme-install.php:143
 msgid "If you have a theme in a .zip format, you may install it by uploading it here."
-msgstr "Wenn du ein Theme in einem ZIP-Archiv hast, kannst du es hier hochladen und installieren."
+msgstr "Wenn du ein Theme im .zip-Format hast, kannst du es hier hochladen."
 
 #: wp-admin/includes/class-wp-theme-install-list-table.php:316
 #: wp-admin/includes/class-wp-themes-list-table.php:227
@@ -10323,7 +10324,7 @@ msgstr "Wenn du ein Plugin im .zip-Format hast, kannst du es hier hochladen."
 
 #: wp-admin/includes/plugin-install.php:289
 msgid "Plugin zip file"
-msgstr "Plugin-ZIP-Archiv"
+msgstr "Plugin zip-Datei"
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:462
 #: wp-admin/includes/class-wp-theme-install-list-table.php:286
