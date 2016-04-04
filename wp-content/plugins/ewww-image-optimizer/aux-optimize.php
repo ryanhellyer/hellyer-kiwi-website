@@ -193,12 +193,23 @@ function ewww_image_optimizer_image_scan( $dir ) {
 			if ( preg_match( '/(\/|\\\\)\./', $path ) && apply_filters( 'ewww_image_optimizer_ignore_hidden_files', true ) ) {
 				continue;
 			}
-			if ( preg_match( '/\.(conf|crt|css|docx|eot|exe|git|gitignore|gitmodules|gz|hgignore|hgsub|hgsubstate|hgtags|htaccess|htm|html|ico|ini|js|json|key|less|lock|log|map|md|mo|mp3|mp4|otf|pdf|pem|php|po|pot|sample|scss|sh|svg|svnignore|swf|template|tiff|tmp|tpl|ttf|txt|url|vcl|woff|woff2|webp|xap|xml|yml|zip)$/', $path ) ) {
+			$pathextension = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) );
+			switch ( $pathextension ) {
+				case 'jpg':
+				case 'jpeg':
+				case 'png':
+				case 'gif':
+				case 'pdf':
+					break;
+				default:
+					continue 2;
+			}
+/*			if ( preg_match( '/\.(conf|crt|css|docx|eot|exe|git|gitignore|gitmodules|gz|hgignore|hgsub|hgsubstate|hgtags|htaccess|htm|html|ico|ini|js|json|key|less|lock|log|map|md|mo|mp3|mp4|otf|pdf|pem|php|po|pot|sample|scss|sh|svg|svnignore|swf|template|tiff|tmp|tpl|ttf|txt|url|vcl|woff|woff2|webp|xap|xml|yml|zip)$/', $path ) ) {
 				continue;
 			}
 			if ( ! preg_match( '/\./', $path ) ) {
 				continue;
-			}
+			}*/
 			if ( isset( $optimized_list[$path] ) ) {
 				$image_size = $file->getSize();
 				if ( $optimized_list[ $path ] == $image_size ) {

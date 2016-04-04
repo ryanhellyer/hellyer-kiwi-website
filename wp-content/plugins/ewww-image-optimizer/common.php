@@ -4,7 +4,7 @@
 // TODO: ajaxify one-click actions
 // TODO: implement final phase of webp - forced webp with cdn url matching
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '270.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '271.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -2045,7 +2045,7 @@ function ewww_image_optimizer_aux_images_loop( $attachment = null, $auto = false
 	$output = array();
 	// verify that an authorized user has started the optimizer
 	$permissions = apply_filters( 'ewww_image_optimizer_bulk_permissions', '' );
-	if ( ! $auto && ( ! wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) || ! current_user_can( $permissions ) ) ) {
+	if ( ! $auto && ( empty( $_REQUEST['ewww_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) || ! current_user_can( $permissions ) ) ) {
 		$output['error'] = esc_html__( 'Access token has expired, please reload the page.', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 		echo json_encode( $output );
 		die();
@@ -2081,7 +2081,7 @@ function ewww_image_optimizer_aux_images_loop( $attachment = null, $auto = false
 	update_option( 'ewww_image_optimizer_aux_attachments', $attachments );
 	if ( ! $auto ) {
 		// output the path
-		$output['results'] = sprintf( "<p>" . esc_html__( 'Optimized image:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <strong>%s</strong><br>", esc_html( $attachment ) );
+		$output['results'] = sprintf( "<p>" . esc_html__( 'Optimized', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <strong>%s</strong><br>", esc_html( $attachment ) );
 		// tell the user what the results were for the original image
 		$output['results'] .= sprintf( "%s<br>", $results[1] );
 		// calculate how much time has elapsed since we started

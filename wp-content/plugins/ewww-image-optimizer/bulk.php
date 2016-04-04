@@ -130,11 +130,11 @@ function ewww_image_optimizer_count_optimized( $gallery, $return_ids = false ) {
 					$attachment_query = 'AND metas.post_id IN (' . substr( $attachment_query, 0, -1 ) . ')';
 				}
 			} else {
-				$full_count = $wpdb->get_var( "SELECT COUNT(ID) FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND post_mime_type LIKE '%%image%%'" );
+				$full_count = $wpdb->get_var( "SELECT COUNT(ID) FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND (post_mime_type LIKE '%%image%%' OR post_mime_type LIKE '%%pdf%%')" );
 			}
 			$offset = 0;
 			// retrieve all the image attachment metadata from the database
-			while ( $attachments = $wpdb->get_results( "SELECT metas.meta_value,post_id FROM $wpdb->postmeta metas INNER JOIN $wpdb->posts posts ON posts.ID = metas.post_id WHERE posts.post_mime_type LIKE '%%image%%' AND metas.meta_key = '_wp_attachment_metadata' $attachment_query LIMIT $offset,$max_query", ARRAY_N ) ) {
+			while ( $attachments = $wpdb->get_results( "SELECT metas.meta_value,post_id FROM $wpdb->postmeta metas INNER JOIN $wpdb->posts posts ON posts.ID = metas.post_id WHERE (posts.post_mime_type LIKE '%%image%%' OR posts.post_mime_type LIKE '%%pdf%%') AND metas.meta_key = '_wp_attachment_metadata' $attachment_query LIMIT $offset,$max_query", ARRAY_N ) ) {
 				ewwwio_debug_message( "fetched " . count( $attachments ) . " attachments starting at $offset" );
 				$disabled_sizes = ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_resizes' );
 				foreach ( $attachments as $attachment ) {
@@ -336,7 +336,7 @@ function ewww_image_optimizer_bulk_script( $hook ) {
 			}
 		} else {
 	                // retrieve post IDs correlating to the IDs submitted to make sure they are all valid
-			$attachments = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND post_mime_type LIKE '%%image%%' AND ID IN ({$request_ids[0]}) ORDER BY ID DESC" );
+			$attachments = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND (post_mime_type LIKE '%%image%%' OR post_mime_type LIKE '%%pdf%%') AND ID IN ({$request_ids[0]}) ORDER BY ID DESC" );
 		}
 		// unset the 'bulk resume' option since we were given specific IDs to optimize
 		update_option( 'ewww_image_optimizer_bulk_resume', '' );
@@ -347,7 +347,7 @@ function ewww_image_optimizer_bulk_script( $hook ) {
 	// since we aren't resuming, and weren't given a list of IDs, we will optimize everything
         } else {
                 // load up all the image attachments we can find
-		$attachments = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND post_mime_type LIKE '%%image%%' ORDER BY ID DESC" );
+		$attachments = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE (post_type = 'attachment' OR post_type = 'ims_image') AND (post_mime_type LIKE '%%image%%' OR post_mime_type LIKE '%%pdf%%') ORDER BY ID DESC" );
         }
 	// store the attachment IDs we retrieved in the 'bulk_attachments' option so we can keep track of our progress in the database
 	update_option( 'ewww_image_optimizer_bulk_attachments', $attachments );
@@ -489,7 +489,7 @@ function ewww_image_optimizer_bulk_loop() {
 	}
 	if ( ! empty ( $meta['file'] ) ) {
 		// output the filename (and path relative to 'uploads' folder)
-		$output['results'] = sprintf( "<p>" . esc_html__( 'Optimized image:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <strong>%s</strong><br>", esc_html( $meta['file']) );
+		$output['results'] = sprintf( "<p>" . esc_html__( 'Optimized', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <strong>%s</strong><br>", esc_html( $meta['file']) );
 	} else {
 		$output['results'] = sprintf( "<p>" . esc_html__( 'Skipped image, ID:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <strong>%s</strong><br>", esc_html( $attachment ) );
 	}
