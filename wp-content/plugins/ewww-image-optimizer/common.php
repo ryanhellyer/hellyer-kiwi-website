@@ -3,9 +3,8 @@
 
 // TODO: ajaxify one-click actions
 // TODO: implement final phase of webp - forced webp with cdn url matching
-// TODO: add pdf optimization via cloud-only
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '262.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '270.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -528,6 +527,8 @@ function ewww_image_optimizer_admin_init() {
 			update_site_option('ewww_image_optimizer_jpg_lossy', $_POST['ewww_image_optimizer_jpg_lossy']);
 			if (empty($_POST['ewww_image_optimizer_png_lossy'])) $_POST['ewww_image_optimizer_png_lossy'] = '';
 			update_site_option('ewww_image_optimizer_png_lossy', $_POST['ewww_image_optimizer_png_lossy']);
+			if (empty($_POST['ewww_image_optimizer_pdf_lossy'])) $_POST['ewww_image_optimizer_pdf_lossy'] = '';
+			update_site_option('ewww_image_optimizer_pdf_lossy', $_POST['ewww_image_optimizer_pdf_lossy']);
 			if (empty($_POST['ewww_image_optimizer_lossy_fast'])) $_POST['ewww_image_optimizer_lossy_fast'] = '';
 			update_site_option('ewww_image_optimizer_lossy_fast', $_POST['ewww_image_optimizer_lossy_fast']);
 			if (empty($_POST['ewww_image_optimizer_lossy_skip_full'])) $_POST['ewww_image_optimizer_lossy_skip_full'] = '';
@@ -560,6 +561,8 @@ function ewww_image_optimizer_admin_init() {
 			update_site_option('ewww_image_optimizer_cloud_png_compress', $_POST['ewww_image_optimizer_cloud_png_compress']);
 			if (empty($_POST['ewww_image_optimizer_cloud_gif'])) $_POST['ewww_image_optimizer_cloud_gif'] = '';
 			update_site_option('ewww_image_optimizer_cloud_gif', $_POST['ewww_image_optimizer_cloud_gif']);
+			if (empty($_POST['ewww_image_optimizer_cloud_pdf'])) $_POST['ewww_image_optimizer_cloud_pdf'] = '';
+			update_site_option('ewww_image_optimizer_cloud_pdf', $_POST['ewww_image_optimizer_cloud_pdf']);
 			if (empty($_POST['ewww_image_optimizer_auto'])) $_POST['ewww_image_optimizer_auto'] = '';
 			update_site_option('ewww_image_optimizer_auto', $_POST['ewww_image_optimizer_auto']);
 			if (empty($_POST['ewww_image_optimizer_aux_paths'])) $_POST['ewww_image_optimizer_aux_paths'] = '';
@@ -594,6 +597,7 @@ function ewww_image_optimizer_admin_init() {
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_jpegtran_copy');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_jpg_lossy');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_png_lossy');
+	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_pdf_lossy');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_lossy_fast');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_lossy_skip_full');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_metadata_skip_full');
@@ -615,6 +619,7 @@ function ewww_image_optimizer_admin_init() {
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_cloud_png');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_cloud_png_compress');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_cloud_gif');
+	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_cloud_pdf');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_auto');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_aux_paths', 'ewww_image_optimizer_aux_paths_sanitize');
 	register_setting('ewww_image_optimizer_options', 'ewww_image_optimizer_enable_cloudinary');
@@ -1644,6 +1649,7 @@ function ewww_image_optimizer_cloud_enable () {
 	ewww_image_optimizer_set_option('ewww_image_optimizer_cloud_jpg', true);
 	ewww_image_optimizer_set_option('ewww_image_optimizer_cloud_png', true);
 	ewww_image_optimizer_set_option('ewww_image_optimizer_cloud_gif', true);
+	ewww_image_optimizer_set_option('ewww_image_optimizer_cloud_pdf', true);
 }
 
 // adds our version to the useragent for http requests
@@ -1665,9 +1671,11 @@ function ewww_image_optimizer_cloud_verify ( $cache = true, $api_key = '' ) {
 		update_site_option( 'ewww_image_optimizer_cloud_jpg', '' );
 		update_site_option( 'ewww_image_optimizer_cloud_png', '' );
 		update_site_option( 'ewww_image_optimizer_cloud_gif', '' );
+		update_site_option( 'ewww_image_optimizer_cloud_pdf', '' );
 		update_option( 'ewww_image_optimizer_cloud_jpg', '' );
 		update_option( 'ewww_image_optimizer_cloud_png', '' );
 		update_option( 'ewww_image_optimizer_cloud_gif', '' );
+		update_option( 'ewww_image_optimizer_cloud_pdf', '' );
 		return false;
 	}
 	add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent' );
@@ -1713,7 +1721,7 @@ function ewww_image_optimizer_cloud_verify ( $cache = true, $api_key = '' ) {
 		ewwwio_memory( __FUNCTION__ );
 		return FALSE;
 	} else {
-		if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_jpg' )  && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_png' ) && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_gif' ) ) {
+		if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_jpg' )  && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_png' ) && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_gif' ) && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_pdf' ) ) {
 			ewww_image_optimizer_cloud_enable();
 		}
 		ewwwio_debug_message( "verification body contents: {$result['body']}" );
@@ -1807,6 +1815,8 @@ function ewww_image_optimizer_cloud_optimizer( $file, $type, $convert = false, $
 	} elseif ( $type == 'image/png' && ewww_image_optimizer_get_option( 'ewww_image_optimizer_png_lossy' ) ) {
 		$lossy = 1;
 	} elseif ( $type == 'image/jpeg' && ewww_image_optimizer_get_option( 'ewww_image_optimizer_jpg_lossy' ) ) {
+		$lossy = 1;
+	} elseif ( $type == 'application/pdf' && ewww_image_optimizer_get_option( 'ewww_image_optimizer_pdf_lossy' ) ) {
 		$lossy = 1;
 	} else {
 		$lossy = 0;
@@ -2983,7 +2993,6 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 					$msg = '<br>' . wp_kses( sprintf( __( '%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN), '<em>jpegtran</em>' ), array( 'em' => array() ) );
 				} else {
 					$convert_link = esc_html__('JPG to PNG', EWWW_IMAGE_OPTIMIZER_DOMAIN);
-					$class_type = 'jpg';
 					$convert_desc = esc_attr__( 'WARNING: Removes metadata. Requires GD or ImageMagick. PNG is generally much better than JPG for logos and other images with a limited range of colors.', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 				}
 				break; 
@@ -2994,7 +3003,6 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 					$msg = '<br>' . wp_kses( sprintf( __( '%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN ), '<em>optipng/pngout</em>' ), array( 'em' => array() ) );
 				} else {
 					$convert_link = esc_html__('PNG to JPG', EWWW_IMAGE_OPTIMIZER_DOMAIN);
-					$class_type = 'png';
 					$convert_desc = esc_attr__('WARNING: This is not a lossless conversion and requires GD or ImageMagick. JPG is much better than PNG for photographic use because it compresses the image and discards data. Transparent images will only be converted if a background color has been set.', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 				}
 				break;
@@ -3005,9 +3013,11 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 					$msg = '<br>' . wp_kses( sprintf( __( '%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN ), '<em>gifsicle</em>' ), array( 'em' => array() ) );
 				} else {
 					$convert_link = esc_html__('GIF to PNG', EWWW_IMAGE_OPTIMIZER_DOMAIN);
-					$class_type = 'gif';
 					$convert_desc = esc_attr__('PNG is generally better than GIF, but does not support animation. Animated images will not be converted.', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 				}
+				break;
+			case 'application/pdf':
+				$convert_desc = '';
 				break;
 			default:
 				// not a supported mimetype
@@ -3043,7 +3053,7 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 				printf("<br><a href=\"admin.php?action=ewww_image_optimizer_manual_optimize&amp;ewww_manual_nonce=$ewww_manual_nonce&amp;ewww_force=1&amp;ewww_attachment_ID=%d\">%s</a>",
 					$id,
 					esc_html__( 'Re-optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
-				if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_convert_links' ) && 'ims_image' != get_post_type( $id ) ) {
+				if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_convert_links' ) && 'ims_image' != get_post_type( $id ) && ! empty( $convert_desc ) ) {
 					echo " | <a class='ewww-convert' title='$convert_desc' href='admin.php?action=ewww_image_optimizer_manual_optimize&amp;ewww_manual_nonce=$ewww_manual_nonce&amp;ewww_attachment_ID=$id&amp;ewww_convert=1&amp;ewww_force=1'>$convert_link</a>";
 				}
 			} else {
@@ -3096,7 +3106,7 @@ function ewww_image_optimizer_custom_column( $column_name, $id ) {
 			if ( empty( $msg ) && current_user_can( apply_filters( 'ewww_image_optimizer_manual_permissions', '' ) ) ) {
 				// and give the user the option to optimize the image right now
 				printf( "<br><a href=\"admin.php?action=ewww_image_optimizer_manual_optimize&amp;ewww_manual_nonce=$ewww_manual_nonce&amp;ewww_attachment_ID=%d\">%s</a>", $id, esc_html__( 'Optimize now!', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
-				if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_convert_links' ) && 'ims_image' != get_post_type( $id ) ) {
+				if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_convert_links' ) && 'ims_image' != get_post_type( $id ) && ! empty( $convert_desc ) ) {
 					echo " | <a class='ewww-convert' title='$convert_desc' href='admin.php?action=ewww_image_optimizer_manual_optimize&amp;ewww_manual_nonce=$ewww_manual_nonce&amp;ewww_attachment_ID=$id&amp;ewww_convert=1&amp;ewww_force=1'>$convert_link</a>";
 				}
 			} else {
@@ -3644,6 +3654,8 @@ function ewww_image_optimizer_options () {
 				ewwwio_debug_message( "PNG extra compress: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_png_compress') == TRUE ? "on" : "off" ) );
 				$output[] = "<tr><th><label for='ewww_image_optimizer_cloud_gif'>" . esc_html__('GIF cloud optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</label></th><td><input type='checkbox' id='ewww_image_optimizer_cloud_gif' name='ewww_image_optimizer_cloud_gif' value='true' " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_gif') == TRUE ? "checked='true'" : "" ) . " /></td></tr>\n";
 				ewwwio_debug_message( "cloud GIF: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_gif') == TRUE ? "on" : "off" ) );
+				$output[] = "<tr><th><label for='ewww_image_optimizer_cloud_pdf'>" . esc_html__( 'PDF cloud optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</label></th><td><input type='checkbox' id='ewww_image_optimizer_cloud_pdf' name='ewww_image_optimizer_cloud_pdf' value='true' " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_pdf') == TRUE ? "checked='true'" : "" ) . " /></td></tr>\n";
+				ewwwio_debug_message( "cloud PDF: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_pdf') == TRUE ? "on" : "off" ) );
 				$output[] = "<tr><th><label for='ewww_image_optimizer_lossy_fast'>" . esc_html__('Faster lossy optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</label></th><td><input type='checkbox' id='ewww_image_optimizer_lossy_fast' name='ewww_image_optimizer_lossy_fast' value='true' " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_lossy_fast') == TRUE ? "checked='true'" : "" ) . " /> " . esc_html__('Speed up the lossy operations by performing less compression.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</td></tr>\n";
 				ewwwio_debug_message( "cloud fast lossy: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_lossy_fast') == TRUE ? "on" : "off" ) );
 			$output[] = "</table>\n</div>\n";
@@ -3659,6 +3671,9 @@ function ewww_image_optimizer_options () {
 				$output[] = "<tr><th><label for='ewww_image_optimizer_png_lossy'>" . esc_html__('Lossy PNG optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</label></th><td><input type='checkbox' id='ewww_image_optimizer_png_lossy' name='ewww_image_optimizer_png_lossy' value='true' " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_png_lossy') == TRUE ? "checked='true'" : "" ) . " /> <b>" . esc_html__('WARNING:', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</b> " . esc_html__('While most users will not notice a difference in image quality, lossy means there IS a loss in image quality.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "\n" .
 				"<p class='description'>" . esc_html__('Uses pngquant locally. Use EWWW I.O. Cloud for even better lossy compression.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . " <a href='https://ewww.io/plans/'>" . esc_html__('Purchase an API key.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</a></p></td></tr>\n";
 				ewwwio_debug_message( "lossy PNG: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_png_lossy') == TRUE ? "on" : "off" ) );
+				$output[] = "<tr><th><label for='ewww_image_optimizer_pdf_lossy'>" . esc_html__('Lossy PDF optimization', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</label></th><td><input type='checkbox' id='ewww_image_optimizer_pdf_lossy' name='ewww_image_optimizer_pdf_lossy' value='true' " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_pdf_lossy') == TRUE ? "checked='true'" : "" ) . " /> <b>" . esc_html__( 'WARNING:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</b> " . esc_html__('While most users will not notice a difference in image quality, lossy means there IS a loss in image quality.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "\n" .
+				"<p class='description'>" . esc_html__('PDF optimization requires an EWWW Image Optimizer Cloud Subscription.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . " <a href='https://ewww.io/plans/'>" . esc_html__('Purchase an API key.', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</a></p></td></tr>\n";
+				ewwwio_debug_message( "lossy PDF: " . ( ewww_image_optimizer_get_option('ewww_image_optimizer_pdf_lossy') == TRUE ? "on" : "off" ) );
 				$output[] = "<tr><th><label for='ewww_image_optimizer_delay'>" . esc_html__('Bulk Delay', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</label></th><td><input type='text' id='ewww_image_optimizer_delay' name='ewww_image_optimizer_delay' size='5' value='" . ewww_image_optimizer_get_option('ewww_image_optimizer_delay') . "'> " . esc_html__('Choose how long to pause between images (in seconds, 0 = disabled)', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "</td></tr>\n";
 				ewwwio_debug_message( "bulk delay: " . ewww_image_optimizer_get_option('ewww_image_optimizer_delay') );
 	if (class_exists('Cloudinary') && Cloudinary::config_get("api_secret")) {

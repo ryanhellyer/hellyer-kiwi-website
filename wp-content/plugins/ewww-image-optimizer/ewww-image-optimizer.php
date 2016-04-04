@@ -1,7 +1,7 @@
 <?php
 /**
  * Integrate image optimizers into WordPress.
- * @version 2.6.2
+ * @version 2.7.0
  * @package EWWW_Image_Optimizer
  */
 /*
@@ -10,7 +10,7 @@ Plugin URI: https://wordpress.org/extend/plugins/ewww-image-optimizer/
 Description: Reduce file sizes for images within WordPress including NextGEN Gallery and GRAND FlAGallery. Uses jpegtran, optipng/pngout, and gifsicle.
 Author: Shane Bishop
 Text Domain: ewww-image-optimizer
-Version: 2.6.2
+Version: 2.7.0
 Author URI: https://ewww.io/
 License: GPLv3
 */
@@ -909,6 +909,9 @@ function ewww_image_optimizer_mimetype( $path, $case ) {
 			case 'gif':
 				ewwwio_debug_message( 's3 type: image/gif' );
 				return 'image/gif';
+			case 'pdf':
+				ewwwio_debug_message( 's3 type: application/pdf' );
+				return 'application/pdf';
 		}
 	}
 	if ( function_exists( 'finfo_file' ) && defined( 'FILEINFO_MIME' ) ) {
@@ -1302,8 +1305,8 @@ function ewww_image_optimizer( $file, $gallery_type = 4, $converted = false, $ne
 		$file_group = $file_group['name'];
 	}
 	ewwwio_debug_message( "permissions: $file_perms, owner: $file_owner, group: $file_group" );
-	$type = ewww_image_optimizer_mimetype($file, 'i');
-	if ( strpos( $type, 'image' ) === FALSE ) {
+	$type = ewww_image_optimizer_mimetype( $file, 'i' );
+	if ( strpos( $type, 'image' ) === FALSE && strpos( $type, 'pdf' ) === FALSE ) {
 		ewwwio_debug_message( 'could not find any functions for mimetype detection' );
 		//otherwise we store an error message since we couldn't get the mime-type
 		return array( false, __( 'Unknown type: ' . $type, EWWW_IMAGE_OPTIMIZER_DOMAIN ), $converted, $original );
@@ -2099,7 +2102,7 @@ function ewww_image_optimizer( $file, $gallery_type = 4, $converted = false, $ne
 					exec( "$nice " . $tools['OPTIPNG'] . " -out " . ewww_image_optimizer_escapeshellarg( $pngfile ) . " -o$optipng_level -quiet $strip " . ewww_image_optimizer_escapeshellarg( $file ) );
 				}
 				// if pngout is enabled
-				if (!ewww_image_optimizer_get_option('ewww_image_optimizer_disable_pngout') && $tools['PNGOUT']) {
+				if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_pngout' ) && $tools['PNGOUT'] ) {
 					// retrieve the pngout optimization level
 					$pngout_level = ewww_image_optimizer_get_option('ewww_image_optimizer_pngout_level');
 					// if $pngfile exists (which means optipng was run already)
@@ -2136,6 +2139,11 @@ function ewww_image_optimizer( $file, $gallery_type = 4, $converted = false, $ne
 							unlink( $pngfile );
 						}
 					}
+			}
+			break;
+		case 'application/pdf':
+			if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_gif' ) ) {
+				list( $file, $converted, $result, $new_size ) = ewww_image_optimizer_cloud_optimizer( $file, $type );
 			}
 			break;
 		default:
