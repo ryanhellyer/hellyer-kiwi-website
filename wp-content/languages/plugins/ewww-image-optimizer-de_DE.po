@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-04 14:49:30+0000\n"
+"PO-Revision-Date: 2016-04-05 01:25:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,7 +12,7 @@ msgstr ""
 
 #: common.php:3657
 msgid "PDF cloud optimization"
-msgstr "PDF cloud Optimierung"
+msgstr "PDF Cloud Optimierung"
 
 #: common.php:3674
 msgid "Lossy PDF optimization"
@@ -22,7 +22,7 @@ msgstr "Verlustbehaftete PDF Optimierung"
 msgid "PDF optimization requires an EWWW Image Optimizer Cloud Subscription."
 msgstr "PDF Optimierung benötigt eine EWWW Image Optimizer Cloud Mitgliedschaft."
 
-#: aux-optimize.php:418 bulk.php:422 flag-integration.php:308
+#: aux-optimize.php:429 bulk.php:422 flag-integration.php:308
 #: nextcellent-integration.php:381 nextgen2-integration.php:432
 msgid "Error retrieving list of images"
 msgstr "Fehler beim Abruf der Bilderliste"
@@ -35,12 +35,12 @@ msgstr "Image credits verfügbar:"
 #: bulk.php:41 flag-integration.php:99 nextcellent-integration.php:242
 #: nextgen2-integration.php:289
 msgid "Last Image Optimized"
-msgstr ""
+msgstr "Zuletzt optimiertes Bild"
 
 #: bulk.php:51 flag-integration.php:109 nextcellent-integration.php:252
 #: nextgen2-integration.php:299
 msgid "Optimization Log"
-msgstr ""
+msgstr "Optimierungs-Protokoll"
 
 #: bulk.php:70 bulk.php:75
 msgid "This could require approximately %d image credits to complete."
@@ -72,7 +72,7 @@ msgstr "PHP trace"
 
 #: common.php:3088
 msgid "Run WebP upgrade"
-msgstr ""
+msgstr "WebP upgrade durchführen"
 
 #: ewww-image-optimizer.php:1004 ewww-image-optimizer.php:1026
 #: ewww-image-optimizer.php:1048 ewww-image-optimizer.php:1070
@@ -82,25 +82,25 @@ msgstr "Unbekannt"
 
 #: common.php:3405
 msgid "S3 Image Optimizer"
-msgstr ""
+msgstr "S3 Image Optimizer"
 
 #: common.php:3411
 msgid "Images stored in an Amazon S3 bucket can be optimized using our <a href=\"https://ewww.io/downloads/s3-image-optimizer/\">S3 Image Optimizer</a>."
-msgstr ""
+msgstr "Bilder, die in einem Amazon S3 Bucket gespeichert sind, können mit Hilfe unseres <a href=\"https://ewww.io/downloads/s3-image-optimizer/\">S3 Image Optimizer</a> optimiert werden."
 
 #. translators: used for Bulk Optimize progress bar, like so: Optimized 32/346
-#: bulk.php:371 flag-integration.php:213 nextcellent-integration.php:361
-#: nextgen2-integration.php:413
+#: bulk.php:371 bulk.php:492 common.php:2084 flag-integration.php:213
+#: nextcellent-integration.php:361 nextgen2-integration.php:413
 msgid "Optimized"
 msgstr "Optimiert"
 
 #: common.php:3700
 msgid "Levels 4 and above are unlikely to yield any additional savings."
-msgstr "Level 4 und darüber erzielt vermutlich keine zusätzliche Ersparnis."
+msgstr "Level 4 und darüber erzielen vermutlich keine zusätzliche Ersparnis."
 
 #: common.php:3745
 msgid "Skip Small Images"
-msgstr "Überspringe kleine Bilder"
+msgstr "Kleine Bilder überspringen"
 
 #: common.php:3745
 msgid "Do not optimize images smaller than this (in bytes)"
@@ -108,7 +108,7 @@ msgstr "Optimierung nicht durchführen bei Bildern kleiner als (in bytes)"
 
 #: common.php:3747
 msgid "Skip Large PNG Images"
-msgstr "Überspringe große PNG Bilder"
+msgstr "Große PNG Bilder überspringen"
 
 #: common.php:3747
 msgid "Do not optimize PNG images larger than this (in bytes)"
@@ -120,7 +120,7 @@ msgstr "Bilder in voller Größe vom verlustbehafteten Optimieren ausnehmen"
 
 #: common.php:3751
 msgid "Exclude full-size images from metadata removal"
-msgstr "Bilder in Vollbildgröße vom Entfernen der Metadaten ausschließen."
+msgstr "Bilder in voller Größe vom Entfernen der Metadaten ausschließen"
 
 #: common.php:3753 ewww-image-optimizer.php:288 ewww-image-optimizer.php:448
 msgid "Use System Paths"
@@ -140,7 +140,7 @@ msgstr "Konvertierung ist nur verfügbar für Bilder in der Medienbibliothek (au
 
 #: common.php:3766
 msgid "NOTE:"
-msgstr "NOTIZ:"
+msgstr "Anmerkung:"
 
 #: common.php:3766
 msgid "The plugin will attempt to update image locations for any posts that contain the images. You may still need to manually update locations/urls for converted images."
@@ -160,7 +160,7 @@ msgstr "Lösche Originale"
 
 #: common.php:3770
 msgid "This will remove the original image from the server after a successful conversion."
-msgstr "Dies wird das Originalbild vom Server löschen nach erfolgreicher Konvertierung."
+msgstr "Dies wird das Originalbild nach erfolgreicher Konvertierung vom Server löschen."
 
 #: common.php:3771
 msgid "JPG/PNG to WebP"
@@ -399,24 +399,24 @@ msgstr "Optimierung gescheitert"
 msgid "png tools are disabled"
 msgstr "png Werkzeuge sind deaktiviert"
 
-#: ewww-image-optimizer.php:2211
+#: ewww-image-optimizer.php:2216
 msgid "You do not have permission to install image optimizer utilities."
-msgstr ""
+msgstr "Dir fehlt die Berechtigung Bildoptimierungswerkzeuge zu installieren."
 
-#: ewww-image-optimizer.php:2217
+#: ewww-image-optimizer.php:2222
 msgid "tar command not found"
 msgstr "tar Befehl nicht gefunden"
 
-#: ewww-image-optimizer.php:2236 ewww-image-optimizer.php:2255
-#: ewww-image-optimizer.php:2273
+#: ewww-image-optimizer.php:2241 ewww-image-optimizer.php:2260
+#: ewww-image-optimizer.php:2278
 msgid "could not move pngout"
 msgstr "Konnte pngout nicht verschieben"
 
-#: ewww-image-optimizer.php:2239 ewww-image-optimizer.php:2258
+#: ewww-image-optimizer.php:2244 ewww-image-optimizer.php:2263
 msgid "could not set permissions"
 msgstr "Konnte keine Berechtigungen setzen"
 
-#: ewww-image-optimizer.php:2243 ewww-image-optimizer.php:2262
+#: ewww-image-optimizer.php:2248 ewww-image-optimizer.php:2267
 msgid "extraction of files failed"
 msgstr "Extraktion von Dateien gescheitert"
 
@@ -428,7 +428,7 @@ msgstr "%1$d Bilder wurden ausgewählt (%2$d unoptimiert), mit %3$d Resizes (%4$
 #: flag-integration.php:254 nextcellent-integration.php:79
 #: nextgen2-integration.php:93
 msgid "You do not have permission to work with uploaded files."
-msgstr ""
+msgstr "Du hast keine Rechte mit hochgeladenen Dateien zu arbeiten."
 
 #: flag-integration.php:386 iocli.php:425
 msgid "Optimized size – %s"
@@ -517,7 +517,7 @@ msgstr "EWWW Image Optimizer"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wordpress.org/extend/plugins/ewww-image-optimizer/"
-msgstr ""
+msgstr "http://wordpress.org/extend/plugins/ewww-image-optimizer/"
 
 #. Description of the plugin/theme
 msgid "Reduce file sizes for images within WordPress including NextGEN Gallery and GRAND FlAGallery. Uses jpegtran, optipng/pngout, and gifsicle."
@@ -613,7 +613,7 @@ msgstr "Bereits optimiert"
 msgid "No savings"
 msgstr "Nichts gespeichert"
 
-#: bulk.php:149 common.php:1951 ewww-image-optimizer.php:2158
+#: bulk.php:149 common.php:1951 ewww-image-optimizer.php:2163
 msgid "License exceeded"
 msgstr "Lizenz abgelaufen"
 
@@ -642,14 +642,14 @@ msgstr "Bildgröße: %s"
 msgid "Remove from table"
 msgstr "Von der Liste streichen"
 
-#: aux-optimize.php:401 aux-optimize.php:436 common.php:1463 common.php:3296
+#: aux-optimize.php:412 aux-optimize.php:447 common.php:1463 common.php:3296
 #: flag-integration.php:262 flag-integration.php:297 mwebp.php:84
 #: nextcellent-integration.php:88 nextcellent-integration.php:370
 #: nextgen2-integration.php:102 nextgen2-integration.php:422
 msgid "Access denied."
 msgstr "Zugriff verweigert."
 
-#: aux-optimize.php:423 bulk.php:432 bulk.php:434 bulk.php:532 bulk.php:534
+#: aux-optimize.php:434 bulk.php:432 bulk.php:434 bulk.php:532 bulk.php:534
 #: common.php:2098 flag-integration.php:317 flag-integration.php:319
 #: flag-integration.php:406 flag-integration.php:408 iocli.php:204
 #: nextcellent-integration.php:390 nextcellent-integration.php:392
@@ -659,7 +659,7 @@ msgstr "Zugriff verweigert."
 msgid "Optimizing"
 msgstr "Optimiere"
 
-#: aux-optimize.php:445 bulk.php:554 mwebp.php:203
+#: aux-optimize.php:456 bulk.php:554 mwebp.php:203
 msgid "Finished"
 msgstr "Beendet"
 
@@ -754,9 +754,8 @@ msgstr "Vorübergehender Fehler, Sekunden bis Neuversuch:"
 msgid "Could not remove image from table."
 msgstr "Konnte das Bild nicht aus der Tabelle entfernen"
 
-#: bulk.php:492 common.php:2084 flag-integration.php:379 iocli.php:374
-#: iocli.php:418 iocli.php:498 iocli.php:570 nextcellent-integration.php:447
-#: nextgen2-integration.php:503
+#: flag-integration.php:379 iocli.php:374 iocli.php:418 iocli.php:498
+#: iocli.php:570 nextcellent-integration.php:447 nextgen2-integration.php:503
 msgid "Optimized image:"
 msgstr "Optimierte Bilder:"
 
@@ -840,7 +839,7 @@ msgstr "Einstellungen"
 
 #: common.php:1453
 msgid "You do not have permission to optimize images."
-msgstr ""
+msgstr "Du hast keine Rechte Bilder zu optimieren."
 
 #: common.php:1458 flag-integration.php:258 nextcellent-integration.php:83
 #: nextgen2-integration.php:97
@@ -1013,7 +1012,7 @@ msgstr "Plugin Status"
 
 #: common.php:3423
 msgid "All Clear"
-msgstr "Alles leer"
+msgstr "Alles klar"
 
 #: common.php:3424
 msgid "Requires Attention"
@@ -1037,7 +1036,7 @@ msgstr "Nicht verifiziert"
 
 #: common.php:3442
 msgid "If updated versions are available below you may either download the newer versions and install them yourself, or uncheck \"Use System Paths\" and use the bundled tools. "
-msgstr ""
+msgstr "Falls hier unten Updates vorliegen kannst du entweder die neuen Versionen herunterladen und selbst installieren, oder den Haken bei \"Benutze Systempfade\" entfernen und die eingebauten Werkzeuge benutzen."
 
 #: common.php:3443 common.php:3446
 msgid "Updates are optional, but may contain increased optimization or security patches"
