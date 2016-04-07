@@ -4,7 +4,7 @@
 // TODO: ajaxify one-click actions
 // TODO: implement final phase of webp - forced webp with cdn url matching
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '271.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '272.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -1182,7 +1182,14 @@ function ewww_image_optimizer_retina( $id, $retina_path ) {
 				'id' => $already_optimized['id'],
 			));
 	} else {
-		ewww_image_optimizer( $retina_path, 7, false, false );
+		global $ewww_defer;
+		if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_noauto' ) ) {
+			if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
+				ewww_image_optimizer_add_deferred_attachment( "file,$retina_path" );
+				return;
+			}
+			ewww_image_optimizer( $retina_path, 7, false, false );
+		}
 	}
 	ewwwio_memory( __FUNCTION__ );
 }
@@ -2392,7 +2399,9 @@ function ewww_image_optimizer_update_table_as3cf( $local_path, $s3_path ) {
  */
 function ewww_image_optimizer_resize_from_meta_data( $meta, $ID = null, $log = true ) {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
-	if ( ! is_array( $meta ) ) {
+	if ( ! is_array( $meta ) && empty( $meta ) ) {
+		$meta = array();
+	} elseif ( ! is_array( $meta ) ) {
 		ewwwio_debug_message( 'attachment meta is not a usable array' );
 		return $meta;
 	}
