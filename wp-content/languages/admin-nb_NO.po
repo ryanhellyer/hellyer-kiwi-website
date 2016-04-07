@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-05 10:43:23+0000\n"
+"PO-Revision-Date: 2016-04-07 11:47:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -132,11 +132,12 @@ msgstr "Innebygget WordPress-innlegg"
 #. translators: 1: theme name, 2: version number
 #. translators: 1: theme name, 2: version number
 #. translators: 1: theme name, 2: version number
+#. translators: 1: plugin name, 2: version number
 #: wp-admin/includes/theme.php:174 wp-admin/includes/theme.php:183
 #: wp-admin/includes/theme.php:192 wp-admin/includes/update.php:346
 #: wp-admin/includes/update.php:355 wp-admin/includes/update.php:364
 #: wp-admin/includes/update.php:476 wp-admin/includes/update.php:485
-#: wp-admin/includes/update.php:494
+#: wp-admin/includes/update.php:494 wp-admin/update-core.php:288
 msgid "View %1$s version %2$s details"
 msgstr "Se detaljer for %1$s versjon %2$s"
 
@@ -175,11 +176,6 @@ msgstr "Nytt tema aktivert."
 #: wp-admin/themes.php:298
 msgid "The following themes are installed but incomplete."
 msgstr "Disse temaene er installerte men ufullstendige."
-
-#. translators: 1: Plugin name 2: Plugin version
-#: wp-admin/update-core.php:286
-msgid "View %1$s version %2$s details."
-msgstr "Se detaljene for %1$s versjon %2$s."
 
 #: wp-admin/themes.php:165
 msgid "Settings saved and theme activated."
@@ -418,7 +414,7 @@ msgid "View &#8220;%s&#8221; archive"
 msgstr "Vis arkivet for «%s»"
 
 #: wp-admin/includes/class-wp-upgrader-skins.php:228
-#: wp-admin/update-core.php:666 wp-admin/update-core.php:695
+#: wp-admin/update-core.php:671 wp-admin/update-core.php:700
 msgid "Update progress"
 msgstr "Fremdrift"
 
@@ -1516,7 +1512,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Administration_Screens#Comments\" 
 msgid "<a href=\"https://codex.wordpress.org/Posts_Add_New_Screen\" target=\"_blank\">Documentation on Writing and Editing Posts</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Posts_Add_New_Screen\" target=\"_blank\">Dokumentasjon om skriving og redigering av innlegg</a>"
 
-#: wp-admin/update-core.php:571
+#: wp-admin/update-core.php:576
 msgid "<a href=\"https://codex.wordpress.org/Dashboard_Updates_Screen\" target=\"_blank\">Documentation on Updating WordPress</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Dashboard_Updates_Screen\" target=\"_blank\">Dokumentasjon om oppdatering av WordPress</a>"
 
@@ -1821,7 +1817,7 @@ msgstr "Forside"
 msgid "This theme has not been rated yet."
 msgstr "Dette temaet har ikke fått noen vurderinger ennå."
 
-#: wp-admin/update-core.php:417
+#: wp-admin/update-core.php:422
 msgid "New translations are available."
 msgstr "Nye oversettelser er tilgjengelige."
 
@@ -2677,7 +2673,7 @@ msgstr "Takk for at du skaper med <a href=\"%s\">WordPress</a>."
 #: wp-admin/plugin-editor.php:145 wp-admin/plugin-install.php:88
 #: wp-admin/plugins.php:397 wp-admin/revision.php:120
 #: wp-admin/theme-editor.php:43 wp-admin/theme-install.php:108
-#: wp-admin/themes.php:119 wp-admin/tools.php:29 wp-admin/update-core.php:572
+#: wp-admin/themes.php:119 wp-admin/tools.php:29 wp-admin/update-core.php:577
 #: wp-admin/upload.php:67 wp-admin/upload.php:208 wp-admin/user-edit.php:55
 #: wp-admin/user-new.php:206 wp-admin/users.php:69 wp-admin/widgets.php:75
 msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
@@ -2715,27 +2711,27 @@ msgstr "Rediger dato og tid"
 msgid "Search installed themes..."
 msgstr "Søk i installerte temaer..."
 
-#: wp-admin/update-core.php:548
+#: wp-admin/update-core.php:553
 msgid "If an update is available, you&#8127;ll see a notification appear in the Toolbar and navigation menu."
 msgstr "Hvis en oppdatering er tilgjengelig, vil du se et varsel i verktøylinjen og navigasjonsmenyen."
 
-#: wp-admin/update-core.php:556
+#: wp-admin/update-core.php:561
 msgid "<strong>WordPress</strong> &mdash; Updating your WordPress installation is a simple one-click procedure: just <strong>click on the &#8220;Update Now&#8221; button</strong> when you are notified that a new version is available."
 msgstr "<strong>WordPress</strong> &mdash; Å oppdatere WordPress er enkelt, og krever bare et klikk: <strong>klikk på «Oppdater nå»-knappen</strong> når du blir varslet om at en ny versjon er tilgjengelig."
 
-#: wp-admin/update-core.php:556
+#: wp-admin/update-core.php:561
 msgid "In most cases, WordPress will automatically apply maintenance and security updates in the background for you."
 msgstr "I de fleste tilfeller vil WordPress automatisk legge inn vedlikeholds- og sikkerhetsoppdateringer for deg i bakgrunnen."
 
-#: wp-admin/update-core.php:560
+#: wp-admin/update-core.php:565
 msgid "<strong>Translations</strong> &mdash; The files translating WordPress into your language are updated for you whenever any other updates occur. But if these files are out of date, you can <strong>click the &#8220;Update Translations&#8221;</strong> button."
 msgstr "<strong>Oversettelser</strong> &mdash; Filene som oversetter WordPress til ditt språk oppdateres sammen med andre oppdateringer. Men, hvis disse filene er utdaterte kan du klikke på <strong>«Oppdater oversettelser»-knappen</strong>."
 
-#: wp-admin/update-core.php:547
+#: wp-admin/update-core.php:552
 msgid "On this screen, you can update to the latest version of WordPress, as well as update your themes, plugins, and translations from the WordPress.org repositories."
 msgstr "På denne skjermen kan du oppdatere til siste versjon av WordPress, i tillegg til å oppdatere dine temaer og utvidelser fra WordPress.org-repoen."
 
-#: wp-admin/update-core.php:557
+#: wp-admin/update-core.php:562
 msgid "<strong>Themes and Plugins</strong> &mdash; To update individual themes or plugins from this screen, use the checkboxes to make your selection, then <strong>click on the appropriate &#8220;Update&#8221; button</strong>. To update all of your themes or plugins at once, you can check the box at the top of the section to select all before clicking the update button."
 msgstr "<strong>Temaer og utvidelser</strong> &mdash; For å oppdatere individuelle temaer eller utvidelser fra denne skjermen, bruk avkrysningsboksene for å gjøre ditt valg, så <strong>klikker du på den tilsvarende «Oppdater»-knappen</strong>. For å oppdatere alle temaer og utvidelser samtidig kan du huke av boksen i toppen av valgområdet for å velge alle før du trykker på knappen for oppdatering."
 
@@ -3055,7 +3051,7 @@ msgid "Your site was running version %s."
 msgstr "Ditt nettsted kjørte versjon %s."
 
 #: wp-admin/includes/class-wp-upgrader-skins.php:791
-#: wp-admin/update-core.php:419 wp-admin/update-core.php:712
+#: wp-admin/update-core.php:424 wp-admin/update-core.php:717
 msgid "Update Translations"
 msgstr "Oppdater oversettelser"
 
@@ -3120,7 +3116,7 @@ msgstr "Dette betyr at ditt nettsted kan være utilgjengelig eller ødelagt. Men
 msgid "Please check out your site now. It's possible that everything is working. If it says you need to update, you should do so:"
 msgstr "Vennligst sjekk ditt nettsted nå. Det er mulig at alt fungerer. Hvis det sier at du må oppdatere, bør du gjøre dette:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3383 wp-admin/update-core.php:548
+#: wp-admin/includes/class-wp-upgrader.php:3383 wp-admin/update-core.php:553
 msgid "Keeping your site updated is important for security. It also makes the internet a safer place for you and your readers."
 msgstr "Å holde nettstedet oppdatert er viktig for sikkerheten. Det gjør også Internett til et tryggere sted for deg og dine lesere."
 
@@ -3168,11 +3164,11 @@ msgstr "Hvis du må re-installere versjon %s, kan du gjøre dette her, eller las
 msgid "Future security updates will be applied automatically."
 msgstr "Fremtidige sikkerhetsoppdateringer vil bli lastet ned automatisk."
 
-#: wp-admin/update-core.php:407 wp-admin/update-core.php:415
+#: wp-admin/update-core.php:412 wp-admin/update-core.php:420
 msgid "Translations"
 msgstr "Oversettelser"
 
-#: wp-admin/update-core.php:408
+#: wp-admin/update-core.php:413
 msgid "Your translations are all up to date."
 msgstr "Alle oversettelser er oppdaterte."
 
@@ -4052,7 +4048,7 @@ msgstr "Hent favoritter"
 msgid "The \"%s\" options group has been removed. Use another settings group."
 msgstr "Gruppen med innstillinger for \"%s\" har blitt fjernet. Bruk en annen gruppe med innstillinger."
 
-#: wp-admin/includes/update-core.php:1222 wp-admin/update-core.php:497
+#: wp-admin/includes/update-core.php:1222 wp-admin/update-core.php:502
 msgid "Welcome to WordPress %1$s. You will be redirected to the About WordPress screen. If not, click <a href=\"%2$s\">here</a>."
 msgstr "Velkommen til WordPress %1$s. Du vil bli omdirigert til Om WordPress-skjermen. Hvis ikke, klikk <a href=\"%2$s\">her</a>."
 
@@ -4205,7 +4201,7 @@ msgstr "Velg kommentar"
 #: wp-admin/includes/class-wp-posts-list-table.php:801
 #: wp-admin/includes/class-wp-terms-list-table.php:338
 #: wp-admin/includes/class-wp-users-list-table.php:430
-#: wp-admin/update-core.php:295 wp-admin/update-core.php:366
+#: wp-admin/update-core.php:300 wp-admin/update-core.php:371
 msgid "Select %s"
 msgstr "Velg %s"
 
@@ -4467,8 +4463,8 @@ msgstr "Legg til"
 
 #: wp-admin/includes/class-wp-list-table.php:1069
 #: wp-admin/includes/nav-menu.php:553 wp-admin/includes/nav-menu.php:744
-#: wp-admin/update-core.php:249 wp-admin/update-core.php:320
-#: wp-admin/update-core.php:352 wp-admin/update-core.php:391
+#: wp-admin/update-core.php:249 wp-admin/update-core.php:325
+#: wp-admin/update-core.php:357 wp-admin/update-core.php:396
 msgid "Select All"
 msgstr "Velg alle"
 
@@ -5044,7 +5040,7 @@ msgstr "Dette skjermbildet lar deg velge strukturen på permalenkene dine. Du ka
 msgid "Return to Updates"
 msgstr "Tilbake til oppdateringer"
 
-#: wp-admin/includes/update-core.php:1223 wp-admin/update-core.php:498
+#: wp-admin/includes/update-core.php:1223 wp-admin/update-core.php:503
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 msgstr "Velkommen til WordPress %1$s. <a href=\"%2$s\">Lær mer</a>."
 
@@ -5124,7 +5120,7 @@ msgstr "Tilgjengelige handlinger"
 msgid "Authors can publish and manage their own posts, and are able to upload files."
 msgstr "Forfattere kan publisere og endre sine egne innlegg, i tillegg til å laste opp filer."
 
-#: wp-admin/update-core.php:565
+#: wp-admin/update-core.php:570
 msgid "How to Update"
 msgstr "Hvordan du oppdaterer"
 
@@ -5437,6 +5433,11 @@ msgstr "Tabellen %s er allerede optimalisert."
 msgid "The %s table is okay."
 msgstr "Tabellen %s er OK."
 
+#. translators: %s: plugin version
+#: wp-admin/update-core.php:290
+msgid "View version %s details."
+msgstr "Se detaljene for versjon %1$s."
+
 #: wp-admin/includes/import.php:195
 msgid "Tumblr"
 msgstr "Tumblr mikroblogg"
@@ -5511,7 +5512,7 @@ msgstr "Du kan bruke følgende kontroller til å ordne kontrollpanelet slik at d
 #: wp-admin/plugin-install.php:71 wp-admin/plugins.php:371
 #: wp-admin/revision.php:114 wp-admin/theme-editor.php:25
 #: wp-admin/theme-install.php:91 wp-admin/themes.php:82
-#: wp-admin/update-core.php:552 wp-admin/upload.php:48 wp-admin/upload.php:186
+#: wp-admin/update-core.php:557 wp-admin/upload.php:48 wp-admin/upload.php:186
 #: wp-admin/user-edit.php:48 wp-admin/user-new.php:186 wp-admin/users.php:31
 #: wp-admin/widgets.php:51
 msgid "Overview"
@@ -5643,7 +5644,7 @@ msgstr "Rolle"
 #: wp-admin/plugin-editor.php:142 wp-admin/plugin-install.php:86
 #: wp-admin/plugins.php:395 wp-admin/revision.php:118
 #: wp-admin/theme-editor.php:38 wp-admin/theme-install.php:106
-#: wp-admin/themes.php:117 wp-admin/tools.php:27 wp-admin/update-core.php:570
+#: wp-admin/themes.php:117 wp-admin/tools.php:27 wp-admin/update-core.php:575
 #: wp-admin/upload.php:65 wp-admin/upload.php:206 wp-admin/user-edit.php:53
 #: wp-admin/user-new.php:204 wp-admin/users.php:66 wp-admin/widgets.php:73
 msgid "For more information:"
@@ -5992,9 +5993,9 @@ msgstr "Du kan ikke slette en utvidelse som er aktivt på hovednettstedet."
 msgid "Default Post Format"
 msgstr "Standardformat for innlegg"
 
-#: wp-admin/update-core.php:23 wp-admin/update-core.php:621
-#: wp-admin/update-core.php:645 wp-admin/update-core.php:673
-#: wp-admin/update-core.php:703
+#: wp-admin/update-core.php:23 wp-admin/update-core.php:626
+#: wp-admin/update-core.php:650 wp-admin/update-core.php:678
+#: wp-admin/update-core.php:708
 msgid "You do not have sufficient permissions to update this site."
 msgstr "Du har ikke tilstrekkelige rettigheter til å oppdatere dette nettstedet."
 
@@ -6217,7 +6218,7 @@ msgstr "%1$s &lsaquo; %2$s &#8212; WordPress"
 msgid "Search Installed Themes"
 msgstr "Søk blant installerte temaer"
 
-#: wp-admin/update-core.php:344
+#: wp-admin/update-core.php:349
 msgid "<strong>Please Note:</strong> Any customizations you have made to theme files will be lost. Please consider using <a href=\"%s\">child themes</a> for modifications."
 msgstr "<strong>Merk:</strong> Alle tilpasninger du har gjort i tema-filene vil gå tapt. Vennligst vurder å bruke <a href=\"%s\">dattertemaer</a> for modifikasjoner."
 
@@ -6228,20 +6229,20 @@ msgid_plural "Sticky <span class=\"count\">(%s)</span>"
 msgstr[0] "Klebrig <span class=\"count\">(%s)</span>"
 msgstr[1] "Klebrige <span class=\"count\">(%s)</span>"
 
-#: wp-admin/update-core.php:590
+#: wp-admin/update-core.php:595
 msgid "Please select one or more plugins to update."
 msgstr "Velg én eller flere utvidelser for å oppdatere."
 
-#: wp-admin/update-core.php:588
+#: wp-admin/update-core.php:593
 msgid "Please select one or more themes to update."
 msgstr "Velg ett eller flere temaer for å oppdatere."
 
 #. translators: %1 date, %2 time.
-#: wp-admin/update-core.php:596
+#: wp-admin/update-core.php:601
 msgid "Last checked on %1$s at %2$s."
 msgstr "Sist sjekket %1$s kl. %2$s."
 
-#: wp-admin/update-core.php:597
+#: wp-admin/update-core.php:602
 msgid "Check Again"
 msgstr "Sjekk igjen"
 
@@ -6546,7 +6547,7 @@ msgstr "Alle dine utvidelser er oppdaterte."
 msgid "You have the latest version of WordPress."
 msgstr "Du har den siste versjonen av WordPress."
 
-#: wp-admin/update-core.php:336
+#: wp-admin/update-core.php:341
 msgid "Your themes are all up to date."
 msgstr "Alle dine temaer er oppdaterte."
 
@@ -6879,7 +6880,7 @@ msgstr "+ %s"
 
 #. translators: 1: plugin version, 2: new version
 #. translators: 1: theme version, 2: new version
-#: wp-admin/update-core.php:304 wp-admin/update-core.php:376
+#: wp-admin/update-core.php:309 wp-admin/update-core.php:381
 msgid "You have version %1$s installed. Update to %2$s."
 msgstr "Du bruker versjon %1$s. Oppgrader til %2$s."
 
@@ -7125,7 +7126,7 @@ msgstr[1] "%s kommentarer flyttet til papirkurven."
 msgid "You are not allowed to move this item to the Trash."
 msgstr "Du har ikke lov til å flytte dette til papirkurven."
 
-#: wp-admin/update-core.php:343
+#: wp-admin/update-core.php:348
 msgid "The following themes have new versions available. Check the ones you want to update and then click &#8220;Update Themes&#8221;."
 msgstr "Følgende temaer har nye versjoner tilgjengelig. Merk de du vil oppdatere og klikk &laquo;Oppdater tema&raquo;."
 
@@ -7298,21 +7299,21 @@ msgid "User already exists. Password inherited."
 msgstr "Brukeren finnes allerede. Det gamle passordet ble beholdt."
 
 #: wp-admin/includes/class-wp-upgrader.php:3030
-#: wp-admin/includes/update-core.php:1219 wp-admin/update-core.php:496
+#: wp-admin/includes/update-core.php:1219 wp-admin/update-core.php:501
 msgid "WordPress updated successfully"
 msgstr "Oppdateringen av WordPress var vellykket"
 
-#: wp-admin/update-core.php:456
+#: wp-admin/update-core.php:461
 msgid "Update WordPress"
 msgstr "Oppdater WordPress"
 
 #: wp-admin/plugins.php:131 wp-admin/update-core.php:244
-#: wp-admin/update-core.php:324 wp-admin/update-core.php:661
-#: wp-admin/update-core.php:665
+#: wp-admin/update-core.php:329 wp-admin/update-core.php:666
+#: wp-admin/update-core.php:670
 msgid "Update Plugins"
 msgstr "Oppdater utvidelser"
 
-#: wp-admin/update-core.php:544 wp-admin/update-core.php:583
+#: wp-admin/update-core.php:549 wp-admin/update-core.php:588
 msgid "WordPress Updates"
 msgstr "WordPress oppdateringer"
 
@@ -7811,8 +7812,8 @@ msgstr "Støtte for flernettsted er ikke aktivert."
 msgid "Visit"
 msgstr "Gå til"
 
-#: wp-admin/update-core.php:347 wp-admin/update-core.php:395
-#: wp-admin/update-core.php:689 wp-admin/update-core.php:694
+#: wp-admin/update-core.php:352 wp-admin/update-core.php:400
+#: wp-admin/update-core.php:694 wp-admin/update-core.php:699
 msgid "Update Themes"
 msgstr "Oppdater temaer"
 
@@ -8500,7 +8501,7 @@ msgstr "Kompabilitet med WordPress %1$s: %2$d%% (%3$d \"virker\" av totalt %4$d 
 msgid "Compatibility with WordPress %1$s: Unknown"
 msgstr "Kompabilitet med WordPress %1$s: Ukjent"
 
-#: wp-admin/includes/class-wp-upgrader.php:3028 wp-admin/update-core.php:491
+#: wp-admin/includes/class-wp-upgrader.php:3028 wp-admin/update-core.php:496
 msgid "Installation Failed"
 msgstr "Installasjon feilet"
 

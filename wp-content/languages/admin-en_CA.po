@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-02 13:10:48+0000\n"
+"PO-Revision-Date: 2016-04-07 09:09:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,7 +54,7 @@ msgid "The Text mode allows you to enter HTML along with your post text. Note th
 msgstr "The Text mode allows you to enter HTML along with your post text. Note that &lt;p&gt; and &lt;br&gt; tags are converted to line breaks when switching to the Text editor to make it less cluttered. When you type, a single line break can be used instead of typing &lt;br&gt;, and two line breaks instead of paragraph tags. The line breaks are converted back to tags automatically."
 
 #: wp-admin/edit-form-advanced.php:366
-msgid "Visual mode gives you an editor that is similar to a word processor. Click the Toolbar Toggle button to get a second row of controls. "
+msgid "Visual mode gives you an editor that is similar to a word processor. Click the Toolbar Toggle button to get a second row of controls."
 msgstr "Visual mode gives you an editor that is similar to a word processor. Click the Toolbar Toggle button to get a second row of controls. "
 
 #. translators: 1: plugin name, 2: details URL, 3: accessibility text, 4:
@@ -132,11 +132,12 @@ msgstr "Embedded WordPress Post"
 #. translators: 1: theme name, 2: version number
 #. translators: 1: theme name, 2: version number
 #. translators: 1: theme name, 2: version number
+#. translators: 1: plugin name, 2: version number
 #: wp-admin/includes/theme.php:174 wp-admin/includes/theme.php:183
 #: wp-admin/includes/theme.php:192 wp-admin/includes/update.php:346
 #: wp-admin/includes/update.php:355 wp-admin/includes/update.php:364
 #: wp-admin/includes/update.php:476 wp-admin/includes/update.php:485
-#: wp-admin/includes/update.php:494
+#: wp-admin/includes/update.php:494 wp-admin/update-core.php:288
 msgid "View %1$s version %2$s details"
 msgstr "View %1$s version %2$s details"
 
@@ -175,11 +176,6 @@ msgstr "New theme activated."
 #: wp-admin/themes.php:298
 msgid "The following themes are installed but incomplete."
 msgstr "The following themes are installed but incomplete."
-
-#. translators: 1: Plugin name 2: Plugin version
-#: wp-admin/update-core.php:286
-msgid "View %1$s version %2$s details."
-msgstr "View %1$s version %2$s details."
 
 #: wp-admin/themes.php:165
 msgid "Settings saved and theme activated."
@@ -418,7 +414,7 @@ msgid "View &#8220;%s&#8221; archive"
 msgstr "View &#8220;%s&#8221; archive"
 
 #: wp-admin/includes/class-wp-upgrader-skins.php:228
-#: wp-admin/update-core.php:666 wp-admin/update-core.php:695
+#: wp-admin/update-core.php:671 wp-admin/update-core.php:700
 msgid "Update progress"
 msgstr "Update progress"
 
@@ -1516,7 +1512,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Administration_Screens#Comments\" 
 msgid "<a href=\"https://codex.wordpress.org/Posts_Add_New_Screen\" target=\"_blank\">Documentation on Writing and Editing Posts</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Posts_Add_New_Screen\" target=\"_blank\">Documentation on Writing and Editing Posts</a>"
 
-#: wp-admin/update-core.php:571
+#: wp-admin/update-core.php:576
 msgid "<a href=\"https://codex.wordpress.org/Dashboard_Updates_Screen\" target=\"_blank\">Documentation on Updating WordPress</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Dashboard_Updates_Screen\" target=\"_blank\">Documentation on Updating WordPress</a>"
 
@@ -1821,7 +1817,7 @@ msgstr "Front Page"
 msgid "This theme has not been rated yet."
 msgstr "This theme has not been rated yet."
 
-#: wp-admin/update-core.php:417
+#: wp-admin/update-core.php:422
 msgid "New translations are available."
 msgstr "New translations are available."
 
@@ -2682,7 +2678,7 @@ msgstr "Thank you for creating with <a href=\"%s\">WordPress</a>."
 #: wp-admin/plugin-editor.php:145 wp-admin/plugin-install.php:88
 #: wp-admin/plugins.php:397 wp-admin/revision.php:120
 #: wp-admin/theme-editor.php:43 wp-admin/theme-install.php:108
-#: wp-admin/themes.php:119 wp-admin/tools.php:29 wp-admin/update-core.php:572
+#: wp-admin/themes.php:119 wp-admin/tools.php:29 wp-admin/update-core.php:577
 #: wp-admin/upload.php:67 wp-admin/upload.php:208 wp-admin/user-edit.php:55
 #: wp-admin/user-new.php:206 wp-admin/users.php:69 wp-admin/widgets.php:75
 msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
@@ -2720,27 +2716,27 @@ msgstr "Edit date and time"
 msgid "Search installed themes..."
 msgstr "Search installed themes..."
 
-#: wp-admin/update-core.php:548
+#: wp-admin/update-core.php:553
 msgid "If an update is available, you&#8127;ll see a notification appear in the Toolbar and navigation menu."
 msgstr "If an update is available, you&#8127;ll see a notification appear in the Toolbar and navigation menu."
 
-#: wp-admin/update-core.php:556
+#: wp-admin/update-core.php:561
 msgid "<strong>WordPress</strong> &mdash; Updating your WordPress installation is a simple one-click procedure: just <strong>click on the &#8220;Update Now&#8221; button</strong> when you are notified that a new version is available."
 msgstr "<strong>WordPress</strong> &mdash; Updating your WordPress installation is a simple one-click procedure: just <strong>click on the &#8220;Update Now&#8221; button</strong> when you are notified that a new version is available."
 
-#: wp-admin/update-core.php:556
+#: wp-admin/update-core.php:561
 msgid "In most cases, WordPress will automatically apply maintenance and security updates in the background for you."
 msgstr "In most cases, WordPress will automatically apply maintenance and security updates in the background for you."
 
-#: wp-admin/update-core.php:560
+#: wp-admin/update-core.php:565
 msgid "<strong>Translations</strong> &mdash; The files translating WordPress into your language are updated for you whenever any other updates occur. But if these files are out of date, you can <strong>click the &#8220;Update Translations&#8221;</strong> button."
 msgstr "<strong>Localization</strong> &mdash; The files translating WordPress into your Canadian English are updated for you whenever any other updates occur. But if these files are out of date, you can <strong>click the &#8220;Update Translations&#8221;</strong> button."
 
-#: wp-admin/update-core.php:547
+#: wp-admin/update-core.php:552
 msgid "On this screen, you can update to the latest version of WordPress, as well as update your themes, plugins, and translations from the WordPress.org repositories."
 msgstr "On this screen, you can update to the latest version of WordPress, as well as update your themes, plugins, and translations from the WordPress.org repositories."
 
-#: wp-admin/update-core.php:557
+#: wp-admin/update-core.php:562
 msgid "<strong>Themes and Plugins</strong> &mdash; To update individual themes or plugins from this screen, use the checkboxes to make your selection, then <strong>click on the appropriate &#8220;Update&#8221; button</strong>. To update all of your themes or plugins at once, you can check the box at the top of the section to select all before clicking the update button."
 msgstr "<strong>Themes and Plugins</strong> &mdash; To update individual themes or plugins from this screen, use the checkboxes to make your selection, then <strong>click on the appropriate &#8220;Update&#8221; button</strong>. To update all of your themes or plugins at once, you can check the box at the top of the section to select all before clicking the update button."
 
@@ -3060,7 +3056,7 @@ msgid "Your site was running version %s."
 msgstr "Your site was running version %s."
 
 #: wp-admin/includes/class-wp-upgrader-skins.php:791
-#: wp-admin/update-core.php:419 wp-admin/update-core.php:712
+#: wp-admin/update-core.php:424 wp-admin/update-core.php:717
 msgid "Update Translations"
 msgstr "Update Translations"
 
@@ -3125,7 +3121,7 @@ msgstr "This means your site may be offline or broken. Don't panic; this can be 
 msgid "Please check out your site now. It's possible that everything is working. If it says you need to update, you should do so:"
 msgstr "Please check out your site now. It's possible that everything is working. If it says you need to update, you should do so:"
 
-#: wp-admin/includes/class-wp-upgrader.php:3383 wp-admin/update-core.php:548
+#: wp-admin/includes/class-wp-upgrader.php:3383 wp-admin/update-core.php:553
 msgid "Keeping your site updated is important for security. It also makes the internet a safer place for you and your readers."
 msgstr "Keeping your site updated is important for security. It also makes the internet a safer place for you and your readers."
 
@@ -3173,11 +3169,11 @@ msgstr "If you need to re-install version %s, you can do so here or download the
 msgid "Future security updates will be applied automatically."
 msgstr "Future security updates will be applied automatically."
 
-#: wp-admin/update-core.php:407 wp-admin/update-core.php:415
+#: wp-admin/update-core.php:412 wp-admin/update-core.php:420
 msgid "Translations"
 msgstr "Translations"
 
-#: wp-admin/update-core.php:408
+#: wp-admin/update-core.php:413
 msgid "Your translations are all up to date."
 msgstr "Your translations are all up to date."
 
@@ -4057,7 +4053,7 @@ msgstr "Get Favourites"
 msgid "The \"%s\" options group has been removed. Use another settings group."
 msgstr "The \"%s\" options group has been removed. Use another settings group."
 
-#: wp-admin/includes/update-core.php:1222 wp-admin/update-core.php:497
+#: wp-admin/includes/update-core.php:1222 wp-admin/update-core.php:502
 msgid "Welcome to WordPress %1$s. You will be redirected to the About WordPress screen. If not, click <a href=\"%2$s\">here</a>."
 msgstr "Welcome to WordPress %1$s. You will be redirected to the About WordPress screen. If not, click <a href=\"%2$s\">here</a>."
 
@@ -4210,7 +4206,7 @@ msgstr "Select comment"
 #: wp-admin/includes/class-wp-posts-list-table.php:801
 #: wp-admin/includes/class-wp-terms-list-table.php:338
 #: wp-admin/includes/class-wp-users-list-table.php:430
-#: wp-admin/update-core.php:295 wp-admin/update-core.php:366
+#: wp-admin/update-core.php:300 wp-admin/update-core.php:371
 msgid "Select %s"
 msgstr "Select %s"
 
@@ -4472,8 +4468,8 @@ msgstr "Add"
 
 #: wp-admin/includes/class-wp-list-table.php:1069
 #: wp-admin/includes/nav-menu.php:553 wp-admin/includes/nav-menu.php:744
-#: wp-admin/update-core.php:249 wp-admin/update-core.php:320
-#: wp-admin/update-core.php:352 wp-admin/update-core.php:391
+#: wp-admin/update-core.php:249 wp-admin/update-core.php:325
+#: wp-admin/update-core.php:357 wp-admin/update-core.php:396
 msgid "Select All"
 msgstr "Select All"
 
@@ -5049,7 +5045,7 @@ msgstr "This screen allows you to choose your permalink structure. You can choos
 msgid "Return to Updates"
 msgstr "Return to Updates"
 
-#: wp-admin/includes/update-core.php:1223 wp-admin/update-core.php:498
+#: wp-admin/includes/update-core.php:1223 wp-admin/update-core.php:503
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 msgstr "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 
@@ -5129,7 +5125,7 @@ msgstr "Available Actions"
 msgid "Authors can publish and manage their own posts, and are able to upload files."
 msgstr "Authors can publish and manage their own posts, and are able to upload files."
 
-#: wp-admin/update-core.php:565
+#: wp-admin/update-core.php:570
 msgid "How to Update"
 msgstr "How to Update"
 
@@ -5442,6 +5438,11 @@ msgstr "The %s table is already optimised."
 msgid "The %s table is okay."
 msgstr "The %s table is okay."
 
+#. translators: %s: plugin version
+#: wp-admin/update-core.php:290
+msgid "View version %s details."
+msgstr "View version %s details."
+
 #: wp-admin/includes/import.php:195
 msgid "Tumblr"
 msgstr "Tumblr"
@@ -5516,7 +5517,7 @@ msgstr "You can use the following controls to arrange your Dashboard screen to s
 #: wp-admin/plugin-install.php:71 wp-admin/plugins.php:371
 #: wp-admin/revision.php:114 wp-admin/theme-editor.php:25
 #: wp-admin/theme-install.php:91 wp-admin/themes.php:82
-#: wp-admin/update-core.php:552 wp-admin/upload.php:48 wp-admin/upload.php:186
+#: wp-admin/update-core.php:557 wp-admin/upload.php:48 wp-admin/upload.php:186
 #: wp-admin/user-edit.php:48 wp-admin/user-new.php:186 wp-admin/users.php:31
 #: wp-admin/widgets.php:51
 msgid "Overview"
@@ -5648,7 +5649,7 @@ msgstr "Role"
 #: wp-admin/plugin-editor.php:142 wp-admin/plugin-install.php:86
 #: wp-admin/plugins.php:395 wp-admin/revision.php:118
 #: wp-admin/theme-editor.php:38 wp-admin/theme-install.php:106
-#: wp-admin/themes.php:117 wp-admin/tools.php:27 wp-admin/update-core.php:570
+#: wp-admin/themes.php:117 wp-admin/tools.php:27 wp-admin/update-core.php:575
 #: wp-admin/upload.php:65 wp-admin/upload.php:206 wp-admin/user-edit.php:53
 #: wp-admin/user-new.php:204 wp-admin/users.php:66 wp-admin/widgets.php:73
 msgid "For more information:"
@@ -5997,9 +5998,9 @@ msgstr "You cannot delete a plugin while it is active on the main site."
 msgid "Default Post Format"
 msgstr "Default Post Format"
 
-#: wp-admin/update-core.php:23 wp-admin/update-core.php:621
-#: wp-admin/update-core.php:645 wp-admin/update-core.php:673
-#: wp-admin/update-core.php:703
+#: wp-admin/update-core.php:23 wp-admin/update-core.php:626
+#: wp-admin/update-core.php:650 wp-admin/update-core.php:678
+#: wp-admin/update-core.php:708
 msgid "You do not have sufficient permissions to update this site."
 msgstr "You do not have sufficient permissions to update this site."
 
@@ -6222,7 +6223,7 @@ msgstr "%1$s &lsaquo; %2$s &#8212; WordPress"
 msgid "Search Installed Themes"
 msgstr "Search Installed Themes"
 
-#: wp-admin/update-core.php:344
+#: wp-admin/update-core.php:349
 msgid "<strong>Please Note:</strong> Any customizations you have made to theme files will be lost. Please consider using <a href=\"%s\">child themes</a> for modifications."
 msgstr "<strong>Please Note:</strong> Any customizations you have made to theme files will be lost. Please consider using <a href=\"%s\">child themes</a> for modifications."
 
@@ -6233,20 +6234,20 @@ msgid_plural "Sticky <span class=\"count\">(%s)</span>"
 msgstr[0] "Sticky <span class=\"count\">(%s)</span>"
 msgstr[1] "Sticky <span class=\"count\">(%s)</span>"
 
-#: wp-admin/update-core.php:590
+#: wp-admin/update-core.php:595
 msgid "Please select one or more plugins to update."
 msgstr "Please select one or more plugins to update."
 
-#: wp-admin/update-core.php:588
+#: wp-admin/update-core.php:593
 msgid "Please select one or more themes to update."
 msgstr "Please select one or more themes to update."
 
 #. translators: %1 date, %2 time.
-#: wp-admin/update-core.php:596
+#: wp-admin/update-core.php:601
 msgid "Last checked on %1$s at %2$s."
 msgstr "Last checked on %1$s at %2$s."
 
-#: wp-admin/update-core.php:597
+#: wp-admin/update-core.php:602
 msgid "Check Again"
 msgstr "Check Again"
 
@@ -6551,7 +6552,7 @@ msgstr "Your plugins are all up to date."
 msgid "You have the latest version of WordPress."
 msgstr "You have the latest version of WordPress."
 
-#: wp-admin/update-core.php:336
+#: wp-admin/update-core.php:341
 msgid "Your themes are all up to date."
 msgstr "Your themes are all up to date."
 
@@ -6884,7 +6885,7 @@ msgstr "+ %s"
 
 #. translators: 1: plugin version, 2: new version
 #. translators: 1: theme version, 2: new version
-#: wp-admin/update-core.php:304 wp-admin/update-core.php:376
+#: wp-admin/update-core.php:309 wp-admin/update-core.php:381
 msgid "You have version %1$s installed. Update to %2$s."
 msgstr "You have version %1$s installed. Update to %2$s."
 
@@ -7130,7 +7131,7 @@ msgstr[1] "%s comments moved to the Trash."
 msgid "You are not allowed to move this item to the Trash."
 msgstr "You are not allowed to move this item to the Trash."
 
-#: wp-admin/update-core.php:343
+#: wp-admin/update-core.php:348
 msgid "The following themes have new versions available. Check the ones you want to update and then click &#8220;Update Themes&#8221;."
 msgstr "The following themes have new versions available. Check the ones you want to update and then click &#8220;Update Themes&#8221;."
 
@@ -7303,21 +7304,21 @@ msgid "User already exists. Password inherited."
 msgstr "User already exists. Password inherited."
 
 #: wp-admin/includes/class-wp-upgrader.php:3030
-#: wp-admin/includes/update-core.php:1219 wp-admin/update-core.php:496
+#: wp-admin/includes/update-core.php:1219 wp-admin/update-core.php:501
 msgid "WordPress updated successfully"
 msgstr "WordPress updated successfully"
 
-#: wp-admin/update-core.php:456
+#: wp-admin/update-core.php:461
 msgid "Update WordPress"
 msgstr "Update WordPress"
 
 #: wp-admin/plugins.php:131 wp-admin/update-core.php:244
-#: wp-admin/update-core.php:324 wp-admin/update-core.php:661
-#: wp-admin/update-core.php:665
+#: wp-admin/update-core.php:329 wp-admin/update-core.php:666
+#: wp-admin/update-core.php:670
 msgid "Update Plugins"
 msgstr "Update Plugins"
 
-#: wp-admin/update-core.php:544 wp-admin/update-core.php:583
+#: wp-admin/update-core.php:549 wp-admin/update-core.php:588
 msgid "WordPress Updates"
 msgstr "WordPress Updates"
 
@@ -7816,8 +7817,8 @@ msgstr "Multisite support is not enabled."
 msgid "Visit"
 msgstr "Visit"
 
-#: wp-admin/update-core.php:347 wp-admin/update-core.php:395
-#: wp-admin/update-core.php:689 wp-admin/update-core.php:694
+#: wp-admin/update-core.php:352 wp-admin/update-core.php:400
+#: wp-admin/update-core.php:694 wp-admin/update-core.php:699
 msgid "Update Themes"
 msgstr "Update Themes"
 
@@ -8505,7 +8506,7 @@ msgstr "Compatibility with WordPress %1$s: %2$d%% (%3$d \"works\" votes out of %
 msgid "Compatibility with WordPress %1$s: Unknown"
 msgstr "Compatibility with WordPress %1$s: Unknown"
 
-#: wp-admin/includes/class-wp-upgrader.php:3028 wp-admin/update-core.php:491
+#: wp-admin/includes/class-wp-upgrader.php:3028 wp-admin/update-core.php:496
 msgid "Installation Failed"
 msgstr "Installation Failed"
 
