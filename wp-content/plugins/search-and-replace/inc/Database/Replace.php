@@ -1,14 +1,15 @@
 <?php
-namespace Inpsyde\SearchReplace\inc;
+namespace Inpsyde\SearchReplace\Database;
 
-use InvalidArgumentException;
+use Inpsyde\SearchReplace\Service;
 
 /**
  * Class Replace
  * runs search & replace on a database
  * adapted from: https://github.com/interconnectit/Search-Replace-DB/blob/master/srdb.class.php
+ *
+ * @package Inpsyde\SearchReplace\Database
  */
-//TODO: Use WP_Error for error reporting
 class Replace {
 
 	/**
@@ -17,6 +18,7 @@ class Replace {
 	 * @var
 	 */
 	protected $search;
+
 	/**
 	 *  the replacement string
 	 *
@@ -27,7 +29,7 @@ class Replace {
 	/**
 	 * The Database Interface Object
 	 *
-	 * @type DatabaseManager
+	 * @type Manager
 	 * @var
 	 */
 	protected $dbm;
@@ -44,11 +46,12 @@ class Replace {
 	 */
 	protected $dry_run = TRUE;
 
-	public function __construct( $dbm ) {
-
-		if ( ! $dbm instanceof DatabaseManager ) {
-			throw new \InvalidArgumentException ( 'Class Replace needs Object of Type DatabaseManager as Parameter' );
-		}
+	/**
+	 * Replace constructor.
+	 *
+	 * @param Manager $dbm
+	 */
+	public function __construct( Manager $dbm ) {
 
 		$this->dbm = $dbm;
 	}
@@ -68,6 +71,13 @@ class Replace {
 	 */
 
 	public function run_search_replace( $search, $replace, $tables ) {
+
+		if( $search == $replace ){
+			return new \WP_Error( 'error', __( "Search and replace pattern can't be the same!" ) );
+		}
+
+		$execution_time = new Service\MaxExecutionTime();
+		$execution_time->set();
 
 		$report = array(
 			'errors'        => NULL,
@@ -89,6 +99,8 @@ class Replace {
 			}
 
 		}
+
+		$execution_time->restore();
 
 		return $report;
 	}
@@ -114,13 +126,14 @@ class Replace {
 		}
 		//split columns array in primary key string and columns array
 		$columns     = $this->dbm->get_columns( $table );
-		$primary_key = $columns[ 0 ];
-		$columns     = $columns[ 1 ];
+		list( $primary_key, $columns ) = $columns;
 
 		if ( NULL === $primary_key ) {
-			array_push( $table_report[ 'errors' ],
-			            "The table \"{$table}\" has no primary key. Changes will have to be made manually.",
-			            'results' );
+			array_push(
+				$table_report[ 'errors' ],
+				"The table \"{$table}\" has no primary key. Changes will have to be made manually.",
+				'results'
+			);
 
 			return $table_report;
 		}
@@ -202,8 +215,9 @@ class Replace {
 
 					if ( ! $result ) {
 						$table_report[ 'errors' ][] = sprintf(
-							__( 'Error updating row: %d.', 'insr' ),
-							$row );
+							__( 'Error updating row: %d.', 'search-and-replace' ),
+							$row
+						);
 					} else {
 						$table_report[ 'updates' ] ++;
 					}

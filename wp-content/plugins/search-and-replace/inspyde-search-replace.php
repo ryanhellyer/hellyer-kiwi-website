@@ -5,15 +5,19 @@
  * Description:  Search & Replace data in your whole WordPress setup, backup and import your database, change table prefix or migrate your domain to another domain.
  * Author:       Inpsyde GmbH
  * Author URI:   http://inpsyde.com
- * Contributors: s-hinse, derpixler
- * Version:      3.0.1
- * Text Domain:  insr
+ * Contributors: s-hinse, derpixler, ChriCo, Bueltge, inpsyde
+ * Version:      3.1.0
+ * Text Domain:  search-and-replace
  * Domain Path:  /languages
  * License:      GPLv3+
  * License URI:  license.txt
  */
 
 namespace Inpsyde\SearchReplace;
+
+use Requisite\Requisite;
+use Requisite\Rule\Psr4;
+use Requisite\SPLAutoLoader;
 
 register_activation_hook( __FILE__, __NAMESPACE__ . '\activate' );
 
@@ -24,9 +28,9 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\init' );
  */
 function load_textdomain() {
 
-	$lang_dir = plugin_basename( __DIR__ ) . '/languages/';
+	$lang_dir = plugin_basename( __DIR__ ) . '/l10n/';
 
-	load_plugin_textdomain( 'insr', FALSE, $lang_dir );
+	load_plugin_textdomain( 'search-and-replace', FALSE, $lang_dir );
 }
 
 /**
@@ -45,14 +49,16 @@ function activate() {
 		wp_die(
 			'<p>' .
 			sprintf(
-				esc_attr__( 'This plugin can not be activated because it requires at least PHP version %1$s. ', 'insr' ),
+				esc_attr__( 'This plugin can not be activated because it requires at least PHP version %1$s. ', 'search-and-replace' ),
 				$required_php_version
 			)
-			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . esc_attr__( 'back', 'insr' ) . '</a>'
+			. '</p> <a href="' . admin_url( 'plugins.php' ) . '">' . esc_attr__( 'back', 'search-and-replace' ) . '</a>'
 		);
 
 	}
 }
+
+
 
 /**
  * Load and init in WP Environment.
@@ -69,13 +75,23 @@ function init() {
 
 	load_textdomain();
 
-	// Set up the autoloader.
-	require_once( 'inc/Autoloader.php' );
+	/**
+	 * Load the Requisite library. Alternatively you can use composer's
+	 */
+	require_once __DIR__ . '/inc/requisite/src/Requisite/Requisite.php';
+	Requisite::init();
 
-	$autoloader = new inc\Autoloader( __NAMESPACE__, __DIR__ );
-	$autoloader->register();
+	$autoloader = new SPLAutoLoader;
+
+	$autoloader->addRule(
+		new Psr4(
+			__DIR__ . '/inc',       // base directory
+			'Inpsyde\SearchReplace' // base namespace
+		)
+	);
+
 
 	// Start the plugin.
-	$plugin = new inc\Init();
+	$plugin = new Plugin();
 	$plugin->run( __FILE__ );
 }

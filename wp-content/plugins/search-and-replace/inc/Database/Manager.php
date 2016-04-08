@@ -1,26 +1,33 @@
 <?php
+namespace Inpsyde\SearchReplace\Database;
 
-namespace Inpsyde\searchReplace\inc;
-
-class DatabaseManager {
+/**
+ * Class Manager
+ *
+ * @package Inpsyde\SearchReplace\Database
+ */
+class Manager {
 
 	/**
 	 * @var \wpdb
 	 * Wordpress Database Class
-	 * some functions adapted from : https://github.com/ExpandedFronts/Better-Search-Replace/blob/master/includes/class-bsr-db.php
+	 * some functions adapted from :
+	 * https://github.com/ExpandedFronts/Better-Search-Replace/blob/master/includes/class-bsr-db.php
 	 */
 	private $wpdb;
 
-	public function __construct() {
+	/**
+	 * DatabaseManager constructor.
+	 *
+	 * @param \wpdb $wpdb
+	 */
+	public function __construct( \wpdb $wpdb ) {
 
-		global $wpdb;
 		$this->wpdb = $wpdb;
-
 	}
 
 	/**
 	 * Returns an array of tables in the database.
-	 *
 	 * if multisite && mainsite: all tables of the site
 	 * if multisite && subsite: all tables of current blog
 	 * if single site : all tabkes of the site
@@ -61,7 +68,7 @@ class DatabaseManager {
 
 			foreach ( $tables as $table ) {
 				$size                      = round( $table[ 'Data_length' ] / 1024, 2 );
-				$sizes[ $table[ 'Name' ] ] = sprintf( __( '(%s KB)', 'insr' ), $size );
+				$sizes[ $table[ 'Name' ] ] = sprintf( __( '(%s KB)', 'search-and-replace' ), $size );
 			}
 
 		}
@@ -81,6 +88,7 @@ class DatabaseManager {
 	public function get_rows( $table ) {
 
 		$table = esc_sql( $table );
+
 		return $this->wpdb->get_var( "SELECT COUNT(*) FROM $table" );
 	}
 
@@ -136,8 +144,9 @@ class DatabaseManager {
 	 */
 	public function update( $table, $update_sql, $where_sql ) {
 
-		$sql    = 'UPDATE ' . $table . ' SET ' . implode( ', ', $update_sql ) .
-		          ' WHERE ' . implode( ' AND ', array_filter( $where_sql ) );
+		$sql = 'UPDATE ' . $table . ' SET ' . implode( ', ', $update_sql ) .
+		       ' WHERE ' . implode( ' AND ', array_filter( $where_sql ) );
+
 		return $this->wpdb->query( $sql );
 	}
 

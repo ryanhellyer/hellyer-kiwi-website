@@ -1,17 +1,19 @@
 <?php
+
+namespace Inpsyde\SearchReplace\Database;
+
 /**
- * Handles export of DB.
- * adapted from https://github.com/matzko/wp-db-backup
+ * Class Exporter
+ *
+ * @package Inpsyde\SearchReplace\Database
  */
-
-namespace Inpsyde\SearchReplace\inc;
-
-class DatabaseExporter {
+class Exporter {
 
 	/**
 	 * @Stores all error messages in a WP_Error Object
 	 */
 	protected $errors;
+
 	/**
 	 * @string  The Path to the Backup Directory
 	 */
@@ -23,7 +25,7 @@ class DatabaseExporter {
 	protected $replace;
 
 	/**
-	 * @var DatabaseManager
+	 * @var Manager
 	 */
 	protected $dbm;
 
@@ -47,14 +49,18 @@ class DatabaseExporter {
 	 */
 	protected $fp;
 
-	public function __construct( Replace $replace, DatabaseManager $dbm ) {
+	/**
+	 * Exporter constructor.
+	 *
+	 * @param Replace $replace
+	 * @param Manager $dbm
+	 */
+	public function __construct( Replace $replace, Manager $dbm ) {
 
-		$this->errors = new \WP_Error();
-
+		$this->errors     = new \WP_Error();
 		$this->backup_dir = get_temp_dir();
 		$this->replace    = $replace;
 		$this->dbm        = $dbm;
-
 	}
 
 	/**
@@ -71,7 +77,11 @@ class DatabaseExporter {
 	 *                          $report[ 'errors'] : WP_Error_object,
 	 * $report ['changes'] : Array with replacements in tables
 	 */
-	public function db_backup( $search, $replace, $tables, $domain_replace = FALSE, $new_table_prefix ) {
+	public function db_backup( $search, $replace, $tables = array(), $domain_replace = FALSE, $new_table_prefix ) {
+
+		if ( count( $tables ) < 1 ) {
+			$tables = $this->dbm->get_tables();
+		}
 
 		$report = array(
 			'errors'        => NULL,
@@ -92,12 +102,14 @@ class DatabaseExporter {
 		if ( is_writable( $this->backup_dir ) ) {
 			$this->fp = $this->open( $this->backup_dir . $this->backup_filename );
 			if ( ! $this->fp ) {
-				$this->errors->add( 8, esc_attr__( 'Could not open the backup file for writing!', 'insr' ) );
+				$this->errors->add(
+					8, esc_attr__( 'Could not open the backup file for writing!', 'search-and-replace' )
+				);
 
 				return $report;
 			}
 		} else {
-			$this->errors->add( 9, esc_attr__( 'The backup directory is not writable!', 'insr' ) );
+			$this->errors->add( 9, esc_attr__( 'The backup directory is not writable!', 'search-and-replace' ) );
 
 			return $report;
 		}
@@ -105,18 +117,20 @@ class DatabaseExporter {
 		//Begin new backup of MySql
 		//get charset. if not set assume utf8
 		$charset = ( defined( 'DB_CHARSET' ) ? DB_CHARSET : 'utf8' );
-		$this->stow( '# ' . esc_attr__( 'WordPress MySQL database backup', 'insr' ) . "\n" );
+		$this->stow( '# ' . esc_attr__( 'WordPress MySQL database backup', 'search-and-replace' ) . "\n" );
 		$this->stow( "#\n" );
-		$this->stow( '# ' . sprintf( __( 'Generated: %s', 'insr' ), date( 'l j. F Y H:i T' ) ) . "\n" );
-		$this->stow( '# ' . sprintf( __( 'Hostname: %s', 'insr' ), DB_HOST ) . "\n" );
-		$this->stow( '# ' . sprintf( __( 'Database: %s', 'insr' ), $this->backquote( DB_NAME ) ) . "\n" );
+		$this->stow( '# ' . sprintf( __( 'Generated: %s', 'search-and-replace' ), date( 'l j. F Y H:i T' ) ) . "\n" );
+		$this->stow( '# ' . sprintf( __( 'Hostname: %s', 'search-and-replace' ), DB_HOST ) . "\n" );
+		$this->stow( '# ' . sprintf( __( 'Database: %s', 'search-and-replace' ), $this->backquote( DB_NAME ) ) . "\n" );
 		if ( '' !== $new_table_prefix ) {
-			$this->stow( '# ' . sprintf(
-				             __( 'Changed table prefix: From %s to %s ', 'insr' ),
-				             $table_prefix,
-				             $new_table_prefix
-			             )
-			             . "\n" );
+			$this->stow(
+				'# ' . sprintf(
+					__( 'Changed table prefix: From %s to %s ', 'search-and-replace' ),
+					$table_prefix,
+					$new_table_prefix
+				)
+				. "\n"
+			);
 		}
 		$this->stow( "# --------------------------------------------------------\n" );
 
@@ -127,9 +141,11 @@ class DatabaseExporter {
 			//count tables
 			$report [ 'tables' ] ++;
 
-			/*check if we are replacing the domain in a multisite. if so, we replace in wp_blogs the stripped url without http(s), because the domains
-			are stored without http:// */
-
+			/**
+			 * Check if we are replacing the domain in a multisite.
+			 * If so, we replace in wp_blogs the stripped url without http(s), because the domains
+			 * are stored without http://
+			 */
 			if ( $domain_replace && is_multisite() && $table === $wp_blogs_table ) {
 
 				$stripped_url_search  = substr( $search, strpos( $search, '/' ) + 2 );
@@ -185,8 +201,7 @@ class DatabaseExporter {
 			'table_name' => $table,
 			'rows'       => 0,
 			'change'     => 0,
-			'changes'    => array(),
-
+			'changes'    => [ ],
 		);
 		//do we need to replace the prefix?
 		$table_prefix = $this->dbm->get_base_prefix();
@@ -198,19 +213,23 @@ class DatabaseExporter {
 
 		// Create the SQL statements
 		$this->stow( '# --------------------------------------------------------' . "\n" );
-		$this->stow( '# ' . sprintf( __( 'Table: %s', 'insr' ), $this->backquote( $new_table ) ) . "\n" );
+		$this->stow( '# ' . sprintf( __( 'Table: %s', 'search-and-replace' ), $this->backquote( $new_table ) ) . "\n" );
 
 		$table_structure = $this->dbm->get_table_structure( $table );
 		if ( ! $table_structure ) {
-			$this->errors->add( 1, __( 'Error getting table details', 'insr' ) . ": $table" );
+			$this->errors->add( 1, __( 'Error getting table details', 'search-and-replace' ) . ": $table" );
 
 			return $table_report;
 		}
 
 		$this->stow( "\n\n" );
 		$this->stow( "#\n" );
-		$this->stow( '# ' . sprintf( __( 'Delete any existing table %s', 'insr' ),
-		                             $this->backquote( $new_table ) ) . "\n" );
+		$this->stow(
+			'# ' . sprintf(
+				__( 'Delete any existing table %s', 'search-and-replace' ),
+				$this->backquote( $new_table )
+			) . "\n"
+		);
 		$this->stow( "#\n" );
 		$this->stow( "\n" );
 		$this->stow( 'DROP TABLE IF EXISTS ' . $this->backquote( $new_table ) . ';' . "\n" );
@@ -219,15 +238,19 @@ class DatabaseExporter {
 		// Comment in SQL-file
 		$this->stow( "\n\n" );
 		$this->stow( "#\n" );
-		$this->stow( '# ' . sprintf( __( 'Table structure of table %s', 'insr' ),
-		                             $this->backquote( $new_table ) ) . "\n" );
+		$this->stow(
+			'# ' . sprintf(
+				__( 'Table structure of table %s', 'search-and-replace' ),
+				$this->backquote( $new_table )
+			) . "\n"
+		);
 		$this->stow( "#\n" );
 		$this->stow( "\n" );
 
 		/** @var array $create_table */
 		$create_table = $this->dbm->get_create_table_statement( $table );
-		if ( $create_table === FALSE ) {
-			$err_msg = sprintf( __( 'Error with SHOW CREATE TABLE for %s.', 'insr' ), $table );
+		if ( FALSE === $create_table ) {
+			$err_msg = sprintf( __( 'Error with SHOW CREATE TABLE for %s.', 'search-and-replace' ), $table );
 			$this->errors->add( 2, $err_msg );
 			$this->stow( "#\n# $err_msg\n#\n" );
 		}
@@ -239,8 +262,8 @@ class DatabaseExporter {
 		}
 		$this->stow( $create_table[ 0 ][ 1 ] . ' ;' );
 
-		if ( $table_structure === FALSE ) {
-			$err_msg = sprintf( __( 'Error getting table structure of %s', 'insr' ), $table );
+		if ( FALSE === $table_structure ) {
+			$err_msg = sprintf( __( 'Error getting table structure of %s', 'search-and-replace' ), $table );
 			$this->errors->add( 3, $err_msg );
 			$this->stow( "#\n# $err_msg\n#\n" );
 		}
@@ -248,18 +271,22 @@ class DatabaseExporter {
 		// Comment in SQL-file
 		$this->stow( "\n\n" );
 		$this->stow( "#\n" );
-		$this->stow( '# ' . sprintf( __( 'Data contents of table %s', 'insr' ),
-		                             $this->backquote( $new_table ) ) . "\n" );
+		$this->stow(
+			'# ' . sprintf(
+				__( 'Data contents of table %s', 'search-and-replace' ),
+				$this->backquote( $new_table )
+			) . "\n"
+		);
 		$this->stow( "#\n" );
 
 		$defs = array();
 		$ints = array();
 		foreach ( $table_structure as $struct ) {
 			if ( ( 0 === strpos( $struct->Type, 'tinyint' ) )
-			     || ( 0 === strpos( strtolower( $struct->Type ), 'smallint' ) )
-			     || ( 0 === strpos( strtolower( $struct->Type ), 'mediumint' ) )
-			     || ( 0 === strpos( strtolower( $struct->Type ), 'int' ) )
-			     || ( 0 === strpos( strtolower( $struct->Type ), 'bigint' ) )
+				|| ( 0 === strpos( strtolower( $struct->Type ), 'smallint' ) )
+				|| ( 0 === strpos( strtolower( $struct->Type ), 'mediumint' ) )
+				|| ( 0 === strpos( strtolower( $struct->Type ), 'int' ) )
+				|| ( 0 === strpos( strtolower( $struct->Type ), 'bigint' ) )
 			) {
 				$defs[ strtolower( $struct->Field ) ] = ( NULL === $struct->Default ) ? 'NULL' : $struct->Default;
 				$ints[ strtolower( $struct->Field ) ] = '1';
@@ -292,16 +319,20 @@ class DatabaseExporter {
 					foreach ( $row as $column => $value ) {
 						//if "change database prefix" is set we have to look for occurrences of the old prefix in the db entries and change them
 						if ( $new_table !== $table ) {
-							$value = $this->replace->recursive_unserialize_replace( $table_prefix, $new_table_prefix,
-							                                                        $value );
+							$value = $this->replace->recursive_unserialize_replace(
+								$table_prefix, $new_table_prefix,
+								$value
+							);
 						}
 						//skip replace if no search pattern
 						//check if we need to replace something
 						//skip primary_key
 						if ( $search !== '' && $column !== $primary_key ) {
 
-							$edited_data = $this->replace->recursive_unserialize_replace( $search, $replace,
-							                                                              $value );
+							$edited_data = $this->replace->recursive_unserialize_replace(
+								$search, $replace,
+								$value
+							);
 
 							// Something was changed
 							if ( $edited_data !== $value ) {
@@ -327,8 +358,10 @@ class DatabaseExporter {
 							$value    = ( NULL === $value || '' === $value ) ? $defs[ strtolower( $column ) ] : $value;
 							$values[] = ( '' === $value ) ? "''" : $value;
 						} else {
-							$values[] = "'" . str_replace( $hex_search, $hex_replace,
-							                               $this->sql_addslashes( $value ) ) . "'";
+							$values[] = "'" . str_replace(
+									$hex_search, $hex_replace,
+									$this->sql_addslashes( $value )
+								) . "'";
 						}
 					}
 					$this->stow( " \n" . $entries . implode( ', ', $values ) . ');' );
@@ -340,8 +373,12 @@ class DatabaseExporter {
 		// Create footer/closing comment in SQL-file
 		$this->stow( "\n" );
 		$this->stow( "#\n" );
-		$this->stow( '# ' . sprintf( __( 'End of data contents of table %s', 'insr' ),
-		                             $this->backquote( $new_table ) ) . "\n" );
+		$this->stow(
+			'# ' . sprintf(
+				__( 'End of data contents of table %s', 'search-and-replace' ),
+				$this->backquote( $new_table )
+			) . "\n"
+		);
 		$this->stow( "# --------------------------------------------------------\n" );
 		$this->stow( "\n" );
 
@@ -420,7 +457,7 @@ class DatabaseExporter {
 		if ( @fwrite( $this->fp, $query_line ) === FALSE ) {
 			$this->errors->add(
 				4,
-				esc_attr__( 'There was an error writing a line to the backup script:', 'insr' )
+				esc_attr__( 'There was an error writing a line to the backup script:', 'search-and-replace' )
 				. ' ' . $query_line . ' ' . $php_errormsg
 			);
 		}
@@ -544,6 +581,52 @@ class DatabaseExporter {
 
 		#//build new table name
 		return $new_table_prefix . $part_after_prefix;
+	}
+
+	/**
+	 * Trims a given string to 50 chars before and after the search string, if the string is longer than 199 chars.
+	 *
+	 * @param $needle    string
+	 * @param $haystack  string
+	 * @param $delimiter array  $delimiter[0]=start delimiter, $delimiter[1] = end delimiter
+	 *
+	 * @return string The trimmed $haystack
+	 */
+	protected function trim_search_results( $needle, $haystack, $delimiter ) {
+
+		//if result has <200 characters we return the whole string
+		if ( strlen( $haystack ) < 100 ) {
+			return $haystack;
+		}
+		$trimmed_results = NULL;
+		// Get all occurrences of $needle with up to 50 chars front & back.
+		preg_match_all( '@.{0,50}' . $needle . '.{0,50}@', $haystack, $trimmed_results );
+		$return_value = '';
+		/** @var array $trimmed_results */
+		$imax = count( $trimmed_results );
+		for ( $i = 0; $i < $imax; $i ++ ) {
+			//reset delimiter, might have been changed
+			$local_delimiter = $delimiter;
+			//check if the first trimmmed result is the beginning of $haystack. if so remove leading delimiter
+			if ( $i === 0 ) {
+				$pos = strpos( $haystack, $trimmed_results[ 0 ][ $i ] );
+				if ( $pos === 0 ) {
+					$local_delimiter[ 0 ] = '';
+				}
+			}
+			//check if the last trimmed result is the end of $haystack. if so, remove trailing delimiter
+			$last_index = count( $trimmed_results ) - 1;
+			if ( $i === $last_index ) {
+				$trimmed_result_length = strlen( $trimmed_results[ 0 ][ $i ] );
+				$substring             = substr( $haystack, - $trimmed_result_length );
+				if ( $substring === $trimmed_results[ 0 ][ $i ] ) {
+					$local_delimiter[ 1 ] = '';
+				}
+			}
+			$return_value .= $local_delimiter[ 0 ] . $trimmed_results[ 0 ][ $i ] . $local_delimiter[ 1 ];
+		}
+
+		return $return_value;
 	}
 
 }

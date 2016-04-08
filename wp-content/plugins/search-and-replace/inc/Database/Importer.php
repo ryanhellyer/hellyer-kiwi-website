@@ -1,23 +1,21 @@
 <?php
+namespace Inpsyde\SearchReplace\Database;
+
 /**
- * Database Importer for inpsyde search and replace plugin.
+ * Class Importer
+ *
+ * @package Inpsyde\SearchReplace\Database
  */
-
-namespace Inpsyde\SearchReplace\inc;
-
-class DatabaseImporter {
-
-	public function __construct() {}
+class Importer {
 
 	/**
 	 * imports a sql file via mysqli
 	 *
-	 * @param  string   $sql
-	 * @param \WP_Error $error
+	 * @param  string $sql
 	 *
 	 * @return int  Number of Sql queries made, -1 if error
 	 */
-	public function import_sql( $sql, $error ) {
+	public function import_sql( $sql ) {
 
 		//connect via mysqli for easier db import
 		$mysqli = new \mysqli( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
@@ -35,16 +33,12 @@ class DatabaseImporter {
 		}
 
 		if ( $mysqli->errno ) {
-			$error->add( 'sql_import_error', __( '<b>Mysqli Error:</b> ' . $mysqli->error, 'insr' ) );
-
 			return - 1;
-
 		}
 
 		mysqli_close( $mysqli );
 
 		return $i;
-
 	}
 
 }
