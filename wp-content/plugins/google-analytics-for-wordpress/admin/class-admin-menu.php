@@ -35,6 +35,7 @@ class Yoast_GA_Admin_Menu {
 		$this->target_object = $target_object;
 
 		add_action( 'admin_menu', array( $this, 'create_admin_menu' ), 10 );
+		add_action('admin_head', array( $this, 'mi_add_styles_for_menu' ) );
 
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -48,6 +49,16 @@ class Yoast_GA_Admin_Menu {
 		$this->parent_slug         = ( ( $this->dashboards_disabled ) ? 'yst_ga_settings' : 'yst_ga_dashboard' );
 	}
 
+	public function mi_add_styles_for_menu() {
+		?>
+		<style type="text/css">
+		.toplevel_page_yst_ga_dashboard .wp-menu-image img {
+			padding: 6px 0 0 !important;
+		}
+		</style>
+		<?php
+	}
+
 	/**
 	 * Create the admin menu
 	 */
@@ -59,7 +70,7 @@ class Yoast_GA_Admin_Menu {
 		 */
 
 		// Base 64 encoded SVG image
-		$icon_svg = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCIgWw0KCTwhRU5USVRZIG5zX2Zsb3dzICJodHRwOi8vbnMuYWRvYmUuY29tL0Zsb3dzLzEuMC8iPg0KCTwhRU5USVRZIG5zX2V4dGVuZCAiaHR0cDovL25zLmFkb2JlLmNvbS9FeHRlbnNpYmlsaXR5LzEuMC8iPg0KCTwhRU5USVRZIG5zX2FpICJodHRwOi8vbnMuYWRvYmUuY29tL0Fkb2JlSWxsdXN0cmF0b3IvMTAuMC8iPg0KCTwhRU5USVRZIG5zX2dyYXBocyAiaHR0cDovL25zLmFkb2JlLmNvbS9HcmFwaHMvMS4wLyI+DQpdPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYWFnXzEiIHhtbG5zOng9IiZuc19leHRlbmQ7IiB4bWxuczppPSImbnNfYWk7IiB4bWxuczpncmFwaD0iJm5zX2dyYXBoczsiDQoJIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOmE9Imh0dHA6Ly9ucy5hZG9iZS5jb20vQWRvYmVTVkdWaWV3ZXJFeHRlbnNpb25zLzMuMC8iDQoJIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDAgMzEuODkiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQwIDMxLjg5IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQwLDEyLjUyNEM0MCw1LjYwOCwzMS40NjksMCwyMCwwQzguNTMsMCwwLDUuNjA4LDAsMTIuNTI0YzAsNS41Niw1LjI0MywxMC4yNzIsMTMuNTU3LDExLjkwN3YtNC4wNjUNCgljMCwwLDAuMDQtMS0wLjI4LTEuOTJjLTAuMzItMC45MjEtMS43Ni0zLjAwMS0xLjc2LTUuMTIxYzAtMi4xMjEsMi41NjEtOS41NjMsNS4xMjItMTAuNDQ0Yy0wLjQsMS4yMDEtMC4zMiw3LjY4My0wLjMyLDcuNjgzDQoJczEuNCwyLjcyLDQuNjQxLDIuNzJjMy4yNDIsMCw0LjUxMS0xLjc2LDQuNzE1LTIuMmMwLjIwNi0wLjQ0LDAuODQ2LTguNzIzLDAuODQ2LTguNzIzczQuMDgyLDQuNDAyLDMuNjgyLDkuMzYzDQoJYy0wLjQwMSw0Ljk2Mi00LjQ4Miw3LjIwMy02LjEyMiw5LjEyM2MtMS4yODYsMS41MDUtMi4yMjQsMy4xMy0yLjYyOSw0LjE2OGMwLjgwMS0wLjAzNCwxLjU4Ny0wLjA5OCwyLjM2MS0wLjE4NGw5LjE1MSw3LjA1OQ0KCWwtNC44ODQtNy44M0MzNS41MzUsMjIuMTYxLDQwLDE3LjcxMyw0MCwxMi41MjR6Ii8+DQo8L2c+DQo8L3N2Zz4=';
+		$icon_svg = 'data:image/png;base64,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';
 
 		$menu_name = is_network_admin() ? 'extensions' : 'dashboard';
 
@@ -69,7 +80,7 @@ class Yoast_GA_Admin_Menu {
 
 		// Add main page
 		add_menu_page(
-			__( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General settings', 'google-analytics-for-wordpress' ), __( 'Analytics', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
+			__( 'Google Analytics by MonsterInsights:', 'google-analytics-for-wordpress' ) . ' ' . __( 'General settings', 'google-analytics-for-wordpress' ), __( 'MonsterInsights', 'google-analytics-for-wordpress' ), 'manage_options', 'yst_ga_' . $menu_name,
 			array(
 				$this->target_object,
 				'load_page',
@@ -77,6 +88,7 @@ class Yoast_GA_Admin_Menu {
 			$icon_svg,
 			$this->get_menu_position()
 		);
+
 
 		$this->add_submenu_pages();
 	}
@@ -132,7 +144,7 @@ class Yoast_GA_Admin_Menu {
 	private function prepare_submenu_page( $submenu_name, $submenu_slug, $font_color = '' ) {
 		return array(
 			'parent_slug'      => $this->parent_slug,
-			'page_title'       => __( 'Yoast Google Analytics:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
+			'page_title'       => __( 'Google Analytics by MonsterInsights:', 'google-analytics-for-wordpress' ) . ' ' . $submenu_name,
 			'menu_title'       => $this->parse_menu_title( $submenu_name, $font_color ),
 			'capability'       => 'manage_options',
 			'menu_slug'        => 'yst_ga_' . $submenu_slug,
