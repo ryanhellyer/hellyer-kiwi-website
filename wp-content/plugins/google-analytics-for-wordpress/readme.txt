@@ -1,10 +1,10 @@
 ﻿=== Google Analytics by MonsterInsights ===
 Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
-Tags: analytics, google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga
+Tags: analytics, google analytics, statistics, tracking, stats, google, yoast, google analytics by yoast, ga, monster insights, monsterinsights
 Requires at least: 3.9
 Tested up to: 4.5
-Stable tag: 5.4.8.2
+Stable tag: 5.4.9
 License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
@@ -66,19 +66,18 @@ You can also learn about other <a href="http://www.wpbeginner.com/category/plugi
 
 == Changelog ==
 
-= 5.4.8.2 = 
+= 5.4.9 = 
 
-Release Date: April 14th, 2015
-
-* Bugfixes:
-    * Tones down contrast of menu icon to default theming of menu.
-
-= 5.4.8.1 = 
-
-Release Date: April 14th, 2015
+Release Date: April 15th, 2015
 
 * Bugfixes:
-    * Fixes compatibility issue with language files
+    * Fixes issue with eCommerce addon (also requires user to update eCommerce addon)
+	* Fixes issue with 2 dashboard links
+	* A bug in pre-existing code caused the menu of the plugin to skyrocket unintentionally. This has been corrected.
+	
+* Enhancements:
+    * New font based dashboard icon
+	* The "MonsterInsights" menu item name has been renamed to just "Insights"
 
 = 5.4.8 = 
 
@@ -86,6 +85,9 @@ Release Date: April 14th, 2015
 
 * Bugfixes:
     * Fixes compatibility issue with WordPress 4.5
+	
+* Annoucements:	
+	* Google Analytics by Yoast is now MonsterInsights.
 	
 * Enhancements:
     * Adds ground work for new features coming soon.

@@ -508,12 +508,12 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			'title'  => 'Get the premium version of Google Analytics by MonsterInsights!',
 		);
 		$banners[] = array(
-			'url'    => 'https://www.wpbeginner.net/?utm_source=monsterinsights-config&utm_medium=banner&utm_campaign=gaplugin',
+			'url'    => 'http://www.wpbeginner.net/?utm_source=monsterinsights-config&utm_medium=banner&utm_campaign=gaplugin',
 			'banner' => $this->plugin_url . 'assets/img/wpbeginnerupsell.png',
 			'title'  => 'The best collection of free beginner WordPress resources!',
 		);
 		$banners[] = array(
-			'url'    => 'https://www.monsterinsights.com/wordpress/plugins/ga-ecommerce/?utm_source=monsterinsights-config&utm_medium=banner&utm_campaign=gaplugin',
+			'url'    => 'https://wpforms.com/pricing/?utm_source=monsterinsights-config&utm_medium=banner&utm_campaign=gaplugin',
 			'banner' => $this->plugin_url . 'assets/img/wpformsupsell.png',
 			'title'  => 'Get the most beginner friendly WordPress contact form plugin in the market!',
 		);
