@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-19 05:23:43+0000\n"
+"PO-Revision-Date: 2016-05-02 02:15:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,14 +10,18 @@ msgstr ""
 "X-Generator: GlotPress/2.1.0-alpha\n"
 "Project-Id-Version: Stable (latest release)\n"
 
-#: admin/class-admin.php:536
+#: admin/pages/dashboard.php:20
+msgid "System Info"
+msgstr "System Info"
+
+#: admin/class-admin.php:547
 msgid "Google Analytics by MonsterInsights Pro"
 msgstr "Google Analytics by MonsterInsights Pro"
 
 #. #-#-#-#-#  tmp-google-analytics-for-wordpress.pot (Google Analytics by
-#. MonsterInsights 5.4.9)  #-#-#-#-#
+#. MonsterInsights 5.5)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin/class-admin.php:542
+#: admin/class-admin.php:553
 msgid "Google Analytics by MonsterInsights"
 msgstr "Google Analytics by MonsterInsights"
 
@@ -57,15 +61,6 @@ msgstr "Google Analytics by MonsterInsights:"
 #: admin/class-admin-menu.php:100
 msgid "Insights"
 msgstr "Insights"
-
-#: vendor/yoast/license-manager/views/form.php:45
-#: vendor/yoast/license-manager-2/views/form.php:45
-msgid "Deactivate License"
-msgstr "Deactivate Licence"
-
-#: admin/pages/settings.php:165
-msgid "Debug"
-msgstr "Debug"
 
 #: admin/pages/settings.php:102
 msgid "Ignore users"
@@ -190,6 +185,10 @@ msgstr "Not for the average user: this allows you to add a line of code, to be a
 #: admin/pages/settings.php:158
 msgid "Custom dimensions"
 msgstr "Custom dimensions"
+
+#: admin/pages/settings.php:165
+msgid "Debug"
+msgstr "Debug"
 
 #: admin/pages/settings.php:168
 msgid "If you want to confirm that tracking on your blog is working as it should, enable this option and check the console of your browser. Be absolutely sure to disable debugging afterwards, as it is slower than normal tracking."
@@ -366,6 +365,11 @@ msgstr "Licence status"
 msgid "Toggle license status"
 msgstr "Toggle licence status"
 
+#: vendor/yoast/license-manager/views/form.php:45
+#: vendor/yoast/license-manager-2/views/form.php:45
+msgid "Deactivate License"
+msgstr "Deactivate Licence"
+
 #: vendor/yoast/license-manager/views/form.php:46
 #: vendor/yoast/license-manager-2/views/form.php:46
 msgid "(deactivate your license so you can activate it on another WordPress site)"
@@ -405,97 +409,81 @@ msgstr "%sRenew your licence now%s."
 msgid "This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking."
 msgstr "This plugin makes it simple to add Google Analytics to your WordPress site, adding lots of features, e.g. error page, search result and automatic outgoing links and download tracking."
 
-#: admin/class-admin-menu.php:232 admin/class-admin.php:326
-#: admin/pages/settings.php:10
-msgid "Settings"
-msgstr "Settings"
-
-#: admin/pages/settings.php:17
-msgid "General"
-msgstr "General"
-
-#: admin/dashboards/class-admin-dashboards.php:146
-msgid "Previous"
-msgstr "Previous"
-
-#: admin/dashboards/class-admin-dashboards.php:142
-msgid "Loading..."
-msgstr "Loading..."
-
-#: admin/pages/extensions.php:18
-msgid "Licenses"
-msgstr "Licences"
-
-#: admin/dashboards/class-admin-dashboards.php:152 admin/pages/dashboard.php:18
-msgid "Reports"
-msgstr "Reports"
-
-#: admin/dashboards/class-admin-dashboards.php:145
-msgid "Next"
-msgstr "Next"
-
-#: admin/pages/settings.php:19
-msgid "Advanced"
-msgstr "Advanced"
-
 #: admin/class-admin-form.php:46 admin/pages/settings.php:176
 msgid "Save changes"
 msgstr "Save changes"
+
+#: admin/class-admin-menu.php:100 admin/pages/settings.php:32
+msgid "General settings"
+msgstr "General settings"
 
 #: admin/class-admin-menu.php:226 admin/pages/dashboard.php:14
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: admin/class-admin-menu.php:100 admin/pages/settings.php:32
-msgid "General settings"
-msgstr "General settings"
+#: admin/class-admin-menu.php:232 admin/class-admin.php:328
+#: admin/pages/settings.php:10
+msgid "Settings"
+msgstr "Settings"
 
 #: admin/class-admin-menu.php:239 admin/pages/extensions.php:14
 #: admin/pages/extensions.php:17
 msgid "Extensions"
 msgstr "Extensions"
 
-#: admin/class-admin.php:134
+#: admin/class-admin.php:93
+msgid "MonsterInsights plugins share some code between them to make your site faster. As a result of that, we need all MonsterInsights plugins to be up to date. We've detected this isn't the case, so please update the MonsterInsights plugins that aren't up to date yet."
+msgstr "MonsterInsights plugins share some code between them to make your site faster. As a result of that, we need all MonsterInsights plugins to be up to date. We've detected this isn't the case, so please update the MonsterInsights plugins that aren't up to date yet."
+
+#: admin/class-admin.php:136
 msgid "Settings saved."
 msgstr "Settings saved."
 
-#: admin/class-admin.php:141
+#: admin/class-admin.php:143
 msgid "There were no changes to save, please try again."
 msgstr "There were no changes to save, please try again."
 
-#: admin/class-admin.php:185
+#: admin/class-admin.php:187
 msgid "The UA code needs to follow UA-XXXXXXXX-X format."
 msgstr "The UA code needs to follow UA-XXXXXXXX-X format."
 
-#: admin/class-admin.php:323
+#: admin/class-admin.php:325
 msgid "FAQ"
 msgstr "FAQ"
 
-#: admin/class-admin.php:454
+#: admin/class-admin.php:340
+msgid "If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by MonsterInsights%2$s."
+msgstr "If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by MonsterInsights%2$s."
+
+#: admin/class-admin.php:342
+msgid "This will also give you access to the support team at MonsterInsights, who will provide support on the plugin 24/7."
+msgstr "This will also give you access to the support team at MonsterInsights, who will provide support on the plugin 24/7."
+
+#: admin/class-admin.php:456
 msgid "Event"
 msgstr "Event"
 
-#: admin/class-admin.php:455
+#: admin/class-admin.php:457
 msgid "Pageview"
 msgstr "Pageview"
 
-#: admin/class-admin.php:466
+#: admin/class-admin.php:468
 msgid "Just the domain"
 msgstr "Just the domain"
 
-#: admin/class-admin.php:467
+#: admin/class-admin.php:469
 msgid "Full links"
 msgstr "Full links"
 
-#: admin/class-admin.php:487
-msgid "Debug information"
-msgstr "Debug information"
+#: admin/class-admin.php:548
+msgid "The premium version of Google Analytics by MonsterInsights with more features and support."
+msgstr "The premium version of Google Analytics by MonsterInsights with more features and support."
 
-#: admin/class-admin.php:542
+#: admin/class-admin.php:553
 msgid "eCommerce tracking"
 msgstr "eCommerce tracking"
 
-#: admin/class-admin.php:543
+#: admin/class-admin.php:554
 msgid "Track your eCommerce data and transactions with this eCommerce extension for Google Analytics."
 msgstr "Track your eCommerce data and transactions with this eCommerce extension for Google Analytics."
 
@@ -542,6 +530,10 @@ msgctxt "_MAX_ will be replaced by JS"
 msgid "Show _MENU_ rows"
 msgstr "Show _MENU_ rows"
 
+#: admin/dashboards/class-admin-dashboards.php:142
+msgid "Loading..."
+msgstr "Loading..."
+
 #: admin/dashboards/class-admin-dashboards.php:143
 msgid "First"
 msgstr "First"
@@ -549,6 +541,14 @@ msgstr "First"
 #: admin/dashboards/class-admin-dashboards.php:144
 msgid "Last"
 msgstr "Last"
+
+#: admin/dashboards/class-admin-dashboards.php:145
+msgid "Next"
+msgstr "Next"
+
+#: admin/dashboards/class-admin-dashboards.php:146
+msgid "Previous"
+msgstr "Previous"
 
 #: admin/dashboards/class-admin-dashboards.php:147
 msgid "Processing..."
@@ -561,6 +561,10 @@ msgstr "Search"
 #: admin/dashboards/class-admin-dashboards.php:149
 msgid "No matching records found"
 msgstr "No matching records found"
+
+#: admin/dashboards/class-admin-dashboards.php:152 admin/pages/dashboard.php:18
+msgid "Reports"
+msgstr "Reports"
 
 #: admin/dashboards/class-admin-dashboards.php:153 admin/pages/dashboard.php:19
 msgid "Custom dimension reports"
@@ -617,17 +621,25 @@ msgstr "Last month"
 msgid "Overview"
 msgstr "Overview"
 
-#: admin/pages/dashboard.php:43 admin/pages/dashboard.php:82
+#: admin/pages/dashboard.php:44 admin/pages/dashboard.php:83
 msgid "We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won't work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards."
 msgstr "We need you to authenticate with Google Analytics to use this functionality. If you set your UA-code manually, this won't work. You can %sauthenticate your Google Analytics profile here%s to enable dashboards."
 
-#: admin/pages/dashboard.php:52 admin/pages/dashboard.php:91
+#: admin/pages/dashboard.php:53 admin/pages/dashboard.php:92
 msgid "Because we've switched to a newer version of the Google Analytics API, you'll need to re-authenticate with Google Analytics. We're sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s."
 msgstr "Because we've switched to a newer version of the Google Analytics API, you'll need to re-authenticate with Google Analytics. We're sorry for the inconvenience. You can %sre-authenticate your Google Analytics profile here%s."
 
-#: admin/pages/dashboard.php:100
+#: admin/pages/dashboard.php:66 admin/pages/dashboard.php:112
+msgid "You have not yet finished setting up Google Analytics for Wordpress by MonsterInsights. Please %sadd your Analytics profile here%s to enable tracking."
+msgstr "You have not yet finished setting up Google Analytics for WordPress by MonsterInsights. Please %sadd your Analytics profile here%s to enable tracking."
+
+#: admin/pages/dashboard.php:101
 msgid "Select a dimension"
 msgstr "Select a dimension"
+
+#: admin/pages/extensions.php:18
+msgid "Licenses"
+msgstr "Licences"
 
 #: admin/pages/extensions.php:36
 msgid "Get this extension"
@@ -642,9 +654,21 @@ msgstr "Activate Licence"
 msgid "Installed"
 msgstr "Installed"
 
+#: admin/pages/extensions.php:51
+msgid "You have not installed any extensions for Google Analytics by MonsterInsights, so there are no licenses to activate."
+msgstr "You have not installed any extensions for Google Analytics by MonsterInsights, so there are no licences to activate."
+
+#: admin/pages/settings.php:17
+msgid "General"
+msgstr "General"
+
 #: admin/pages/settings.php:18
 msgid "Universal"
 msgstr "Universal"
+
+#: admin/pages/settings.php:19
+msgid "Advanced"
+msgstr "Advanced"
 
 #: admin/pages/settings.php:20
 msgid "Custom Dimensions"
@@ -737,27 +761,3 @@ msgstr "Anonymise IPs"
 #: admin/pages/settings.php:101
 msgid "This adds %1$s, telling Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
 msgstr "This adds %1$s, telling Google Analytics to anonymise the information sent by the tracker objects by removing the last octet of the IP address prior to its storage."
-
-#: admin/class-admin.php:91
-msgid "MonsterInsights plugins share some code between them to make your site faster. As a result of that, we need all MonsterInsights plugins to be up to date. We've detected this isn't the case, so please update the MonsterInsights plugins that aren't up to date yet."
-msgstr "MonsterInsights plugins share some code between them to make your site faster. As a result of that, we need all MonsterInsights plugins to be up to date. We've detected this isn't the case, so please update the MonsterInsights plugins that aren't up to date yet."
-
-#: admin/class-admin.php:338
-msgid "If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by MonsterInsights%2$s."
-msgstr "If you want to track custom dimensions like page views per author or post type, you should upgrade to the %1$spremium version of Google Analytics by MonsterInsights%2$s."
-
-#: admin/class-admin.php:340
-msgid "This will also give you access to the support team at MonsterInsights, who will provide support on the plugin 24/7."
-msgstr "This will also give you access to the support team at MonsterInsights, who will provide support on the plugin 24/7."
-
-#: admin/class-admin.php:537
-msgid "The premium version of Google Analytics by MonsterInsights with more features and support."
-msgstr "The premium version of Google Analytics by MonsterInsights with more features and support."
-
-#: admin/pages/dashboard.php:65 admin/pages/dashboard.php:111
-msgid "You have not yet finished setting up Google Analytics for Wordpress by MonsterInsights. Please %sadd your Analytics profile here%s to enable tracking."
-msgstr "You have not yet finished setting up Google Analytics for WordPress by MonsterInsights. Please %sadd your Analytics profile here%s to enable tracking."
-
-#: admin/pages/extensions.php:51
-msgid "You have not installed any extensions for Google Analytics by MonsterInsights, so there are no licenses to activate."
-msgstr "You have not installed any extensions for Google Analytics by MonsterInsights, so there are no licences to activate."
