@@ -293,7 +293,7 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 				if ( 'search' === $arguments[ 'type' ] ) {
 
 					$url                 = get_search_link( $arguments[ 'search_term' ] );
-					$arr[ 'target_url' ] = new Mlp_Url( $url );
+					$arr[ 'target_url' ] = Mlp_Url_Factory::create( $url );
 				}
 				elseif ( 'post_type_archive' === $arguments[ 'type' ]
 					&& ! empty ( $arguments[ 'post_type' ] )
@@ -341,6 +341,8 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 				$arr[ 'icon' ] = '';
 			}
 
+			$arr['suppress_filters'] = $arguments['suppress_filters'];
+
 			$arr = new Mlp_Translation( $arr, new Mlp_Language( $data ) );
 		}
 
@@ -349,8 +351,6 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 		 *
 		 * @param array $translations Translations.
 		 * @param array $arguments    Translation arguments.
-		 *
-		 * @return array
 		 */
 		$translations = apply_filters( 'mlp_translations', $translations, $arguments );
 		wp_cache_set( $key, $translations, 'mlp' );
@@ -369,7 +369,7 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 		$return = array ();
 
 		$url                    = get_post_type_archive_link( $post_type );
-		$return[ 'target_url' ] = new Mlp_Url( $url );
+		$return[ 'target_url' ] = Mlp_Url_Factory::create( $url );
 		$obj                    = get_post_type_object( $post_type );
 
 		if ( $obj )
@@ -403,17 +403,19 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 
 			return array (
 				'target_title' => $title,
-				'target_url'   => new Mlp_Url( get_edit_post_link( $content_id ) )
+				'target_url'   => Mlp_Url_Factory::create( get_edit_post_link( $content_id ) )
 			);
 		}
 
 		// frontend
+		do_action( 'mlp_before_link' );
 		$url = get_permalink( $content_id );
+		do_action( 'mlp_after_link' );
 
 		if ( 'publish' === $post->post_status || $editable )
 			return array (
 				'target_title' => $title,
-				'target_url'   => empty ( $url ) ? '' : new Mlp_Url( $url )
+				'target_url'   => empty ( $url ) ? '' : Mlp_Url_Factory::create( $url )
 			);
 
 		// unpublished post, not editable
@@ -438,7 +440,7 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 
 		$custom_flag = get_blog_option( $site_id, 'inpsyde_multilingual_flag_url' );
 		if ( $custom_flag ) {
-			return new Mlp_Url( $custom_flag );
+			return Mlp_Url_Factory::create( $custom_flag );
 		}
 
 		$flag_path = $this->data->get( 'flag_path' );
@@ -448,10 +450,10 @@ class Mlp_Language_Api implements Mlp_Language_Api_Interface {
 		$file_name = $sub . '.gif';
 
 		if ( is_readable( "$flag_path/$file_name" ) ) {
-			return new Mlp_Url( $this->data->get( 'flag_url' ) . $file_name );
+			return Mlp_Url_Factory::create( $this->data->get( 'flag_url' ) . $file_name );
 		}
 
-		return new Mlp_Url( '' );
+		return Mlp_Url_Factory::create( '' );
 	}
 
 	/**
@@ -502,7 +504,7 @@ WHERE `http_name` IN( $values )";
 		foreach ( $tags as $site => $lang ) {
 
 			foreach ( $results as $arr ) {
-				if ( in_array( $lang, $arr ) ) {
+				if ( in_array( $lang, $arr, true ) ) {
 					$languages[ $site ] += $arr;
 				}
 				elseif ( isset ( $add_like[ $site ] )
@@ -660,16 +662,17 @@ WHERE `http_name` IN( $values )";
 	 */
 	private function prepare_translation_arguments( Array $args ) {
 
-		$defaults = array (
+		$defaults = array(
 			// always greater than 0
-			'site_id'              => get_current_blog_id(),
+			'site_id'          => get_current_blog_id(),
 			// 0 if missing
-			'content_id'           => $this->get_query_id(),
-			'type'                 => $this->get_request_type(),
-			'strict'               => TRUE,
-			'search_term'          => get_search_query(),
-			'post_type'            => $this->get_request_post_type(),
-			'include_base'         => FALSE
+			'content_id'       => $this->get_query_id(),
+			'type'             => $this->get_request_type(),
+			'strict'           => true,
+			'search_term'      => get_search_query(),
+			'post_type'        => $this->get_request_post_type(),
+			'include_base'     => false,
+			'suppress_filters' => false,
 		);
 
 		$arguments = wp_parse_args( $args, $defaults );
@@ -678,8 +681,6 @@ WHERE `http_name` IN( $values )";
 		 * Filter the translation arguments.
 		 *
 		 * @param array $arguments Translation arguments.
-		 *
-		 * @return array
 		 */
 		$arguments = apply_filters( 'mlp_get_translations_arguments', $arguments );
 
@@ -734,7 +735,7 @@ WHERE `http_name` IN( $values )";
 		if ( empty ( $arguments[ 'content_id' ] ) )
 			return FALSE;
 
-		return in_array( $arguments[ 'type' ], array ( 'term', 'post' ) );
+		return in_array( $arguments['type'], array( 'post', 'term' ), true );
 	}
 
 	/**

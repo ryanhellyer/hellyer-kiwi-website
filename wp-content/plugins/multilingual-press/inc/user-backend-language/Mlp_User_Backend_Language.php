@@ -24,13 +24,6 @@ class Mlp_User_Backend_Language {
 	private $key = 'mlp_user_language';
 
 	/**
-	 * Feature activation status.
-	 *
-	 * @var bool
-	 */
-	private $active = FALSE;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param Mlp_Module_Manager_Interface $module_manager
@@ -47,27 +40,23 @@ class Mlp_User_Backend_Language {
 	 */
 	public function setup() {
 
-		// Load user specific language in the backend
-		add_filter( 'locale', array( $this, 'locale' ) );
-
-		$this->active = $this->module_manager->register(
-			array(
-				'display_name_callback' => array( $this, 'get_module_title' ),
-				'slug'                  => 'class-' . __CLASS__,
-				'description_callback'  => array( $this, 'get_module_description' ),
-			)
-		);
-
-		// Quit here if module is turned off
-		if ( ! $this->active ) {
+		$is_active = $this->module_manager->register( array(
+			'display_name_callback' => array( $this, 'get_module_title' ),
+			'slug'                  => 'class-' . __CLASS__,
+			'description_callback'  => array( $this, 'get_module_description' ),
+		) );
+		if ( ! $is_active ) {
 			return;
 		}
+
+		// Load user specific language in the backend
+		add_filter( 'locale', array( $this, 'locale' ) );
 
 		// Add User Field for own blog language
 		add_filter( 'personal_options', array( $this, 'edit_user_profile' ) );
 		add_filter( 'profile_update', array( $this, 'profile_update' ) );
 
-		add_action( 'admin_footer-options-general.php', array( $this, 'set_selected_language' ) );
+		add_action( 'admin_head-options-general.php', array( $this, 'enqueue_script' ) );
 	}
 
 	/**
@@ -81,7 +70,7 @@ class Mlp_User_Backend_Language {
 
 		return __(
 			'Let each user choose a preferred language for the backend of all connected sites. Does not affect the frontend.',
-			'multilingualpress'
+			'multilingual-press'
 		);
 	}
 
@@ -94,7 +83,7 @@ class Mlp_User_Backend_Language {
 	 */
 	public function get_module_title() {
 
-		return __( 'User Backend Language', 'multilingualpress' );
+		return __( 'User Backend Language', 'multilingual-press' );
 	}
 
 	/**
@@ -109,29 +98,29 @@ class Mlp_User_Backend_Language {
 	public function edit_user_profile( WP_User $user ) {
 
 		$languages = get_available_languages();
-
 		if ( ! $languages ) {
 			return;
 		}
 
 		// Add English manually, because it won't get added by WordPress itself.
-		$languages[ ] = 'en_US';
+		$languages[] = 'en_US';
 
 		$user_language = $this->get_user_language( $user->ID );
 		?>
 		<tr>
-			<th>
-				<label for="<?php echo $this->key; ?>">
-					<?php esc_html_e( 'Your preferred backend language', 'multilingualpress' ); ?>
+			<th scope="row">
+				<label for="<?php echo esc_attr( $this->key ); ?>">
+					<?php esc_html_e( 'Your preferred backend language', 'multilingual-press' ); ?>
 				</label>
 			</th>
 			<td>
-				<select name="<?php echo $this->key; ?>" id="<?php echo $this->key; ?>" autocomplete="off">
+				<select name="<?php echo esc_attr( $this->key ); ?>" id="<?php echo esc_attr( $this->key ); ?>"
+					autocomplete="off">
 					<?php $this->dropdown_languages( $languages, $user_language ); ?>
 				</select>
 			</td>
 		</tr>
-	<?php
+		<?php
 	}
 
 	/**
@@ -146,7 +135,7 @@ class Mlp_User_Backend_Language {
 	public function profile_update( $user_id ) {
 
 		// Empty means, that the site language is used
-		if ( empty( $_POST[ $this->key ] ) or '' === trim( $_POST[ $this->key ] ) ) {
+		if ( empty( $_POST[ $this->key ] ) || '' === trim( $_POST[ $this->key ] ) ) {
 			return delete_user_meta( $user_id, $this->key );
 		}
 
@@ -159,7 +148,7 @@ class Mlp_User_Backend_Language {
 	 * @param int    $user_id The user ID.
 	 * @param string $default Optional. Default language. Defaults to ''.
 	 *
-	 * @return string $user_language The user's preferred language.
+	 * @return string
 	 */
 	public function get_user_language( $user_id, $default = '' ) {
 
@@ -183,10 +172,6 @@ class Mlp_User_Backend_Language {
 	 */
 	public function locale( $locale ) {
 
-		if ( ! $this->active ) {
-			return $locale;
-		}
-
 		$current_user_id = get_current_user_id();
 
 		return $this->get_user_language( $current_user_id, $locale );
@@ -206,7 +191,7 @@ class Mlp_User_Backend_Language {
 
 		// Inherit site specific language
 		$output[ ] = '<option value=""' . selected( $current, '', FALSE ) . '>'
-			. __( 'Site Language', 'multilingualpress' ) . "</option>";
+			. __( 'Site Language', 'multilingual-press' ) . "</option>";
 
 		foreach ( (array) $lang_files as $file_name ) {
 			$code_lang = basename( $file_name, '.mo' );
@@ -214,7 +199,7 @@ class Mlp_User_Backend_Language {
 
 			if ( 'en_US' === $code_lang ) {
 				// American English
-				$lang = __( 'English', 'multilingualpress' );
+				$lang = __( 'English', 'multilingual-press' );
 			} else {
 				$lang = format_code_lang( $code_lang );
 			}
@@ -236,50 +221,25 @@ class Mlp_User_Backend_Language {
 	}
 
 	/**
-	 * Set the site language to what it actually is (i.e., not the user backend language).
+	 * Enqueues the script to set the site language to what it actually is (i.e., not the user backend language).
 	 *
-	 * @wp-hook admin_footer-options-general.php
+	 * @wp-hook admin_head-options-general.php
 	 *
 	 * @return void
 	 */
-	public function set_selected_language() {
+	public function enqueue_script() {
 
-		unset ( $GLOBALS['locale'] );
-
-		$filtered_locale = get_locale();
+		unset( $GLOBALS['locale'] );
 
 		remove_filter( 'locale', array( $this, 'locale' ) );
 
 		$unfiltered_locale = get_locale();
 
-		if ( $filtered_locale !== $unfiltered_locale ) {
-			$this->print_script( $unfiltered_locale );
-		}
+		wp_localize_script( 'mlp-admin', 'mlpUserBackEndLanguageSettings', array(
+			'locale' => 'en_US' === $unfiltered_locale ? '' : esc_js( $unfiltered_locale ),
+		) );
+		wp_enqueue_script( 'mlp-admin' );
 
 		add_filter( 'locale', array( $this, 'locale' ) );
 	}
-
-	/**
-	 * Print the script to fix the visible value for the site language
-	 *
-	 * @link   https://github.com/inpsyde/multilingual-press/issues/89
-	 * @param  string $value
-	 * @return void
-	 */
-	private function print_script( $value ) {
-
-		if ( 'en_US' === $value ) {
-			$value = '';
-		}
-		else {
-			$value = esc_js( $value );
-		}
-
-		?>
-		<script>
-			document.getElementById( 'WPLANG' ).value = '<?php echo $value; ?>';
-		</script>
-		<?php
-	}
-
 }
