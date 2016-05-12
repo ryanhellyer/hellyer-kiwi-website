@@ -7,7 +7,9 @@ jQuery(
 
 		$widgets.each(
 			function ( i, widget ) {
-				widget_promises.push( init( $( widget ) ) );
+				var $widget = $( widget );
+				$widget.attr( 'id', 'prompt-subscribe-widget-content-' + i );
+				widget_promises.push( init( $widget ) );
 			}
 		);
 
@@ -23,7 +25,8 @@ jQuery(
 				$nonce_input,
 				$prompts,
 				$submit_input,
-				$mode_input;
+				$mode_input,
+				widget_id = $widget.attr( 'id' );
 
 			return $.ajax(
 				{
@@ -34,14 +37,17 @@ jQuery(
 						widget_id: $widget.data( 'widgetId' ),
 						template: $widget.data( 'template' ),
 						collect_name: $widget.data( 'collectName' ),
-						object_type: prompt_subscribe_form_env.object_type,
-						object_id: prompt_subscribe_form_env.object_id
+						list_type: $widget.data( 'listType'),
+						list_id: $widget.data( 'listId' )
 					},
 					success: load_form
 				}
 			);
 
 			function load_form( content ) {
+
+				// Some integrations, like OptInMonster, may have moved and invalidated our $widget reference
+				var $widget = $( '#' + widget_id );
 
 				$widget.html( content );
 				$form = $widget.find( 'form.prompt-subscribe' );
@@ -104,25 +110,25 @@ jQuery(
 			function submit_form( event ) {
 				var $submitted_form = $( event.currentTarget );
 
-				$loading_indicator.show();
-				$inputs.hide();
-				$message.hide();
-				$prompts.hide();
+				$loading_indicator.addClass( 'active' );
+				$inputs.removeClass( 'active' );
+				$message.removeClass( 'active' );
+				$prompts.removeClass( 'active' );
 
 				$.post(
 					prompt_subscribe_form_env.ajaxurl, $submitted_form.serialize(), function ( message ) {
 
-						$message.html( message ).show();
-						$loading_indicator.hide();
+						$message.html( message ).addClass( 'active' );
+						$loading_indicator.removeClass( 'active' );
 
 					}
 				).error(
 					function () {
 
 						$message.html( prompt_subscribe_form_env.ajax_error_message ).show();
-						$inputs.show();
-						$prompts.show();
-						$loading_indicator.hide();
+						$inputs.addClass( 'active' );
+						$prompts.addClass( 'active' );
+						$loading_indicator.removeClass( 'active' );
 
 					}
 				);

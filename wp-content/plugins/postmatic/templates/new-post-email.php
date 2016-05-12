@@ -6,45 +6,79 @@
  *
  * @see prompt/post_email/template_data
  *
- * @var array                           $featured_image_src
- * @var bool                            $excerpt_only
- * @var string                          $alternate_versions_menu
- * @var Prompt_Interface_Subscribable   $subscribed_object
- * @var bool                            $is_api_delivery
- * @var bool                            $will_strip_content
+ * @var bool $excerpt_only
+ * @var string $after_title_content
+ * @var string $by author credit
+ * @var Prompt_Interface_Subscribable $subscribed_object
+ * @var bool $is_api_delivery
+ * @var string $after_post_content
+ * @var array $comments Comments so far for post subscriptions
  */
 ?>
 
 
-
-<h1 class="padded" id="the_title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-<?php echo $alternate_versions_menu; ?>
-
-<?php if ( $featured_image_src and $is_api_delivery ) : ?>
-	<img src="<?php echo $featured_image_src[0]; ?>"
-	     width="<?php echo intval( $featured_image_src[1] / 2 ); ?>"
-	     alt="featured image"
-	     class="aligncenter featured"/>
-<?php endif; ?>
-
-<div class="padded">
-<div id="the_content postmatic-content">
-	<?php $excerpt_only ? the_excerpt() : the_content(); ?>
+<div class="padded postmatic-header">
+	<h1 id="the_title">
+		<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+		<small><?php echo $by ?></small>
+	</h1>
 </div>
 
+<?php echo $after_title_content; ?>
 
-<?php if ( $excerpt_only ) : ?>
-	<p id="button"><a href="<?php the_permalink(); ?>" class="btn-secondary"><?php _e( 'View this post online', 'Postmatic' ); ?></a></p>
+<div class="padded">
+	<div id="the_content" class="postmatic-content">
+		<?php $excerpt_only ? the_excerpt() : the_content(); ?>
+	</div>
+
+
+	<?php if ( $excerpt_only ) : ?>
+		<p id="button"><a href="<?php the_permalink(); ?>"
+		                  class="btn-secondary"><?php _e( 'View this post online', 'Postmatic' ); ?></a></p>
+	<?php endif; ?>
+
+	<?php echo $after_post_content; ?>
+
+</div>
+<?php if ( comments_open() and !$excerpt_only ) : ?>
+
+<?php if ( !empty( $comments ) ) : ?>
+
+	<div class="previous-comments" id="comments">
+		<h3 class="comment-count">
+			<?php
+			printf(
+				_n(
+					'There is <a href="%1$s">one comment</a>',
+					'There are <a href="%1$s">%2$s comments</a>',
+					count( $comments ),
+					'Postmatic'
+				),
+				get_permalink() . '#comments',
+				number_format_i18n( count( $comments ) )
+			);
+			?>
+		</h3>
+		<?php
+		wp_list_comments( array(
+			'callback' => array( 'Prompt_Email_Comment_Rendering', 'render' ),
+			'style' => 'div',
+		), $comments );
+		?>
+	</div>
 <?php endif; ?>
 
-<?php if ( $will_strip_content ) : ?><hr /><?php endif; ?>
-
-<?php if ( comments_open() and ! $excerpt_only ) : ?>
-
+<div class="utils">
 	<div class="reply-prompt">
-		<img src="<?php echo Prompt_Core::$url_path . '/media/reply-comment-2x.png' ;?>" width="30" height="30" align="left" style="float: left; margin-right: 10px;"/>
+		<a href="mailto:{{{reply_to}}}?subject=<?php echo rawurlencode( __( 'A comment...', 'Postmatic' ) ); ?>">
+			<img src="<?php echo Prompt_Core::$url_path . '/media/reply-comment-2x.png'; ?>" width="30" height="30"
+			     align="left" style="float: left; margin-right: 10px;"/>
+		</a>
 		<h3 class="reply">
-			<?php _e( 'Reply to this email to add a comment. Your email address will not be shown.', 'Postmatic' ); ?><br />
+			<a href="mailto:{{{reply_to}}}?subject=<?php echo rawurlencode( __( 'A comment...', 'Postmatic' ) ); ?>">
+				<?php _e( 'Reply to this email to add a comment. Your email address will not be shown.', 'Postmatic' ); ?>
+			</a>
+			<br/>
 			<small>
 				<?php
 				printf(
@@ -55,46 +89,11 @@
 					get_bloginfo( 'name' )
 				);
 				?>
-			<br />
-			&raquo; <a href="<?php the_permalink(); ?>"><?php _e( 'View this post online', 'Postmatic' ); ?></a>
+				<br/>
+				&raquo; <a href="<?php the_permalink(); ?>"><?php _e( 'View this post online', 'Postmatic' ); ?></a>
 			</small>
 		</h3>
+		<?php endif; ?>
 	</div>
-	
 </div>
-
-
-
-	<div class="footnote padded gray">
-
-		<h3><?php _e( 'Get the latest comments and stay in the loop', 'Postmatic' ); ?></h3>
-
-		<p>
-			<?php
-			_e(
-				'To subscribe to comments on this post and receive a copy of the conversation so far reply with the word <strong>subscribe</strong>.',
-				'Postmatic'
-			);
-			?>
-		</p>
-
-		<h4><?php _e( 'Manage your subscription', 'Postmatic' ); ?></h4>
-		<p>
-			<?php
-			printf(
-				__( "To <strong>unsubscribe</strong> to %s reply with the word 'unsubscribe'.", 'Postmatic' ),
-				$subscribed_object->subscription_object_label()
-			);
-			?>
-		</p>
-	</div>
-
-<?php elseif ( !comments_open() ) : ?>
-
-	<h4><?php _e( 'Comments on this post are closed', 'Postmatic' ); ?> </h4>
-
-	<p><?php _e( 'You can reply to this email to send a note directly to the post author.', 'Postmatic' ); ?></p>
-
-<?php endif; ?>
-
 

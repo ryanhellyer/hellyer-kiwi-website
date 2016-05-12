@@ -4,6 +4,10 @@
  * Prompt behavior specific to a post.
  *
  * Encapsulates a WordPress post, since WordPress doesn't allow extension.
+ *
+ * @since 2.0.0 Subscribable interface updates
+ * @since 1.0.0
+ *
  */
 class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
@@ -15,6 +19,10 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 	protected static $flood_control_meta_key = '_flood_control_comment_id';
 	/** @var string */
 	protected static $text_version_meta_key = '_prompt_text_version';
+	/** @var string */
+	protected static $outbound_message_batch_ids_meta_key = '_prompt_outbound_message_batch_ids';
+	/** @var string */
+	protected static $custom_html_meta_key = '_prompt_custom_html';
 
 	/** @var  int user ID */
 	protected $id;
@@ -23,6 +31,8 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Create a Prompt post.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param int|WP_Post $post_id_or_object
 	 */
@@ -40,6 +50,8 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get the WordPress user ID.
+	 *
+	 * @since 1.0.0
 	 * @return int
 	 */
 	public function id() {
@@ -48,6 +60,8 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get the underlying post.
+	 *
+	 * @since 1.0.0
 	 * @return null|WP_Post
 	 */
 	public function get_wp_post() {
@@ -58,6 +72,8 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get a post excerpt without having to set up globals.
+	 *
+	 * @since 1.0.0
 	 * @return string
 	 */
 	public function get_excerpt() {
@@ -72,6 +88,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 	}
 
 	/**
+	 * @since 1.0.0
 	 * @return string The customized post text, empty if none was set.
 	 */
 	public function get_custom_text() {
@@ -79,6 +96,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 	}
 
 	/**
+	 * @since 1.0.0
 	 * @param string $text The customized post text.
 	 * @return Prompt_Post $this
 	 */
@@ -88,25 +106,111 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 	}
 
 	/**
+	 * @since 2.0.0
+	 * @return string The customized post HTML, empty if none was set.
+	 */
+	public function get_custom_html() {
+		return get_post_meta( $this->id, self::$custom_html_meta_key, true );
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param string $html The customized post text.
+	 * @return Prompt_Post $this
+	 */
+	public function set_custom_html( $html ) {
+		update_post_meta( $this->id, self::$custom_html_meta_key, $html );
+		return $this;
+	}
+
+	/**
 	 * Use the post permalink as the subscription URL.
+	 *
+	 * @since 1.0.0
 	 * @return string
 	 */
 	public function subscription_url() {
 		return get_permalink( $this->id );
 	}
 
-	public function subscription_object_label() {
-		return sprintf(
-			__( 'discussion of <em>%s</em>', 'Postmatic' ),
-			$this->get_wp_post()->post_title
+	/**
+	 * A title.
+	 *
+	 * @since 2.0.0 Added format parameter
+	 * @since 1.0.0
+	 *
+	 * @param string $format 'html' or 'text', default 'html'.
+	 * @return string
+	 */
+	public function subscription_object_label( $format = Prompt_Enum_Content_Types::HTML ) {
+		return Prompt_Content_Handling::html_or_reduced_utf8(
+			$format,
+			sprintf( __( 'discussion of <em>%s</em>', 'Postmatic' ), $this->get_wp_post()->post_title )
 		);
 	}
 
-	public function subscription_description() {
-		return sprintf(
-			__( 'You have successfully subscribed and will receive an email when there is a new comment on <em>%s</em>.', 'Postmatic' ),
-			$this->get_wp_post()->post_title
+	/**
+	 * @since 2.0.0 Added format parameter
+	 * @since 1.0.0
+	 *
+	 * @param string $format
+	 * @return string
+	 */
+	public function subscription_description( $format = Prompt_Enum_Content_Types::HTML ) {
+		/* translators: %s is the post title*/
+		return Prompt_Content_Handling::html_or_reduced_utf8(
+			$format,
+			sprintf(
+				__(
+					'You have successfully subscribed and will receive an email when there is a new comment on <em>%s</em>.',
+					'Postmatic'
+				),
+				$this->get_wp_post()->post_title
+			)
 		);
+	}
+
+	/**
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $format 'html' or 'text', default 'html'.
+	 * @return string
+	 */
+	public function select_reply_prompt( $format = Prompt_Enum_Content_Types::HTML ) {
+		$subscribe_mailto = sprintf(
+			'mailto:{{{reply_to}}}?subject=%s&body=%s',
+			__( 'Just hit send', 'Postmatic' ),
+			$this->subscribe_phrase()
+		);
+		return Prompt_Content_Handling::html_or_reduced_utf8(
+			$format,
+			sprintf(
+				__(
+					'To get all new comments on %1%s, reply with the word \'%2$s\'</a>.',
+					'Postmatic'
+				),
+				$this->get_wp_post()->post_title,
+				"<a href=\"$subscribe_mailto\">{$this->subscribe_phrase()}</a>"
+			)
+		);
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public function subscribe_phrase() {
+		return __( 'post', 'Postmatic' ) . '-' . $this->get_wp_post()->ID;
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param string $text
+	 * @return string
+	 */
+	public function matches_subscribe_phrase( $text ) {
+		return ( $text == $this->subscribe_phrase() );
 	}
 
 	/**
@@ -139,12 +243,12 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 		$post = $this->get_wp_post();
 
-		if ( ! in_array( $post->post_type, Prompt_Core::$options->get( 'site_subscription_post_types' ) ) )
+		if ( !in_array( $post->post_type, Prompt_Core::$options->get( 'site_subscription_post_types' ) ) )
 			return array();
 
 		$recipient_ids = $this->cached_recipient_ids();
 
-		if ( ! $recipient_ids ) {
+		if ( !$recipient_ids ) {
 
 			$prompt_site = new Prompt_Site;
 			$recipient_ids = $prompt_site->subscriber_ids();
@@ -157,7 +261,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 			/**
 			 * Filter the recipient ids of notifications for a post.
 			 *
-			 * @param array $recipient_ids
+			 * @param array   $recipient_ids
 			 * @param WP_Post $post
 			 */
 			$recipient_ids = apply_filters( 'prompt/recipient_ids/post', $recipient_ids, $post );
@@ -173,6 +277,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get the IDs of users who have been sent an email notification for this post.
+	 *
 	 * @return array
 	 */
 	public function sent_recipient_ids() {
@@ -186,6 +291,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Add the IDs of users who have been sent an email notification for this post.
+	 *
 	 * @param array $ids
 	 * @return $this
 	 */
@@ -197,6 +303,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Remove the IDs of users for whom an email notification mailing failed.
+	 *
 	 * @param array $ids
 	 * @return $this
 	 */
@@ -208,6 +315,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get the IDs of users who have been NOT yet been sent an email notification for this post.
+	 *
 	 * @return array
 	 */
 	public function unsent_recipient_ids() {
@@ -215,7 +323,35 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 	}
 
 	/**
+	 * Get the IDs of outbound message batches requested for this post.
+	 *
+	 * @return array
+	 */
+	public function outbound_message_batch_ids() {
+		$sent_ids = get_post_meta( $this->id, self::$outbound_message_batch_ids_meta_key, true );
+
+		if ( !$sent_ids )
+			$sent_ids = array();
+
+		return $sent_ids;
+	}
+
+	/**
+	 * Add the IDs of outbound message batches requested for this post.
+	 *
+	 * @param array|int $ids
+	 * @return $this
+	 */
+	public function add_outbound_message_batch_ids( $ids ) {
+		$ids = is_array( $ids ) ? $ids : array( $ids );
+		$sent_ids = array_unique( array_merge( $this->outbound_message_batch_ids(), $ids ) );
+		update_post_meta( $this->id, self::$outbound_message_batch_ids_meta_key, $sent_ids );
+		return $this;
+	}
+
+	/**
 	 * Get the comment ID that triggered flood control on this post.
+	 *
 	 * @return int Comment ID or 0 for none.
 	 */
 	public function get_flood_control_comment_id() {
@@ -247,6 +383,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get the IDs of all users subscribed to at least one post.
+	 *
 	 * @return array
 	 */
 	public static function all_subscriber_ids() {
@@ -259,6 +396,7 @@ class Prompt_Post extends Prompt_Meta_Subscribable_Object {
 
 	/**
 	 * Get a meta query clause to select posts that have been sent out.
+	 *
 	 * @return array
 	 */
 	public static function sent_posts_meta_clause() {

@@ -35,13 +35,119 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	}
 
 	/**
+	 * Get the current site record
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function get_site() {
+		return $this->get( '/site' );
+	}
+
+	/**
+	 * Get undelivered updates
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function get_undelivered_updates() {
+		return $this->get( '/updates/undelivered' );
+	}
+
+	/**
+	 * Create and send outbound messages individually
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string|array $data JSON, or array will be encoded as JSON
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function post_outbound_messages( $data ) {
+		return $this->post( '/outbound_messages', $this->json_request( $data ) );
+	}
+
+	/**
+	 * Create and send a templated batch of outbound messages
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string|array $data JSON, or array will be encoded as JSON
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function post_outbound_message_batches( $data ) {
+		return $this->post( '/outbound_message_batches', $this->json_request( $data ) );
+	}
+
+	/**
+	 * Create and send events
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string|array $data JSON, or array will be encoded as JSON
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function post_events( $data ) {
+		return $this->post( '/events', $this->json_request( $data ) );
+	}
+
+	/**
+	 * Request an immediate callback
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string|array $data JSON, or array will be encoded as JSON
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function post_instant_callback( $data ) {
+		return $this->post( '/instant_callback', $this->json_request( $data ) );
+	}
+
+	/**
+	 * Retrieve a scheduled callback by ID
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param int $id
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function get_scheduled_callback( $id ) {
+		return $this->get( '/scheduled_callbacks/' . intval( $id ) );
+	}
+
+	/**
+	 * Request a scheduled callback
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string|array $data JSON, or array will be encoded as JSON
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function post_scheduled_callbacks( $data ) {
+		return $this->post( '/scheduled_callbacks', $this->json_request( $data ) );
+	}
+
+	/**
+	 * Delete a scheduled callback by ID
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param int $id
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
+	 */
+	public function delete_scheduled_callback( $id ) {
+		return $this->delete( '/scheduled_callbacks/' . intval( $id ) );
+	}
+
+	/**
 	 * Make a method agnostic request
 	 *
 	 * @since 0.1.0
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function send( $endpoint, $request = array() ) {
 
@@ -78,7 +184,7 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function get( $endpoint, $request = array() ) {
 		$request['method'] = 'GET';
@@ -92,7 +198,7 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function post( $endpoint, $request = array() ) {
 		$request['method'] = 'POST';
@@ -110,7 +216,7 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function head( $endpoint, $request = array() ) {
 		$request['method'] = 'HEAD';
@@ -124,7 +230,7 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function put( $endpoint, $request = array() ) {
 		$request['method'] = 'PUT';
@@ -142,7 +248,7 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 	 *
 	 * @param string $endpoint
 	 * @param array $request
-	 * @return mixed The implementation return value, a wp_remote_request() array by default.
+	 * @return array|WP_Error The implementation return value, a wp_remote_request() array by default.
 	 */
 	public function delete( $endpoint, $request = array() ) {
 		$request['method'] = 'DELETE';
@@ -160,5 +266,21 @@ class Prompt_Api_Client implements Prompt_Interface_Http_Client {
 		return $endpoint;
 	}
 
+	/**
+	 * Make a JSON request array
+	 *
+	 * Set the content type and encode the body with the given data.
+	 *
+	 * @param mixed $data
+	 * @return array Args array for wp_remote_request().
+	 */
+	protected function json_request( $data ) {
+		if ( ! is_string( $data ) )
+			$data = json_encode( $data );
 
+		return array(
+			'headers' => array( 'Content-Type' => 'application/json' ),
+			'body' => $data,
+		);
+	}
 }

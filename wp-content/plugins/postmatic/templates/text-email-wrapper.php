@@ -3,15 +3,17 @@
  * Text email template
  *
  * @var string $brand_text
- * @var string $message
+ * @var string $text_content
  * @var string $footer_text
+ * @var string $footnote_text
+ * @var string $credit_text
  * @var string $unsubscribe_url
  */
 ?>
 
 ··· <?php echo $brand_text; ?> ···
 
-<?php echo $message; ?>
+<?php echo $text_content; ?>
 
 <?php echo $footer_text; ?>
 
@@ -27,9 +29,12 @@ printf(
 <?php echo $unsubscribe_url; ?>
 <?php endif; ?>
 
-<?php _e( 'Delivered by Postmatic.', 'Postmatic' ); ?>
+<?php echo $footnote_text; ?>
+
+<?php echo $credit_text; ?>
 
 http://gopostmatic.com
+postmatic-ref-{{{ref_id}}}
 
 
 

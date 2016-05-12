@@ -14,21 +14,85 @@ class Prompt_Factory {
 
 	/**
 	 * Make a mailer instance appropriate to the environment.
+	 * @since 2.0.0
+	 * @param Prompt_Email_Batch $batch
 	 * @param string $transport Optional transport to use
 	 * @return Prompt_Mailer
 	 */
-	public static function make_mailer( $transport = null ) {
+	public static function make_mailer( $batch, $transport = null, $chunk = null ) {
 
-		$transport = $transport ? $transport : Prompt_Core::$options->get( 'email_transport' );
+		$mailer = self::is_transport_api( $transport ) ?
+			self::make_api_mailer( $batch ) :
+			self::make_local_mailer( $batch, $chunk );
 
-		$mailer = new Prompt_Wp_Mailer();
-
-		if ( Prompt_Enum_Email_Transports::API ==  $transport )
-			$mailer = new Prompt_Mailer();
-
-		$mailer = apply_filters( 'prompt/make_mailer', $mailer, $transport );
+		$mailer = apply_filters( 'prompt/make_mailer', $mailer, $batch, $transport );
 
 		return $mailer;
+	}
+
+	/**
+	 * Make a mailer instance appropriate to the environment for a post preview or ad hoc request.
+	 *
+	 * These cases don't need scheduling or idempotent checks, so we can use a standard mailer.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param Prompt_Email_Batch $batch
+	 * @param string $transport Optional transport to use
+	 * @return Prompt_Mailer
+	 */
+	public static function make_post_adhoc_mailer( $batch, $transport = null ) {
+
+		$mailer = self::is_transport_api( $transport ) ? new Prompt_Mailer( $batch ) : new Prompt_Wp_Mailer( $batch );
+
+		$mailer = apply_filters( 'prompt/make_mailer', $mailer, $batch, $transport );
+
+		return $mailer;
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param Prompt_Email_Batch $batch
+	 * @return Prompt_Mailer
+	 */
+	protected static function make_api_mailer( $batch ) {
+
+		if ( is_a( $batch, 'Prompt_Post_Email_Batch' ) ) {
+			return new Prompt_Post_Mailer( $batch );
+		}
+
+		if ( is_a( $batch, 'Prompt_Comment_Email_Batch' ) ) {
+			return new Prompt_Comment_Mailer( $batch );
+		}
+
+		if ( is_a( $batch, 'Prompt_Subscription_Agreement_Email_Batch' ) ) {
+			return new Prompt_Subscription_Agreement_Mailer( $batch );
+		}
+
+		return new Prompt_Mailer( $batch );
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param Prompt_Email_Batch $batch
+	 * @param int $chunk
+	 * @return Prompt_Mailer
+	 */
+	protected static function make_local_mailer( $batch, $chunk = 0 ) {
+
+		if ( is_a( $batch, 'Prompt_Post_Email_Batch' ) ) {
+			return new Prompt_Post_Wp_Mailer( $batch );
+		}
+
+		if ( is_a( $batch, 'Prompt_Comment_Email_Batch' ) ) {
+			return new Prompt_Comment_Wp_Mailer( $batch );
+		}
+
+		if ( is_a( $batch, 'Prompt_Subscription_Agreement_Email_Batch' ) ) {
+			return new Prompt_Subscription_Agreement_Wp_Mailer( $batch );
+		}
+
+		return new Prompt_Wp_Mailer( $batch, null, null, $chunk );
 	}
 
 	/**
@@ -63,5 +127,27 @@ class Prompt_Factory {
 	 */
 	public static function make_rescheduler( $job_result, $wait_seconds ) {
 		return apply_filters( 'prompt/make_rescheduler', new Prompt_Rescheduler( $job_result, $wait_seconds ) );
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param object $comment
+	 * @return Prompt_Comment_Flood_Controller
+	 */
+	public static function make_comment_flood_controller( $comment ) {
+		return apply_filters( 'prompt/make_comment_flood_controller', new Prompt_Comment_Flood_Controller( $comment ), $comment );
+	}
+
+	/**
+	 * Shorten checks for current email transport.
+	 * @since 2.0.0
+	 *
+	 * @param string $transport Optional value to use instead of the option.
+	 * @return boolean
+	 */
+	protected static function is_transport_api( $transport = null ) {
+		$transport = $transport ? $transport : Prompt_Core::$options->get( 'email_transport' );
+
+		return ( Prompt_Enum_Email_Transports::API == $transport );
 	}
 }

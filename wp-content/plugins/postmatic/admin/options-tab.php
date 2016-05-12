@@ -16,7 +16,7 @@ class Prompt_Admin_Options_Tab extends scbAdminPage {
 
 	/**
 	 * Construct so the form is embeddable in another page rather than adding a new one.
-	 * @param bool|string $options
+	 * @param Prompt_Options $options
 	 * @param null $overridden_options
 	 */
 	public function __construct( $options, $overridden_options = null ) {
@@ -44,6 +44,14 @@ class Prompt_Admin_Options_Tab extends scbAdminPage {
 	 */
 	public function slug() {
 		return sanitize_title( $this->name() );
+	}
+
+	/**
+	 * Whether the tab is currently enabled.
+	 * @return bool
+	 */
+	public function enabled() {
+		return true;
 	}
 
 	/**
@@ -125,6 +133,14 @@ class Prompt_Admin_Options_Tab extends scbAdminPage {
 		}
 	}
 
+	/**
+	 * Set missing field names to false.
+	 * @since 2.0.0
+	 * @param array $new_data
+	 * @param array $old_data
+	 * @param array $field_names
+	 * @return array
+	 */
 	protected function validate_checkbox_fields( $new_data, $old_data, $field_names ) {
 		$valid_data = $old_data;
 
@@ -139,5 +155,82 @@ class Prompt_Admin_Options_Tab extends scbAdminPage {
 		}
 
 		return $valid_data;
+	}
+	
+	
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function upgrade_link() {
+		return sprintf(
+			__( '<a href="%s" class="upgrade_link">Premium</a>', 'Postmatic' ),
+			Prompt_Enum_Urls::MANAGE
+		);
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function download_labs_link() {
+		return sprintf(
+			'<a href="%s" class="download-modal labs">%s</a>',
+			Prompt_Enum_Urls::DOWNLOAD_PREMIUM,
+			__( 'Labs', 'Postmatic' )
+		);
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function download_premium_link() {
+		return sprintf(
+			'<a href="%s" class="install_link download-modal premium">%s</a>',
+			Prompt_Enum_Urls::DOWNLOAD_PREMIUM,
+			__( 'Install', 'Postmatic' )
+		);
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function contextual_download_link() {
+
+		if ( $this->is_premium_active() ) {
+			return '';
+		}
+
+		if ( $this->options->is_api_transport() ) {
+			return $this->download_premium_link();
+		}
+
+		return $this->download_labs_link();
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return bool
+	 */
+	protected function is_premium_active() {
+		return class_exists( 'Postmatic\Premium\Core' );
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return bool
+	 */
+	protected function is_digest_message_type_enabled() {
+		return in_array( Prompt_Enum_Message_Types::DIGEST, $this->options->get( 'enabled_message_types' ) );
+	}
+	
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function labs_tag() {
+		return html( 'span class="labs"', __( 'Labs Feature', 'Postmatic' ) );
 	}
 }

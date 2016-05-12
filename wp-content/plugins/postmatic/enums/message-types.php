@@ -9,4 +9,5 @@ class Prompt_Enum_Message_Types {
 	const COMMENT_MODERATION = 'comment-moderation';
 	const DIGEST = 'digest';
 	const WP_MAIL = 'wp-mail';
+	const NOTE = 'note';
 }

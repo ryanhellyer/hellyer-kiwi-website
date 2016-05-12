@@ -16,13 +16,33 @@ class Prompt_Email_Comment_Rendering {
 			implode( ' ', get_comment_class( self::base_classes( $comment ), $comment, $comment->comment_post_ID ) )
 		);
 
+		$comment_actions = '';
+		if ( comments_open( $comment->comment_post_ID ) ) {
+			$comment_actions = html( 'a',
+				array(
+					'class' => 'reply-link',
+					'href' => sprintf(
+						'mailto:{{{reply_to_comment_%s}}}?subject=%s',
+						$comment->comment_ID,
+						rawurlencode( sprintf( __( 'Reply to %s', 'Postmatic' ), $comment->comment_author ) )
+					)
+				),
+				html(
+					'img',
+					array( 'src' => 'https://s3-us-west-2.amazonaws.com/postmatic/assets/icons/reply.png', 'width' => '13', 'height' => '8', )
+				),
+				__( 'Reply', 'Postmatic' )
+			);
+		}
+
 		echo html( 'div class="comment-header"',
 			get_avatar( $comment ),
 			html( 'div class="author-name"',
 				get_comment_author_link( $comment->comment_ID )
 			),
 			html( 'div class="comment-body"',
-				apply_filters( 'comment_text', get_comment_text( $comment->comment_ID ), $comment )
+				apply_filters( 'comment_text', get_comment_text( $comment->comment_ID ), $comment ),
+				$comment_actions
 			)
 		);
 	}
@@ -40,7 +60,17 @@ class Prompt_Email_Comment_Rendering {
 
 		echo self::indent( Prompt_Html_To_Markdown::convert( wpautop( $comment->comment_content ) ), $depth );
 
-
+		if ( comments_open( $comment->comment_post_ID ) ) {
+			echo self::indent(
+				sprintf(
+					'%1$s: mailto:{{{reply_to_comment_%2$s}}}?subject=%3$s',
+					sprintf( __( 'Reply to %s', 'Postmatic' ), $comment->comment_author ),
+					$comment->comment_ID,
+					rawurlencode( __( 'Reply', 'Postmatic' ) )
+				),
+				$depth
+			);
+		}
 	}
 
 	protected static function indent( $text, $depth ) {
@@ -68,16 +98,25 @@ class Prompt_Email_Comment_Rendering {
 
 	protected static function base_classes( $comment ) {
 
-		if ( ! self::$flood_comment )
-			return '';
+		$classes = array();
+		
+		if ( 'parent' == $comment->comment_type ) {
+			$classes[] = 'context-parent';
+		}
+		
+		if ( ! self::$flood_comment ) {
+			return implode( ' ' , $classes );
+		}
 
-		if ( self::$flood_comment->comment_ID == $comment->comment_ID )
-			return 'flood-point post-flood';
+		if ( self::$flood_comment->comment_ID == $comment->comment_ID ) {
+			$classes[] = 'flood-point';
+		}
 
-		if ( self::$flood_comment->comment_date_gmt < $comment->comment_date_gmt )
-			return 'post-flood';
+		if ( self::$flood_comment->comment_date_gmt <= $comment->comment_date_gmt ) {
+			$classes[] = 'post-flood';
+		}
 
-		return '';
+		return implode( ' ' , $classes );
 	}
 
 }

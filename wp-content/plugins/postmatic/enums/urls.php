@@ -14,4 +14,6 @@ class Prompt_Enum_Urls {
 	const SPAM_DOC = 'http://docs.gopostmatic.com/86-spam';
 
 	const MANAGE = 'https://app.gopostmatic.com';
+
+	const DOWNLOAD_PREMIUM = 'http://plugins.gopostmatic.com/?action=download&slug=postmatic-premium';
 }

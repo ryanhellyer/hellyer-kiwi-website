@@ -1,7 +1,23 @@
 <?php
 
+/**
+ * Manage the error record
+ * @since 1.0.0
+ */
+
 class Prompt_Logging {
-	const OPTION_NAME = 'prompt_log';
+
+	/**
+	 * @since 2.0.0
+	 * @type string
+	 */
+	protected static $log_option_name = 'prompt_log';
+
+	/**
+	 * @since 2.0.0
+	 * @type string
+	 */
+	protected static $last_submit_option_name = 'prompt_error_submit_time';
 
 	/**
 	 * Shortcut to add a WP_Error to the log.
@@ -20,7 +36,10 @@ class Prompt_Logging {
 	}
 
 	/**
-	 * Save the most recent errors for review.
+	 * Record an error.
+	 *
+	 * @since 1.0.0
+	 *
 	 * @param string $code
 	 * @param string $message
 	 * @param mixed $data
@@ -32,8 +51,9 @@ class Prompt_Logging {
 
 		$log = self::get_log();
 
-		if ( !$log )
+		if ( !$log ) {
 			$log = array();
+		}
 
 		// If we go over 25 messages, only keep the most recent 20
 		if ( count( $log ) > 25 )
@@ -43,29 +63,37 @@ class Prompt_Logging {
 
 		array_unshift( $log, compact( 'time', 'code', 'message', 'data' ) );
 
-		update_option( self::OPTION_NAME, $log );
+		update_option( self::$log_option_name, $log, $autoload = 'no' );
 
 		// Puke a little in dev environments
 		trigger_error( $message, E_USER_NOTICE );
+
+		if ( Prompt_Core::$options->get( 'enable_collection' ) ) {
+			self::submit();
+		}
 
 		return $wp_error;
 	}
 
 	/**
 	 * Get saved error log entries.
+	 *
+	 * @since 1.0.0
+	 *
 	 * @param int $since Include only entries more recent than this timestamp.
 	 * @param string $data_format Specify ARRAY_A to convert data to array format.
 	 * @return array
 	 */
 	public static function get_log( $since = 0, $data_format = OBJECT ) {
-		$log = get_option( self::OPTION_NAME );
+		$log = get_option( self::$log_option_name );
 
-		if ( !is_array( $log ) )
+		if ( !is_array( $log ) ) {
 			$log = json_decode( $log );
+		}
 
 		if ( !$log ) {
 			$log = array();
-			add_option( self::OPTION_NAME, $log, '', $autoload = 'no' );
+			add_option( self::$log_option_name, $log, '', $autoload = false );
 		}
 
 		$filtered_log = array();
@@ -76,29 +104,98 @@ class Prompt_Logging {
 			if ( $data_format == ARRAY_A )
 				$entry['data'] = self::object_to_array( $entry['data'] );
 
-			if ( $entry['time'] >= $since )
+			if ( $entry['time'] > $since )
 				$filtered_log[] = $entry;
 		}
 
 		return $filtered_log;
 	}
 
+	/**
+	 * Forget recorded errors.
+	 *
+	 * @since 1.0.0
+	 */
 	public static function delete_log() {
-		delete_option( self::OPTION_NAME );
+		delete_option( self::$log_option_name );
 	}
 
-	protected static function object_to_array( $obj ) {
-		if ( is_object( $obj ) ) {
-			$obj = (array)$obj;
+	/**
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return int Unix time
+	 */
+	public static function get_last_submission_time() {
+		return absint( get_option( self::$last_submit_option_name ) );
+	}
+
+	/**
+	 * Report new errors.
+	 *
+	 * @since 2.0.0
+	 */
+	public static function submit() {
+		$user = wp_get_current_user();
+
+		$last_submit_time = self::get_last_submission_time();
+
+		update_option( self::$last_submit_option_name, time(), $autoload = false );
+
+		$message = array( 'error_log' => self::get_log( $last_submit_time, ARRAY_A ) );
+
+		$environment = new Prompt_Environment();
+
+		$message = array_merge( $message, $environment->to_array() );
+
+		$email = Prompt_Email_Batch::make_for_single_recipient( array(
+			'to_address' => Prompt_Core::SUPPORT_EMAIL,
+			'from_address' => $user->exists() ? $user->user_email : get_option( 'admin_email' ),
+			'from_name' => $user->exists() ? $user->display_name : '',
+			'subject' => sprintf( 'Error submission from %s', html_entity_decode( get_option( 'blogname' ) ) ),
+			'text_content' => json_encode( $message ),
+			'message_type' => Prompt_Enum_Message_Types::ADMIN,
+		) );
+
+		$sent = Prompt_Factory::make_mailer( $email, Prompt_Enum_Email_Transports::LOCAL )->send();
+
+		if ( is_wp_error( $sent ) and Prompt_Core::$options->get( 'prompt_key' ) ) {
+			$sent = Prompt_Factory::make_mailer( $email, Prompt_Enum_Email_Transports::API )->send();
 		}
-		if ( is_array( $obj ) ) {
-			$new = array();
-			foreach ( $obj as $key => $val ) {
-				$new[$key] = self::object_to_array( $val );
+
+		return $sent;
+	}
+
+	/**
+	 * @since 1.0.0
+	 * @param $obj
+	 * @return array
+	 */
+	protected static function object_to_array( $obj ) {
+		if ( ! is_object( $obj ) and ! is_array( $obj ) ) {
+			return $obj;
+		}
+		if ( ! is_object( $obj ) ) {
+			return array_map( array( __CLASS__, 'object_to_array' ), $obj );
+		}
+		$object_vars = get_object_vars( $obj );
+		if ( $object_vars ) {
+			return array_map( array( __CLASS__, 'object_to_array' ), $object_vars );
+		}
+		if ( method_exists( $obj, 'to_array' ) ) {
+			return $obj->to_array();
+		}
+		$new = array();
+		$meta = new ReflectionClass( $obj );
+		$methods = $meta->getMethods( ReflectionMethod::IS_PUBLIC );
+		foreach ( $methods as $method ) {
+			$property_name = substr( $method->name, 4 );
+			if ( $meta->hasProperty( $property_name) and 'get_' == substr( $method->name, 0, 4 ) ) {
+				$new[$property_name] = $method->invoke( $obj );
 			}
-		} else {
-			$new = $obj;
 		}
 		return $new;
 	}
+
+
 }

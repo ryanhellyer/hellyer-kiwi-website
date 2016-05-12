@@ -263,7 +263,6 @@ class Prompt_Optins_Style {
 		}
 		
 		#postmatic-widget-popup_calderaModal div.loading-indicator {
-		position: relative !important;
 		left: 270px !important;
 		width: 30px !important;
 		min-height: 0;
@@ -337,7 +336,6 @@ class Prompt_Optins_Style {
 		left: 45% !important;
 		margin: 0 auto !important;
 		width: 30px !important;
-		position:relative !important;
 		text-align: center !important;
 		}
 		
@@ -799,15 +797,15 @@ class Prompt_Optins_Style {
 		#postmatic-inpost-optin-widget h2.widgettitle {
 		color: {{type}} !important;
 		margin: 0 0 15px 175px !important;
-		font-size: 180% !important;
+		font-size: 140% !important;
 		padding: 0 !important;
 		text-align: left !important;
+		line-height: normal !important;
 		}
 
 		#postmatic-inpost-optin-widget div.primary.prompt {
 		margin: 0 0 25px 175px !important;
 		font-size: 110% !important;
-		min-height: 145px !important;
 		line-height: normal !important;
 		display: block !important;
 		}
@@ -840,6 +838,7 @@ class Prompt_Optins_Style {
 		color: {{button-type}} !important;
 		font-weight: normal !important;
 		height: 34px !important;
+		max-width: 20% !important;
 		}
 		
 		#postmatic-inpost-optin-widget input.prompt-subscribe-email, #postmatic-inpost-optin-widget input.prompt-subscribe-name {
@@ -851,7 +850,7 @@ class Prompt_Optins_Style {
 		border-radius: 5px !important;
 		margin-top: 3px !important;
 		color: #343434 !important;
-		width: 32% !important;
+		width: 30% !important;
 		border-color: {{border-color}} !important;
 		border-width: 1px !important;
 		border-style: solid !important;
@@ -865,7 +864,6 @@ class Prompt_Optins_Style {
 		}
 		
 		#postmatic-inpost-optin-widget div.loading-indicator {
-		position: relative !important;
 		left: 270px !important;
 		}
 		
@@ -903,6 +901,7 @@ class Prompt_Optins_Style {
 		
 		#postmatic-inpost-optin-widget h2.widgettitle,#postmatic-inpost-optin-widget div.primary.prompt,#postmatic-inpost-optin-widget .message {
 		margin: 0 0 10px 0 !important;
+		line-height: normal !important;
 		}
 		
 		}	

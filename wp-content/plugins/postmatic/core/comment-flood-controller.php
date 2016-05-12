@@ -86,7 +86,7 @@ class Prompt_Comment_Flood_Controller {
 			'date_query' => array(
 				array(
 					'column' => 'comment_date',
-					'after' => '1 hour ago',
+					'after' => '14 hours ago',
 				)
 			)
 		) );
@@ -109,7 +109,37 @@ class Prompt_Comment_Flood_Controller {
 
 	protected function send_notifications( $recipient_ids ) {
 
-		$emails = array();
+		$template_data = array(
+			'post' => $this->prompt_post,
+			'comment_header' => true,
+		);
+		/**
+		 * Filter comment email template data.
+		 *
+		 * @param array $template_data {
+		 * @type Prompt_post $post
+		 * @type bool $comment_header
+		 * }
+		 */
+		$template_data = apply_filters( 'prompt/comment_flood_email/template_data', $template_data );
+
+		$html_template = new Prompt_Template( 'comment-flood-email.php' );
+		$text_template = new Prompt_Text_Template( 'comment-flood-email-text.php' );
+
+		$footnote_html = sprintf(
+			__( 'You received this email because you\'re subscribed to %s.', 'Postmatic' ),
+			$this->prompt_post->subscription_object_label()
+		);
+
+		$batch = new Prompt_Email_Batch( array(
+			'subject' => __( 'We\'re pausing comment notices for you.', 'Postmatic' ),
+			'text_content' => $text_template->render( $template_data ),
+			'html_content' => $html_template->render( $template_data ),
+			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
+			'reply_to' => '{{{reply_to}}}',
+			'footnote_html' => $footnote_html,
+			'footnote_text' => Prompt_Content_Handling::reduce_html_to_utf8( $footnote_html ),
+		) );
 
 		foreach( $recipient_ids as $recipient_id ) {
 
@@ -118,54 +148,28 @@ class Prompt_Comment_Flood_Controller {
 			if ( !$subscriber or !$subscriber->user_email )
 				continue;
 
-			$template_data = array(
-				'subscriber' => $subscriber,
-				'post' => $this->prompt_post,
-				'subject' => __( 'We\'re pausing comment notices for you.', 'Postmatic' ),
-				'comment_header' => true,
-			);
-			/**
-			 * Filter comment email template data.
-			 *
-			 * @param array $template_data {
-			 * @type WP_User $subscriber
-			 * @type Prompt_post $post
-			 * @type string $subject
-			 * @type bool $comment_header
-			 * }
-			 */
-			$template_data = apply_filters( 'prompt/comment_flood_email/template_data', $template_data );
-
-			$html_template = new Prompt_Email_Template( 'comment-flood-email.php' );
-			$text_template = new Prompt_Text_Email_Template( 'comment-flood-email-text.php' );
-
-			$email = new Prompt_Email( array(
-				'to_address' => $subscriber->user_email,
-				'subject' => $template_data['subject'],
-				'text' => $text_template->render( $template_data ),
-				'html' => $html_template->render( $template_data ),
-				'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
-			) );
-
 			$command = new Prompt_Comment_Flood_Command();
 			$command->set_post_id( $this->prompt_post->id() );
 			$command->set_user_id( $recipient_id );
 
-			Prompt_Command_Handling::add_command_metadata( $command, $email );
+			$batch->add_individual_message_values( array(
+				'to_address' => $subscriber->user_email,
+				'reply_to' => Prompt_Email_Batch::trackable_address(
+					Prompt_Command_Handling::get_command_metadata( $command )
+				),
+			) );
 
-			/**
-			 * Filter comment notification email.
-			 *
-			 * @param Prompt_Email $email
-			 * @param array $template_data see prompt/comment_email/template_data
-			 */
-			$emails[] = apply_filters( 'prompt/comment_flood_email', $email, $template_data );
 		}
 
-		if ( empty( $emails ) )
-			return;
+		/**
+		 * Filter comment notification email batch.
+		 *
+		 * @param Prompt_Email_Batch $batch
+		 * @param array $template_data see prompt/comment_email/template_data
+		 */
+		$batch = apply_filters( 'prompt/comment_flood_email_batch', $batch, $template_data );
 
-		Prompt_Factory::make_mailer()->send_many( $emails );
+		Prompt_Factory::make_mailer( $batch )->send();
 
 	}
 

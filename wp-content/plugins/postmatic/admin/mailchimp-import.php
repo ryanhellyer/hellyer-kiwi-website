@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Mailchimp Import
+ * @since 1.2.3
+ */
 class Prompt_Admin_MailChimp_Import {
 
 	/** @var  string */
@@ -14,11 +18,14 @@ class Prompt_Admin_MailChimp_Import {
 	protected $imported_count = 0;
 	/** @var  array */
 	protected $rejects;
+	/** @var  Prompt_Interface_Subscribable */
+	protected $target_list;
 
-	public function __construct( $api_key, $list_id ) {
+	public function __construct( $api_key, $list_id, Prompt_Interface_Subscribable $target_list = null ) {
 		$this->api_key = $api_key;
 		$this->list_id = $list_id;
 		$this->rejects = array();
+		$this->target_list = $target_list ? $target_list : new Prompt_Site();
 	}
 
 	public function get_error() {
@@ -45,10 +52,8 @@ class Prompt_Admin_MailChimp_Import {
 	public function execute() {
 		$this->ensure_subscribers();
 
-		$prompt_site = new Prompt_Site();
-
 		foreach ( $this->subscribers as $subscriber ) {
-			$this->import( $subscriber, $prompt_site );
+			$this->import( $subscriber );
 		}
 	}
 
@@ -103,14 +108,16 @@ class Prompt_Admin_MailChimp_Import {
 	}
 
 	/**
+	 * @since 1.2.3
+	 * @since 2.0.0 Removed list parameter
+	 *
 	 * @param array $subscriber
-	 * @param Prompt_Interface_Subscribable $object
 	 */
-	protected function import( $subscriber, $object ) {
+	protected function import( $subscriber ) {
 
 		$existing_user = get_user_by( 'email', $subscriber['email'] );
 
-		if ( $existing_user and $object->is_subscribed( $existing_user->ID ) ) {
+		if ( $existing_user and $this->target_list->is_subscribed( $existing_user->ID ) ) {
 			$this->already_subscribed_count++;
 			return;
 		}
@@ -126,7 +133,7 @@ class Prompt_Admin_MailChimp_Import {
 			$subscriber_id = $existing_user->ID;
 		}
 
-		$object->subscribe( $subscriber_id );
+		$this->target_list->subscribe( $subscriber_id );
 
 		$prompt_user = new Prompt_User( $subscriber_id );
 

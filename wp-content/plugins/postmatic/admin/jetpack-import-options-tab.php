@@ -3,11 +3,11 @@
 class Prompt_Admin_Jetpack_Import_Options_Tab extends Prompt_Admin_Import_Options_Tab {
 
 	public function name() {
-		return __( 'Migrate from Jetpack', 'Postmatic' );
+		return __( 'Jetpack Import', 'Postmatic' );
 	}
 
 	public function slug() {
-		return 'import-jetpack';
+		return 'jetpack-import';
 	}
 
 	public function render() {

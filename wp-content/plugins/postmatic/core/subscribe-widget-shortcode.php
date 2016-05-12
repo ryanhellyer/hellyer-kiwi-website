@@ -9,11 +9,16 @@ class Prompt_Subscribe_Widget_Shortcode {
 			'collect_name' => true,
 			'template_path' => null,
 			'subscribe_prompt' => null,
+			'list' => null,
 		);
 
 		$attributes = shortcode_atts( $defaults, $attributes );
 
 		$attributes['collect_name'] = self::attribute_boolean_value( $attributes['collect_name'] );
+
+		if ( $attributes['list'] ) {
+			$attributes['list'] = Prompt_Subscribing::make_subscribable_from_slug( $attributes['list'] );
+		}
 
 		ob_start();
 

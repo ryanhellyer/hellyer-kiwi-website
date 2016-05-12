@@ -1,50 +1,31 @@
 <?php
-class Prompt_Subscription_Mailing {
 
-	protected static $delivery_option = 'prompt_agreement_delivery';
+class Prompt_Subscription_Mailing {
 
 	/**
 	 * Send an email to verify a subscription from a non-existent user.
 	 *
-	 * @param Prompt_Interface_Subscribable $object
-	 * @param string $email_address
-	 * @param array $user_data
-	 * @param Prompt_Register_Subscribe_Command $resend_command
+	 * @param Prompt_Interface_Subscribable[]|Prompt_Interface_Subscribable $lists
+	 * @param string                                                        $email_address
+	 * @param array                                                         $user_data
+	 * @param Prompt_Register_Subscribe_Command                             $resend_command
+	 * @param int                                                           $retry_wait_seconds
 	 */
 	public static function send_agreement(
-		$object,
+		$lists,
 		$email_address,
 		$user_data,
 		$resend_command = null,
-		$retry_wait_seconds = 60
+		$retry_wait_seconds = null
 	) {
 
 		$user_data['user_email'] = $email_address;
 
-		$email = self::make_agreement_email( $object, $user_data, $resend_command );
+		$batch = new Prompt_Subscription_Agreement_Email_Batch( $lists );
 
-		$result = Prompt_Factory::make_mailer()->send_one( $email );
+		$batch->add_agreement_recipient( $user_data, $resend_command );
 
-		$rescheduler = Prompt_Factory::make_rescheduler( $result, $retry_wait_seconds );
-
-		if ( $rescheduler->found_temporary_error() ) {
-
-			$rescheduler->reschedule(
-				'prompt/subscription_mailing/send_agreement',
-				array( $object, $email_address, $user_data, $resend_command )
-			);
-
-			return;
-		}
-
-		if ( is_wp_error( $result ) ) {
-			Prompt_Logging::add_error(
-				Prompt_Enum_Error_Codes::OUTBOUND,
-				__( 'An email sending operation encountered a problem.', 'Postmatic' ),
-				compact( 'result', 'object', 'email' )
-			);
-		}
-
+		Prompt_Factory::make_mailer( $batch )->set_retry_wait_seconds( $retry_wait_seconds )->send();
 	}
 
 	/**
@@ -52,197 +33,93 @@ class Prompt_Subscription_Mailing {
 	 *
 	 * Try to be idempotent, so only the first of repeated calls sends mail.
 	 *
-	 * @param Prompt_Interface_Subscribable $object
-	 * @param array $users_data An array of user_data arrays that include the user_email field.
-	 * @param array $template_data An array of data to provide to the subscription agreement template.
-	 * @param int $chunk
-	 * @param int $retry_wait_seconds Minimum time to wait if a retry is necessary, or null to disable retry
+	 * @param Prompt_Interface_Subscribable[]|Prompt_Interface_Subscribable $lists
+	 * @param array                                                         $users_data         An array of user_data
+	 *                                                                                          arrays that include the
+	 *                                                                                          user_email field.
+	 * @param array                                                         $template_data      An array of data to
+	 *                                                                                          provide to the
+	 *                                                                                          subscription agreement
+	 *                                                                                          template.
+	 * @param int                                                           $chunk
+	 * @param int                                                           $retry_wait_seconds Minimum time to wait if
+	 *                                                                                          a retry is necessary,
+	 *                                                                                          or null to disable
+	 *                                                                                          retry
 	 */
 	public static function send_agreements(
-		$object,
+		$lists,
 		$users_data,
 		$template_data = array(),
 		$chunk = 0,
-		$retry_wait_seconds = 60
+		$retry_wait_seconds = null
 	) {
 
-		// Bail if we've already sent this chunk
-		if ( $chunk <= self::get_delivered_chunk( $users_data ) )
-			return;
+		$batch = new Prompt_Subscription_Agreement_Email_Batch( $lists, $template_data );
 
-		// Block other processes from sending this chunk
-		self::set_delivered_chunk( $users_data, $chunk );
+		$batch->add_agreement_recipients( $users_data );
 
-		$chunks = array_chunk( $users_data, Prompt_Core::$options->get( 'emails_per_chunk' ) );
-
-		$emails = array();
-
-		foreach ( $chunks[$chunk] as $user_data ) {
-			$emails[] = self::make_agreement_email( $object, $user_data, null, $template_data );
-		}
-
-		$result = Prompt_Factory::make_mailer()->send_many( $emails );
-
-		$rescheduler = Prompt_Factory::make_rescheduler( $result, $retry_wait_seconds );
-
-		if ( $rescheduler->found_temporary_error() ) {
-
-			self::set_delivered_chunk( $users_data, $chunk - 1 );
-
-			$rescheduler->reschedule(
-				'prompt/subscription_mailing/send_agreements',
-				array( $object, $users_data, $template_data, $chunk )
-			);
-
-			return;
-		}
-
-		if ( is_wp_error( $result ) ) {
-
-			self::set_delivered_chunk( $users_data, $chunk - 1 );
-
-			Prompt_Logging::add_error(
-				Prompt_Enum_Error_Codes::OUTBOUND,
-				__( 'An email sending operation encountered a problem.', 'Postmatic' ),
-				compact( 'result', 'object', 'users_data', 'template_data', 'chunk' )
-			);
-
-			return;
-		}
-
-		if ( ! empty( $chunks[$chunk + 1] ) ) {
-
-			wp_schedule_single_event(
-				time(),
-				'prompt/subscription_mailing/send_agreements',
-				array( $object, $users_data, $template_data, $chunk + 1 )
-			);
-
-		}
+		Prompt_Factory::make_mailer( $batch, null, $chunk )->set_retry_wait_seconds( $retry_wait_seconds )->send();
 	}
 
 	/**
-	 * @since 1.3.0
+	 * Send agreements that have been cached with a key.
 	 *
-	 * @param array $users_data
-	 * @return int
+	 * @param string $key
 	 */
-	protected static function get_delivered_chunk( $users_data ) {
+	public static function send_cached_invites( $key ) {
 
-		$delivery = get_option( self::$delivery_option, array() );
+		$agreements = get_option( $key );
 
-		$key = md5( serialize( $users_data ) );
+		if ( !$agreements ) {
+			return;
+		}
 
-		return empty( $delivery[$key] ) ? -1 : $delivery[$key];
-	}
+		delete_option( $key );
 
-	/**
-	 * @since 1.3.0
-	 *
-	 * @param array $users_data
-	 * @param int $chunk
-	 */
-	protected static function set_delivered_chunk( $users_data, $chunk ) {
-
-		$delivery = get_option( self::$delivery_option, array() );
-
-		$key = md5( serialize( $users_data ) );
-
-		$delivery[$key] = $chunk;
-
-		update_option( self::$delivery_option, $delivery, $autoload = false );
+		call_user_func_array( array( __CLASS__, 'send_agreements' ), $agreements );
 	}
 
 	/**
 	 * Schedule a batch of agreements to be sent.
 	 *
+	 * If the API email transport is in use, agreements are sent inline. Local mailing triggers
+	 * a new process.
+	 *
 	 * @since 1.3.0
 	 *
-	 * @param Prompt_Interface_Subscribable $object
-	 * @param array $users_data An array of user_data arrays that include the user_email field.
-	 * @param array $template_data An array of data to provide to the subscription agreement template.
+	 * @param Prompt_Interface_Subscribable[]|Prompt_Interface_Subscribable $lists
+	 * @param array                                                         $users_data    An array of user_data arrays
+	 *                                                                                     that include the user_email
+	 *                                                                                     field.
+	 * @param array                                                         $template_data An array of data to provide
+	 *                                                                                     to the subscription
+	 *                                                                                     agreement template.
 	 */
-	public static function schedule_agreements( $object, $users_data, $template_data = array() ) {
+	public static function schedule_agreements( $lists, $users_data, $template_data = array() ) {
 
-		$key = md5( serialize( $users_data ) );
-
-		$delivery = get_option( self::$delivery_option, array() );
-
-		// set to less than first chunk, 0
-		$delivery[$key] = -1;
-
-		update_option( self::$delivery_option, $delivery, $autoload = false );
-
-		wp_schedule_single_event(
-			time(),
-			'prompt/subscription_mailing/send_agreements',
-			array( $object, $users_data, $template_data, $chunk = 0 )
-		);
-	}
-
-	protected static function make_agreement_email( $object, $user_data, $resend_command = null, $message_data = array() ) {
-		$command = $resend_command;
-		$resending = true;
-		$email_address = $user_data['user_email'];
-
-		if ( !$resend_command ) {
-			$command = new Prompt_Register_Subscribe_Command();
-			$resending = false;
-			$command->save_subscription_data( $object, $email_address, $user_data );
+		if ( Prompt_Core::$options->get( 'email_transport' ) === Prompt_Enum_Email_Transports::API ) {
+			// inline
+			self::send_agreements( $lists, $users_data, $template_data );
+			return;
 		}
 
-		$html_template = new Prompt_Email_Template( 'subscription-agreement-email.php' );
-		$text_template = new Prompt_Text_Email_Template( 'subscription-agreement-email-text.php' );
+		$batch = new Prompt_Subscription_Agreement_Email_Batch( $lists, $template_data );
 
-		$message_data = array_merge( compact( 'email_address', 'object', 'user_data', 'resending' ), $message_data );
-		/**
-		 * Filter new user subscription verification email template data.
-		 * @param array $message_data {
-		 * @type Prompt_Interface_Subscribable $object The object being subscribed to
-		 * @type string $email_address
-		 * @type boolean $resending
-		 * }
-		 */
-		$message_data = apply_filters( 'prompt/subscription_agreement_email/template_data', $message_data );
+		$batch->add_agreement_recipients( $users_data );
 
-		$email = new Prompt_Email( array(
-			'to_address' => $email_address,
-			'subject' => sprintf(
-				__( 'Please verify your subscription to %s', 'Postmatic' ),
-				$object->subscription_object_label()
-			),
-			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
-		) );
+		$mailer = new Prompt_Subscription_Agreement_Wp_Mailer( $batch );
 
-		if ( !empty( $message_data['subject'] ) )
-			$email->set_subject( $message_data['subject'] );
+		$mailer = apply_filters( 'prompt/subscription_mailing/schedule_wp_mailer', $mailer );
 
-		if ( !empty( $message_data['message_type'] ) )
-			$email->set_message_type( $message_data['message_type'] );
-
-		if ( !empty( $message_data['from_name'] ) )
-			$email->set_from_name( $message_data['from_name'] );
-
-		self::render_email( $email, $text_template, $html_template, $message_data );
-
-		Prompt_Command_Handling::add_command_metadata( $command, $email );
-
-		/**
-		 * Filter subscription verification email.
-		 * @param Prompt_Email $email
-		 * @param array $message_data {
-		 * @type object $object The object being subscribed to
-		 * @type string $email_address
-		 * @type boolean $resending
-		 * }
-		 */
-		return apply_filters( 'prompt/subscription_agreement_email', $email, $message_data );
+		// new process
+		$mailer->schedule();
 	}
 
 	/**
 	 * Send an unsubscription confirmation email.
 	 *
-	 * @param int $subscriber_id
+	 * @param int                           $subscriber_id
 	 * @param Prompt_Interface_Subscribable $object
 	 */
 	public static function send_unsubscription_notification( $subscriber_id, $object ) {
@@ -252,9 +129,9 @@ class Prompt_Subscription_Mailing {
 	/**
 	 * Send a subscription confirmation email.
 	 *
-	 * @param int $subscriber
+	 * @param int                           $subscriber
 	 * @param Prompt_Interface_Subscribable $object
-	 * @param boolean $un True if unsubscribing, default false.
+	 * @param boolean                       $un True if unsubscribing, default false.
 	 */
 	public static function send_subscription_notification( $subscriber, $object, $un = false ) {
 
@@ -263,58 +140,57 @@ class Prompt_Subscription_Mailing {
 
 		if ( !$subscriber or !is_email( $subscriber->user_email ) ) {
 			Prompt_Logging::add_error(
-					'invalid_subscriber',
-					__( 'Tried to notify an invalid subscriber.', 'Postmatic' ),
-					compact( 'subscriber', 'object', 'un' )
+				'invalid_subscriber',
+				__( 'Tried to notify an invalid subscriber.', 'Postmatic' ),
+				compact( 'subscriber', 'object', 'un' )
 			);
 			return;
 		}
 
-		$email = new Prompt_Email( array(
-			'to_address' => $subscriber->user_email,
-			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
-		) );
-
 		if ( $un ) {
 
-			$email->set_subject(
-				sprintf( __( 'You\'re unsubscribed from %s', 'Postmatic' ), $object->subscription_object_label() )
+			$subject = sprintf(
+				__( 'You\'re unsubscribed from %s', 'Postmatic' ),
+				$object->subscription_object_label()
 			);
+			$footnote_html = $footnote_text = '';
 			$template_file = "unsubscribed-email.php";
 			$filter = 'prompt/unsubscribed_email';
 			$comments = array();
 
 		} else {
 
-			$email->set_subject(
-				sprintf( __( 'You\'re subscribed to %s', 'Postmatic' ), $object->subscription_object_label() )
+			$subject = sprintf(
+				__( 'You\'re subscribed to %s', 'Postmatic' ),
+				$object->subscription_object_label()
 			);
+
+			list( $footnote_html, $footnote_text ) = self::welcome_footnote_content( $object );
+
 			$template_file = "subscribed-email.php";
 			$filter = 'prompt/subscribed_email';
 			$comments = self::comments( $object );
-
 		}
 
-		$html_template = new Prompt_Email_Template( $template_file );
-		$text_template = new Prompt_Text_Email_Template( str_replace( '.php', '-text.php', $template_file ) );
+		$html_template = new Prompt_Template( $template_file );
+		$text_template = new Prompt_Template( str_replace( '.php', '-text.php', $template_file ) );
 
 		$template_data = array(
 			'subscriber' => $prompt_subscriber->get_wp_user(),
 			'object' => $object,
-			'subscribed_introduction' => Prompt_Core::$options->get( 'subscribed_introduction' ),
+			'subscribed_introduction' => self::introduction( $object, $un ),
 			'comments' => $comments,
-			'subject' => $email->get_subject(),
 		);
 		/**
 		 * Filter template data for subscription notification email.
 		 *
-		 * @param array $template_data {
-		 *      Data supplied to the subscription notification email template.
+		 * @param array                        $template_data           {
+		 *                                                              Data supplied to the subscription notification email template.
 		 *
-		 *      @type WP_User $object The object subscribed to
-		 *      @type Prompt_Interface_Subscribable $object The object subscribed to
-		 *      @type string $subscribed_introduction Custom introductory content.
-		 *      @type array $comments For post subscriptions, the comments on the post so far.
+		 * @type WP_User                       $object                  The object subscribed to
+		 * @type Prompt_Interface_Subscribable $object                  The object subscribed to
+		 * @type string                        $subscribed_introduction Custom introductory content.
+		 * @type array                         $comments                For post subscriptions, the comments on the post so far.
 		 * }
 		 */
 		$template_data = apply_filters( $filter . '/template_data', $template_data );
@@ -326,26 +202,47 @@ class Prompt_Subscription_Mailing {
 		$command->set_user_id( $subscriber->ID );
 		$command->set_object_type( get_class( $object ) );
 		$command->set_object_id( $object->id() );
+		$command_reply_macro = Prompt_Email_Batch::trackable_address(
+			Prompt_Command_Handling::get_command_metadata( $command )
+		);
 
-		Prompt_Command_Handling::add_command_metadata( $command, $email );
+		$batch_data = array(
+			'to_name' => $subscriber->display_name,
+			'to_address' => $subscriber->user_email,
+			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
+			'subject' => $subject,
+			'html_content' => $html_template->render( $template_data ),
+			'text_content' => $text_template->render( $template_data ),
+			'reply_to' => $command_reply_macro,
+			'welcome_message' => Prompt_Core::$options->get( 'subscriber_welcome_message' ),
+			'footnote_html' => $footnote_html,
+			'footnote_text' => $footnote_text,
+		);
 
-		self::render_email( $email, $text_template, $html_template, $template_data );
+		if ( $comments and comments_open( $post_id ) ) {
+			$batch_data = array_merge(
+				$batch_data,
+				Prompt_Command_Handling::get_comment_reply_macros( $comments, $subscriber->ID )
+			);
+		}
+
+		$batch = Prompt_Email_Batch::make_for_single_recipient( $batch_data );
 
 		/**
-		 * Filter subscription notification email.
+		 * Filter subscription notification email batch.
 		 *
-		 * @param Prompt_Email $email
-		 * @param array $template_data @see prompt/subscribed_email/template_data
+		 * @param Prompt_Email_Batch $batch
+		 * @param array              $template_data @see prompt/subscribed_email/template_data
 		 */
-		$email = apply_filters( $filter, $email, $template_data );
+		$batch = apply_filters( 'prompt/subscribed_batch', $batch, $template_data );
 
-		Prompt_Factory::make_mailer()->send_one( $email );
+		Prompt_Factory::make_mailer( $batch )->send();
 	}
 
 	/**
 	 * Send a rejoin confirmation email.
 	 *
-	 * @param int $subscriber
+	 * @param int         $subscriber
 	 * @param Prompt_Post $prompt_post
 	 */
 	public static function send_rejoin_notification( $subscriber, $prompt_post ) {
@@ -353,77 +250,80 @@ class Prompt_Subscription_Mailing {
 		$prompt_subscriber = new Prompt_User( $subscriber );
 		$subscriber = $prompt_subscriber->get_wp_user();
 
-		$email = new Prompt_Email( array(
-			'to_address' => $subscriber->user_email,
-			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
-		) );
-
-		$email->set_subject(
-			sprintf( __( 'You\'ve rejoined %s', 'Postmatic' ), $prompt_post->subscription_object_label() )
-		);
 		$comments = self::comments( $prompt_post );
 
-		$html_template = new Prompt_Email_Template( 'rejoined-email.php' );
-		$text_template = new Prompt_Text_Email_Template( 'rejoined-email-text.php' );
+		$html_template = new Prompt_Template( 'rejoined-email.php' );
+		$text_template = new Prompt_Text_Template( 'rejoined-email-text.php' );
 
 		$template_data = array(
-			'subscriber' => $subscriber,
 			'object' => $prompt_post,
 			'comments' => $comments,
-			'subject' => $email->get_subject(),
 		);
 		/**
-		 * Filter template data for subscription notification email.
+		 * Filter template data for rejoin notification email.
 		 *
-		 * @param array $template_data {
-		 *      Data supplied to the subscription notification email template.
+		 * @param array                        $template_data {
+		 *                                                    Data supplied to the subscription notification email template.
 		 *
-		 *      @type WP_User $subscriber
-		 *      @type Prompt_Interface_Subscribable $prompt_post The object subscribed to
-		 *      @type array $comments The comments since flood control was triggered.
-		 *      @type string $subject
+		 * @type Prompt_Interface_Subscribable $prompt_post   The object subscribed to
+		 * @type array                         $comments      The comments since flood control was triggered.
 		 * }
 		 */
 		$template_data = apply_filters( 'prompt/rejoined_email/template_data', $template_data );
 
-		self::add_comment_command( $email, $prompt_post->id(), $subscriber->ID );
+		$footnote_html = sprintf(
+			__( 'You received this email because you\'re subscribed to %s.', 'Postmatic' ),
+			$prompt_post->subscription_object_label()
+		);
 
-		self::render_email( $email, $text_template, $html_template, $template_data );
+		$batch_data = array(
+			'to_address' => $subscriber->user_email,
+			'message_type' => Prompt_Enum_Message_Types::SUBSCRIPTION,
+			'subject' => sprintf( __( 'You\'ve rejoined %s', 'Postmatic' ), $prompt_post->subscription_object_label() ),
+			'html_content' => $html_template->render( $template_data ),
+			'text_content' => $text_template->render( $template_data ),
+			'reply_to' => Prompt_Email_Batch::trackable_address(
+				Prompt_Command_Handling::get_comment_command_metadata( $subscriber->ID, $prompt_post->id() )
+			),
+			'welcome_back_message' => sprintf(
+				__( 'Welcome back, <span class="capitalize">%s</span>.', 'Postmatic' ),
+				$subscriber->display_name
+			),
+			'footnote_html' => $footnote_html,
+			'footnote_text' => Prompt_Content_Handling::reduce_html_to_utf8( $footnote_html ),
+		);
+
+		if ( comments_open( $prompt_post->id() ) ) {
+			$batch_data = array_merge(
+				$batch_data,
+				Prompt_Command_Handling::get_comment_reply_macros( $comments, $subscriber->ID )
+			);
+		}
+
+		$batch = Prompt_Email_Batch::make_for_single_recipient( $batch_data );
 
 		/**
-		 * Filter subscription notification email.
+		 * Filter subscription notification email batch.
 		 *
-		 * @param Prompt_Email $email
-		 * @param array $template_data @see prompt/rejoined_email/template_data
+		 * @param Prompt_Email_Batch $batch
+		 * @param array              $template_data @see prompt/rejoined_email/template_data
 		 */
-		$email = apply_filters( 'prompt/rejoined_email', $email, $template_data );
+		$batch = apply_filters( 'prompt/rejoined_batch', $batch, $template_data );
 
-		Prompt_Factory::make_mailer()->send_one( $email );
+		Prompt_Factory::make_mailer( $batch )->send();
 	}
 
-	protected static function add_comment_command( Prompt_Email $email, $post_id, $subscriber_id ) {
-		$command = new Prompt_Comment_Command();
-		$command->set_post_id( $post_id );
-		$command->set_user_id( $subscriber_id );
-		Prompt_Command_Handling::add_command_metadata( $command, $email );
-	}
-
-	protected static function render_email(
-		Prompt_Email $email,
-		Prompt_Text_Email_Template $text_template,
-		Prompt_Email_Template $html_template,
-		$template_data
-	) {
-		$email->set_text( $text_template->render( $template_data ) );
-		$email->set_html( $html_template->render( $template_data ) );
-	}
-
+	/**
+	 * @since 1.0.0
+	 * @param Prompt_Interface_Subscribable $object
+	 * @return array
+	 */
 	protected static function comments( Prompt_Interface_Subscribable $object ) {
 
 		if ( Prompt_Enum_Email_Transports::LOCAL == Prompt_Core::$options->get( 'email_transport' ) )
 			return array();
 
-		if ( ! is_a( $object, 'Prompt_Post' ) )
+		if ( !is_a( $object, 'Prompt_Post' ) )
 			return array();
 
 		return get_comments( array(
@@ -431,6 +331,62 @@ class Prompt_Subscription_Mailing {
 			'status' => 'approve',
 			'order' => 'ASC',
 		) );
+	}
+
+	/**
+	 * Assemble subscription management content appropriate for the $list and current settings.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param Prompt_Interface_Subscribable $list
+	 * @return array HTML followed by text content
+	 */
+	protected static function welcome_footnote_content( Prompt_Interface_Subscribable $list ) {
+
+		$html_parts = array();
+		$text_parts = array();
+
+		/**
+		 * Filter extra footnote content for welcome emails.
+		 *
+		 * @param array $content Two element array containing first HTML then text content.
+		 * @param Prompt_Interface_Subscribable The list that was subscribed to.
+		 */
+		list( $html_parts[], $text_parts[] ) = apply_filters(
+			'prompt/subscription_mailing/extra_welcome_footnote_content',
+			array( '', '' ),
+			$list
+		);
+
+		$unsubscribe_mailto = sprintf(
+			'mailto:{{{reply_to}}}?subject=%s&body=%s',
+			rawurlencode( __( 'Press send to confirm', 'Postmatic' ) ),
+			rawurlencode( Prompt_Unsubscribe_Matcher::target() )
+		);
+		$unsubscribe_format = __( 'To unsubscribe at any time reply with the word \'%s\'.', 'Postmatic' );
+
+		$html_parts[] = sprintf(
+			$unsubscribe_format,
+			"<a href=\"$unsubscribe_mailto\">" . Prompt_Unsubscribe_Matcher::target() . '</a>'
+		);
+		$text_parts[] = sprintf( $unsubscribe_format, Prompt_Unsubscribe_Matcher::target() );
+
+		return array( implode( ' ', $html_parts ), implode( ' ', $text_parts ) );
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param Prompt_Interface_Subscribable $list
+	 * @param bool $unsubscribing
+	 * @return string
+	 */
+	protected static function introduction( Prompt_Interface_Subscribable $list, $unsubscribing ) {
+
+		if ( $unsubscribing or $list instanceof Prompt_Post ) {
+			return '';
+		}
+
+		return apply_filters( 'the_content', Prompt_Core::$options->get( 'subscribed_introduction' ) );
 	}
 
 }

@@ -232,13 +232,13 @@ class Prompt_Admin_Delivery_Metabox extends scbPostMetabox {
 		if ( Prompt_Enum_Email_Transports::LOCAL == Prompt_Core::$options->get( 'email_transport' ) ) {
 
 			$description = sprintf(
-				__( 'Your post will be sent to as plain text to %d subscribers and deliverability will depend on the outgoing mail of your web host. <br /> <br /> Upgrade to Postmatic Premium and get the reliability and look you want.', 'Postmatic' ),
+				__( 'Your post will be sent to as plain text to %d subscribers and deliverability will depend on the outgoing mail of your web host. <br />.', 'Postmatic' ),
 				$recipient_count
 			);
 
 			$description .= ' ' . html( 'a',
-				array( 'href' => Prompt_Enum_Urls::PREMIUM, 'class' => 'button' ),
-				__( 'Learn About Postmatic Premium', 'Postmatic' )
+				array( 'href' => Prompt_Enum_Urls::PREMIUM, 'class' => 'upgrade_postmatic' ),
+				__( 'Have a list larger than a few hundred? Let us deliver your mail for you.', 'Postmatic' )
 			);
 
 			return $description;
@@ -246,7 +246,7 @@ class Prompt_Admin_Delivery_Metabox extends scbPostMetabox {
 		}
 
 		return sprintf(
-			__( 'Your upgrade to Postmatic Premium means that your beautiful HTML email will be sent to every one of your %d readers using our top-notch mail servers. Nice!', 'Postmatic' ),
+			__( 'This post will be sent to every one of your %d readers using our top-notch mail servers. Thanks for supporting Postmatic.', 'Postmatic' ),
 			$recipient_count
 		);
 

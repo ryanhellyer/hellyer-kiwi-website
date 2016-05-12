@@ -10,7 +10,7 @@
 	<p><?php echo $status; ?></p>
 	<p>
 		<?php
-		printf( __( 'To resubscribe visit <a href="%s">%s</a>.', 'Postmatic' ),
+		printf( __( 'To resubscribe go to <a href="%s">%s</a>.', 'Postmatic' ),
 			$site->subscription_url(),
 			$site->subscription_object_label()
 		);

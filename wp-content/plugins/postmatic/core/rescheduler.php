@@ -45,6 +45,7 @@ class Prompt_Rescheduler {
 			'name lookup timed out',
 			'couldn\'t connect to host',
 			'Connection refused',
+			'Empty reply from server',
 		);
 
 		$error_message_pattern = '/(' . implode( '|', $error_message_patterns ) . ')/';

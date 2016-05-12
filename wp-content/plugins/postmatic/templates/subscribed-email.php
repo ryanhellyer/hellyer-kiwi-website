@@ -1,33 +1,30 @@
 <?php
 /**
- * Template variables in scope:
- * @var WP_User $subscriber
- * @var Prompt_Interface_Subscribable $object The thing being subscribed to
- * @var WP_Post $subscribed_introduction Custom introduction content.
- * @var array $comments Comments so far for post subscriptions
- */
+* Template variables in scope:
+* @var Prompt_Interface_Subscribable   $object        The thing being subscribed to
+* @var string $subscribed_introduction Custom introduction content.
+* @var array                 $comments      Comments so far for post subscriptions
+*/
 ?>
 <div class="padded">
-	<h3>
-		<?php printf( __( 'Welcome, <span class="capitalize">%s</span>.', 'Postmatic' ), $subscriber->display_name ); ?>
-	</h3>
-
+	<h3>{{{welcome_message}}}</h3>
 	<p><?php echo $object->subscription_description(); ?></p>
 
-
-	<?php
-	if ( $object instanceof Prompt_Site or $object instanceof Prompt_User ) :
-		printf( $subscribed_introduction );
-	elseif ( $comments ) :
-		printf( '<h3>%s</h3>', __( 'Here is what others have to say. Reply to add your thoughts.', 'Postmatic' ) );
-	endif;
-	?>
+	<div id="subscribed-introduction">
+		<?php
+		if ( $subscribed_introduction ) :
+			printf( $subscribed_introduction );
+		elseif ( $comments ) :
+			printf( '<h3>%s</h3>', __( 'Here is what others have to say. Reply to add your thoughts.', 'Postmatic' ) );
+		endif;
+		?>
+	</div>
 
 	<?php if ( $comments ) : ?>
 
 		<h3><?php __( "Want to catch up? Here are the 30 most recent comments:", 'Postmatic' ); ?></h3>
 
-		<div class="previous-comments">
+		<div class="previous-comments padded">
 			<?php
 			wp_list_comments( array(
 				'callback' => array( 'Prompt_Email_Comment_Rendering', 'render' ),
@@ -61,9 +58,5 @@
 			</p>
 		</div>
 	<?php endif; ?>
-
-	<p>
-		<?php printf( __( 'To unsubscribe at any time reply with the word <strong>unsubscribe</strong>.', 'Postmatic' ), $object->subscription_url() ); ?>
-	</p>
 
 </div>

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Subscribe to Comments Reloaded import interface
+ * @since 1.2.3
+ */
 class Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab extends Prompt_Admin_Import_Options_Tab {
 
 	protected $import_list_name = 'import_list';
@@ -7,7 +11,7 @@ class Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab extends Prompt_Admin_Im
 	protected $import_type = 'subscribe-reloaded-import';
 
 	public function name() {
-		return __( 'Migrate Comment Subscriptions', 'Postmatic' );
+		return __( 'SCR Importer', 'Postmatic' );
 	}
 
 	public function slug() {
@@ -15,32 +19,38 @@ class Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab extends Prompt_Admin_Im
 	}
 
 	public function is_available() {
-		return $this->table_exists();
+		if ( Prompt_Core::$options->get( 'scr_import_done' ) ) {
+			return false;
+		}
+		return $this->table_exists() or $this->is_importable_comments_plugin_active();
 	}
 
 	public function render() {
-		$content = html( 'h2', __( 'Migrate Comment subscriptions', 'Postmatic' ) );
-		$content .= html( 'p',
-			__(
-				'This utilitly will migrate comment subscriptions from Subscribe to Comments, Subscribe to Comments Reloaded, and Subscribe to Double-Opt-In Comments.',
-				'Postmatic' )
-		);
-		$content .= html( 'p',
-			__(
-				'Subscribers are imported silently and without notice sent. When the import has finished you can disable your legacy subscription plugin.',
-				'Postmatic' )
-		);
-		$content .= html( 'h3', __( 'Important information before you get started:', 'Postmatic' ) );
-		$content .= html( 'p',
-			sprintf(
+		$content = html(
+			'div class="intro-text scr-import"',
+			html( 'h2', __( 'Migrate Comment Subscriptions', 'Postmatic' ) ),
+			html( 'p',
 				__(
-					'You must be running Subscribe to Comments <strong>Reloaded</strong> to use this migration tool. Please upgrade to Reloaded if you have not already. View <a href="%s" target="_blank">this support article</a> for more information.',
+					'This utilitly will migrate comment subscriptions from Subscribe to Comments, Subscribe to Comments Reloaded, and Subscribe to Double-Opt-In Comments.',
 					'Postmatic'
-				),
-				'http://docs.gopostmatic.com/article/135-migrating-subscribers-from-subscribe-to-comments-reloaded'
+				)
+			),
+			html( 'p',
+				__(
+					'Subscribers are imported silently and without notice sent. When the import has finished you can disable your legacy subscription plugin.',
+					'Postmatic' )
+			),
+			html( 'h3', __( 'Important information before you get started:', 'Postmatic' ) ),
+			html( 'p',
+				sprintf(
+					__(
+						'You must be running Subscribe to Comments <strong>Reloaded</strong> to use this migration tool. Please upgrade to Reloaded if you have not already. View <a href="%s" target="_blank">this support article</a> for more information.',
+						'Postmatic'
+					),
+					'http://docs.gopostmatic.com/article/135-migrating-subscribers-from-subscribe-to-comments-reloaded'
+				)
 			)
 		);
-
 
 		if ( false === $this->table_exists() ) {
 			return $content . $this->unavailable_content();
@@ -99,6 +109,10 @@ class Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab extends Prompt_Admin_Im
 			)
 		);
 
+		if ( true == $import->get_done() ) {
+			Prompt_Core::$options->set( 'scr_import_done', true );
+		}
+
 		if ( false == $import->get_done() ) {
 			$content .= html( 'p',
 				__(
@@ -141,6 +155,15 @@ class Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab extends Prompt_Admin_Im
 			return false;
 		}
 		return true;
+	}
+
+	protected function is_importable_comments_plugin_active() {
+		// Check for Subscribe to Comments, StC Reloaded, or StC double opt-in
+		return (
+			class_exists( 'wp_subscribe_reloaded' ) or
+			class_exists( 'CWS_STC' ) or
+			class_exists( 'sg_subscribe' )
+		);
 	}
 
 }

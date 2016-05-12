@@ -6,13 +6,21 @@ class Prompt_Post_Rendering_Context {
 	protected $is_setup = false;
 	/** @var WP_Post */
 	protected $post;
+	/** @var Prompt_Post */
+	protected $prompt_post;
+	/** @var Prompt_Site */
+	protected $prompt_site;
 	/** @var  array */
 	protected $featured_image_src = null;
 	/** @var  Prompt_Post_Rendering_Modifier[] */
 	protected $modifiers;
+	/** @var  Prompt_User */
+	protected $author;
 
 	public function __construct( $post_object_or_id, $modifiers = null ) {
 		$this->post = get_post( $post_object_or_id );
+		$this->prompt_post = new Prompt_Post( $this->post );
+		$this->prompt_site = new Prompt_Site();
 		$this->modifiers = $modifiers;
 	}
 
@@ -32,9 +40,16 @@ class Prompt_Post_Rendering_Context {
 
 		$this->is_setup = true;
 
+		$this->author = new Prompt_User( $this->post->post_author );
+
 		$this->add_modifiers();
 
-		$this->modifiers = apply_filters( 'prompt/post_rendering_context/modifiers', $this->modifiers, $this->post );
+		$this->modifiers = apply_filters(
+			'prompt/post_rendering_context/modifiers',
+			$this->modifiers,
+			$this->post,
+			$this->get_the_featured_image_src()
+		);
 
 		foreach( $this->modifiers as $modifier ) {
 			$modifier->setup();
@@ -101,6 +116,31 @@ class Prompt_Post_Rendering_Context {
 	}
 
 	/**
+	 * @since 2.0.0
+	 * @return Prompt_User
+	 */
+	public function get_author() {
+		$this->ensure_setup();
+		return $this->author;
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return Prompt_Post
+	 */
+	public function get_post() {
+		return $this->prompt_post;
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @return Prompt_Site
+	 */
+	public function get_site() {
+		return $this->prompt_site;
+	}
+
+	/**
 	 * @return string Menu HTML.
 	 */
 	public function alternate_versions_menu() {
@@ -111,7 +151,7 @@ class Prompt_Post_Rendering_Context {
 		if ( $wpml_selector ) {
 			return $wpml_selector;
 		}
-		
+
 		if ( ! class_exists( 'PLL_Switcher' ) )
 			return '';
 
@@ -168,35 +208,20 @@ class Prompt_Post_Rendering_Context {
 	 */
 	protected function add_modifiers() {
 
-		if ( $this->modifiers )
-			return;
-
-		$this->modifiers = array();
-
-		if ( Prompt_Enum_Email_Transports::LOCAL == Prompt_Core::$options->get( 'email_transport' ) ) {
-			$this->modifiers[] = new Prompt_Local_Post_Rendering_Modifier();
+		if ( $this->modifiers ) {
 			return;
 		}
 
-		$this->modifiers[] = new Prompt_Shortcode_Post_Rendering_Modifier();
-		$this->modifiers[] = new Prompt_Incompatible_Post_Rendering_Modifier();
-		$this->modifiers[] = new Prompt_Lazy_Load_Post_Rendering_Modifier();
-		$this->modifiers[] = new Prompt_Image_Post_Rendering_Modifier( $this->get_the_featured_image_src() );
+		$this->modifiers = array( new Prompt_Custom_HTML_Post_Rendering_Modifier() );
 
-		if ( Prompt_Core::$options->get( 'enable_skimlinks' ) )
-			$this->modifiers[] = new Prompt_Skimlinks_Post_Rendering_Modifier();
-		
-		if ( class_exists( 'ET_Bloom' ) )
-			$this->modifiers[] = new Prompt_Bloom_Post_Rendering_Modifier();
-
-		if ( class_exists( 'Jetpack' ) )
-			$this->modifiers[] = new Prompt_Jetpack_Post_Rendering_Modifier();
-
+		if ( Prompt_Enum_Email_Transports::LOCAL == Prompt_Core::$options->get( 'email_transport' ) ) {
+			$this->modifiers[] = new Prompt_Local_Post_Rendering_Modifier();
+		}
 	}
 
 	/**
 	 *
-	 * @since 1.5.0
+	 * @since 2.0.0
 	 *
 	 * @return string
 	 */

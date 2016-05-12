@@ -18,25 +18,27 @@ class Prompt_Comment_Form_Handling {
 	 */
 	public static function handle_form( $comment_id, $status ) {
 
-		if ( !Prompt_Core::$options->get( 'augment_comment_form' )  or 'spam' === $status )
+		if ( !Prompt_Core::$options->get( 'enable_comment_delivery' )  or 'spam' === $status )
 			return;
 
-		$comment = get_comment( $comment_id );
+		$comment = new Prompt_Comment( $comment_id );
 
-		if ( empty( $comment->user_id ) and empty( $comment->comment_author_email ) )
-			return;
-
-		$checked = isset( $_POST[self::SUBSCRIBE_CHECKBOX_NAME] );
-
-		if ( !$checked )
-			return;
-
-		if ( 0 == $status ) {
-			self::record_subscription_request( $comment_id );
+		if ( !$comment->author_can_subscribe() ) {
 			return;
 		}
 
-		self::subscribe_commenter( $comment );
+		$checked = isset( $_POST[self::SUBSCRIBE_CHECKBOX_NAME] );
+
+		if ( !$checked ) {
+			return;
+		}
+
+		if ( 0 == $status ) {
+			$comment->set_subscription_requested();
+			return;
+		}
+
+		self::subscribe_commenter( $comment->get_wp_comment() );
 	}
 
 	/**
@@ -46,7 +48,8 @@ class Prompt_Comment_Form_Handling {
 	 * @return boolean
 	 */
 	public static function subscription_requested( $comment ) {
-		return get_comment_meta( $comment->comment_ID, self::SUBSCRIBE_CHECKBOX_NAME, true );
+		$prompt_comment = new Prompt_Comment( $comment );
+		return $prompt_comment->get_subscription_requested();
 	}
 
 	/**
@@ -90,7 +93,7 @@ class Prompt_Comment_Form_Handling {
 	}
 
 	/**
-	 * @since 1.5.0
+	 * @since 2.0.0
 	 *
 	 * @param int $post_id Optionally supply which post to subscribe to.
 	 */
@@ -117,7 +120,7 @@ class Prompt_Comment_Form_Handling {
 	}
 
 	/**
-	 * @since 1.5.0
+	 * @since 2.0.0
 	 *
 	 * @param array $handles
 	 * @return array
@@ -140,8 +143,9 @@ class Prompt_Comment_Form_Handling {
 	 */
 	public static function form_content( $post_id ) {
 
-		if ( !Prompt_Core::$options->get( 'prompt_key' ) or !Prompt_Core::$options->get( 'augment_comment_form' ) )
+		if ( !Prompt_Core::$options->get( 'prompt_key' ) or !Prompt_Core::$options->get( 'enable_comment_delivery' ) ) {
 			return;
+		}
 
 		self::enqueue_assets( $post_id );
 
@@ -149,8 +153,9 @@ class Prompt_Comment_Form_Handling {
 
 		$current_user = Prompt_User_Handling::current_user();
 
-		if ( $current_user and self::$prompt_post->is_subscribed( $current_user->ID ) )
+		if ( $current_user and self::$prompt_post->is_subscribed( $current_user->ID ) ) {
 			return;
+		}
 
 		echo html( 'label id="prompt-comment-subscribe"',
 			html( 'input',
@@ -169,13 +174,15 @@ class Prompt_Comment_Form_Handling {
 
 	public static function after_form() {
 
-		if ( !Prompt_Core::$options->get( 'augment_comment_form' ) or empty( self::$prompt_post ) )
+		if ( !Prompt_Core::$options->get( 'enable_comment_delivery' ) or empty( self::$prompt_post ) ) {
 			return;
+		}
 
 		$current_user = Prompt_User_Handling::current_user();
 
-		if ( !$current_user or !self::$prompt_post->is_subscribed( $current_user->ID ) )
+		if ( !$current_user or !self::$prompt_post->is_subscribed( $current_user->ID ) ) {
 			return;
+		}
 
 
 		echo html( 'div class="prompt-unsubscribe"',
@@ -194,7 +201,4 @@ class Prompt_Comment_Form_Handling {
 
 	}
 
-	protected static function record_subscription_request( $comment_id ) {
-		return add_comment_meta( $comment_id, self::SUBSCRIBE_CHECKBOX_NAME, 1 );
-	}
 }

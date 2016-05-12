@@ -2,50 +2,24 @@
 /**
  * comment notification email template
  * variables in scope:
- * @var WP_User $comment_author
- * @var WP_User $subscriber
- * @var object $comment
- * @var string $commenter_name
+ * @var WP_User     $comment_author
+ * @var object      $comment
+ * @var string      $commenter_name
  * @var Prompt_Post $subscribed_post
- * @var string $subscribed_post_author_name
- * @var string $subscribed_post_title_link
- * @var array $previous_comments
- * @var WP_User $parent_author
- * @var string $parent_author_name
- * @var object $parent_comment
- * @var bool $is_api_delivery
+ * @var string      $subscribed_post_author_name
+ * @var string      $subscribed_post_title_link
+ * @var array       $previous_comments
+ * @var WP_User     $parent_author
+ * @var string      $parent_author_name
+ * @var object      $parent_comment
+ * @var bool        $is_api_delivery
  */
 
 ?>
 
 <div class="padded">
 
-	<?php if ( $parent_author and $parent_author->ID == $subscriber->ID ) : ?>
-
-		<p class="padding">
-			<?php
-			printf(
-				__( '%s replied to your comment on %s:', 'Postmatic' ),
-				html( 'span class="capitalize"', $commenter_name ),
-				$subscribed_post_title_link
-			);
-			?>
-		</p>
-
-	<?php else : ?>
-
-		<p class="padding">
-			<?php
-			printf(
-				__( '%s left a reply to a comment by %s on %s:', 'Postmatic' ),
-				html( 'span class="capitalize"', $commenter_name ),
-				html( 'span class="capitalize"', $parent_author_name ),
-				$subscribed_post_title_link
-			);
-			?>
-		</p>
-
-	<?php endif; ?>
+	<p class="padding">{{{subscriber_comment_intro_html}}}</p>
 
 	<div class="new-reply">
 		<div class="primary-comment comment">
@@ -71,7 +45,10 @@
 		<img src="<?php echo Prompt_Core::$url_path . '/media/reply-comment-2x.png'; ?>" width="30" height="30" align="left" style="float: left; margin-right: 10px;"/>
 
 		<h3 class="reply">
-			<?php printf( __( 'Reply to this email to reply to %s.', 'Postmatic' ), $commenter_name ); ?>
+			<a href="mailto:{{{reply_to}}}?subject=<?php
+				echo rawurlencode( sprintf( __( 'In reply to %s', 'Postmatic' ), $commenter_name ) );
+				?>"><?php printf( __( 'Reply to this email to reply to %s.', 'Postmatic' ), $commenter_name ); ?>
+			</a>
 		</h3>
 	</div>
 </div>
@@ -97,7 +74,7 @@
 		<p class="excerpt"><?php echo $subscribed_post->get_excerpt(); ?></p>
 	</div>
 
-	<h3>
+	<h3 class="summary">
 		<?php
 		printf(
 			__( 'There were <a href="%1$s">%2$d comments</a> previous to this. Here is this reply in context:', 'Postmatic' ),
@@ -107,7 +84,7 @@
 		?>
 	</h3>
 
-	<div class="previous-comments">
+	<div class="previous-comments" id="comments">
 		<?php
 		wp_list_comments( array(
 			'callback' => array( 'Prompt_Email_Comment_Rendering', 'render' ),
@@ -124,13 +101,4 @@
 		</h3>
 	</div>
 
-
-	<p>
-		<?php
-		_e(
-			"To no longer receive other comments or replies in this discussion reply with the word 'unsubscribe'.",
-			'Postmatic'
-		);
-		?>
-	</p>
 </div>

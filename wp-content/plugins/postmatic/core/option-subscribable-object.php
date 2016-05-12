@@ -1,15 +1,40 @@
 <?php
 
+/**
+ * Base class for lists that are persisted using an option.
+ * @since 1.0.0
+ */
+
 abstract class Prompt_Option_Subscribable_Object implements Prompt_Interface_Subscribable {
 
+	/**
+	 * @since 1.0.0
+	 * @return string
+	 */
 	abstract protected function option_key();
 
 	// These would be abstract, but PHP 5.3 pukes on that
 	public function id() {}
 	public function subscription_url() {}
-	public function subscription_object_label() {}
-	public function subscription_description() {}
+	public function subscription_object_label( $format = Prompt_Enum_Content_Types::HTML ) {}
+	public function subscription_description( $format = Prompt_Enum_Content_Types::HTML ) {}
+	public function select_reply_prompt( $format = Prompt_Enum_Content_Types::HTML ) {}
+	public function subscribe_phrase() {}
 
+	/**
+	 * Make the subscribe prompt the same as the object label by default.
+	 *
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public function subscribe_prompt( $format = Prompt_Enum_Content_Types::HTML ) {
+		return $this->subscription_object_label();
+	}
+
+	/**
+	 * @since 1.0.0
+	 * @return array
+	 */
 	public function subscriber_ids() {
 		$ids = get_option( $this->option_key() );
 		if ( !$ids )
@@ -17,11 +42,21 @@ abstract class Prompt_Option_Subscribable_Object implements Prompt_Interface_Sub
 		return $ids;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @param int $user_id
+	 * @return bool
+	 */
 	public function is_subscribed( $user_id ) {
 		$subscriber_ids = $this->subscriber_ids( $user_id );
 		return in_array( $user_id, $subscriber_ids );
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @param int $user_id
+	 * @return $this
+	 */
 	public function subscribe( $user_id ) {
 		$user_id = intval( $user_id );
 
@@ -46,6 +81,11 @@ abstract class Prompt_Option_Subscribable_Object implements Prompt_Interface_Sub
 		return $this;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @param int $user_id
+	 * @return bool
+	 */
 	public function unsubscribe( $user_id ) {
 		$success = true;
 
@@ -64,6 +104,4 @@ abstract class Prompt_Option_Subscribable_Object implements Prompt_Interface_Sub
 
 		return $success;
 	}
-
-
 }

@@ -15,7 +15,7 @@ class Prompt_Inbound_Messenger {
 	 */
 	public function pull_updates() {
 
-		$response = $this->client->get( '/updates/undelivered' );
+		$response = $this->client->get_undelivered_updates();
 
 		if ( is_wp_error( $response ) )
 			return $response;
@@ -96,8 +96,9 @@ class Prompt_Inbound_Messenger {
 	 */
 	public function process_update( $update ) {
 
-		if ( 'inbound-email' == $update->type )
+		if ( 'inbound-email' == $update->type ) {
 			return $this->process_inbound_email( $update );
+		}
 
 		Prompt_Logging::add_error(
 			'unknown_update_type',
@@ -117,8 +118,9 @@ class Prompt_Inbound_Messenger {
 
 		$command = Prompt_Command_Handling::make_command( $update->data );
 
-		if ( !$command )
+		if ( !$command ) {
 			return null;
+		}
 
 		$command->execute();
 

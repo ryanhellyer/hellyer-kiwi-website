@@ -1,71 +1,86 @@
 <?php
 /**
-* comment notification email template
-* variables in scope:
-* @var {WP_User} $comment_author
-* @var {WP_User} $subscriber
-* @var object $comment
-* @var Prompt_Post $subscribed_post
-* @var array $previous_comments
-*/
+ *
+ * comment notification email template
+ * variables in scope:
+ * @var {WP_User}           $comment_author
+ * @var string $commenter_name
+ * @var object $comment
+ * @var Prompt_Post $subscribed_post
+ * @var array $previous_comments
+ * @var bool $is_api_delivery
+ */
 ?>
-<?php
-echo Prompt_Html_To_Markdown::h2(
-	sprintf(
+<h2>
+	<?php
+	printf(
 		__( '%s added a comment on %s', 'Postmatic' ),
-		$commenter_name ,
+		$commenter_name,
 		get_the_title( $comment->comment_post_ID )
-	)
-);
-?>
+	);
+	?>
+</h2>
 
-
-<?php echo $comment->comment_content; ?>
+<div>
+	<?php echo $comment->comment_content; ?>
+</div>
 
 <?php if ( count( $previous_comments ) > 1 ) : ?>
+	<p>
+		<?php printf( __( '* Reply to this email to reply to %s. *', 'Postmatic' ), $commenter_name ); ?>
+	</p>
+	<p>
+		<?php
+		printf(
+			__(
+				'You\'re invited to respond by replying to this email. If you do, it may be published immediately or held for moderation, depending on the comment policy of %s.',
+				'Postmatic'
+			),
+			get_the_title( $comment->comment_post_ID )
+		);
+		?>
+	</p>
 
-<?php printf( __( '* Reply to this email to reply to %s. *', 'Postmatic' ), $commenter_name ); ?>
+	<?php if ( $is_api_delivery ) : ?>
+		<h2><?php _e( 'Recently in this conversation...', 'Postmatic' ); ?></h2>
 
-<?php
-printf(
-	__(
-		'You\'re invited to respond by replying to this email. If you do, it may be published immediately or held for moderation, depending on the comment policy of %s.',
-		'Postmatic'
-	),
-	get_the_title( $comment->comment_post_ID )
-);
-?>
-
-
-
-<?php echo Prompt_Html_To_Markdown::h1( __( 'Recently in this conversation...', 'Postmatic' ) ); ?>
-
-<?php
-wp_list_comments( array(
-	'callback' => array( 'Prompt_Email_Comment_Rendering', 'render_text' ),
-	'end-callback' => '__return_empty_string',
-	'style' => 'div',
-), $previous_comments );
-?>
-
+		<div id="comments">
+			<?php
+			wp_list_comments( array(
+				'callback' => array( 'Prompt_Email_Comment_Rendering', 'render_text' ),
+				'end-callback' => '__return_empty_string',
+				'style' => 'div',
+			), $previous_comments );
+			?>
+		</div>
+	<?php endif; ?>
 
 <?php endif; ?>
-<?php printf( __( '* Reply to this email to reply to %s. *', 'Postmatic' ), $commenter_name ); ?>
 
-<?php
-printf(
-	__(
-		'Please note: Your reply will be published publicly and immediately on %s.',
-		'Postmatic'
-	),
-	get_the_title( $comment->comment_post_ID )
-);
-?>
+<p>
+	<?php printf( __( '* Reply to this email to reply to %s. *', 'Postmatic' ), $commenter_name ); ?>
+</p>
 
+<p>
+	<?php
+	printf(
+		__(
+			'Please note: Your reply will be published publicly and immediately on %s.',
+			'Postmatic'
+		),
+		get_the_title( $comment->comment_post_ID )
+	);
+	?>
+</p>
 
-<?php
-_e(
-	"To no longer receive other comments on this thread reply with the word 'unsubscribe'.",
-	'Postmatic'
-);
-?>
+<p>
+	<?php
+	printf(
+		__(
+			"To no longer receive other comments or replies in this discussion reply with the word '%s'.",
+			'Postmatic'
+		),
+		Prompt_Unsubscribe_Matcher::target()
+	)
+	?>
+</p>

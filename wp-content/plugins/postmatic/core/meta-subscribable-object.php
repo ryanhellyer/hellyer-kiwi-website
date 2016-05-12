@@ -73,6 +73,15 @@ abstract class Prompt_Meta_Subscribable_Object implements Prompt_Interface_Subsc
 	}
 
 	/**
+	 * @since 2.0.0
+	 * @param string $format 'html' or 'text', default 'html'.
+	 * @return string
+	 */
+	public function subscribe_prompt( $format = Prompt_Enum_Content_Types::HTML ) {
+		return $this->subscription_object_label( $format );
+	}
+
+	/**
 	 * Get all objects IDs a user is subscribed to.
 	 *
 	 * Would use a static method, but PHP 5.2 does not support inheritance for them.
@@ -124,4 +133,5 @@ abstract class Prompt_Meta_Subscribable_Object implements Prompt_Interface_Subsc
 
 		return $wpdb->get_col( $query );
 	}
+
 }

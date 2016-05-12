@@ -14,16 +14,18 @@ class Prompt_Admin_Support_Options_Tab extends Prompt_Admin_Options_Tab {
 
 		$user = wp_get_current_user();
 
-		$email = new Prompt_Email( array(
+		$email = Prompt_Email_Batch::make_for_single_recipient( array(
 			'to_address' => Prompt_Core::SUPPORT_EMAIL,
 			'from_address' => $user->user_email,
 			'from_name' => $user->display_name,
-			'subject' => sprintf( __( 'Diagnostics from %s', 'Postmatic' ), get_option( 'blogname' ) ),
-			'text' => json_encode( $environment->to_array() ),
+			'subject' => sprintf(
+				__( 'Diagnostics from %s', 'Postmatic' ), html_entity_decode( get_option( 'blogname' ) )
+			),
+			'html_content' => json_encode( $environment->to_array() ),
 			'message_type' => Prompt_Enum_Message_Types::ADMIN,
 		) );
 
-		$sent = Prompt_Factory::make_mailer()->send_one( $email );
+		$sent = Prompt_Factory::make_mailer( $email )->send();
 
 		if ( is_wp_error( $sent ) ) {
 			Prompt_Logging::add_error(
@@ -38,8 +40,9 @@ class Prompt_Admin_Support_Options_Tab extends Prompt_Admin_Options_Tab {
 	}
 
 	public function render() {
-		$content = html( 'h2', __( 'Support, News, and Documentation', 'Postmatic' ) );
-		$content = html( 'h3', __( 'The fastest way to documentation and filing a support ticket is to use the little question mark icon found in the lower-right hand corner of this screen.', 'Postmatic' ) );
+		$content = html( 'div class="intro-text"',
+			html( 'h2', __( 'Need Some Help?', 'Postmatic' ) )
+			);
 
 		$content .= html( 'div id="postmatic-documentation" class="widget"',
 			html( 'h3', __( 'Documentation', 'Postmatic' ) ),

@@ -1,19 +1,52 @@
 <?php
 
+/**
+ * MailPoet import UI
+ *
+ * @package Postmatic
+ * @since   1.0.0
+ */
 class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Options_Tab {
 
+	/**
+	 * @var string
+	 */
 	protected $import_list_name = 'import_list';
+	/**
+	 * @var string
+	 */
 	protected $rejected_addresses_name = 'rejected_addresses';
+	/**
+	 * @var string
+	 */
 	protected $import_type = 'mailpoet_import';
 
+	/**
+	 * Tab name.
+	 *
+	 * @since 1.0.0
+	 * @return string|void
+	 */
 	public function name() {
-		return __( 'Migrate from Mailpoet', 'Postmatic' );
+		return __( 'MailPoet Import', 'Postmatic' );
 	}
 
+	/**
+	 * Tab slug.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	public function slug() {
-		return 'import-mailpoet';
+		return 'mailpoet-import';
 	}
 
+	/**
+	 * Get tab content.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	public function render() {
 		$content = html( 'h2', __( 'Mailpoet Import', 'Postmatic' ) );
 
@@ -26,6 +59,12 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 		return $content . $this->ready_content();
 	}
 
+	/**
+	 * Message content if MailPoet isn't found.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	protected function unavailable_content() {
 		$content = html( 'div id="mailpoet-unavailable"',
 			html( 'p',
@@ -38,11 +77,21 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 		return $content;
 	}
 
+	/**
+	 * Get import results in HTML.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	protected function import_content() {
 
 		$list_id = intval( $_POST[$this->import_list_name] );
+		$signup_list_index = intval( $_POST['signup_list_index'] );
 
-		$import = Prompt_Admin_Mailpoet_Import::make( $list_id );
+		$signup_lists = Prompt_Subscribing::get_signup_lists();
+		$signup_list = $signup_lists[$signup_list_index];
+
+		$import = Prompt_Admin_Mailpoet_Import::make( $list_id, $signup_list );
 
 		$import->execute();
 
@@ -110,7 +159,7 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 			$rejected_addresses = array();
 			foreach ( $rejects as $reject ) {
 				$name = trim( $reject['firstname'] . ' ' . $reject['lastname'] );
-				$rejected_addresses[] = Prompt_Email::name_address( $reject['email'], $name );
+				$rejected_addresses[] = Prompt_Email_Batch::name_address( $reject['email'], $name );
 			}
 
 			$reject_button = html( 'input',
@@ -139,11 +188,17 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 		return $content;
 	}
 
+	/**
+	 * The HTML for the UI to start the import.
+	 *
+	 * @since 1.0.0
+	 * @return string
+	 */
 	protected function ready_content() {
 
-		$lists = $this->get_lists();
+		$mailpoet_lists = $this->get_mailpoet_lists();
 
-		if ( count( $lists ) === 0 )
+		if ( count( $mailpoet_lists ) === 0 )
 			return html( 'div id="mailpoet-no-subscribers',
 				__( 'There are no lists available from MailPoet. Are you sure it is activated?', 'Postmatic' )
 			);
@@ -153,9 +208,9 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 			'Postmatic'
 		);
 
-		$list_options = '';
-		foreach ( $lists as $list ) {
-			$list_options .= html( 'option',
+		$list_options = array();
+		foreach ( $mailpoet_lists as $list ) {
+			$list_options[] = html( 'option',
 				array( 'value' => $list['list_id'] ),
 				$list['name'],
 				' (',
@@ -164,7 +219,16 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 			);
 		}
 
-		$content = html( 'div id="mailpoet-import-intro"',
+		$local_list_options = array();
+		foreach ( Prompt_Subscribing::get_signup_lists() as $index => $list ) {
+			$local_list_options[] = html( 'option',
+				array( 'value' => $index ),
+				$list->subscription_object_label()
+			);
+		}
+
+		$html_parts = array();
+		$html_parts[] = html( 'div id="mailpoet-import-intro"',
 			html( 'div',
 				html( 'h3', __( 'Mailpoet Import FAQ', 'Postmatic' ) ),
 				html( 'h4', __( 'Will my subscribers be sent a notification?', 'Postmatic' ) ),
@@ -217,24 +281,50 @@ class Prompt_Admin_Mailpoet_Import_Options_Tab extends Prompt_Admin_Import_Optio
 			$active_subscriber_text
 		);
 
-		$content .= $this->send_login_warning_content();
+		$html_parts[] = $this->send_login_warning_content();
 
-		$content .= html( 'label for="import_list"',
-			__( 'List to import: ', 'Postmatic' ),
+		$html_parts[] = html( 'label for="import_list"',
+			__( 'Choose a Mailpoet list to import from: ', 'Postmatic' ),
 			html( 'select',
 				array( 'name' => 'import_list', 'type' => 'select' ),
-				$list_options
+				implode( '', $list_options )
 			)
 		);
 
-		$content .= html( 'input',
+		$html_parts[] = '<br/>';
+
+		if ( count( $local_list_options ) > 1 ) {
+			$html_parts[] = html( 'label id="mailpoet_signup_list_index_label" for="signup_list_index"',
+				__( 'Choose a Postmatic list to import to:', 'Postmatic' ),
+				' ',
+				html( 'select',
+					array( 'name' => 'signup_list_index', 'type' => 'select' ),
+					implode( '', $local_list_options )
+				)
+			);
+		} else {
+			$html_parts[] = html( 'input',
+				array( 'type' => 'hidden', 'name' => 'signup_list_index', 'value' => 0 )
+			);
+		}
+
+		$html_parts[] = html( 'input',
 			array( 'name' => $this->import_type_name, 'type' => 'hidden', 'value' => $this->import_type )
 		);
 
-		return $this->form_wrap( $content, array( 'value' => __( 'Import from Mailpoet', 'Postmatic' ) ) );
+		return $this->form_wrap(
+			implode( '', $html_parts ),
+			array( 'value' => __( 'Import from Mailpoet', 'Postmatic' ) )
+		);
 	}
 
-	protected function get_lists() {
+	/**
+	 * Get the available MailPoet lists.
+	 *
+	 * @since 1.0.0
+	 * @return array
+	 */
+	protected function get_mailpoet_lists() {
 		$lists = WYSIJA::get( 'list', 'model' )->getLists();
 		$filtered_lists = array();
 		foreach ( $lists as $list ) {

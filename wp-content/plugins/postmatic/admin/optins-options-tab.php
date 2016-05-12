@@ -1,12 +1,35 @@
 <?php
 
+/**
+ * Optins options tab
+ *
+ * @since 1.4.0
+ */
 class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 
+	/**
+	 * @since 1.4.0
+	 *
+	 * @return string
+	 */
 	public function name() {
-		return __( 'Optin Options', 'Postmatic' );
+		return __( 'Configure Optins', 'Postmatic' );
 	}
 
+	/**
+	 * @since 2.0.0
+	 *
+	 * @return string
+	 */
+	public function slug() {
+		return 'optins';
+	}
 
+	/**
+	 * @since 1.4.0
+	 *
+	 * @return string
+	 */
 	public function render() {
 
 		$values = Prompt_Optins::optins_options();
@@ -26,30 +49,28 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 		);
 		
 		$rows[] = html(
-			'div class="welcome" id="optins-welcome"',
+			'div class="intro-text"',
 					html( 'h2', __( 'Add optin forms to your site and turn visitors into subscribers', 'Postmatic' ) ),
 					html( 'P',
 						__(
 							'Postmatic comes bundled with four different opt-in styles. They are lightweight, fast, and effective ways to build your audience.'
-						),
-					html( 'P',
-						__(' We are just getting started with our opt-in offering but thought it was mature enough to share with you. If you have specific ideas for features and improvements please do let us know via <a href="mailto:support@gopostmatic.com">support</a>.')
-					)
+						)
 				)
 		);
 
 		$rows[] = html(
 			'div class="optin-enable" id="optin-select-popup"',
 			html(
-				'div',
+				'div class="cbox"',
 				$this->input(
 					array(
 						'type' => 'checkbox',
 						'name' => 'optins_popup_enable',
+						'extra' => array( 'id' => 'optins_popup_enable' ),
 					),
 					$values
 				),
-				__( '', 'Postmatic')
+				html( 'label', array( 'for' => 'optins_popup_enable' ), __( 'Enable Popups', 'Postmatic' ) )
 			)
 		);
 
@@ -134,18 +155,11 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 
 				)
 			),
-			html (
-				'div id="popup-theme" class="theme-chooser"',
-				html( 'h3',  __( 'Choose a theme. This controls how the popup looks on your site.', 'Postmatic' ) ),
-				$this->input(
-					array(
-						'type' => 'radio',
-						'name' => 'optins_popup_theme',
-						'choices' => Prompt_Optins::themes(),
-					),
-					$values
-
-				)
+			$this->theme_chooser_html(
+				'popup-theme',
+				'optins_popup_theme',
+				__( 'Choose a theme. This controls how the popup looks on your site.', 'Postmatic' ),
+				$values
 			),
 			html(
 				'div id="popup-image" class="optin-image"',
@@ -178,17 +192,17 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 		$rows[] = html(
 			'div class="optin-enable" id="optin-select-bottom"',
 			html(
-				'div',
+				'div class="cbox"',
 				$this->input(
 					array(
 						'type' => 'checkbox',
 						'name' => 'optins_bottom_enable',
-						'value' => 1
+						'value' => 1,
+						'extra' => array( 'id' => 'optins_bottom_enable' )
 					),
 					$values
-
 				),
-				__( '', 'Postmatic')
+				html( 'label', array( 'for' => 'optins_bottom_enable' ), __( 'Enable bottom slider', 'Postmatic' ) )
 			)
 		);
 		
@@ -255,18 +269,11 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 					$values
 				)
 			),
-			html (
-				'div id="bottom-theme" class="theme-chooser"',
-				html( 'h3',  __( 'Choose a theme. This controls how the slider looks on your site.', 'Postmatic' ) ),
-				$this->input(
-					array(
-						'type' => 'radio',
-						'name' => 'optins_bottom_theme',
-						'choices' => Prompt_Optins::themes(),
-					),
-					$values
-
-				)
+			$this->theme_chooser_html(
+				'bottom-theme',
+				'optins_bottom_theme',
+				__( 'Choose a theme. This controls how the slider looks on your site.', 'Postmatic' ),
+				$values
 			),
 			html(
 				'div id="bottom-image" class="optin-image"',
@@ -299,17 +306,17 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 		$rows[] = html(
 			'div class="optin-enable" id="optin-select-topbar"',
 			html(
-				'div',
+				'div class="cbox"',
 				$this->input(
 					array(
 						'type' => 'checkbox',
 						'name' => 'optins_topbar_enable',
-						'value' => '1'
+						'value' => '1',
+						'extra' => array( 'id' => 'optins_topbar_enable' ),
 					),
 					$values
-
 				),
-				__( '', 'Postmatic')
+				html( 'label', array( 'for' => 'optins_topbar_enable' ), __( 'Enable the topbar', 'Postmatic' ) )
 			)
 		);
 		
@@ -340,34 +347,28 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 					$values
 				)
 			),
-			html (
-				'div id="topbar-theme" class="theme-chooser"',
-				html( 'h3', __( 'Choose a theme. This controls how the bar looks on your site', 'Postmatic' ) ),
-				$this->input(
-					array(
-						'type' => 'radio',
-						'name' => 'optins_topbar_theme',
-						'choices' => Prompt_Optins::themes(),
-					),
-					$values
-				)
+			$this->theme_chooser_html(
+				'topbar-theme',
+				'optins_topbar_theme',
+				__( 'Choose a theme. This controls how the bar looks on your site.', 'Postmatic' ),
+				$values
 			)
 		);
 
 		$rows[] = html(
 			'div class="optin-enable" id="optin-select-inline"',
 			html(
-				'div id="inpost-enable"',
+				'div id="inpost-enable" class="cbox"',
 				$this->input(
 					array(
 						'type' => 'checkbox',
 						'name' => 'optins_inpost_enable',
 						'value' => '1',
+						'extra' => array( 'id' => 'optins_inpost_enable' ),
 					),
 					$values
-
 				),
-				__( '', 'Postmatic')
+				html( 'label', array( 'for' => 'optins_inpost_enable' ), __( 'Enable after-the-post', 'Postmatic' ) )
 			)
 		);
 		
@@ -412,17 +413,24 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 						$values
 					)
 				),
-				html (
-					'div id="inpost-theme" class="theme-chooser"',
-					html( 'h3', __( 'Choose a theme. This controls how the form looks on your site.', 'Postmatic' ) ),
+				html(
+					'div id="inpost-ids"',
 					$this->input(
 						array(
-							'type' => 'radio',
-							'name' => 'optins_inpost_theme',
-							'choices' => Prompt_Optins::themes(),
+							'type' => 'text',
+							'name' => 'optins_inpost_ids',
+							'value' => 'all'
 						),
 						$values
-					)
+	
+					),
+					__( 'IDs (comma separated) of posts to show in. Or use "all" to use on all posts.', 'Postmatic')
+				),
+				$this->theme_chooser_html(
+					'inpost-theme',
+					'optins_inpost_theme',
+					__( 'Choose a theme. This controls how the form looks on your site.', 'Postmatic' ),
+					$values
 				),
 				html(
 					'div id="inpost-image" class="optin-image"',
@@ -461,6 +469,13 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 		return $this->form_wrap( $content ) . $this->footer();
 	}
 
+	/**
+	 * @since 1.4.0
+	 *
+	 * @param array $new_data
+	 * @param array $old_data
+	 * @return array
+	 */
 	function validate( $new_data, $old_data ) {
 
 		$valid_data = $this->validate_checkbox_fields(
@@ -528,6 +543,9 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 
 	}
 
+	/**
+	 * @since 1.4.0
+	 */
 	protected function footer() {
 		?>
 			<script>
@@ -732,12 +750,65 @@ class Prompt_Admin_Optins_Options_Tab extends Prompt_Admin_Options_Tab {
 					$( '[name="optins_topbar_enable"]' ).change( function() {
 						prompt_optins_admin_topbar();
 					});
+
+					var $optin_enable_checkboxes = $( '.optin-enable' ).find( 'input[type=checkbox]' );
+					$optin_enable_checkboxes.change( update_optin_selections );
+					update_optin_selections();
+
+					function update_optin_selections() {
+						$optin_enable_checkboxes.parents( '.optin-enable' ).removeClass( 'active' );
+						$optin_enable_checkboxes.filter( ':checked' ).parents( '.optin-enable' ).addClass( 'active' );
+					}
+
+
 				} );
 
 			</script>
 
 		<?php
 
+	}
+
+	/**
+	 * @since 2.0.0
+	 * @param string $id
+	 * @param string $name
+	 * @param string $prompt
+	 * @param array|string $values
+	 * @return string
+	 */
+	protected function theme_chooser_html( $id, $name, $prompt, $values ) {
+
+		$radio_buttons = array();
+
+		foreach (  Prompt_Optins::themes() as $slug => $label ) {
+
+			$input_attributes = array(
+				'type' => 'radio',
+				'name' => $name,
+				'value' => $slug,
+			);
+
+			$value = is_array( $values ) ? $values[$name] : $values;
+
+			if ( $value === $slug ) {
+				$input_attributes['checked'] = 'checked';
+			}
+			
+			$radio_buttons[] = html(
+				'label',
+				array( 'class' => $slug ),
+				html( 'input', $input_attributes ),
+				$label
+			);
+		}
+
+		return html (
+			'div class="theme-chooser"',
+			array( 'id' => $id ),
+			html( 'h3', $prompt ),
+			implode( '', $radio_buttons )
+		);
 	}
 
 }

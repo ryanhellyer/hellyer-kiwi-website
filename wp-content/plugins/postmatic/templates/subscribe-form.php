@@ -21,27 +21,27 @@
    aria-hidden="true"
    id="postmatic-widget-popup-closer"
    style="display: none;"> </a>
-
+   
 <form class="prompt-subscribe" method="post">
 
-	<div class="loading-indicator" style="display: none; margin:3% 0;min-height:70px;">
-		<img src="<?php echo $loading_image_url; ?>" alt="Loading..." />
-	</div>
+	<div class="loading-indicator" style=""></div>
 
-	<p class="message" style="display:none;"></p>
+	<p class="message"></p>
 
-	<div class="subscribe primary prompt"></div>
+	<div class="subscribe primary prompt active"></div>
 
-	<div class="inputs">
+	<div class="inputs active">
 		<input id="<?php echo $widget_id; ?>-nonce" name="subscribe_nonce" type="hidden" />
 
 		<input id="<?php echo $widget_id; ?>-action" name="action" type="hidden" value="<?php echo Prompt_Subscribing::SUBSCRIBE_ACTION; ?>" />
 
 		<input id="<?php echo $widget_id; ?>-action" name="mode" type="hidden" value="<?php echo $mode; ?>" />
 
-		<input id="<?php echo $widget_id; ?>-type" name="object_type" type="hidden" value="<?php echo get_class( $object ); ?>" />
+		<?php if ( $object ) : ?>
+			<input id="<?php echo $widget_id; ?>-type" name="object_type" type="hidden" value="<?php echo get_class( $object ); ?>" />
 
-		<input id="<?php echo $widget_id; ?>-object-id" name="object_id" type="hidden" value="<?php echo $object->id(); ?>" />
+			<input id="<?php echo $widget_id; ?>-object-id" name="object_id" type="hidden" value="<?php echo $object->id(); ?>" />
+		<?php endif; ?>
 
 		<label class="prompt-topic" for="subscribe_topic">
 			<?php _e( 'This field is intentionally empty', 'Postmatic' ); ?> *

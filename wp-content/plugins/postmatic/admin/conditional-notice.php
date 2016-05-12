@@ -16,8 +16,9 @@ class Prompt_Admin_Conditional_Notice {
 	 * @since 1.2.3
 	 */
 	public function process_dismissal() {
-		if ( isset( $_GET[ $this->skip_option_key ] ) )
+		if ( isset( $_GET[ $this->skip_option_key ] ) ) {
 			$this->dismiss();
+		}
 	}
 
 	/**
@@ -88,8 +89,17 @@ class Prompt_Admin_Conditional_Notice {
 	 */
 	protected function render_dismiss_link() {
 		return html( 'a',
-			array( 'href' => esc_url( add_query_arg( $this->skip_option_key, 'true' ) ), 'class' => 'button' ),
+			array( 'href' => esc_url( $this->dismiss_url() ), 'class' => 'button' ),
 			__( 'Dismiss' )
 		);
+	}
+
+	/**
+	 * The current URL with a dismissal argument added.
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function dismiss_url() {
+		return add_query_arg( $this->skip_option_key, 'true' );
 	}
 }

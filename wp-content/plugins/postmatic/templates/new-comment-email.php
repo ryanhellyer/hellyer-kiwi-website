@@ -2,13 +2,12 @@
 /**
  * comment notification email template
  * variables in scope:
- * @var {WP_User} $comment_author
- * @var string $commenter_name
- * @var {WP_User} $subscriber
- * @var object $comment
- * @var Prompt_Post $subscribed_post
- * @var array $previous_comments
- * @var bool $is_api_delivery
+ * @var {WP_User}           $comment_author
+ * @var string              $commenter_name
+ * @var object              $comment
+ * @var Prompt_Post         $subscribed_post
+ * @var array               $previous_comments
+ * @var bool                $is_api_delivery
  */
 
 $previous_index = count( $previous_comments );
@@ -67,35 +66,16 @@ $previous_index = count( $previous_comments );
 	</div>
 
 
-	<div class="padded gray">
+	<div class="padded gray postmatic-content">
 		<h3><?php _e( 'Recently in this conversation...', 'Postmatic' ); ?></h3>
 
-		<div class="previous-comments">
-			<?php foreach ( $previous_comments as $previous_comment ) : $previous_index--; ?>
-				<div class="previous-comment-<?php echo $previous_index; ?> comment">
-					<div class="comment-header">
-						<?php echo get_avatar( $previous_comment ); ?>
-						<div class="author-name">
-							<?php if ( $previous_comment->comment_author_url ) : ?>
-								<a href="<?php echo $previous_comment->comment_author_url; ?>">
-									<?php echo $previous_comment->comment_author; ?>
-								</a>
-							<?php else : ?>
-								<?php echo $previous_comment->comment_author; ?>
-							<?php endif; ?>
-						</div>
-						<div class="comment-date">
-							<?php comment_date( '', $previous_comment->comment_ID ); ?>
-							<?php /* translators: word between date and time */
-							_e( 'at', 'Postmatic' ); ?>
-							<?php echo mysql2date( get_option( 'time_format' ), $previous_comment->comment_date ); ?>
-						</div>
-						<div class="comment-body">
-							<em><?php echo wpautop( $previous_comment->excerpt ); ?></em>
-						</div>
-					</div>
-				</div>
-			<?php endforeach; ?>
+		<div class="previous-comments" id="comments">
+			<?php
+			wp_list_comments( array(
+				'callback' => array( 'Prompt_Email_Comment_Rendering', 'render' ),
+				'style' => 'div',
+			), $previous_comments );
+			?>
 		</div>
 
 	<?php endif; ?>
@@ -119,18 +99,5 @@ $previous_index = count( $previous_comments );
 			</small>
 		</h3>
 	</div>
-</div>
-
-<div class="padded gray">
-	<h4><?php _e( 'Want to leave this conversation?', 'Postmatic' ); ?></h4>
-
-	<p>
-		<?php
-		_e(
-			"To no longer receive other comments on this thread reply with the word 'unsubscribe'.",
-			'Postmatic'
-		);
-		?>
-	</p>
 </div>
 

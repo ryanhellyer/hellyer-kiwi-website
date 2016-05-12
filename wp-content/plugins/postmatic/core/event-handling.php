@@ -50,9 +50,9 @@ class Prompt_Event_Handling {
 
 		$client = new Prompt_Api_Client( array(), $key, $url );
 
-		$body = array( 'events' => array( compact( 'timestamp', 'code', 'data' ) ) );
+		$data = array( 'events' => array( compact( 'timestamp', 'code', 'data' ) ) );
 
-		$client->post( '/events', array( 'body' => json_encode( $body ) ) );
+		$client->post_events( $data );
 
 	}
 }

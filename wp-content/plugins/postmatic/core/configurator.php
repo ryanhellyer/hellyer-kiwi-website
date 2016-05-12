@@ -14,7 +14,7 @@ class Prompt_Configurator {
 	 */
 	public function pull_configuration() {
 
-		$response = $this->client->get( '/site' );
+		$response = $this->client->get_site();
 
 		if ( is_wp_error( $response ) or 200 != $response['response']['code'] )
 			return Prompt_Logging::add_error(

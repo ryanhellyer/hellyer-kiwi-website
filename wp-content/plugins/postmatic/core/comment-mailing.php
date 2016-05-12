@@ -8,24 +8,22 @@ class Prompt_Comment_Mailing {
 	 * Top level comments go to all post subscribers, replies optionally to the replyee.
 	 *
 	 * @param object|int $comment_id_or_object
-	 * @param string $signature Optional identifier for this batch. Just distinguishes cron jobs, ignored here.
-	 * @param Prompt_Comment_Mailer $mailer Optional object to use for sending notifications.
+	 * @param string $chunk Optional identifier for this chunk (to avoid cron collisions)
 	 * @param int $retry_wait_seconds Minimum time to wait if a retry is necessary, or null to disable retry
 	 */
 	public static function send_notifications(
 		$comment_id_or_object,
-		$signature = '',
-		$mailer = null,
-		$retry_wait_seconds = 60
+		$chunk = '',
+		$retry_wait_seconds = null
 	) {
 
 		$comment = get_comment( $comment_id_or_object );
 
 		self::handle_new_subscriber( $comment );
 
-		$mailer = $mailer ? $mailer : new Prompt_Comment_Mailer( $comment, null, $retry_wait_seconds );
+		$batch = new Prompt_Comment_Email_Batch( $comment );
 
-		$mailer->send_notifications();
+		Prompt_Factory::make_mailer( $batch, null, $chunk )->set_retry_wait_seconds( $retry_wait_seconds )->send();
 	}
 
 	/**
@@ -56,23 +54,23 @@ class Prompt_Comment_Mailing {
 
 		$subject = sprintf( __( 'Unable to publish your reply to "%s"', 'Postmatic' ), $post_title );
 		$template = new Prompt_Template( 'comment-rejected-email.php' );
-		$email = new Prompt_Email( array(
+
+		$batch = Prompt_Email_Batch::make_for_single_recipient( array(
 			'to_address' => $comment_author->user_email,
 			'subject' => $subject,
-			'html' => $template->render( $template_data ),
+			'html_content' => $template->render( $template_data ),
 			'message_type' => Prompt_Enum_Message_Types::ADMIN,
 		) );
 
 		/**
 		 * Filter comment rejected email.
 		 *
-		 * @param Prompt_Email $email
+		 * @param Prompt_Email_Batch $batch
 		 * @param array $template_data see prompt/comment_reject_email/template_data
 		 */
-		$email = apply_filters( 'prompt/comment_rejected_email', $email, $template_data );
+		$batch = apply_filters( 'prompt/comment_rejected_batch', $batch, $template_data );
 
-		$mailer = Prompt_Factory::make_mailer();
-		$mailer->send_one( $email );
+		Prompt_Factory::make_mailer( $batch )->send();
 	}
 
 	/**

@@ -1,23 +1,32 @@
 <?php
 
+/**
+ * Subscribe widget
+ *
+ * @since 1.0.0
+ */
 class Prompt_Subscribe_Widget extends WP_Widget {
 
-	// Construct Widget
 	public function __construct() {
 		$default_options = array(
-			'description' => __( 'Get visitors subscribed to a user, post, or site with minimal fuss.', 'Postmatic' )
+			'description' => __( 'Get visitors subscribed with minimal fuss.', 'Postmatic' )
 		);
 		parent::__construct( false, __( 'Postmatic Subscribe', 'Postmatic' ), $default_options );
 	}
 
-	// Display Widget
+	/**
+	 * Display widget
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 */
 	public function widget( $args, $instance ) {
 
 		$instance_defaults = array(
 			'title' => '',
 			'collect_name' => true,
-			'template_path' => null,
 			'subscribe_prompt' => null,
+			'list' => $this->get_context_list(),
 		);
 
 		$instance = wp_parse_args( $instance, $instance_defaults );
@@ -30,9 +39,10 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 		$container_attributes = array(
 			'class' => 'prompt-subscribe-widget-content',
 			'data-widget-id' => $this->id,
-			'data-template' => self::template_id( $instance['template_path'] ),
 			'data-collect-name' => (int) $instance['collect_name'],
 			'data-subscribe-prompt' => $instance['subscribe_prompt'],
+			'data-list-type' => $instance['list'] ? get_class( $instance['list'] ) : '',
+			'data-list-id' => $instance['list'] ? $instance['list']->id() : '',
 		);
 
 		echo html( 'div',$container_attributes );
@@ -41,25 +51,48 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 	}
 
 
-	// Update Widget
+	/**
+	 * Process updates from form
+	 *
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 * @return array
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['collect_name'] = isset( $new_instance['collect_name'] ) ? true : false;
 		$instance['subscribe_prompt'] = sanitize_text_field( $new_instance['subscribe_prompt'] );
 
+
 		return $instance;
 	}
 
 
-	// Display Widget Control
+	/**
+	 * Show the form
+	 *
+	 * @param array $instance
+	 * @return string API oddness?
+	 */
 	public function form( $instance ) {
 		$template = new Prompt_Template( 'subscribe-widget-settings.php' );
 		$template_data = array( 'widget' => $this, 'instance' => $instance );
 		$template->render( $template_data, $echo = true );
+		return '';
 	}
 
-	// Default value logic
+	/**
+	 * Get an escaped instance value or a fallback if not set
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $instance
+	 * @param string $field
+	 * @param string $fallback
+	 * @param string $escape_callback
+	 * @return string
+	 */
 	public function get_default_value( $instance, $field, $fallback = '', $escape_callback = 'esc_attr' ) {
 		if ( isset( $instance[$field] ) )
 			$value = $instance[$field];
@@ -73,25 +106,28 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 	}
 
 	public static function subscribe_action() {
-		return __( 'subscribe', 'Postmatic' );
+		return Prompt_Subscribe_Matcher::target();
 	}
 
 	public static function unsubscribe_action() {
-		return __( 'unsubscribe', 'Postmatic' );
+		return Prompt_Unsubscribe_Matcher::target();
 	}
 
 	/**
 	 * Emit markup for the dynamic portion of the widget content.
 	 *
+	 * @since 2.0.0 Include an optional target list in instance
+	 * @since 1.0.0
+	 *
 	 * @param string $widget_id
 	 * @param array $instance {
 	 *      Widget options
 	 * @type boolean $collect_name
+	 * @type string $subscribe_prompt
+	 * @type Prompt_Interface_Subscribable $list
 	 * }
-	 * @param Prompt_Interface_Subscribable $object Target object for subscriptions
-	 * @param string $template_id
 	 */
-	public static function render_dynamic_content( $widget_id, $instance, $object, $template_id = null ) {
+	public static function render_dynamic_content( $widget_id, $instance ) {
 
 		$commenter = wp_get_current_commenter();
 		$defaults = array(
@@ -99,11 +135,11 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 			'subscribe_email' => $commenter['comment_author_email'] ? $commenter['comment_author_email'] : '',
 		);
 
-		$action = self::subscribe_action();
-
 		$user = is_user_logged_in() ? wp_get_current_user() : null;
 
-		if ( $user and $object->is_subscribed( $user->ID ) ) {
+		$object = empty( $instance['list'] ) ? null : $instance['list'];
+
+		if ( $user and $object and $object->is_subscribed( $user->ID ) ) {
 			$mode = 'unsubscribe';
 			$action = self::unsubscribe_action();
 		} else {
@@ -123,10 +159,7 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 			'loading_image_url'
 		);
 
-		if ( is_null( $template_id ) )
-			$template = new Prompt_Template( 'subscribe-form.php' );
-		else
-			$template = new Prompt_Template( self::template_path( $template_id ) );
+		$template = new Prompt_Template( 'subscribe-form.php' );
 
 		$template->render( $template_data, $echo = true );
 	}
@@ -152,28 +185,28 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 
 		$script->enqueue();
 
-		$target_object = $this->get_target_object();
-
-		$script->localize(
-			'prompt_subscribe_form_env',
-			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'spinner_url' => path_join( Prompt_Core::$url_path, 'media/ajax-loader.gif' ),
-				'nonce' => wp_create_nonce( Prompt_Ajax_Handling::AJAX_NONCE ),
-				'subscribe_action' => self::subscribe_action(),
-				'unsubscribe_action' => self::unsubscribe_action(),
-				'ajax_error_message' => __( 'Sorry, there was a problem reaching the server', 'Postmatic' ),
-				'object_type' => get_class( $target_object ),
-				'object_id' => $target_object->id(),
-			)
+		$localize_data = array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'spinner_url' => path_join( Prompt_Core::$url_path, 'media/ajax-loader.gif' ),
+			'nonce' => wp_create_nonce( Prompt_Ajax_Handling::AJAX_NONCE ),
+			'subscribe_action' => self::subscribe_action(),
+			'unsubscribe_action' => self::unsubscribe_action(),
+			'ajax_error_message' => __( 'Sorry, there was a problem reaching the server', 'Postmatic' ),
+			'object_type' => null,
+			'object_id' => null,
 		);
+
+		$script->localize( 'prompt_subscribe_form_env', $localize_data );
 
 	}
 
 	/**
-	 * @return Prompt_Interface_Subscribable
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return null|Prompt_Interface_Subscribable
 	 */
-	protected function get_target_object() {
+	protected function get_context_list() {
 
 		$default_object = get_queried_object();
 
@@ -189,32 +222,12 @@ class Prompt_Subscribe_Widget extends WP_Widget {
 		 */
 		$object = apply_filters( 'prompt/subscribe_widget_object', $object, $this );
 
-		return Prompt_Subscribing::make_subscribable( $object );
-	}
-
-	protected static function template_id( $template_path ) {
-
-		if ( !$template_path )
+		if ( ! $object ) {
+			// Just use a default list
 			return null;
+		}
 
-		$templates = Prompt_Core::$options->get( 'custom_widget_templates' );
-
-		$reverse = array_flip( $templates );
-
-		if ( isset( $reverse[$template_path] ) )
-			return $reverse[$template_path];
-
-		$count = array_push( $templates, $template_path );
-
-		Prompt_Core::$options->set( 'custom_widget_templates', $templates );
-
-		return $count - 1;
-	}
-
-	protected static function template_path( $template_id ) {
-		$templates = Prompt_Core::$options->get( 'custom_widget_templates' );
-
-		return isset( $templates[$template_id] ) ? $templates[$template_id] : null;
+		return Prompt_Subscribing::make_subscribable( $object );
 	}
 
 	protected static function subscribe_prompt( $instance, Prompt_Interface_Subscribable $object ) {

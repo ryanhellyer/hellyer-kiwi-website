@@ -15,13 +15,16 @@ class Prompt_View_Handling {
 	public static function template_redirect() {
 		$view = get_query_var( self::$view_query_var );
 
-		if ( ! $view )
+		if ( ! $view ) {
 			return;
+		}
 
 		$view_class = 'Prompt_' . ucfirst( $view ) . '_Template';
 
-		if ( ! class_exists( $view_class ) )
+		if ( ! class_exists( $view_class ) ) {
 			wp_redirect( home_url() );
+			return;
+		}
 
 		$template = new $view_class();
 

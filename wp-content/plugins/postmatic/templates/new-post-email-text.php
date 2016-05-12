@@ -26,7 +26,7 @@
 <?php
 printf(
 	__(
-		"You\'re invited to comment on this post by replying to this email. If you do, it may be published immediately or held for moderation, depending on the comment policy of %s.",
+		'You\'re invited to comment on this post by replying to this email. If you do, it may be published immediately or held for moderation, depending on the comment policy of %s.',
 		'Postmatic'
 	),
 	get_bloginfo( 'name' )
@@ -50,6 +50,6 @@ _e(
 <?php
 printf(
 	__( "To unsubscribe to %s reply with the word * unsubscribe *.", 'Postmatic' ),
-	strip_tags( $subscribed_object->subscription_object_label() )
+	'{{subscribed_object_label}}'
 );
 ?>

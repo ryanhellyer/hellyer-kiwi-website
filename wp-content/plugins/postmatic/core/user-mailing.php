@@ -24,26 +24,26 @@ class Prompt_User_Mailing {
 		$template_data = apply_filters( 'prompt/new_user_email/template_data', $template_data );
 
 		$subject = sprintf( __( 'Welcome to %s', 'Postmatic' ), get_option( 'blogname' ) );
-		$email = new Prompt_Email( array(
+
+		$batch = Prompt_Email_Batch::make_for_single_recipient( array(
 			'to_address' => $user->user_email,
-			'reply_address' => get_option( 'admin_email' ),
+			'from_address' => get_option( 'admin_email' ),
 			'subject' => $subject,
-			'html' => $template->render( $template_data ),
+			'html_content' => $template->render( $template_data ),
 			'message_type' => Prompt_Enum_Message_Types::ADMIN,
 		) );
 
 		/**
 		 * Filter new user email.
 		 *
-		 * @param Prompt_Email $email
+		 * @param Prompt_Email_Batch $batch
 		 * @param array $template_data {
 		 * @type WP_User $user
 		 * @type string $password
 		 * }
 		 */
-		$email = apply_filters( 'prompt/new_user_email', $email, $template_data );
+		$batch = apply_filters( 'prompt/new_user_batch', $batch, $template_data );
 
-		$mailer = Prompt_Factory::make_mailer();
-		$mailer->send_one( $email );
+		Prompt_Factory::make_mailer( $batch )->send();
 	}
 }

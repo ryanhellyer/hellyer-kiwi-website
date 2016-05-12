@@ -1,24 +1,18 @@
 <?php
 /**
  * Template variables in scope:
- * @var WP_User               $subscriber
  * @var Prompt_Interface_Subscribable   $object        The thing being subscribed to
  * @var array                 $comments      Comments since flood control
  */
 ?>
 <div class="padded">
-	<h3>
-		<?php
-		printf( __( 'Welcome back, <span class="capitalize">%s</span>.', 'Postmatic' ), $subscriber->display_name );
-		?>
-	</h3>
-
+	<h3>{{welcome_back_message}}</h3>
 
 
 	<?php if ( $comments ) : ?>
 		<h4><?php _e( 'Here\'s a recap of the conversation.', 'Postmatic' ); ?></h4>
 
-		<div class="previous-comments rejoin">
+		<div class="previous-comments rejoin" id="comments">
 			<?php
 			wp_list_comments( array(
 				'callback' => array( 'Prompt_Email_Comment_Rendering', 'render' ),

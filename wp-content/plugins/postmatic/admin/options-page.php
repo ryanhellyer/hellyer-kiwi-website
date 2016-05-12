@@ -2,20 +2,23 @@
 
 /**
  * Handle Prompt options and those of active add-ons.
+ *
+ * @since 1.0.0
  */
 class Prompt_Admin_Options_Page extends scbAdminPage {
 	const DISMISS_ERRORS_META_KEY = 'prompt_error_dismiss_time';
-	const BUG_REPORT_OPTION_NAME = 'prompt_error_submit_time';
 
+	/** @type array */
 	protected $_overridden_options;
-
-	protected $_active_add_on_form;
 
 	/** @var Prompt_Admin_Options_Tab[] */
 	protected $tabs;
 
 	/** @var  Prompt_Admin_Options_Tab */
 	protected $submitted_tab;
+
+	/** @var  Prompt_Api_Client */
+	protected $api_client;
 
 	/** @var  string shortcut for $this->options->get( 'prompt_key' ) */
 	protected $key;
@@ -26,7 +29,23 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	/** @var  boolean */
 	protected $is_current_page = false;
 
-	public function __construct( $file = false, $options = null, $overrides = null, $tabs = null, $notices = null ) {
+	/**
+	 * @since 1.0.0
+	 * @param string|bool                       $file
+	 * @param scbOptions                        $options
+	 * @param array                             $overrides
+	 * @param Prompt_Admin_Options_Tab[]        $tabs
+	 * @param Prompt_Admin_Conditional_Notice[] $notices
+	 * @param Prompt_Api_Client                 $api_client
+	 */
+	public function __construct(
+		$file = false,
+		$options = null,
+		$overrides = null,
+		$tabs = null,
+		$notices = null,
+		$api_client = null
+	) {
 		parent::__construct( $file, $options );
 		$this->_overridden_options = $overrides;
 		$this->key = $options->get( 'prompt_key' );
@@ -36,10 +55,14 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		$this->tabs = $tabs;
 
 		$this->notices = $notices;
+
+		$this->api_client = $api_client;
 	}
 
 	/**
 	 * Set any values used in the parent class.
+	 *
+	 * @since 1.0.0
 	 */
 	public function setup() {
 		$this->args = array(
@@ -47,6 +70,12 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		);
 	}
 
+	/**
+	 * Add a settings tab.
+	 *
+	 * @since 1.0.0
+	 * @param Prompt_Admin_Options_Tab $tab
+	 */
 	public function add_tab( Prompt_Admin_Options_Tab $tab ) {
 		if ( !$this->tabs )
 			$this->tabs = array();
@@ -56,20 +85,24 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 	/**
 	 * Before there is any output, add tabs and handle any posted options.
+	 *
+	 * @since 1.0.0
 	 */
 	public function page_loaded() {
 
 		$this->is_current_page = true;
 
-		if ( is_null( $this->notices ) )
+		if ( is_null( $this->notices ) ) {
 			$this->add_notices();
+		}
 
 		foreach ( $this->notices as $notice ) {
 			$notice->process_dismissal();
 		}
 
-		if ( $this->process_tabs() )
+		if ( $this->process_tabs() ) {
 			return;
+		}
 
 		if ( !empty( $_POST['error_alert'] ) ) {
 
@@ -86,9 +119,16 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		}
 
 		$this->form_handler();
-		$this->reset_key();
+		$this->load_new_key();
 	}
 
+	/**
+	 * Add a notice.
+	 *
+	 * @since 1.0.0
+	 * @param string $msg
+	 * @param string $class
+	 */
 	public function admin_msg( $msg = '', $class = 'updated' ) {
 		$settings_errors = get_settings_errors();
 		if ( !empty( $settings_errors ) )
@@ -100,16 +140,24 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		echo scb_admin_notice( $msg, $class );
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	public function submitted_errors_admin_msg() {
 		$this->admin_msg( __( 'Report sent! Our bug munchers thank you for the meal.', 'Postmatic' ) );
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	public function beta_request_sent_admin_msg() {
 		$this->admin_msg( __( 'Request sent. We are currently sending a few hundred tokens per week. Expect to receive yours within 1-2 days. You can safely leave Postmatic activated but it is not necessary to do so.', 'Postmatic' ) );
 	}
 
 	/**
 	 * Enqueue scripts and styles.
+	 *
+	 * @since 1.0.0
 	 */
 	public function page_head() {
 
@@ -122,44 +170,49 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			Prompt_Core::version()
 		);
 
-		wp_enqueue_style(
-			'prompt-jmetro',
-			path_join( Prompt_Core::$url_path, 'vendor/vernal-creative/jmetro/css/jquery-ui.css' ),
-			array(),
-			'1.0.0'
-		);
-
 		$script = new Prompt_Script( array(
 			'handle' => 'prompt-options-page',
 			'path' => 'js/options-page.js',
-			'dependencies' => array( 'jquery-ui-tabs' ),
+			'dependencies' => array( 'jquery-ui-tabs', 'thickbox' ),
 		) );
 		$script->enqueue();
 
+		$download_title = Prompt_Core::is_api_transport() ? __( 'Upgrade', 'Postmatic' ) : __( 'A free offer from Postmatic - Download Postmatic Labs and help us test new features', 'Postmatic' );
+
+		$script->localize( 'prompt_options_page_env', array(
+			'download_title' => $download_title,
+			'skip_download_intro' => $this->options->get( 'skip_download_intro' ),
+		) );
+		
+		foreach ( $this->tabs as $tab ) {
+			$tab->page_head();
+		}
+		
+		if ( !$this->options->get( 'skip_download_intro' ) ) {
+			$this->options->set( 'skip_download_intro', true );
+		}
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	public function page_header() {
 
 		$wrapper = '<div class="wrap signup">';
 		$account_url = Prompt_Enum_Urls::MANAGE;
 
 		if ( $this->key ) {
-			$wrapper = '<div class="wrap">';
+			$wrapper = '<div class="wrap" style="display: none;">';
 			$account_url .= '/login';
 		}
 
 		echo $wrapper;
-		echo html( 'div id="manage-account"',
-			html( 'p',
-				html( 'a',
-					array( 'href' => $account_url ),
-					__( '&#9998; Manage your account', 'Postmatic' )
-				)
-			)
-		);
 		echo html( 'h2 id="prompt-settings-header"', html( 'span', $this->args['page_title'] ) );
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	function page_content() {
 
 		echo $this->log_alert();
@@ -192,6 +245,12 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			return;
 		}
 
+		$connection_alert = $this->connection_alert();
+		if ( $connection_alert ) {
+			echo $connection_alert;
+			return;
+		}
+
 		foreach ( $this->notices as $notice ) {
 			$notice->maybe_display();
 		}
@@ -200,6 +259,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		echo html(
 			'div id="prompt-tabs"',
+			array( 'class' => $this->options->get( 'email_transport' ) . '-transport' ),
 			html( 'ul',
 				$tabs
 			),
@@ -208,30 +268,90 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	protected function key_alert() {
 
 		// Before key is entered we don't check anything
-		if ( empty( $this->key ) )
+		if ( empty( $this->key ) ) {
 			return '';
+		}
 
 		// Only check key validity when viewing main settings page
-		if ( isset( $_POST['tab'] ) or isset( $_POST['prompt_key'] ) )
+		if ( isset( $_POST['tab'] ) or isset( $_POST['prompt_key'] ) ) {
 			return '';
+		}
 
 		$key = $this->validate_key( $this->key );
-		if ( is_wp_error( $key ) )
+
+		if ( is_wp_error( $key ) and "couldn't connect to host" == $key->get_error_message() ) {
+			return html( 'div class="error"', html( 'p', $this->blocked_connection_message() ) );
+		}
+
+		if ( is_wp_error( $key ) ) {
 			return html( 'div class="error"', html( 'p', $key->get_error_message() ) );
+		}
 
 		return '';
 	}
 
+	/**
+	 * @since 2.0.0
+	 * @return string
+	 */
+	protected function blocked_connection_message() {
+		return __(
+			'We are unable to reach the Postmatic server at app.gopostmatic.com. If this happens consistently, your web host may be blocking the connection, and you\'ll have to ask for an exception before Postmatic will work.',
+			'Postmatic'
+		);
+	}
+
+	/**
+	 * @since 1.0.0
+	 */
+	protected function connection_alert() {
+
+		$skip_statuses = array( Prompt_Enum_Connection_Status::CONNECTED, Prompt_Enum_Connection_Status::ISOLATED );
+
+		if ( in_array( Prompt_Core::$options->get( 'connection_status' ), $skip_statuses ) ) {
+			return '';
+		}
+
+		$response = $this->api_client()->post_instant_callback(
+			array( 'metadata' => array( 'prompt/check_connection', array() ) )
+		);
+
+		if ( is_wp_error( $response ) ) {
+			return html( 'div class="error"', html( 'p', $response->get_error_message() ) );
+		}
+
+		return html( 'div id="checking-connection" ',
+			html( 'p',
+				html( 'span', array( 'class' => 'loading-indicator' ) ),
+				__( '<strong>Just a moment</strong>. Postmatic is running a test to make sure our server can talk to yours. It may take a few seconds.', 'Postmatic' )
+			)
+		) . html( 'div id="bad-connection" style="display: none;"',
+			html( 'p',
+				__( '<strong>There\'s a problem :(</strong> Postmatic was unable to connect to your server. If you or your web host have put restrictions on incoming web connections an exception may be needed to let our server (app.gopostmatic.com) talk to yours. Click the question mark icon in the lower right corner for more assistance or try contacting your web host.', 'Postmatic' )
+			)
+		);
+	}
+
+
+	/**
+	 * @since 1.0.0
+	 */
 	protected function log_alert() {
 		$dismiss_time = absint( get_user_meta( get_current_user_id(), self::DISMISS_ERRORS_META_KEY, true ) );
 
-		$log = Prompt_Logging::get_log( $dismiss_time, ARRAY_A );
+		$since = max( $dismiss_time, Prompt_Logging::get_last_submission_time() );
 
-		if ( empty( $log ) )
+		$log = Prompt_Logging::get_log( $since, ARRAY_A );
+
+		if ( empty( $log ) ) {
 			return '';
+		}
 
 		$rows = array();
 		foreach ( $log as $entry ) {
@@ -244,8 +364,9 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		}
 
-		if ( empty( $rows ) )
+		if ( empty( $rows ) ) {
 			return '';
+		}
 
 		return html( 'div class="error"',
 			html( 'form', array( 'method' => 'post', 'action' => '' ),
@@ -262,6 +383,10 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		);
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return array Tabs HTML element 0, Panels HTML element 1
+	 */
 	protected function tabs_content() {
 
 		$tabs = '';
@@ -269,9 +394,15 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		$submitted_slug = $this->submitted_tab ? $this->submitted_tab->slug() : '';
 		foreach ( $this->tabs as $slug => $tab ) {
+			$enabled = Prompt_Core::$options->get( 'enable_' . str_replace( '-', '_', $tab->slug() ) );
+			$enabled = is_null( $enabled ) ? true : $enabled;
 			$tabs .= html(
 				'li',
-				array( 'class' => $slug == $submitted_slug ? 'ui-tabs-active' : '' ),
+				array(
+					'id' => 'prompt-tab-' . $slug,
+					'class' => $slug == $submitted_slug ? 'ui-tabs-active' : '',
+					'style' => $enabled ? '' : 'display: none;',
+				),
 				html( 'a', array( 'href' => '#prompt-settings-' . $slug ), $tab->name() )
 			);
 			$panels .= html(
@@ -286,6 +417,8 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 	/**
 	 * Assemble sidebar content
+	 *
+	 * @since 1.0.0
 	 * @return string content
 	 */
 	protected function sidebar_content() {
@@ -295,6 +428,9 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		);
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	protected function display_key_prompt() {
 
 		$new_site_url = Prompt_Enum_Urls::MANAGE . '/sites/link?ajax_url=' . urlencode( admin_url( 'admin-ajax.php' ) );
@@ -305,6 +441,12 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		echo $content;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @param array $new_data
+	 * @param array $old_data
+	 * @return array
+	 */
 	public function validate( $new_data, $old_data ) {
 		$valid_data = $old_data;
 
@@ -323,6 +465,13 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		return $valid_data;
 	}
 
+	/**
+	 * Validate a key
+	 *
+	 * @since 1.0.0
+	 * @param string            $key
+	 * @return mixed|string|WP_Error
+	 */
 	public function validate_key( $key ) {
 		if ( empty( $key ) ) {
 			return '';
@@ -330,9 +479,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 
 		$key = preg_replace( '/\s/', '', sanitize_text_field( $key ) );
 
-		$client = new Prompt_Api_Client( array(), $key );
-
-		$response = $client->get( '/site' );
+		$response = $this->api_client( $key )->get_site();
 
 		if ( is_wp_error( $response ) or !in_array( $response['response']['code'], array( 200, 401, 503 ) ) ) {
 			return Prompt_Logging::add_error(
@@ -378,7 +525,15 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			return new WP_Error( 'wrong_key', $message );
 		}
 
-		$configurator = Prompt_Factory::make_configurator( $client );
+		if (
+			Prompt_Core::$options->get( 'enable_digests' )
+			and
+			! in_array( Prompt_Enum_Message_Types::DIGEST, $configuration->configuration->enabled_message_types )
+		) {
+			$configuration->configuration->enable_digests = false;
+		}
+
+		$configurator = Prompt_Factory::make_configurator( $this->api_client() );
 
 		$configurator->update_configuration( $configuration );
 
@@ -413,6 +568,27 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		return $this->is_current_page;
 	}
 
+	/**
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $key
+	 * @return Prompt_Api_Client
+	 */
+	protected function api_client( $key = null ) {
+		if ( ! $this->api_client ) {
+			$this->api_client = new Prompt_Api_Client( array(), $key );
+		}
+		return $this->api_client;
+	}
+
+	/**
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $url
+	 * @return bool
+	 */
 	protected function site_matches( $url ) {
 		$url_parts = parse_url( strtolower( $url ) );
 
@@ -424,53 +600,21 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 		return ( $url_parts['host'] === $ajax_url_parts['host'] and $url_parts['path'] === $ajax_url_parts['path'] );
 	}
 
+	/**
+	 * @since 1.0.0
+	 */
 	protected function submit_errors() {
-		$user = wp_get_current_user();
-
-		$last_submit_time = absint( get_option( self::BUG_REPORT_OPTION_NAME ) );
-
-		update_option( self::BUG_REPORT_OPTION_NAME, time() );
-
-		$message = array( 'error_log' => Prompt_Logging::get_log( $last_submit_time, ARRAY_A ) );
-
-		$environment = new Prompt_Environment();
-
-		$message = array_merge( $message, $environment->to_array() );
-
-		$email = new Prompt_Email( array(
-			'to_address' => Prompt_Core::SUPPORT_EMAIL,
-			'from_address' => $user->user_email,
-			'from_name' => $user->display_name,
-			'subject' => sprintf( 'Error submission from %s', get_option( 'blogname' ) ),
-			'text' => json_encode( $message ),
-			'message_type' => Prompt_Enum_Message_Types::ADMIN,
-		) );
-
-		$sent = Prompt_Factory::make_mailer( Prompt_Enum_Email_Transports::LOCAL )->send_one( $email );
-
-		if ( is_wp_error( $sent ) and Prompt_Core::$options->get( 'prompt_key' ) )
-			$sent = Prompt_Factory::make_mailer( Prompt_Enum_Email_Transports::API )->send_one( $email );
-
-		if ( is_wp_error( $sent ) ) {
-			Prompt_Logging::add_error(
-				'bug_submission_error',
-				sprintf(
-					__(
-						'We\'re even having trouble sending a bug report. Please copy the data to the right and send to %s.',
-						'Postmatic'
-					),
-					Prompt_Core::SUPPORT_EMAIL
-				),
-				$sent
-			);
-			return;
-		}
-
+		Prompt_Logging::submit();
 		add_action( 'admin_notices', array( $this, 'submitted_errors_admin_msg' ) );
 	}
 
-	protected function reset_key() {
-		$this->key = $this->options->get( 'prompt_key' );
+	/**
+	 * @since 1.0.0
+	 */
+	protected function load_new_key() {
+		if ( $this->key != $this->options->get( 'prompt_key' ) ) {
+			wp_redirect( $_SERVER['REQUEST_URI'] );
+		}
 	}
 
 	/**
@@ -482,26 +626,17 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	 */
 	protected function process_tabs() {
 
+		if ( is_null( $this->tabs ) ) {
+			$this->add_tabs();
+		}
+
 		$did_updates = false;
 		$submitted_tab_slug = isset( $_POST['tab'] ) ? $_POST['tab'] : null;
 
-		// The options tab can influence which other tabs are created, so handle it first
-		$options_tab = new Prompt_Admin_Options_Options_Tab( $this->options, $this->_overridden_options );
-
-		if ( $options_tab->slug() === $submitted_tab_slug ) {
-			$this->submitted_tab = $options_tab;
-			$options_tab->form_handler();
-			$did_updates = true;
-		}
-
-		if ( !$this->tabs ) {
-			$this->add_tabs( $options_tab );
-		}
-
-		if ( !$did_updates and $submitted_tab_slug ) {
+		if ( $submitted_tab_slug ) {
 			$this->submitted_tab = $this->tabs[$submitted_tab_slug];
 			$this->submitted_tab->form_handler();
-			$this->reset_key(); // in case a new key was saved
+			$this->load_new_key(); // in case a new key was saved
 			$did_updates = true;
 		}
 
@@ -509,44 +644,35 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 	}
 
 
-	/**
-	 * @param Prompt_Admin_Options_Options_Tab $options_tab
-	 */
-	protected function add_tabs( $options_tab ) {
-		$this->add_tab( new Prompt_Admin_Core_Options_Tab( $this->options, $this->_overridden_options ) );
-		$this->add_tab( new Prompt_Admin_Email_Options_Tab( $this->options, $this->_overridden_options ) );
-		$this->add_tab( new Prompt_Admin_Invite_Options_Tab( $this->options, $this->_overridden_options ) );
-		$this->add_tab( $options_tab );
-		if ( class_exists( 'Jetpack' ) )
-			$this->add_tab( new Prompt_Admin_Jetpack_Import_Options_Tab( $this->options, $this->_overridden_options ) );
-		if ( class_exists( 'WYSIJA' ) )
-			$this->add_tab( new Prompt_Admin_Mailpoet_Import_Options_Tab( $this->options, $this->_overridden_options ) );
-		$this->add_tab( new Prompt_Admin_MailChimp_Import_Options_Tab( $this->options, $this->_overridden_options ) );
+	protected function add_tabs() {
+
+		$tabs = array(
+			new Prompt_Admin_Core_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_Email_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_Post_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_Optins_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_Jetpack_Import_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_Mailpoet_Import_Options_Tab( $this->options, $this->_overridden_options ),
+			new Prompt_Admin_MailChimp_Import_Options_Tab( $this->options, $this->_overridden_options ),
+		);
 
 		$subscribe_reloaded_import_tab = new Prompt_Admin_Subscribe_Reloaded_Import_Options_Tab(
 			$this->options,
 			$this->_overridden_options
 		);
 
-		if ( $subscribe_reloaded_import_tab->is_available() or $this->is_importable_comments_plugin_active() )
-			$this->add_tab( $subscribe_reloaded_import_tab );
+		if ( $subscribe_reloaded_import_tab->is_available() ) {
+			$tabs[] = $subscribe_reloaded_import_tab;
+		}
 
-		if ( Prompt_Core::$options->get( 'enable_optins' ) )
-			$this->add_tab( new Prompt_Admin_Optins_Options_Tab( $this->options, $this->_overridden_options ) );
+		$tabs[] = new Prompt_Admin_Comment_Options_Tab( $this->options, $this->_overridden_options );
+		$tabs[] = new Prompt_Admin_Notes_Promo_Tab( $this->options, $this->_overridden_options );
+		$tabs[] = new Prompt_Admin_Analytics_Options_Tab( $this->options, $this->_overridden_options );
+		$tabs[] = new Prompt_Admin_Support_Options_Tab( $this->options, $this->_overridden_options );
 
-		if ( Prompt_Core::$options->get( 'enable_skimlinks' ) )
-			$this->add_tab( new Prompt_Admin_Skimlinks_Options_Tab( $this->options, $this->_overridden_options ) );
+		$tabs = apply_filters( 'prompt/options_page/tabs', $tabs );
 
-		$this->add_tab( new Prompt_Admin_Support_Options_Tab( $this->options, $this->_overridden_options ) );
-	}
-
-	protected function is_importable_comments_plugin_active() {
-		// Check for Subscribe to Comments, StC Reloaded, or StC double opt-in
-		return (
-			class_exists( 'wp_subscribe_reloaded' ) or
-			class_exists( 'CWS_STC' ) or
-			class_exists( 'sg_subscribe' )
-		);
+		array_map( array( $this, 'add_tab' ), $tabs );
 	}
 
 	protected function add_notices() {
@@ -556,6 +682,7 @@ class Prompt_Admin_Options_Page extends scbAdminPage {
 			new Prompt_Admin_Moderation_User_Notice(),
 			new Prompt_Admin_Akismet_Notice(),
 			new Prompt_Admin_Zero_Spam_Notice(),
+			new Prompt_Admin_Download_Modal_Notice(),
 		);
 	}
 

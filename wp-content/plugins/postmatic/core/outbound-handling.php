@@ -14,29 +14,34 @@ class Prompt_Outbound_Handling {
 	 */
 	public static function action_transition_post_status( $new_status, $old_status, $post ) {
 
-		if ( 'publish' == $old_status or 'publish' != $new_status )
+		if ( ! Prompt_Core::$options->get( 'enable_post_delivery' ) ) {
 			return;
+		}
+
+		if ( 'publish' == $old_status or 'publish' != $new_status ) {
+			return;
+		}
 
 		// There is no way to suppress mailing when restoring a trashed post, so we always do it
-		if ( 'trash' == $old_status )
+		if ( 'trash' == $old_status ) {
 			return;
+		}
 
-		if ( defined( 'WP_IMPORTING' ) and WP_IMPORTING )
+		if ( defined( 'WP_IMPORTING' ) and WP_IMPORTING ) {
 			return;
+		}
 
-		if ( self::ignore_published_post( $post->ID ) )
+		if ( self::ignore_published_post( $post->ID ) ) {
 			return;
+		}
 
 		$prompt_post = new Prompt_Post( $post );
 
-		if ( ! $prompt_post->unsent_recipient_ids() or Prompt_Admin_Delivery_Metabox::suppress_email( $post->ID ) )
+		if ( ! $prompt_post->unsent_recipient_ids() or Prompt_Admin_Delivery_Metabox::suppress_email( $post->ID ) ) {
 			return;
+		}
 
-		wp_schedule_single_event(
-			time(),
-			'prompt/post_mailing/send_notifications',
-			array( $post->ID )
-		);
+		Prompt_Post_Mailing::send_notifications( $post );
 	}
 
 	/**
@@ -46,17 +51,23 @@ class Prompt_Outbound_Handling {
 	 * @param object $comment
 	 */
 	public static function action_wp_insert_comment( $id, $comment ) {
-		if ( $comment->comment_approved != '1'  or !empty( $comment->comment_type ) )
+
+		if ( ! Prompt_Core::$options->get( 'enable_comment_delivery' ) ) {
 			return;
+		}
+
+		if ( $comment->comment_approved != '1'  or !empty( $comment->comment_type ) ) {
+			return;
+		}
 
 		if ( defined( 'WP_IMPORTING' ) and WP_IMPORTING )
 			return;
 
-		wp_schedule_single_event(
-			time(),
-			'prompt/comment_mailing/send_notifications',
-			array( $id )
-		);
+		if ( ! apply_filters( 'prompt/comment_notifications/allow', true, $id ) ) {
+			return;
+		}
+
+		Prompt_Comment_Mailing::send_notifications( $id );
 	}
 
 	/**
@@ -68,6 +79,10 @@ class Prompt_Outbound_Handling {
 	 */
 	public static function action_transition_comment_status( $new_status, $old_status, $comment ) {
 
+		if ( ! Prompt_Core::$options->get( 'enable_comment_delivery' ) ) {
+			return;
+		}
+
 		if ( defined( 'WP_IMPORTING' ) and WP_IMPORTING ) {
 			return;
 		}
@@ -76,56 +91,11 @@ class Prompt_Outbound_Handling {
 			return;
 		}
 
-		wp_schedule_single_event(
-			time(),
-			'prompt/comment_mailing/send_notifications',
-			array( $comment )
-		);
-	}
-
-	/**
-	 * When a comment is unapproved, notify moderators for API user.
-	 *
-	 * This is inspired by the Crowd Control plugin, to let moderators know when the crowd has unapproved a comment.
-	 *
-	 * @since 1.5.0
-	 *
-	 * @param object $comment
-	 */
-	public static function action_comment_approved_to_unapproved( $comment ) {
-
-		if ( current_user_can( 'moderate_comments' ) ) {
+		if ( ! apply_filters( 'prompt/comment_notifications/allow', true, $comment->comment_ID ) ) {
 			return;
 		}
 
-		$enabled_message_types = Prompt_Core::$options->get( 'enabled_message_types' );
-
-		if ( !in_array( Prompt_Enum_Message_Types::COMMENT_MODERATION, $enabled_message_types ) ) {
-			return;
-		}
-
-		wp_notify_moderator( $comment->comment_ID );
-	}
-
-	/**
-	 * Override native comment moderation notifications.
-	 *
-	 * @link https://developer.wordpress.org/reference/hooks/comment_moderation_recipients/
-	 *
-	 * @param array $addresses
-	 * @param int $comment_id
-	 * @return array Empty array to short circuit native notifications.
-	 */
-	public static function filter_comment_moderation_recipients( $addresses, $comment_id ) {
-
-		$enabled_message_types = Prompt_Core::$options->get( 'enabled_message_types' );
-
-		if ( !in_array( Prompt_Enum_Message_Types::COMMENT_MODERATION, $enabled_message_types ) )
-			return $addresses;
-
-		Prompt_Moderation_Mailing::send_notifications( $comment_id, $addresses );
-
-		return array();
+		Prompt_Comment_Mailing::send_notifications( $comment );
 	}
 
 	/**
@@ -175,7 +145,7 @@ class Prompt_Outbound_Handling {
 	/**
 	 * Whether a post is a WPML post in a language other than the default.
 	 *
-	 * @since 1.5.0
+	 * @since 2.0.0
 	 *
 	 * @param int $post_id
 	 * @return bool

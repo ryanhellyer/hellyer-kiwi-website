@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * Mailpoet import
+ *
+ * @package Postmatic
+ * @since   1.0.0
+ */
 class Prompt_Admin_Mailpoet_Import {
 
+	/** @var  Prompt_Interface_Subscribable */
+	protected $target_list;
 	/** @var  WYSIJA_model_user */
 	protected $user_model;
 	/** @var  array */
-	protected $list_ids;
+	protected $mailpoet_list_ids;
 	/** @var  array */
 	protected $subscribers;
 	/** @var int */
@@ -15,52 +23,104 @@ class Prompt_Admin_Mailpoet_Import {
 	/** @var  array */
 	protected $rejects;
 
+	/**
+	 * Whether the import can begin.
+	 *
+	 * @since 1.0.0
+	 * @return bool
+	 */
 	public static function is_ready() {
 		return class_exists( 'WYSIJA' );
 	}
 
 
-	public static function make( $list_ids ) {
-		return new Prompt_Admin_Mailpoet_Import( WYSIJA::get( 'user', 'model' ), $list_ids );
+	/**
+	 * Build an import for given Mailpoet lists
+	 *
+	 * @since 1.0.0
+	 * @param array|int $list_ids
+	 * @param Prompt_Interface_Subscribable $target_list
+	 * @return Prompt_Admin_Mailpoet_Import
+	 */
+	public static function make( $list_ids, $target_list ) {
+		return new Prompt_Admin_Mailpoet_Import( WYSIJA::get( 'user', 'model' ), $list_ids, $target_list );
 	}
 
-	public function __construct( $user_model, $list_ids ) {
+	/**
+	 * @param WYSIJA_model_user $user_model
+	 * @param array|int $list_ids
+	 * @param Prompt_Interface_Subscribable $target_list
+	 */
+	public function __construct( $user_model, $list_ids, $target_list ) {
 		$this->user_model = $user_model;
-		$this->list_ids = $list_ids;
+		$this->mailpoet_list_ids = $list_ids;
 		$this->rejects = array();
+		$this->target_list = $target_list;
 	}
 
+	/**
+	 * Currently not detecting errors.
+	 *
+	 * @since 1.0.0
+	 * @return null
+	 */
 	public function get_error() {
 		return null;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return int
+	 */
 	public function get_subscriber_count() {
 		$this->ensure_subscribers();
 		return count( $this->subscribers );
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return int
+	 */
 	public function get_imported_count() {
 		return $this->imported_count;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return int
+	 */
 	public function get_already_subscribed_count() {
 		return $this->already_subscribed_count;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return array
+	 */
 	public function get_rejected_subscribers() {
 		return $this->rejects;
 	}
 
+	/**
+	 * Run the import.
+	 *
+	 * @since 1.0.0
+	 */
 	public function execute() {
 		$this->ensure_subscribers();
 
-		$prompt_site = new Prompt_Site();
-
 		foreach ( $this->subscribers as $subscriber ) {
-			$this->import( $subscriber, $prompt_site );
+			$this->import( $subscriber );
 		}
 	}
 
+	/**
+	 * Verify that we have MailPoet subscribers.
+	 *
+	 * If they haven't been retrieved yet, retrieve them.
+	 *
+	 * @since 1.0.0
+	 */
 	protected function ensure_subscribers() {
 		if ( isset( $this->subscribers ) )
 			return;
@@ -72,7 +132,7 @@ class Prompt_Admin_Mailpoet_Import {
 
 		$list_subscribers = $this->user_model->get_subscribers(
 			array( 'A.email', 'A.firstname', 'A.lastname', 'A.last_opened', 'A.last_clicked', 'A.created_at' ),
-			array( 'lists' => $this->list_ids )
+			array( 'lists' => $this->mailpoet_list_ids )
 		);
 
 		foreach ( $list_subscribers as $list_subscriber ) {
@@ -80,6 +140,12 @@ class Prompt_Admin_Mailpoet_Import {
 		}
 	}
 
+	/**
+	 * Add a MailPoet subscriber.
+	 *
+	 * @since 1.0.0
+	 * @param $subscriber
+	 */
 	protected function add_source_subscriber( $subscriber ) {
 
 		if ( $this->is_valid_subscriber( $subscriber ) )
@@ -89,6 +155,13 @@ class Prompt_Admin_Mailpoet_Import {
 
 	}
 
+	/**
+	 * Check if a MailPoet subscriber qualifies for import.
+	 *
+	 * @since 1.0.0
+	 * @param $subscriber
+	 * @return bool
+	 */
 	protected function is_valid_subscriber( $subscriber ) {
 		if ( empty( $subscriber['created_at'] ) or empty( $subscriber['last_clicked'] ) )
 			return false;
@@ -97,14 +170,16 @@ class Prompt_Admin_Mailpoet_Import {
 	}
 
 	/**
+	 * Import a MailPoet subscriber.
+	 *
+	 * @since 1.0.0
 	 * @param array $subscriber
-	 * @param Prompt_Interface_Subscribable $object
 	 */
-	protected function import( $subscriber, $object ) {
+	protected function import( $subscriber ) {
 
 		$existing_user = get_user_by( 'email', $subscriber['email'] );
 
-		if ( $existing_user and $object->is_subscribed( $existing_user->ID ) ) {
+		if ( $existing_user and $this->target_list->is_subscribed( $existing_user->ID ) ) {
 			$this->already_subscribed_count++;
 			return;
 		}
@@ -120,7 +195,7 @@ class Prompt_Admin_Mailpoet_Import {
 			$subscriber_id = $existing_user->ID;
 		}
 
-		$object->subscribe( $subscriber_id );
+		$this->target_list->subscribe( $subscriber_id );
 
 		$prompt_user = new Prompt_User( $subscriber_id );
 

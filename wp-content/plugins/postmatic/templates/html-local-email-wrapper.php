@@ -3,18 +3,23 @@
  * HTML Email template, called with variables in scope:
  *
  * @var string $subject
- * @var string $message
+ * @var string $html_content
  * @var string $brand_type text or html
  * @var string $brand_text
  * @var string $brand_image_url
  * @var int    $brand_image_height
  * @var int    $brand_image_width
+ * @var string $footnote_html
+ * @var string $footnote_text
+ * @var string $credit_html
+ * @var string $credit_text
  * @var string $footer_widgets
  * @var string $footer_type
  * @var string $footer_text
  * @var string $site_icon_url
  * @var string $unsubscribe_url
  * @var bool   $will_strip_content
+ * @var string $site_css
  */
 ?>
 <!DOCTYPE html>
@@ -26,7 +31,7 @@
 	<title><?php bloginfo( 'name' ); ?> | <?php echo esc_html( $subject ); ?></title>
 	<style>
 		body {
-			line-height: 150%;
+			line-height: normal;
 			font-family: sans-serif;
 			background-color: #ffffff;
 		}
@@ -39,6 +44,8 @@
 			font-weight: normal;
 			line-height: normal;
 		}
+		
+		h2 {line-height: normal;}
 
 		h1 a {
 			text-decoration: none;
@@ -46,6 +53,10 @@
 
 		p.padded {
 			font-size: 85%;
+		}
+
+		blockquote {
+			clear: both;
 		}
 
 		.btn-secondary {
@@ -69,6 +80,56 @@
 			padding-bottom: 10px;
 			border-bottom: 1px solid #ddd;
 		}
+
+		
+		 .alignright {
+	        float: right;
+	        margin: 0 0 20px 20px;
+	    }
+	
+	    .alignleft {
+	        float: left;
+	        margin: 0 20px 20px 0;
+	    }
+	
+	    .aligncenter, .alignnone {
+	        margin: 20px auto;
+	        display: block;
+	        float: none;
+	        width: auto;
+	    }
+	    
+	    #content {
+	    	max-width: 600px !important;
+	    	overflow: hidden !important;
+	    }
+	      .utils {
+ 		   margin-top:65px;
+   		 margin-bottom: 65px;
+		}
+		
+		.reply {
+		    margin-left: 45px;
+		    line-height: normal;
+		}
+		
+		.reply a {
+			text-decoration: none;
+		}
+		
+		.reply small {
+		    font-weight: normal;
+		    font-size: 12px;
+		}
+		
+		.foot_wrap {
+		    font-size: 12px;
+		    text-align: left;
+		    width: 600px;
+		    line-height: normal
+		}
+
+		<?php echo $site_css; ?>
 	</style>
 </head>
 <body bgcolor="#ffffff">
@@ -83,24 +144,19 @@
 		</a>
 	</p>
 <?php endif; ?>
-<h2><?php echo $brand_text; ?></h2>
+<h2 class="site-title"><?php echo $brand_text; ?></h2>
 
-<div class="content" style="margin-top: 25px;"><?php echo $message; ?></div>
-<?php echo $footer_text; ?>
+<div id="content" style="margin-top: 15px;"><?php echo $html_content; ?></div>
+
+<span id="postmatic-ref-{{{ref_id}}}"></span>
+<div class="foot_wrap">
+<div class="footer"><?php echo $footer_text; ?></div>
+
 <?php if ( empty( $suppress_delivery ) ) : ?>
 
-	<?php
-	printf(
-		__( 'Sent from %s.', 'Postmatic' ),
-		'<a href="' . get_bloginfo( 'url' ) . '">' . get_bloginfo( 'name' ) . '</a>'
-	);
-	?>
-	<?php
-	printf(
-		__( 'Delivered by <a href="%s">Postmatic</a>. ', 'Postmatic' ),
-		path_join( Prompt_Enum_Urls::HOME, '?utm_source=footer&utm_medium=email&utm_campaign=pluginfooter' )
-	);
-	?>
+	<div class="footnote"><?php echo $footnote_html; ?></div>
+
+	<div class="credit"><?php echo $credit_html; ?></div>
 
 	<?php if ( !empty( $unsubscribe_url ) ) : ?>
 		<p>
@@ -120,6 +176,7 @@
 	<?php endif; ?>
 
 <?php endif; ?>
+</div>
 
 </body>
 </html>

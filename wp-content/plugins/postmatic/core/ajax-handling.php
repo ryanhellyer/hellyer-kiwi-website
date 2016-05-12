@@ -12,18 +12,23 @@ class Prompt_Ajax_Handling {
 	static public function action_wp_ajax_prompt_subscribe() {
 
 		$validity = self::validate_subscribe_request();
-		if ( $validity !== true )
+		if ( $validity !== true ) {
 			wp_die( $validity );
+		}
 
 		$subscriber = wp_get_current_user();
 
-		$object_id = intval( $_POST['object_id'] );
-		$object_type = sanitize_text_field( $_POST['object_type'] );
+		/** @var Prompt_Interface_Subscribable $target_list */
+		$target_list = null;
+
+		if ( ! empty( $_POST['object_id'] ) and ! empty( $_POST['object_type'] ) ) {
+			$object_id = intval( $_POST['object_id'] );
+			$object_type = sanitize_text_field( $_POST['object_type'] );
+			$target_list = new $object_type( $object_id );
+		}
+
 		$email = isset( $_POST['subscribe_email'] ) ? sanitize_email( $_POST['subscribe_email'] ) : null;
 		$name = isset( $_POST['subscribe_name'] ) ? sanitize_text_field( $_POST['subscribe_name'] ) : null;
-
-		/** @var Prompt_Interface_Subscribable $object */
-		$object = new $object_type( $object_id );
 
 		$found_by_email = false;
 
@@ -34,78 +39,33 @@ class Prompt_Ajax_Handling {
 		}
 
 		if ( !$found_by_email and $email ) {
-			echo self::verify_new_subscriber( $object, $email, $name );
+			echo self::verify_new_subscriber( $target_list, $email, $name );
 			wp_die();
 		}
 
-		if ( $object->is_subscribed( $subscriber->ID ) and $found_by_email ) {
-			printf( __( 'You are already subscribed to %s.', 'Postmatic' ), $object->subscription_object_label() );
+		$default_lists = array();
+		if ( !$target_list ) {
+			$default_lists = self::default_lists_for( $subscriber );
+			$target_list = ( count( $default_lists ) == 1 ? $default_lists[0] : null );
+		}
+
+		if ( !$target_list ) {
+			echo self::subscribe( $default_lists, $subscriber );
 			wp_die();
 		}
 
-		if ( $object->is_subscribed( $subscriber->ID ) ) {
-			echo self::unsubscribe( $object, $subscriber, $found_by_email );
+		if ( $target_list->is_subscribed( $subscriber->ID ) and $found_by_email ) {
+			printf( __( 'You are already subscribed to %s.', 'Postmatic' ), $target_list->subscription_object_label() );
 			wp_die();
 		}
 
-		echo self::subscribe( $object, $subscriber );
+		if ( $target_list->is_subscribed( $subscriber->ID ) ) {
+			echo self::unsubscribe( $target_list, $subscriber, $found_by_email );
+			wp_die();
+		}
+
+		echo self::subscribe( $target_list, $subscriber );
 		wp_die();
-	}
-
-	/**
-	 * Handle commenter requests from the invite settings tab
-	 */
-	public static function action_wp_ajax_prompt_get_commenters() {
-		/** @var WPDB $wpdb */
-		global $wpdb;
-
-		// Ask for some time for this one
-		ini_set('max_execution_time', 300);
-
-		$query = "SELECT MAX( c.comment_author ) as name, " .
-			"c.comment_author_email as address, " .
-			"MAX( c.comment_date ) as date, " .
-			"COUNT( c.comment_author_email ) as count " .
-			"FROM {$wpdb->comments} c " .
-			"WHERE c.user_id = 0 " .
-			"AND c.comment_type = '' " .
-			"AND c.comment_approved = 1 " .
-			"AND c.comment_author_email <> '' " .
-			"AND NOT EXISTS( SELECT 1 FROM {$wpdb->users} WHERE user_email = c.comment_author_email )" .
-			"AND NOT EXISTS( " .
-				"SELECT 1 FROM {$wpdb->comments} pc " .
-				"WHERE pc.comment_author_email = c.comment_author_email AND pc.comment_type = 'prompt_pre_reg' )" .
-			"GROUP BY c.comment_author_email ";
-
-		$results = $wpdb->get_results( $query );
-
-		wp_send_json( $results );
-	}
-
-	/**
-	 * Handle user requests from the invite settings tab.
-	 */
-	public static function action_wp_ajax_prompt_get_invite_users() {
-
-		$users = get_users( array( 'exclude' => Prompt_Site::all_subscriber_ids() ) );
-
-		$post_subscriber_ids = Prompt_Post::all_subscriber_ids();
-
-		$results = array();
-		foreach( $users as $user ) {
-
-			if ( empty( $user->user_email ) )
-				continue;
-
-			$results[] = array(
-				'name' => $user->display_name,
-				'address' => $user->user_email,
-				'roles' => $user->roles,
-				'is_post_subscriber' => in_array( $user->ID, $post_subscriber_ids ),
-			);
-		}
-
-		wp_send_json( $results );
 	}
 
 	/**
@@ -163,29 +123,13 @@ class Prompt_Ajax_Handling {
 
 		$context->setup();
 
-		$is_api_delivery = ( Prompt_Enum_Email_Transports::API == Prompt_Core::$options->get( 'email_transport' ) );
-		$will_strip_content = ( !$is_api_delivery and $context->has_fancy_content() );
+		$batch = new Prompt_Post_Email_Batch( $context );
 
-		$email = Prompt_Post_Mailing::build_email( array(
-			'prompt_author' => new Prompt_User( $post->post_author ),
-			'recipient' => wp_get_current_user(),
-			'prompt_post' => new Prompt_Post( $post ),
-			'subscribed_object' => new Prompt_Site(),
-			'featured_image_src' => $context->get_the_featured_image_src(),
-			'excerpt_only' => Prompt_Admin_Delivery_Metabox::excerpt_only( $post->ID ),
-			'the_text_content' => $context->get_the_text_content(),
-			'subject' => sprintf(
-				__( 'PREVIEW of %s', 'Postmatic' ),
-				html_entity_decode( $post->post_title, ENT_QUOTES )
-			),
-			'alternate_versions_menu' => $context->alternate_versions_menu(),
-			'is_api_delivery' => $is_api_delivery,
-			'will_strip_content' => $will_strip_content,
-		) );
+		$batch->add_recipient( new Prompt_User( wp_get_current_user() ) );
 
 		$context->reset();
 
-		Prompt_Factory::make_mailer()->send_one( $email );
+		Prompt_Factory::make_post_adhoc_mailer( $batch )->send();
 
 		wp_send_json( array( 'message' => __( 'Preview email sent.', 'Postmatic' ) ) );
 	}
@@ -202,65 +146,125 @@ class Prompt_Ajax_Handling {
 			'subscribe_prompt' => filter_input( INPUT_GET, 'subscribe_prompt', FILTER_SANITIZE_STRING ),
 		);
 
-		$template_id = is_numeric( $_GET['template'] ) ? intval( $_GET['template'] ) : null;
+		if (
+			! empty( $_GET['list_type'] )
+			and
+			'Prompt_' == substr( $_GET['list_type'], 0, 7 )
+			and
+			! empty( $_GET['list_id'] )
+		) {
+			$instance['list'] = new $_GET['list_type']( $_GET['list_id'] );
+		}
 
-		$object = new Prompt_Site();
-
-		if ( isset( $_GET['object_type'] ) and isset( $_GET['object_id'] ) )
-			$object = new $_GET['object_type']( $_GET['object_id'] );
-
-		Prompt_Subscribe_Widget::render_dynamic_content( $widget_id, $instance, $object, $template_id );
+		Prompt_Subscribe_Widget::render_dynamic_content( $widget_id, $instance );
 
 		wp_die();
 	}
 
 	/**
 	 * Handle mailchimp lists loading
+	 * @since 1.2.3
 	 */
 	public static function action_wp_ajax_prompt_mailchimp_get_lists() {
 
 		if( empty( $_POST['api_key'] ) ){
 			wp_send_json_error( array( 'error' => __( 'An API Key is required', 'Postmatic' ) ) );
 		}
-		// pull in the lib
-		if ( !class_exists( 'Mailchimp' ) )
+
+		if ( !class_exists( 'Mailchimp' ) ) {
 			require_once dirname( dirname( __FILE__ ) ) . '/vendor/mailchimp/mailchimp/src/Mailchimp.php';
-		
+		}
+
 		$api_key = sanitize_text_field( $_POST['api_key'] );
 
 		$mailchimp = new Mailchimp( $api_key );
 		try {
-			$lists = $mailchimp->call( 'lists/list', array( 'filters' => array( 'created_before' => date('Y-m-d H:i:s', strtotime( '-60 days' ) ) ) ) );	
+			$mailchimp_lists = $mailchimp->call(
+				'lists/list',
+				array( 'filters' => array( 'created_before' => date('Y-m-d H:i:s', strtotime( '-14 days' ) ) ) )
+			);
 		} catch (Exception $e) {
 			wp_send_json_error( array( 'error' => $e->getMessage() ) );
 		}
 
-		if ( empty( $lists['data'] ) ) {
-			wp_send_json_error( array( 'error' => __( 'We\'re sorry. None of your lists qualified. <a href="http://docs.gopostmatic.com/article/144-im-having-trouble-importing-my-mailchimp-lists">Click here for more information</a>', 'Postmatic' ) ) );
+		if ( empty( $mailchimp_lists['data'] ) ) {
+			wp_send_json_error( array(
+				'error' => sprintf(
+					__(
+						'We\'re sorry. None of your lists qualified. <a href="%s">Click here for more information</a>',
+						'Postmatic'
+					),
+					'http://docs.gopostmatic.com/article/144-im-having-trouble-importing-my-mailchimp-lists'
+				),
+			) );
 		}
 
-		$list_options = '';
-		if( !empty( $lists['data'] ) ){
-			foreach ( $lists['data'] as $list ) {
-				$list_options .= html( 'option',
-					array( 'value' => $list['id'] ),
-					$list['name'],
-					' (',
-					$list['stats']['member_count'],
-					')'
-				);
-			}
+		$mailchimp_list_options = array();
+		foreach ( $mailchimp_lists['data'] as $list ) {
+			$mailchimp_list_options[] = html( 'option',
+				array( 'value' => $list['id'] ),
+				$list['name'],
+				' (',
+				$list['stats']['member_count'],
+				')'
+			);
 		}
-		
-		$content = html( 'label for="import_list"',
-			__( 'Choose a list to import to Postmatic: ', 'Postmatic' ),
+
+		$local_list_options = array();
+		foreach ( Prompt_Subscribing::get_signup_lists() as $index => $list ) {
+			$local_list_options[] = html( 'option',
+				array( 'value' => $index ),
+				$list->subscription_object_label()
+			);
+		}
+
+		$content = html( 'div',
+			html( 'label for="import_list"',
+				__( 'Choose a Mailchimp list to import from:', 'Postmatic' ),
+				' ',
 				html( 'select',
-				array( 'name' => 'import_list', 'type' => 'select' ),
-				$list_options
+					array( 'name' => 'import_list', 'type' => 'select' ),
+					implode( '', $mailchimp_list_options )
+				)
+			),
+			'<br/>',
+			html( 'label id="signup_list_index_label" for="signup_list_index" style="display: none;"',
+				__( 'Choose a Postmatic list to import to:', 'Postmatic' ),
+				' ',
+				html( 'select',
+					array( 'name' => 'signup_list_index', 'type' => 'select' ),
+					implode( '', $local_list_options )
+				)
 			)
 		);
 
 		wp_send_json_success( $content );
+	}
+
+	/**
+	 * Send whether we are connected or not
+	 * @since 2.0.0
+	 */
+	public static function action_wp_ajax_prompt_is_connected() {
+		$is_connected = ( Prompt_Core::$options->get( 'connection_status' ) == Prompt_Enum_Connection_Status::CONNECTED );
+		wp_send_json_success( $is_connected );
+	}
+
+	/**
+	 * Dismiss a notice.
+	 * @since 2.0.0
+	 */
+	public static function action_wp_ajax_prompt_dismiss_notice() {
+
+		if ( empty( $_GET['class'] ) or ! class_exists( $_GET['class'] ) ) {
+			wp_send_json_error();
+		}
+
+		$notice = new $_GET['class'];
+
+		$notice->dismiss();
+
+		wp_send_json_success();
 	}
 
 	/**
@@ -338,6 +342,8 @@ class Prompt_Ajax_Handling {
 	 */
 	protected static function verify_new_subscriber( $object, $email, $name ) {
 
+		$lists = $object ? $object : Prompt_Subscribing::get_signup_lists();
+
 		$display_name = sanitize_text_field( $name );
 		$name_words = explode( ' ', trim( $name ) );
 		$first_name = array_shift( $name_words );
@@ -345,7 +351,7 @@ class Prompt_Ajax_Handling {
 
 		$user_data = compact( 'first_name', 'last_name', 'display_name' );
 
-		Prompt_Subscription_Mailing::send_agreement( $object, $email, $user_data );
+		Prompt_Subscription_Mailing::send_agreement( $lists, $email, $user_data );
 
 		$message = html( 'strong',
 			__( 'Almost done - you\'ll receive an email with instructions to complete your subscription.', 'Postmatic' ),
@@ -378,17 +384,46 @@ class Prompt_Ajax_Handling {
 	}
 
 	/**
-	 * @param Prompt_Interface_Subscribable $object
+	 * @param Prompt_Interface_Subscribable|Prompt_Interface_Subscribable[] $lists
 	 * @param WP_User $subscriber
 	 * @return string Response
 	 */
-	protected static function subscribe( $object, $subscriber ) {
+	protected static function subscribe( $lists, $subscriber ) {
 
-		$object->subscribe( $subscriber->ID );
+		$lists = is_array( $lists ) ? $lists : array( $lists );
 
-		Prompt_Subscription_Mailing::send_subscription_notification( $subscriber->ID, $object );
+		foreach ( $lists as $list ) {
+			$list->subscribe( $subscriber->ID );
+			Prompt_Subscription_Mailing::send_subscription_notification( $subscriber->ID, $list );
+		}
 
-		return __( '<strong>Confirmation email sent. Please check your email for further instructions.</strong>', 'Postmatic' );
+		return __(
+			'<strong>Confirmation email sent. Please check your email for further instructions.</strong>',
+			'Postmatic'
+		);
 	}
 
+	/**
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param WP_User $subscriber
+	 * @return Prompt_Interface_Subscribable[]
+	 */
+	protected static function default_lists_for( $subscriber ) {
+		$lists = Prompt_Subscribing::get_signup_lists();
+
+		if ( count( $lists ) == 1 ) {
+			return $lists;
+		}
+
+		$not_subscribed_lists = array();
+		foreach ( $lists as $list ) {
+			if ( ! $list->is_subscribed( $subscriber->ID ) ) {
+				$not_subscribed_lists[] = $list;
+			}
+		}
+
+		return apply_filters( 'prompt/ajax_handling/default_lists_for', $not_subscribed_lists, $subscriber );
+	}
 }
