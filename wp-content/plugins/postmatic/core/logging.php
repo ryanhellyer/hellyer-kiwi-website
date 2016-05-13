@@ -47,6 +47,12 @@ class Prompt_Logging {
 	 */
 	public static function add_error( $code = '', $message = '', $data = array() ) {
 
+		if ( is_array( $data ) ) {
+			$data['backtrace'] = unserialize( serialize( debug_backtrace() ) );
+		} else if ( $data instanceof WP_Error ) {
+			$data->add_data( unserialize( serialize( debug_backtrace() ) ), 'backtrace' );
+		}
+
 		$wp_error = new WP_Error( $code, $message, $data );
 
 		$log = self::get_log();
