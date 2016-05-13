@@ -366,12 +366,6 @@ class Akismet_Admin {
 		}
 		$moderation = $wpdb->get_results( "SELECT * FROM {$wpdb->comments} WHERE comment_approved = '0'{$paginate}", ARRAY_A );
 
-		$result_counts = array(
-			'spam' => 0,
-			'ham' => 0,
-			'error' => 0,
-		);
-
 		foreach ( (array) $moderation as $c ) {
 			$c['user_ip']      = $c['comment_author_IP'];
 			$c['user_agent']   = $c['comment_agent'];
@@ -398,15 +392,14 @@ class Akismet_Admin {
 				delete_comment_meta( $c['comment_ID'], 'akismet_error' );
 				delete_comment_meta( $c['comment_ID'], 'akismet_delayed_moderation_email' );
 				Akismet::update_comment_history( $c['comment_ID'], '', 'recheck-spam' );
-				++$result_counts['spam'];
+
 			} elseif ( 'false' == $response[1] ) {
 				update_comment_meta( $c['comment_ID'], 'akismet_result', 'false' );
 				delete_comment_meta( $c['comment_ID'], 'akismet_error' );
 				delete_comment_meta( $c['comment_ID'], 'akismet_delayed_moderation_email' );
 				Akismet::update_comment_history( $c['comment_ID'], '', 'recheck-ham' );
-				++$result_counts['ham'];
+			// abnormal result: error
 			} else {
-				// abnormal result: error
 				update_comment_meta( $c['comment_ID'], 'akismet_result', 'error' );
 				Akismet::update_comment_history(
 					$c['comment_ID'],
@@ -414,7 +407,6 @@ class Akismet_Admin {
 					'recheck-error',
 					array( 'response' => substr( $response[1], 0, 50 ) )
 				);
-				++$result_counts['error'];
 			}
 
 			delete_comment_meta( $c['comment_ID'], 'akismet_rechecking' );
@@ -422,7 +414,6 @@ class Akismet_Admin {
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			wp_send_json( array(
 				'processed' => count((array) $moderation),
-				'counts' => $result_counts,
 			));
 		}
 		else {
