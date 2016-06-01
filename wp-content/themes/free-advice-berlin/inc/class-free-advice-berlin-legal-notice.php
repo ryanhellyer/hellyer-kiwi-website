@@ -17,11 +17,19 @@ class Free_Advice_Berlin_Legal_Notice {
 	public function __construct() {
 
 		$site_details = get_blog_details();
-add_filter( 'wp_title', array( $this, 'title' ), 10, 2 );
+		add_filter( 'wp_title', array( $this, 'title' ), 10, 2 );
 
-		if ( 'legal-notice/' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] ) ) {
+		if (
+			'/legal-notice/' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
+			||
+			'legal-notice/' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
+		) {
 			add_action( 'wp', array( $this, 'load_legal_notice_page' ) );
-		} elseif ( 'legal-notice' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] ) ) {
+		} elseif (
+			'/legal-notice' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
+			||
+			'legal-notice' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
+		) {
 			add_action( 'wp', array( $this, 'redirect_to_slashed' ) );
 		}
 
