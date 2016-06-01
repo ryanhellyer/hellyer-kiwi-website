@@ -16,52 +16,60 @@ class Free_Advice_Berlin_Legal_Notice {
 	 */
 	public function __construct() {
 
-		$site_details = get_blog_details();
-		add_filter( 'wp_title', array( $this, 'title' ), 10, 2 );
+		add_action( 'after_switch_theme', 'flush_rewrite_rules' );
+		add_action( 'init',                array( $this, 'rewrites' ) );
+		add_action( 'template_include',    array( $this, 'load_legal_notice_page' ) );
 
-		if (
-			'/legal-notice/' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
-			||
-			'legal-notice/' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
-		) {
-			add_action( 'wp', array( $this, 'load_legal_notice_page' ) );
-		} elseif (
-			'/legal-notice' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
-			||
-			'legal-notice' == str_replace( $site_details->path, '', $_SERVER['REQUEST_URI'] )
-		) {
-			add_action( 'wp', array( $this, 'redirect_to_slashed' ) );
-		}
+	}
 
+	/**
+	 * Adding new rewrite rule.
+	 *
+	 * @global $wp
+	 * @global object $wp_rewrite WordPress rewrite object
+	 */
+	public function rewrites() {
+		global $wp, $wp_rewrite;
+		$wp->add_query_var( 'template' );
+		add_rewrite_endpoint( 'legal-notice', EP_ROOT );
+		$wp_rewrite->add_rule(
+			'^/legal-notice/?$',
+			'index.php?template=legal-notice',
+			'bottom'
+		);
+		$wp_rewrite->flush_rules();
 	}
 
 	/**
 	* Filters the page title.
 	*
-	* @param       string    $title    Default title text for current view.
-	* @param       string    $sep      Optional separator.
 	* @return      string              The filtered title.
 	*/
-	public function title( $title, $sep ) {
+	public function title() {
 		return 'Legal notice';
 	}
 
 	/**
-	 * Redirecting to trailing slashed page.
-	 */
-	public function redirect_to_slashed() {
-		wp_redirect( home_url( 'legal-notice/' ), 302 );
-		exit;
-	}
-
-	/**
 	 * Loads the Legal Notice template.
+	 *
+	 * @global $wp
+	 * @global object $wp_query WordPress query object
 	 */
-	public function load_legal_notice_page() {
-		status_header( 200 );
-		add_filter( 'body_class', array( $this, 'body_classes' ) );
-		include( get_query_template( 'legal-notice' ) );
-		die();
+	public function load_legal_notice_page( $original_template ) {
+		global $wp, $wp_query;
+
+		$template = $wp->query_vars;
+		if ( array_key_exists( 'legal-notice', $template ) ) {
+
+			// Filter some bits
+			add_filter( 'body_class',             array( $this, 'body_classes' ) );
+			add_filter( 'pre_get_document_title', array( $this, 'title' ) );
+
+			$wp_query->set( 'is_404', false );
+			return get_stylesheet_directory() . '/legal-notice.php';
+		}
+
+		return $original_template;
 	}
 
 	/**
