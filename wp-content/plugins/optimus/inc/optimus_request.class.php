@@ -9,7 +9,6 @@ defined('ABSPATH') OR exit;
 * Optimus_Request
 *
 * @since 1.1.7
-* @change  1.4.0
 */
 
 class Optimus_Request
@@ -81,6 +80,67 @@ class Optimus_Request
 
 		echo json_encode($optimus_metadata);
 		exit;
+	}
+
+	/**
+	* Image optimization for wp retina 2x
+	*
+	* @since   1.4.6
+	* @change  1.4.6
+	*
+	* @param   integer  $attachment_id  Attachment ID
+	* @param   string  $upload_path_file_retina  Retina file path
+	*/
+
+	public static function optimize_wr2x_image($attachment_id, $upload_path_file_retina) {
+		// get file size
+		$upload_filesize = (int)filesize($upload_path_file_retina);
+
+		/* Get the attachment */
+		$attachment = get_post($attachment_id);
+
+		// get mime type
+		$mime_type = get_post_mime_type($attachment);
+
+		// check mime type and size
+		if ( self::_allowed_mime_type($mime_type) && self::_allowed_file_size($mime_type, $upload_filesize) ) {
+			// get optimus plugin options
+			$options = Optimus::get_options();
+
+			// set cURL options
+			add_action(
+				'http_api_curl',
+				array(
+					__CLASS__,
+					'set_curl_options'
+				)
+			);
+
+			// set https scheme
+			if ( $options['secure_transport'] && Optimus_HQ::is_unlocked() ) {
+				self::$_remote_scheme = 'https';
+			}
+
+		    // request: optimize retina image
+		    self::_do_image_action(
+		        $upload_path_file_retina,
+		        array(
+					'file' => null,
+		            'copy' => $options['copy_markers']
+		        )
+		    );
+
+		    // request: webp convert
+		    if ( $options['webp_convert'] && Optimus_HQ::is_unlocked() ) {
+		        self::_do_image_action(
+		            $upload_path_file_retina,
+		            array(
+						'file' => null,
+		                'webp' => true
+		            )
+		        );
+		    }
+		}
 	}
 
 
@@ -231,6 +291,22 @@ class Optimus_Request
 				)
 			);
 
+			/* get retina image [WP Retina 2x] */
+			if ( function_exists( 'wr2x_get_retina' ) ) {
+				$upload_path_file_retina = wr2x_get_retina( $upload_path_file );
+			}
+
+			/* Request: Optimize retina image [WP Retina 2x] */
+			if ( $upload_path_file_retina ) {
+				self::_do_image_action(
+					$upload_path_file_retina,
+					array(
+						'file' => $upload_url_file_encoded,
+						'copy' => $options['copy_markers']
+					)
+				);
+			}
+
 			/* Evaluate response */
 			if ( is_numeric($action_response) ) {
 				$response_filesize = $action_response;
@@ -249,6 +325,17 @@ class Optimus_Request
 						'webp' => true
 					)
 				);
+
+				/* convert retina image to webp [WP Retina 2x] */
+				if ( $upload_path_file_retina ) {
+					self::_do_image_action(
+						$upload_path_file_retina,
+						array(
+							'file' => $upload_url_file_encoded,
+							'webp' => true
+						)
+					);
+				}
 			}
 
 		  	/* File size difference */
@@ -543,7 +630,7 @@ class Optimus_Request
 	* Löscht erzeugte WebP-Dateien
 	*
 	* @since   1.1.4
-	* @change  1.1.7
+	* @change  1.4.6
 	*
 	* @param   string  $file  Zu löschende Original-Datei
 	* @return  string  $file  Zu löschende Original-Datei
@@ -568,6 +655,17 @@ class Optimus_Request
 		/* Check for upload path */
 		if ( strpos($converted_file, $base_dir) === false ) {
 			$converted_file = path_join($base_dir, $converted_file);
+		}
+
+		/* Remove retina image if exists [WP Retina 2x] */
+		$converted_file_retina = substr_replace(
+			$converted_file,
+			'@2x.webp',
+			(strlen(pathinfo($file, PATHINFO_EXTENSION)) * -1 - 1)
+		);
+
+		if ( file_exists($converted_file_retina) ) {
+			@unlink($converted_file_retina);
 		}
 
 		/* Replace to webp extension */
