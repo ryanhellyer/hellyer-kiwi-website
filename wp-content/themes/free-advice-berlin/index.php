@@ -21,7 +21,7 @@ if ( have_posts() ) {
 			echo ' <a href="' . esc_url( get_edit_post_link() ) . '"><small>(edit)</small></a>';
 		}
 		echo '</h1>';
-		echo '<p id="updated">' . sprintf( __( 'Last updated: %s', 'free-advice-berlin' ), get_the_modified_time( 'dS \of F Y' ) ) . '</p>';
+		echo '<p id="updated">' . sprintf( __( 'Last updated: %s', 'free-advice-berlin' ), get_the_modified_time( 'jS \of F Y' ) ) . '</p>';
 		the_content();
 		echo '</article>';
 
