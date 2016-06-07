@@ -34,8 +34,3 @@ new Free_Advice_Berlin_Related_Group_Posts;
 new Free_Advice_Berlin_Legal_Notice;
 new Free_Advice_Berlin_Facebook;
 new Free_Advice_Berlin_Show;
-
-function wpdocs_filter_wp_title( $title, $sep ) {
-	return 'abcdefghijklmnopqrstuvwxyz';
-}
-add_filter( 'wp_title', 'wpdocs_filter_wp_title', 10, 2 );
