@@ -6272,13 +6272,7 @@
 		private function order_sub_submenu_items() {
 			global $submenu;
 
-			$menu_slug = $this->_menu->get_top_level_menu_slug();
-
-			if (empty($submenu[$menu_slug])) {
-				return;
-			}
-
-			$top_level_menu = &$submenu[$menu_slug];
+			$top_level_menu = &$submenu[ $this->_menu->get_top_level_menu_slug() ];
 
 			$all_submenu_items_after = array();
 
