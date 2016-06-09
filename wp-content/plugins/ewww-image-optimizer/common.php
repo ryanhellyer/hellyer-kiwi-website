@@ -7,7 +7,7 @@
 // TODO: nextgen 2.1.43 has new hooks, hurrah!
 // TODO: remove .htaccess files when deactivated
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '284.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '285.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -452,6 +452,12 @@ function ewwwio_memory( $function ) {
 	if ( WP_DEBUG ) {
 		global $ewww_memory;
 //		$ewww_memory .= $function . ': ' . memory_get_usage(true) . "\n";
+	}
+}
+
+if ( ! function_exists( 'boolval' ) ) {
+	function boolval( $value ) {
+		return (bool) $value;
 	}
 }
 
