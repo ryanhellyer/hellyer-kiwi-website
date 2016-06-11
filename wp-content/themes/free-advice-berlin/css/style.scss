@@ -57,6 +57,7 @@ a:hover {
 	max-width: $page_width;
 	width: 92%;
 	padding: 0 4%;
+	word-wrap: break-word;
 }
 
 /* =Header
@@ -568,8 +569,8 @@ input {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	color: #222;
-	padding: 1rem 1rem;
-	width: 100%;
+	padding: 1rem 2%;
+	width: 96%;
 }
 
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -646,6 +647,12 @@ footer a:hover {
 		height: 120px;
 		top: 0;
 		background-position: 135px 0;
+	}
+
+	textarea,
+	input {
+		padding: 1rem 5%;
+		width: 90%;
 	}
 
 }
