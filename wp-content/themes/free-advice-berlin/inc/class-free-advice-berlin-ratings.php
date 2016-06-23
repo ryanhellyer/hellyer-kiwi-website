@@ -23,6 +23,7 @@ class Free_Advice_Berlin_Ratings {
 		add_action( 'fab_after_content', array( $this, 'ratings_html' ) );
 		add_action( 'wp_footer',         array( $this, 'script' ), 1 );
 		add_action( 'add_meta_boxes',    array( $this, 'add_metabox' ) );
+		add_action( 'save_post',         array( $this, 'meta_boxes_save' ), 10, 2 );
 	}
 
 	/**
@@ -49,13 +50,27 @@ class Free_Advice_Berlin_Ratings {
 
 		echo '
 		<p>
-			<strong>Thumbs up:</strong> ' . absint( get_post_meta( get_the_ID(), '_ratings_up', true ) ) . '
+			Thumbs up: ' . absint( get_post_meta( get_the_ID(), '_ratings_up', true ) ) . '
 		</p>
 
 		<p>
-			<strong>Thumbs down:</strong> ' . absint( get_post_meta( get_the_ID(), '_ratings_down', true ) ) . '
+			Thumbs down: ' . absint( get_post_meta( get_the_ID(), '_ratings_down', true ) ) . '
 		</p>
-		';
+
+		<p>
+			<label>Hide ratings</label>
+			&nbsp;';
+
+			$checked = '';
+			if ( false == get_post_meta( get_the_ID(), '_hide_ratings', true ) ) {
+				$checked  = ' checked="checked"';
+			}
+
+			echo '
+			<input name="_hide_ratings" type="checkbox" value="1" ' . esc_attr( $checked ) . ' />
+		</p>
+
+		<input type="hidden" id="ratings-nonce" name="ratings-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">';
 
 	}
 
@@ -84,8 +99,10 @@ class Free_Advice_Berlin_Ratings {
 	}
 
 	public function ratings_html() {
-		echo '
-		<p id="thumbs" class="instruction"></p>';
+		if ( true != get_post_meta( get_the_ID(), '_hide_ratings', true ) ) {
+			echo '
+			<p id="thumbs" class="instruction"></p>';
+		}
 	}
 
 	public function script() {
@@ -105,6 +122,34 @@ var page_id = " . get_the_ID() .";";
 var fab_home_url = '" . esc_url( home_url( ) ) . "';
 </script>
 ";
+	}
+
+	/**
+	 * Save opening times meta box data.
+	 *
+	 * @param  int     $post_id  The post ID
+	 * @param  object  $post     The post object
+	 */
+	public function meta_boxes_save( $post_id, $post ) {
+
+		// Check if nonce set
+		if ( ! isset( $_POST['ratings-nonce'] ) ) {
+			return;
+		}
+
+		// Do nonce security check
+		if ( ! wp_verify_nonce( $_POST['ratings-nonce'], __FILE__ ) ) {
+			return;
+		}
+
+		// Store data
+		if ( isset( $_POST['_hide_ratings'] ) ) {
+			$_hide_ratings = true;
+		} else {
+			$_hide_ratings = false;
+		}
+		update_post_meta( $post_id, '_hide_ratings', $_hide_ratings );
+
 	}
 
 }

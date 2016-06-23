@@ -7,6 +7,30 @@ $home_width: 960px;
 $page_width: 800px;
 
 
+/* =Fonts
+-------------------------------------------------------------- */
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('../fonts/open-sans-light/OpenSans-Light-webfont.eot');
+    src: url('../fonts/open-sans-light/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/open-sans-light/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/open-sans-light/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/open-sans-light/OpenSans-Light-webfont.svg#open_sanscondensed_light') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/open-sans/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/open-sans/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/open-sans/OpenSans-Regular-webfont.svg#open_sanscondensed_light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 /* =Reset
 -------------------------------------------------------------- */
@@ -72,7 +96,7 @@ header {
 
 header h1 {
 	float: left;
-	font-family: Roboto, sans-serif;
+	font-family: 'Open Sans Light', sans-serif;
 	font-weight: 100;
 	margin: 0;
 	font-size: 2rem;
@@ -242,7 +266,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: Roboto, sans-serif;
+	font-family: 'Open Sans Light', sans-serif;
 	color: #000;
 	font-weight: normal;
 }
@@ -289,7 +313,7 @@ caption,
 th,
 td {
 	font-size: 1.3rem;
-	font-family: Roboto, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	color: #000;
 }
 
@@ -608,7 +632,7 @@ footer p {
 	text-align: left;
 	margin: 0;
 	font-size: 0.9em;
-	font-family: Roboto, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 100;
 	color: #000;
 }

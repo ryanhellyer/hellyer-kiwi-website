@@ -58,8 +58,7 @@ class Free_Advice_Berlin_Setup {
 	 */
 	public function stylesheet() {
 		if ( ! is_admin() ) {
-			wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Roboto:300|Open+Sans:400,600', array(), self::VERSION_NUMBER );
-			wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', array( 'google-fonts' ), self::VERSION_NUMBER );
+			wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', array(), self::VERSION_NUMBER );
 		}
 	}
 
