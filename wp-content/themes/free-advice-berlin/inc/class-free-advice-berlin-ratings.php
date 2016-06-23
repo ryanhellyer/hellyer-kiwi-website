@@ -62,7 +62,7 @@ class Free_Advice_Berlin_Ratings {
 			&nbsp;';
 
 			$checked = '';
-			if ( false == get_post_meta( get_the_ID(), '_hide_ratings', true ) ) {
+			if ( 1 == get_post_meta( get_the_ID(), '_hide_ratings', true ) ) {
 				$checked  = ' checked="checked"';
 			}
 
@@ -144,7 +144,7 @@ var fab_home_url = '" . esc_url( home_url( ) ) . "';
 
 		// Store data
 		if ( isset( $_POST['_hide_ratings'] ) ) {
-			$_hide_ratings = true;
+			$_hide_ratings = 1;
 		} else {
 			$_hide_ratings = false;
 		}
