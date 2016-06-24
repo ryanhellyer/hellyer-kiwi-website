@@ -34,8 +34,13 @@
 		// Output header text (need fallback to keep WordPress.org them demo happy)
 		$header_text = get_option( 'header-text' );
 		if ( $header_text ) {
-//echo 'WP_KSES ';
-			echo $header_text; // WPCS: XSS OK. Not escaped, since needs to include HTML
+
+			$allowed_html = array(
+				'small' => array(),
+				'span' => array(),
+			);
+			echo wp_kses( $header_text, $allowed_html );
+
 		} else {
 			echo 'Hellish<span>Simplicity</span><small>.tld</small>';
 		}

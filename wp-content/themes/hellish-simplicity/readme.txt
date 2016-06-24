@@ -22,6 +22,11 @@ June 24th 2016
 * Cleaned up H1 tag usage. No more H1 tag double ups.
 * Removed echo from esc_attr_e().
 * Removed unneeded .po file.
+* Removed admin bar custom header link (unneeded as custom headers no longer add this)
+* Documented logic behind the addition of an admin menu link.
+* Custom header text was sanitized more aggressively.
+* Translation strings were correctly escaped.
+* License updated with JS information.
 
 == Version 1.9 ==
 October 8th 2015
