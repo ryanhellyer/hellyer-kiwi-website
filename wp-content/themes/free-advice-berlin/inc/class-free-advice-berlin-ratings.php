@@ -109,7 +109,7 @@ class Free_Advice_Berlin_Ratings {
 
 		// Bail out if no ID set
 		if ( '' == get_the_ID() ) {
-			reurn;
+			return;
 		}
 
 		echo '
