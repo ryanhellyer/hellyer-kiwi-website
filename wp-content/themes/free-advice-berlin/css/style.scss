@@ -140,7 +140,7 @@ header p {
 }
 
 body.home #facebook-group {
-	width: 300px;
+	width: 33%;
 	height: 98px;
 }
 
@@ -213,8 +213,8 @@ body.home header p {
 
 #search-results a:hover p {
 	color: #0066cc;
-
 }
+
 
 /* =Document list
 -------------------------------------------------------------- */
@@ -575,13 +575,20 @@ a#thumb-down {
 /* =Search
 -------------------------------------------------------------- */
 #search-form {
-	width: 33%;
-	margin: 0 auto 0 auto;	
+	width: 60%;
+	margin: 0 auto;
 }
 
-#search-form label,
-#search-form input[type=submit] {
+#search-form label {
 	display: none;
+}
+
+#search-form input[type=search] {
+	width: 68%;
+}
+
+#search-form input[type=submit] {
+	width: 30%;
 }
 
 /* =Forms
@@ -634,6 +641,7 @@ footer p {
 	font-size: 0.9em;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 100;
+	line-height: 1.5em;
 	color: #000;
 }
 

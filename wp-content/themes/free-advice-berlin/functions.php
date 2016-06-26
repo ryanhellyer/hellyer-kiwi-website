@@ -34,3 +34,16 @@ new Free_Advice_Berlin_Related_Group_Posts;
 new Free_Advice_Berlin_Legal_Notice;
 new Free_Advice_Berlin_Facebook;
 new Free_Advice_Berlin_Show;
+
+/**
+ * Output a search for
+ */
+function free_advice_berlin_search_form() {
+	echo '
+
+		<form id="search-form" method="get" action="' . esc_url( home_url() ) . '">
+			<label for="search">Search</label>
+			<input type="search" id="search" name="s" placeholder="Search" value="' . esc_attr( get_query_var( 's' ) ) . '" />
+			<input type="submit" placeholder="Search ..." name="submit" value="Search" />
+		</form>';
+}

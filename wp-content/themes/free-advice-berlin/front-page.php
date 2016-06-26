@@ -45,12 +45,6 @@ if ( $query->have_posts() ) :
 
 endif;
 
-echo '
-	<form id="search-form" method="get" action="' . esc_url( home_url() ) . '">
-		<label for="search">Search</label>
-		<input type="search" id="search" name="s" placeholder="Search" />
-		<input type="submit" placeholder="Search ..." name="submit" value="Search" />
-	</form>';
-
+free_advice_berlin_search_form();
 
 get_footer();

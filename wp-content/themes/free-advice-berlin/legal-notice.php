@@ -6,6 +6,25 @@
  * @package Free Advice Berlin
  * @since Free Advice Berlin 1.0
  */
+
+
+/**
+ * Removing home page class on body tag.
+ *
+ * @param  array  $classes  The body classes
+ * @return array  The modified body classes
+ */
+add_filter( 'body_class', function( $classes ) {
+	foreach( $classes as $key => $class ) {
+		if ( 'home' == $class ) {
+			unset( $classes[$key] );
+		}
+	}
+
+	return $classes;
+} );
+
+
 get_header();
 
 echo '<article>';

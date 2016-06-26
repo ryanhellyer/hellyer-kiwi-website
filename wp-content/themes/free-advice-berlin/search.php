@@ -29,15 +29,16 @@ if ( have_posts() ) {
 		</li><?php
 	}
 	echo '</ul>';
-} else {
-	echo '
-		<p>Sorry, but we could not find any results for "' . get_search_query() . '" :(</p>
 
-		<form method="get" action="' . esc_url( home_url() ) . '">
-			<label for="search">Search</label>
-			<input type="search" id="search" name="s" placeholder="Search" />
-			<input type="submit" placeholder="Search ..." name="submit" value="Search" />
-		</form>';
+	echo '<p>Want to search for something different?</p>';
+	free_advice_berlin_search_form();
+
+} else {
+
+	echo '
+		<p>Sorry, but we could not find any results for "' . get_search_query() . '" :(</p>';
+
+	free_advice_berlin_search_form();
 }
 
 get_footer();
