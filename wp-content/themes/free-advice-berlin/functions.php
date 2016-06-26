@@ -34,9 +34,10 @@ new Free_Advice_Berlin_Related_Group_Posts;
 new Free_Advice_Berlin_Legal_Notice;
 new Free_Advice_Berlin_Facebook;
 new Free_Advice_Berlin_Show;
+new Free_Advice_Berlin_Number_of_Members;
 
 /**
- * Output a search for
+ * Output a search form.
  */
 function free_advice_berlin_search_form() {
 	echo '

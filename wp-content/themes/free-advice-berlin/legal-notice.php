@@ -30,6 +30,7 @@ get_header();
 echo '<article>';
 $markdown = new Free_Advice_Berlin_Markdown();
 $content = file_get_contents( dirname( __FILE__ ) . '/legal-notice.txt' );
+$content = do_shortcode( $content );
 echo $markdown->text( $content );
 echo '</article>';
 
