@@ -35,6 +35,7 @@ new Free_Advice_Berlin_Legal_Notice;
 new Free_Advice_Berlin_Facebook;
 new Free_Advice_Berlin_Show;
 new Free_Advice_Berlin_Number_of_Members;
+new Free_Advice_Berlin_Facebook_Opengraph;
 
 /**
  * Output a search form.

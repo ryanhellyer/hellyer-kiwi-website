@@ -22,13 +22,21 @@ class Free_Advice_Berlin_Setup {
 	 * Constructor.
 	 */
 	public function __construct() {
+		add_action( 'init',                        array( $this, 'support' ) );
 		add_action( 'after_setup_theme',           array( $this, 'remove_admin_bar' ) );
 		add_action( 'after_setup_theme',           array( $this, 'theme_setup' ) );
 		add_action( 'wp_enqueue_scripts',          array( $this, 'stylesheet' ) );
 		add_action( 'wp_enqueue_scripts',          array( $this, 'script' ) );
 		add_filter( 'comment_form_default_fields', array( $this, 'comment_fields' ) );
 		add_action( 'wp',                          array( $this, 'force_404' ), 15 );
+		add_post_type_support( 'page', 'excerpt' );
+	}
 
+	/**
+	 * Add and remove post-type supports.
+	 */
+	public function support() {
+		add_post_type_support( 'page', 'excerpt' );
 		remove_post_type_support( 'post', 'trackbacks' );
 	}
 

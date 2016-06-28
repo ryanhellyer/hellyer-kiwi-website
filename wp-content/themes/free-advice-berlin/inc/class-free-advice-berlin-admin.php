@@ -43,7 +43,7 @@ class Free_Advice_Berlin_Admin {
 		$meta_boxes = array(
 			'trackbacksdiv',
 			'postcustom',
-			'postexcerpt',
+//			'postexcerpt',
 			'commentsdiv',
 			'revisionsdiv',
 			'authordiv',
