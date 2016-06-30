@@ -17,16 +17,13 @@ class Auto_XML_Backup_Cron extends Auto_XML_Backup_Abstract {
 		if ( isset( $option['schedule'] ) ) {
 			$this->schedule = absint( $option['schedule'] );
 		}
-
+//echo $this->schedule;die;
 		add_filter( 'cron_schedules', array( $this, 'cron_schedules' ) );
 		$file = dirname( dirname( __FILE__ ) ) . '/auto-xml-backup.php';
 		register_activation_hook( $file, array( $this, 'schedule_event' ) );
 		register_deactivation_hook( $file, array( $this, 'deschedule_event' ) );
 
 		add_action( 'auto_xml_backup', array( $this, 'task' ) );
-if ( isset( $_GET['auto_xml_backup'])) {
-//add_action( 'template_redirect', array( $this, 'task' ) );
-}
 	}
 
 	/**
