@@ -25,7 +25,7 @@ class Auto_XML_Backup_Cron extends Auto_XML_Backup_Abstract {
 
 		add_action( 'auto_xml_backup', array( $this, 'task' ) );
 if ( isset( $_GET['auto_xml_backup'])) {
-add_action( 'template_redirect', array( $this, 'task' ) );
+//add_action( 'template_redirect', array( $this, 'task' ) );
 }
 	}
 
