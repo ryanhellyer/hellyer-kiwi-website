@@ -23,7 +23,8 @@ class Auto_XML_Backup_Abstract {
 
 		// Schedule the Cron task
 		$first_run_time = current_time ( 'timestamp' ) + $this->schedule;
-		wp_schedule_event( $first_run_time, 'auto-xml-schedule', 'auto_xml_backup' );
+//		wp_schedule_event( $first_run_time, 'auto-xml-schedule', 'auto_xml_backup' );
+wp_schedule_event( $first_run_time, 'hourly', 'auto_xml_backup' );
 	}
 
 	/**
