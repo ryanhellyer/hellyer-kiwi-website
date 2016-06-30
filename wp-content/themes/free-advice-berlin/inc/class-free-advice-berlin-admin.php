@@ -38,7 +38,7 @@ class Free_Advice_Berlin_Admin {
 	 * Remove meta boxes.
 	*/
 	public function remove_meta_boxes() {
-return;
+
 		// List of meta boxes
 		$meta_boxes = array(
 			'trackbacksdiv',
@@ -71,7 +71,7 @@ return;
 	 * Redirect dashboard.
 	 */
 	public function remove_menus () {
-return;
+
 		// List of items to remove
 		$restricted_sub_level = array(
 			'index.php'                       => 'TOP',
