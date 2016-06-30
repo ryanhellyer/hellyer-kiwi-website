@@ -71,7 +71,7 @@ return;
 	 * Redirect dashboard.
 	 */
 	public function remove_menus () {
-
+return;
 		// List of items to remove
 		$restricted_sub_level = array(
 			'index.php'                       => 'TOP',
