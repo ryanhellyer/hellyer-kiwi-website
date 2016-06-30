@@ -82,6 +82,8 @@ class Auto_XML_Backup_Admin_Page extends Auto_XML_Backup_Abstract {
 					<tr>
 						<th>
 							<label for="<?php echo esc_attr( self::SLUG . '[schedule]' ); ?>"><?php _e( 'How often should emails be sent?', 'auto-xml-backup' ); ?></label>
+
+							THIS HAS BEEN DEACTIVATED UNTIL BUGS HAVE BEEN IRONED OUT. NOW DEFAULTS TO TWICE DAILY!
 						</th>
 						<td>
 							<select id="<?php echo esc_attr( self::SLUG . '[schedule]' ); ?>" name="<?php echo esc_attr( self::SLUG . '[schedule]' ); ?>"><?php
