@@ -699,6 +699,11 @@ footer a:hover {
 		width: 90%;
 	}
 
+	footer .alignright {
+		float: none;
+		margin: 0;
+	}
+
 }
 
 @media only screen and (max-width: 700px) {
@@ -753,15 +758,6 @@ footer a:hover {
 		top: 0;
 	}
 
-	footer .alignright {
-		float: none;
-		margin: 0;
-	}
-
-}
-
-@media only screen and (max-width: 550px) {
-
 	/* Shrinking the hand */
 	body.home #facebook-group {
 		width: 60px;
@@ -770,27 +766,11 @@ footer a:hover {
 		background-size: cover;
 	}
 
-	body.home header h1 {
-		font-size: 3rem;
-	}
-
-}
-
-@media only screen and (max-width: 500px) {
-
-	body.home header h1 {
-		font-size: 2.5rem;
-	}
-
-}
-
-@media only screen and (max-width: 400px) {
-
 	body.home header h1,
 	header h1 {
-		font-size: 1.9rem;
-		margin: 0;
-		line-height: 60px;
+		font-size: 30px;
+		margin: 15px 0;
+		line-height: 30px;
 	}
 
 	h1 {
@@ -806,6 +786,10 @@ footer a:hover {
 	body.home header p {
 		display: none;
 	}
+
+}
+
+@media only screen and (max-width: 400px) {
 
 	/* Documents */
 	#documents {
@@ -826,18 +810,4 @@ footer a:hover {
 		font-size: 1.5rem;
 		padding-right: 60px
 	}
-}
-
-@media only screen and (max-width: 260px) {
-	body.home header h1,
-	header h1 {
-	}
-
-	body.xhome #facebook-group {
-		width: 30px;
-		height: 30px;
-		background-position: 32px 0;
-		background-size: cover;
-	}
-
 }
