@@ -16,7 +16,7 @@ class Free_Advice_Berlin_Setup {
 	 * 
 	 * @var string
 	 */
-	const VERSION_NUMBER = '1.0.2';
+	const VERSION_NUMBER = '1.0.3';
 
 	/**
 	 * Constructor.
