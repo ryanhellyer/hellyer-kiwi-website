@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 // presents the bulk optimize form with the number of images, and runs it once they submit the button
 function ewww_image_optimizer_bulk_preview() {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
@@ -9,7 +12,7 @@ function ewww_image_optimizer_bulk_preview() {
 	<h1>
 <?php 		esc_html_e( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 		if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_key' ) ) {
-			$verify_cloud = ewww_image_optimizer_cloud_verify( false ); 
+			ewww_image_optimizer_cloud_verify(); 
 			echo '<span><a id="ewww-bulk-credits-available" target="_blank" class="page-title-action" style="float:right;" href="https://ewww.io/my-account/">' . esc_html__( 'Image credits available:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . ' ' . ewww_image_optimizer_cloud_quota() . '</a></span>';
 		}
 	echo '</h1>';
@@ -400,7 +403,7 @@ function ewww_image_optimizer_bulk_quota_update() {
 		wp_die( esc_html__( 'Access token has expired, please reload the page.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 	}
 	if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_key' ) ) {
-		$verify_cloud = ewww_image_optimizer_cloud_verify( false ); 
+		ewww_image_optimizer_cloud_verify(); 
 		echo esc_html__( 'Image credits available:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . ' ' . ewww_image_optimizer_cloud_quota();
 	}
 	ewwwio_memory( __FUNCTION__ );
@@ -455,7 +458,6 @@ function ewww_image_optimizer_bulk_filename( $attachment_ID = null ) {
 // called by javascript to process each image in the loop
 function ewww_image_optimizer_bulk_loop() {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
-	global $ewww_exceed;
 	global $ewww_defer;
 	$ewww_defer = false;
 	$output = array();
@@ -478,14 +480,14 @@ function ewww_image_optimizer_bulk_loop() {
 	} else {
 		$output['new_nonce'] = '';
 	}
-//	ewwwio_debug_message( "current nonce = " .  $_REQUEST['ewww_wpnonce'] );
 	// get the 'bulk attachments' with a list of IDs remaining
 	$attachments = get_option( 'ewww_image_optimizer_bulk_attachments' );
 	$attachment = array_shift( $attachments );
 	$meta = wp_get_attachment_metadata( $attachment, true );
 	// do the optimization for the current attachment (including resizes)
 	$meta = ewww_image_optimizer_resize_from_meta_data( $meta, $attachment, false );
-	if ( ! empty ( $ewww_exceed ) ) {
+	$ewww_status = get_transient( 'ewww_image_optimizer_cloud_status' );
+	if ( ! empty ( $ewww_status ) && preg_match( '/exceeded/', $ewww_status ) ) {
 		$output['error'] = esc_html__( 'License Exceeded', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 		echo json_encode( $output );
 		die();

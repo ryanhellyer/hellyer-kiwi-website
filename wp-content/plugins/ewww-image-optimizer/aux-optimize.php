@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 // displays the 'Optimize Everything Else' section of the Bulk Optimize page
 function ewww_image_optimizer_aux_images () {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
@@ -197,6 +200,7 @@ function ewww_image_optimizer_image_scan( $dir ) {
 			switch ( $pathextension ) {
 				case 'jpg':
 				case 'jpeg':
+				case 'jpe':
 				case 'png':
 				case 'gif':
 				case 'pdf':
@@ -224,7 +228,7 @@ function ewww_image_optimizer_image_scan( $dir ) {
 				$images[] = $path;
 			}
 		}
-		ewww_image_optimizer_debug_log();
+//		ewww_image_optimizer_debug_log();
 	}
 	$end = microtime( true ) - $start;
         ewwwio_debug_message( "query time for $file_counter files (seconds): $end" );
@@ -389,8 +393,18 @@ function ewww_image_optimizer_aux_images_script( $hook ) {
 			}
 
 		}
-		// store the filenames we retrieved in the 'bulk_attachments' option so we can keep track of our progress in the database
-		update_option( 'ewww_image_optimizer_aux_attachments', $attachments );
+		if ( 'ewww-image-optimizer-auto' == $hook ) {
+			// queue the filenames we retrieved using the background image task
+			global $ewwwio_image_background;
+			foreach ( $attachments as $attachment ) {
+				$ewwwio_image_background->push_to_queue( $attachment );
+				ewwwio_debug_message( "scheduler queued: $attachment" );
+			}
+			$ewwwio_image_background->save()->dispatch();
+		} else {
+			// store the filenames we retrieved in the 'aux_attachments' option so we can keep track of our progress in the database
+			update_option( 'ewww_image_optimizer_aux_attachments', $attachments );
+		}
 		ewwwio_debug_message( 'found ' . count( $attachments ) . ' images to optimize while scanning' );
 	}
 	ewww_image_optimizer_debug_log();

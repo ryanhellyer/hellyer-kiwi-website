@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 	class EWWWIO_GD_Editor extends Bbpp_Animated_Gif {
 		public function save( $filename = null, $mime_type = null ) {
@@ -11,14 +14,17 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (AGR gd) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (AGR gd) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (AGR gd) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );;
 				}
 				ewww_image_optimizer_debug_log();
 			}
@@ -38,14 +44,17 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 			foreach ( $metadata as $size ) {
 				$filename = trailingslashit( $dir ) . $size['file'];
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (AGR gd) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (AGR gd) queued: $filename" );
 					}
-					ewww_image_optimizer( $filename );
-					ewwwio_debug_message( "image editor (AGR gd) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 			}
 			ewww_image_optimizer_debug_log();
@@ -65,14 +74,17 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (wpthumb GD) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (wpthumb GD) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (wpthumb GD) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 				ewww_image_optimizer_debug_log();
 			}
@@ -93,14 +105,17 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (gd) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (gd) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (gd) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 				ewww_image_optimizer_debug_log();
 			}
@@ -121,14 +136,17 @@ if (class_exists('WP_Thumb_Image_Editor_Imagick')) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (wpthumb imagick) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+		 				$ewwwio_image_background->save()->dispatch();
+			 			ewwwio_debug_message( "image editor (wpthumb imagick) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (wpthumb imagick) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 				ewww_image_optimizer_debug_log();
 			}
@@ -148,14 +166,17 @@ if (class_exists('WP_Thumb_Image_Editor_Imagick')) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (imagick) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (imagick) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (imagick) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 				ewww_image_optimizer_debug_log();
 			}
@@ -164,7 +185,7 @@ if (class_exists('WP_Thumb_Image_Editor_Imagick')) {
 		}
 	}
 }
-if (class_exists('WP_Image_Editor_Gmagick')) {
+if ( class_exists( 'WP_Image_Editor_Gmagick' ) ) {
 	class EWWWIO_Gmagick_Editor extends WP_Image_Editor_Gmagick {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
@@ -176,14 +197,17 @@ if (class_exists('WP_Image_Editor_Gmagick')) {
 					$filename = $saved['path'];
 				}
 				if ( file_exists( $filename ) ) {
-					if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-						ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-						return $saved;
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (gmagick) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (gmagick) queued: $filename" );
 					}
-					ewww_image_optimizer($filename);
-					ewwwio_debug_message( "image editor (gmagick) saved: $filename" );
-					$image_size = ewww_image_optimizer_filesize( $filename );
-					ewwwio_debug_message( "image editor size: $image_size" );
 				}
 				ewww_image_optimizer_debug_log();
 			}
