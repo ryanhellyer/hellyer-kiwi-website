@@ -223,19 +223,21 @@ class EWWWIO_Async_Request extends WP_Async_Request {
 			$size = $_POST['ewwwio_size'];
 		}
 		if ( ! empty( $_POST['ewwwio_path'] ) && $size == 'full' ) {
+			$file_path = ABSPATH . $_POST['ewwwio_path'];
 			ewwwio_debug_message( 'processing async optimization request' );
-			list( $file, $msg, $conv, $original ) = ewww_image_optimizer( $_POST['ewwwio_path'], 1, false, false, true );
+			list( $file, $msg, $conv, $original ) = ewww_image_optimizer( $file_path, 1, false, false, true );
 		} elseif ( ! empty( $_POST['ewwwio_path'] ) ) {
+			$file_path = ABSPATH . $_POST['ewwwio_path'];
 			ewwwio_debug_message( 'processing async optimization request' );
-			list( $file, $msg, $conv, $original ) = ewww_image_optimizer( $_POST['ewwwio_path'] );
+			list( $file, $msg, $conv, $original ) = ewww_image_optimizer( $file_path );
 		} else {
 			ewwwio_debug_message( 'ignored async optimization request' );
 			return;
 		}
-		ewwwio_debug_message( 'checking for: ' . $_POST['ewwwio_path'] . '.processing' );
-		if ( is_file( $_POST['ewwwio_path'] . '.processing' ) ) {
-			ewwwio_debug_message( 'removing ' . $_POST['ewwwio_path'] . '.processing' );
-			unlink( $_POST['ewwwio_path'] . '.processing' );
+		ewwwio_debug_message( 'checking for: ' . $file_path . '.processing' );
+		if ( is_file( $file_path . '.processing' ) ) {
+			ewwwio_debug_message( 'removing ' . $file_path . '.processing' );
+			unlink( $file_path . '.processing' );
 		}
 		ewww_image_optimizer_debug_log();
 	}

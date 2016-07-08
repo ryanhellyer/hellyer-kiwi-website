@@ -62,7 +62,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 			return $metadata;
 		}
 	}
-} elseif (class_exists('WP_Thumb_Image_Editor_GD')) {
+} elseif ( class_exists( 'WP_Thumb_Image_Editor_GD' ) ) {
 	class EWWWIO_GD_Editor extends WP_Thumb_Image_Editor_GD {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
@@ -84,6 +84,37 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
 						ewwwio_debug_message( "image editor (wpthumb GD) queued: $filename" );
+					}
+				}
+				ewww_image_optimizer_debug_log();
+			}
+			ewwwio_memory( __FUNCTION__ );
+			return $saved;
+		}
+	}
+} elseif ( class_exists( 'BFI_Image_Editor_GD' ) ) {
+	class EWWWIO_GD_Editor extends BFI_Image_Editor_GD {
+		protected function _save( $image, $filename = null, $mime_type = null ) {
+			global $ewww_defer;
+			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) ) {
+				ewww_image_optimizer_init();
+			}
+			$saved = parent::_save( $image, $filename, $mime_type );
+			if ( ! is_wp_error( $saved ) ) {
+				if ( ! $filename ) {
+					$filename = $saved['path'];
+				}
+				if ( file_exists( $filename ) ) {
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (BFI GD) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (BFI GD) queued: $filename" );
 					}
 				}
 				ewww_image_optimizer_debug_log();
@@ -124,7 +155,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		}
 	}
 }
-if (class_exists('WP_Thumb_Image_Editor_Imagick')) {
+if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 	class EWWWIO_Imagick_Editor extends WP_Thumb_Image_Editor_Imagick {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
@@ -146,6 +177,36 @@ if (class_exists('WP_Thumb_Image_Editor_Imagick')) {
 						$ewwwio_image_background->push_to_queue( $filename );
 		 				$ewwwio_image_background->save()->dispatch();
 			 			ewwwio_debug_message( "image editor (wpthumb imagick) queued: $filename" );
+					}
+				}
+				ewww_image_optimizer_debug_log();
+			}
+			ewwwio_memory( __FUNCTION__ );
+			return $saved;
+		}
+	}
+} elseif ( class_exists( 'BFI_Image_Editor_Imagick' ) ) {
+	class EWWWIO_Imagick_Editor extends BFI_Image_Editor_Imagick {
+		protected function _save( $image, $filename = null, $mime_type = null ) {
+			global $ewww_defer;
+			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) )
+				ewww_image_optimizer_init();
+			$saved = parent::_save( $image, $filename, $mime_type );
+			if ( ! is_wp_error( $saved ) ) {
+				if ( ! $filename ) {
+					$filename = $saved['path'];
+				}
+				if ( file_exists( $filename ) ) {
+					if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_debug' ) ) {
+						ewww_image_optimizer( $filename );
+						ewwwio_debug_message( "image editor (BFI imagick) saved: $filename" );
+						$image_size = ewww_image_optimizer_filesize( $filename );
+						ewwwio_debug_message( "image editor size: $image_size" );
+					} else {
+						global $ewwwio_image_background;
+						$ewwwio_image_background->push_to_queue( $filename );
+						$ewwwio_image_background->save()->dispatch();
+						ewwwio_debug_message( "image editor (BFI imagick) queued: $filename" );
 					}
 				}
 				ewww_image_optimizer_debug_log();
