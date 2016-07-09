@@ -272,6 +272,7 @@ function ewww_image_optimizer_aux_images_script( $hook ) {
 	if ( 'ewww-image-optimizer-auto' !== $hook && empty( $_REQUEST['ewww_scan'] ) ) {
 		return;
 	}
+	session_write_close();
 	global $wpdb;
 	if ( ! empty( $_REQUEST['ewww_force'] ) ) {
 		ewwwio_debug_message( 'forcing re-optimize: true' );
@@ -426,6 +427,7 @@ function ewww_image_optimizer_aux_images_initialize( $auto = false ) {
 	if ( ! $auto && ( ! wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) || ! current_user_can( $permissions ) ) ) {
 		wp_die( esc_html__( 'Access denied.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 	}
+	session_write_close();
 	$output = array(); 
 	// update the 'aux resume' option to show that an operation is in progress
 	update_option( 'ewww_image_optimizer_aux_resume', 'true' );

@@ -141,7 +141,7 @@ function ewww_image_optimizer_count_optimized( $gallery, $return_ids = false ) {
 				ewwwio_debug_message( "fetched " . count( $attachments ) . " attachments starting at $offset" );
 				$disabled_sizes = ewww_image_optimizer_get_option( 'ewww_image_optimizer_disable_resizes' );
 				foreach ( $attachments as $attachment ) {
-					$meta = unserialize( $attachment[0] );
+					$meta = maybe_unserialize( $attachment[0] );
 					if ( empty( $meta ) ) {
 						continue;
 					}
@@ -417,6 +417,7 @@ function ewww_image_optimizer_bulk_initialize() {
 	if ( ! wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) || ! current_user_can( $permissions ) ) {
 		wp_die( esc_html__( 'Access token has expired, please reload the page.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
 	}
+	session_write_close();
 	$output = array();
 	// update the 'bulk resume' option to show that an operation is in progress
 	update_option('ewww_image_optimizer_bulk_resume', 'true');
@@ -468,6 +469,7 @@ function ewww_image_optimizer_bulk_loop() {
 		echo json_encode( $output );
 		die();
 	}
+	session_write_close();
 	// retrieve the time when the optimizer starts
 	$started = microtime( true );
 	if ( ini_get( 'max_execution_time' ) ) {

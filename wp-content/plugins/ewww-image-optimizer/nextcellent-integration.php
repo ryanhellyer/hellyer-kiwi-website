@@ -435,6 +435,7 @@ class ewwwngg {
                 	echo json_encode( $output );
                         die();
                 }
+		session_write_close();
 		// find out if our nonce is on it's last leg/tick
 		$tick = wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' );
 		if ( $tick === 2 ) {

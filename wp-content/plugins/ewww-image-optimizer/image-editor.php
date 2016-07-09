@@ -20,6 +20,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -50,6 +51,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -80,6 +82,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -111,6 +114,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -142,6 +146,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -173,6 +178,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 		 				$ewwwio_image_background->save()->dispatch();
@@ -203,6 +209,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -233,6 +240,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
@@ -264,6 +272,7 @@ if ( class_exists( 'WP_Image_Editor_Gmagick' ) ) {
 						$image_size = ewww_image_optimizer_filesize( $filename );
 						ewwwio_debug_message( "image editor size: $image_size" );
 					} else {
+						add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 						global $ewwwio_image_background;
 						$ewwwio_image_background->push_to_queue( $filename );
 						$ewwwio_image_background->save()->dispatch();
