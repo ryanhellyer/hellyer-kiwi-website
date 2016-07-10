@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '292.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '293.0' );
 
 // initialize a couple globals
 $ewww_debug = '';
@@ -1546,6 +1546,7 @@ function ewww_image_optimizer_manual() {
 		// display an error message since we don't have anything to work on
 		wp_die( esc_html__('No attachment ID was provided.', EWWW_IMAGE_OPTIMIZER_DOMAIN));
 	}
+	session_write_close();
 	// store the attachment ID value
 	$attachment_ID = intval($_GET['ewww_attachment_ID']);
 	if ( empty( $_REQUEST['ewww_manual_nonce'] ) || ! wp_verify_nonce( $_REQUEST['ewww_manual_nonce'], "ewww-manual-$attachment_ID" ) ) {
@@ -2746,6 +2747,7 @@ function ewww_image_optimizer_resize_from_meta_data( $meta, $ID = null, $log = t
 	$gallery_type = 1;
 	ewwwio_debug_message( "attachment id: $ID" );
 	
+	session_write_close();
 	//if ( ! metadata_exists( 'post', $ID, '_wp_attachment_metadata' ) ) {
 	if ( ! empty( $ewww_new_image ) ) {
 		ewwwio_debug_message( 'this is a newly uploaded image with no metadata yet' );
@@ -2813,7 +2815,6 @@ function ewww_image_optimizer_resize_from_meta_data( $meta, $ID = null, $log = t
 		}
 	}
 	if ( $ewww_defer && ! ewww_image_optimizer_detect_wpsf_location_lock() ) {
-		session_write_close();
 		add_filter( 'http_headers_useragent', 'ewww_image_optimizer_cloud_useragent', PHP_INT_MAX );
 		global $ewwwio_media_background;
 		ewwwio_debug_message( "backgrounding optimization for $ID" );
