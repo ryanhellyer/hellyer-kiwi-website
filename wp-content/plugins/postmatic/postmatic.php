@@ -2,7 +2,7 @@
 /*
   Plugin Name: Postmatic Basic
   Description:
-  Version: 2.0.8
+  Version: 2.0.9
   License: GPL2+
   Author: Postmatic
   Author URI: http://gopostmatic.com/
@@ -53,8 +53,5 @@ if ( !class_exists( 'Prompt_Root' ) ) {
 	 * @since 2.0.0
 	 */
 	class Prompt_Root {
-		public static function load_freemius() {
-			Prompt_Freemius::load();
-		}
 	}
 }
