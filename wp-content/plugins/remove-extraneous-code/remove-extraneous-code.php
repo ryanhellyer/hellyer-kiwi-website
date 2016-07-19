@@ -294,6 +294,14 @@ class Remove_Extraneous_Code {
 			'src' => true,
 			'width' => true,
 		),
+		'iframe' => array(
+			'id' => true,
+			'src' => true,
+			'width' => true,
+			'height' => true,
+			'frameborder' => true,
+			'allowfullscreen' => true,
+		),
 	);
 
 	/**
