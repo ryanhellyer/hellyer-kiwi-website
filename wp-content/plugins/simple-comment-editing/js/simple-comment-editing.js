@@ -37,8 +37,15 @@ jQuery( document ).ready( function( $ ) {
 				//Remove elements
 				$( element ).parent().remove();
 				$.post( ajax_url, { action: 'sce_delete_comment', comment_id: ajax_params.cid, post_id: ajax_params.pid, nonce: ajax_params._wpnonce }, function( response ) {
-						$( '#sce-edit-comment-status' + ajax_params.cid ).removeClass().addClass( 'sce-status updated' ).html( simple_comment_editing.comment_deleted ).show();
-						setTimeout( function() { $( "#comment-" + ajax_params.cid ).slideUp(); }, 5000 ); //Attempt to remove the comment from the theme interface
+						if ( response.errors ) {
+							alert( simple_comment_editing.comment_deleted_error );
+							$( element ).siblings( '.sce-textarea' ).on();	
+							$( element ).on();
+						} else {
+							$( '#sce-edit-comment-status' + ajax_params.cid ).removeClass().addClass( 'sce-status updated' ).html( simple_comment_editing.comment_deleted ).show();
+							setTimeout( function() { $( "#comment-" + ajax_params.cid ).slideUp(); }, 3000 ); //Attempt to remove the comment from the theme interface
+						}
+						
 				}, 'json' );
             };
 			
@@ -321,8 +328,21 @@ jQuery( document ).ready( function( $ ) {
 			}, 'json' );	
 		} );
 	} );
-	$( 'body' ).on( 'epoch.comments.loaded', function( e ) {
-		$( '.sce-edit-button' ).simplecommentediting();
+	$( 'body' ).on( 'epoch.comments.loaded, epoch.two.comments.loaded', function( e ) {
+		setTimeout( function() {
+			$( '.sce-edit-button' ).simplecommentediting();
+		}, 1000 );
+	} );
+	$( 'body' ).on( 'epoch.two.comment.posted', function( event ) {
+    	//Ajax call to set SCE cookie
+    	comment_id = event.comment_id;
+		sce.set_comment_cookie( event.post, comment_id, function( comment_id ) {
+			//Ajax call to get new comment and load it
+			$.post( simple_comment_editing.ajax_url, { action: 'sce_epoch2_get_comment', comment_id: comment_id, _ajax_nonce: simple_comment_editing.nonce }, function( response ) {
+				$( '#comment-' + comment_id ).find( 'p' ).parent().html( response );
+				$( '#comment-' + comment_id ).find( '.sce-edit-button' ).simplecommentediting();
+			} );	
+		} );
 	} );
 } );
 
