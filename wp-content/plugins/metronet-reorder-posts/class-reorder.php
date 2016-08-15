@@ -321,7 +321,7 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_styles() {
-		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20151204' );
+		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20160813' );
 	}
 
 	/**
@@ -333,8 +333,10 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_scripts() {
-		wp_register_script( 'reorder_nested', REORDER_URL . '/scripts/jquery.mjs.nestedSortable.js', array( 'jquery-ui-sortable' ), '1.3.5', true );
-		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ), '20151101', true );
+		wp_enqueue_script( 'jquery-ui-touch-punch', REORDER_URL . '/scripts/jquery.ui.touch-punch.js', array( 'jquery-ui-sortable' ), '0.2.3', true );
+		wp_register_script( 'reorder_nested', REORDER_URL . '/scripts/jquery.mjs.nestedSortable.js', array( 'jquery-ui-touch-punch' ), '2.0.0', true );
+		
+		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ), '20160813', true );
 		wp_localize_script( 'reorder_posts', 'reorder_posts', array(
 			'action' => 'post_sort',
 			'expand' => esc_js( __( 'Expand', 'metronet-reorder-posts' ) ),
@@ -506,11 +508,33 @@ final class MN_Reorder {
 			//Output parent title
 			if( $children->have_posts() ) {
 				?>
-				<div><?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?><a href='#' style="float: right"><?php esc_html_e( 'Expand', 'metronet-reorder-posts' ); ?></a></div>
+				<div class="row">
+					<div class="expand row-action">
+						<span class="dashicons dashicons-arrow-right"></span>
+					</div><!-- .row-action -->
+					<div class="row-content">
+						<?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?>
+					</div><!-- .row-content -->
+				</div><!-- .row -->
 				<?php
 			} else {
 				?>
-				<div><?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?></div>
+				<div class="row">
+					<?php
+					$is_hierarchical = true;	
+					if( is_post_type_hierarchical( $post->post_type ) ) {
+						?>
+						<div class="row-action">
+						</div><!-- .row-action -->
+						<?php
+					} else {
+						$is_hierarchical = false;
+					}
+					?>
+					<div class="row-content <?php echo $is_hierarchical ? '' : 'non-hierarchical'; ?>">
+						<?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?>
+					</div><!-- .row-content -->
+				</div><!-- .row -->
 				<?php
 			}
 			

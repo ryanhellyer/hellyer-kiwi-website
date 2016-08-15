@@ -15,13 +15,14 @@ jQuery(document).ready(function($) {
 		items: 'li',
 		maxLevels: max_levels,
 		opacity: .6,
-		placeholder: 'placeholder',
+		placeholder: 'ui-sortable-placeholder',
 		revert: 250,
 		tabSize: 25,
 		tolerance: 'pointer',
 		toleranceElement: '> div',
 		listType: 'ul',
 		update: function( event, ui ) {
+			reorder_row_nesting();
 			$loading_animation = jQuery( '#loading-animation' );
 			var reorder_ajax_callback = function( response ) {
 				response = jQuery.parseJSON( response );
@@ -38,7 +39,7 @@ jQuery(document).ready(function($) {
 					}
 				}
 			};			
-			ui.item.find( 'div' ).append( $loading_animation );
+			ui.item.find( 'div.row-content:first' ).append( $loading_animation );
 			
 			$loading_animation.show();
 			
@@ -122,13 +123,30 @@ jQuery(document).ready(function($) {
 			sort_start.next = ui.item.next( ':not(".placeholder")' );
 		}
 	});
-	$( "#post-list a" ).toggle( function() {
-		$( this ).html( reorder_posts.collapse );
-		$( this ).parent().next( '.children' ).slideDown( "slow" );
+	
+	function reorder_row_nesting() {
+		// Add Nesting capabilities
+		$( '.row-content' ).each( function() {
+			var parents_count = $( this ).parents( 'ul' ).length;
+			var padding = 30;
+			if ( parents_count > 1 ) {
+				var new_padding = parents_count * 20 + padding;
+				$( this ).css('padding-left', new_padding + 'px');
+			} else {
+				$( this ).css('padding-left', padding + 'px');
+			}
+		} );
+	}
+	
+	reorder_row_nesting()
+	
+	$( "#post-list .expand span" ).toggle( function() {
+		$( this ).removeClass( 'dashicons-arrow-right' ).addClass( 'dashicons-arrow-down' );
+		$( this ).parent().parent().next( '.children' ).fadeIn( "fast" );
 		return false;
 	}, function() {
-		$( this ).html( reorder_posts.expand );
-		$( this ).parent().next( '.children' ).slideUp( "slow" );
+		$( this ).removeClass( 'dashicons-arrow-down' ).addClass( 'dashicons-arrow-right' );
+		$( this ).parent().parent().next( '.children' ).fadeOut( "fast" );
 		return false;
 	} );
 });
