@@ -1,7 +1,7 @@
 <?php
 /**
  * Integrate image optimizers into WordPress.
- * @version 2.9.4
+ * @version 2.9.5
  * @package EWWW_Image_Optimizer
  */
 /*
@@ -10,7 +10,7 @@ Plugin URI: https://wordpress.org/extend/plugins/ewww-image-optimizer/
 Description: Reduce file sizes for images within WordPress including NextGEN Gallery and GRAND FlAGallery. Uses jpegtran, optipng/pngout, and gifsicle.
 Author: Shane Bishop
 Text Domain: ewww-image-optimizer
-Version: 2.9.4
+Version: 2.9.5
 Author URI: https://ewww.io/
 License: GPLv3
 */
@@ -158,7 +158,7 @@ function ewww_image_optimizer_notice_wpengine() {
 }
 
 // generates the source and destination paths for the executables that we bundle with the plugin based on the operating system
-function ewww_image_optimizer_install_paths () {
+function ewww_image_optimizer_install_paths() {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	if (PHP_OS == 'WINNT') {
 		$gifsicle_src = EWWW_IMAGE_OPTIMIZER_BINARY_PATH . 'gifsicle.exe';
@@ -291,7 +291,7 @@ function ewww_image_optimizer_tool_folder_permissions_notice() {
 }
 
 // installs the executables that are bundled with the plugin
-function ewww_image_optimizer_install_tools () {
+function ewww_image_optimizer_install_tools() {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	ewwwio_debug_message( "Checking/Installing tools in " . EWWW_IMAGE_OPTIMIZER_TOOL_PATH );
 	$toolfail = false;
@@ -612,7 +612,7 @@ function ewww_image_optimizer_safemode_check() {
 }
 
 // If the utitilites are in the content folder, we use that. Otherwise, we check system paths. We also do a basic check to make sure we weren't given a malicious path.
-function ewww_image_optimizer_path_check ( $j = true, $o = true, $g = true, $p = true, $q = true, $w = true) {
+function ewww_image_optimizer_path_check( $j = true, $o = true, $g = true, $p = true, $q = true, $w = true) {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	$jpegtran = false;
 	$optipng = false;
