@@ -41,7 +41,7 @@ function login_form_add_shortcodes() {
 function login_form_shortcode( $attr ) {
 
 	if ( is_user_logged_in() ) {
-		wp_redirect( home_url(), 302 );
+		echo '<meta http-equiv="refresh" content="0; url=' . esc_url( home_url() ) . '">';
 	}
 
 	/* Set up some defaults. */
