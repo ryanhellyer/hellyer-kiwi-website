@@ -40,7 +40,7 @@ function login_form_add_shortcodes() {
 
 function login_form_shortcode( $attr ) {
 
-	if ( is_user_logged_in() ) {
+	if ( current_user_can( 'read_post' ) ) {
 		echo '<meta http-equiv="refresh" content="0; url=' . esc_url( home_url() ) . '">';
 	}
 
