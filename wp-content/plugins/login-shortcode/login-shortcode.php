@@ -40,8 +40,9 @@ function login_form_add_shortcodes() {
 
 function login_form_shortcode( $attr ) {
 
-	if ( is_user_logged_in() )
-		return '';
+	if ( is_user_logged_in() ) {
+		wp_redirect( home_url(), 302 );
+	}
 
 	/* Set up some defaults. */
 	$defaults = array(
