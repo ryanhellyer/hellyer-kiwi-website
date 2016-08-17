@@ -23,6 +23,22 @@ WordPress SEO
 https://wordpress.org/plugins/wordpress-seo/
 Handles basic SEO tasks.
 
+Sub heading
+https://wordpress.org/plugins/subheading/
+Provides the sub-headings shown on the front page.
+
+Safe Redirect Manager
+https://wordpress.org/plugins/safe-redirect-manager/
+Allows redirecting URLs.
+
+Client-proof visual editor
+https://wordpress.org/plugins/client-proof-visual-editor/
+Simplifies the visual editor to avoid nastiness in page content.
+
+Remove Extraneous Code
+https://github.com/ryanhellyer/remove-extraneous-code
+Limits the HTML and attributes allowed in posts, to avoid clients adding extraneous code.
+
 Settings
 -------------------------------------------------
 

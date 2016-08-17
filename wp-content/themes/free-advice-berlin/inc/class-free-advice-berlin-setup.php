@@ -30,6 +30,7 @@ class Free_Advice_Berlin_Setup {
 		add_filter( 'comment_form_default_fields', array( $this, 'comment_fields' ) );
 		add_action( 'wp',                          array( $this, 'force_404' ), 15 );
 		add_post_type_support( 'page', 'excerpt' );
+		add_post_type_support( 'page', 'front-end-editor' ); // For the WP Front End Editor plugin https://wordpress.org/plugins/wp-front-end-editor/
 	}
 
 	/**
