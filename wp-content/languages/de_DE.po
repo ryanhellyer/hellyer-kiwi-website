@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the 4.6.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-08-20 14:32:51+0000\n"
+"PO-Revision-Date: 2016-08-22 09:50:29+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -228,12 +228,12 @@ msgid "Responsive Layout"
 msgstr "Responsives Layout"
 
 #: wp-includes/class-wp-theme.php:789
-msgid "Photoblogging"
-msgstr "Photoblogging"
-
-#: wp-includes/class-wp-theme.php:789
 msgid "Seasonal"
 msgstr "Jahreszeitlich"
+
+#: wp-includes/class-wp-theme.php:789
+msgid "Photoblogging"
+msgstr "Foto-Blog"
 
 #. translators: %s: Error string for a failed installation
 #: wp-includes/script-loader.php:644
@@ -422,7 +422,7 @@ msgstr "Du bist leider nicht berechtigt, diese Website anzupassen."
 #: wp-includes/functions.wp-scripts.php:112
 #: wp-includes/functions.wp-styles.php:89
 msgid "Do not pass %1$s tags to %2$s."
-msgstr "%1$s Schlagwörter nicht an %2$s weitergeben."
+msgstr "%1$s-Schlagwörter nicht an %2$s weitergeben."
 
 #: wp-includes/class-wp-editor.php:1051
 msgid "Link options"
@@ -663,11 +663,6 @@ msgstr "Logo"
 msgid "https://codex.wordpress.org/Child_Themes"
 msgstr "https://codex.wordpress.org/Child_Themes"
 
-#. translators: 1: index.php, 2: Codex URL, 3: style.css
-#: wp-includes/class-wp-theme.php:273
-msgid "Template is missing. Standalone themes need to have a %1$s template file. <a href=\"%2$s\">Child themes</a> need to have a Template header in the %3$s stylesheet."
-msgstr "Fehlendes Template. Themes müssen über eine %1$s Datei verfügen. Für <a href=\"%2$s\">Child-Themes</a> muss ein Template-Header in der %3$s angelegt werden."
-
 #: wp-includes/class-wp-editor.php:1049
 msgid "Paste URL or type to search"
 msgstr "URL einfügen oder zum Suchen tippen"
@@ -676,6 +671,11 @@ msgstr "URL einfügen oder zum Suchen tippen"
 #: wp-includes/class-wp-metadata-lazyloader.php:122
 msgid "Invalid object type"
 msgstr "Ungültiger Objekt-Typ"
+
+#. translators: 1: index.php, 2: Codex URL, 3: style.css
+#: wp-includes/class-wp-theme.php:273
+msgid "Template is missing. Standalone themes need to have a %1$s template file. <a href=\"%2$s\">Child themes</a> need to have a Template header in the %3$s stylesheet."
+msgstr "Fehlendes Template. Eigenständige Themes müssen über eine %1$s Datei verfügen. Für <a href=\"%2$s\">Child-Themes</a> muss ein Template-Header in der %3$s angelegt werden."
 
 #: wp-includes/class-wp-customize-manager.php:2066
 #: wp-includes/class-wp-customize-manager.php:2143
@@ -1365,7 +1365,7 @@ msgstr "Widgets neu sortieren"
 
 #: wp-includes/class-wp-customize-section.php:350
 msgid "Press return or enter to open this section"
-msgstr "Drücke Enter, um diesen Bereich zu öffnen"
+msgstr "Zum Öffnen dieses Bereichs Eingabetaste drücken"
 
 #. translators: %s: document title from the preview
 #: wp-includes/class-wp-customize-manager.php:1665
@@ -2051,19 +2051,19 @@ msgstr "Angezeigter Name"
 msgid "Automatically add new top-level pages to this menu"
 msgstr "Neue Seiten der ersten Ebene automatisch zum Menü hinzufügen"
 
+#: wp-includes/customize/class-wp-customize-nav-menu-control.php:61
+msgid "Delete Menu"
+msgstr "Menü löschen"
+
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:55
 msgctxt "Reorder menu items in Customizer"
 msgid "Reorder"
-msgstr "Sortieren"
+msgstr "Umsortieren"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:56
 msgctxt "Cancel reordering menu items in Customizer"
 msgid "Done"
-msgstr "Erledigt"
-
-#: wp-includes/customize/class-wp-customize-nav-menu-control.php:61
-msgid "Delete Menu"
-msgstr "Menü löschen"
+msgstr "Fertig"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:52
 msgid "Add Items"
@@ -2450,7 +2450,7 @@ msgstr "Rich-Text-Bereich. Drücke Alt + Shift + H für Hilfe."
 #. translators: 1: month, 2: day of month
 #: wp-includes/date.php:458
 msgid "The following values do not describe a valid date: month %1$s, day %2$s."
-msgstr "Die folgende Werte beschreiben kein gültiges Datum: Tag %1$s, Monat %2$s"
+msgstr "Die folgenden Werte beschreiben kein gültiges Datum: Tag %2$s, Monat %1$s."
 
 #: wp-includes/theme.php:1577
 msgid "You need to pass an array of types."
@@ -2749,7 +2749,7 @@ msgstr ""
 
 #: wp-includes/class-wp-customize-panel.php:347
 msgid "Press return or enter to open this panel"
-msgstr "Eingabetaste zum Öffnen der Seite drücken"
+msgstr "Zum Öffnen dieses Bereichs Eingabetaste drücken"
 
 #: wp-includes/media.php:3388
 msgid "Bulk Select"
@@ -2851,10 +2851,6 @@ msgstr "Alle Daten"
 msgid "Filter by date"
 msgstr "Nach Datum filtern"
 
-#: wp-includes/media.php:3396
-msgid "Filter by type"
-msgstr "Nach Art filtern"
-
 #: wp-includes/media.php:3397
 msgid "Search Media"
 msgstr "Medien suchen"
@@ -2898,6 +2894,10 @@ msgid ""
 msgstr ""
 "Du bist gerade dabei, diese Elemente unwiderruflich zu löschen.\n"
 "Wähle „Abbrechen“ oder „OK“ zum Löschen."
+
+#: wp-includes/media.php:3396
+msgid "Filter by type"
+msgstr "Nach Typ filtern"
 
 #: wp-includes/comment.php:2925
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
@@ -3770,10 +3770,6 @@ msgstr "Die angegebene Zeichenfolge konnte nicht gefunden werden."
 msgid "Header cell"
 msgstr "Tabellen-Kopfzelle"
 
-#: wp-includes/class-wp-editor.php:1025
-msgid "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off."
-msgstr "Einfügen erfolgt jetzt im reinen Text-Modus. Inhalte werden als reiner Text eingefügt, bis du diese Option abschaltest."
-
 #: wp-includes/class-wp-customize-widgets.php:704
 msgid "Select an area to move this widget into:"
 msgstr "Wähle einen Bereich, in den das Widget verschoben werden soll:"
@@ -3810,6 +3806,10 @@ msgstr "Datum/Zeit einfügen"
 msgid "Row group"
 msgstr "Zeilen-Gruppe"
 
+#: wp-includes/class-wp-editor.php:1025
+msgid "Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off."
+msgstr "Einfügen erfolgt jetzt im reinen Text-Modus. Inhalte werden nun als reiner Text eingefügt, bis du diese Option abschaltest."
+
 #: wp-includes/general-template.php:3385
 msgctxt "admin color scheme"
 msgid "Sunrise"
@@ -3832,7 +3832,7 @@ msgstr "Kaffee"
 
 #: wp-includes/class-wp-image-editor.php:288
 msgid "Attempted to set image quality outside of the range [1,100]."
-msgstr "Es wurde versucht, die Bildqualität außerhalb des Bereichs [1-100] zu setzen. "
+msgstr "Es wurde versucht, die Bildqualität außerhalb des Bereichs [1-100] zu setzen."
 
 #: wp-includes/widgets/class-wp-widget-text.php:28
 msgid "Arbitrary text or HTML."
@@ -3927,11 +3927,7 @@ msgstr "Aktualisierungen der Übersetzung"
 
 #: wp-includes/class-wp-theme.php:243
 msgid "The theme directory \"%s\" does not exist."
-msgstr "Das Theme-Verzeichnis „%s“ existiert nicht. "
-
-#: wp-includes/functions.php:1233
-msgid "ERROR: This is not a valid feed template."
-msgstr "FEHLER: Dies ist keine gültige Feed-Vorlage. "
+msgstr "Das Theme-Verzeichnis &#8222;%s&#8220; existiert nicht."
 
 #. translators: This is a comma-separated list of very common words that should
 #. be excluded from a search, like a, an, and the. These are usually called
@@ -3946,6 +3942,10 @@ msgstr "ein,eine,einer,der,die,das,und,oder,doch,sind,ist,war,für,von,in,an,zu,
 #: wp-includes/post-template.php:1545
 msgid "This content is password protected. To view it please enter your password below:"
 msgstr "Dieser Inhalt ist passwortgeschützt. Um ihn anzuschauen, gib dein Passwort bitte unten ein:"
+
+#: wp-includes/functions.php:1233
+msgid "ERROR: This is not a valid feed template."
+msgstr "FEHLER: Dies ist keine gültige Feed-Vorlage."
 
 #: wp-includes/class-wp-http-curl.php:257
 #: wp-includes/class-wp-http-streams.php:256
@@ -4108,7 +4108,7 @@ msgstr "%2$s. %1$s %3$s, %4$s:%5$s"
 
 #: wp-includes/functions.php:5135
 msgid "The login page will open in a new window. After logging in you can close it and return to this page."
-msgstr "Die Anmeldeseite wird sich in einem neuen Fenster öffnen. Nach Anmeldung kannst du das Fenster schließen und zu dieser Seite zurückkehren."
+msgstr "Die Anmelde-Seite wird sich in einem neuen Fenster öffnen. Nach dem Anmelden kannst du das Fenster schließen und zu dieser Seite zurückkehren."
 
 #. translators: post revision title: 1: author avatar, 2: author name, 3: time
 #. ago, 4: date
@@ -4386,7 +4386,7 @@ msgid ""
 "\n"
 "After you activate, you will receive *another email* with your login."
 msgstr ""
-"Um deine Benutzer zu aktivieren, klicke bitte auf den folgenden Link: \n"
+"Um deinen Benutzer zu aktivieren, klicke bitte auf den folgenden Link: \n"
 "%s \n"
 "Nach dem Aktivieren erhältst du *eine neue E-Mail* mit deinen Zugangsdaten. "
 
@@ -5761,14 +5761,14 @@ msgstr "Bitte warte noch ein bisschen. Manchmal verzögert sich die Zustellung v
 msgid "Sorry, new registrations are not allowed at this time."
 msgstr "Neue Registrierungen sind derzeit leider nicht möglich."
 
-#: wp-signup.php:761
-msgid "Check the junk or spam folder of your email client. Sometime emails wind up there by mistake."
-msgstr "Überprüfe deinen Junk/Spam-Ordner deines E-Mail-Postfachs, da E-Mails manchmal fälschlicherweise als Spam gekennzeichnet werden."
-
 #. translators: 1: type of site sign-up; 2: network settings URL
 #: wp-signup.php:827
 msgid "Greetings Site Administrator! You are currently allowing &#8220;%s&#8221; registrations. To change or disable registration go to your <a href=\"%s\">Options page</a>."
 msgstr "Hallo, Administrator! Du hast zurzeit das Registrieren von &#8222;%s&#8220; erlaubt. Um diese Einstellungen zu ändern, öffne die <a href=\"%s\">Einstellungen</a>."
+
+#: wp-signup.php:761
+msgid "Check the junk or spam folder of your email client. Sometime emails wind up there by mistake."
+msgstr "Überprüfe den Junk/Spam-Ordner deines E-Mail-Postfachs, da E-Mails manchmal fälschlicherweise als Spam gekennzeichnet werden."
 
 #: wp-signup.php:240
 msgid "We send your registration email to this address. (Double-check your email address before continuing.)"
@@ -5932,17 +5932,17 @@ msgstr "Entschuldige, Website-Namen müssen auch Buchstaben enthalten!"
 msgid "Sorry, that site is reserved!"
 msgstr "Entschuldige, aber diese Website wurde bereits reserviert!"
 
+#: wp-includes/ms-functions.php:616 wp-includes/ms-functions.php:1111
+msgid "Sorry, that site already exists!"
+msgstr "Diese Website existiert bereits!"
+
 #: wp-includes/class-wp-xmlrpc-server.php:3635
 #: wp-includes/class-wp-xmlrpc-server.php:3716
 #: wp-includes/class-wp-xmlrpc-server.php:3748
 #: wp-includes/class-wp-xmlrpc-server.php:3780
 #: wp-includes/class-wp-xmlrpc-server.php:4018
 msgid "Sorry, you are not allowed access to details about this site."
-msgstr "Du bist leider nicht berechtigt, auf Details dieser Website zuzugreifen."
-
-#: wp-includes/ms-functions.php:616 wp-includes/ms-functions.php:1111
-msgid "Sorry, that site already exists!"
-msgstr "Diese Website existiert bereits!"
+msgstr "Du bist leider nicht berechtigt, Details dieser Website abzurufen."
 
 #: wp-includes/load.php:530
 msgid "The site you have requested is not installed properly. Please contact the system administrator."
@@ -6252,16 +6252,6 @@ msgstr "Ungültige Kommentar-ID."
 msgid "Invalid comment status."
 msgstr "Ungültiger Kommentarstatus."
 
-#: wp-includes/class-wp-xmlrpc-server.php:1305
-#: wp-includes/class-wp-xmlrpc-server.php:3297
-#: wp-includes/class-wp-xmlrpc-server.php:4101
-#: wp-includes/class-wp-xmlrpc-server.php:4860
-#: wp-includes/class-wp-xmlrpc-server.php:4918
-#: wp-includes/class-wp-xmlrpc-server.php:5196
-#: wp-includes/class-wp-xmlrpc-server.php:5260 wp-includes/post.php:1071
-msgid "Invalid post type."
-msgstr "Ungültiger Artikeltyp."
-
 #: wp-includes/class-wp-xmlrpc-server.php:5821
 msgid "Could not write file %1$s (%2$s)"
 msgstr "Konnte folgende Datei nicht schreiben %1$s (%2$s)"
@@ -6377,17 +6367,27 @@ msgstr "Du bist leider nicht berechtigt, diesen Beitrag zu veröffentlichen."
 msgid "Sorry, you are not allowed access to details of this post."
 msgstr "Du bist leider nicht berechtigt, auf Details dieses Beitrages zuzugreifen."
 
-#: wp-includes/class-wp-xmlrpc-server.php:3874
-msgid "Sorry, you are not allowed to update options."
-msgstr "Du bist leider nicht berechtigt, Einstellungen zu ändern."
-
-#: wp-includes/class-wp-xmlrpc-server.php:5251
-msgid "Sorry, you are not allowed to change the post author as this user."
-msgstr "Du bist mit deiner Benutzerrolle leider nicht berechtigt, den Autor des Beitrages zu ändern."
-
 #: wp-includes/class-wp-xmlrpc-server.php:5256
 msgid "Sorry, you are not allowed to change the page author as this user."
 msgstr "Du bist mit deiner Benutzerrolle leider nicht berechtigt, den Autor der Seite zu ändern."
+
+#: wp-includes/class-wp-xmlrpc-server.php:3874
+msgid "Sorry, you are not allowed to update options."
+msgstr "Du bist leider nicht berechtigt, Einstellungen zu aktualisieren."
+
+#: wp-includes/class-wp-xmlrpc-server.php:5251
+msgid "Sorry, you are not allowed to change the post author as this user."
+msgstr "Du bist mit deiner Benutzerrolle leider nicht berechtigt, den Autor des Beitrags zu ändern."
+
+#: wp-includes/class-wp-xmlrpc-server.php:1305
+#: wp-includes/class-wp-xmlrpc-server.php:3297
+#: wp-includes/class-wp-xmlrpc-server.php:4101
+#: wp-includes/class-wp-xmlrpc-server.php:4860
+#: wp-includes/class-wp-xmlrpc-server.php:4918
+#: wp-includes/class-wp-xmlrpc-server.php:5196
+#: wp-includes/class-wp-xmlrpc-server.php:5260 wp-includes/post.php:1071
+msgid "Invalid post type."
+msgstr "Ungültiger Inhaltstyp."
 
 #: wp-includes/user.php:1432
 msgid "Cannot create a user with an empty login name."
@@ -7445,10 +7445,6 @@ msgid_plural "%s days"
 msgstr[0] "%s Tag"
 msgstr[1] "%s Tagen"
 
-#: wp-includes/cron.php:198
-msgid "This argument has changed to an array to match the behavior of the other cron functions."
-msgstr "Das Argument wurde durch ein Array ersetzt, um die Funktion an die anderen Cron-Funktionen anzupassen."
-
 #: wp-includes/widgets/class-wp-widget-pages.php:143
 msgid "Exclude:"
 msgstr "Ausschließen:"
@@ -7456,14 +7452,6 @@ msgstr "Ausschließen:"
 #: wp-includes/widgets.php:1357
 msgid "How many items would you like to display?"
 msgstr "Wie viele Einträge sollen angezeigt werden?"
-
-#: wp-includes/deprecated.php:64
-msgid "new WordPress Loop"
-msgstr "Neuer WordPress-Loop"
-
-#: wp-includes/functions.php:2522 wp-includes/ms-functions.php:1926
-msgid "Please try again."
-msgstr "Bitte noch mal versuchen."
 
 #. translators: 1: blog title, 2: separator (raquo)
 #: wp-includes/general-template.php:2591
@@ -7823,6 +7811,18 @@ msgstr "Bitte schau für das neue Passwort in deine E-Mail."
 #: wp-login.php:872
 msgid "Registration complete. Please check your email."
 msgstr "Registrierung abgeschlossen. Bitte schau in dein E-Mail-Postfach."
+
+#: wp-includes/cron.php:198
+msgid "This argument has changed to an array to match the behavior of the other cron functions."
+msgstr "Das Argument wurde durch ein Array ersetzt, um dem Verhalten der anderen Cron-Funktionen zu entsprechen."
+
+#: wp-includes/deprecated.php:64
+msgid "new WordPress Loop"
+msgstr "Neue WordPress-Loop"
+
+#: wp-includes/functions.php:2522 wp-includes/ms-functions.php:1926
+msgid "Please try again."
+msgstr "Bitte nochmal versuchen."
 
 #: wp-includes/link-template.php:2297 wp-includes/link-template.php:2349
 msgid "&laquo; Previous Page"
