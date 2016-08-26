@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Postmatic Basic package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Postmatic Basic 2.0.\n"
+"Project-Id-Version: Postmatic Basic 2.0.10\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/"
-"plugin/2.0.-20160718-1916\n"
-"POT-Creation-Date: 2016-07-18 19:16:22+00:00\n"
+"plugin/2.0.10-20160826-1622\n"
+"POT-Creation-Date: 2016-08-26 16:22:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,7 +108,7 @@ msgid ""
 msgstr ""
 
 #: admin/core-options-tab.php:69
-msgid "Postmatic Api Key"
+msgid "Postmatic API Key"
 msgstr ""
 
 #: admin/core-options-tab.php:83
@@ -246,7 +246,7 @@ msgid "Enable Webhooks"
 msgstr ""
 
 #: admin/core-options-tab.php:574
-msgid "Use webhooks with servics like Zapier to keep your lists in sync."
+msgid "Use webhooks with services like Zapier to keep your lists in sync."
 msgstr ""
 
 #: admin/core-options-tab.php:583
@@ -254,7 +254,7 @@ msgid "Enable Skimlinks"
 msgstr ""
 
 #: admin/core-options-tab.php:586
-msgid "Use Skimlinks in your all your emailed content."
+msgid "Use Skimlinks in all your emailed content."
 msgstr ""
 
 #: admin/core-options-tab.php:595
@@ -840,7 +840,7 @@ msgstr ""
 msgid "Choose a Mailpoet list to import from: "
 msgstr ""
 
-#: admin/mailpoet-import-options-tab.php:298 core/ajax-handling.php:233
+#: admin/mailpoet-import-options-tab.php:298 core/ajax-handling.php:227
 msgid "Choose a Postmatic list to import to:"
 msgstr ""
 
@@ -1069,7 +1069,7 @@ msgstr ""
 msgid "Choose a inpost background image"
 msgstr ""
 
-#. #-#-#-#-#  Postmatic.pot (Postmatic Basic 2.0.)  #-#-#-#-#
+#. #-#-#-#-#  Postmatic.pot (Postmatic Basic 2.0.10)  #-#-#-#-#
 #. Author of the plugin/theme
 #: admin/options-page.php:69
 msgid "Postmatic"
@@ -1254,7 +1254,7 @@ msgstr ""
 
 #: admin/subscribe-reloaded-import-options-tab.php:33
 msgid ""
-"This utilitly will migrate comment subscriptions from Subscribe to Comments, "
+"This utility will migrate comment subscriptions from Subscribe to Comments, "
 "Subscribe to Comments Reloaded, and Subscribe to Double-Opt-In Comments."
 msgstr ""
 
@@ -1284,13 +1284,15 @@ msgstr ""
 
 #: admin/subscribe-reloaded-import-options-tab.php:87
 msgid "We have migrated one subscription.<br />"
-msgid_plural ""
-"We have migrated %1$s subscriptions.<br /> You can disable Subscribe to "
-"Comments Reloaded at this time.<br />"
+msgid_plural "We have migrated %1$s subscriptions.<br />"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/subscribe-reloaded-import-options-tab.php:95
+#: admin/subscribe-reloaded-import-options-tab.php:94
+msgid "You can disable Subscribe to Comments Reloaded at this time.<br />"
+msgstr ""
+
+#: admin/subscribe-reloaded-import-options-tab.php:97
 msgid ""
 "There was one other subscription found but it had already been imported."
 msgid_plural ""
@@ -1298,7 +1300,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/subscribe-reloaded-import-options-tab.php:147
+#: admin/subscribe-reloaded-import-options-tab.php:149
 msgid "Import from Subscribe To Comments Reloaded"
 msgstr ""
 
@@ -1340,7 +1342,8 @@ msgstr ""
 
 #: admin/support-options-tab.php:60
 msgid ""
-"We've hand curated dozen of widgets. Get the most out of your email template."
+"We've hand curated dozens of widgets. Get the most out of your email "
+"template."
 msgstr ""
 
 #: admin/support-options-tab.php:64
@@ -1402,43 +1405,44 @@ msgid ""
 "\">WPBruiser</a>."
 msgstr ""
 
-#: core/ajax-handling.php:59 templates/subscribe-form.php:53
+#: core/ajax-handling.php:53 core/ajax-handling.php:421
+#: templates/subscribe-form.php:53
 msgid "You are already subscribed to %s."
 msgstr ""
 
-#: core/ajax-handling.php:94 core/ajax-handling.php:384
+#: core/ajax-handling.php:88 core/ajax-handling.php:378
 msgid "You have unsubscribed."
 msgstr ""
 
-#: core/ajax-handling.php:135
+#: core/ajax-handling.php:129
 msgid "Preview email sent."
 msgstr ""
 
-#: core/ajax-handling.php:172
+#: core/ajax-handling.php:166
 msgid "An API Key is required"
 msgstr ""
 
-#: core/ajax-handling.php:194
+#: core/ajax-handling.php:188
 msgid ""
 "We're sorry. None of your lists qualified. <a href=\"%s\">Click here for "
 "more information</a>"
 msgstr ""
 
-#: core/ajax-handling.php:224
+#: core/ajax-handling.php:218
 msgid "Choose a Mailchimp list to import from:"
 msgstr ""
 
-#: core/ajax-handling.php:332
+#: core/ajax-handling.php:326
 msgid "Sorry, that email address is not valid."
 msgstr ""
 
-#: core/ajax-handling.php:358
+#: core/ajax-handling.php:352
 msgid ""
 "Almost done - you'll receive an email with instructions to complete your "
 "subscription."
 msgstr ""
 
-#: core/ajax-handling.php:401
+#: core/ajax-handling.php:395
 msgid ""
 "<strong>Confirmation email sent. Please check your email for further "
 "instructions.</strong>"
@@ -1458,7 +1462,6 @@ msgstr ""
 
 #: core/commands/comment-command.php:131
 #: core/commands/confirmation-command.php:113
-#: core/commands/forward-command.php:137
 msgid "Invalid message"
 msgstr ""
 
@@ -1476,14 +1479,6 @@ msgstr ""
 
 #: core/commands/confirmation-command.php:108
 msgid "Invalid confirmation keys"
-msgstr ""
-
-#: core/commands/forward-command.php:127
-msgid "Invalid forward keys"
-msgstr ""
-
-#: core/commands/forward-command.php:132
-msgid "Invalid subscribable class"
 msgstr ""
 
 #: core/commands/post-request-command.php:88
@@ -1551,7 +1546,7 @@ msgstr ""
 msgid "Unable to publish your reply to \"%s\""
 msgstr ""
 
-#: core/comment.php:177 core/email-batches/comment-email-batch.php:76
+#: core/comment.php:177 core/email-batches/comment-email-batch.php:78
 msgid "Anonymous"
 msgstr ""
 
@@ -1576,7 +1571,7 @@ msgid "Postmatic Delivery"
 msgstr ""
 
 #. translators: %1$s is a subscription list title, %2$s the unsubscribe command
-#: core/email-batches/comment-email-batch.php:118
+#: core/email-batches/comment-email-batch.php:128
 msgid ""
 "You received this email because you're subscribed to %1$s. To no longer "
 "receive other comments or replies in this discussion reply with the word "
@@ -1585,23 +1580,23 @@ msgstr ""
 
 #. translators: %1$s is a subscription list title, %2$s is the unsubscribe
 #. command word
-#: core/email-batches/comment-email-batch.php:341
+#: core/email-batches/comment-email-batch.php:351
 msgid "%s replied to your comment on %s."
 msgstr ""
 
-#: core/email-batches/comment-email-batch.php:349
+#: core/email-batches/comment-email-batch.php:359
 msgid "%s replied to %s on %s"
 msgstr ""
 
-#: core/email-batches/comment-email-batch.php:357
+#: core/email-batches/comment-email-batch.php:367
 msgid "%s commented on %s"
 msgstr ""
 
-#: core/email-batches/comment-email-batch.php:406
+#: core/email-batches/comment-email-batch.php:416
 msgid "%s replied to your comment on %s:"
 msgstr ""
 
-#: core/email-batches/comment-email-batch.php:411
+#: core/email-batches/comment-email-batch.php:421
 msgid "%s left a reply to a comment by %s on %s:"
 msgstr ""
 
@@ -1912,14 +1907,6 @@ msgstr ""
 msgid "post"
 msgstr ""
 
-#: core/request-signature.php:57
-msgid "Request signature has an invalid timestamp."
-msgstr ""
-
-#: core/request-signature.php:65
-msgid "Request signature is invalid."
-msgstr ""
-
 #: core/site-comments.php:47
 msgid "all comments on %s"
 msgstr ""
@@ -2096,7 +2083,8 @@ msgstr ""
 msgid "<span>Do you &hearts; Postmatic?</span> Fund future development!"
 msgstr ""
 
-#: templates/analytics-promo.php:13
+#. translators: long tail is a reference to http:www.longtail.com/about.html/
+#: templates/analytics-promo.php:14
 msgid ""
 "<strong>We think that email analytics should go way beyond open rates.</"
 "strong> We value community and the long tail. Postmatic is about awesome "
@@ -2104,7 +2092,7 @@ msgid ""
 "should be the same."
 msgstr ""
 
-#: templates/analytics-promo.php:20
+#: templates/analytics-promo.php:21
 msgid ""
 "We have some incredible ideas for how to build an analytics platform not "
 "just off of email data, but your entire WordPress community. We can't do it "
@@ -2112,33 +2100,38 @@ msgid ""
 "you join us?</a>"
 msgstr ""
 
-#: templates/analytics-promo.php:26
+#. translators: followed by a list of rewards
+#: templates/analytics-promo.php:28
 msgid "For helping out you could get..."
 msgstr ""
 
-#: templates/analytics-promo.php:28
+#. translators: one in a list of rewards
+#: templates/analytics-promo.php:31
 msgid "Up to 50% off Postmatic for a year (this one kind of pays for itself)"
 msgstr ""
 
-#: templates/analytics-promo.php:29
+#. translators: one in a list of rewards
+#: templates/analytics-promo.php:33
 msgid "Beta access to Postmatic Analytics"
 msgstr ""
 
-#: templates/analytics-promo.php:30
+#. translators: one in a list of rewards
+#: templates/analytics-promo.php:35
 msgid "A custom commenting & community overhaul"
 msgstr ""
 
-#: templates/analytics-promo.php:31
+#. translators: one in a list of rewards
+#: templates/analytics-promo.php:37
 msgid ""
 "A freaky awesome weekend with the Postmatic team on a lake in Vermont. Craft "
 "beer. A heap of cheese. Kayaks and loons."
 msgstr ""
 
-#: templates/analytics-promo.php:33
+#: templates/analytics-promo.php:39
 msgid "We're just going to say thanks ahead of time."
 msgstr ""
 
-#: templates/analytics-promo.php:34
+#: templates/analytics-promo.php:40
 msgid "But really. Please do join us. Even if it's just a few dollars."
 msgstr ""
 
@@ -2204,19 +2197,19 @@ msgstr ""
 
 #: templates/comment-reply-email-text.php:21
 #: templates/comment-reply-email-text.php:64
-#: templates/new-comment-email-text.php:30
-#: templates/new-comment-email-text.php:61
+#: templates/new-comment-email-text.php:31
+#: templates/new-comment-email-text.php:62
 msgid "* Reply to this email to reply to %s. *"
 msgstr ""
 
 #: templates/comment-reply-email-text.php:25
-#: templates/comment-reply-email.php:59
+#: templates/comment-reply-email.php:61
 msgid "Here's a recap of this post and conversation:"
 msgstr ""
 
 #. translators: %1$s is post title, %2$s date, %3$s time, %4$s author
 #: templates/comment-reply-email-text.php:31
-#: templates/comment-reply-email.php:65
+#: templates/comment-reply-email.php:67
 msgid "%1$s was published on %2$s by %4$s."
 msgstr ""
 
@@ -2225,22 +2218,22 @@ msgid "There were %d comments previous to this. Here is this reply in context:"
 msgstr ""
 
 #: templates/comment-reply-email-text.php:70
-#: templates/new-comment-email-text.php:79
+#: templates/new-comment-email-text.php:80
 msgid ""
 "To no longer receive other comments or replies in this discussion reply with "
 "the word '%s'."
 msgstr ""
 
-#: templates/comment-reply-email.php:49
+#: templates/comment-reply-email.php:51
 msgid "In reply to %s"
 msgstr ""
 
-#: templates/comment-reply-email.php:50 templates/comment-reply-email.php:100
-#: templates/new-comment-email.php:50 templates/new-comment-email.php:87
+#: templates/comment-reply-email.php:52 templates/comment-reply-email.php:102
+#: templates/new-comment-email.php:54 templates/new-comment-email.php:91
 msgid "Reply to this email to reply to %s."
 msgstr ""
 
-#: templates/comment-reply-email.php:80
+#: templates/comment-reply-email.php:82
 msgid ""
 "There were <a href=\"%1$s\">%2$d comments</a> previous to this. Here is this "
 "reply in context:"
@@ -2346,33 +2339,33 @@ msgid ""
 "\"%s\">unsubscribe with a single click</a>."
 msgstr ""
 
-#: templates/new-comment-email-text.php:17
+#: templates/new-comment-email-text.php:18
 msgid "%s added a comment on %s"
 msgstr ""
 
-#: templates/new-comment-email-text.php:35 templates/new-comment-email.php:55
+#: templates/new-comment-email-text.php:36 templates/new-comment-email.php:59
 msgid ""
 "You're invited to respond by replying to this email. If you do, it may be "
 "published immediately or held for moderation, depending on the comment "
 "policy of %s."
 msgstr ""
 
-#: templates/new-comment-email-text.php:45 templates/new-comment-email.php:70
+#: templates/new-comment-email-text.php:46 templates/new-comment-email.php:74
 msgid "Recently in this conversation..."
 msgstr ""
 
-#: templates/new-comment-email-text.php:67
+#: templates/new-comment-email-text.php:68
 #: templates/rejoined-email-text.php:41
 msgid ""
 "Please note: Your reply will be published publicly and immediately on %s."
 msgstr ""
 
 #. translators: %1$s is commenter name, %2$s is post title
-#: templates/new-comment-email.php:20
+#: templates/new-comment-email.php:24
 msgid "%1$s added a comment in reply to %2$s."
 msgstr ""
 
-#: templates/new-comment-email.php:91
+#: templates/new-comment-email.php:95
 msgid "<br /><strong>Please note</strong>: Your reply will be published on %s."
 msgstr ""
 
