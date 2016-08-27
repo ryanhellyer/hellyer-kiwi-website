@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-08-24 20:10:13+0000\n"
+"PO-Revision-Date: 2016-08-27 18:37:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -993,10 +993,6 @@ msgstr "Das Netzwerk-Bedienfeld ist nicht für WordPress-MU-Netzwerke nutzbar."
 msgid "Once you add this code and refresh your browser, multisite should be enabled. This screen, now in the Network Admin navigation menu, will keep an archive of the added code. You can toggle between Network Admin and Site Admin by clicking on the Network Admin or an individual site name under the My Sites dropdown in the Toolbar."
 msgstr "Sobald du diesen Code hinzugefügt hast und deinen Browser neu lädst, sollte die Multisite aktiviert sein. Dieser Bereich zeigt nun das Netzwerk-Administrationsmenü und enthält eine Archivierung des zusätzlichen Codes. Du kannst zwischen der Netzwerk-Administration und Website-Administration wechseln durch Klicken auf &#8222;Netzwerkverwaltung&#8220; oder der individuellen Website unter dem &#8222;Meine Websites&#8220;-Aufklappmenü in der Werkzeugleiste."
 
-#: wp-admin/network.php:64
-msgid "The choice of subdirectory sites is disabled if this setup is more than a month old because of permalink problems with &#8220;/blog/&#8221; from the main site. This disabling will be addressed in a future version."
-msgstr "Die Auswahl, die Websites in Unterverzeichnissen anzulegen, ist deaktiviert, sollte das Setup älter sein als einen Monat, wegen dem Permalink-Problem mit &#8222;/blog/&#8220; auf der Haupt-Website. Diese Sperrung wird in der zukünftigen Version behoben sein."
-
 #: wp-admin/network.php:59
 msgid "This screen allows you to configure a network as having subdomains (<code>site1.example.com</code>) or subdirectories (<code>example.com/site1</code>). Subdomains require wildcard subdomains to be enabled in Apache and DNS records, if your host allows it."
 msgstr "Dieser Bereich erlaubt dir, ein Netzwerk mit Subdomains (<code>site1.example.com</code>) oder Unterverzeichnissen <code>example.com/site1</code>) zu konfigurieren. Subdomains benötigen eine Wildcard-Subdomain-Konfiguration in den Apache- und DNS-Einstellungen, sofern dein Server dies unterstützt."
@@ -1012,6 +1008,10 @@ msgstr "Bitte <a href=\"%s\">deaktiviere deine Plugins</a>, bevor du die Netzwer
 #: wp-admin/includes/network.php:194
 msgid "You will need a wildcard DNS record if you are going to use the virtual host (sub-domain) functionality."
 msgstr "Du benötigst einen Wildcard DNS-Eintrag, wenn du die Funktionalität des Virtual Host (Subdomain) verwenden möchtest."
+
+#: wp-admin/network.php:64
+msgid "The choice of subdirectory sites is disabled if this setup is more than a month old because of permalink problems with &#8220;/blog/&#8221; from the main site. This disabling will be addressed in a future version."
+msgstr "Die Auswahl, die Websites in Unterverzeichnissen anzulegen ist deaktiviert, sollte das Setup älter sein als einen Monat, wegen dem Permalink-Problem mit &#8222;/blog/&#8220; auf der Haupt-Website. Diese Sperrung wird in der zukünftigen Version behoben sein."
 
 #: wp-admin/network/users.php:73
 msgid "Warning! User cannot be modified. The user %s is a network administrator."
