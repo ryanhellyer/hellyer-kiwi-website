@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the 4.6.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-08-27 20:30:16+0000\n"
+"PO-Revision-Date: 2016-08-27 22:13:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -285,10 +285,6 @@ msgctxt "site"
 msgid "&larr; Back to %s"
 msgstr "&larr; Zurück zu %s"
 
-#: wp-includes/script-loader.php:666
-msgid "Caution: These themes may be active on other sites in the network. Are you sure you want to proceed?"
-msgstr "Vorsicht: Diese Themes können auf anderen Websites des Netzwerks aktiv sein. Bist du sicher, dass du fortfahren möchtest?"
-
 #: wp-includes/script-loader.php:665
 msgid "Are you sure you want to delete the selected plugins and their data?"
 msgstr "Bist du sicher, dass du die ausgewählten Plugins und deren Daten löschen möchtest?"
@@ -306,6 +302,10 @@ msgstr "Bist du sicher, dass du %s und die dazugehörigen Daten löschen möchte
 #: wp-includes/widgets/class-wp-nav-menu-widget.php:153
 msgid "Edit Menu"
 msgstr "Menü bearbeiten"
+
+#: wp-includes/script-loader.php:666
+msgid "Caution: These themes may be active on other sites in the network. Are you sure you want to proceed?"
+msgstr "Achtung: Diese Themes können auf anderen Websites des Netzwerks aktiv sein. Bist du sicher, dass du fortfahren möchtest?"
 
 #: wp-includes/script-loader.php:642
 msgid "Install Failed!"
@@ -348,14 +348,6 @@ msgstr "Passwort-Stärke unbekannt"
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Suchergebnisse für &#8222;%s&#8220;"
 
-#: wp-includes/script-loader.php:510
-msgid ""
-"Are you sure you want to do this?\n"
-"The comment changes you made will be lost."
-msgstr ""
-"Bist du sicher, dass du das tun möchtest?\n"
-"Deine Änderungen des Kommentars werden verworfen."
-
 #: wp-includes/script-loader.php:613
 msgid "You do not appear to have any plugins available at this time."
 msgstr "Du hast zum jetzigen Zeitpunkt scheinbar keine verfügbaren Plugins."
@@ -368,6 +360,14 @@ msgstr "Du bist leider nicht berechtigt, Entwürfe anzusehen."
 #: wp-includes/script-loader.php:127 wp-includes/script-loader.php:499
 msgid "Sorry, you are not allowed to do that."
 msgstr "Du bist leider nicht berechtigt, dies zu tun."
+
+#: wp-includes/script-loader.php:510
+msgid ""
+"Are you sure you want to do this?\n"
+"The comment changes you made will be lost."
+msgstr ""
+"Bist du sicher, dass du das tun möchtest?\n"
+"Deine Änderungen des Kommentars gehen verloren."
 
 #: wp-includes/formatting.php:4229
 msgid "https://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure"
@@ -824,7 +824,7 @@ msgstr "Dezember"
 
 #: wp-includes/taxonomy.php:1258 wp-includes/taxonomy.php:1340
 msgid "Term meta cannot be added to terms that are shared between taxonomies."
-msgstr "Meta-Daten können nicht zu Begriffen hinzugefügt werden, die in Taxonomien geteilt werden. "
+msgstr "Meta-Daten können nicht zu Begriffen hinzugefügt werden, die in Taxonomien geteilt werden."
 
 #. translators: month name, genitive
 #: wp-includes/class-wp-locale.php:168
@@ -946,10 +946,6 @@ msgstr "Mission erfüllt. Nachricht %s gelöscht."
 msgid "Author:"
 msgstr "Autor:"
 
-#: wp-includes/wp-db.php:1575
-msgid "Are you sure that you have typed the correct hostname?"
-msgstr "Bist du sicher, dass du den Hostnamen richtig eingegeben hast?"
-
 #: wp-includes/wp-db.php:1576 wp-includes/wp-db.php:1679
 msgid "Are you sure that the database server is running?"
 msgstr "Bist du sicher, dass der Datenbank-Server läuft?"
@@ -967,10 +963,14 @@ msgstr "Fehler beim erneuten Verbinden mit der Datenbank"
 msgid "Are you sure that the database server is not under particularly heavy load?"
 msgstr "Bist du sicher, dass der Datenbank-Server nicht überlastet ist?"
 
+#: wp-includes/wp-db.php:1575
+msgid "Are you sure that you have typed the correct hostname?"
+msgstr "Bist du sicher, dass du den richtigen Hostnamen eingegeben hast?"
+
 #. translators: %s: database host
 #: wp-includes/wp-db.php:1674
 msgid "This means that we lost contact with the database server at %s. This could mean your host&#8217;s database server is down."
-msgstr "Das bedeutet, dass wir die Verbindung zum Datenbank-Server unter %s verloren haben. Möglicherweise ist der Datenbank-Server deines Hosting-Anbieters derzeit nicht verfügbar."
+msgstr "Das bedeutet, dass wir die Verbindung zum Datenbank-Server unter %s verloren haben. Es könnte sein, dass der Datenbank-Server deines Hosting-Anbieters ausgefallen ist."
 
 #. translators: 1: wp-config.php. 2: database host
 #: wp-includes/wp-db.php:1568
@@ -1011,7 +1011,7 @@ msgstr "Hat der Benutzer %1$s die Berechtigung die Datenbank %2$s zu verwenden?"
 
 #: wp-includes/widgets/class-wp-widget-tag-cloud.php:135
 msgid "The tag cloud will not be displayed since there are no taxonomies that support the tag cloud widget."
-msgstr "Die Schlagwörter-Wolke konnte nicht angezeigt werden, da keine Taxonomien vorhanden sind, die das Schlagwörter-Wolken-Widget unterstützen."
+msgstr "Die Schlagwort-Wolke konnte nicht angezeigt werden, da keine Taxonomien vorhanden sind, die das Schlagwort-Wolken-Widget unterstützen."
 
 #: wp-includes/user.php:1461
 msgid "Nicename may not be longer than 50 characters."
@@ -2106,7 +2106,7 @@ msgstr "Die Verbindung zum Server wurde unterbrochen oder der Server ist ausgela
 
 #: wp-includes/script-loader.php:636
 msgid "Updates may not complete if you navigate away from this page."
-msgstr "Aktualisierungen werden eventuell nicht abgeschlossen, wenn du diese Seite verlässt."
+msgstr "Aktualisierungen werden möglicherweise nicht abgeschlossen, wenn du diese Seite verlässt."
 
 #. translators: %s: Plugin name and version
 #: wp-includes/script-loader.php:629
@@ -2875,10 +2875,6 @@ msgstr "Hochgeladen von"
 msgid "Unattached"
 msgstr "Nicht verknüpft"
 
-#: wp-includes/script-loader.php:685
-msgid "No plugins found. Try a different search."
-msgstr "Es konnten keine Plugins gefunden werden. Versuche es bitte mit einem anderen Suchbegriff."
-
 #: wp-includes/media-template.php:339
 msgid "File type:"
 msgstr "Dateityp:"
@@ -2898,6 +2894,10 @@ msgstr "Nach Typ filtern"
 #: wp-includes/media-template.php:412
 msgid "Uploaded To"
 msgstr "Hochgeladen zu"
+
+#: wp-includes/script-loader.php:685
+msgid "No plugins found. Try a different search."
+msgstr "Es wurden keine Plugins gefunden. Versuche es bitte mit einem anderen Suchbegriff."
 
 #: wp-includes/comment.php:2925
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
@@ -2950,13 +2950,13 @@ msgstr "Du kannst Bilder nach deinen Vorstellungen beschneiden, nachdem du <stro
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturkürzel"
 
-#: wp-login.php:800
-msgid "<strong>ERROR</strong>: Cookies are blocked due to unexpected output. For help, please see <a href=\"%1$s\">this documentation</a> or try the <a href=\"%2$s\">support forums</a>."
-msgstr "<strong>FEHLER</strong>: Cookies sind wegen einer unerwarteten Ausgabe gesperrt. Hilfe findest du in <a href=\"%1$s\">dieser Dokumentation</a> oder wende dich an das <a href=\"%2$s\">Support-Forum</a>. "
-
 #: wp-login.php:804
 msgid "<strong>ERROR</strong>: Cookies are blocked or not supported by your browser. You must <a href=\"%s\">enable cookies</a> to use WordPress."
 msgstr "<strong>FEHLER</strong>: Cookies sind gesperrt oder werden von deinem Browser nicht unterstützt. Du musst <a href=\"%s\">Cookies aktivieren</a>, um WordPress verwenden zu können."
+
+#: wp-login.php:800
+msgid "<strong>ERROR</strong>: Cookies are blocked due to unexpected output. For help, please see <a href=\"%1$s\">this documentation</a> or try the <a href=\"%2$s\">support forums</a>."
+msgstr "<strong>FEHLER</strong>: Cookies sind wegen einer unerwarteten Ausgabe gesperrt. Hilfe findest du in <a href=\"%1$s\">dieser Dokumentation</a> oder wende dich an die <a href=\"%2$s\">Support-Foren</a>."
 
 #: wp-includes/media-template.php:1008
 msgid "Link CSS Class"
@@ -5269,7 +5269,7 @@ msgstr "Die Datei ist größer als die Maximalgröße. Bitte verwende eine klein
 
 #: wp-includes/script-loader.php:276
 msgid "This file is not an image. Please try another."
-msgstr "Diese Datei ist keine Bilddatei. Bitte versuche eine andere Datei."
+msgstr "Diese Datei ist keine Bilddatei. Bitte probiere eine andere Datei."
 
 #: wp-includes/general-template.php:3373
 msgctxt "admin color scheme"
@@ -5699,7 +5699,7 @@ msgstr "Du befindest dich im Moment im Archiv der Kategorie %s."
 #. translators: 1: site link, 2: search query
 #: wp-includes/theme-compat/sidebar.php:70
 msgid "You have searched the %1$s blog archives for <strong>&#8216;%2$s&#8217;</strong>. If you are unable to find anything in these search results, you can try one of these links."
-msgstr "Du hast das %1$s Blogarchiv nach <strong>&#8216;%2$s&#8217;</strong> durchsucht. Wenn du nicht das Gewünschte gefunden hast, versuche mal einen dieser Links."
+msgstr "Du hast das %1$s Archiv nach <strong>&#8216;%2$s&#8217;</strong> durchsucht. Wenn du nicht das Gewünschte gefunden hast, probiere mal einen dieser Links."
 
 #: wp-includes/taxonomy.php:609
 msgid "Choose from the most used tags"
@@ -5826,7 +5826,7 @@ msgstr "<strong>Widersprüchliche Angaben für die Konstanten VHOST und SUBDOMAI
 
 #: wp-includes/user.php:2257
 msgid "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username."
-msgstr "<strong>FEHLER</strong> Dieser Benutzername kann nicht verwendet werden, da er ungültige Zeichen enthält. Bitte gib einen gültigen Benutzernamen an."
+msgstr "<strong>FEHLER</strong>: Dieser Benutzername kann nicht verwendet werden, da er ungültige Zeichen enthält. Bitte gib einen gültigen Benutzernamen an."
 
 #: wp-includes/comment-template.php:2189
 msgid "Required fields are marked %s"
@@ -6071,7 +6071,7 @@ msgid ""
 "You are about to permanently delete this menu. \n"
 " 'Cancel' to stop, 'OK' to delete."
 msgstr ""
-"Du bist dabei, dieses Menü endgültig zu löschen.  \n"
+"Du bist dabei, dieses Menü endgültig zu löschen.\n"
 "Wähle „Abbrechen“ oder „OK“ zum Löschen."
 
 #: wp-includes/link-template.php:3749
@@ -7449,10 +7449,6 @@ msgstr[1] "%s Tagen"
 msgid "Exclude:"
 msgstr "Ausschließen:"
 
-#: wp-includes/widgets.php:1357
-msgid "How many items would you like to display?"
-msgstr "Wie viele Einträge sollen angezeigt werden?"
-
 #. translators: 1: blog title, 2: separator (raquo)
 #: wp-includes/general-template.php:2591
 msgid "%1$s %2$s Comments Feed"
@@ -7705,10 +7701,6 @@ msgstr "Neueste Beiträge"
 msgid "Manual Offsets"
 msgstr "Manueller Zeitversatz"
 
-#: wp-includes/script-loader.php:275
-msgid "This file type is not allowed. Please try another."
-msgstr "Der gewählte Dateityp ist nicht zulässig. Probiere bitte einen anderen."
-
 #: wp-includes/script-loader.php:279
 msgid "An error occurred in the upload. Please try again later."
 msgstr "Bei dem Upload ist ein Fehler aufgetreten. Versuche es später noch einmal."
@@ -7827,6 +7819,14 @@ msgstr "Bitte nochmal versuchen."
 #: wp-includes/comment.php:636 wp-includes/comment.php:638
 msgid "Duplicate comment detected; it looks as though you&#8217;ve already said that!"
 msgstr "Doppelter Kommentar wurde entdeckt. Es sieht stark danach aus, dass du das schon einmal geschrieben hast!"
+
+#: wp-includes/script-loader.php:275
+msgid "This file type is not allowed. Please try another."
+msgstr "Der gewählte Dateityp ist nicht zulässig. Bitte probiere einen anderen."
+
+#: wp-includes/widgets.php:1357
+msgid "How many items would you like to display?"
+msgstr "Wieviele Einträge sollen angezeigt werden?"
 
 #: wp-includes/link-template.php:2297 wp-includes/link-template.php:2349
 msgid "&laquo; Previous Page"
