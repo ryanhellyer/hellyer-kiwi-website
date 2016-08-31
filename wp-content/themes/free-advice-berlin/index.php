@@ -1,8 +1,5 @@
 <?php
 
-echo 'Error. Website malfunction.';
-
-die;
 /**
  * The main template file.
  *
