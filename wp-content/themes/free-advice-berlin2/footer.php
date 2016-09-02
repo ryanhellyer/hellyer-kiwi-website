@@ -9,7 +9,7 @@
 
 	<footer>
 		<p>
-			<?php _e( 'Official website of the <a href="https://www.facebook.com/groups/FreeAdviceBerlin/">Free Advice Berlin Facebook group</a>.' ); ?>
+			Former resources of the Free Advice Berlin group.
 
 			<span class="alignright">
 				<a href="<?php echo esc_url( home_url( '/legal-notice/' ) ); ?>"><?php _e( 'Legal Notice', 'free-advice-berlin' ) ?></a>
