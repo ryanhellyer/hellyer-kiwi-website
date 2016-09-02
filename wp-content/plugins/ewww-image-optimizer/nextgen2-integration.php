@@ -11,8 +11,11 @@ class ewwwngg {
 		add_filter( 'ngg_manage_images_number_of_columns', array( $this, 'ewww_manage_images_number_of_columns' ) );
 		add_filter( 'ngg_manage_images_row_actions', array( $this, 'ewww_manage_images_row_actions' ) );
 		add_action( 'ngg_manage_image_custom_column', array( $this, 'ewww_manage_image_custom_column' ), 10, 2 );
-		//add_action( 'ngg_added_new_image', array( $this, 'ewww_added_new_image' ) );
-		add_action( 'ngg_added_new_image', array( $this, 'queue_new_image' ) );
+		if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_background_optimization' ) ) {
+			add_action( 'ngg_added_new_image', array( $this, 'queue_new_image' ) );
+		} else {
+			add_action( 'ngg_added_new_image', array( $this, 'ewww_added_new_image' ) );
+		}
 		add_action( 'admin_action_ewww_ngg_manual', array( $this, 'ewww_ngg_manual' ) );
 		add_action( 'admin_menu', array( $this, 'ewww_ngg_bulk_menu' ) );
 		add_action( 'admin_head', array( $this, 'ewww_ngg_bulk_actions_script' ) );

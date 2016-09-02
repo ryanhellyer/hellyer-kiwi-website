@@ -48,7 +48,7 @@ function ewww_image_optimizer_aux_images () {
 			<p id="ewww-nothing" class="ewww-bulk-info" style="display:none"><?php esc_html_e( 'There are no images to optimize.', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?></p>
 			<p id="ewww-scanning" class="ewww-bulk-info" style="display:none"><?php esc_html_e( 'Scanning, this could take a while', EWWW_IMAGE_OPTIMIZER_DOMAIN ); ?>&nbsp;<img src='<?php echo $loading_image; ?>' alt='loading'/></p>
 		<?php if ( ! empty( $lastaux ) ) { ?>
-			<p id="ewww-lastaux" class="ewww-bulk-info"><?php printf( esc_html__( 'Last optimization was completed on %1$s at %2$s and optimized %3$d images', EWWW_IMAGE_OPTIMIZER_DOMAIN ), date( get_option( 'date_format' ), $lastaux[0] ), date( get_option( 'time_format' ), $lastaux[0] ), $lastaux[1] ); ?></p>
+			<p id="ewww-lastaux" class="ewww-bulk-info"><?php printf( esc_html__( 'Last optimization was completed on %1$s at %2$s and optimized %3$d images', EWWW_IMAGE_OPTIMIZER_DOMAIN ), date( get_option( 'date_format' ), $lastaux[0] ), date( get_option( 'time_format' ), $lastaux[0] ), (int) $lastaux[1] ); ?></p>
 		<?php } ?>
 			<form id="ewww-aux-start" class="ewww-bulk-form" method="post" action="">
 				<input id="ewww-aux-first" type="submit" class="button-secondary action" value="<?php echo $button_text; ?>" />
@@ -196,7 +196,8 @@ function ewww_image_optimizer_image_scan( $dir ) {
 			if ( preg_match( '/(\/|\\\\)\./', $path ) && apply_filters( 'ewww_image_optimizer_ignore_hidden_files', true ) ) {
 				continue;
 			}
-			$pathextension = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) );
+			if ( ! ewww_image_optimizer_quick_mimetype( $path ) ) {
+/*			$pathextension = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) );
 			switch ( $pathextension ) {
 				case 'jpg':
 				case 'jpeg':
@@ -205,15 +206,9 @@ function ewww_image_optimizer_image_scan( $dir ) {
 				case 'gif':
 				case 'pdf':
 					break;
-				default:
-					continue 2;
-			}
-/*			if ( preg_match( '/\.(conf|crt|css|docx|eot|exe|git|gitignore|gitmodules|gz|hgignore|hgsub|hgsubstate|hgtags|htaccess|htm|html|ico|ini|js|json|key|less|lock|log|map|md|mo|mp3|mp4|otf|pdf|pem|php|po|pot|sample|scss|sh|svg|svnignore|swf|template|tiff|tmp|tpl|ttf|txt|url|vcl|woff|woff2|webp|xap|xml|yml|zip)$/', $path ) ) {
+				default:*/
 				continue;
 			}
-			if ( ! preg_match( '/\./', $path ) ) {
-				continue;
-			}*/
 			if ( isset( $optimized_list[$path] ) ) {
 				$image_size = $file->getSize();
 				if ( $optimized_list[ $path ] == $image_size ) {

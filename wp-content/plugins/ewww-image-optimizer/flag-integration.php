@@ -15,8 +15,13 @@ class ewwwflag {
 			add_action('flag_manage_post_processor_images', array(&$this, 'ewww_flag_bulk'));
 			add_action('flag_manage_post_processor_galleries', array(&$this, 'ewww_flag_bulk'));
 		}
-		add_action( 'flag_image_optimized', array( $this, 'queue_new_image' ) );
-		add_action( 'flag_image_resized', array( $this, 'queue_new_image' ) );
+		if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_background_optimization' ) ) {
+			add_action( 'flag_image_optimized', array( $this, 'queue_new_image' ) );
+			add_action( 'flag_image_resized', array( $this, 'queue_new_image' ) );
+		} else {
+			add_action( 'flag_image_optimized', array( $this, 'ewww_added_new_image_slow' ) );
+			add_action( 'flag_image_resized', array( $this, 'ewww_added_new_image_slow' ) );
+		}
 		add_action( 'admin_action_ewww_flag_manual', array( $this, 'ewww_flag_manual' ) );
 		add_action('admin_menu', array(&$this, 'ewww_flag_bulk_menu'));
 		add_action('admin_enqueue_scripts', array(&$this, 'ewww_flag_bulk_script'));
@@ -260,6 +265,35 @@ class ewwwflag {
 			// update the image metadata in the db
 			flagdb::update_image_meta( $id, $image->image->meta_data );
 //		}
+		ewww_image_optimizer_debug_log();
+	}
+
+	/* flag_added_new_image hook - optimize newly uploaded images */
+	function ewww_added_new_image_slow( $image ) {
+		ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
+		// make sure the image path is set
+		if ( isset( $image->imagePath ) ) {
+			// optimize the full size
+			$res = ewww_image_optimizer($image->imagePath, 3, false, false, true);
+			// optimize the web optimized version
+			$wres = ewww_image_optimizer($image->webimagePath, 3, false, true);
+			// optimize the thumbnail
+			$tres = ewww_image_optimizer($image->thumbPath, 3, false, true);
+			if ( ! class_exists( 'flagMeta' ) ) {
+				require_once( FLAG_ABSPATH . 'lib/meta.php' );
+			}
+			// retrieve the metadata for the image ID
+			$pid = $image->pid;
+			$meta = new flagMeta( $pid );
+//			ewwwio_debug_message( print_r( $meta->image->meta_data, TRUE ) );
+			$meta->image->meta_data['ewww_image_optimizer'] = $res[1];
+			if ( ! empty( $meta->image->meta_data['webview'] ) ) {
+				$meta->image->meta_data['webview']['ewww_image_optimizer'] = $wres[1];
+			}
+			$meta->image->meta_data['thumbnail']['ewww_image_optimizer'] = $tres[1];
+			// update the image metadata in the db
+			flagdb::update_image_meta( $pid, $meta->image->meta_data );
+		}
 		ewww_image_optimizer_debug_log();
 	}
 

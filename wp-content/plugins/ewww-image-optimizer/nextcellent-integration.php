@@ -9,8 +9,11 @@ class ewwwngg {
 		add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		add_filter( 'ngg_manage_images_columns', array( &$this, 'ewww_manage_images_columns' ) );
 		add_action( 'ngg_manage_image_custom_column', array( &$this, 'ewww_manage_image_custom_column' ), 10, 2 );
-//		add_action( 'ngg_added_new_image', array( &$this, 'queue_new_image' ) );
-		add_action( 'ngg_after_new_images_added', array( $this, 'dispatch_new_images' ), 10, 2 );
+		if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_background_optimization' ) ) {
+			add_action( 'ngg_after_new_images_added', array( $this, 'dispatch_new_images' ), 10, 2 );
+		} else {
+			add_action( 'ngg_added_new_image', array( &$this, 'ewww_added_new_image_slow' ) );
+		}
 		add_action( 'admin_action_ewww_ngg_manual', array( &$this, 'ewww_ngg_manual' ) );
 		add_action( 'admin_menu', array( &$this, 'ewww_ngg_bulk_menu' ) );
 		add_action( 'admin_head-galleries_page_nggallery-manage-gallery', array( &$this, 'ewww_ngg_bulk_actions_script' ) );
@@ -31,24 +34,6 @@ class ewwwngg {
 	/* adds the Bulk Optimize page to the tools menu, and a hidden page for optimizing thumbnails */
 	function ewww_ngg_bulk_menu () {
 		add_submenu_page( NGGFOLDER, esc_html__( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ), esc_html__( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ), 'NextGEN Manage gallery', 'ewww-ngg-bulk', array( &$this, 'ewww_ngg_bulk_preview' ) );
-	}
-
-	function queue_new_image( $image ) {
-		ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
-		$image_id = $image['id'];
-		global $ewwwio_ngg_background;
-		if ( ! class_exists( 'WP_Background_Process' ) ) {
-			require_once( EWWW_IMAGE_OPTIMIZER_PLUGIN_PATH . 'background.php' );
-		}
-		if ( ! is_object( $ewwwio_ngg_background ) ) {
-			$ewwwio_ngg_background = new EWWWIO_Ngg_Background_Process();
-		}
-		ewwwio_debug_message( "optimization (nextcellent) queued for $image_id" );
-		$ewwwio_ngg_background->push_to_queue( array(
-			'id' => $image_id,
-		) );
-		set_transient( 'ewwwio-background-in-progress-ngg-' . $image_id, true, 24 * HOUR_IN_SECONDS );
-		ewww_image_optimizer_debug_log();
 	}
 
 	function dispatch_new_images( $gallery, $images ) {
@@ -81,20 +66,46 @@ class ewwwngg {
 		$nggdb->update_image_meta( $id, array( 'ewww_image_optimizer' => $fres[1] ) );
 	}
 
+	/* ngg_added_new_image hook */
+	function ewww_added_new_image_slow( $image ) {
+		// query the filesystem path of the gallery from the database
+		global $ewww_defer;
+		global $wpdb;
+		$q = $wpdb->prepare( "SELECT path FROM {$wpdb->prefix}ngg_gallery WHERE gid = %d LIMIT 1", $image['galleryID'] );
+		$gallery_path = $wpdb->get_var( $q );
+		// if we have a path to work with
+		if ( $gallery_path ) {
+			// construct the absolute path of the current image
+			$file_path = trailingslashit( $gallery_path ) . $image['filename'];
+			if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
+				ewww_image_optimizer_add_deferred_attachment( "nextcellent,{$image['id']}" );
+				return;
+			}
+			// run the optimizer on the current image
+			$res = ewww_image_optimizer( ABSPATH . $file_path, 2, false, false, true );
+			// update the metadata for the optimized image
+			nggdb::update_image_meta( $image['id'], array( 'ewww_image_optimizer' => $res[1] ) );
+		}
+	}
+
 	function ewww_ngg_image_save( $filename ) {
 		ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 		global $ewww_defer;
 		if ( file_exists( $filename ) ) {
-			global $ewwwio_image_background;
-			if ( ! class_exists( 'WP_Background_Process' ) ) {
-				require_once( EWWW_IMAGE_OPTIMIZER_PLUGIN_PATH . 'background.php' );
+			if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_background_optimization' ) ) {
+				global $ewwwio_image_background;
+				if ( ! class_exists( 'WP_Background_Process' ) ) {
+					require_once( EWWW_IMAGE_OPTIMIZER_PLUGIN_PATH . 'background.php' );
+				}
+				if ( ! is_object( $ewwwio_image_background ) ) {
+					$ewwwio_image_background = new EWWWIO_Image_Background_Process();
+				}
+				$ewwwio_image_background->push_to_queue( $filename );
+				$ewwwio_image_background->save()->dispatch();
+				ewwwio_debug_message( "ngg thumb queued: $filename" );
+			} else {
+				ewww_image_optimizer( $filename );
 			}
-			if ( ! is_object( $ewwwio_image_background ) ) {
-				$ewwwio_image_background = new EWWWIO_Image_Background_Process();
-			}
-			$ewwwio_image_background->push_to_queue( $filename );
-			$ewwwio_image_background->save()->dispatch();
-			ewwwio_debug_message( "ngg thumb queued: $filename" );
 		}
 		ewww_image_optimizer_debug_log();
 		ewwwio_memory( __FUNCTION__ );
