@@ -21,7 +21,7 @@
 
 	<div class="wrapper">
 
-		<a id="facebook-group" href="https://www.facebook.com/groups/FreeAdviceBerlin/">Free Advice Berlin Facebook group</a>
+		<a id="facebook-group" href="<?php echo esc_url( home_url( '/' ) ); ?>">Free Advice about Berlin</a>
 
 		<a id="title" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 			<h1>
