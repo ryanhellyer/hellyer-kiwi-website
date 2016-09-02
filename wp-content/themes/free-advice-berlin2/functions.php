@@ -1,7 +1,12 @@
 <?php
 
 function fuck_you_tanzia() {
-echo '<div style="
+echo '
+
+
+
+<!-- PM me if you want to know the details behind what happened ;) -->
+<div style="
 padding: 5px 30px;
 border: 1px solid red;
 background: #d9c0c0;
@@ -30,7 +35,11 @@ font-weight: bold;
 		used GPL license version 2.0.
 	</p>
 
-</div>';
+</div>
+
+
+
+';
 }
 
 /**
