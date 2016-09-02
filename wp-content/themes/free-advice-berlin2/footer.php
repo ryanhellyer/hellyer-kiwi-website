@@ -12,6 +12,8 @@
 			Former resources of the Free Advice Berlin group.
 
 			<span class="alignright">
+				<a href="https://ryan.hellyer.kiwi/contact/">Contact</a>
+				 || 
 				<a href="<?php echo esc_url( home_url( '/legal-notice/' ) ); ?>"><?php _e( 'Legal Notice', 'free-advice-berlin' ) ?></a>
 			</span>
 		</p>

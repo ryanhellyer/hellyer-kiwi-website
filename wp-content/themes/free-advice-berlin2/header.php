@@ -21,14 +21,14 @@
 
 	<div class="wrapper">
 
-		<a id="facebook-group" href="<?php echo esc_url( home_url( '/' ) ); ?>">Free Advice about Berlin</a>
+		<a id="facebook-group" href="https://ryan.hellyer.kiwi/">Free Advice about Berlin</a>
 
-		<a id="title" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+		<a id="title" href="https://ryan.hellyer.kiwi/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 			<h1>
 				<strike>Free Advice Berlin</strike>
 			</h1>
 			<p>
-				Formerly the resources for a Berlin based Facebook group
+				The former resources for a Berlin based Facebook group
 			</p>
 		</a>
 
