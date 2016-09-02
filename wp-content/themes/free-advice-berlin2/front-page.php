@@ -8,6 +8,9 @@
 get_header();
 
 
+fuck_you_tanzia();
+
+
 $query = new WP_Query(
 	array(
 		'post_type'      => 'page',

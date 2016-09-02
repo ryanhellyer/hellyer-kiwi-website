@@ -1,5 +1,38 @@
 <?php
 
+function fuck_you_tanzia() {
+echo '<div style="
+padding: 5px 30px;
+border: 1px solid red;
+background: #d9c0c0;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+border-radius: 20px;
+font-weight: bold;
+">
+
+	<p>
+		A hostile takeover occurred within a Facebook group I used to be involved with. 
+		The group administration was run with a simple democratic approach.
+		A single rogue admin tricked us into allowing another admin to join our group, and 
+		just after we realised what had occurred, myself and other other elected admin were 
+		unexpectedly removed without any consultation with the rest of the administration/moderation team. 
+		All group moderators chose to leave within hours of this occurring.
+	</p>
+	<p>
+		This website is a collection of the resources we had created for the group. I am keeping 
+		them here in case they are useful to others. If the data becomes significantly out of 
+		date, then I will remove the website.
+	</p>
+	<p>
+		The original groups website content, used a 
+		Creative Commons Attribution-ShareAlike 4.0 International License and it\'s website design 
+		used GPL license version 2.0.
+	</p>
+
+</div>';
+}
+
 /**
  * Autoload the classes.
  * Includes the classes, and automatically instantiates them via spl_autoload_register().
