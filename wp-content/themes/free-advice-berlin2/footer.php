@@ -9,7 +9,7 @@
 
 	<footer>
 		<p>
-			Former resources of the Free Advice Berlin group.
+			Former resources of a Berlin Facebook group.
 
 			<span class="alignright">
 				<a href="https://ryan.hellyer.kiwi/contact/">Contact</a>
