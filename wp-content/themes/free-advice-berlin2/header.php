@@ -25,7 +25,7 @@
 
 		<a id="title" href="https://ryan.hellyer.kiwi/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 			<h1>
-				<strike>Free Advice Berlin</strike>
+				Advice about Berlin
 			</h1>
 			<p>
 				The former resources for a Berlin based Facebook group
