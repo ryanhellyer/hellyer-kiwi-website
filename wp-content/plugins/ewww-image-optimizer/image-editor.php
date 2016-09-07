@@ -7,7 +7,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		public function save( $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) )
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::save( $filename, $mimetype );
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {
@@ -41,7 +41,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		public function multi_resize( $sizes ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) )
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$metadata = parent::multi_resize( $sizes );
 			ewwwio_debug_message( 'image editor (AGR gd) multi resize' );
 			ewwwio_debug_message( print_r( $metadata, true ) );
@@ -81,7 +81,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) )
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::_save( $image, $filename, $mime_type );
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {
@@ -118,7 +118,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) ) {
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			}
 			$saved = parent::_save( $image, $filename, $mime_type );
 			if ( ! is_wp_error( $saved ) ) {
@@ -156,7 +156,7 @@ if ( class_exists( 'Bbpp_Animated_Gif' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) ) {
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			}
 			$saved = parent::_save( $image, $filename, $mime_type );
 			if ( ! is_wp_error( $saved ) ) {
@@ -195,7 +195,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if (!defined('EWWW_IMAGE_OPTIMIZER_CLOUD'))
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::_save($image, $filename, $mime_type);
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {
@@ -232,7 +232,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) )
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::_save( $image, $filename, $mime_type );
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {
@@ -269,7 +269,7 @@ if ( class_exists( 'WP_Thumb_Image_Editor_Imagick' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if (!defined('EWWW_IMAGE_OPTIMIZER_CLOUD'))
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::_save($image, $filename, $mime_type);
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {
@@ -307,7 +307,7 @@ if ( class_exists( 'WP_Image_Editor_Gmagick' ) ) {
 		protected function _save( $image, $filename = null, $mime_type = null ) {
 			global $ewww_defer;
 			if (!defined('EWWW_IMAGE_OPTIMIZER_CLOUD'))
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			$saved = parent::_save($image, $filename, $mime_type);
 			if ( ! is_wp_error( $saved ) ) {
 				if ( ! $filename ) {

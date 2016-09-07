@@ -455,7 +455,7 @@ function ewww_image_optimizer_bulk_initialize() {
 		$attachments = unserialize( $attachments );
 	}
 	if ( ! is_array( $attachments ) ) {
-		$output['error'] = esc_html__( 'Error retrieving list of images' );
+		$output['error'] = esc_html__( 'Error retrieving list of images', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 		echo json_encode( $output );
 		die();
 	}
@@ -465,9 +465,9 @@ function ewww_image_optimizer_bulk_initialize() {
 	$loading_image = plugins_url('/images/wpspin.gif', __FILE__);
 	// let the user know that we are beginning
 	if ( $file ) {
-		$output['results'] = "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . " <b>$file</b>&nbsp;<img src='$loading_image' /></p>";
+		$output['results'] = "<p>" . esc_html__( 'Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . " <b>$file</b>&nbsp;<img src='$loading_image' /></p>";
 	} else {
-		$output['results'] = "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&nbsp;<img src='$loading_image' /></p>";
+		$output['results'] = "<p>" . esc_html__( 'Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "&nbsp;<img src='$loading_image' /></p>";
 	}
 	echo json_encode( $output );
 	ewwwio_memory( __FUNCTION__ );

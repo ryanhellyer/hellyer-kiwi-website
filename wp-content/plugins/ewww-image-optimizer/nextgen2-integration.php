@@ -634,7 +634,7 @@ if ( ! empty( $_REQUEST['page'] ) && $_REQUEST['page'] !== 'ngg_other_options' &
 		function generate_image_size( $image, $size, $params = null, $skip_defaults = false ) {
 			ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) ) {
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			}
 			$success = $this->call_parent( 'generate_image_size', $image, $size, $params, $skip_defaults );
 			if ( $success ) {
