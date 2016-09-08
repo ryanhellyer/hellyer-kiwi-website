@@ -33,6 +33,11 @@ font-weight: bold;
 		Creative Commons Attribution-ShareAlike 4.0 International License and it\'s website design 
 		used GPL license version 2.0.
 	</p>
+	<p>
+		Note: You may have been redirected here from the original groups domain name. I do not control that domain.
+		The owner is Sarwar Inam. He has the ability to point it elsewhere, but it is currently pointing at my 
+		server, which is why it redrects to this location.
+	</p>
 
 </div>
 
