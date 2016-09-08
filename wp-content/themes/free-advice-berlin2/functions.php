@@ -17,9 +17,8 @@ font-weight: bold;
 ">
 
 	<p>
-		A hostile takeover occurred within a Facebook group I used to be involved with. 
-		The group administration was run with a simple democratic approach.
-		A single rogue admin tricked us into allowing another admin to join our group, and 
+		A Facebook group I used to be an administrator for was run with a simple democratic approach.
+		A rogue admin tricked us into allowing another admin to join our group, and 
 		just after we realised what had occurred, myself and the other elected admin were 
 		unexpectedly removed without any consultation with the rest of the administration/moderation team. 
 		All group moderators chose to leave within hours of this occurring.
