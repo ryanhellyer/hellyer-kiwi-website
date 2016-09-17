@@ -212,7 +212,7 @@ class Simple_Comment_Editing {
 		* @since 1.3.0
 		*
 		* @param string  $textarea_buttons Button HTML
-		* @param int       $comment_id        Comment ID
+		* @param int     $comment_id       Comment ID
 		*/
 		$textarea_buttons = apply_filters( 'sce_buttons', $textarea_buttons, $comment_id );
 		$textarea_button_content .= $textarea_buttons . '</div><!-- .sce-comment-edit-buttons -->';
@@ -233,7 +233,7 @@ class Simple_Comment_Editing {
 		* @since 1.3.0
 		*
 		* @param string  $sce_content SCE content 
-		* @param int       $comment_id Comment ID of the comment
+		* @param int     $comment_id  Comment ID of the comment
 		*/
 		$sce_content = apply_filters( 'sce_content', $sce_content, $comment_id );
 		
@@ -641,29 +641,10 @@ class Simple_Comment_Editing {
 		$comment_date_gmt = date( 'Y-m-d', strtotime( $comment->comment_date_gmt ) );
 		$cookie_hash = md5( $comment->comment_author_IP . $comment_date_gmt . $comment->user_id . $comment->comment_agent );
 			
-		if ( !is_user_logged_in() ) {
-			//Now check for post meta and cookie values being the same
-			
-			$cookie_value = $this->get_cookie_value( 'SimpleCommentEditing' . $comment_id . $cookie_hash );
-			if ( !$cookie_value ) return false;
-			$post_meta_hash = get_post_meta( $post_id, '_' . $comment_id, true );
-			
-			//Check to see if the cookie value matches the post meta hash
-			if ( $cookie_value !== $post_meta_hash ) return false;
-		} else {
-			$user = wp_get_current_user();
-			
-			if ( $user->ID != $comment->user_id ) {
-				return false;
-			}				
-
-			$meta_hash = get_user_meta( $user->ID, '_' . $comment_id, true );	
-			if ( $meta_hash !== $cookie_hash ) {
-				return false;	
-			}
-			
-		}
 		
+		$cookie_value = $this->get_cookie_value( 'SimpleCommentEditing' . $comment_id . $cookie_hash );
+		$comment_meta_hash = get_comment_meta( $comment_id, '_sce', true );
+		if ( $cookie_value !== $comment_meta_hash ) return false;
 		
 		//All is well, the person/place/thing can edit the comment
 		/**
@@ -697,42 +678,16 @@ class Simple_Comment_Editing {
 		
 		//Do some initial checks to weed out those who shouldn't be able to have editable comments
 		if ( 'spam' === $comment_status ) return; //Marked as spam - no editing allowed
-		//if ( current_user_can( 'moderate_comments' ) ) return; //They can edit comments anyway, don't do anything
-		//if ( current_user_can( 'edit_post', $post_id ) ) return; //Post author - User can edit comments for the post anyway
+		
+		// Remove expired comments
+		$this->remove_security_keys();
 		
 		//Don't set a cookie if a comment is posted via Ajax
-		if ( !defined( 'DOING_AJAX' ) && !defined( 'EPOCH_API' ) ) {
+		if ( ! defined( 'DOING_AJAX' ) && ! defined( 'EPOCH_API' ) ) {
 			 $this->generate_cookie_data( $post_id, $comment_id, 'setcookie' );
 		}
 		
 		
-		//Update the security key count (use the same names/techniques as Ajax Edit Comments
-		$security_key_count = absint( get_option( 'ajax-edit-comments_security_key_count' ) ); 
-		if ( !$security_key_count ) {
-			$security_key_count = 1;
-		} else {
-			$security_key_count += 1;
-		}
-		
-		//Now delete security keys (use the same names/techniques as Ajax Edit Comments
-		/**
-		* Filter: sce_security_key_min
-		*
-		* Determine how many security keys should be stored as post meta before garbage collection
-		*
-		* @since 1.0.0
-		*
-		* @param int  $num_keys How many keys to store
-		*/
-		$min_security_keys = absint( apply_filters( 'sce_security_key_min', 100 ) );
-		if ( $security_key_count >= $min_security_keys ) {
-			global $wpdb;
-			$comment_id_to_exclude = "_" . $comment_id;
-			/* Only delete the first 50 to make sure the bottom 50 aren't suddenly without to the ability to edit comments - Props Marco Pereirinha */
-			$wpdb->query( $wpdb->prepare( "delete from {$wpdb->postmeta} where left(meta_value, 6) = 'wpAjax' and meta_key <> %s ORDER BY {$wpdb->postmeta}.meta_id ASC LIMIT 50 ", $comment_id_to_exclude ) ); 
-			$security_key_count = 1;
-		}
-		update_option( 'ajax-edit-comments_security_key_count', $security_key_count );
 	} //end comment_posted
 	
 	/**
@@ -850,22 +805,15 @@ class Simple_Comment_Editing {
 		
 		
 		
-		$rand = '_wpAjax' . $hash . md5( wp_generate_password( 30, true, true ) );
-		$maybe_save_meta = get_post_meta( $post_id, '_' . $comment_id, true );
+		$rand = '_wpAjax' . $hash . md5( wp_generate_password( 30, true, true ) ) . '-' . time();
+		$maybe_save_meta = get_comment_meta( $comment_id, '_sce', true );
 		$cookie_name = 'SimpleCommentEditing' . $comment_id . $hash;
 		$cookie_value = $rand;
 		$cookie_expire = time() + (  60 * $this->comment_time );
 		
-		/* Check to see if user is logged in and skip cookie checks */
-		if ( is_user_logged_in() ) {
-			$user = wp_get_current_user();
-			update_user_meta( $user->ID, '_' . $comment_id, $hash );
-			return;
-		}
-		
 		if ( !$maybe_save_meta ) {
 			//Make sure we don't set post meta again for security reasons and subsequent calls to this method will generate a new key, so no calling it twice unless you want to remove a cookie
-			update_post_meta( $post_id, '_' . $comment_id, $rand );
+			update_comment_meta( $comment_id, '_sce', $rand );
 		} else {
 			//Kinda evil, but if you try to call this method twice, removes the cookie
 			setcookie( $cookie_name, $cookie_value, time() - 60, COOKIEPATH,COOKIE_DOMAIN);
@@ -1007,6 +955,35 @@ class Simple_Comment_Editing {
 		$this->generate_cookie_data( $comment[ 'comment_post_ID' ], $comment[ 'comment_ID' ], 'removecookie' );
 	
 	} //end remove_comment_cookie
+	
+	/**
+	 * remove_security_keys - Remove security keys
+	 * 
+	 * When a comment is posted, remove security keys
+	 *
+	 * @access private
+	 * @since 2.0.2
+	 *
+	 */
+	private function remove_security_keys() {
+
+		$sce_security = get_transient( 'sce_security_keys' );
+		if ( ! $sce_security ) {
+
+			// Remove old SCE keys
+			$security_key_count = get_option( 'ajax-edit-comments_security_key_count' );
+			if ( $security_key_count ) {
+				global $wpdb;
+				delete_option( 'ajax-edit-comments_security_key_count' );
+				$wpdb->query( "delete from {$wpdb->postmeta} where left(meta_value, 7) = '_wpAjax' ORDER BY {$wpdb->postmeta}.meta_id ASC" );
+			}
+			// Delete expired meta
+			global $wpdb;
+			$query = $wpdb->prepare( "delete from {$wpdb->commentmeta} where meta_key = '_sce' AND CAST( SUBSTRING(meta_value, LOCATE('-',meta_value ) +1 ) AS UNSIGNED) < %d", time() - ( $this->comment_time * MINUTE_IN_SECONDS ) );
+			$wpdb->query( $query );
+			set_transient( 'sce_security_keys', true, HOUR_IN_SECONDS );
+		}
+	}
 	
 } //end class Simple_Comment_Editing
 
