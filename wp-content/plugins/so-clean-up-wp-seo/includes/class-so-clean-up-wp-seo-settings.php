@@ -92,10 +92,10 @@ class CUWS_Settings {
 			'hide_wpseoanalysis',
 			'hide_trafficlight',
 			'hide_issue_counter',
+			'hide_gopremium_star',
 			'hide_content_keyword_score',
 			'hide_helpcenter',
 			'hide_admin_columns',
-			'remove_adminbar',
 			'remove_dbwidget',
 		);
 
@@ -221,6 +221,13 @@ class CUWS_Settings {
 					'default'		=> 'on'
 				),
 				array(
+					'id' 			=> 'hide_gopremium_star',
+					'label'			=> __( 'Go Premium', 'so-clean-up-wp-seo' ),
+					'description'	=> __( 'The Yoast SEO plugin comes with a "Go Premium" sub menu with a red star (since Yoast SEO 3.6). This setting hides the red star.', 'so-clean-up-wp-seo' ),
+					'type'			=> 'checkbox',
+					'default'		=> 'on'
+				),
+				array(
 					'id' 			=> 'hide_content_keyword_score',
 					'label'			=> __( 'Content/Keyword Score', 'so-clean-up-wp-seo' ),
 					'description'	=> __( 'Hide Content/Keyword Score (previously traffic light) in publish/update box on edit Post/Page.', 'so-clean-up-wp-seo' ),
@@ -243,14 +250,6 @@ class CUWS_Settings {
 					'type'			=> 'checkbox_multi',
 					'options'		=> array( 'all' => __( 'Hide all columns', 'so-clean-up-wp-seo' ), 'seoscore' => __( 'Hide SEO score column', 'so-clean-up-wp-seo' ), 'title' => __( 'Hide title column', 'so-clean-up-wp-seo' ), 'metadescr' => __( 'Hide meta description column', 'so-clean-up-wp-seo' ), 'focuskw' => __( 'Hide focus keyword column', 'so-clean-up-wp-seo' ), 'none' => __( 'Show all columns', 'so-clean-up-wp-seo' ) ),
 					'default'		=> array( 'seoscore', 'title', 'metadescr'  )
-				),
-				array(
-					'id' 			=> 'remove_adminbar',
-					'label'			=> __( 'SEO menu admin bar', 'so-clean-up-wp-seo' ),
-					'description'	=> __( 'The adminbar contains an SEO menu with 2 options; select here what to remove.', 'so-clean-up-wp-seo' ),
-					'type'			=> 'radio',
-					'options'		=> array( 'seo' => __( 'SEO Settings', 'so-clean-up-wp-seo' ), 'keyword' => __( 'Keyword Research', 'so-clean-up-wp-seo' ), 'both' => __( 'Both', 'so-clean-up-wp-seo' ), 'none' => __( 'None', 'so-clean-up-wp-seo' ) ),
-					'default'		=> 'seo'
 				),
 				array(
 					'id' 			=> 'remove_dbwidget',
@@ -340,8 +339,6 @@ class CUWS_Settings {
 
 			$html .= '<p>' . esc_attr( __( 'The default setting, when you activate the plugin, is that almost all boxes have been ticked; why else would you install our plugin?', 'so-clean-up-wp-seo' ) ) . '</p>' .  "\n";
 
-			$html .= '<p>' . esc_attr( __( 'The intro tour pop up balloon is set to "seen" by default and there is no setting to show it as you can find it in the Yoast SEO Settings.', 'so-clean-up-wp-seo' ) ) . '</p>' .  "\n";
-
 			$html .= '<p>' . esc_attr( __( 'If you ever want to remove the SO Hide SEO Bloat plugin, then you can rest assured that it cleans up after itself:', 'so-clean-up-wp-seo' ) ) . '<br />' . esc_attr( __( 'upon deletion it removes all options automatically.', 'so-clean-up-wp-seo' ) ) . '</p>' .  "\n";
 
 		//$action = is_network_admin() ? 'edit.php?action=' . $this->parent->_token . '_settings' : 'options.php';
@@ -391,10 +388,11 @@ class CUWS_Settings {
 			$html .= '</div>' . "\n"; // end .top
 
 			$html .= '<ul>' . "\n";
-			$html .= '<li><a href="https://so-wp.com/" target="_blank" title="SO WP">' . esc_attr( __('SO WP', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
-			$html .= '<li><a href="https://wpti.ps/" target="_blank" title="WP TIPS">' . esc_attr( __('WP Tips', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
+			$html .= '<li><a href="https://bohanintl.com/" target="_blank" title="BHI Consulting">' . esc_attr( __('BHI Consulting', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
 			$html .= '<li><a href="https://www.linkedin.com/in/pietbos" target="_blank" title="LinkedIn profile">' . esc_attr( __( 'LinkedIn', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
+			$html .= '<li><a href="https://so-wp.com/" target="_blank" title="SO WP">' . esc_attr( __('SO WP', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
 			$html .= '<li><a href="https://github.com/senlin" title="on Github">' . esc_attr( __( 'Github', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
+			$html .= '<li><a href="https://wpti.ps/" target="_blank" title="WP TIPS">' . esc_attr( __('WP Tips', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
 			$html .= '<li><a href="https://profiles.wordpress.org/senlin/" title="on WordPress.org">' . esc_attr( __( 'WordPress.org Profile', 'so-clean-up-wp-seo' ) ) . '</a></li>' . "\n";
 			$html .= '</ul>' . "\n";
 

@@ -96,7 +96,7 @@ class CUWS {
 	 *
 	 * @return  void
 	 */
-	public function __construct ( $file = '', $version = '2.3.0' ) {
+	public function __construct ( $file = '', $version = '2.5.0' ) {
 		$this->_version = $version;
 		$this->_token = 'cuws';
 
@@ -116,10 +116,6 @@ class CUWS {
 
 		/*** PLUGIN FUNCTIONS ***/
 
-		// @since v1.3.0
-		add_action( 'admin_bar_menu', array( $this, 'so_cuws_remove_adminbar_settings' ), 999 );
-		// @since 1.4.0
-		add_action( 'admin_init', array( $this, 'so_cuws_ignore_tour' ), 999 );
 		// @since 1.5.0
 		add_action( 'wp_dashboard_setup', array( $this, 'so_cuws_remove_dashboard_widget' ) );
 		// @since 2.0.0
@@ -142,46 +138,10 @@ class CUWS {
 	 */
 
 	/**
-	 * Remove Settings submenu in admin bar
+	 * Since Yoast SEO 3.6 it is possible to disable the adminbar menu within Dashboard > Features, therefore this setting has become redundant
 	 *
-	 * inspired by [Lee Rickler](https://profiles.wordpress.org/lee-rickler/)
-	 *
-	 * @since v1.3.0
+	 * @since v2.5.0
 	 */
-	public function so_cuws_remove_adminbar_settings() {
-
-		global $wp_admin_bar;
-
-		if ( 'seo' == $this->options['remove_adminbar'] ) {
-
-			$wp_admin_bar->remove_node( 'wpseo-settings' );
-
-		}
-
-		if ( 'keyword' == $this->options['remove_adminbar'] ) {
-
-			$wp_admin_bar->remove_node( 'wpseo-kwresearch' );
-
-		}
-
-		if ( 'both' == $this->options['remove_adminbar'] ) {
-
-			$wp_admin_bar->remove_node( 'wpseo-menu' );
-
-		}
-
-	}
-
-	/**
-	 * Replaces previous so_cuws_remove_about_tour() function that has become redundant from Yoast SEO 2.2.1 onwards
-	 *
-	 * @since v1.4.0
-	 */
-	public function so_cuws_ignore_tour() {
-
-		update_user_meta( get_current_user_id(), 'wpseo_ignore_tour', true );
-
-	}
 
 	/**
 	 * Version 2.3 of Yoast SEO introduced a dashboard widget
@@ -237,6 +197,11 @@ class CUWS {
 		// hide issue counter
 		if ( ! empty( $this->options['hide_issue_counter'] ) ) {
 			echo '#wpadminbar .yoast-issue-counter,#toplevel_page_wpseo_dashboard .update-plugins .plugin-count{display:none;}'; // @since v2.3.0 hide issue counter from adminbar and plugin menu sidebar
+		}
+
+		// hide red star "Go Premium" submenu
+		if ( ! empty( $this->options['hide_gopremium_star'] ) ) {
+			echo '#adminmenu .wpseo-premium-indicator{display:none;}'; // @since v2.5.0 hide star of "Go Premium" submenu
 		}
 
 		// content analysis
@@ -334,7 +299,7 @@ class CUWS {
 	 *
 	 * @return CUWS $_instance
 	 */
-	public static function instance( $file = '', $version = '2.4.0' ) {
+	public static function instance( $file = '', $version = '2.5.0' ) {
 		if ( null === self::$_instance ) {
 			self::$_instance = new self( $file, $version );
 		}
@@ -397,11 +362,11 @@ class CUWS {
 		update_site_option( 'cuws_hide_addkw_button', 'on' );
 		update_site_option( 'cuws_hide_trafficlight', 'on' );
 		update_site_option( 'cuws_hide_issue_counter', 'on' );
+		update_site_option( 'cuws_hide_gopremium_star', 'on' );
 		update_site_option( 'cuws_hide_wpseoanalysis', 'on' );
 		update_site_option( 'cuws_hide_content_keyword_score', 'both' );
 		update_site_option( 'cuws_hide_helpcenter', 'ad' );
 		update_site_option( 'cuws_hide_admin_columns', array( 'seoscore', 'title', 'metadescr' ) );
-		update_site_option( 'cuws_remove_adminbar', 'seo' );
 		update_site_option( 'cuws_remove_dbwidget', 'on' );
 	} // End _set_defaults ()
 
@@ -422,10 +387,10 @@ class CUWS {
 			'hide_trafficlight',
 			'hide_wpseoanalysis',
 			'hide_issue_counter',
+			'hide_gopremium_star',
 			'hide_content_keyword_score',
 			'hide_helpcenter',
 			'hide_admin_columns',
-			'remove_adminbar',
 			'remove_dbwidget',
 		);
 
