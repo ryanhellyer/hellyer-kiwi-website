@@ -1,0 +1,1511 @@
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('fonts/bebasneue-webfont.eot');
+    src: url('fonts/bebasneue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/bebasneue-webfont.woff') format('woff'),
+         url('fonts/bebasneue-webfont.ttf') format('truetype'),
+         url('fonts/bebasneue-webfont.svg#bebas_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'prisna_social_counter';
+  src: url('../font/prisna_social_counter.eot?71690766');
+  src: url('../font/prisna_social_counter.eot?71690766#iefix') format('embedded-opentype'),
+       url('../font/prisna_social_counter.svg?71690766#prisna_social_counter') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'prisna_social_counter';
+  src: url('data:application/octet-stream;base64,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') format('woff'),
+       url('data:application/octet-stream;base64,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ICAgsAUmIC5HI0cjYSM8OC2wOCywABYgsAgjQiAgIEYjR7ABKyNhOC2wOSywABawAyWwAiVHI0cjYbAAVFguIDwjIRuwAiWwAiVHI0cjYSCwBSWwBCVHI0cjYbAGJbAFJUmwAiVhuQgACABjYyMgWGIbIVljuAQAYiCwAFBYsEBgWWawAWNgIy4jICA8ijgjIVktsDossAAWILAIQyAuRyNHI2EgYLAgYGawAmIgsABQWLBAYFlmsAFjIyAgPIo4LbA7LCMgLkawAiVGUlggPFkusSsBFCstsDwsIyAuRrACJUZQWCA8WS6xKwEUKy2wPSwjIC5GsAIlRlJYIDxZIyAuRrACJUZQWCA8WS6xKwEUKy2wPiywNSsjIC5GsAIlRlJYIDxZLrErARQrLbA/LLA2K4ogIDywBCNCijgjIC5GsAIlRlJYIDxZLrErARQrsARDLrArKy2wQCywABawBCWwBCYgLkcjRyNhsAlDKyMgPCAuIzixKwEUKy2wQSyxCAQlQrAAFrAEJbAEJSAuRyNHI2EgsAQjQrAJQysgsGBQWCCwQFFYswIgAyAbswImAxpZQkIjIEewBEOwAmIgsABQWLBAYFlmsAFjYCCwASsgiophILACQ2BkI7ADQ2FkUFiwAkNhG7ADQ2BZsAMlsAJiILAAUFiwQGBZZrABY2GwAiVGYTgjIDwjOBshICBGI0ewASsjYTghWbErARQrLbBCLLA1Ky6xKwEUKy2wQyywNishIyAgPLAEI0IjOLErARQrsARDLrArKy2wRCywABUgR7AAI0KyAAEBFRQTLrAxKi2wRSywABUgR7AAI0KyAAEBFRQTLrAxKi2wRiyxAAEUE7AyKi2wRyywNCotsEgssAAWRSMgLiBGiiNhOLErARQrLbBJLLAII0KwSCstsEossgAAQSstsEsssgABQSstsEwssgEAQSstsE0ssgEBQSstsE4ssgAAQistsE8ssgABQistsFAssgEAQistsFEssgEBQistsFIssgAAPistsFMssgABPistsFQssgEAPistsFUssgEBPistsFYssgAAQCstsFcssgABQCstsFgssgEAQCstsFkssgEBQCstsFossgAAQystsFsssgABQystsFwssgEAQystsF0ssgEBQystsF4ssgAAPystsF8ssgABPystsGAssgEAPystsGEssgEBPystsGIssDcrLrErARQrLbBjLLA3K7A7Ky2wZCywNyuwPCstsGUssAAWsDcrsD0rLbBmLLA4Ky6xKwEUKy2wZyywOCuwOystsGgssDgrsDwrLbBpLLA4K7A9Ky2waiywOSsusSsBFCstsGsssDkrsDsrLbBsLLA5K7A8Ky2wbSywOSuwPSstsG4ssDorLrErARQrLbBvLLA6K7A7Ky2wcCywOiuwPCstsHEssDorsD0rLbByLLMJBAIDRVghGyMhWUIrsAhlsAMkUHiwARUwLQBLuADIUlixAQGOWbABuQgACABjcLEABUKyAAEAKrEABUKzCgIBCCqxAAVCsw4AAQgqsQAGQroCwAABAAkqsQAHQroAQAABAAkqsQMARLEkAYhRWLBAiFixA2REsSYBiFFYugiAAAEEQIhjVFixAwBEWVlZWbMMAgEMKrgB/4WwBI2xAgBEAAA=') format('truetype');
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'prisna_social_counter';
+    src: url('../font/prisna_social_counter.svg?71690766#prisna_social_counter') format('svg');
+  }
+}
+*/
+ 
+.prisna_social_counter_network_icon:before {
+	font-family: "prisna_social_counter";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+
+	font-variant: normal;
+	text-transform: none;
+	 
+	line-height: 1em;
+
+	margin-left: .2em;
+
+	/* you can be more comfortable with increased icons size */
+	/* font-size: 120%; */
+}
+
+#prisna_social_counter_network_facebook .prisna_social_counter_network_icon:before { content: '\e80b'; }
+#prisna_social_counter_network_twitter .prisna_social_counter_network_icon:before { content: '\e80c'; }
+#prisna_social_counter_network_google .prisna_social_counter_network_icon:before { content: '\e80d'; }
+
+.prisna_social_counter_preview_container ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+	background: transparent !important;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0 !important;
+	text-align: center;
+}
+
+.prisna_social_counter_network {
+	line-height: 16px;
+	display: inline-block;
+	border: none;
+}
+
+.prisna_social_counter_network a {
+	text-align: center;
+	text-decoration: none !important;
+	display: block;
+	overflow: hidden;
+	padding: 0 0 10px !important;
+	min-width: 120px;
+}
+
+.prisna_social_counter_network_icon {
+	margin: 4px auto;
+	font-size: 40px;
+	padding: 10px 0 7px !important;
+	display: block;
+}
+
+.prisna_social_counter_unit,
+.prisna_social_counter_value {
+	display: block;
+	text-align: center;
+	font-weight: normal;
+	padding: 1px 0;
+}
+
+.prisna_social_counter_value {
+	font-size: 20px;
+}
+
+.prisna_social_counter_unit {
+	font-size: 15px;
+}
+
+.prisna_social_counter_no_display {
+	display: none;
+}
+
+.prisna_social_counter_no_display_important {
+	display: none !important;
+}
+
+.prisna_social_counter_hidden_important {
+	visibility: hidden !important;
+}
+
+.prisna_social_counter_admin_container {
+	padding-right: 15px;
+	width: 800px;
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 12px !important;
+}
+
+.prisna_social_counter_admin_container label {
+	font-size: 11px;
+	color: #555;
+}
+
+.prisna_social_counter_admin_container textarea:focus,
+.prisna_social_counter_admin_container input:focus,
+.prisna_social_counter_admin_container select:focus {
+	border: 1px solid #ddd !important;
+}
+
+.prisna_social_counter_admin_container td,
+.prisna_social_counter_admin_container textarea,
+.prisna_social_counter_admin_container input,
+.prisna_social_counter_admin_container select {
+	font-size: 11px;
+	color: #555;
+	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	margin-left: 0 !important;
+}
+
+.prisna_social_counter_admin_container textarea {
+	background-color: #fff !important;
+}
+
+.prisna_social_counter_widget_container_text {
+	padding: 10px 0 5px !important;
+}
+
+.prisna_social_counter_widget_container_image {
+	padding: 15px 0 5px !important;
+}
+
+.prisna_social_counter_widget_has_title.prisna_social_counter_widget_container_image {
+	padding: 5px 0 15px !important;
+}
+
+.prisna_social_counter_widget_container_image img {
+	max-width: 250px;
+}
+
+#prisna_admin {
+	direction: ltr !important;
+}
+
+#section_prisna_order {
+	display: none !important;
+}
+
+#prisna_admin code,
+#prisna_admin p,
+.prisna_social_counter_admin_container code,
+.prisna_social_counter_admin_container p {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 12px !important;
+}
+
+.prisna_social_counter_admin_container .button-primary,
+.prisna_social_counter_admin_container .reset-button {
+	cursor: pointer !important;
+	font-weight: bold !important;
+	display: inline-block;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 25px;
+	height: 27px;
+	margin: 0;
+	padding: 0 10px !important;
+	cursor: pointer;
+	border-width: 1px;
+	border-style: solid;
+	-moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+	-webkit-appearance: none !important;
+	white-space: nowrap !important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.prisna_social_counter_admin_container .reset-button {
+	color: #666 !important;
+	border: 1px solid #ccc !important;
+	background: #eee !important;
+}
+
+.prisna_social_counter_admin_container .reset-button.prisna_social_counter_button_hover,
+.prisna_social_counter_admin_container .reset-button:hover {
+
+}
+
+.prisna_social_counter_admin_container input.button,
+.prisna_social_counter_admin_container input.button-primary {
+	font-size: 13px !important;
+	text-shadow: none !important;
+	transform: none !important;
+	-webkit-transform: none !important;
+	-moz-transform: none !important;
+	-o-transform: none !important;
+	-ms-transform: none !important;
+}
+
+.prisna_social_counter_admin_container .button-primary {
+	border: 1px solid #32373c !important;
+	background: #32373c !important;
+	color: #fff !important;
+}
+
+.prisna_social_counter_admin_container .button-primary:hover {
+	background: #222 !important;
+	border: 1px solid #000 !important;
+	color: #fff !important;
+}
+
+.prisna_social_counter_admin_container select {
+	height: 33px !important;
+	padding-top: 7px !important;
+	padding-bottom: 7px !important;
+}
+
+.prisna_social_counter_key .prisna_social_counter_warning_message {
+	background-image: none !important;
+	width: 730px !important;
+	clear: both;
+	float: left;
+	margin-top: 5px !important;
+	height: auto !important;
+	padding: 10px !important;
+	margin-bottom: 0 !important;
+}
+
+#prisna_api_key {
+	width: 600px !important;
+}
+
+.prisna_social_counter_tooltip {
+	background: transparent url(../images/tooltip.png) no-repeat;
+	background-position: center center;
+	height: 16px;
+	width: 20px;
+	display: block;
+	position: absolute;
+	right: 7px;
+	top: 9px;
+	cursor: pointer;
+}
+
+.prisna_social_counter_header {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	position: relative;
+	border: 1px solid #222; 
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	width: 798px;
+	background: #23282d;
+}
+
+.prisna_social_counter_header_icon {
+	background: transparent url(../images/logo_white.png) no-repeat !important;
+	background-position: left bottom !important;
+	height: 51px !important;
+	display: block !important;
+	margin: 10px !important;
+}
+
+.prisna_social_counter_header_title {
+	padding-top: 21px !important;
+	padding-left: 26px !important;
+	font-family: sans-serif !important;
+	font-size: 24px !important;
+	line-height: 24px !important;
+	text-shadow: black 1px 1px 1px !important;
+	color: #fff !important;
+}
+
+.prisna_social_counter_header_title a:visited,
+.prisna_social_counter_header_title a:hover,
+.prisna_social_counter_header_title a {
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+.prisna_social_counter_header_version {
+	position: absolute;
+	top: 5px;
+	right: 8px;
+	left: auto;
+	bottom: auto;
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+.prisna_social_counter_header_version a {
+	color: #fff !important;
+	text-decoration: none !important;
+}
+
+.prisna_social_counter_align_left {
+	float: left;
+}
+
+.prisna_social_counter_imported_success,
+.prisna_social_counter_reseted, 
+.prisna_social_counter_saved {
+	background-color: #e5edc4;
+	border: 1px solid #b8c97b;
+	color: #333;
+	background-position: -190px -118px !important;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-top: 20px;
+}
+
+.prisna_social_counter_imported_success p,
+.prisna_social_counter_reseted p,
+.prisna_social_counter_saved p {
+	background-color: #e5edc4;
+}
+
+.prisna_social_counter_validate_error {
+	color: #ff0000 !important;
+}
+
+.prisna_social_counter_validate_success {
+	color: #3F7227 !important;
+}
+
+.prisna_social_counter_wp_version_check_fail,
+.prisna_social_counter_imported_fail {
+	background-color: #eebdbc;
+	background-position: -119px -119px !important;
+	border: 1px solid #cf7a73;
+	color: #333;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-top: 20px;
+}
+
+.prisna_social_counter_wp_version_check_fail p,
+.prisna_social_counter_imported_fail p {
+	background-color: #eebdbc;
+}
+
+.prisna_social_counter_warning_message {
+	background-color: #fffbcc !important;
+	background-position: -154px -47px !important;
+	border: 1px solid #eac572 !important;
+	color: #333 !important;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-top: 20px;
+}
+
+.prisna_social_counter_validate_warning {
+	color: #ca871c !important;
+}
+
+.prisna_social_counter_warning_message a {
+	color: #333 !important;
+	text-decoration: underline !important;
+}
+
+.prisna_social_counter_warning_message p {
+	background-color: #fffbcc !important;
+}
+
+.prisna_social_counter_warning_message code {
+	background: #fffbcc;
+	font-weight: bold;
+}
+
+.prisna_social_counter_message b {
+	font-weight: bold !important;
+}
+
+.prisna_social_counter_message {
+	width: 766px;
+	margin-left: 0px !important;
+    padding: 0 0 0 33px;
+    margin-bottom: 10px;
+    height: 31px;
+    line-height: 31px;
+	text-shadow: white 0px 1px 1px;
+	background-image: url(../images/sprites.png);
+	background-repeat: no-repeat;
+}
+
+.prisna_social_counter_message p {
+	margin: 2px 0 0 0;
+	line-height: 28px;
+}
+
+.prisna_social_counter_message a {
+	text-decoration: none;
+}
+
+.prisna_social_counter_message a:hover {
+	text-decoration: underline;
+}
+
+.prisna_social_counter_language_group {
+	float: left;
+	width: 160px;
+}
+
+.prisna_social_counter_language_order_group {
+	float: left;
+	width: 757px;
+	margin: 0;
+}
+
+.prisna_social_counter_language_order_item,
+.prisna_social_counter_language_item {
+	padding-top: 4px;
+}
+
+.prisna_social_counter_language_order_item {
+	float: left;
+	margin-right: 5px;
+}
+
+.prisna_social_counter_language_item label {
+	cursor: pointer;
+	height: 16px;
+	line-height: 10px;
+	white-space: nowrap;
+}
+
+.prisna_social_counter_language_order_item td {
+	padding-right: 2px;
+}
+
+.prisna_social_counter_language_item td {
+	padding-right: 2px;
+}
+
+.prisna_social_counter_language_order_item td,
+.prisna_social_counter_language_item td {
+	height: 16px;
+	vertical-align: middle;
+	line-height: 10px;
+	white-space: nowrap;
+}
+
+.prisna_social_counter_admin_container .prisna_social_counter_color_picker {
+	width: 100px !important;
+	margin-left: 8px !important;
+	padding: 8px 5px !important;
+}
+
+.prisna_social_counter_admin_container input.prisna_social_counter_color_picker_view:focus {
+	border: none !important;
+}
+
+.prisna_social_counter_main_form_container input,
+.prisna_social_counter_main_form_container select,
+.prisna_social_counter_main_form_container textarea {
+	line-height: 15px;
+}
+
+.prisna_social_counter_export .prisna_social_counter_export,
+.prisna_social_counter_text .prisna_social_counter_input,
+.prisna_social_counter_textarea .prisna_social_counter_textarea {
+	width: 550px;
+}
+
+.prisna_social_counter_export .prisna_social_counter_export {
+	height: 100px;
+}
+
+.prisna_social_counter_heading {
+	padding-top: 10px !important;
+	padding-bottom: 0 !important;
+}
+
+#general_tab .prisna_social_counter_ui_tab_content {
+	padding-top: 0 !important;
+}
+
+.prisna_social_counter_heading.prisna_social_counter_heading_hiding .prisna_social_counter_title_container {
+	margin: 0 !important;
+}
+
+.prisna_social_counter_row_field_tooltip {
+	position: relative;
+}
+
+.prisna_social_counter_heading_enabled h3 {
+	cursor: pointer;
+}
+
+.prisna_social_counter_size .prisna_social_counter_separator {
+	float: left;
+	display: block;
+	width: 20px;
+	height: 10px;
+}
+
+.prisna_social_counter_size .prisna_social_counter_input {
+	width: 40px;
+}
+
+.prisna_social_counter_textarea .prisna_social_counter_textarea {
+	height: 100px;
+}
+
+.prisna_social_counter_visual .prisna_social_counter_visual_option {
+	display: none;
+}
+
+.prisna_social_counter_visual .prisna_social_counter_layout_s img {
+	width: 82px;
+	height: 28px;
+}
+
+.prisna_social_counter_setting_no_title {
+	padding-top: 5px;
+	margin-bottom: -7px;
+}
+
+.prisna_social_counter_images .prisna_social_counter_image_checked img,
+.prisna_social_counter_visual .prisna_social_counter_visual_checked {
+	border: 2px solid #666 !important;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_visual .prisna_social_counter_setting img {
+	float: left;
+	padding: 3px !important;
+}
+
+.prisna_social_counter_visual .prisna_social_counter_field {
+	border: 2px solid #fff;
+	padding: 1px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+}
+
+.prisna_social_counter_visual .prisna_social_counter_visual_new_row {
+	clear: both;
+}
+
+select.prisna_social_counter_select {
+	width: 300px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_setting_aux,
+.prisna_social_counter_select .prisna_social_counter_field {
+	position: relative;
+}
+
+.prisna_social_counter_setting_aux:after,
+.prisna_social_counter_select .prisna_social_counter_field:after {
+    content:' ';
+    font: 11px;
+    color:#aaa;
+    background-image: url(../images/sprites.png);
+	background-repeat: no-repeat;
+    background-position: -161px -479px;
+    background-color: rgb(238, 238, 238);
+    right: 0;
+    top: 1px;
+    left: auto;
+    bottom: auto;
+    width: 20px;
+    height: 31px;
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid #ddd;
+	-webkit-border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-moz-border-radius-bottomright: 2px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.prisna_social_counter_radio table td {
+	padding-right: 20px;
+}
+
+.prisna_social_counter_rule select.prisna_social_counter_select {
+	width: 100px;
+}
+
+#prisna_translations_import_resource {
+	width: 300px !important;
+}
+
+.prisna_social_counter_transimport select.prisna_social_counter_select {
+	width: 180px;
+}
+
+.prisna_social_counter_radio_option,
+.prisna_social_counter_checkbox,
+.prisna_social_counter_toggle input[type="radio"],
+.prisna_social_counter_checkbox input[type="checkbox"] {
+	display: none !important;
+}
+
+.prisna_social_counter_radio_option + label ,
+.prisna_social_counter_checkbox + label {
+    padding-left: 21px;
+	background-image: url(../images/checkbox.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	display: block;
+	padding-top: 1px;
+	line-height: 18px;
+}
+
+.prisna_social_counter_radio_option:checked + label ,
+.prisna_social_counter_checkbox:checked + label {
+    background-position: left bottom;
+}
+
+.prisna_social_counter_language_item .prisna_social_counter_checkbox:checked + label {
+    background-position: left -81px;
+}
+
+.prisna_social_counter_input {
+	width: 400px;
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff !important;
+	padding: 8px 5px !important;
+}
+
+.prisna_social_counter_main_form_container {
+	clear: both; 
+	border: 1px solid #bcbcbc; 
+	background: #fff; 
+	-moz-border-radius-bottomleft: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-webkit-border-bottom-right-radius: 2px; 
+	border-bottom-right-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-webkit-border-top-right-radius: 2px; 
+	border-top-right-radius: 2px;
+}
+
+.prisna_social_counter_section {
+	padding-bottom: 10px;
+	clear: both;
+	position: relative;
+}
+
+.prisna_social_counter_section_tabbed_2 + .prisna_social_counter_section_tabbed_1 {
+	padding-top: 5px !important;
+	background-position: 7px 8px !important;
+}
+
+.prisna_social_counter_section_tabbed_2 .prisna_social_counter_tooltip,
+.prisna_social_counter_section_tabbed_2 + .prisna_social_counter_section_tabbed_1 .prisna_social_counter_tooltip {
+	top: 14px !important;
+}
+
+.prisna_social_counter_section_tabbed_1 {
+	padding-left: 20px;
+	background-image: url(../images/tabbed_1.png);
+	background-repeat: repeat-y;
+	background-position: 7px 3px;
+}
+
+.prisna_social_counter_section_tabbed_2 {
+	padding-left: 40px;
+	background-image: url(../images/tabbed_2.png);
+	background-repeat: repeat-y;
+	background-position: 7px 8px;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	margin-top: -5px !important;
+}
+
+.prisna_social_counter_section_tabbed_3 {
+	padding-left: 60px;
+	background-image: url(../images/tabbed_3.png);
+	background-repeat: repeat-y;
+	background-position: 7px 3px;
+}
+
+.prisna_social_counter_loading {
+	background-image: url(../images/wpspin_light.gif);
+	background-repeat: no-repeat;
+	background-position: 0 center;
+	width: 16px;
+	height: 16px;
+}
+
+.prisna_social_counter_title_container {
+	background-color: rgb(238, 238, 238);
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-bottom: 8px !important;
+	border: 1px solid #ddd !important;
+}
+
+.prisna_social_counter_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	font-weight: normal !important;
+	letter-spacing: 0.8px;
+	border-left: 1px solid #ddd;
+	background-color: #f9f9f9;
+	margin: 0 0 10px 33px;
+	padding: 0 0 0 10px;
+	line-height: 33px;
+	margin-bottom: 0 !important;
+	color: #555 !important;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_title_10 {
+	clear: both; 
+	padding-top: 10px;
+}
+
+.prisna_social_counter_language .prisna_social_counter_title {
+	margin-bottom: 7px;
+}
+
+.prisna_social_counter_field {
+	float: left;
+}
+
+.prisna_social_counter_field input {
+	float: left;
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_field textarea {
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_field a {
+	text-decoration: none;
+}
+
+.prisna_social_counter_field a:hover {
+	text-decoration: underline;
+}
+
+.prisna_social_counter_description ol {
+	font-size: 11px;
+	color: #fff;
+}
+
+.prisna_social_counter_description {
+	font-size: 11px;
+	padding: 10px 12px;
+	width: 435px;
+	line-height: 14px;
+	z-index: 1000;
+	border: 1px solid #ccc;
+	color: #555;
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #fff; 
+}
+
+.prisna_social_counter_description a {
+	color: #555;
+}
+
+.prisna_social_counter_description code {
+	background: #fff;
+	color: #333;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 2px 5px;
+}
+
+.prisna_social_counter_code_container {
+	width: 425px;
+	background: #222;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 2px 5px;
+}
+
+.prisna_social_counter_code_container code {
+	background: none;
+	color: #fff;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	padding: 0;
+}
+
+
+.prisna_social_counter_clear {
+	clear: both;
+}
+
+.prisna_social_counter_submit_top_container {
+	position: absolute;
+	right: 15px;
+	top: 0;
+}
+
+.prisna_social_counter_submit_container {
+	border-top: 1px solid #bcbcbc;
+	padding: 10px;
+	background: #f1f1f1;
+	-moz-border-radius-bottomleft: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-webkit-border-bottom-right-radius: 2px; 
+	border-bottom-right-radius: 2px;
+}
+
+.prisna_social_counter_submit_container td {
+	padding-right: 10px;
+}
+.prisna_social_counter_submit_container form {
+	margin: 0;
+	padding: 0;
+}
+
+.prisna_social_counter_submit_sub_container {
+	text-align: left;
+}
+
+.prisna_social_counter_submit_sub_container form {
+	display: inline;
+}
+
+.prisna_social_counter_range .prisna_social_counter_field {
+
+}
+
+.prisna_social_counter_field_range {
+	margin-top: 8px;
+	height: 4px;
+	border: 1px solid #ccc;
+	position: relative;
+	float: left;
+	width: 548px;
+	background: #f6f6f6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.prisna_social_counter_field_range a {
+	top: -9px;
+	height: 20px;
+	position: absolute;
+	width: 4px;
+	z-index: 2;
+	border: 1px solid #ccc;
+	background: #f6f6f6;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 2px;
+	margin-left: -3px;
+}
+
+.prisna_social_counter_field_unit {
+	float: left;
+	margin-left: 5px;
+	line-height: 23px;
+}
+
+.prisna_social_counter_field_unit_alt {
+	float: left;
+	margin-right: 5px;
+	line-height: 23px;
+}
+
+.prisna_social_counter_field_unit small,
+.prisna_social_counter_field_unit_alt small {
+	color: #444;
+}
+
+.prisna_social_counter_toggle_container {
+	float: left;
+	margin-right: 20px;
+}
+
+.prisna_social_counter_range .prisna_social_counter_field input {
+	background: #fff;
+	float: left;
+	margin-left: 5px !important;
+	width: 80px;
+}
+
+.prisna_social_counter_field_range .ui-state-hover,
+.prisna_social_counter_field_range .ui-state-active {
+	background: #fff;
+}
+
+.prisna_social_counter_expage td,
+.prisna_social_counter_expost td,
+.prisna_social_counter_excategory td {
+	padding-right: 2px;
+}
+
+.prisna_social_counter_sub_section {
+	margin-top: 5px;
+}
+
+.prisna_social_counter_sub_section_group_controls_advanced:hover {
+	color: #444;
+}
+
+.prisna_social_counter_sub_section_group_controls_advanced_closed {
+	background-position: 5px 3px;
+}
+
+.prisna_social_counter_sub_section_group_controls_advanced_closed:hover {
+	background-position: 5px -13px;
+}
+
+.prisna_social_counter_sub_section_group_controls_advanced_opened {
+	background-position: 5px -29px;
+}
+
+.prisna_social_counter_sub_section_group_controls_advanced_opened:hover {
+	background-position: 5px -45px;
+}
+
+/* ============================= tabs ================================== */
+
+.prisna_social_counter_ui_tab {
+	float: left;
+	text-align: center; 
+	white-space: nowrap;
+	list-style: none;
+	padding: 0;
+	line-height: 35px;
+	font-family: 'bebas_neueregular', Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	letter-spacing: 0.8px;
+	color: #777;
+}
+
+.prisna_social_counter_ui_tab:hover {
+	color: #333;
+}
+
+.prisna_social_counter_ui_tab_unselected {
+	cursor: pointer;
+}
+
+.prisna_social_counter_ui_tab_selected {
+	color: #fff !important;
+	background: #32373c;
+	-webkit-border-top-left-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+.prisna_social_counter_ui_tab_selected:hover {
+	
+}
+
+.prisna_social_counter_ui_tab_last {
+	border-right: 1px solid #8a8a8a; 
+}
+
+.prisna_social_counter_ui_tab_important {
+	color: #ffffff;
+	background: #ff0000;
+}
+
+.prisna_social_counter_ui_tab_separator {
+	float: left; 
+	width: 10px;
+}
+
+.prisna_social_counter_ui_tabs_container.prisna_social_counter_ui_tabs_container_alt {
+	width: 776px;
+}
+
+.prisna_social_counter_ui_tabs_container {
+	float: left;
+	width: 798px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+.prisna_social_counter_ui_tabs_container ul {
+	height: 37px;
+	margin: 0;
+	padding: 0 0 0 0;
+}
+
+.prisna_social_counter_ui_tabs_container ul li.prisna_social_counter_ui_tab_selected {
+
+}
+
+.prisna_social_counter_ui_tabs_container ul li span {
+	float: left;
+	height: 31px;
+}
+
+.prisna_social_counter_ui_tabs_container ul li span {
+	padding: 0 0 0 15px;
+}
+
+.prisna_social_counter_ui_tabs_container ul li span span {
+	padding: 0 15px 0 0;
+}
+
+.prisna_social_counter_ui_tabs_container ul li.prisna_social_counter_ui_tab_selected span {
+
+}
+
+.prisna_social_counter_ui_tabs_container ul li.prisna_social_counter_ui_tab_selected span span {
+
+}
+
+.prisna_social_counter_ui_tabs_main_container {
+	clear: both; 
+	text-align: center;
+	top: 0;
+	left: 0;
+}
+
+.prisna_social_counter_ui_tab_container {
+	clear: both; 
+	text-align: center;
+}
+
+.prisna_social_counter_ui_tab_content {
+	text-align: left;
+	padding: 10px 10px 10px 10px; 
+	margin: 0 auto;
+}
+
+.prisna_social_counter_ui_tab_content_alt {
+	text-align: left;
+	padding: 10px; 
+	margin: 0 auto;
+}
+
+.prisna_social_counter_ui_tab_content_table {
+	width: 515px;
+	margin: 10px auto;
+}
+
+.prisna_social_counter_ui_tab_content_table_no_margin_bottom {
+	width: 515px; 
+	margin: 10px auto 0px auto;
+}
+
+.prisna_social_counter_ui_tab_content_table_property {
+	font-weight: bold; 
+	text-align: right; 
+	width: 162px;
+	line-height: 26px; 
+}
+
+.prisna_social_counter_ui_tab_content_table_property_long {
+	font-weight: bold; 
+	text-align: right; 
+	width: 265px;
+	line-height: 26px; 
+}
+
+.prisna_social_counter_ui_tab_content_table_property_long_complement {
+	width: 250px;
+}
+
+.prisna_social_counter_ui_next_tab_container {
+	padding: 10px; 
+	margin: 0px auto 40px auto; 
+	border-top: 1px solid #8a8a8a;
+}
+
+.prisna_social_counter_ui_subtabs_container {
+	margin: 0 10px;
+}
+
+.prisna_social_counter_ui_unique_tab_container {
+	vertical-align: top; 
+	width: 113px; 
+	padding-right: 10px;
+}
+
+.prisna_social_counter_ui_unique_tab_container_no_width {
+	vertical-align: top; 
+	padding-right: 10px;
+}
+
+.prisna_social_counter_ui_single_tab_content_table {
+	margin: 10px auto;
+}
+
+.prisna_social_counter_ui_single_tab_content_table_property {
+	font-weight: bold; 
+	text-align: right; 
+	line-height: 26px; 
+}
+
+.prisna_social_counter_z_index_1 {
+	z-index: 1;
+}
+
+.prisna_social_counter_z_index_3 {
+	z-index: 3;
+}
+
+#prisna_admin {
+	min-height: 1110px;
+}
+
+.prisna_social_counter_heading.prisna_social_counter_heading_hiding .prisna_social_counter_icon {
+	background-position: -154px -479px !important;
+}
+
+.prisna_social_counter_heading.prisna_social_counter_heading_showing .prisna_social_counter_icon {
+	background-position: -190px -479px !important;
+}
+
+#prisna_custom_css {
+	float: left;
+}
+
+#section_prisna_custom_css {
+	padding-bottom: 0;
+}
+
+#section_prisna_network_order {
+	padding-bottom: 0 !important;
+}
+
+.prisna_social_counter_ui_tab_content .prisna_social_counter_section_tabbed_1 > .prisna_social_counter_setting_no_title {
+	padding-top: 3px;
+}
+
+.prisna_social_counter_social .prisna_social_counter_text_name .prisna_social_counter_text {
+	position: absolute;
+}
+
+.prisna_social_counter_social .prisna_social_counter_text_name .prisna_social_counter_row_field_name {
+	line-height: 35px;
+}
+
+.prisna_social_counter_social .prisna_social_counter_tooltip {
+	top: 14px;
+}
+
+.prisna_social_counter_social .prisna_social_counter_text_name .prisna_social_counter_tooltip {
+	right: -246px;
+	top: 14px;
+}
+
+.prisna_social_counter_sortable h3.prisna_social_counter_title {
+	background-image: url(../images/sprites.png);
+	background-repeat: no-repeat;
+	background-position: 700px -369px;
+}
+
+.prisna_social_counter_social #prisna_twitter_name,
+.prisna_social_counter_social #prisna_google_name,
+.prisna_social_counter_social #prisna_facebook_name {
+	width: 394px;
+}
+
+.prisna_social_counter_social > div > table {
+	width: 100%;
+}
+
+.prisna_social_counter_social td.prisna_social_counter_preview {
+	vertical-align: top !important;
+	padding-right: 0 !important;
+	padding-left: 20px !important;
+}
+
+.prisna_social_counter_social td.prisna_social_counter_preview table {
+	width: 100%;
+}
+
+.prisna_social_counter_social td.prisna_social_counter_preview table td {
+	text-align: center;
+	padding-right: 0 !important;
+}
+
+.prisna_social_counter_preview_title {
+	background-color: #f7f7f7;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin: 0 0 20px !important;
+	border: 1px solid #ddd !important;
+	font-size: 15px;
+	line-height: 28px;
+}
+
+.prisna_social_counter_social > div > table > tbody > tr > td {
+	vertical-align: bottom;
+	width: 33%;
+}
+
+.prisna_social_counter_social > div > table > tbody > tr > td > table > tbody > tr > td {
+	padding: 5px 5px 5px 0;
+}
+
+.prisna_social_counter_social select.prisna_social_counter_select {
+	width: 143px;
+}
+
+.prisna_social_counter_row_field_name {
+	white-space: nowrap;
+	width: 1%;
+}
+
+#prisna_twitter_current,
+#prisna_google_current,
+#prisna_facebook_current {
+	width: 144px;
+}
+
+.prisna_social_counter_shortcode {
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+	display: block;
+	padding: 3px 7px;
+	float: left;
+	margin-top: 5px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.prisna_social_counter_shortcode_container {
+	padding-top: 13px;
+}
+
+#section_prisna_usage {
+	padding-bottom: 10px !important;
+}
+
+#section_prisna_usage_extended {
+	padding-bottom: 0 !important;
+}
+
+.prisna_social_counter_usage .prisna_social_counter_shortcode {
+	margin-top: -5px !important;
+	margin-bottom: 10px !important;
+	clear: both;
+}
+
+.prisna_social_counter_description ul {
+	margin-top: 0 !important;
+}
+
+.prisna_social_counter_description ul,
+.prisna_social_counter_usage ul {
+	clear: both;
+	list-style-position: inside !important;
+	padding-left: 5px !important;
+}
+
+.prisna_social_counter_description li,
+.prisna_social_counter_usage li {
+	list-style-type: square !important;
+	margin-bottom: 0 !important;
+}
+
+#section_prisna_network_order .prisna_social_counter_icon {
+	background-position: -82px -370px !important;
+}
+
+#section_prisna_exclude_categories .prisna_social_counter_icon,
+#section_prisna_exclude_posts .prisna_social_counter_icon,
+#section_prisna_exclude_pages .prisna_social_counter_icon {
+	background-position: -119px -119px !important;
+}
+
+#section_prisna_align_mode .prisna_social_counter_icon {
+	background-position: -154px -262px !important;
+}
+
+#section_prisna_expire .prisna_social_counter_icon {
+	background-position: -190px -190px !important;
+}
+
+#section_prisna_separation .prisna_social_counter_icon,
+#section_prisna_rounded_corners .prisna_social_counter_icon,
+#section_prisna_custom_css .prisna_social_counter_icon {
+	background-position: -190px -262px !important;
+}
+
+#section_prisna_test_mode .prisna_social_counter_icon {
+	background-position: -47px -155px !important;
+}
+
+#section_prisna_on_before_load .prisna_social_counter_icon,
+#section_prisna_on_after_load .prisna_social_counter_icon,
+#section_prisna_custom_html .prisna_social_counter_icon,
+#section_prisna_flags_container_template .prisna_social_counter_icon,
+#section_prisna_flag_template .prisna_social_counter_icon {
+	background-position: -46px -479px !important;
+}
+
+#prisna_premium_frame {
+	overflow: hidden;
+	width: 778px !important;
+	height: 2680px !important;
+}
+
+.prisna_social_counter_admin_container .prisna_social_counter_color_picker {
+	width: 100px !important;
+	margin-left: 8px !important;
+	padding: 8px 5px !important;
+}
+
+.prisna_social_counter_admin_container input.prisna_social_counter_color_picker_view:focus {
+	border: none !important;
+}
+
+.prisna_social_counter_color_picker_view {
+	width: 33px;
+	height: 33px;
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background-image: url(../images/color.png);
+	background-repeat: no-repeat;
+	background-position: -1px -1px;
+	border: none !important;
+}
+
+.prisna_social_counter_color_picker_view_transparent {
+	background-position: -1px -24px !important;
+}
+
+.prisna_social_counter_color_picker_cross {
+	background-image: url(../images/cross.gif);
+	background-repeat: no-repeat;
+}
+
+.prisna_social_counter_color_picker_arrow {
+	background-image: url(../images/arrow.gif);
+	background-repeat: no-repeat;
+}
+
+.prisna_social_counter_color_picker_pad {
+	background-image: url(../images/pad.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.prisna_social_counter_icon {
+	background-image: url(../images/sprites.png);
+	background-repeat: no-repeat;
+}
+
+#section_prisna_container_template .prisna_social_counter_icon,
+#section_prisna_network_template .prisna_social_counter_icon {
+	background-position: -46px -479px !important;
+}
+
+.prisna_social_counter_icon_search { background-position: -10px -11px; }
+.prisna_social_counter_icon_trash { background-position: -47px -12px; }
+.prisna_social_counter_icon_flag { background-position: -82px -12px; }
+.prisna_social_counter_icon_home { background-position: -119px -12px; }
+.prisna_social_counter_icon_link { background-position: -154px -12px; }
+.prisna_social_counter_icon_book { background-position: -190px -12px; }
+
+.prisna_social_counter_icon_mail { background-position: -10px -47px; }
+.prisna_social_counter_icon_help { background-position: -47px -47px; }
+.prisna_social_counter_icon_rss { background-position: -82px -47px; }
+.prisna_social_counter_icon_archive { background-position: -119px -47px; }
+.prisna_social_counter_icon_info { background-position: -154px -47px; }
+.prisna_social_counter_icon_bell { background-position: -190px -47px; }
+
+.prisna_social_counter_icon_world { background-position: -10px -83px; }
+.prisna_social_counter_icon_bulb { background-position: -47px -83px; }
+.prisna_social_counter_icon_cloud { background-position: -82px -83px; }
+.prisna_social_counter_icon_clip { background-position: -119px -83px; }
+.prisna_social_counter_icon_folder { background-position: -154px -83px; }
+.prisna_social_counter_icon_lock { background-position: -190px -83px; }
+
+.prisna_social_counter_icon_tag { background-position: -10px -119px; }
+.prisna_social_counter_icon_note { background-position: -47px -119px; }
+.prisna_social_counter_icon_key { background-position: -82px -119px; }
+.prisna_social_counter_icon_stop { background-position: -119px -119px; }
+.prisna_social_counter_icon_airplane { background-position: -154px -119px; }
+.prisna_social_counter_icon_info2 { background-position: -190px -119px; }
+
+.prisna_social_counter_icon_alarm { background-position: -10px -155px; }
+.prisna_social_counter_icon_clock { background-position: -47px -155px; }
+.prisna_social_counter_icon_calendar { background-position: -82px -155px; }
+.prisna_social_counter_icon_basket { background-position: -119px -155px; }
+.prisna_social_counter_icon_dollartag { background-position: -154px -155px; }
+.prisna_social_counter_icon_cart { background-position: -190px -155px; }
+
+.prisna_social_counter_icon_cart2 { background-position: -10px -191px; }
+.prisna_social_counter_icon_user { background-position: -47px -191px; }
+.prisna_social_counter_icon_users { background-position: -82px -191px; }
+.prisna_social_counter_icon_male { background-position: -119px -191px; }
+.prisna_social_counter_icon_female { background-position: -154px -191px; }
+.prisna_social_counter_icon_refresh { background-position: -190px -191px; }
+
+.prisna_social_counter_icon_chart { background-position: -10px -227px; }
+.prisna_social_counter_icon_pie { background-position: -47px -227px; }
+.prisna_social_counter_icon_address { background-position: -82px -227px; }
+.prisna_social_counter_icon_zip { background-position: -119px -227px; }
+.prisna_social_counter_icon_document { background-position: -154px -227px; }
+.prisna_social_counter_icon_pdf { background-position: -190px -227px; }
+
+.prisna_social_counter_icon_marker { background-position: -10px -262px; }
+.prisna_social_counter_icon_sign { background-position: -47px -262px; }
+.prisna_social_counter_icon_notex { background-position: -82px -262px; }
+.prisna_social_counter_icon_cut { background-position: -119px -262px; }
+.prisna_social_counter_icon_pencil { background-position: -154px -262px; }
+.prisna_social_counter_icon_paint { background-position: -190px -262px; }
+
+.prisna_social_counter_icon_battery { background-position: -10px -299px; }
+.prisna_social_counter_icon_battery2 { background-position: -47px -299px; }
+.prisna_social_counter_icon_chat { background-position: -82px -299px; }
+.prisna_social_counter_icon_chat2 { background-position: -119px -299px; }
+.prisna_social_counter_icon_message { background-position: -154px -299px; }
+.prisna_social_counter_icon_message2 { background-position: -190px -299px; }
+
+.prisna_social_counter_icon_phone { background-position: -10px -335px; }
+.prisna_social_counter_icon_call { background-position: -47px -335px; }
+.prisna_social_counter_icon_inbox { background-position: -82px -335px; }
+.prisna_social_counter_icon_inboxo { background-position: -119px -335px; }
+.prisna_social_counter_icon_inboxi { background-position: -154px -335px; }
+.prisna_social_counter_icon_bluetooth { background-position: -190px -335px; }
+
+.prisna_social_counter_icon_wifi { background-position: -10px -370px; }
+.prisna_social_counter_icon_settings { background-position: -47px -370px; }
+.prisna_social_counter_icon_settings2 { background-position: -82px -370px; }
+.prisna_social_counter_icon_settings3 { background-position: -119px -370px; }
+.prisna_social_counter_icon_hd { background-position: -154px -370px; }
+.prisna_social_counter_icon_hd2 { background-position: -190px -370px; }
+
+.prisna_social_counter_icon_image { background-position: -10px -408px; }
+.prisna_social_counter_icon_image2 { background-position: -47px -408px; }
+.prisna_social_counter_icon_sound { background-position: -82px -408px; }
+.prisna_social_counter_icon_media { background-position: -119px -408px; }
+.prisna_social_counter_icon_mic { background-position: -154px -408px; }
+.prisna_social_counter_icon_print { background-position: -190px -408px; }
+
+.prisna_social_counter_icon_laptop { background-position: -10px -443px; }
+.prisna_social_counter_icon_mouse { background-position: -47px -443px; }
+.prisna_social_counter_icon_camera { background-position: -82px -443px; }
+.prisna_social_counter_icon_video { background-position: -119px -443px; }
+.prisna_social_counter_icon_grid { background-position: -154px -443px; }
+.prisna_social_counter_icon_grid2 { background-position: -191px -443px; }
+
+.prisna_social_counter_icon_list { background-position: -10px -480px; }
+.prisna_social_counter_icon_list2 { background-position: -46px -479px; }
+.prisna_social_counter_icon_table { background-position: -82px -480px; }
