@@ -36,7 +36,9 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		// Calculating total amount
 		$total_amount = 0;
 		foreach ( $data[ '_tasks' ] as $key => $task ) {
-			$total_amount = $total_amount + $task['amount'];
+			if ( isset( $task['amount'] ) ) {
+				$total_amount = $total_amount + $task['amount'];
+			}
 		}
 
 		// Load template

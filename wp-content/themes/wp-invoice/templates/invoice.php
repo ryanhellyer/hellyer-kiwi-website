@@ -64,26 +64,52 @@ foreach ( $tasks as $key => $task ) {
 			&&
 			$key != $key2
 		) {
-			$data[ '_tasks' ][ $key ][ 'hours' ] = $task[ 'hours' ] + $tasks[ $key2 ][ 'hours' ];
-			$data[ '_tasks' ][ $key ][ 'amount' ] = $task[ 'amount' ] + $tasks[ $key2 ][ 'amount' ];
+
+			if ( isset( $task[ 'hours' ] ) && isset( $tasks[ $key2 ][ 'hours' ] ) ) {
+				$data[ '_tasks' ][ $key ][ 'hours' ] = $task[ 'hours' ] + $tasks[ $key2 ][ 'hours' ];
+			}
+
+			if ( isset( $task[ 'amount' ] ) && isset( $tasks[ $key2 ][ 'amount' ] ) ) {
+				$data[ '_tasks' ][ $key ][ 'amount' ] = $task[ 'amount' ] + $tasks[ $key2 ][ 'amount' ];
+			}
+
 		}
 	}
 
-	$tasks[ $key ]['hash'] = $hash;
+	$data[ '_tasks' ][ $key ]['hash'] = $hash;
 }
 
 // Stripping duplicate tasks
+$tasks = $data[ '_tasks' ];
+$dead_keys = array();
+foreach ( $tasks as $key => $task ) {
 
+	foreach ( $tasks as $key2 => $task2 ) {
+		if (
+			$task['hash'] == $task2['hash']
+			&&
+			$key != $key2
+			&&
+			! in_array( $key2, $dead_keys )
+		) {
+			unset( $data[ '_tasks' ][ $key2 ] );
+			$dead_keys[] = $key2;
+			$dead_keys[] = $key;
+		}
+	}
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-//
-// remove duplicate keys with key of hash
-//
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
+}
 
 // Outputting the tasks
 foreach ( $data['_tasks'] as $key => $task ) {
+
+	// Ensuring variables exist, to avoid debug errors
+	foreach ( $this->possible_keys as $possible_key => $field ) {
+		if ( ! isset( $task[ $possible_key ] ) ) {
+			$task[ $possible_key ] = '';
+		}
+
+	}
 
 	echo '
 			<tr>
