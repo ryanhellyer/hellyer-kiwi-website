@@ -94,7 +94,7 @@ foreach ( $data['_tasks'] as $key => $task ) {
 
 <footer>
 	<p>Thank your for your business!</p>
-	<p>ryanhellyer@gmail.com | https://geek.hellyer.kiwi/</p>
+	<p>ryanhellyer@gmail.com | geek.hellyer.kiwi</p>
 </footer>
 
 <?php wp_footer(); ?>
