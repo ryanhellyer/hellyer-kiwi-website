@@ -25,9 +25,13 @@ class WP_Invoice_Core {
 				'label' => __( 'Invoice number', 'plugin-slug' ),
 				'type'  => 'text',
 			),
+			'invoice_to_name' => array(
+				'label' => __( 'Name', 'plugin-slug' ),
+				'type'  => 'text',
+			),
 			'invoice_to_details' => array(
 				'label' => __( 'Details', 'plugin-slug' ),
-				'type'  => 'text',
+				'type'  => 'textarea',
 			),
 			'invoice_to_website' => array(
 				'label' => __( 'Website', 'plugin-slug' ),

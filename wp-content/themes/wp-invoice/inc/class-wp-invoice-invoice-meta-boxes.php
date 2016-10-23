@@ -80,8 +80,16 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 
 			<p>
 				<label for="_<?php echo $key; ?>"><strong><?php echo $field[ 'label' ]; ?></strong></label>
-				<br />
-				<input type="<?php echo $field[ 'type' ]; ?>" name="_<?php echo $key; ?>" id="_<?php echo $key; ?>" value="<?php echo esc_attr( $value ); ?>" />
+				<br /><?php
+
+				if ( 'textarea' == $field['type'] ) {
+					echo '<textarea name="' . esc_attr( '_' . $key ) . '" id="' . esc_attr( '_' . $key ) . '">' . esc_textarea( $value ) . '</textarea>';
+
+				} else {
+					echo '<input type="' . esc_attr( $field[ 'type' ] ) . '" name="' . esc_attr( '_' . $key ) . '" id="' . esc_attr( '_' . $key ) . '" value="' . esc_attr( $value ) . '" />';
+				}
+
+				?>
 			</p><?php
 		}
 
