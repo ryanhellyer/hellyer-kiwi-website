@@ -46,7 +46,7 @@
 			<tr>
 				<td colspan="2"></td>
 				<td>Total amount</td>
-				<td class="total-amount"><?php echo esc_html( $data['_currency'] . $total_amount ); ?></td>
+				<td class="total-amount"><?php echo esc_html( $data['_currency'] . round( $total_amount ) ); ?></td>
 			</tr>
 		</foot>
 		<tbody><?php
@@ -70,7 +70,7 @@ foreach ( $data['_tasks'] as $key => $task ) {
 				</td>
 				<td>' . esc_html( $data[ '_due_date' ] ) . '</td>
 				<td>' . esc_html( $task[ 'hours' ] ) . '</td>
-				<td>' . esc_html( $data['_currency'] . $task[ 'amount' ] ) . '</td>
+				<td>' . esc_html( $data['_currency'] . round( $task[ 'amount' ] ) ) . '</td>
 			</tr>';
 }
 
