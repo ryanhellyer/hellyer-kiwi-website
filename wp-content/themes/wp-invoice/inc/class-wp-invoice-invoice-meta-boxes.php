@@ -126,20 +126,31 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 				}
 			}
 
-			$this->sanitize( $data );
+			// Get client name for adding to post-title
+			if ( isset( $_POST[ 'tax_input' ][ 'client' ][0] ) ) {
 
-			// Save the data
-			update_post_meta( $post_id, self::META_KEY, $data );
+				// If new submission, then grab directly from $_POST, otherwise pull name from term via ID (which is found in $_POST when not new)
+				$client_name = $_POST[ 'tax_input' ][ 'client' ][0];
+				if ( is_numeric( $client_name ) ) {
+					$term = get_term( $client_name, self::CLIENT_TAXONOMY );
+					$client_name = $term->name;
+				}
+
+			}
 
 			// Updating the invoices slug
 			$args = array(
-				'ID'           => $post_id,
+				'ID'          => $post_id,
 				'post_name'   => sanitize_title( $data[ '_invoice_no' ] ),
+				'post_title'  => wp_kses_post( $client_name . ': ' . $data [ '_invoice_no' ] ),
 			);
 			wp_update_post( $args );
 
 			// re-hook this function
 			add_action( 'save_post', array( $this, 'meta_boxes_save' ) );
+
+			// Save the data
+			update_post_meta( $post_id, self::META_KEY, $data );
 
 		}
 

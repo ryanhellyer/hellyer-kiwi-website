@@ -90,16 +90,18 @@ class WP_Invoice_Core {
 //				continue;
 			}
 
-			foreach ( $values as $number => $value ) {
+			if ( is_array( $values ) ) {
+				foreach ( $values as $number => $value ) {
 
-				// Sanitize input data
-				$sanitized_value = wp_kses_post( $value );
+					// Sanitize input data
+					$sanitized_value = wp_kses_post( $value );
 
-				// If value contains content, then save it
-				if ( '' != $sanitized_value ) {
-					$output[ $number ][ $key ] = $sanitized_value;
+					// If value contains content, then save it
+					if ( '' != $sanitized_value ) {
+						$output[ $number ][ $key ] = $sanitized_value;
+					}
+
 				}
-
 			}
 
 		}
