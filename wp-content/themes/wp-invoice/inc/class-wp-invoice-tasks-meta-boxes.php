@@ -126,6 +126,8 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 
 			if ( 'textarea' == $type ) {
 				$row_html .= '<textarea type="text" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]">' . esc_textarea( $value[ $key ] ) . '</textarea>';
+			} elseif ( 'number' == $type ) {
+				$row_html .= '<input step="0.01" type="' . esc_attr( $type ) . '" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]" value="' . esc_attr( $value[ $key ] ) . '" />';
 			} else {
 				$row_html .= '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]" value="' . esc_attr( $value[ $key ] ) . '" />';
 			}
