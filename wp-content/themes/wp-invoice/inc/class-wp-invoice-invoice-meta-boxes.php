@@ -85,6 +85,8 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 				if ( 'textarea' == $field['type'] ) {
 					echo '<textarea name="' . esc_attr( '_' . $key ) . '" id="' . esc_attr( '_' . $key ) . '">' . esc_textarea( $value ) . '</textarea>';
 
+				} elseif ( 'number' == $field['type'] ) {
+					echo '<input step="0.1" type="' . esc_attr( $field[ 'type' ] ) . '" name="' . esc_attr( '_' . $key ) . '" id="' . esc_attr( '_' . $key ) . '" value="' . esc_attr( $value ) . '" />';
 				} else {
 					echo '<input type="' . esc_attr( $field[ 'type' ] ) . '" name="' . esc_attr( '_' . $key ) . '" id="' . esc_attr( '_' . $key ) . '" value="' . esc_attr( $value ) . '" />';
 				}
