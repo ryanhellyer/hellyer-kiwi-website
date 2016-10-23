@@ -14,6 +14,11 @@
 
 <main>
 
+	<p class="box invoice-no">
+		<em>Invoice number:</em>
+		<?php echo esc_html( $data[ '_invoice_no' ] ); ?>
+	</p>
+
 	<p class="box invoice-to">
 		<em>Invoice to:</em>
 		<strong class="invoice-to-name"><?php echo esc_html( $client_name ); ?></strong>
