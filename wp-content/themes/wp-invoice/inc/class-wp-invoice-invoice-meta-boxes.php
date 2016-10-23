@@ -16,25 +16,7 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 	 * Class constructor.
 	 */
 	public function __construct() {
-
-		$this->fields = array(
-			'invoice_no'         => array(
-				'label' => __( 'Invoice number', 'plugin-slug' ),
-				'type'  => 'text',
-			),
-			'total_amount'       => array(
-				'label' => __( 'Total amount', 'plugin-slug' ),
-				'type'  => 'text',
-			),
-			'invoice_to_details' => array(
-				'label' => __( 'Details', 'plugin-slug' ),
-				'type'  => 'text',
-			),
-			'invoice_to_website' => array(
-				'label' => __( 'Website', 'plugin-slug' ),
-				'type'  => 'url',
-			),
-		);
+		parent::__construct();
 
 		add_action( 'add_meta_boxes', array( $this, 'add_metaboxes' ) );
 		add_action( 'save_post',      array( $this, 'meta_boxes_save' ), 10, 2 );
@@ -52,7 +34,7 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 				$this,
 				'meta_box', // Callback to method to display HTML
 			),
-			self::POST_TYPE, // Post type
+			self::INVOICE_POST_TYPE, // Post type
 			'side', // Context, choose between 'normal', 'advanced', or 'side'
 			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
 		);
@@ -64,7 +46,7 @@ class WP_Invoice_Invoice_Meta_Boxes extends WP_Invoice_Core {
 				$this,
 				'link_to_invoice', // Callback to method to display HTML
 			),
-			self::POST_TYPE, // Post type
+			self::INVOICE_POST_TYPE, // Post type
 			'normal', // Context, choose between 'normal', 'advanced', or 'side'
 			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
 		);

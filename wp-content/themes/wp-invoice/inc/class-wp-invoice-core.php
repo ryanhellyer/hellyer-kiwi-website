@@ -10,15 +10,52 @@
  */
 class WP_Invoice_Core {
 
-	const META_KEY    = '_wp_invoice';
-	const POST_TYPE    = 'invoice';
+	const VERSION_NUMBER = '1.0';
+	const THEME_NAME     = 'wp-invoice';
+	const META_KEY       = '_wp_invoice';
+	const INVOICE_POST_TYPE      = 'invoice';
 
-	var $possible_keys = array(
-		'title',
-		'description',
-		'due_date',
-		'amount',
-	);
+	var $possible_keys;
+	var $fields;
+
+	public function __construct() {
+
+		$this->fields = array(
+			'invoice_no'         => array(
+				'label' => __( 'Invoice number', 'plugin-slug' ),
+				'type'  => 'text',
+			),
+			'invoice_to_details' => array(
+				'label' => __( 'Details', 'plugin-slug' ),
+				'type'  => 'text',
+			),
+			'invoice_to_website' => array(
+				'label' => __( 'Website', 'plugin-slug' ),
+				'type'  => 'url',
+			),
+			'currency' => array(
+				'label' => __( 'Currency', 'plugin-slug' ),
+				'type'  => 'text',
+			),
+			'due_date' => array(
+				'label' => __( 'Due date', 'plugin-slug' ),
+				'type'  => 'date',
+			),
+			'paid'       => array(
+				'label' => __( 'Paid?', 'plugin-slug' ),
+				'type'  => 'text',
+			),
+		);
+
+		$this->possible_keys = array(
+			'title' => __( 'Title', 'plugin-slug' ),
+			'description' => __( 'Description', 'plugin-slug' ),
+			'completed_date' => __( 'Completed date', 'plugin-slug' ),
+			'hours' => __( 'Hours', 'plugin-slug' ),
+			'amount' => __( 'Amount owed', 'plugin-slug' ),
+		);
+
+	}
 
 	/**
 	 * Sanitize the data.
@@ -32,9 +69,9 @@ class WP_Invoice_Core {
 		$output = array();
 		foreach( $input as $key => $values ) {
 
-			// Ignore if key doesn't exist
+			// Ignore if key doesn't exist - BROKEN! THIS SHOULD CHECK IF KEY IS IN ARRAY, NOT IF VALUE IS IN ARRAY
 			if ( ! in_array( $key, $this->possible_keys ) ) {
-				continue;
+//				continue;
 			}
 
 			foreach ( $values as $number => $value ) {

@@ -16,6 +16,7 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 	 * Fire the constructor up :D
 	 */
 	public function __construct() {
+		parent::__construct();
 
 		// Add to hooks
 		add_action( 'admin_footer',  array( $this, 'scripts' ) );
@@ -36,7 +37,7 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 				$this,
 				'admin_page', // Callback to method to display HTML
 			),
-			self::POST_TYPE, // Post type
+			self::INVOICE_POST_TYPE, // Post type
 			'normal', // Context, choose between 'normal', 'advanced', or 'side'
 			'default'  // Position, choose between 'high', 'core', 'default' or 'low'
 		);
@@ -110,33 +111,23 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 	public function get_row( $value = '' ) {
 
 		// Ensuring values are set
-		foreach ( $this->possible_keys as $key ) {
+		foreach ( $this->possible_keys as $key => $label ) {
 			if ( ! isset( $value[ $key ] ) ) {
 				$value[ $key ] = '';
 			}
 		}
 
 		// Create the required HTML
-		$row_html = '
+		$row_html = '<p class="sortable">';
 
-					<p class="sortable">
+		foreach ( $this->possible_keys as $key => $label ) {
+			$row_html .= '
+						<input type="text" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]" value="' . esc_attr( $value[ $key ] ) . '" />
+						<label>' . esc_html( $label ) . '</label>
+						<br />';
+		}
 
-						<input type="text" name="' . esc_attr( self::META_KEY ) . '_title[]" value="' . esc_attr( $value[ 'title' ] ) . '" />
-						<label>' . __( 'Title', 'plugin-slug' ) . '</label>
-						<br />
-
-						<input type="text" name="' . esc_attr( self::META_KEY ) . '_description[]" value="' . esc_attr( $value[ 'description' ] ) . '" />
-						<label>' . __( 'Description', 'plugin-slug' ) . '</label>
-						<br />
-
-						<input type="text" name="' . esc_attr( self::META_KEY ) . '_due_date[]" value="' . esc_attr( $value[ 'due_date' ] ) . '" />
-						<label>' . __( 'Due date', 'plugin-slug' ) . '</label>
-						<br />
-
-						<input type="text" name="' . esc_attr( self::META_KEY ) . '_amount[]" value="' . esc_attr( $value[ 'amount' ] ) . '" />
-						<label>' . __( 'Amount', 'plugin-slug' ) . '</label>
-
-					</p>';
+		$row_html .= '</p>';
 
 		// Strip out white space
 		$row_html = str_replace( '  ', '', $row_html );
@@ -162,10 +153,9 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 				return;
 			}
 
-			$data['title'] = $_POST[self::META_KEY . '_title'];
-			$data['description'] = $_POST[self::META_KEY . '_description'];
-			$data['due_date'] = $_POST[self::META_KEY . '_due_date'];
-			$data['amount'] = $_POST[self::META_KEY . '_amount'];
+			foreach ( $this->possible_keys as $key => $label ) {
+				$data[ $key ] = $_POST[ self::META_KEY . '_' . $key ];
+			}
 
 			// Sanitize the data
 			$result = $this->sanitize( $data );
@@ -191,7 +181,7 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 				( strpos( $_SERVER[ 'REQUEST_URI' ], 'post.php') !== false )
 			)
 			&&
-			isset( $_GET['post_type'] ) && 'invoice' == $_GET['post_type']
+			'invoice' == get_post_type()
 		) {
 		?>
 <style>
