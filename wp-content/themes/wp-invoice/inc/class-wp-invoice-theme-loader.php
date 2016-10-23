@@ -28,6 +28,11 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		) );
 		$client_name = $terms[0]->name;
 
+		// Get website string
+		$website = $data[ '_invoice_to_website' ];
+		$website = str_replace( 'https://', '', $website );
+		$website = str_replace( 'http://', '', $website );
+
 		// Calculating total amount
 		$total_amount = 0;
 		foreach ( $data[ '_tasks' ] as $key => $task ) {
