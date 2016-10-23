@@ -30,7 +30,7 @@
 		Deutschland<br />
 		<br />
 		<em>Total Due:</em>
-		<strong class="total-amount"><?php echo esc_html( $data['_currency'] . $total_amount ); ?></strong>
+		<strong class="total-amount"><?php echo esc_html( $data['_currency'] . round( $total_amount ) ); ?></strong>
 	</p>
 
 	<table>
