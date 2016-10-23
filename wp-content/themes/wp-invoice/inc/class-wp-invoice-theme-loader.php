@@ -33,50 +33,49 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		$website = str_replace( 'https://', '', $website );
 		$website = str_replace( 'http://', '', $website );
 
-
 		// Combining data from tasks of multiple days
-		$tasks = array();
+		$new_tasks = array();
 		$tasks = $data[ '_tasks' ];
 		foreach ( $tasks as $key => $task ) {
-
 			$hash = md5( $task[ 'title' ] . $task[ 'description' ] );
 
-			foreach ( $tasks as $key2 => $task2 ) {
+			if ( ! isset( $new_tasks[ $hash ][ 'hours' ] ) ) {
+				$new_tasks[ $hash ][ 'hours' ] = 0;
+			}
 
-				if (
-					$hash == md5( $task2[ 'title' ] . $task2[ 'description' ] )
-					&&
-					$key != $key2
-				) {
+			$new_tasks[ $hash ][ 'hours' ] = $new_tasks[ $hash ][ 'hours' ] + $task[ 'hours' ];
 
-					if ( isset( $task[ 'hours' ] ) && isset( $tasks[ $key2 ][ 'hours' ] ) ) {
-						$new_tasks[ $hash ][ 'hours' ] = $task[ 'hours' ] + $tasks[ $key2 ][ 'hours' ];
-					}
+			// Set amount
+			if ( isset( $task[ 'amount' ] ) ) {
 
-					if ( isset( $task[ 'amount' ] ) && isset( $tasks[ $key2 ][ 'amount' ] ) ) {
-						$new_tasks[ $hash ][ 'amount' ] = $task[ 'amount' ] + $tasks[ $key2 ][ 'amount' ];
-					}
-
+				if ( ! isset( $new_tasks[ $hash ][ 'amount' ] ) ) {
+					$new_tasks[ $hash ][ 'amount' ] = 0;
 				}
 
-				foreach ( $this->possible_keys as $possible_key => $x ) {
+				// Add up amounts for identical tasks
+				$new_tasks[ $hash ][ 'amount' ] = $new_tasks[ $hash ][ 'amount' ] + $task[ 'amount' ];
 
-					if (
-						! isset( $new_tasks[ $hash ][ $possible_key ] )
-						&&
-						isset( $task[ $possible_key ] )
-					) {
-						$new_tasks[ $hash ][ $possible_key ] = $task[ $possible_key ];
-					}
+			} else {
 
-				}
+				// Calculate amount based on number of hours
+				$new_tasks[ $hash ][ 'amount' ] = $new_tasks[ $hash ][ 'hours' ] * $data[ '_hourly_rate' ];
 
 			}
 
+			// Adding in original keys
+			foreach ( $this->possible_keys as $possible_key => $x ) {
+
+				if (
+					! isset( $new_tasks[ $hash ][ $possible_key ] )
+					&&
+					isset( $task[ $possible_key ] )
+				) {
+					$new_tasks[ $hash ][ $possible_key ] = $task[ $possible_key ];
+				}
+			}
+
 		}
-		$tasks = $data[ '_tasks' ] = $new_tasks;
-
-
+		$data[ '_tasks' ] = $new_tasks;
 
 		// Calculating the amount
 		foreach ( $data[ '_tasks' ] as $key => $task ) {
