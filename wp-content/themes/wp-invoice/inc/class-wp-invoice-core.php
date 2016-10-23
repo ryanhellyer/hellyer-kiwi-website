@@ -42,6 +42,10 @@ class WP_Invoice_Core {
 				'label' => __( 'Due date', 'plugin-slug' ),
 				'type'  => 'date',
 			),
+			'hourly_rate' => array(
+				'label' => __( 'Hourly rate', 'plugin-slug' ),
+				'type'  => 'number',
+			),
 			'paid'       => array(
 				'label' => __( 'Paid?', 'plugin-slug' ),
 				'type'  => 'text',
@@ -66,7 +70,7 @@ class WP_Invoice_Core {
 				'type'  => 'number',
 			),
 			'amount'         => array(
-				'label' => __( 'Amount owed', 'plugin-slug' ),
+				'label' => __( 'Amount owed (if blank, then auto calculated)', 'plugin-slug' ),
 				'type'  => 'number',
 			),
 		);

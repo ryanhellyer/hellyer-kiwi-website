@@ -51,55 +51,6 @@
 		</foot>
 		<tbody><?php
 
-// Combining data from tasks of multiple days
-$new_data = array();
-$tasks = $data[ '_tasks' ];
-foreach ( $tasks as $key => $task ) {
-
-	$hash = md5( $task[ 'title' ] . $task[ 'description' ] );
-
-	foreach ( $tasks as $key2 => $task2 ) {
-		if (
-			$hash == md5( $task2[ 'title' ] . $task2[ 'description' ] )
-			&&
-			$key != $key2
-		) {
-
-			if ( isset( $task[ 'hours' ] ) && isset( $tasks[ $key2 ][ 'hours' ] ) ) {
-				$data[ '_tasks' ][ $key ][ 'hours' ] = $task[ 'hours' ] + $tasks[ $key2 ][ 'hours' ];
-			}
-
-			if ( isset( $task[ 'amount' ] ) && isset( $tasks[ $key2 ][ 'amount' ] ) ) {
-				$data[ '_tasks' ][ $key ][ 'amount' ] = $task[ 'amount' ] + $tasks[ $key2 ][ 'amount' ];
-			}
-
-		}
-	}
-
-	$data[ '_tasks' ][ $key ]['hash'] = $hash;
-}
-
-// Stripping duplicate tasks
-$tasks = $data[ '_tasks' ];
-$dead_keys = array();
-foreach ( $tasks as $key => $task ) {
-
-	foreach ( $tasks as $key2 => $task2 ) {
-		if (
-			$task['hash'] == $task2['hash']
-			&&
-			$key != $key2
-			&&
-			! in_array( $key2, $dead_keys )
-		) {
-			unset( $data[ '_tasks' ][ $key2 ] );
-			$dead_keys[] = $key2;
-			$dead_keys[] = $key;
-		}
-	}
-
-}
-
 // Outputting the tasks
 foreach ( $data['_tasks'] as $key => $task ) {
 
