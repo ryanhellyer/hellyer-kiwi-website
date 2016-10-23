@@ -28,6 +28,7 @@ class WP_Invoice_Register extends WP_Invoice_Core {
 			'public'   => true,
 			'label'    => 'Invoice',
 			'supports' => array(
+				'title',
 				'revisions',
 			)
 		);

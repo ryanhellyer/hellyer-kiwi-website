@@ -50,7 +50,7 @@ class WP_Invoice_Admin {
 		// List of items to remove
 		$restricted_sub_level = array(
 			'index.php' => 'TOP',
-//			'options-general.php' => 'TOP',
+			'options-general.php' => 'TOP',
 			'plugins.php' => 'TOP',
 			'users.php' => 'TOP',
 			'themes.php' => 'TOP',
