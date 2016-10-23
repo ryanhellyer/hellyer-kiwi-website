@@ -111,7 +111,7 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 	public function get_row( $value = '' ) {
 
 		// Ensuring values are set
-		foreach ( $this->possible_keys as $key => $label ) {
+		foreach ( $this->possible_keys as $key => $field ) {
 			if ( ! isset( $value[ $key ] ) ) {
 				$value[ $key ] = '';
 			}
@@ -120,11 +120,16 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 		// Create the required HTML
 		$row_html = '<p class="sortable">';
 
-		foreach ( $this->possible_keys as $key => $label ) {
-			$row_html .= '
-						<input type="text" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]" value="' . esc_attr( $value[ $key ] ) . '" />
-						<label>' . esc_html( $label ) . '</label>
-						<br />';
+		foreach ( $this->possible_keys as $key => $field ) {
+			$label = $field['label'];
+			$type  = $field['type'];
+
+			if ( 'textarea' == $type ) {
+				$row_html .= '<textarea type="text" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]">' . esc_textarea( $value[ $key ] ) . '</textarea>';
+			} else {
+				$row_html .= '<input type="text" name="' . esc_attr( self::META_KEY ) . '_' . $key . '[]" value="' . esc_attr( $value[ $key ] ) . '" />';
+			}
+			$row_html .= '<label>' . esc_html( $label ) . '</label><br />';
 		}
 
 		$row_html .= '</p>';

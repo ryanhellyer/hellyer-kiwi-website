@@ -49,11 +49,26 @@ class WP_Invoice_Core {
 		);
 
 		$this->possible_keys = array(
-			'title' => __( 'Title', 'plugin-slug' ),
-			'description' => __( 'Description', 'plugin-slug' ),
-			'completed_date' => __( 'Completed date', 'plugin-slug' ),
-			'hours' => __( 'Hours', 'plugin-slug' ),
-			'amount' => __( 'Amount owed', 'plugin-slug' ),
+			'title'          => array(
+				'label' => __( 'Title', 'plugin-slug' ),
+				'type'  => 'text',
+			),
+			'description'    => array(
+				'label' => __( 'Description', 'plugin-slug' ),
+				'type'  => 'textarea',
+			),
+			'completed_date' => array(
+				'label' => __( 'Completed date', 'plugin-slug' ),
+				'type'  => 'date',
+			),
+			'hours'          => array(
+				'label' => __( 'Hours', 'plugin-slug' ),
+				'type'  => 'number',
+			),
+			'amount'         => array(
+				'label' => __( 'Amount owed', 'plugin-slug' ),
+				'type'  => 'number',
+			),
 		);
 
 	}
