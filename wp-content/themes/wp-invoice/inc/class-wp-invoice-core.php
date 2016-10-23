@@ -10,10 +10,11 @@
  */
 class WP_Invoice_Core {
 
-	const VERSION_NUMBER = '1.0';
-	const THEME_NAME     = 'wp-invoice';
-	const META_KEY       = '_wp_invoice';
-	const INVOICE_POST_TYPE      = 'invoice';
+	const VERSION_NUMBER    = '1.0';
+	const THEME_NAME        = 'wp-invoice';
+	const META_KEY          = '_wp_invoice';
+	const INVOICE_POST_TYPE = 'invoice';
+	const CLIENT_TAXONOMY   = 'client';
 
 	var $possible_keys;
 	var $fields;
@@ -23,10 +24,6 @@ class WP_Invoice_Core {
 		$this->fields = array(
 			'invoice_no'         => array(
 				'label' => __( 'Invoice number', 'plugin-slug' ),
-				'type'  => 'text',
-			),
-			'invoice_to_name' => array(
-				'label' => __( 'Name', 'plugin-slug' ),
 				'type'  => 'text',
 			),
 			'invoice_to_details' => array(

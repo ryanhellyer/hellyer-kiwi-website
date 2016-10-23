@@ -39,7 +39,7 @@ class WP_Invoice_Register extends WP_Invoice_Core {
 	 */
 	public function register_taxonomy() {
 		register_taxonomy(
-			'genre',
+			self::CLIENT_TAXONOMY,
 			self::INVOICE_POST_TYPE,
 			array(
 				'label'        => __( 'Client', 'plugin-slug' ),

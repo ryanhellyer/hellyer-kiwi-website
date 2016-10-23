@@ -21,6 +21,13 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			}			
 		}
 
+		// Get client name
+		$terms = get_terms( array(
+			'taxonomy'   => self::CLIENT_TAXONOMY,
+			'hide_empty' => false,
+		) );
+		$client_name = $terms[0]->name;
+
 		// Calculating total amount
 		$total_amount = 0;
 		foreach ( $data[ '_tasks' ] as $key => $task ) {

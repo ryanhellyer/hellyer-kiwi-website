@@ -16,8 +16,8 @@
 
 	<p class="box invoice-to">
 		<em>Invoice to:</em>
-		<strong class="invoice-to-name"><?php echo esc_html( $data[ '_invoice_to_name' ] ); ?></strong>
-		<span class="invoice-to-details"><?php echo esc_html( $data[ '_invoice_to_details' ] ); ?></span>
+		<strong class="invoice-to-name"><?php echo esc_html( $client_name ); ?></strong>
+		<span class="invoice-to-details"><?php echo wp_kses_post( str_replace( "\n", '<br />', $data[ '_invoice_to_details' ] ) ); ?></span>
 		<a class="invoice-to-website" href="#"><?php echo esc_html( $data[ '_invoice_to_website' ] ); ?></a>
 		</span>
 	</p>
