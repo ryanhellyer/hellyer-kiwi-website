@@ -89,6 +89,10 @@ foreach ( $data['_tasks'] as $key => $task ) {
 		Address: Rankestraße 33­34, 10789 Berlin, Deutschland<br />
 	</p>
 
+	<p class="box note">
+		<?php echo wp_kses_post( $data[ '_note' ] ); ?>
+	</p>
+
 </main>
 
 <footer>

@@ -46,6 +46,10 @@ class WP_Invoice_Core {
 				'label' => __( 'Hourly rate', 'plugin-slug' ),
 				'type'  => 'number',
 			),
+			'note'       => array(
+				'label' => __( 'Note', 'plugin-slug' ),
+				'type'  => 'textarea',
+			),
 			'paid'       => array(
 				'label' => __( 'Paid?', 'plugin-slug' ),
 				'type'  => 'text',
