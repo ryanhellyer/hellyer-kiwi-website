@@ -26,8 +26,7 @@
 		Tax identity number: 16/339/01057<br />
 		Ryan Hellyer<br />
 		Friedrichstraße 123<br />
-		10117 Berlin<br />
-		Deutschland<br />
+		10117 Berlin, Deutschland<br />
 		<br />
 		<em>Total Due:</em>
 		<strong class="total-amount"><?php echo esc_html( $data['_currency'] . round( $total_amount ) ); ?></strong>
