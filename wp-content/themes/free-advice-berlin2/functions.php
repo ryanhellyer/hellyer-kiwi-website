@@ -35,8 +35,7 @@ font-weight: bold;
 	</p>
 	<p>
 		Note: You may have been redirected here from the original groups domain name. I do not control that domain.
-		The owner is Sarwar Inam. He has the ability to point it elsewhere, but it is currently pointing at my 
-		server, which is why it redrects to this location.
+		The owner of that domain is also no longer involved with the original Facebook group.
 	</p>
 
 </div>
