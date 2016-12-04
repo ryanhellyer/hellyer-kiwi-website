@@ -1,9 +1,9 @@
 === WordPress Beta Tester  ===
 Tags: beta, advanced, testing
-Contributors: westi
-Tested up to: 4.5
+Contributors: westi, mlteal
+Tested up to: 4.7
 Requires at least: 3.0.5
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -21,6 +21,11 @@ For the more adventurous there is the option to switch to the bleeding edge of d
 Don't forget to backup before you start!
 
 == Changelog ==
+
+= 1.0.2 =
+* Update tested up to version to 4.7.
+* Fix the location of the settings screen in Multisite (moved under Settings in Network Admin).
+* Minor text fixes.
 
 = 1.0.1 =
 * Update tested up to version to 4.5.
