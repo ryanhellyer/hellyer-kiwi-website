@@ -86,8 +86,8 @@ class Simple_Comment_Editing {
 		/* Begin Filters */
 		if ( !is_feed() && !defined( 'DOING_SCE' ) ) {
 			add_filter( 'comment_excerpt', array( $this, 'add_edit_interface'), 1000, 2 );
-			add_filter( 'comment_text', array( $this, 'add_edit_interface'), 1000,2 );
-			//Notice Thesis compatibility not here?  It's not an accident.
+			add_filter( 'comment_text', array( $this, 'add_edit_interface'), 1000, 2 );
+			add_filter( 'thesis_comment_text', array( $this, 'add_edit_interface'), 1000, 2 );
 		}
 		
 		//Epoch Compatibility
@@ -103,10 +103,11 @@ class Simple_Comment_Editing {
 	 *
 	 */
 	public function add_edit_interface( $comment_content, $comment = false) {
+		global $comment;
 		if ( ! $comment || empty( $comment_content ) ) return $comment_content;
 		$comment_id = absint( $comment->comment_ID );
 		$post_id = absint( $comment->comment_post_ID );
-		
+				
 		//Check to see if a user can edit their comment
 		if ( !$this->can_edit( $comment_id, $post_id ) ) return $comment_content;
 
