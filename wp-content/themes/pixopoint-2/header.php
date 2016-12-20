@@ -22,11 +22,7 @@
 			Plugins, code tips and more!
 		</p>
                 <?php
-if ( is_ssl() ) {
-        $http = 'https://geek.hellyer.kiwi';
-} else {
-        $http = 'http:////files.ryanhellyer.net';
-}
+$http = 'https://geek.hellyer.kiwi';
 
 ?>
                 <img src="<?php echo $http; ?>/wp-content/themes/pixopoint-2/images/ryan-cut-small.png" />
