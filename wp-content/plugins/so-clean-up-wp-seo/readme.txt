@@ -4,7 +4,7 @@ Donate link: https://so-wp.com/plugins/donations
 Tags: hide, seo, bloat, remove, ads, cartoon, wordpress seo addon, admin columns, nags, traffic light, dashboard widget, hide premium 
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPL-3.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -31,12 +31,13 @@ The default settings of the current release are as follows:
 * hide image warning nag that shows in edit Post/Page screen when featured image is smaller than 200x200 pixels
 * hide add keyword button that shows in edit Post/Page and only serves to show an ad for the premium version
 * hide content/seoscore in publish/update box on edit Post/Page
+* hide readability tab and content analysis metabox item
 * hide the issue counter (added to v3.3 of Yoast SEO plugin)
 * hide the SEO Score, Title and Meta description admin columns on the Posts/Pages screens; Focus keyword column can be hidden too
 * hide the SEO Score admin column on taxonomies (added to v3.1 of Yoast SEO plugin)
 * hide the ad for the premium version in the help center or hide the whole help center (added to v3.2 of Yoast SEO plugin)
 * hide the red star behind the "Go Premium" submenu text (added to v3.6 of Yoast plugin and changed again with v3.7)
-* hide the Upsell Notice that shows in the Yoast SEO Dashboard
+* hide the Upsell Notice &amp; Notification box that show in the Yoast SEO Dashboard
 * remove the Yoast SEO widget from the WordPress Dashboard
 
 We support this plugin exclusively through [Github](https://github.com/senlin/so-clean-up-wp-seo/issues). Therefore, if you have any questions, need help and/or want to make a feature request, please open an issue over at Github. You can also browse through open and closed issues to find what you are looking for and perhaps even help others.
@@ -76,6 +77,10 @@ Done!
 
 The link to the page has been added to the Yoast SEO menu and of course there is also a link to it from the Plugins page.
 
+= I have updated the plugin and a new setting has been added, but I still can see that particular item. =
+
+That indeed can happen when we add a new setting. The plugin's settings then need to be re-saved. So all you need to do is go to the Settings page of the SO Hide SEO Bloat plugin and save them. Then all should be good.
+
 = Can I use SO Hide SEO Bloat on Multisite? =
 
 Yes, you can.
@@ -108,6 +113,15 @@ Please open an issue on [Github](https://github.com/senlin/so-clean-up-wp-seo/is
 5. dashboard widget that is removed with the plugin activated
 
 == Changelog ==
+
+= 2.5.4 = 
+
+* Happy Holidays!
+* release date 2016.12.22 (triggered by release of Yoast SEO 4.0)
+* fix: change robots nag hiding via settings instead of globally
+* improvement: content analysis - hide readability tab
+* improvement: upsell notice: hide entire notifications box
+* add FAQ
 
 = 2.5.3 = 
 
