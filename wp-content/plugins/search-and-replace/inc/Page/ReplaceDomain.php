@@ -58,7 +58,7 @@ class ReplaceDomain extends AbstractPage implements PageInterface {
 		}
 
 		$report = $this->dbe->db_backup( $search, $replace, array(), TRUE, $new_db_prefix );
-		$this->downloader->show_download_modal( $report );
+		$this->downloader->show_modal( $report );
 
 		return TRUE;
 	}
@@ -87,4 +87,13 @@ class ReplaceDomain extends AbstractPage implements PageInterface {
 		return esc_html__( 'Replace Domain URL', 'search-and-replace' );
 	}
 
+	/**
+	 * Return the static slug string.
+	 *
+	 * @return string
+	 */
+	public function get_slug() {
+
+		return 'replace-domain-url';
+	}
 }

@@ -72,7 +72,7 @@ class Replace {
 
 	public function run_search_replace( $search, $replace, $tables ) {
 
-		if( $search == $replace ){
+		if ( $search === $replace ){
 			return new \WP_Error( 'error', __( "Search and replace pattern can't be the same!" ) );
 		}
 
@@ -126,7 +126,8 @@ class Replace {
 		}
 		//split columns array in primary key string and columns array
 		$columns     = $this->dbm->get_columns( $table );
-		list( $primary_key, $columns ) = $columns;
+		$primary_key = $columns[ 0 ];
+		$columns     = $columns[ 1 ];
 
 		if ( NULL === $primary_key ) {
 			array_push(
