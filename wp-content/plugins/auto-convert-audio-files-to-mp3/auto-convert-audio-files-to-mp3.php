@@ -9,6 +9,18 @@ Author URI: https://geek.hellyer.kiwi/
 
 */
 
+/**
+ * Add non-standard mime type support.
+ */
+function acf_myme_types( $mime_types ){
+
+	$mime_types[ 'flac' ] = 'audio/flac';
+	$mime_types[ 'ogg' ] = 'application/ogg';
+
+	return $mime_types;
+}
+add_filter( 'upload_mimes', 'acf_myme_types', 1, 1 );
+
 
 add_filter( 'wp_handle_upload_prefilter', 'acf_filter_audio_on_upload' );
 /**
@@ -25,6 +37,8 @@ function acf_filter_audio_on_upload( $data ) {
 		'.wav' == $caf_extension
 		||
 		'.ogg' == $caf_extension
+		||
+		'.flac' == $caf_extension
 	) {
 		$dir = wp_upload_dir();
 		$slug = sanitize_title( $slug );
