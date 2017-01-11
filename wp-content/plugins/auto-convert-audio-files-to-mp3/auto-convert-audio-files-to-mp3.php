@@ -9,6 +9,7 @@ Author URI: https://geek.hellyer.kiwi/
 
 */
 
+
 /**
  * Add non-standard mime type support.
  */
@@ -30,15 +31,16 @@ add_filter( 'wp_handle_upload_prefilter', 'acf_filter_audio_on_upload' );
 function acf_filter_audio_on_upload( $data ) {
 	global $caf_extension;
 
-	$caf_extension = substr( $data[ 'name' ], -4 );
+	$name_exploded = explode( '.', $data[ 'name' ] );// substr( $data[ 'name' ], -4 );
+	$caf_extension = $name_exploded[ count( $name_exploded ) - 1 ];
 	$slug      = substr( $data[ 'name' ], 0, -4 );
-
+//$ext = $caf_extension;
 	if (
-		'.wav' == $caf_extension
+		'wav' == $caf_extension
 		||
-		'.ogg' == $caf_extension
+		'ogg' == $caf_extension
 		||
-		'.flac' == $caf_extension
+		'flac' == $caf_extension
 	) {
 		$dir = wp_upload_dir();
 		$slug = sanitize_title( $slug );
@@ -52,6 +54,10 @@ function acf_filter_audio_on_upload( $data ) {
 	} else {
 		$caf_extension = 'EJECT!';
 	}
+
+$file = '/home/ryan/nginx/arousingaudio.com/public_html/audio/test.txt';
+$contents = file_get_contents( $file );
+file_put_contents( $file, $contents . "\n\n" . $ext . ': ' . $caf_extension . "\n".print_r( $data, true ) );
 
 	return $data;
 }
