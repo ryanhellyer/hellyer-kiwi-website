@@ -88,12 +88,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			);
 		}
 		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
-			'args' => array(
-				'id' => array(
-					'description' => __( 'Unique identifier for the object.' ),
-					'type'        => 'integer',
-				),
-			),
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_item' ),
@@ -356,28 +350,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	}
 
 	/**
-	 * Get the post, if the ID is valid.
-	 *
-	 * @since 4.7.2
-	 *
-	 * @param int $id Supplied ID.
-	 * @return WP_Post|WP_Error Post object if ID is valid, WP_Error otherwise.
-	 */
-	protected function get_post( $id ) {
-		$error = new WP_Error( 'rest_post_invalid_id', __( 'Invalid post ID.' ), array( 'status' => 404 ) );
-		if ( (int) $id <= 0 ) {
-			return $error;
-		}
-
-		$post = get_post( (int) $id );
-		if ( empty( $post ) || empty( $post->ID ) || $this->post_type !== $post->post_type ) {
-			return $error;
-		}
-
-		return $post;
-	}
-
-	/**
 	 * Checks if a given request has access to read a post.
 	 *
 	 * @since 4.7.0
@@ -387,10 +359,8 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return bool|WP_Error True if the request has read access for the item, WP_Error object otherwise.
 	 */
 	public function get_item_permissions_check( $request ) {
-		$post = $this->get_post( $request['id'] );
-		if ( is_wp_error( $post ) ) {
-			return $post;
-		}
+
+		$post = get_post( (int) $request['id'] );
 
 		if ( 'edit' === $request['context'] && $post && ! $this->check_update_permission( $post ) ) {
 			return new WP_Error( 'rest_forbidden_context', __( 'Sorry, you are not allowed to edit this post.' ), array( 'status' => rest_authorization_required_code() ) );
@@ -458,16 +428,18 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_item( $request ) {
-		$post = $this->get_post( $request['id'] );
-		if ( is_wp_error( $post ) ) {
-			return $post;
+		$id   = (int) $request['id'];
+		$post = get_post( $id );
+
+		if ( empty( $id ) || empty( $post->ID ) || $this->post_type !== $post->post_type ) {
+			return new WP_Error( 'rest_post_invalid_id', __( 'Invalid post ID.' ), array( 'status' => 404 ) );
 		}
 
 		$data     = $this->prepare_item_for_response( $post, $request );
 		$response = rest_ensure_response( $data );
 
 		if ( is_post_type_viewable( get_post_type_object( $post->post_type ) ) ) {
-			$response->link_header( 'alternate',  get_permalink( $post->ID ), array( 'type' => 'text/html' ) );
+			$response->link_header( 'alternate',  get_permalink( $id ), array( 'type' => 'text/html' ) );
 		}
 
 		return $response;
@@ -483,9 +455,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return true|WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		if ( ! empty( $request['id'] ) ) {
-			return new WP_Error( 'rest_post_exists', __( 'Cannot create existing post.' ), array( 'status' => 400 ) );
-		}
 
 		$post_type = get_post_type_object( $this->post_type );
 
@@ -622,11 +591,8 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
 	 */
 	public function update_item_permissions_check( $request ) {
-		$post = $this->get_post( $request['id'] );
-		if ( is_wp_error( $post ) ) {
-			return $post;
-		}
 
+		$post = get_post( $request['id'] );
 		$post_type = get_post_type_object( $this->post_type );
 
 		if ( $post && ! $this->check_update_permission( $post ) ) {
@@ -658,9 +624,11 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function update_item( $request ) {
-		$valid_check = $this->get_post( $request['id'] );
-		if ( is_wp_error( $valid_check ) ) {
-			return $valid_check;
+		$id   = (int) $request['id'];
+		$post = get_post( $id );
+
+		if ( empty( $id ) || empty( $post->ID ) || $this->post_type !== $post->post_type ) {
+			return new WP_Error( 'rest_post_invalid_id', __( 'Invalid post ID.' ), array( 'status' => 404 ) );
 		}
 
 		$post = $this->prepare_item_for_database( $request );
@@ -746,10 +714,8 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return true|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
 	 */
 	public function delete_item_permissions_check( $request ) {
-		$post = $this->get_post( $request['id'] );
-		if ( is_wp_error( $post ) ) {
-			return $post;
-		}
+
+		$post = get_post( $request['id'] );
 
 		if ( $post && ! $this->check_delete_permission( $post ) ) {
 			return new WP_Error( 'rest_cannot_delete', __( 'Sorry, you are not allowed to delete this post.' ), array( 'status' => rest_authorization_required_code() ) );
@@ -768,13 +734,14 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function delete_item( $request ) {
-		$post = $this->get_post( $request['id'] );
-		if ( is_wp_error( $post ) ) {
-			return $post;
-		}
-
-		$id    = $post->ID;
+		$id    = (int) $request['id'];
 		$force = (bool) $request['force'];
+
+		$post = get_post( $id );
+
+		if ( empty( $id ) || empty( $post->ID ) || $this->post_type !== $post->post_type ) {
+			return new WP_Error( 'rest_post_invalid_id', __( 'Invalid post ID.' ), array( 'status' => 404 ) );
+		}
 
 		$supports_trash = ( EMPTY_TRASH_DAYS > 0 );
 
@@ -934,12 +901,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 		// Post ID.
 		if ( isset( $request['id'] ) ) {
-			$existing_post = $this->get_post( $request['id'] );
-			if ( is_wp_error( $existing_post ) ) {
-				return $existing_post;
-			}
-
-			$prepared_post->ID = $existing_post->ID;
+			$prepared_post->ID = absint( $request['id'] );
 		}
 
 		$schema = $this->get_item_schema();
