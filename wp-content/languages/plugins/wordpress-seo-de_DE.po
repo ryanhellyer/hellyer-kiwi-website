@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-02-16 21:50:29+0000\n"
+"PO-Revision-Date: 2017-02-23 19:15:55+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.3.0-alpha\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
 
@@ -183,6 +183,10 @@ msgid_plural "%1$d of the paragraphs contain more than the recommended maximum o
 msgstr[0] "%1$d der Absätze enthalten mehr als das empfohlene Maximum von %2$d Wörtern. Bist du sicher, dass alle Informationen zum selben Thema hierfür in einen einzigen Absatz gehören?"
 msgstr[1] "%1$d der Absätze enthalten mehr als das empfohlene Maximum von %2$d Wörtern. Bist du sicher, dass alle Informationen in jedem Absatz zum selben Thema hierfür in einen einzigen Absatz gehören?"
 
+#: languages/yoast-seo-js.php:84
+msgid "The meta description is over %1$d characters. Reducing the length will ensure the entire description will be visible."
+msgstr "Die Meta-Beschreibung enthält mehr als %1$d Zeichen. Eine geringere Länge stellt sicher, dass die komplette Beschreibung sichtbar ist."
+
 #. Translators: %1$s opens a link to a Yoast article about stop words, %2$s
 #. closes the link
 #: languages/yoast-seo-js.php:69
@@ -201,9 +205,20 @@ msgstr "Die Keyword-Dichte beträgt %1$s, was ein wenig niedrig ist. Das Fokus-K
 msgid "Step %1$d: %2$s"
 msgstr "Schritt %1$d: %2$s"
 
+#. translators: %1$s expands to Yoast SEO
+#: admin/views/tabs/dashboard/general.php:18
+msgid "Need help determining your settings? Configure %1$s step-by-step."
+msgstr "Brauchst du Hilfe beim Festlegen der Einstellungen? Konfiguriere %1$s Schritt für Schritt."
+
 #: admin/views/partial-alerts-warnings.php:11
 msgid "No new notifications."
 msgstr "Keine neuen Benachrichtigungen"
+
+#. translators: %1$s expands anchor to knowledge base article, %2$s expands to
+#. </a>
+#: admin/google_search_console/views/gsc-display.php:126
+msgid "Please refer to %1$sour article about how to connect your website to Google Search Console%2$s if you need assistance."
+msgstr "Bitte ziehe unseren Artikel %1$swie du deine Website mit der Google Search Konsole verbindest (engl.)%2$s zu Rate sofern du Hilfe benötigst."
 
 #: admin/class-bulk-editor-list-table.php:854
 msgid "Save all"
@@ -219,6 +234,11 @@ msgid "You have %d new issue concerning your SEO!"
 msgid_plural "You have %d new issues concerning your SEO!"
 msgstr[0] "Du hast %d neues Problem, das deine SEO betrifft!"
 msgstr[1] "Du hast %d neue Probleme, die deine SEO betreffen!"
+
+#. translators: 1: Author name; 2: Site name.
+#: inc/options/class-wpseo-option-titles.php:180
+msgid "%1$s, Author at %2$s"
+msgstr "%1$s, Autor bei %2$s"
 
 #. translators: 1: link open tag; 2: link close tag.
 #: admin/class-import-wpseo.php:25
@@ -238,6 +258,10 @@ msgstr "Mobile Vorschau"
 msgid "Desktop preview"
 msgstr "Desktop-Vorschau"
 
+#: inc/sitemaps/class-author-sitemap-provider.php:289
+msgid "Use queries instead"
+msgstr "Verwende stattdessen Abfragen"
+
 #: deprecated/class-snippet-preview.php:9
 #: deprecated/class-snippet-preview.php:99
 #: deprecated/class-snippet-preview.php:109
@@ -256,6 +280,10 @@ msgstr "Stattdessen JavaScript benutzen"
 #: admin/google_search_console/class-gsc-table.php:167
 msgid "Select redirect"
 msgstr "Umleitung auswählen"
+
+#: admin/banner/class-admin-banner-sidebar.php:329
+msgid "Take the online Site Structure Training course and learn how to structure your website!"
+msgstr "Nimm am Online-Kurs „Site Structure Training“ teil und lerne wie du deine Website strukturierst!"
 
 #: vendor/yoast/license-manager/views/form.php:36
 msgid "you are <strong>not</strong> receiving updates."
@@ -648,6 +676,14 @@ msgstr "Autor-Archiv-Einstellungen"
 msgid "Remove keyword"
 msgstr "Keyword entfernen"
 
+#. translators: %1$s expands to the image recommended width, %2$s to its
+#. height.
+#: admin/class-social-admin.php:52 admin/class-social-admin.php:54
+#: admin/taxonomy/class-taxonomy-social-fields.php:95
+#: admin/taxonomy/class-taxonomy-social-fields.php:99
+msgid "%1$s by %2$s"
+msgstr "%1$s zu %2$s"
+
 #. translators: %s: '%%term_title%%' variable used in titles and meta's
 #. template that's not compatible with the given template
 #: admin/class-help-center.php:197
@@ -900,9 +936,18 @@ msgstr "Vorschau (dies ist eine Kopie der live Webseite und nur für Testzwecke 
 msgid "Production (this is a live site with real traffic)"
 msgstr "Produktion (dies ist eine Live Seite mit realem Datenverkehr)"
 
+#. Translators: %1$s resolves to the home_url of the blog.
+#: admin/config-ui/fields/class-field-environment.php:17
+msgid "Please specify the environment in which this site - %1$s - is running."
+msgstr "Bitte definiere die Umgebung in der die Website - %1$s - läuft."
+
 #: admin/config-ui/fields/class-field-company-name.php:17
 msgid "The name of the company"
 msgstr "Der Name des Unternehmens"
+
+#: admin/config-ui/fields/class-field-company-logo.php:17
+msgid "Provide an image of the company logo"
+msgstr "Gib ein Bild als Firmenlogo an"
 
 #: admin/config-ui/fields/class-field-choice-post-type.php:29
 msgid "Hidden"
@@ -2261,6 +2306,11 @@ msgstr "Zusammenfassung mit großem Bild"
 #: inc/options/class-wpseo-option-social.php:102
 msgid "Summary"
 msgstr "Zusammenfassung"
+
+#. translators: 1: link to post; 2: link to blog.
+#: inc/options/class-wpseo-option-rss.php:48
+msgid "The post %1$s appeared first on %2$s."
+msgstr "Der Beitrag %1$s erschien zuerst auf %2$s."
 
 #: inc/options/class-wpseo-option-ms.php:183
 msgid "No numeric value was received."
