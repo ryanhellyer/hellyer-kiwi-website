@@ -221,28 +221,14 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 		$fallback_sizes = apply_filters( 'fallback_intermediate_image_sizes', $fallback_sizes, $metadata );
 
 		$sizes = array();
-		$_wp_additional_image_sizes = wp_get_additional_image_sizes();
 
 		foreach ( $fallback_sizes as $s ) {
-			if ( isset( $_wp_additional_image_sizes[ $s ]['width'] ) ) {
-				$sizes[ $s ]['width'] = intval( $_wp_additional_image_sizes[ $s ]['width'] );
-			} else {
-				$sizes[ $s ]['width'] = get_option( "{$s}_size_w" );
-			}
+			$sizes[ $s ]['width']  = get_option( "{$s}_size_w" );
+			$sizes[ $s ]['height'] = get_option( "{$s}_size_h" );
 
-			if ( isset( $_wp_additional_image_sizes[ $s ]['height'] ) ) {
-				$sizes[ $s ]['height'] = intval( $_wp_additional_image_sizes[ $s ]['height'] );
-			} else {
-				$sizes[ $s ]['height'] = get_option( "{$s}_size_h" );
-			}
-
-			if ( isset( $_wp_additional_image_sizes[ $s ]['crop'] ) ) {
-				$sizes[ $s ]['crop'] = $_wp_additional_image_sizes[ $s ]['crop'];
-			} else {
-				// Force thumbnails to be soft crops.
-				if ( ! 'thumbnail' === $s ) {
-					$sizes[ $s ]['crop'] = get_option( "{$s}_crop" );
-				}
+			// Force thumbnails to be soft crops.
+			if ( ! 'thumbnail' === $s ) {
+				$sizes[ $s ]['crop'] = get_option( "{$s}_crop" );
 			}
 		}
 
