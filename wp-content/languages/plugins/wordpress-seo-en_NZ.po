@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-02-28 10:10:02+0000\n"
+"PO-Revision-Date: 2017-03-01 06:36:44+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,14 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_NZ\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#. Translators: %1$s opens a link to a Yoast article about stop words, %2$s
+#. closes the link
+#: languages/yoast-seo-js.php:69
+msgid "The focus keyword contains a stop word. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
+msgid_plural "The focus keyword contains %3$d stop words. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
+msgstr[0] "The focus keyword contains a stop word. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
+msgstr[1] "The focus keyword contains %3$d stop words. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
 
 #: admin/views/tabs/advanced/rss.php:33 inc/class-wpseo-replace-vars.php:1031
 msgid "Variable"
@@ -29,6 +37,10 @@ msgstr "If you want more help creating awesome content, check out our %3$sSEO co
 #: admin/class-admin.php:646
 msgid "Scroll to see the table content."
 msgstr "Scroll to see the table content."
+
+#: admin/banner/class-admin-banner-sidebar.php:339
+msgid "Take the online Technical SEO Training course and learn essential technical SEO-concepts!"
+msgstr "Take the online Technical SEO Training course and learn essential technical SEO-concepts!"
 
 #. Translators: %1$s expands to the keyword density percentage, %2$d expands to
 #. the keyword count, 	   %3$s expands to the maximum keyword density
@@ -2218,6 +2230,22 @@ msgstr "Your licence has expired. You must <a href=\"%s\">extend your licence</a
 #: vendor/yoast/license-manager/class-license-manager.php:637
 msgid "You've reached your activation limit. You must <a href=\"%s\">upgrade your license</a> to use it on this site."
 msgstr "You've reached your activation limit. You must <a href=\"%s\">upgrade your licence</a> to use it on this site."
+
+#: vendor/yoast/license-manager/class-license-manager.php:616
+msgid "<a href=\"%s\">Your license is expiring in %d day, would you like to extend it?</a> "
+msgid_plural "<a href=\"%s\">Your license is expiring in %d days, would you like to extend it?</a> "
+msgstr[0] "<a href=\"%s\">Your licence is expiring in %d day, would you like to extend it?</a> "
+msgstr[1] "<a href=\"%s\">Your licence is expiring in %d days, would you like to extend it?</a> "
+
+#: vendor/yoast/license-manager/class-license-manager.php:610
+msgid "<a href=\"%s\">Did you know you can upgrade your license?</a> "
+msgstr "<a href=\"%s\">Did you know you can upgrade your licence?</a> "
+
+#: vendor/yoast/license-manager/class-license-manager.php:605
+msgid "You have used %d/%d activation. "
+msgid_plural "You have used %d/%d activations. "
+msgstr[0] "You have used %d/%d activation. "
+msgstr[1] "You have used %d/%d activations. "
 
 #: vendor/yoast/license-manager/class-license-manager.php:603
 msgid "You have an unlimited license. "
