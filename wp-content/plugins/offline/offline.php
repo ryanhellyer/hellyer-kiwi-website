@@ -170,7 +170,18 @@ if( isset( $_GET['generate_manifest'] ) ) {
 		$manifest_code .= '# Time stamp: ' . date( 'l jS \of F Y h:i:s A' );
 //echo "\n\nManifest code:\n".$manifest_code;die;
 		// Store the URLs for use in the manifest cache (stored for whole year, but gets wiped every time manifest is regenerated)
-delete_transient( 'offline_cache' );
+
+$manifest_code = 'CACHE MANIFEST
+http://ual1.360create.graphics/sample-page-2/
+http://ual1.360create.graphics/wp-content/uploads/2016/04/ual-menu-logo-4.png
+http://ual1.360create.graphics/
+http://ual1.360create.graphics/contacts/
+http://ual1.360create.graphics/wp-content/themes/ualmobile/style.css?ver=1.0
+http://ual1.360create.graphics
+
+# Time stamp: DYNAMIC';
+
+
 		set_transient( 'offline_cache', $manifest_code, YEAR_IN_SECONDS );
 
 echo "\n\n..........\n".$manifest_code;
