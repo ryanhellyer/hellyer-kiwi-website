@@ -305,6 +305,7 @@ die;
 
 		$tags = array(
 			'link'   => 'href',
+			'img'    => 'src',
 			'script' => 'src',
 			'img'    => 'src',
 			'a'      => 'href',
