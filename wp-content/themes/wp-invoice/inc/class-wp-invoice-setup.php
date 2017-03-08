@@ -31,7 +31,7 @@ class WP_Invoice_Setup extends WP_Invoice_Core {
 
 		// Redirect if not logged in
 		if ( ! is_user_logged_in() || is_404() ) {
-			wp_redirect( 'https://geek.hellyer.kiwi', 302 );
+//			wp_redirect( 'https://geek.hellyer.kiwi', 302 );
 		}
 
 	}

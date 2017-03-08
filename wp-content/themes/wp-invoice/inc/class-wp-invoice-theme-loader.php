@@ -22,10 +22,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		}
 
 		// Get client name
-		$terms = get_terms( array(
-			'taxonomy'   => self::CLIENT_TAXONOMY,
-			'hide_empty' => false,
-		) );
+		$terms = wp_get_post_terms( get_the_ID(), self::CLIENT_TAXONOMY );
 		$client_name = $terms[0]->name;
 
 		// Get website string
