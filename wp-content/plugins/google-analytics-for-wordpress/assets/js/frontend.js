@@ -38,13 +38,6 @@ var MonsterInsights = function(){
 		}
 	}
 
-	function toObject(arr) {
-	  var rv = {};
-	  for (var i = 0; i < arr.length; ++i)
-		rv[i] = arr[i];
-	  return rv;
-	}
-
 	function __gaTrackerSend ( valuesArray, fieldsArray ) {
 		valuesArray = typeof valuesArray !== 'undefined' ? valuesArray : [];
 		fieldsArray = typeof fieldsArray !== 'undefined' ? fieldsArray : {};
@@ -188,7 +181,7 @@ var MonsterInsights = function(){
 	function __gaTrackerClickEvent( event ) {
 		var el            = event.srcElement || event.target;
 		var valuesArray   = [];
-		var fieldsArray   = [];
+		var fieldsArray;
 
 		// Start Values Array
 		valuesArray.el         = el;
@@ -389,11 +382,11 @@ var MonsterInsights = function(){
 							}
 							
 							fieldsArray = {
-								hitType       = 'event',
-								eventCategory = 'outbound-link',
-								eventAction   = link,
-								eventLabel    = valuesArray.title,
-								hitCallback   = __gaTrackerHitBack,
+								hitType       : 'event',
+								eventCategory : 'outbound-link',
+								eventAction   : link,
+								eventLabel    : valuesArray.title,
+								hitCallback   : __gaTrackerHitBack,
 							};
 
 							if ( navigator.sendBeacon ) {
@@ -425,10 +418,11 @@ var MonsterInsights = function(){
 			__gaTrackerNotSend( valuesArray );
 		}
 	}
-
+	var prevHash = window.location.hash;
 	function __gaTrackerHashChangeEvent() {
 		// Todo: Ready this section for JS unit testing
-		if ( monsterinsights_frontend.track_hashes === "true" && hash != window.location.hash ) {
+		if ( monsterinsights_frontend.hash_tracking === "true" && prevHash != window.location.hash ) {
+			prevHash = window.location.hash;
 			__gaTracker('set', 'page', location.pathname + location.search + location.hash );
 			__gaTracker('send', 'pageview' );
 			__gaTrackerLog( "Hash change to: " + location.pathname + location.search + location.hash );
@@ -451,17 +445,7 @@ var MonsterInsights = function(){
 			}, 
 			false
 		);
-		__gaTrackerWindow.addEventListener( 
-			"load", 
-			function() { 
-				document.body.addEventListener(
-					"hashchange", 
-					__gaTrackerHashChangeEvent,
-					 false
-				);
-			}, 
-			false
-		);
+		window.addEventListener("hashchange", __gaTrackerHashChangeEvent, false	);
 	} else { 
 		if ( __gaTrackerWindow.attachEvent ) {
 			__gaTrackerWindow.attachEvent(
@@ -471,13 +455,7 @@ var MonsterInsights = function(){
 				},
 				false
 			);
-			__gaTrackerWindow.attachEvent(
-				"onload", 
-				function() {
-					document.body.attachEvent( "onhashchange", __gaTrackerHashChangeEvent);
-				},
-				false
-			);
+			window.attachEvent( "onhashchange", __gaTrackerHashChangeEvent);
 		}
 	}
 
