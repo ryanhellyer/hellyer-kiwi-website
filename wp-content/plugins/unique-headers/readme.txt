@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 4.8
-Stable tag: 1.7.8
+Stable tag: 1.7.11
 
 
 
@@ -91,6 +91,15 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.7.11 =
+* Version bump to force dot org update
+
+= 1.7.10 =
+* Correctly checking for presence of object before setting width and height
+
+= 1.7.9 =
+* Checking for presence of object before setting width and height
 
 = 1.7.8 =
 * Fixing filter bug
