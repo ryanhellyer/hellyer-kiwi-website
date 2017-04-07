@@ -1,7 +1,12 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+/**
+ * Class CUWS
+ */
 class CUWS {
 
 	/**
@@ -93,16 +98,14 @@ class CUWS {
 	 *
 	 * @param string $file
 	 * @param string $version Version number.
-	 *
-	 * @return  void
 	 */
-	public function __construct ( $file = '', $version = '2.6.1' ) {
+	public function __construct( $file = '', $version = '3.0.0' ) {
 		$this->_version = $version;
-		$this->_token = 'cuws';
+		$this->_token   = 'cuws';
 
 		// Load plugin environment variables
-		$this->file = $file;
-		$this->dir = dirname( $this->file );
+		$this->file       = $file;
+		$this->dir        = dirname( $this->file );
 		$this->assets_dir = trailingslashit( $this->dir ) . 'css';
 		$this->assets_url = esc_url( trailingslashit( plugins_url( '/css/', $this->file ) ) );
 
@@ -116,6 +119,8 @@ class CUWS {
 
 		/*** PLUGIN FUNCTIONS ***/
 
+		// @since v1.3.0
+		add_action( 'admin_bar_menu', array( $this, 'so_cuws_remove_adminbar_settings' ), 999 );
 		// @since 1.5.0
 		add_action( 'wp_dashboard_setup', array( $this, 'so_cuws_remove_dashboard_widget' ) );
 		// @since 2.0.0
@@ -127,21 +132,38 @@ class CUWS {
 			$this->admin = new CUWS_Admin_API();
 		}
 
-		$this->options = $this->get_settings_as_array();
+		$this->options = get_site_option( $this->_token . '_settings' );
+
+		// Make sure options have been populated if messed up from new settings
+		// Simpler than requiring deactivation/activation of plugin.
+		if ( ! $this->options ) {
+			$this->install();
+			$this->options = get_site_option( $this->_token . '_settings' );
+		}
 
 	} // End __construct ()
 
 	/**
-	 * Cleanup functions depending on each checkbox returned value in admin
+	 * Remove Settings submenu in admin bar
+	 * Since Yoast SEO 3.6 it is possible to disable the adminbar menu within
+	 * Dashboard > Features but only in individual sites, not network admin
 	 *
-	 * @since    v2.0.0
-	 */
-
-	/**
-	 * Since Yoast SEO 3.6 it is possible to disable the adminbar menu within Dashboard > Features, therefore this setting has become redundant
+	 * inspired by [Lee Rickler](https://profiles.wordpress.org/lee-rickler/)
 	 *
-	 * @since v2.5.0
+	 * @since v1.3.0
 	 */
+	public function so_cuws_remove_adminbar_settings() {
+		if ( empty( $this->options['remove_adminbar'] ) ) {
+			return;
+		}
+		global $wp_admin_bar;
+		$nodes = array_keys( $wp_admin_bar->get_nodes() );
+		foreach ( $nodes as $node ) {
+			if ( false !== strpos( $node, 'wpseo' ) ) {
+				$wp_admin_bar->remove_node( $node );
+			}
+		}
+	}
 
 	/**
 	 * Version 2.3 of Yoast SEO introduced a dashboard widget
@@ -162,9 +184,9 @@ class CUWS {
 	 * CSS needed to hide the various options ticked with checkboxes
 	 *
 	 * @since    v2.0.0
-	 * @modified v2.1.0 remove options for nags that have been temporarily disabled in v3.1 of Yoast SEO plugin
+	 * @modified v2.1.0 remove options for nags that have been temporarily
+	 * disabled in v3.1 of Yoast SEO plugin
 	 */
-	// CSS needed to hide the various options ticked with checkboxes
 	public function so_cuws_hide_visibility_css() {
 
 		echo '<style media="screen" id="so-hide-seo-bloat" type="text/css">';
@@ -190,14 +212,13 @@ class CUWS {
 		}
 
 		// Problems/Notification boxes
-		if ( 'both' == $this->options['hide_dashboard_problems_notifications'] ) {
-			echo '.yoast-container yoast-container__alert,.yoast-container yoast-container__warning{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
-		}
-		if ( 'problems' == $this->options['hide_dashboard_problems_notifications'] ) {
-			echo '.yoast-container yoast-container__alert{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
-		}
-		if ( 'notifications' == $this->options['hide_dashboard_problems_notifications'] ) {
-			echo '.yoast-container yoast-container__warning{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
+		if ( ! empty( $this->options['hide_dashboard_problems_notifications'] ) ) {
+			if ( in_array( 'problems', $this->options['hide_dashboard_problems_notifications'] ) ) {
+				echo '.yoast-container.yoast-container__alert{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
+			}
+			if ( in_array( 'notifications', $this->options['hide_dashboard_problems_notifications'] ) ) {
+				echo '.yoast-container.yoast-container__warning{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
+			}
 		}
 
 		// image warning nag
@@ -226,53 +247,59 @@ class CUWS {
 		}
 
 		// keyword/content score
-		if ( 'both' == $this->options['hide_content_keyword_score'] ) {
-			echo '.yoast-seo-score.content-score,.yoast-seo-score.keyword-score{display:none;}'; // @since v2.3.0 hide both Keyword and Content Score from edit Post/Page screens
-		}
-		if ( 'keyword_score' == $this->options['hide_content_keyword_score'] ) {
-			echo '.yoast-seo-score.keyword-score{display:none;}'; // @since v2.3.0 hide both Keyword and Content Score from edit Post/Page screens
-		}
-		if ( 'content_score' == $this->options['hide_content_keyword_score'] ) {
-			echo '.yoast-seo-score.content-score{display:none;}'; // @since v2.3.0 hide both Keyword and Content Score from edit Post/Page screens
+		if ( ! empty( $this->options['hide_content_keyword_score'] ) ) {
+			if ( in_array( 'keyword_score', $this->options['hide_content_keyword_score'] ) ) {
+				echo '.yoast-seo-score.keyword-score{display:none;}'; // @since v2.3.0 hide both Keyword and Content Score from edit Post/Page screens
+			}
+			if ( in_array( 'content_score', $this->options['hide_content_keyword_score'] ) ) {
+				echo '.yoast-seo-score.content-score{display:none;}'; // @since v2.3.0 hide both Keyword and Content Score from edit Post/Page screens
+			}
 		}
 
-		// admin columns
-		// @since v2.0.0 remove seo columns one by one
-		// @modified 2.0.2 add empty array as default to avoid warnings form subsequent in_array checks - credits [Ronny Myhre Njaastad](https://github.com/ronnymn)
-		// @modified 2.1 simplyfy the CSS rules and add the rule to hide the seo-score column on taxonomies (added to v3.1 of Yoast SEO plugin)
-		// @modified 2.6.0 only 2 columns left change from checkboxes to radio
-		// @modified 2.6.1 revert radio to checkboxes and removing the options for focus keyword, title and meta-description
-		
+		/*
+		 * admin columns
+		 * @since v2.0.0 remove seo columns one by one
+		 * @modified 2.0.2 add empty array as default to avoid warnings form subsequent
+		 *  in_array checks - credits [Ronny Myhre Njaastad](https://github.com/ronnymn)
+		 * @modified 2.1 simplify the CSS rules and add the rule to hide the seo-score
+		 *  column on taxonomies (added to v3.1 of Yoast SEO plugin)
+		 * @modified 2.6.0 only 2 columns left change from checkboxes to radio
+		 * @modified 2.6.1 revert radio to checkboxes and removing the options
+		 *  for focus keyword, title and meta-description
+		 */
+
 		// all columns
-		if ( in_array( 'all', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-score,.column-wpseo_score,.column-wpseo-score-readability,.column-wpseo_score_readability,.column-wpseo-title,.column-wpseo-metadesc,.column-wpseo-focuskw{display:none;}'; // @since v2.0.0 remove seo columns one by one
-		}
-		// seo score column
-		if ( in_array( 'seoscore', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-score,.column-wpseo_score{display:none;}'; // @since v2.0.0 remove seo columns one by one
-		}
-		if ( in_array( 'readability', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-score-readability,.column-wpseo_score_readability{display:none;}'; // @since v2.6.0 remove added readibility column
-		}
-		// title column
-		if ( in_array( 'title', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-title{display:none;}'; // @since v2.0.0 remove seo columns one by one
-		}
-		// meta description column
-		if ( in_array( 'metadescr', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-metadesc{display:none;}'; // @since v2.0.0 remove seo columns one by one
-		}
-		// focus keyword column
-		if ( in_array( 'focuskw', $this->options['hide_admincolumns'] ) ) {
-			echo '.column-wpseo-focuskw{display:none;}'; // @since v2.0.0 remove seo columns one by one
+		if ( ! empty( $this->options['hide_admincolumns'] ) ) {
+			// seo score column
+			if ( in_array( 'seoscore', $this->options['hide_admincolumns'] ) ) {
+				echo '.column-wpseo-score,.column-wpseo_score{display:none;}'; // @since v2.0.0 remove seo columns one by one
+			}
+			// readability column
+			if ( in_array( 'readability', $this->options['hide_admincolumns'] ) ) {
+				echo '.column-wpseo-score-readability,.column-wpseo_score_readability{display:none;}'; // @since v2.6.0 remove added readibility column
+			}
+			// title column
+			if ( in_array( 'title', $this->options['hide_admincolumns'] ) ) {
+				echo '.column-wpseo-title{display:none;}'; // @since v2.0.0 remove seo columns one by one
+			}
+			// meta description column
+			if ( in_array( 'metadescr', $this->options['hide_admincolumns'] ) ) {
+				echo '.column-wpseo-metadesc{display:none;}'; // @since v2.0.0 remove seo columns one by one
+			}
+			// focus keyword column
+			if ( in_array( 'focuskw', $this->options['hide_admincolumns'] ) ) {
+				echo '.column-wpseo-focuskw{display:none;}'; // @since v2.0.0 remove seo columns one by one
+			}
 		}
 
 		// help center
-		if ( 'ad' == $this->options['hide_helpcenter'] ) {
-			echo '.wpseo-tab-video__panel.wpseo-tab-video__panel--text,#tab-link-dashboard_dashboard__contact-support,#tab-link-dashboard_general__contact-support,#tab-link-dashboard_features__contact-support,#tab-link-dashboard_knowledge-graph__contact-support,#tab-link-dashboard_webmaster-tools__contact-support,#tab-link-dashboard_security__contact-support,#tab-link-metabox_metabox__contact-support{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely; @modified v2.5.5 hide email support/ad as it is a premium only feature; @modified v2.6.0 different tabs gave different classes
-		}
-		if ( 'helpcenter' == $this->options['hide_helpcenter'] ) {
-			echo '.wpseo-tab-video-container{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely
+		if ( ! empty( $this->options['hide_helpcenter'] ) ) {
+			if ( in_array( 'ad', $this->options['hide_helpcenter'] ) ) {
+				echo '.wpseo-tab-video__panel.wpseo-tab-video__panel--text,#tab-link-dashboard_dashboard__contact-support,#tab-link-dashboard_general__contact-support,#tab-link-dashboard_features__contact-support,#tab-link-dashboard_knowledge-graph__contact-support,#tab-link-dashboard_webmaster-tools__contact-support,#tab-link-dashboard_security__contact-support,#tab-link-metabox_metabox__contact-support{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely; @modified v2.5.5 hide email support/ad as it is a premium only feature; @modified v2.6.0 different tabs gave different classes
+			}
+			if ( in_array( 'helpcenter', $this->options['hide_helpcenter'] ) ) {
+				echo '.wpseo-tab-video-container{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely
+			}
 		}
 
 		echo '</style>';
@@ -286,7 +313,7 @@ class CUWS {
 	 * @since   v2.0.0
 	 * @return  void
 	 */
-	public function admin_enqueue_styles ( $hook = '' ) {
+	public function admin_enqueue_styles( $hook = '' ) {
 		wp_register_style( $this->_token . '-admin', esc_url( $this->assets_url ) . 'admin.css', array(), $this->_version );
 		wp_enqueue_style( $this->_token . '-admin' );
 	} // End admin_enqueue_styles ()
@@ -297,8 +324,6 @@ class CUWS {
 	 * @since v1.0.0
 	 */
 	function i18n() {
-
-		/* Load the translation of the plugin. */
 		load_plugin_textdomain( 'so-clean-up-wp-seo', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
@@ -316,7 +341,7 @@ class CUWS {
 	 *
 	 * @return CUWS $_instance
 	 */
-	public static function instance( $file = '', $version = '2.6.1' ) {
+	public static function instance( $file = '', $version = '3.0.0' ) {
 		if ( null === self::$_instance ) {
 			self::$_instance = new self( $file, $version );
 		}
@@ -329,7 +354,7 @@ class CUWS {
 	 *
 	 * @since v2.0.0
 	 */
-	public function __clone () {
+	public function __clone() {
 		_doing_it_wrong( __FUNCTION__, __( 'No Access' ), $this->_version );
 	} // End __clone ()
 
@@ -338,7 +363,7 @@ class CUWS {
 	 *
 	 * @since v2.0.0
 	 */
-	public function __wakeup () {
+	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, __( 'No Access' ), $this->_version );
 	} // End __wakeup ()
 
@@ -349,7 +374,7 @@ class CUWS {
 	 * @since   v2.0.0
 	 * @return  void
 	 */
-	public function install () {
+	public function install() {
 		$this->_log_version_number();
 		$this->_set_defaults();
 	} // End install ()
@@ -366,61 +391,56 @@ class CUWS {
 	} // End _log_version_number ()
 
 	/**
+	 * Array containing the default values.
+	 * Use `array_keys()` to return the key names.
+	 *
+	 * @return array
+	 */
+	public function get_defaults() {
+		$defaults = array(
+			'hide_ads'                              => 'on',
+			'hide_tagline_nag'                      => 'on',
+			'hide_robots_nag'                       => 'on',
+			'hide_upsell_notice'                    => 'on',
+			'hide_dashboard_problems_notifications' => array(
+				'problems',
+				'notifications'
+			),
+			'hide_imgwarning_nag'                   => 'on',
+			'hide_addkw_button'                     => 'on',
+			'hide_trafficlight'                     => 'on',
+			'hide_wpseoanalysis'                    => 'on',
+			'hide_issue_counter'                    => 'on',
+			'hide_gopremium_star'                   => 'on',
+			'hide_content_keyword_score'            => array(
+				'keyword_score',
+				'content_score'
+			),
+			'hide_helpcenter'                       => array(
+				'ad'
+			),
+			'hide_admincolumns'                     => array(
+				'seoscore',
+				'readability',
+				'title',
+				'metadescr'
+			),
+			'remove_dbwidget'                       => 'on',
+			'remove_adminbar'                       => 'on',
+		);
+
+		return $defaults;
+	}
+
+	/**
 	 * Set default values on activation.
 	 *
 	 * @access private
 	 * @return void
 	 */
 	private function _set_defaults() {
-		update_site_option( 'cuws_hide_ads', 'on' );
-		update_site_option( 'cuws_hide_tagline_nag', 'on' );
-		update_site_option( 'cuws_hide_robots_nag', 'on' );
-		update_site_option( 'cuws_hide_upsell_notice', 'on' );
-		update_site_option( 'hide_dashboard_problems_notifications', 'none' );
-		update_site_option( 'cuws_hide_imgwarning_nag', 'on' );
-		update_site_option( 'cuws_hide_addkw_button', 'on' );
-		update_site_option( 'cuws_hide_trafficlight', 'on' );
-		update_site_option( 'cuws_hide_issue_counter', 'on' );
-		update_site_option( 'cuws_hide_gopremium_star', 'on' );
-		update_site_option( 'cuws_hide_wpseoanalysis', 'on' );
-		update_site_option( 'cuws_hide_content_keyword_score', 'both' );
-		update_site_option( 'cuws_hide_helpcenter', 'ad' );
-		update_site_option( 'hide_admincolumns', array( 'seoscore', 'readibility', 'title', 'metadescr' ) );
-		update_site_option( 'cuws_remove_dbwidget', 'on' );
+		$defaults = $this->get_defaults();
+		update_site_option( $this->_token . '_settings', $defaults );
 	} // End _set_defaults ()
-
-	/**
-	 * Get plugin settings as an array.
-	 *
-	 * @access public
-	 * @return array
-	 */
-	public function get_settings_as_array() {
-		$settings = array();
-		$options  = array(
-			'hide_ads',
-			'hide_tagline_nag',
-			'hide_robots_nag',
-			'hide_upsell_notice',
-			'hide_dashboard_problems_notifications',
-			'hide_imgwarning_nag',
-			'hide_addkw_button',
-			'hide_trafficlight',
-			'hide_wpseoanalysis',
-			'hide_issue_counter',
-			'hide_gopremium_star',
-			'hide_content_keyword_score',
-			'hide_helpcenter',
-			'hide_admincolumns',
-			'remove_dbwidget',
-		);
-
-		foreach ( $options as $option ) {
-			$settings[ $option ] = get_site_option( $this->_token . '_' . $option );
-		}
-		$settings['version'] = $this->_version;
-
-		return $settings;
-	}
 
 }
