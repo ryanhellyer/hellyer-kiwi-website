@@ -2,8 +2,8 @@
 Contributors: netweblogic
 Tags: login, ajax, ajax login, registration, redirect redirect, buddypress, multi site, sidebar, admin, widget
 Requires at least: 3.7
-Tested up to: 4.5.1
-Stable tag: 3.1.6
+Tested up to: 4.7.2
+Stable tag: 3.1.7
 License: GPLv2 or later
 
 Add smooth ajax login/registration effects and choose where users get redirected upon log in/out. Supports SSL, MultiSite, and BuddyPress.
@@ -173,6 +173,10 @@ For further questions and answers (or to submit one yourself) go to our [http://
 
 
 == Changelog ==
+= 3.1.7 =
+* fixed XSS security vulnerability on LWA settings page allowing code injection if an authorized user follows a properly structured url to that page, this does not affect the security of the login forms, only the settings page. Kudos Neven Biruski from DefenceCode for responsible disclosure.
+* changed our hooks logout_url and login_redirect added as actions to filters which prevented functionality in some situations
+
 = 3.1.6 =
 * added Persian translation, thanks to Mohammad Akbari
 * fixed PHP 7 deprecated construct error
