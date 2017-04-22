@@ -982,7 +982,7 @@ tinymce.PluginManager.add( 'wordpress', function( editor ) {
 
 		function hide( event ) {
 			if ( activeToolbar ) {
-				if ( activeToolbar.tempHide || event.type === 'hide' || event.type === 'blur' ) {
+				if ( activeToolbar.tempHide || event.type === 'hide' ) {
 					activeToolbar.hide();
 					activeToolbar = false;
 				} else if ( (
