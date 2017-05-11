@@ -2,9 +2,9 @@
 /*
 Plugin Name: Image Widget
 Plugin URI: http://wordpress.org/plugins/image-widget/
-Description: A simple image widget that uses the native WordPress media manager to add image widgets to your site. <strong>COMING SOON: <a href="http://m.tri.be/19m-">Image Widget Plus</a> - Multiple images, slider and more.</strong>
+Description: A simple image widget that uses the native WordPress media manager to add image widgets to your site. <strong><a href="http://m.tri.be/19my">Image Widget Plus</a> - Multiple images, slider and more.</strong>
 Author: Modern Tribe, Inc.
-Version: 4.4.1
+Version: 4.4.2
 Author URI: http://m.tri.be/iwpdoc
 Text Domain: image-widget
 Domain Path: /lang
@@ -26,7 +26,7 @@ add_action( 'widgets_init', 'tribe_load_image_widget' );
  **/
 class Tribe_Image_Widget extends WP_Widget {
 
-	const VERSION = '4.4.1';
+	const VERSION = '4.4.2';
 
 	const CUSTOM_IMAGE_SIZE_SLUG = 'tribe_image_widget_custom';
 
@@ -47,9 +47,8 @@ class Tribe_Image_Widget extends WP_Widget {
 			require_once( 'lib/ImageWidgetDeprecated.php' );
 			new ImageWidgetDeprecated( $this );
 		} else {
-			add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_setup' ) );
 		}
-		add_action( 'admin_head-widgets.php', array( $this, 'admin_head' ) );
 
 		add_action( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 
@@ -70,10 +69,22 @@ class Tribe_Image_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Enqueue all the javascript.
+	 * Enqueue all the javascript and CSS.
 	 */
 	public function admin_setup() {
+
+		// Only load on widget admin page and in the "Customizer" view.
+		$screen      = get_current_screen();
+		$should_load = 'customize' == $screen->base || 'widgets' == $screen->base;
+
+		if ( ! $should_load ) {
+			return;
+		}
+
 		wp_enqueue_media();
+
+		wp_enqueue_style( 'tribe-image-widget', plugins_url( 'resources/css/admin.css', __FILE__ ), array(), self::VERSION );
+
 		wp_enqueue_script( 'tribe-image-widget', plugins_url( 'resources/js/image-widget.js', __FILE__ ), array( 'jquery', 'media-upload', 'media-views' ), self::VERSION );
 
 		wp_localize_script( 'tribe-image-widget', 'TribeImageWidget', array(
@@ -182,37 +193,6 @@ class Tribe_Image_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Admin header css
-	 *
-	 * @author Modern Tribe, Inc.
-	 */
-	public function admin_head() {
-		?>
-		<style type="text/css">
-			.uploader input.button {
-				width: 100%;
-				height: 34px;
-				line-height: 33px;
-				margin-top: 15px;
-			}
-			.tribe_preview .aligncenter {
-				display: block;
-				margin-left: auto !important;
-				margin-right: auto !important;
-			}
-			.tribe_preview {
-				overflow: hidden;
-				max-height: 300px;
-			}
-			.tribe_preview img {
-				margin: 10px 0;
-				height: auto;
-			}
-		</style>
-		<?php
-	}
-
-	/**
 	 * Render an array of default values.
 	 *
 	 * @return array default values
@@ -273,7 +253,9 @@ class Tribe_Image_Widget extends WP_Widget {
 			$attr = array_map( 'esc_attr', $attr );
 			$output = '<a';
 			foreach ( $attr as $name => $value ) {
-				$output .= sprintf( ' %s="%s"', $name, $value );
+				if ( ! empty( $value ) ) {
+					$output .= sprintf( ' %s="%s"', $name, $value );
+				}
 			}
 			$output .= '>';
 		}
@@ -291,39 +273,54 @@ class Tribe_Image_Widget extends WP_Widget {
 				$instance['height'] = $image_details[2];
 			}
 
-			$image_srcset = wp_get_attachment_image_srcset( $instance['attachment_id'], $size );
+			$image_srcset = function_exists( 'wp_get_attachment_image_srcset' )
+				? wp_get_attachment_image_srcset( $instance['attachment_id'], $size )
+				: false;
 			if ( $image_srcset ) {
 				$instance['srcset'] = $image_srcset;
-			}
 
- 			$image_sizes = wp_get_attachment_image_sizes( $instance['attachment_id'], $size );
- 			if ( $image_sizes ) {
-				$instance['sizes'] = $image_sizes;
+				$image_sizes = function_exists( 'wp_get_attachment_image_sizes' )
+					? wp_get_attachment_image_sizes( $instance['attachment_id'], $size )
+					: false;
+	 			if ( $image_sizes ) {
+					$instance['sizes'] = $image_sizes;
+				}
 			}
 		}
 		$instance['width'] = abs( $instance['width'] );
 		$instance['height'] = abs( $instance['height'] );
 
 		$attr = array();
-		$attr['alt'] = ( ! empty( $instance['alt'] ) ) ? $instance['alt'] : $instance['title'];
+
+		if ( ! empty( $instance['alt'] ) ) {
+			$attr['alt'] = $instance['alt'];
+		} elseif ( ! empty( $instance['title'] ) ) {
+			$attr['alt'] = $instance['title'];
+		}
+
 		if ( is_array( $size ) ) {
 			$attr['class'] = 'attachment-' . join( 'x', $size );
 		} else {
 			$attr['class'] = 'attachment-' . $size;
 		}
+
 		$attr['style'] = '';
 		if ( ! empty( $instance['maxwidth'] ) ) {
 			$attr['style'] .= "max-width: {$instance['maxwidth']};";
 		}
+
 		if ( ! empty( $instance['maxheight'] ) ) {
 			$attr['style'] .= "max-height: {$instance['maxheight']};";
 		}
+
 		if ( ! empty( $instance['align'] ) && $instance['align'] != 'none' ) {
 			$attr['class'] .= " align{$instance['align']}";
 		}
+
 		if ( ! empty( $instance['srcset'] ) ) {
 			$attr['srcset'] = $instance['srcset'];
 		}
+
 		if ( ! empty( $instance['sizes'] ) ) {
 			$attr['sizes'] = $instance['sizes'];
 		}
@@ -504,7 +501,7 @@ class Tribe_Image_Widget extends WP_Widget {
 		$option_key = $this->generate_key( $key );
 		if ( get_site_option( $option_key ) == self::VERSION ) return;
 		$msg = sprintf(
-			__( '<p class="dashicons-before dashicons-format-gallery"><strong><a href="%s" target="_blank">Image Widget Plus</a></strong> is coming soon! Add random images, lightbox, and slider - <strong><a href="%s">Sign up now for early access.</a></strong></p>', 'image-widget' ),
+			__( '<p class="dashicons-before dashicons-format-gallery"><strong>Image Widget Plus</strong> - Add lightbox, slideshow, and random image widgets. <strong><a href="%s" target="_blank">Find out how!</a></strong></p>', 'image-widget' ),
 			'http://m.tri.be/19my',
 			'http://m.tri.be/19my'
 		);
@@ -536,7 +533,7 @@ class Tribe_Image_Widget extends WP_Widget {
 	 */
 	public function plugin_row_meta( $meta, $file ) {
 		if ( $file == plugin_basename( dirname( __FILE__ ) . '/image-widget.php' ) ) {
-			$meta[] = '<strong>' . esc_html__( 'Coming Soon:', 'image-widget' ) . '</strong> <a href="http://m.tri.be/19ma" target="_blank">' . esc_html__( 'Image Widget Plus', 'image-widget' ) . '</a>';
+			$meta[] = '<strong><a href="http://m.tri.be/19ma" target="_blank">' . esc_html__( 'Image Widget Plus', 'image-widget' ) . '</a></strong>';
 		}
 		return $meta;
 	}
