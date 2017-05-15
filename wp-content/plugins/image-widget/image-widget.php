@@ -4,7 +4,7 @@ Plugin Name: Image Widget
 Plugin URI: http://wordpress.org/plugins/image-widget/
 Description: A simple image widget that uses the native WordPress media manager to add image widgets to your site. <strong><a href="http://m.tri.be/19my">Image Widget Plus</a> - Multiple images, slider and more.</strong>
 Author: Modern Tribe, Inc.
-Version: 4.4.2
+Version: 4.4.3
 Author URI: http://m.tri.be/iwpdoc
 Text Domain: image-widget
 Domain Path: /lang
@@ -26,7 +26,7 @@ add_action( 'widgets_init', 'tribe_load_image_widget' );
  **/
 class Tribe_Image_Widget extends WP_Widget {
 
-	const VERSION = '4.4.2';
+	const VERSION = '4.4.3';
 
 	const CUSTOM_IMAGE_SIZE_SLUG = 'tribe_image_widget_custom';
 
@@ -47,8 +47,11 @@ class Tribe_Image_Widget extends WP_Widget {
 			require_once( 'lib/ImageWidgetDeprecated.php' );
 			new ImageWidgetDeprecated( $this );
 		} else {
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_setup' ) );
+			add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
 		}
+
+		// fire admin_setup if we are in the customizer
+		add_action( 'admin_enqueue_scripts', array( $this, 'maybe_admin_setup' ) );
 
 		add_action( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 
@@ -72,15 +75,6 @@ class Tribe_Image_Widget extends WP_Widget {
 	 * Enqueue all the javascript and CSS.
 	 */
 	public function admin_setup() {
-
-		// Only load on widget admin page and in the "Customizer" view.
-		$screen      = get_current_screen();
-		$should_load = 'customize' == $screen->base || 'widgets' == $screen->base;
-
-		if ( ! $should_load ) {
-			return;
-		}
-
 		wp_enqueue_media();
 
 		wp_enqueue_style( 'tribe-image-widget', plugins_url( 'resources/css/admin.css', __FILE__ ), array(), self::VERSION );
@@ -91,6 +85,17 @@ class Tribe_Image_Widget extends WP_Widget {
 			'frame_title' => __( 'Select an Image', 'image-widget' ),
 			'button_title' => __( 'Insert Into Widget', 'image-widget' ),
 		) );
+	}
+
+	public function maybe_admin_setup() {
+		// Only load on widget admin page and in the "Customizer" view.
+		$screen = get_current_screen();
+
+		if ( 'customize' !== $screen->base ) {
+			return;
+		}
+
+		$this->admin_setup();
 	}
 
 	/**

@@ -1,10 +1,10 @@
 === Image Widget ===
-Contributors: ModernTribe, peterchester, borkweb, zbtirrell
+Contributors: ModernTribe, peterchester, borkweb, zbtirrell, aguseo, barry.hughes, cliffpaulick, courane01, GeoffBel, ggwicz, jentheo, neillmcshea, nicosantos, shelbelliott, tribecari, trishasalas, vicskf
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4BSPTNFFY6AL6
 Tags: widget, image, ad, banner, simple, upload, sidebar, retina, admin, thickbox, resize, arabic, brazilian portuguese, dutch, german, hebrew, italian, japanese, polish, spanish, swedish, widget-only
 Requires at least: 3.5
 Tested up to: 4.7.3
-Stable tag: 4.4.2
+Stable tag: 4.4.3
 
 A simple image widget that uses the native WordPress media manager to add image widgets to your site.
 
@@ -205,6 +205,11 @@ define( 'I_HAVE_SUPPORTED_THE_IMAGE_WIDGET', true );
 For more info on the philosophy here, check out our [blog post](http://tri.be/define-i-have-donated-true/)
 
 == Changelog ==
+
+= 4.4.3 =
+
+* Fix - Fixed bug where selecting an image failed to trigger a Save & Publish in the Customizer (props to dsaric-dev for the fix)
+* Tweak - Roll-back to sidebar_admin_setup to enqueue resources for optimal plugin compatibility (props to megamenu for the heads up)
 
 = 4.4.2 =
 
