@@ -22,6 +22,9 @@ Don't forget to backup before you start!
 
 == Changelog ==
 
+= 1.1.2 =
+* Remove anonymous function for PHP 5.2 compatibility.
+
 = 1.1.1 =
 * fixed PHP notice for PHP 7.1
 * made URL scheme agnostic
