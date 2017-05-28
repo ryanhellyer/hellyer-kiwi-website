@@ -28,6 +28,10 @@ if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.p
 
 function sample_admin_notice__success() {
 
+	if ( ! is_super_admin() ) {
+		return;
+	}
+
 	$message = '
 <textarea style="width:100%;">NEW DESIGN IDEA:
 Use top bit of https://thedroneracingleague.com/
