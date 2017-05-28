@@ -28,6 +28,7 @@ class SRC_bbPress {
 		add_filter('bbp_get_topic_author_avatar', array( $this, 'change_avatar_size' ), 20, 3);
 		add_filter('bbp_get_reply_author_avatar', array( $this, 'change_avatar_size' ), 20, 3);
 		add_filter('bbp_get_current_user_avatar', array( $this, 'change_avatar_size' ), 20, 3);
+		add_filter('user_contactmethods',         array( $this, 'add_social_links' ) );
 
 	}
 
@@ -88,6 +89,27 @@ class SRC_bbPress {
 		}
 
 		return $author_avatar;
+	}
+
+	/**
+	 * Add social links to bbPress.
+	 *
+	 * @array  $links  The social links
+	 * @return array  The modified social links
+	 */
+	function add_social_links( $links ) {
+
+		// Add new ones
+		$links['twitter'] = 'Twitter';
+		$links['facebook'] = 'Facebook';
+		$links['youtube'] = 'Youtube';
+
+		// remove unwanted
+		unset( $links['aim'] );
+		unset( $links['jabber'] );
+		unset( $links['yim'] );
+
+		return $links;
 	}
 
 }
