@@ -1,5 +1,18 @@
 <?php
 
+if ( ! is_super_admin() ) {
+	echo '
+	<style>
+	body {background:#000;}
+	img {display:block;margin:50px auto 0 auto;width:160px;height:auto;}
+	p {font-family:sans-serif;color:#fff;font-size:32px;text-align:center;}
+	</style>
+	<img src="https://seacrestracing.club/wp-content/themes/src/images/logo.png" />
+	<p>Website coming soon :)</p>
+	';
+	die;
+}
+
 function sample_admin_notice__success() {
 
 	$message = '
