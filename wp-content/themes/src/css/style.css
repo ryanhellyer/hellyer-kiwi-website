@@ -13,6 +13,10 @@ body.home {
 body {
   background: #fff; }
 
+body,
+html {
+  height: 100%; }
+
 b,
 strong {
   font-weight: bold; }
@@ -136,7 +140,8 @@ address {
   float: left;
   width: 100%;
   margin: 100px 0 0 0;
-  padding: 0; }
+  padding: 0;
+  min-height: calc(100vh - 177px); }
 
 /* =Featured news
 -------------------------------------------------------------- */
