@@ -48,7 +48,7 @@
 if ( is_super_admin() ) {
 if ( is_front_page() ) {
 	?>
-<section id="featured-news" style="background-image: url(http://dev-hellyer.kiwi/bbpress/wp-content/themes/src-theme/images/featured-image.jpg);">
+<section id="featured-news" style="background-image: url(<?php echo get_template_directory_uri(); ?>/images/featured-image.jpg);">
 	<div class="text">
 		<h1>Hockenheim Results: Stunning wins for Rosanski and Speedy</h1>
 		<a href="#" class="button">Check out the results</a>
