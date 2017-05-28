@@ -6,10 +6,23 @@ if ( ! is_user_logged_in() && ! is_admin() ) {
 	body {background:#000;}
 	img {display:block;margin:50px auto 0 auto;width:160px;height:auto;}
 	p {font-family:sans-serif;color:#fff;font-size:32px;text-align:center;}
+	#the-form {
+		width:350px;margin:0 auto;text-align:left;
+		margin-top:100px;
+	}
+	input {font-size:24px;display: block;width:100%;}
+	#the-form p {
+		text-align:left;
+		font-size:24px;
+	}
 	</style>
 	<img src="https://seacrestracing.club/wp-content/themes/src/images/logo.png" />
 	<p>Website coming soon :)</p>
+
+	<div id="the-form">
 	';
+	wp_login_form();
+	echo '</div>';
 	die;
 }
 
