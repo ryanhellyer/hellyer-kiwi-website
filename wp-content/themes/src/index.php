@@ -53,11 +53,12 @@ else {
 }
 
 
+if ( is_bbpress() ) {
 ?>
-
 
 	<div id="sidebar"><?php dynamic_sidebar( 'sidebar' ); ?></div><!-- #sidebar -->
 
+<?php } ?>
 
 </div>
 
