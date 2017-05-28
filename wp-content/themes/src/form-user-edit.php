@@ -20,13 +20,20 @@
 
 		<?php do_action( 'bbp_user_edit_before_name' ); ?>
 
-		<p>
+		<div>
 			<label for="first_name"><?php _e( 'First Name', 'bbpress' ) ?></label>
 			<input type="text" name="first_name" id="first_name" value="<?php bbp_displayed_user_field( 'first_name', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+		</div>
 
+		<div>
 			<label for="last_name"><?php _e( 'Last Name', 'bbpress' ) ?></label>
 			<input type="text" name="last_name" id="last_name" value="<?php bbp_displayed_user_field( 'last_name', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
-		</p>
+		</div>
+
+		<div style="display:none;">
+			<label for="nickname"><?php _e( 'Nickname', 'bbpress' ); ?></label>
+			<input type="text" name="nickname" id="nickname" value="<?php bbp_displayed_user_field( 'nickname', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+		</div>
 
 		<div>
 			<label for="display_name"><?php _e( 'Display Name', 'bbpress' ) ?></label>
