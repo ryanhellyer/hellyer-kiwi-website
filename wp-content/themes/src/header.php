@@ -45,6 +45,7 @@
 </header><!-- #site-header -->
 
 <?php
+if ( is_super_admin() ) {
 if ( is_front_page() ) {
 	?>
 <section id="featured-news" style="background-image: url(http://dev-hellyer.kiwi/bbpress/wp-content/themes/src-theme/images/featured-image.jpg);">
@@ -55,6 +56,7 @@ if ( is_front_page() ) {
 </section><!-- #featured-news -->
 
 <?php
+}
 }
 ?>
 

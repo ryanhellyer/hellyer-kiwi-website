@@ -8,6 +8,8 @@
 
 get_header();
 
-get_template_part( 'templates/content-home' );
+if ( is_super_admin() ) {
+	get_template_part( 'templates/content-home' );
+}
 
 get_footer();
