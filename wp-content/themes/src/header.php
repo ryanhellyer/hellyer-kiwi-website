@@ -21,7 +21,7 @@
 <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'src' ); ?></a>
 
 <header id="site-header" role="banner">
-	<a class="sign-up" href="<?php echo esc_url( get_user_profile_link() ); ?>"><?php esc_html_e( 'Welcome', 'src' ); ?> <span><?php esc_html_e( 'View Profile', 'src' ); ?></span></a>
+	<a class="sign-up" href="<?php bbp_user_profile_url( bbp_get_current_user_id() ); ?>"><?php esc_html_e( 'Welcome', 'src' ); ?> <span><?php esc_html_e( 'View Profile', 'src' ); ?></span></a>
 	<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( get_bloginfo( 'name', 'display' ) ); ?>"><?php esc_html_e( get_bloginfo( 'name', 'display' ) ); ?></a></h1>
 	<nav id="main-menu-wrap">
 		<ul id="main-menu"><?php
