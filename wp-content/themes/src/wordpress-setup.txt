@@ -1,0 +1,57 @@
+bbPress
+	Signatures plugin - https://wordpress.org/plugins/bbp-signature/
+	Custom avatars plugin - https://wordpress.org/plugins/basic-user-avatars/
+		Crudely security checked already
+		Throws PHP error. Fork the version in dev.hellyer.kiwi which already has fix.
+	Custom profile page
+		add career stats
+	Admin edit button
+		Allows for setting a featured image, and hence showing on home page
+		add_post_type_support('topic', array('thumbnail'));
+	Setup example - http://dev-hellyer.kiwi/bbpress/forums/
+	Make custom shortcode for displaying members list
+	If user is logged in, but not registered in a team then automatically send them to sign up form on logging in
+		also replace red menu item in header with link to sign up page
+	Login form plugin - dev.hellyer.kiwi/plugins/login-form-shortcode.php (custom)
+	Registration form plugin - need to find
+	Applications and Protests forums
+		set status as "closed"
+		add manual form which forces posts in
+			admins can still respond
+	Use WP search via own https://github.com/ryanhellyer/bbpress-search-forums
+
+
+
+News items
+	bbPress posts
+	Gallery posts
+
+
+Custom post-types
+	Gallery (public)
+		one image or YouTube for each post
+		Perhaps use a forms plugin
+	Season (public)
+		Meta box with list of registered users
+		Displays list of drivers on front end
+			Uses same function as shortcode for displaying bbPress members list
+	Round (hidden)
+		Meta box for selecting the "Season" post-type (defaults to latest)
+		Meta boxes for races and their practice/qualifying/race start times
+		Featured image
+	Result (public)
+		Meta box shows all rounds
+		When round selected, all it's races will be automatically shown
+			Table for adding results
+				includes pulldown all register users names
+
+
+
+Plugins
+	Resize images (limit to 1080p) ... https://wordpress.org/plugins/resize-image-after-upload/
+	An email plugin
+	Add publish confirmation plugin - http://plasticmind.com/code/wordpress-publish-confirmation/
+
+Cron jobs
+	1. Email when race is coming up
+
