@@ -1,6 +1,6 @@
 <?php
 
-if ( ! is_super_admin() ) {
+if ( ! is_user_logged_in() && ! is_admin() ) {
 	echo '
 	<style>
 	body {background:#000;}
