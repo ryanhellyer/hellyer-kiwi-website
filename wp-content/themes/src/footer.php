@@ -18,10 +18,17 @@
 		&copy; <?php echo date( 'Y' ); ?> <?php esc_html_e( get_bloginfo( 'name', 'display' ) ); ?>. Website by <a title="Ryan Hellyer" href="https://geek.hellyer.kiwi/">Ryan Hellyer</a>.
 	</p>
 
-	<ul id="social-icons">
-		<li><a href="https://twitter.com/"><span>Twitter</span></a></li>
-		<li><a href="https://youtube.com/"><span>YouTube</span></a></li>
-		<li><a href="https://facebook.com/"><span>Facebook</span></a></li>
+	<ul id="social-icons"><?php
+
+		wp_nav_menu(
+			array(
+				'theme_location' => 'social-links',
+				'container'      => '',
+				'items_wrap'     => '%3$s',
+			)
+		);
+
+		?>
 	</ul><!-- #social-icons -->
 
 	<ul id="footer-menu"><?php
