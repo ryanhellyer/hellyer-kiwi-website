@@ -17,15 +17,27 @@
 
 
 <style>
-#avatar {
+#members-car {
 	float: right;
 	width: 500px;
 }
+
+h1 img {
+	margin-right: 15px;
+	width: 128px;
+	height: 128px;
+	border-radius: 64px;
+	position: relative;
+	top: 50px;
+}
+
 </style>
 
 <?php do_action( 'bbp_template_before_user_details' ); ?>
 
 <h1>
+	<?php echo get_avatar( bbp_get_displayed_user_field( 'user_email', 'raw' ), apply_filters( 'bbp_single_user_details_avatar_size', 500 ) ); ?>
+
 	Ryan Hellyer<?php
 
 	if ( bbp_is_user_home() || current_user_can( 'edit_users' ) ) { ?>
@@ -36,8 +48,13 @@
 </h1>
 
 
-<div id="avatar">
-	<?php echo get_avatar( bbp_get_displayed_user_field( 'user_email', 'raw' ), apply_filters( 'bbp_single_user_details_avatar_size', 500 ) ); ?>
+<div id="members-car">
+	<?php
+	$image = get_user_meta( bbp_get_displayed_user_id(), 'bbpress_secondary_image', true );
+	if ( isset( $image['full'] ) ) {
+		echo '<img src="' . esc_url( $image['full'] ) . '" />';
+	}
+ 	?>
 </div><!-- #avatar -->
 
 <?php do_action( 'bbp_template_after_user_details' ); ?>
