@@ -1,5 +1,44 @@
 <?php
 
+
+/*
+Plugin Name: Customize User Profile
+*/
+
+add_filter( 'get_profile_info_keys', 'customize_user_profile', 10, 2 );
+
+function customize_user_profile( $fields, $context ) {
+	/**
+	* Remove undesired fields
+	*
+	* Commented =   left
+	* Uncommented = removed
+	*/
+	//	unset( $fields['first_name'] );
+	//	unset( $fields['last_name'] );
+	unset( $fields['user_url'] );
+	//	unset( $fields['from'] );
+	unset( $fields['occ'] );
+	unset( $fields['interest'] );
+
+	/**
+	* Add new fields
+	*
+	* Quoting functions.bb-core.php, line 906:
+	* meta_key =&gt; (required?, Label, hCard property).  Don't use user_{anything} as the name of your meta_key.
+	*/
+	$fields['my_meta_key'] = array(
+	false,
+	__( 'My meta key' ),
+	'text'
+	);
+
+	return $fields;
+}
+
+
+
+
 if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 	echo '
 	<style>
