@@ -24,10 +24,17 @@
 		<li><a href="https://facebook.com/"><span>Facebook</span></a></li>
 	</ul><!-- #social-icons -->
 
-	<ul id="footer-menu">
-		<li><a href="#">Contact</a></li>
-		<li><a href="#">Legal Notice</a></li>
-		<li><a href="#">About</a></li>
+	<ul id="footer-menu"><?php
+
+		wp_nav_menu(
+			array(
+				'theme_location' => 'footer',
+				'container'      => '',
+				'items_wrap'     => '%3$s',
+			)
+		);
+
+		?>
 	</ul><!-- #footer-menu -->
 
 </footer><!-- #site-footer -->
