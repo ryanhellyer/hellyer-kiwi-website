@@ -79,7 +79,21 @@ h1 img {
 	<p class="bbp-user-topic-count"><?php printf( __( 'Topics Started: %s',  'bbpress' ), bbp_get_user_topic_count_raw() ); ?></p>
 	<p class="bbp-user-reply-count"><?php printf( __( 'Replies Created: %s', 'bbpress' ), bbp_get_user_reply_count_raw() ); ?></p>
 
-<strong>Twitter link | Facebook link | Instagram Link | YouTube link</strong>
+<ul>
+<?php
+if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'twitter', true ) ) {
+	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'twitter', true ) ) . '">Twitter</a></li>';
+}
+
+if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'facebook', true ) ) {
+	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'facebook', true ) ) . '">Facebook</li>';
+}
+
+if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'youtube', true ) ) {
+	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'youtube', true ) ) . '">YouTube</li>';
+}
+?>
+</ul>
 
 	<?php do_action( 'bbp_template_after_user_profile' );
 
