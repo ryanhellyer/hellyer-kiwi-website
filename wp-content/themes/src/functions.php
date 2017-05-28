@@ -1,6 +1,6 @@
 <?php
 
-if ( ! is_user_logged_in() && ! is_admin() ) {
+if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 	echo '
 	<style>
 	body {background:#000;}
