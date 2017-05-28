@@ -36,9 +36,11 @@ h1 img {
 <?php do_action( 'bbp_template_before_user_details' ); ?>
 
 <h1>
-	<?php echo get_avatar( bbp_get_displayed_user_field( 'user_email', 'raw' ), apply_filters( 'bbp_single_user_details_avatar_size', 500 ) ); ?>
+	<?php
 
-	Ryan Hellyer<?php
+	echo get_avatar( bbp_get_displayed_user_field( 'user_email', 'raw' ), apply_filters( 'bbp_single_user_details_avatar_size', 500 ) );
+
+	echo esc_html( bbp_get_displayed_user_field( 'first_name', 'raw' ) . ' ' . bbp_get_displayed_user_field( 'last_name', 'raw' ) );
 
 	if ( bbp_is_user_home() || current_user_can( 'edit_users' ) ) { ?>
 	<small>(<a href="<?php bbp_user_profile_edit_url(); ?>" title="<?php printf( esc_attr__( "Edit %s's Profile", 'bbpress' ), bbp_get_displayed_user_field( 'display_name' ) ); ?>"><?php _e( 'Edit', 'bbpress' ); ?></a>)</small><?php
