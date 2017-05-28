@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Basic User Avatars
- * Plugin URI:  http://wordpress.org/extend/basic-user-avatars
- * Description: Adds an avatar upload field to user profiles. Also provides front-end avatar management via a shortcode and bbPress support. No frills. Fork of Simple Local Avatars 1.3.
- * Version:     1.0.3
- * Author:      Jared Atchison
- * Author URI:  http://jaredatchison.com
+ * Plugin Name: Ryans bbPress Avatars
+ * Plugin URI:  http://geek.hellyer.kiwi/
+ * Description: Modified by Ryan. Adds an avatar upload field to user profiles. Also provides front-end avatar management via a shortcode and bbPress support. No frills. Fork of Simple Local Avatars 1.3.
+ * Version:     1.0
+ * Author:      Ryan Hellyer / Jared Atchison
+ * Author URI:  https://geek.hellyer.kiwi/
  *
  * ---------------------------------------------------------------------------//
  * This plugin is a fork of Simple Local Avatars v1.3.1 by Jake Goldman (10up).
@@ -385,9 +385,6 @@ class basic_user_avatars {
 
 					if ( empty( $profileuser->basic_user_avatar ) ) {
 						echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</span>';
-					} else {
-						echo '<input type="checkbox" name="basic-user-avatar-erase" value="1" style="width:auto" /> ' . __( 'Delete local avatar', 'basic-user-avatars' ) . '<br />';
-						echo '<span class="description" style="margin-left:0;">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'basic-user-avatars' ) . '</span>';
 					}
 
 				} else {
