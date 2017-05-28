@@ -144,6 +144,12 @@ address {
 
 		&:hover {
 			background: $hover_red;
+			text-decoration: none;
+
+			&:before {
+				background: $hover_red;
+			}
+
 		}
 
 		&:before {
@@ -516,7 +522,7 @@ address {
 -------------------------------------------------------------- */
 
 #bbpress-wrapper {
-	width: 100%;
+	width: 92%;
 	max-width: 1280px;
 	margin: 0 auto;
 }
@@ -639,6 +645,10 @@ address {
 
 .bbp-submit-wrapper {
 	margin-top: 40px;
+}
+
+.bbp-topic-form p {
+	margin: 1px 0;
 }
 
 /* Posts */
@@ -1011,12 +1021,12 @@ a {
 -------------------------------------------------------------- */
 @media only screen and (max-width: 1024px) {
 
+	// Header
 	#site-header {
 		text-align: center;
 		height: $header_height_mobile;
 
 		ul {
-//			display: none;
 			position: absolute;
 			left: 0px;
 			top: $header_height_mobile;
@@ -1028,6 +1038,8 @@ a {
 			display: block;
 			width: 300px;
 			text-align: left;
+			border-top: 1px solid #333;
+			border-bottom: 1px solid #111;
 
 			&:first-child {
 				margin-left: 0;
@@ -1048,21 +1060,17 @@ a {
 			float: left;
 			position: relative;
 
-ul {
-	transition: 1s;
-	left: -300px;
-}
+			ul {
+				transition: 0.3s;
+				left: -300px;
+				height: calc(100vh - 50px); /* Make menu display to the bottom of the screen */
+			}
 
 			&.open {
 
 				ul {
-left: 0;
+					left: 0;
 					display: block;
-
-
-//-webkit-animation: slide-down .3s ease-out;
-//-moz-animation: slide-down .3s ease-out;
-
 				}
 
 			}
@@ -1106,6 +1114,20 @@ left: 0;
 
 	}
 
+	// Sidebar setup
+	#bbpress-forums {
+		width: 100%;
+	}
+	#sidebar {
+		display: none;
+	}
+
+	// Main
+	#main {
+		margin: 60px 0 0 0;
+	}
+
+	// Schedule
 	#schedule {
 		width: 100%;
 		padding-right: 0;
