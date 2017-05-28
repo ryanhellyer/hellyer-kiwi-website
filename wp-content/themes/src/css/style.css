@@ -84,45 +84,51 @@ address {
       text-decoration: none; }
       #site-header li a:hover {
         background: #222; }
-  #site-header .sign-up {
-    float: right;
-    position: relative;
-    background: #cd0203;
-    height: 55px;
+
+/* =Sign up
+-------------------------------------------------------------- */
+.sign-up {
+  float: right;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  background: #cd0203;
+  height: 55px;
+  color: #fff;
+  padding: 15px 20px 0 10px;
+  font-size: 0.8rem;
+  line-height: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase; }
+  .sign-up:hover {
+    background: #de1314;
     color: #fff;
-    padding: 15px 20px 0 10px;
-    font-size: 0.8rem;
-    line-height: 1.1rem;
-    font-weight: 400;
-    text-transform: uppercase; }
-    #site-header .sign-up:hover {
-      background: #de1314;
-      text-decoration: none; }
-      #site-header .sign-up:hover:before {
-        background: #de1314; }
-    #site-header .sign-up:before {
-      display: block;
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -20px;
-      width: 20px;
-      height: 70px;
-      background: #cd0203;
-      -webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0); }
-    #site-header .sign-up span {
-      font-weight: 700;
-      display: block;
-      font-size: 1.3rem;
-      margin-bottom: 0px; }
-    #site-header .sign-up a {
-      display: inline;
-      font-weight: 700;
-      height: auto;
-      line-height: 1;
-      padding: 0;
-      margin: 0; }
+    text-decoration: none; }
+    .sign-up:hover:before {
+      background: #de1314; }
+  .sign-up:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 70px;
+    background: #cd0203;
+    -webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0); }
+  .sign-up span {
+    color: #fff;
+    font-weight: 700;
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 0px; }
+  .sign-up a {
+    display: inline;
+    font-weight: 700;
+    height: auto;
+    line-height: 1;
+    padding: 0;
+    margin: 0; }
 
 /* =Main content
 -------------------------------------------------------------- */
@@ -673,16 +679,17 @@ a {
 #site-footer {
   float: left;
   width: 92%;
-  padding: 40px 4%;
+  padding: 0 4%;
   background: #202020; }
   #site-footer p {
     float: left;
     color: #777;
     font-family: "Open Sans", sans-serif;
-    font-size: 0.9rem; }
+    font-size: 0.8rem;
+    margin: 20px 0; }
   #site-footer ul {
     float: left;
-    margin-left: 40px; }
+    margin: 25px 0 20px 40px; }
     #site-footer ul#footer-menu {
       float: right; }
       #site-footer ul#footer-menu li {
@@ -690,8 +697,8 @@ a {
   #site-footer li {
     float: left;
     font-family: "Open Sans", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 400;
     margin-right: 20px; }
   #site-footer a {
     color: #777;
@@ -719,6 +726,16 @@ a {
     #site-footer a:hover {
       text-decoration: underline;
       color: #aaa; }
+  #site-footer .button {
+    float: right;
+    color: #fff;
+    margin: 18px 0 0 40px;
+    padding: 10px 20px;
+    font-size: 1rem; }
+    #site-footer .button:hover {
+      text-decoration: none;
+      background: #de1314;
+      color: #fff; }
 
 /* =Smaller devices
 -------------------------------------------------------------- */

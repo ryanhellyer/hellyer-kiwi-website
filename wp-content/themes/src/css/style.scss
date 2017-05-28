@@ -130,57 +130,63 @@ address {
 
 	}
 
-	.sign-up {
-		float: right;
-		position: relative;
-		background: $red;
-		height: 55px;
+}
+
+/* =Sign up
+-------------------------------------------------------------- */
+
+.sign-up {
+	float: right;
+	font-family: $button_font;
+	position: relative;
+	background: $red;
+	height: 55px;
+	color: #fff;
+	padding: 15px 20px 0 10px;
+	font-size: 0.8rem;
+	line-height: 1.1rem;
+	font-weight: 400;
+	text-transform: uppercase;
+
+	&:hover {
+		background: $hover_red;
 		color: #fff;
-		padding: 15px 20px 0 10px;
-		font-size: 0.8rem;
-		line-height: 1.1rem;
-		font-weight: 400;
-		text-transform: uppercase;
-
-		&:hover {
-			background: $hover_red;
-			text-decoration: none;
-
-			&:before {
-				background: $hover_red;
-			}
-
-		}
+		text-decoration: none;
 
 		&:before {
-			display: block;
-			content: "";
-			position: absolute;
-			top: 0;
-			left: -20px;
-			width: 20px;
-			height: $header_height;
-			background: $red;
-			-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
-			clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
+			background: $hover_red;
 		}
 
-		span {
-			font-weight: 700;
-			display: block;
-			font-size: 1.3rem;
-			margin-bottom: 0px;
-		}
+	}
 
-		a {
-			display: inline;
-			font-weight: 700;
-			height: auto;
-			line-height: 1;
-			padding: 0;
-			margin: 0;
-		}
+	&:before {
+		display: block;
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -20px;
+		width: 20px;
+		height: $header_height;
+		background: $red;
+		-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
+		clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
+	}
 
+	span {
+		color: #fff;
+		font-weight: 700;
+		display: block;
+		font-size: 1.3rem;
+		margin-bottom: 0px;
+	}
+
+	a {
+		display: inline;
+		font-weight: 700;
+		height: auto;
+		line-height: 1;
+		padding: 0;
+		margin: 0;
 	}
 
 }
@@ -887,7 +893,6 @@ a {
 	font-weight: 800;
 	border: none;
 	outline: none;
-
 	text-decoration: none;
 
 	&:hover {
@@ -930,19 +935,20 @@ a {
 #site-footer {
 	float: left;
 	width: $wrap_width;
-	padding: 40px $wrap_padding;
+	padding: 0 $wrap_padding;
 	background: $dark_background_colour;
 
 	p {
 		float: left;
 		color: #777;
 		font-family: $paragraph_font;
-		font-size: 0.9rem;
+		font-size: 0.8rem;
+		margin: 20px 0;
 	}
 
 	ul {
 		float: left;
-		margin-left: 40px;
+		margin: 25px 0 20px 40px;
 
 		&#footer-menu {
 			float: right;
@@ -958,8 +964,8 @@ a {
 	li {
 		float: left;
 		font-family: $paragraph_font;
-		font-size: 0.9rem;
-		font-weight: 700;
+		font-size: 0.8rem;
+		font-weight: 400;
 		margin-right: 20px;
 	}
 
@@ -1011,6 +1017,21 @@ a {
 		&:hover {
 			text-decoration: underline;
 			color: #aaa;
+		}
+
+	}
+
+	.button {
+		float: right;
+		color: #fff;
+		margin: 18px 0 0 40px;
+		padding: 10px 20px;
+		font-size: 1rem;
+
+		&:hover {
+			text-decoration: none;
+			background: $hover_red;
+			color: #fff;
 		}
 
 	}
