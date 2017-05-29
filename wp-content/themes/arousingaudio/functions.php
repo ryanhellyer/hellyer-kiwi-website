@@ -1,5 +1,8 @@
 <?php
 
+echo 'Coming soon!';
+die;
+
 /**
  * Load useful functions.
  */
