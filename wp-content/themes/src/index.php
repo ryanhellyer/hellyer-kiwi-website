@@ -42,7 +42,10 @@ if ( have_posts() ) {
 			</header><!-- .entry-header --><?php
 		}
 
-		the_content();
+			?>
+			<div class="entry-content">
+				<?php the_content(); ?>
+			</div><?php
 	}
 
 	get_template_part( 'template-parts/numeric-pagination' );
