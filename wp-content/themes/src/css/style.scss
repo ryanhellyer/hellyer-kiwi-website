@@ -206,18 +206,25 @@ address {
 	padding: 0;
 	min-height: calc(100vh - 177px);
 
-	.entry-content {
+	ul li {
+		list-style: disc;
+		margin-left: 30px;
+		padding-left: 10px;
+	}
 
+	ol li {
+		list-style: decimal;
+		margin-left: 30px;
+		padding-left: 10px;
+	}
+
+	#bbpress-forums {
+
+		ol li,
 		ul li {
-			list-style: disc;
-			margin-left: 30px;
-			padding-left: 10px;
-		}
-
-		ol li {
-			list-style: decimal;
-			margin-left: 30px;
-			padding-left: 10px;
+			list-style: none;
+			margin-left: 0;
+			padding-left: 0;
 		}
 
 	}
