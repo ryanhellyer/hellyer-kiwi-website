@@ -33,7 +33,17 @@ function sample_admin_notice__success() {
 	}
 
 	$message = '
-<textarea style="width:100%;">NEW DESIGN IDEA:
+<textarea style="width:100%;">
+
+NEW FEATURE:
+Steam link
+Years of experience
+Achievements in sim racings
+Leagues they compete in
+
+
+
+NEW DESIGN IDEA:
 Use top bit of https://thedroneracingleague.com/
 
 Above fold
@@ -62,6 +72,22 @@ Text:
 Results page should show FP1, qual, race 1, race 2 results etc.
 OR IT COULD SHOW JUST ONE, BUT WHEN THE NEXT ONE IS DONE, IT COULD REMOVE THAT FROM THE FEATURED NEWS ITEMS AND REPLACE IT WITH THE NEXT ONE, WHICH WOULD LINK TO ALL THE PREVIOUS ONES FOR THAT ROUND.
 Should also show description. This will show up in news items.
+
+
+
+
+
+list laps down 
+fix laps led
+penalities
+fastest lap - new checkbox
+
+http://seacrestrc.liveracers.com/Results/Result/54202fc8-efa8-4c7a-a607-3a8914745021
+
+
+
+
+
 
 Put avatar where logo is, with driver number beside it. Car picture where drivers are.
 https://www.formula1.com/en/championship/teams/Red-Bull.html
@@ -161,6 +187,7 @@ add_action( 'admin_notices', 'sample_admin_notice__success' );
 
 require( 'inc/class-src-core.php' );
 require( 'inc/class-src-bbpress.php' );
+require( 'inc/class-src-bbcode.php' );
 require( 'inc/class-src-events.php' );
 require( 'inc/class-src-results.php' );
 require( 'inc/class-src-admin.php' );
@@ -169,3 +196,4 @@ require( 'inc/class-src-setup.php' );
 new SRC_Events;
 new SRC_Results;
 new SRC_Admin;
+new SRC_BBCode;
