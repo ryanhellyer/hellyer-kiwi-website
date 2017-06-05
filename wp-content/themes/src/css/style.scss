@@ -638,7 +638,6 @@ address {
 .forum-titles {
 	float: left;
 	width: 100%;
-	background: $light_background_colour;
 }
 
 .bbp-header,
@@ -1233,5 +1232,56 @@ a {
 		}
 
 	}
+
+	/* Forum */
+	.bbp-meta,
+	.bbp-reply-author,
+	.bbp-reply-content {
+		float: none;
+		width: 100%;
+		text-align: left;
+
+		br {
+			display: none;
+		}
+
+	}
+
+	.bbp-reply-header {
+		margin-top: 20px;
+	}
+
+	.bbp-reply-author img,
+	.bbp-reply-signature {
+		display: none;
+	}
+
+	.bbp-admin-links {
+		float: right;
+	}
+
+	#bbpress-wrapper h1 {
+		margin-bottom: 0;
+	}
+
+	/* Site footer */
+	#site-footer {
+		margin-top: 64px;
+		padding-bottom: 20px;
+
+		p br,
+		.button {
+			display: none;
+		}
+
+		ul {
+			margin: 0;
+		}
+		li {
+			margin-right: 0;
+		}
+
+	}
+
 
 }

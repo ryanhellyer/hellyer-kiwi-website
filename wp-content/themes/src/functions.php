@@ -1,6 +1,16 @@
 <?php
 
-if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+
+add_filter( 'simple-registration-fields', 'bla' );
+function bla( $fields ) {
+
+	$fields['text'] = 'something';
+
+	return $fields;
+}
+
+
+if ( 'a'=='b' &&              ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 	echo '
 	<style>
 	body {background:#000;}
@@ -36,6 +46,7 @@ function sample_admin_notice__success() {
 <textarea style="width:100%;">
 
 NEW FEATURE:
+Easter eggs - Konami code perhaps
 Steam link
 Years of experience
 Achievements in sim racings
@@ -190,6 +201,7 @@ require( 'inc/class-src-bbpress.php' );
 require( 'inc/class-src-bbcode.php' );
 require( 'inc/class-src-events.php' );
 require( 'inc/class-src-results.php' );
+require( 'inc/class-src-results-temp.php' );
 require( 'inc/class-src-admin.php' );
 require( 'inc/class-src-setup.php' );
 
@@ -197,3 +209,4 @@ new SRC_Events;
 new SRC_Results;
 new SRC_Admin;
 new SRC_BBCode;
+new SRC_Results_Temp;
