@@ -144,7 +144,7 @@ function bla2() {
 	$users = array();
 	foreach( $raw_users as $row_number => $row ) {
 //		echo $row->data->ID . ': ' . $row->data->display_name . "\n";
-		print_r( $row );
+//		print_r( $row );
 
 		foreach ( $array as $name => $date ) {
 			if ( $name === $row->data->display_name ) {
