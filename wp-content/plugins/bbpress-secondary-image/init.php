@@ -61,73 +61,6 @@ class bbPress_Secondary_Image {
 	}
 
 	/**
-	 * Filter the avatar WordPress returns
-	 *
-	 * @since 1.0.0
-	 * @param string $avatar 
-	 * @param int/string/object $id_or_email
-	 * @param int $size 
-	 * @param string $default
-	 * @param boolean $alt 
-	 * @return string
-	 */
-	public function get_avatar( $avatar = '', $id_or_email, $size = 96, $default = '', $alt = false ) {
-
-		// Determine if we recive an ID or string
-		if ( is_numeric( $id_or_email ) )
-			$user_id = (int) $id_or_email;
-		elseif ( is_string( $id_or_email ) && ( $user = get_user_by( 'email', $id_or_email ) ) )
-			$user_id = $user->ID;
-		elseif ( is_object( $id_or_email ) && ! empty( $id_or_email->user_id ) )
-			$user_id = (int) $id_or_email->user_id;
-
-		if ( empty( $user_id ) )
-			return $avatar;
-
-		$local_avatars = get_user_meta( $user_id, 'bbpress_secondary_image', true );
-
-		if ( empty( $local_avatars ) || empty( $local_avatars['full'] ) )
-			return $avatar;
-
-		$size = (int) $size;
-
-		if ( empty( $alt ) )
-			$alt = get_the_author_meta( 'display_name', $user_id );
-
-		// Generate a new size
-		if ( empty( $local_avatars[$size] ) ) {
-
-			$upload_path      = wp_upload_dir();
-			$avatar_full_path = str_replace( $upload_path['baseurl'], $upload_path['basedir'], $local_avatars['full'] );
-			$image            = wp_get_image_editor( $avatar_full_path );
-
-			if ( ! is_wp_error( $image ) ) {
-				$image->resize( $size, $size, true );
-				$image_sized = $image->save();
-			}
-
-			// Deal with original being >= to original image (or lack of sizing ability)
-
-			if ( isset( $image_sized) ) {
-				$local_avatars[$size] = is_wp_error( $image_sized ) ? $local_avatars[$size] = $local_avatars['full'] : str_replace( $upload_path['basedir'], $upload_path['baseurl'], $image_sized['path'] );
-			} else {
-				$local_avatars[$size] = $local_avatars['full'];
-			}
-
-			// Save updated avatar sizes
-			update_user_meta( $user_id, 'bbpress_secondary_image', $local_avatars );
-
-		} elseif ( substr( $local_avatars[$size], 0, 4 ) != 'http' ) {
-			$local_avatars[$size] = home_url( $local_avatars[$size] );
-		}
-
-		$author_class = is_author( $user_id ) ? ' current-author' : '' ;
-		$avatar       = "<img alt='" . esc_attr( $alt ) . "' src='" . esc_url( $local_avatars[$size] ) . "' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}' />";
-
-		return apply_filters( 'bbpress_secondary_image', $avatar );
-	}
-
-	/**
 	 * Form to display on the user profile edit screen
 	 *
 	 * @since 1.0.0
@@ -239,6 +172,8 @@ class bbPress_Secondary_Image {
 			// Nuke the current avatar
 			$this->avatar_delete( $user_id );
 		}
+
+//echo 'xxx';die;
 	}
 
 	/**
@@ -260,6 +195,7 @@ class bbPress_Secondary_Image {
  			echo '<fieldset class="bbp-form avatar">';
 
 				$secondary_image = get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true );
+//echo 'xxxx';
 				if ( isset( $secondary_image['full'] ) ) {
 					$url = $secondary_image['full'];
 					echo '<img src="' . esc_url( $url ) . '" width="100" />';
