@@ -34,7 +34,6 @@ class SRC_Results_Temp extends SRC_Core {
 			foreach ( $only_exploded as $x => $o ) {
 				$o = explode( '=', $o );
 				$only[ $o[0] ] = $o[1];
-
 			}
 
 		}
@@ -93,6 +92,7 @@ class SRC_Results_Temp extends SRC_Core {
 
 			// 
 			$content .= '<tr>';
+
 			foreach( $row as $column => $label ) {
 
 				// Bail out if on number, as this is a race and not needed for driver listings
@@ -195,13 +195,18 @@ class SRC_Results_Temp extends SRC_Core {
 
 				}
 
-				// Add points to array (they're not in by default as we still needed to calculate them)
-				$result['Pts'] = $points;
-				$result['AM Pts'] = $am_points;
+				// Only stash results if username is listed
+				if ( isset( $result['Username'] ) ) {
 
-				// Include, if matches the required data for $only (which may or may not be set)
-				if ( false === $remove ) {
-					$results[$key] = $result;
+					// Add points to array (they're not in by default as we still needed to calculate them)
+					$result['Pts'] = $points;
+					$result['AM Pts'] = $am_points;
+
+					// Include, if matches the required data for $only (which may or may not be set)
+					if ( false === $remove ) {
+						$results[$key] = $result;
+					}
+
 				}
 
 			}
@@ -210,7 +215,7 @@ class SRC_Results_Temp extends SRC_Core {
 
 		// Sort rows in the order requested
 		if ( null != $orderby ) {
-echo $orderby;
+
 			$this->orderby = $orderby;
 			if ( true === $reverse ) {
 				usort( $results, array( $this, 'sort_callback_reverse' ) );
