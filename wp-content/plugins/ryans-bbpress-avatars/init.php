@@ -59,15 +59,11 @@ class basic_user_avatars {
 		$this->load_textdomain();
 
 		// Actions
-		add_action( 'admin_init',                array( $this, 'admin_init'               )        );
 		add_action( 'show_user_profile',         array( $this, 'edit_user_profile'        )        );
 		add_action( 'edit_user_profile',         array( $this, 'edit_user_profile'        )        );
 		add_action( 'personal_options_update',   array( $this, 'edit_user_profile_update' )        );
 		add_action( 'edit_user_profile_update',  array( $this, 'edit_user_profile_update' )        );
 		add_action( 'bbp_user_edit_after_about', array( $this, 'bbpress_user_profile'     )        );
-
-		// Shortcode
-		add_shortcode( 'basic-user-avatars',     array( $this, 'shortcode'                )        );
 
 		// Filters
 		add_filter( 'get_avatar',                array( $this, 'get_avatar'               ), 10, 5 );
@@ -84,46 +80,6 @@ class basic_user_avatars {
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 		load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
 		load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
-
-	/**
-	 * Start the admin engine.
-	 *
-	 * @since 1.0.0
-	 */
-	public function admin_init() {
-
-		// Register/add the Discussion setting to restrict avatar upload capabilites
-		register_setting( 'discussion', 'basic_user_avatars_caps', array( $this, 'sanitize_options' ) );
-		add_settings_field( 'basic-user-avatars-caps', __( 'Local Avatar Permissions', 'basic-user-avatars' ), array( $this, 'avatar_settings_field' ), 'discussion', 'avatars' );
-	}
-
-	/**
-	 * Discussion settings option
-	 *
-	 * @since 1.0.0
-	 * @param array $args [description]
-	 */
-	public function avatar_settings_field( $args ) {
-		$options = get_option( 'basic_user_avatars_caps' );
-		?>
-		<label for="basic_user_avatars_caps">
-			<input type="checkbox" name="basic_user_avatars_caps" id="basic_user_avatars_caps" value="1" <?php checked( $options['basic_user_avatars_caps'], 1 ); ?>/>
-			<?php _e( 'Only allow users with file upload capabilities to upload local avatars (Authors and above)', 'basic-user-avatars' ); ?>
-		</label>
-		<?php
-	}
-
-	/**
-	 * Sanitize the Discussion settings option
-	 *
-	 * @since 1.0.0
-	 * @param array $input
-	 * @return array
-	 */
-	public function sanitize_options( $input ) {
-		$new_input['basic_user_avatars_caps'] = empty( $input['basic_user_avatars_caps'] ) ? 0 : 1;
-		return $new_input;
 	}
 
 	/**
@@ -204,8 +160,10 @@ class basic_user_avatars {
 
 		// bbPress will try to auto-add this to user profiles - don't let it.
 		// Instead we hook our own proper function that displays cleaner.
-		if ( function_exists( 'is_bbpress') && is_bbpress() )
+		if ( function_exists( 'is_bbpress') && is_bbpress() ) {
 			return;
+		}
+
 		?>
 
 		<h3><?php _e( 'Avatar', 'basic-user-avatars' ); ?></h3>
@@ -217,28 +175,20 @@ class basic_user_avatars {
 				</td>
 				<td>
 				<?php
-				$options = get_option( 'basic_user_avatars_caps' );
-				if ( empty( $options['basic_user_avatars_caps'] ) || current_user_can( 'upload_files' ) ) {
-					// Nonce security ftw
-					wp_nonce_field( 'basic_user_avatar_nonce', '_basic_user_avatar_nonce', false );
-					
-					// File upload input
-					echo '<input type="file" name="basic-user-avatar" id="basic-local-avatar" /><br />';
 
-					if ( empty( $profileuser->basic_user_avatar ) ) {
-						echo '<span class="description">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</span>';
-					} else {
-						echo '<input type="checkbox" name="basic-user-avatar-erase" value="1" /> ' . __( 'Delete local avatar', 'basic-user-avatars' ) . '<br />';
-						echo '<span class="description">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'basic-user-avatars' ) . '</span>';
-					}
+				// Nonce security ftw
+				wp_nonce_field( 'basic_user_avatar_nonce', '_basic_user_avatar_nonce', false );
+				
+				// File upload input
+				echo '<input type="file" name="basic-user-avatar" id="basic-local-avatar" /><br />';
 
+				if ( empty( $profileuser->basic_user_avatar ) ) {
+					echo '<span class="description">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</span>';
 				} else {
-					if ( empty( $profileuser->basic_user_avatar ) ) {
-						echo '<span class="description">' . __( 'No local avatar is set. Set up your avatar at Gravatar.com.', 'basic-user-avatars' ) . '</span>';
-					} else {
-						echo '<span class="description">' . __( 'You do not have media management permissions. To change your local avatar, contact the site administrator.', 'basic-user-avatars' ) . '</span>';
-					}	
+					echo '<input type="checkbox" name="basic-user-avatar-erase" value="1" /> ' . __( 'Delete local avatar', 'basic-user-avatars' ) . '<br />';
+					echo '<span class="description">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'basic-user-avatars' ) . '</span>';
 				}
+
 				?>
 				</td>
 			</tr>
@@ -256,8 +206,9 @@ class basic_user_avatars {
 	public function edit_user_profile_update( $user_id ) {
 
 		// Check for nonce otherwise bail
-		if ( ! isset( $_POST['_basic_user_avatar_nonce'] ) || ! wp_verify_nonce( $_POST['_basic_user_avatar_nonce'], 'basic_user_avatar_nonce' ) )
+		if ( ! isset( $_POST['_basic_user_avatar_nonce'] ) || ! wp_verify_nonce( $_POST['_basic_user_avatar_nonce'], 'basic_user_avatar_nonce' ) ) {
 			return;
+		}
 
 		if ( ! empty( $_FILES['basic-user-avatar']['name'] ) ) {
 
@@ -269,8 +220,9 @@ class basic_user_avatars {
 			);
 
 			// Front end support - shortcode, bbPress, etc
-			if ( ! function_exists( 'wp_handle_upload' ) )
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
 
 			// Delete old images if successful
 			$this->avatar_delete( $user_id );
@@ -305,67 +257,15 @@ class basic_user_avatars {
 	}
 
 	/**
-	 * Enable avatar management on the frontend via this shortocde.
-	 *
-	 * @since 1.0.0
-	 */
-	function shortcode() {
-
-		// Don't bother if the user isn't logged in
-		if ( ! is_user_logged_in() )
-			return;
-
-		$user_id     = get_current_user_id();
-		$profileuser = get_userdata( $user_id );
-
-		if ( isset( $_POST['manage_avatar_submit'] ) ){
-			$this->edit_user_profile_update( $user_id );
-		}
-
-		ob_start();
-		?>
-		<form id="basic-user-avatar-form" action="<?php the_permalink(); ?>" method="post" enctype="multipart/form-data">
-			<?php
-			echo get_avatar( $profileuser->ID );
-
-			$options = get_option( 'basic_user_avatars_caps' );
-			if ( empty( $options['basic_user_avatars_caps'] ) || current_user_can( 'upload_files' ) ) {
-				// Nonce security ftw
-				wp_nonce_field( 'basic_user_avatar_nonce', '_basic_user_avatar_nonce', false );
-				
-				// File upload input
-				echo '<p><input type="file" name="basic-user-avatar" id="basic-local-avatar" /></p>';
-
-				if ( empty( $profileuser->basic_user_avatar ) ) {
-					echo '<p class="description">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</p>';
-				} else {
-					echo '<input type="checkbox" name="basic-user-avatar-erase" value="1" /> ' . __( 'Delete local avatar', 'basic-user-avatars' ) . '<br />';
-					echo '<p class="description">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'basic-user-avatars' ) . '</p>';
-				}
-
-			} else {
-				if ( empty( $profileuser->basic_user_avatar ) ) {
-					echo '<p class="description">' . __( 'No local avatar is set. Set up your avatar at Gravatar.com.', 'basic-user-avatars' ) . '</p>';
-				} else {
-					echo '<p class="description">' . __( 'You do not have media management permissions. To change your local avatar, contact the site administrator.', 'basic-user-avatars' ) . '</p>';
-				}	
-			}
-			?>
-			<input type="submit" name="manage_avatar_submit" value="<?php _e( 'Update Avatar', 'basic-user-avatars' ); ?>" />
-		</form>
-		<?php
-		return ob_get_clean();
-	}
-
-	/**
 	 * Form to display on the bbPress user profile edit screen
 	 *
 	 * @since 1.0.0
 	 */
 	public function bbpress_user_profile() {
 
-		if ( !bbp_is_user_home_edit() )
+		if ( ! bbp_is_user_home_edit() ) {
 			return;
+		}
 
 		$user_id     = get_current_user_id();
 		$profileuser = get_userdata( $user_id );
@@ -375,24 +275,15 @@ class basic_user_avatars {
  			echo '<fieldset class="bbp-form avatar">';
 
 	 			echo get_avatar( $profileuser->ID );
-				$options = get_option( 'basic_user_avatars_caps' );
-				if ( empty( $options['basic_user_avatars_caps'] ) || current_user_can( 'upload_files' ) ) {
-					// Nonce security ftw
-					wp_nonce_field( 'basic_user_avatar_nonce', '_basic_user_avatar_nonce', false );
-					
-					// File upload input
-					echo '<br /><input type="file" name="basic-user-avatar" id="basic-local-avatar" /><br />';
 
-					if ( empty( $profileuser->basic_user_avatar ) ) {
-						echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</span>';
-					}
+				// Nonce security ftw
+				wp_nonce_field( 'basic_user_avatar_nonce', '_basic_user_avatar_nonce', false );
+				
+				// File upload input
+				echo '<br /><input type="file" name="basic-user-avatar" id="basic-local-avatar" /><br />';
 
-				} else {
-					if ( empty( $profileuser->basic_user_avatar ) ) {
-						echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Set up your avatar at Gravatar.com.', 'basic-user-avatars' ) . '</span>';
-					} else {
-						echo '<span class="description" style="margin-left:0;">' . __( 'You do not have media management permissions. To change your local avatar, contact the site administrator.', 'basic-user-avatars' ) . '</span>';
-					}	
+				if ( empty( $profileuser->basic_user_avatar ) ) {
+					echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'basic-user-avatars' ) . '</span>';
 				}
 
 			echo '</fieldset>';
@@ -458,19 +349,3 @@ class basic_user_avatars {
 	}
 }
 $basic_user_avatars = new basic_user_avatars;
-
-/**
- * During uninstallation, remove the custom field from the users and delete the local avatars
- *
- * @since 1.0.0
- */
-function basic_user_avatars_uninstall() {
-	$basic_user_avatars = new basic_user_avatars;
-	$users = get_users_of_blog();
-
-	foreach ( $users as $user )
-		$basic_user_avatars->avatar_delete( $user->user_id );
-
-	delete_option( 'basic_user_avatars_caps' );
-}
-register_uninstall_hook( __FILE__, 'basic_user_avatars_uninstall' );

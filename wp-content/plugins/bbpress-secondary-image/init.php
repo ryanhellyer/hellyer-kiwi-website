@@ -147,7 +147,7 @@ class bbPress_Secondary_Image {
 		<h3><?php _e( 'Secondary Image', 'bbpress-secondary-image' ); ?></h3>
 		<table class="form-table">
 			<tr>
-				<th><label for="bbpress-secondary-image"><?php _e( 'Upload Avatar', 'bbpress-secondary-image' ); ?></label></th>
+				<th><label for="bbpress-secondary-image"><?php _e( 'Upload Secondary Image', 'bbpress-secondary-image' ); ?></label></th>
 				<td style="width: 50px;" valign="top">
 					<?php
 					$secondary_image = get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true );
