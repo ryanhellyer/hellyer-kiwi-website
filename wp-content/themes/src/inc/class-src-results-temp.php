@@ -25,9 +25,18 @@ class SRC_Results_Temp extends SRC_Core {
 	 */
 	public function results_shortcode( $args ) {
 
-		$args2 = array();
-		if ( isset( $args['class'] ) ) {
-			$args2['Class'] = $args['class'];
+		// Convert $only into usable format
+		$only = null;
+		if ( isset( $args['only'] ) ) {
+			$only = array();
+
+			$only_exploded = explode( ';', $args['only'] );
+			foreach ( $only_exploded as $x => $o ) {
+				$o = explode( '=', $o );
+				$only[ $o[0] ] = $o[1];
+
+			}
+
 		}
 
 		// Get order into array
@@ -39,6 +48,7 @@ class SRC_Results_Temp extends SRC_Core {
 		// Set orderby
 		if ( isset( $args['orderby'] ) ) {
 			$orderby = $args['orderby'];
+
 		} else {
 			$orderby = 'Pts';
 		}
@@ -47,7 +57,8 @@ class SRC_Results_Temp extends SRC_Core {
 			'results',
 			$orderby,
 			true,
-			$order
+			$order,
+			$only
 		);
 
 		$content = '
@@ -66,6 +77,10 @@ class SRC_Results_Temp extends SRC_Core {
 					// Bail out if on number, as this is a race and not needed for driver listings
 					if ( is_numeric( $column ) ) {
 						continue;
+					}
+
+					if ( 'Username' === $column ) {
+						$column = 'Name';
 					}
 
 					$content .= '<th>' . esc_html( $column ) . '</th>';
@@ -90,7 +105,20 @@ class SRC_Results_Temp extends SRC_Core {
 					$label = round( $label, 1 );
 				}
 
-				 $content .= '<td>' . esc_html( $label ) . '</td>';
+				$label = esc_html( $label ); // Early escaped so that link can be added when required
+
+				// Add link if possible
+				if ( 'Username' === $column ) {
+					$user = get_user_by( 'login', $label );
+					if ( isset( $user->data->display_name ) ) {
+						$name = $user->data->display_name;
+						$user_id = $user->data->ID;
+						$url = bbp_get_user_profile_url( $user_id );
+						$label = '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>';
+					}
+				}
+
+				$content .= '<td>' . $label . '</td>'; // Needed to be escaped earlier
 			}
 			$content .= '</tr>';
 
@@ -106,11 +134,11 @@ class SRC_Results_Temp extends SRC_Core {
 	 * Get the results.
 	 *
 	 * @param  string  $season    The season of the data being accessed
-	 * @param  string  $sort_by   The columns to sort by
+	 * @param  string  $orderby   The columns to sort by
 	 * @param  bool    $reverse   true if results should be reversed
 	 * @param  array   $order     Order of values. If not set, provides defaults.
 	 */
-	private function get_results( $season, $sort_by = null, $reverse, $order = null ) {
+	private function get_results( $season, $orderby = null, $reverse, $order = null, $only = null ) {
 
 		$raw_results = file_get_contents( dirname( __FILE__ ) . '/' . $season . '.csv' );
 		$raw_results = explode( "\n", $raw_results );
@@ -132,6 +160,7 @@ class SRC_Results_Temp extends SRC_Core {
 				foreach ( $raw_result as $col_number => $data ) {
 					foreach ( $columns as $n => $label ) {
 						if ( $n === $col_number ) {
+
 							$label = trim( $label );
 							$data = trim( $data );
 							$result[$label] = $data;
@@ -148,6 +177,19 @@ class SRC_Results_Temp extends SRC_Core {
 
 							}
 
+							// if $only is set, then we need to ignore all other values
+							if ( null != $only ) {
+								foreach ( $only as $only_col => $only_value ) {
+									if (
+										trim( $label ) === trim( $only_col )
+										&&
+										trim( $data ) !== trim( $only_value )
+									) {
+										$remove = true;
+									}
+								}
+							}
+
 						}
 					}
 
@@ -157,6 +199,7 @@ class SRC_Results_Temp extends SRC_Core {
 				$result['Pts'] = $points;
 				$result['AM Pts'] = $am_points;
 
+				// Include, if matches the required data for $only (which may or may not be set)
 				if ( false === $remove ) {
 					$results[$key] = $result;
 				}
@@ -166,8 +209,9 @@ class SRC_Results_Temp extends SRC_Core {
 		}
 
 		// Sort rows in the order requested
-		if ( null != $sort_by ) {
-			$this->sort_by = $sort_by;
+		if ( null != $orderby ) {
+echo $orderby;
+			$this->orderby = $orderby;
 			if ( true === $reverse ) {
 				usort( $results, array( $this, 'sort_callback_reverse' ) );
 			} else {
@@ -197,11 +241,11 @@ class SRC_Results_Temp extends SRC_Core {
 	}
 
 	function sort_callback( $a, $b ) {
-		return $a[ $this->sort_by ] - $b[ $this->sort_by ];
+		return $a[ $this->orderby ] - $b[ $this->orderby ];
 	}
 
 	function sort_callback_reverse( $a, $b ) {
-		return $b[ $this->sort_by ] - $a[ $this->sort_by ];
+		return $b[ $this->orderby ] - $a[ $this->orderby ];
 	}
 
 }
