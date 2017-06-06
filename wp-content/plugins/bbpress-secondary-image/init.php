@@ -41,13 +41,11 @@ class bbPress_Secondary_Image {
 		$this->load_textdomain();
 
 		// Actions
-		add_action( 'admin_init',                array( $this, 'admin_init'               )        );
 		add_action( 'show_user_profile',         array( $this, 'edit_user_profile'        )        );
 		add_action( 'edit_user_profile',         array( $this, 'edit_user_profile'        )        );
 		add_action( 'personal_options_update',   array( $this, 'edit_user_profile_update' )        );
 		add_action( 'edit_user_profile_update',  array( $this, 'edit_user_profile_update' )        );
 		add_action( 'bbp_user_edit_after_about', array( $this, 'bbpress_user_profile'     )        );
-
 	}
 
 	/**
@@ -63,43 +61,70 @@ class bbPress_Secondary_Image {
 	}
 
 	/**
-	 * Start the admin engine.
+	 * Filter the avatar WordPress returns
 	 *
 	 * @since 1.0.0
+	 * @param string $avatar 
+	 * @param int/string/object $id_or_email
+	 * @param int $size 
+	 * @param string $default
+	 * @param boolean $alt 
+	 * @return string
 	 */
-	public function admin_init() {
+	public function get_avatar( $avatar = '', $id_or_email, $size = 96, $default = '', $alt = false ) {
 
-		// Register/add the Discussion setting to restrict avatar upload capabilites
-		register_setting( 'discussion', 'bbpress_secondary_image_caps', array( $this, 'sanitize_options' ) );
-		add_settings_field( 'bbpress-secondary-image-caps', __( 'Local Avatar Permissions', 'bbpress-secondary-image' ), array( $this, 'avatar_settings_field' ), 'discussion', 'avatars' );
-	}
+		// Determine if we recive an ID or string
+		if ( is_numeric( $id_or_email ) )
+			$user_id = (int) $id_or_email;
+		elseif ( is_string( $id_or_email ) && ( $user = get_user_by( 'email', $id_or_email ) ) )
+			$user_id = $user->ID;
+		elseif ( is_object( $id_or_email ) && ! empty( $id_or_email->user_id ) )
+			$user_id = (int) $id_or_email->user_id;
 
-	/**
-	 * Discussion settings option
-	 *
-	 * @since 1.0.0
-	 * @param array $args [description]
-	 */
-	public function avatar_settings_field( $args ) {
-		$options = get_option( 'bbpress_secondary_image_caps' );
-		?>
-		<label for="bbpress_secondary_image_caps">
-			<input type="checkbox" name="bbpress_secondary_image_caps" id="bbpress_secondary_image_caps" value="1" <?php checked( $options['bbpress_secondary_image_caps'], 1 ); ?>/>
-			<?php _e( 'Only allow users with file upload capabilities to upload local avatars (Authors and above)', 'bbpress-secondary-image' ); ?>
-		</label>
-		<?php
-	}
+		if ( empty( $user_id ) )
+			return $avatar;
 
-	/**
-	 * Sanitize the Discussion settings option
-	 *
-	 * @since 1.0.0
-	 * @param array $input
-	 * @return array
-	 */
-	public function sanitize_options( $input ) {
-		$new_input['bbpress_secondary_image_caps'] = empty( $input['bbpress_secondary_image_caps'] ) ? 0 : 1;
-		return $new_input;
+		$local_avatars = get_user_meta( $user_id, 'bbpress_secondary_image', true );
+
+		if ( empty( $local_avatars ) || empty( $local_avatars['full'] ) )
+			return $avatar;
+
+		$size = (int) $size;
+
+		if ( empty( $alt ) )
+			$alt = get_the_author_meta( 'display_name', $user_id );
+
+		// Generate a new size
+		if ( empty( $local_avatars[$size] ) ) {
+
+			$upload_path      = wp_upload_dir();
+			$avatar_full_path = str_replace( $upload_path['baseurl'], $upload_path['basedir'], $local_avatars['full'] );
+			$image            = wp_get_image_editor( $avatar_full_path );
+
+			if ( ! is_wp_error( $image ) ) {
+				$image->resize( $size, $size, true );
+				$image_sized = $image->save();
+			}
+
+			// Deal with original being >= to original image (or lack of sizing ability)
+
+			if ( isset( $image_sized) ) {
+				$local_avatars[$size] = is_wp_error( $image_sized ) ? $local_avatars[$size] = $local_avatars['full'] : str_replace( $upload_path['basedir'], $upload_path['baseurl'], $image_sized['path'] );
+			} else {
+				$local_avatars[$size] = $local_avatars['full'];
+			}
+
+			// Save updated avatar sizes
+			update_user_meta( $user_id, 'bbpress_secondary_image', $local_avatars );
+
+		} elseif ( substr( $local_avatars[$size], 0, 4 ) != 'http' ) {
+			$local_avatars[$size] = home_url( $local_avatars[$size] );
+		}
+
+		$author_class = is_author( $user_id ) ? ' current-author' : '' ;
+		$avatar       = "<img alt='" . esc_attr( $alt ) . "' src='" . esc_url( $local_avatars[$size] ) . "' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}' />";
+
+		return apply_filters( 'bbpress_secondary_image', $avatar );
 	}
 
 	/**
@@ -113,41 +138,41 @@ class bbPress_Secondary_Image {
 
 		// bbPress will try to auto-add this to user profiles - don't let it.
 		// Instead we hook our own proper function that displays cleaner.
-		if ( function_exists( 'is_bbpress') && is_bbpress() )
+		if ( function_exists( 'is_bbpress') && is_bbpress() ) {
 			return;
+		}
+
 		?>
 
-		<h3><?php _e( 'Avatar', 'bbpress-secondary-image' ); ?></h3>
+		<h3><?php _e( 'Secondary Image', 'bbpress-secondary-image' ); ?></h3>
 		<table class="form-table">
 			<tr>
 				<th><label for="bbpress-secondary-image"><?php _e( 'Upload Avatar', 'bbpress-secondary-image' ); ?></label></th>
 				<td style="width: 50px;" valign="top">
-					<?php echo get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true ); ?>
+					<?php
+					$secondary_image = get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true );
+					if ( isset( $secondary_image['full'] ) ) {
+						$url = $secondary_image['full'];
+						echo '<img src="' . esc_url( $url ) . '" width="100" />';
+					}
+					?>
 				</td>
 				<td>
 				<?php
-				$options = get_option( 'bbpress_secondary_image_caps' );
-				if ( empty( $options['bbpress_secondary_image_caps'] ) || current_user_can( 'upload_files' ) ) {
-					// Nonce security ftw
-					wp_nonce_field( 'bbpress_secondary_image_nonce', '_bbpress_secondary_image_nonce', false );
-					
-					// File upload input
-					echo '<input type="file" name="bbpress-secondary-image" id="basic-local-avatar" /><br />';
 
-					if ( empty( $profileuser->bbpress_secondary_image ) ) {
-						echo '<span class="description">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'bbpress-secondary-image' ) . '</span>';
-					} else {
-						echo '<input type="checkbox" name="bbpress-secondary-image-erase" value="1" /> ' . __( 'Delete local avatar', 'bbpress-secondary-image' ) . '<br />';
-						echo '<span class="description">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'bbpress-secondary-image' ) . '</span>';
-					}
+				// Nonce security ftw
+				wp_nonce_field( 'bbpress_secondary_image_nonce', '_bbpress_secondary_image_nonce', false );
+				
+				// File upload input
+				echo '<input type="file" name="bbpress-secondary-image" id="bbpress-secondary-image" /><br />';
 
+				if ( empty( $profileuser->bbpress_secondary_image ) ) {
+					echo '<span class="description">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'bbpress-secondary-image' ) . '</span>';
 				} else {
-					if ( empty( $profileuser->bbpress_secondary_image ) ) {
-						echo '<span class="description">' . __( 'No local avatar is set. Set up your avatar at Gravatar.com.', 'bbpress-secondary-image' ) . '</span>';
-					} else {
-						echo '<span class="description">' . __( 'You do not have media management permissions. To change your local avatar, contact the site administrator.', 'bbpress-secondary-image' ) . '</span>';
-					}	
+					echo '<input type="checkbox" name="bbpress-secondary-image-erase" value="1" /> ' . __( 'Delete local avatar', 'bbpress-secondary-image' ) . '<br />';
+					echo '<span class="description">' . __( 'Replace the local avatar by uploading a new avatar, or erase the local avatar (falling back to a gravatar) by checking the delete option.', 'bbpress-secondary-image' ) . '</span>';
 				}
+
 				?>
 				</td>
 			</tr>
@@ -165,8 +190,9 @@ class bbPress_Secondary_Image {
 	public function edit_user_profile_update( $user_id ) {
 
 		// Check for nonce otherwise bail
-		if ( ! isset( $_POST['_bbpress_secondary_image_nonce'] ) || ! wp_verify_nonce( $_POST['_bbpress_secondary_image_nonce'], 'bbpress_secondary_image_nonce' ) )
+		if ( ! isset( $_POST['_bbpress_secondary_image_nonce'] ) || ! wp_verify_nonce( $_POST['_bbpress_secondary_image_nonce'], 'bbpress_secondary_image_nonce' ) ) {
 			return;
+		}
 
 		if ( ! empty( $_FILES['bbpress-secondary-image']['name'] ) ) {
 
@@ -178,15 +204,17 @@ class bbPress_Secondary_Image {
 			);
 
 			// Front end support - shortcode, bbPress, etc
-			if ( ! function_exists( 'wp_handle_upload' ) )
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
+			}
 
 			// Delete old images if successful
 			$this->avatar_delete( $user_id );
 
 			// Need to be more secure since low privelege users can upload
-			if ( strstr( $_FILES['bbpress-secondary-image']['name'], '.php' ) )
+			if ( strstr( $_FILES['bbpress-secondary-image']['name'], '.php' ) ) {
 				wp_die( 'For security reasons, the extension ".php" cannot be in your file name.' );
+			}
 
 			// Make user_id known to unique_filename_callback function
 			$this->user_id_being_edited = $user_id; 
@@ -196,10 +224,10 @@ class bbPress_Secondary_Image {
 			if ( empty( $avatar['file'] ) ) {  
 				switch ( $avatar['error'] ) {
 				case 'File type does not meet security guidelines. Try another.' :
-					add_action( 'user_profile_update_errors', create_function( '$a', '$a->add("avatar_error",__("Please upload a valid image file.","bbpress-secondary-image"));' ) );
+					add_action( 'user_profile_update_errors', create_function( '$a', '$a->add("avatar_error",__("Please upload a valid image file for the avatar.","bbpress-secondary-image"));' ) );
 					break;
 				default :
-					add_action( 'user_profile_update_errors', create_function( '$a', '$a->add("avatar_error","<strong>".__("There was an error uploading the image:","bbpress-secondary-image")."</strong> ' . esc_attr( $avatar['error'] ) . '");' ) );
+					add_action( 'user_profile_update_errors', create_function( '$a', '$a->add("avatar_error","<strong>".__("There was an error uploading the avatar:","bbpress-secondary-image")."</strong> ' . esc_attr( $avatar['error'] ) . '");' ) );
 				}
 				return;
 			}
@@ -220,39 +248,31 @@ class bbPress_Secondary_Image {
 	 */
 	public function bbpress_user_profile() {
 
-		if ( !bbp_is_user_home_edit() )
+		if ( ! bbp_is_user_home_edit() ) {
 			return;
+		}
 
 		$user_id     = get_current_user_id();
 		$profileuser = get_userdata( $user_id );
 
 		echo '<div>';
-			echo '<label for="basic-local-avatar">' . __( 'Car Image', 'bbpress-secondary-image' ) . '</label>';
+			echo '<label for="bbpress-secondary-image">' . __( 'Secondary Image', 'bbpress-secondary-image' ) . '</label>';
  			echo '<fieldset class="bbp-form avatar">';
 
- 				$image = get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true );
- 				if ( isset( $image['full'] ) ) {
- 					echo '<img src="' . esc_url( $image['full'] ) . '" />';
- 				}
+				$secondary_image = get_user_meta( $profileuser->ID, 'bbpress_secondary_image', true );
+				if ( isset( $secondary_image['full'] ) ) {
+					$url = $secondary_image['full'];
+					echo '<img src="' . esc_url( $url ) . '" width="100" />';
+				}
 
-				$options = get_option( 'bbpress_secondary_image_caps' );
-				if ( empty( $options['bbpress_secondary_image_caps'] ) || current_user_can( 'upload_files' ) ) {
-					// Nonce security ftw
-					wp_nonce_field( 'bbpress_secondary_image_nonce', '_bbpress_secondary_image_nonce', false );
-					
-					// File upload input
-					echo '<br /><input type="file" name="bbpress-secondary-image" id="basic-local-avatar" /><br />';
+				// Nonce security ftw
+				wp_nonce_field( 'bbpress_secondary_image_nonce', '_bbpress_secondary_image_nonce', false );
+				
+				// File upload input
+				echo '<br /><input type="file" name="bbpress-secondary-image" id="bbpress-secondary-image" /><br />';
 
-					if ( empty( $profileuser->bbpress_secondary_image ) ) {
-						echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'bbpress-secondary-image' ) . '</span>';
-					}
-
-				} else {
-					if ( empty( $profileuser->bbpress_secondary_image ) ) {
-						echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Set up your avatar at Gravatar.com.', 'bbpress-secondary-image' ) . '</span>';
-					} else {
-						echo '<span class="description" style="margin-left:0;">' . __( 'You do not have media management permissions. To change your local avatar, contact the site administrator.', 'bbpress-secondary-image' ) . '</span>';
-					}	
+				if ( empty( $profileuser->bbpress_secondary_image ) ) {
+					echo '<span class="description" style="margin-left:0;">' . __( 'No local avatar is set. Use the upload field to add a local avatar.', 'bbpress-secondary-image' ) . '</span>';
 				}
 
 			echo '</fieldset>';
@@ -304,20 +324,4 @@ class bbPress_Secondary_Image {
 		return $name . $ext;
 	}
 }
-$bbpress_secondary_image = new bbPress_Secondary_Image;
-
-/**
- * During uninstallation, remove the custom field from the users and delete the local avatars
- *
- * @since 1.0.0
- */
-function bbpress_secondary_image_uninstall() {
-	$bbpress_secondary_image = new bbpress_secondary_image;
-	$users = get_users_of_blog();
-
-	foreach ( $users as $user )
-		$bbpress_secondary_image->avatar_delete( $user->user_id );
-
-	delete_option( 'bbpress_secondary_image_caps' );
-}
-register_uninstall_hook( __FILE__, 'bbpress_secondary_image_uninstall' );
+new bbPress_Secondary_Image;
