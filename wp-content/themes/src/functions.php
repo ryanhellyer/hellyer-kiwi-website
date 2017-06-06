@@ -202,6 +202,7 @@ require( 'inc/class-src-bbcode.php' );
 require( 'inc/class-src-events.php' );
 require( 'inc/class-src-results.php' );
 require( 'inc/class-src-results-temp.php' );
+require( 'inc/class-src-members.php' );
 require( 'inc/class-src-admin.php' );
 require( 'inc/class-src-setup.php' );
 
@@ -210,3 +211,4 @@ new SRC_Results;
 new SRC_Admin;
 new SRC_BBCode;
 new SRC_Results_Temp;
+new SRC_Members;

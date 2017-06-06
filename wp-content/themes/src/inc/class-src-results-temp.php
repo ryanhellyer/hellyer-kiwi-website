@@ -47,18 +47,26 @@ class SRC_Results_Temp extends SRC_Core {
 		// Set orderby
 		if ( isset( $args['orderby'] ) ) {
 			$orderby = $args['orderby'];
-
 		} else {
 			$orderby = 'Pts';
 		}
 
-		$results = $this->get_results(
-			'results',
-			$orderby,
-			true,
-			$order,
-			$only
-		);
+		// Get season
+		if ( isset( $args['season'] ) ) {
+			$season = $args['season'];
+
+			$results = $this->get_results(
+				$season,
+				$orderby,
+				true,
+				$order,
+				$only
+			);
+
+		} else {
+			return 'No season specified';
+		}
+
 
 		$content = '
 				<table>';
@@ -69,7 +77,8 @@ class SRC_Results_Temp extends SRC_Core {
 
 				$content .= '
 					 <thead>
-						<tr>';
+						<tr>
+							<th>' . esc_html__( 'Pos', 'src' ) . '</th>';
 
 				foreach( $row as $column => $label ) {
 
@@ -90,8 +99,9 @@ class SRC_Results_Temp extends SRC_Core {
 					</thead>';
 			}
 
-			// 
-			$content .= '<tr>';
+			$content .= '
+						<tr>
+							<td>' . esc_html( $row_number + 1 ) . '</td>';
 
 			foreach( $row as $column => $label ) {
 
@@ -132,6 +142,8 @@ class SRC_Results_Temp extends SRC_Core {
 
 	/**
 	 * Get the results.
+	 * This is a rather convoluted one function for all tasks blob. This could be abstracted, but I felt 
+	 * it was less messy to keep all the logic in one place since it won't be needed elsewhere anyway.
 	 *
 	 * @param  string  $season    The season of the data being accessed
 	 * @param  string  $orderby   The columns to sort by
@@ -195,8 +207,8 @@ class SRC_Results_Temp extends SRC_Core {
 
 				}
 
-				// Only stash results if username is listed
-				if ( isset( $result['Username'] ) ) {
+				// Only stash results if team or username is listed
+				if ( isset( $result['Team'] ) || isset( $result['Username'] ) ) {
 
 					// Add points to array (they're not in by default as we still needed to calculate them)
 					$result['Pts'] = $points;
