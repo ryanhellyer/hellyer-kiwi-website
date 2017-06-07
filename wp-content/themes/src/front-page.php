@@ -56,15 +56,17 @@ get_header();
 			?>
 
 
-			<article class="<?php echo esc_attr( 'slide post-' . $count ); ?>">
-				<header>
-					<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" />
+			<a href="<?php the_permalink(); ?>" class="<?php echo esc_attr( 'slide post-' . $count ); ?>">
+				<div class="image" style="background-image:url(<?php echo esc_url( get_the_post_thumbnail_url() ); ?>);"></div>
+
+				<div class="box-text">
 					<date><?php the_date(); ?></date>
-				</header>
-				<p>
-					<?php the_title(); ?>
-				</p>
-			</article><?php
+					<p>
+						<?php the_title(); ?>
+					</p>
+				</div>
+
+			</a><?php
 
 		}
 	}

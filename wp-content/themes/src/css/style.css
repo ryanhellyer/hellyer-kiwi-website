@@ -9,6 +9,8 @@ body, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, img, dl, dt, dd, ol, ul,
 
 body.home {
   background: #ebebeb; }
+  body.home #main {
+    margin-top: 0; }
 
 body {
   background: #fff; }
@@ -185,10 +187,10 @@ address {
 -------------------------------------------------------------- */
 #latest-news {
   width: 92%;
-  padding: 0 4%; }
+  padding: 0 4% 40px 4%; }
   #latest-news header h2 {
     margin: 40px 0 20px 0; }
-  #latest-news article {
+  #latest-news a.slide {
     float: left;
     width: 32%;
     padding-bottom: 10px;
@@ -196,20 +198,29 @@ address {
     margin: 0 20px;
     position: relative;
     left: -20px; }
-    #latest-news article img {
-      display: block;
-      width: 100%; }
-    #latest-news article date,
-    #latest-news article p {
+    #latest-news a.slide:hover {
+      text-decoration: none; }
+      #latest-news a.slide:hover .image {
+        opacity: 0.7; }
+    #latest-news a.slide .image {
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 200px; }
+    #latest-news a.slide .box-text {
+      background: #fff; }
+    #latest-news a.slide date,
+    #latest-news a.slide p {
       display: block;
       padding-right: 30px;
-      padding-left: 30px; }
-    #latest-news article date {
+      padding-left: 30px;
+      color: #000; }
+    #latest-news a.slide date {
       margin: 20px 0;
       font-family: "Open Sans", sans-serif;
       font-weight: 600;
       font-size: 0.8rem; }
-    #latest-news article p {
+    #latest-news a.slide p {
       font-family: "Open Sans", sans-serif;
       font-weight: 400;
       font-size: 1.1rem; }
@@ -726,6 +737,9 @@ a {
 
 .slider-inner {
   width: 100%; }
+
+.slide {
+  display: block; }
 
 /* =Site footer
 -------------------------------------------------------------- */
