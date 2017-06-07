@@ -35,6 +35,12 @@
 		}
 	);
 
+	window.addEventListener("scroll", function() {
+		var featured_news = document.getElementById("featured-news");
+		var scroll_from_top = window.scrollY || window.pageYOffset || document.body.scrollTop;
+		featured_news.style.backgroundPosition = 'center ' + 0.5 * scroll_from_top + 'px';
+	});
+
 	window.addEventListener("resize", function() {
 		set_featured_news_height();
 		set_article_widths();
