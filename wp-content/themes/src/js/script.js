@@ -49,7 +49,7 @@
 
 	function set_featured_news_height() {
 		var featured_news = document.getElementById("featured-news");
-		featured_news.style.height = ( window.innerHeight * 0.9 ) + "px";
+		featured_news.style.height = ( window.innerHeight * 0.5 ) + "px";
 	}
 
 	function set_article_widths() {
