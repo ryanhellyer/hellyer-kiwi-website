@@ -704,27 +704,31 @@ td {
 	width: 100%;
 }
 
-.bbp-header,
-.bbp-body,
-.bbp-footer {
-	width: 100%;
+#main #bbpress-forums {
 
-	.odd li {
-		background: #fff;
+	.bbp-header,
+	.bbp-body,
+	.bbp-footer {
+		width: 100%;
+
+		.odd li {
+			background: #fff;
+		}
+
+		ul li {
+			float: left;
+			padding: 1.4rem 2%;
+			background: $forum_odd_background;
+		}
+
 	}
 
-	li {
-		float: left;
-		padding: 1.4rem 2%;
-		background: $forum_odd_background;
-	}
+	.bbp-header {
 
-}
+		ul li {
+			padding: 10px 2%;
+		}
 
-.bbp-header {
-
-	li {
-		padding: 10px 2%;
 	}
 
 }
