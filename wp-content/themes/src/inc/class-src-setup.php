@@ -36,6 +36,10 @@ class SRC_Theme_Setup {
 		add_action( 'after_setup_theme',  array( $this, 'theme_setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'stylesheets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'script' ) );
+		add_action( 'after_switch_theme', array( $this, 'theme_activation' ) );
+
+		// Add filters
+		add_filter('private_title_format', array( $this, 'remove_private_title_format' ) );
 
 	}
 
@@ -97,6 +101,23 @@ class SRC_Theme_Setup {
 		// Enable support for Post Thumbnails
 		add_theme_support( 'post-thumbnails' );
 //		add_image_size( self::THEME_NAME . '-excerpt-thumb', 250, 350 );
+	}
+
+	/**
+	 * Removing the "Private: " text from private page/post titles.
+	 */
+	public function remove_private_title_format( $content ) {
+		return '%s';
+	}
+
+	/**
+	 ** Tasks to run on theme activation.
+	 */
+	public function theme_activation() {
+
+		// Adding option so that we can configure what post/page appears home page featured post area when user is logged out
+		add_option( 'src_featured_page', 1 );
+
 	}
 
 }

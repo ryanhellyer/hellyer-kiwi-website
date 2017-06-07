@@ -21,6 +21,10 @@ class SRC_bbPress {
 		add_action( 'wp_print_styles', array( $this, 'deregister_bbpress_styles' ), 15 );
 		add_action( 'init', array( $this, 'init' ) );
 
+		// Add support for bbPress post thumbnails
+		add_theme_support( 'post-thumbnails', array( 'topic' ) );
+		add_post_type_support( 'topic', 'thumbnail' );
+
 		// Add filters
 		add_filter( 'bbp_get_topic_admin_links', array( $this, 'change_admin_links' ) );
 		add_filter( 'bbp_get_reply_admin_links', array( $this, 'change_admin_links' ) );

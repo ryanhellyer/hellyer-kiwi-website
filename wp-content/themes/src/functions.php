@@ -1,6 +1,11 @@
 <?php
 
 
+
+
+
+
+
 add_filter( 'simple-registration-fields', 'bla' );
 function bla( $fields ) {
 
@@ -10,7 +15,8 @@ function bla( $fields ) {
 }
 
 
-if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+if ( 'a' =='b' &&       ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+
 	echo '
 	<style>
 	body {background:#000;}

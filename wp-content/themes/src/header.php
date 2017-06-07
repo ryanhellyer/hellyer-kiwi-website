@@ -45,18 +45,54 @@
 </header><!-- #site-header -->
 
 <?php
-if ( is_super_admin() ) {
-if ( is_front_page() ) {
-	?>
-<section id="featured-news" style="background-image: url(<?php echo get_template_directory_uri(); ?>/images/featured-image.jpg);">
-	<div class="text">
-		<h1>Hockenheim Results: Stunning wins for Rosanski and Speedy</h1>
-		<a href="#" class="button">Check out the results</a>
-	</div>
-</section><!-- #featured-news -->
 
-<?php
-}
+if ( is_front_page() ) {
+
+
+	if ( is_user_logged_in() ) {
+
+		$args = array(
+			'post_type'              => 'topic',
+			'meta_key'               => '_thumbnail_id',
+			'posts_per_page'         => 1,
+			'no_found_rows'          => true,  // useful when pagination is not needed.
+			'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+			'fields'                 => 'ids'
+		);
+
+	} else {
+
+		$args = array(
+			'post_type'              => 'any',
+			'post_status'            => 'private',
+			'posts_per_page'         => 1,
+			'p'                      => get_option( 'src_featured_page' ),
+			'no_found_rows'          => true,  // useful when pagination is not needed.
+			'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+			'fields'                 => 'ids',
+		) ;
+
+	}
+
+	$featured_item = new WP_Query( $args );
+	if ( $featured_item->have_posts() ) {
+		while ( $featured_item->have_posts() ) {
+			$featured_item->the_post();
+
+			?>
+
+<section id="featured-news" style="background-image: url(<?php echo esc_url( get_the_post_thumbnail_url() ); ?>">
+	<div class="text">
+		<h1><?php the_title(); ?></h1>
+		<a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'Read More', 'src' ); ?></a>
+	</div>
+</section><!-- #featured-news --><?php
+
+		}
+	}
+
 }
 ?>
 
