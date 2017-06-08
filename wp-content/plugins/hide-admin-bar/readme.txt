@@ -3,14 +3,14 @@ Contributors: sdenike
 Donate link: https://paypal.me/sdenike
 Tags: admin, admin bar, hidden
 Requires at least: 3.1
-Tested up to: 4.7.3
+Tested up to: 4.8
 Stable tag: trunk
 
 Hide the Admin Bar in WordPress 3.1+
 
 == Description ==
 
-Hides the Admin Bar in WordPress 3.1+, credits to <a href="http://yoast.com/disable-wp-admin-bar/">Yoast</a>, and <a href="http://developersmind.com/2011/02/23/disable-admin-bar-and-hide-preferences/">Pete Mall</a>.
+Hides the Admin Bar in WordPress 3.1+, credits to <a href="http://yoast.com/disable-wp-admin-bar/">Yoast</a>, and <a href="http://developersmind.com/2011/02/23/disable-admin-bar-and-hide-preferences/">Pete Mall</a>. If you love this plugins, <A href="https://paypal.me/sdenike">buy me a cup of coffee</a>.
 
 == Installation ==
 
@@ -19,6 +19,10 @@ Hides the Admin Bar in WordPress 3.1+, credits to <a href="http://yoast.com/disa
 3. Enjoy!, there are no settings for this.
 
 == Changelog ==
+
+= 0.3.8 - Jun 8th, 2017 =
+* Confirmed working with 4.8
+* Added donation link in description
 
 = 0.3.7 - Mar 29th, 2017 =
 * Confirmed working with 4.7.3/4.7.2
