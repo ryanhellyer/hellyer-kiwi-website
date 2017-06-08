@@ -1,4 +1,4 @@
-# Translation of WordPress.com - Themes - Sorbet in Hebrew
+# Translation of WordPress.com - Themes - Sorbet in Romanian
 # This file is distributed under the same license as the WordPress.com - Themes - Sorbet package.
 msgid ""
 msgstr ""
@@ -6,26 +6,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
-"Language: he_IL\n"
+"Language: ro\n"
 "Project-Id-Version: WordPress.com - Themes - Sorbet\n"
 
 #: inc/wpcom-colors.php:72
 msgid "Link Posts"
-msgstr "קישורים"
+msgstr "Leagă articole"
 
 #: inc/wpcom-colors.php:62
 msgid "Links, Aside Posts, and Gallery Posts"
-msgstr "קישורים, פוסטים Aside ורשומות גלרייה"
+msgstr "Legături, articole notă și articole galerie"
 
 #: inc/wpcom-colors.php:28
 msgid "Video and Audio Posts"
-msgstr "פוסטים של וידאו ואודיו"
+msgstr "Articole video și audio"
 
 #: inc/wpcom-colors.php:17
 msgid "Sticky and Image Posts"
-msgstr "פוסטים דביקים ותמונות"
+msgstr "Articole reprezentative și imagine"
+
+#: eventbrite/eventbrite-index.php:37 eventbrite/eventbrite-single.php:24
+msgid "Eventbrite events"
+msgstr "Evenimente Eventbrite"
+
+#: eventbrite/eventbrite-index.php:37 eventbrite/eventbrite-single.php:24
+msgid "All events"
+msgstr "Toate evenimentele"
 
 #. Author URI of the plugin/theme
 #: wp-content/themes/pub/sorbet/style.css
@@ -35,31 +43,31 @@ msgstr "https://wordpress.com/themes/"
 #. Template Name of the plugin/theme
 #: wp-content/themes/pub/sorbet/nosidebar-page.php
 msgid "Full Width, No Sidebar"
-msgstr "רוחב מלא, ללא עמודה צידית"
+msgstr "Lățime completă, fără bară laterală"
 
 #. Description of the plugin/theme
 #: wp-content/themes/pub/sorbet/style.css
 msgid "Sorbet is a delicious treat for your blog or website. Colorful post formats help your content pop, while secondary information (navigation, search, social links, and widgets) is tucked neatly away in the header for easy access that doesn't crowd your content."
-msgstr "<span dir=rtl>Sorbet הוא פינוק טעים במיוחד עבור הבלוג או אתר האינטרנט שלך.</span> <span dir=rtl>פורמטים צבעוניים לפוסטים מסייעים לתוכן שלך לבלוט, בעוד שהמידע המשני (ניווט, חיפוש, קישורים למדיה חברתית ווידג'טים) ממוקם בצורה מסודרת בכותרת העליונה כדי לאפשר גישה בקלות מבלי לצופף את התוכן.</span>"
+msgstr "Sorbet este un prilej de bucurie pentru blogul sau situl tău web. Formatele de articol colorate ajuta la afișarea conținutului, în timp ce informațiile secundare (navigare, căutare, legături sociale și piese) sunt împinse cu grijă deoparte în antet pentru acces facil și ca să nu-ți îngrămădească conținutul."
 
 #: searchform.php:13
 msgctxt "submit button"
 msgid "Search"
-msgstr "חפש"
+msgstr "Căutare"
 
 #: searchform.php:11
 msgctxt "placeholder"
 msgid "Search &hellip;"
-msgstr "חיפוש &hellip;"
+msgstr "Căutare &hellip;"
 
 #: searchform.php:10
 msgctxt "label"
 msgid "Search for:"
-msgstr "חפש:"
+msgstr "Căutare:"
 
 #: search.php:16
 msgid "Search Results for: %s"
-msgstr "תוצאות החיפוש: %s"
+msgstr "Rezultatele căutări pentru: %s"
 
 #: inc/template-tags.php:143
 msgid "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
@@ -67,76 +75,80 @@ msgstr "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark
 
 #: inc/template-tags.php:138 inc/template-tags.php:149
 msgid "View all posts by %s"
-msgstr "הצגת הרשומות של %s"
+msgstr "Vezi toate posturile scrise de %s"
+
+#: inc/template-tags.php:134
+msgid "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">Featured</a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%3$s\" title=\"%4$s\" rel=\"author\">%5$s</a></span></span>"
+msgstr "<span class=\"post-date\"><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\">Reprezentativ</a></span><span class=\"byline\"><span class=\"author vcard\"><a class=\"url fn n\" href=\"%3$s\" title=\"%4$s\" rel=\"author\">%5$s</a></span></span>"
 
 #: inc/template-tags.php:116
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
-msgstr "%1$s בשעה %2$s"
+msgstr "%1$s la %2$s"
 
 #: inc/template-tags.php:96
 msgid "Your comment is awaiting moderation."
-msgstr "התגובה ממתינה לאישור."
+msgstr "Comentariul tău e în așteptare."
 
 #: inc/template-tags.php:92
 msgid "%s <span class=\"says\">says:</span>"
-msgstr "%s <span class=\"says\">הגיב:</span>"
+msgstr "%s <span class=\"says\">zice:</span>"
 
 #: inc/template-tags.php:82
 msgid "Pingback:"
-msgstr "פינגבק:"
+msgstr "Pingback:"
 
 #: inc/template-tags.php:60
 msgctxt "Next post link"
 msgid "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
-msgstr "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
+msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
 
 #: inc/template-tags.php:59
 msgctxt "Previous post link"
 msgid "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
-msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
+msgstr "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
 
 #: inc/template-tags.php:56
 msgid "Post navigation"
-msgstr "ניווט ברשומות"
+msgstr "Navigare articole"
 
 #: inc/template-tags.php:31
 msgctxt "Newer posts"
 msgid "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
-msgstr "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
+msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
 
 #: inc/template-tags.php:27
 msgctxt "Older posts"
 msgid "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
-msgstr "<span class=\"meta-nav screen-reader-text\">&rarr;</span>"
+msgstr "<span class=\"meta-nav screen-reader-text\">&larr;</span>"
 
 #: inc/template-tags.php:23
 msgid "Posts navigation"
-msgstr "ניווט בין הרשומות"
+msgstr "Navigare în articole"
 
 #: inc/extras.php:67
 msgid "Page %s"
-msgstr "עמוד %s"
+msgstr "Pagina %s"
 
 #: header.php:50
 msgid "Skip to content"
-msgstr "דילוג לתוכן"
+msgstr "Sări la conţinut"
 
 #: header.php:44
 msgid "Search"
-msgstr "חיפוש"
+msgstr "Căutare"
 
 #: header.php:42
 msgid "Social Links"
-msgstr "קישורים חברתיים"
+msgstr "Legături sociale"
 
 #: header.php:39
 msgid "Widgets"
-msgstr "וידג'טים"
+msgstr "Widget-uri"
 
 #: header.php:37
 msgid "Menu"
-msgstr "תפריט"
+msgstr "Meniu"
 
 #. translators: If there are characters in your language that are not supported
 #. by PT Serif, translate this to 'off'. Do not translate into your own
@@ -144,7 +156,7 @@ msgstr "תפריט"
 #: functions.php:173
 msgctxt "PT Serif font: on or off"
 msgid "on"
-msgstr "off"
+msgstr "on"
 
 #. translators: If there are characters in your language that are not supported
 #. by Source Sans Pro, translate this to 'off'. Do not translate into your
@@ -154,45 +166,57 @@ msgctxt "Source Sans Pro font: on or off"
 msgid "on"
 msgstr "on"
 
+#: functions.php:101
+msgid "Header Column 3"
+msgstr "Coloană antet 3"
+
+#: functions.php:93
+msgid "Header Column 2"
+msgstr "Coloană antet 2"
+
+#: functions.php:85
+msgid "Header Column 1"
+msgstr "Coloană antet 1"
+
 #: functions.php:77
 msgid "Sidebar"
-msgstr " סרגל צדדי"
+msgstr "Bară laterală"
 
 #: functions.php:51
 msgid "Social Links Menu"
-msgstr "תפריט קישורי מדיה חברתית"
+msgstr "Meniu legături sociale"
 
 #: functions.php:50
 msgid "Footer Menu"
-msgstr "תפריט כותרת תחתית"
+msgstr "Meniu subsol"
 
 #: functions.php:49
 msgid "Primary Menu"
-msgstr "תפריט ראשי"
+msgstr "Meniu principal"
 
 #: footer.php:22
 msgid "Theme: %1$s by %2$s."
-msgstr "ערכת עיצוב: %1$s של %2$s"
+msgstr "Tema: %1$s de %2$s."
 
 #: footer.php:20
 msgid "Proudly powered by %s"
-msgstr "פועל על %s"
+msgstr "Propulsat cu mândrie de %s"
 
 #: content.php:45
 msgid "% Comments"
-msgstr "% תגובות"
+msgstr "% comentarii"
 
 #: content.php:45
 msgid "1 Comment"
-msgstr "תגובה אחת"
+msgstr "Un comentariu"
 
 #: content.php:45
 msgid "Leave a comment"
-msgstr "השארת תגובה"
+msgstr "Scrie un comentariu"
 
 #: content.php:29
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
-msgstr "להמשיך לקרוא <span class=\"meta-nav\">&larr;</span>"
+msgstr "Continuă lectura <span class=\"meta-nav\">&rarr;</span>"
 
 #. translators: used between list items, there is a space after the comma
 #: content-single.php:32 content.php:40
@@ -201,52 +225,53 @@ msgstr ", "
 
 #: content-single.php:18 content.php:17
 msgid "All %s posts"
-msgstr "כל הרשומות של %s"
+msgstr "Toate cele %s de articole "
 
 #: content-page.php:18 content-single.php:34 content.php:48
 #: eventbrite/eventbrite-index.php:50 eventbrite/eventbrite-single.php:39
 #: inc/template-tags.php:82 inc/template-tags.php:119
 msgid "Edit"
-msgstr "עריכה"
+msgstr "Editare"
 
 #: content-none.php:28
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "נראה כי לא ניתן למצוא את מה שחיפשת, אולי חיפוש יעזור."
+msgstr "Se pare că nu putem găsi ceea ce cauți tu. Poate o căutare ar fi de ajutor."
 
 #: content-none.php:23
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr "מצוערים, אבל לא נמצאה התאמה. אפשר לנסות שוב עם מילות חיפוש שונות."
+msgstr "Regret, dar nimic nu se potrivește termenilor căutării tale. Te rog încearcă din nou cu cuvinte cheie diferite."
 
 #: content-none.php:19
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "מוכן לפרסם את הרשומה הראשונה שלך? <a href=\"%1$s\">התחל כאן</a>."
+msgstr "Gata să publici primul tău articol? <a href=\"%1$s\">Poți începe aici</a>."
 
 #: content-none.php:13
 msgid "Nothing Found"
-msgstr "לא מצאתי כלום"
+msgstr "Nu a fost găsit nimic"
 
 #: comments.php:69
 msgid "Comments are closed."
-msgstr "סגור לתגובות."
+msgstr "Comentariile nu sunt permise."
 
 #: comments.php:39 comments.php:59
 msgid "Newer Comments &rarr;"
-msgstr "תגובות חדשות יותר &larr;"
+msgstr "Comentarii mai noi &rarr;"
 
 #: comments.php:38 comments.php:58
 msgid "&larr; Older Comments"
-msgstr "&rarr; תגובות ישנות יותר"
+msgstr "&larr; Comentarii mai vechi"
 
 #: comments.php:37 comments.php:57
 msgid "Comment navigation"
-msgstr "ניווט בתגובות"
+msgstr "Navigare în comentarii"
 
 #: comments.php:30
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "מחשבה אחת על &ldquo;%2$s&rdquo;"
-msgstr[1] "%1$s מחשבות על &ldquo;%2$s&rdquo;"
+msgstr[0] "Un gând despre &8222;%2$s&8221;"
+msgstr[1] "%1$s gânduri despre &8222;%2$s&8221;"
+msgstr[2] "%1$s de gânduri despre &8222;%2$s&8221;"
 
 #: archive.php:79 archive.php:80 archive.php:81
 msgid "%s"
@@ -254,43 +279,43 @@ msgstr "%s"
 
 #: archive.php:66
 msgid "Archives"
-msgstr "ארכיון"
+msgstr "Arhive"
 
 #: archive.php:63
 msgid "Chats"
-msgstr "צ'טים"
+msgstr "Discuții"
 
 #: archive.php:60
 msgid "Audios"
-msgstr "קבצי אודיו"
+msgstr "Audio-uri"
 
 #: archive.php:57
 msgid "Statuses"
-msgstr "סטטוסים"
+msgstr "Stări"
 
 #: archive.php:54
 msgid "Links"
-msgstr "קישורים"
+msgstr "Legături"
 
 #: archive.php:51
 msgid "Quotes"
-msgstr "ציטוטים"
+msgstr "Citate"
 
 #: archive.php:48
 msgid "Videos"
-msgstr "סרטונים"
+msgstr "Fişiere video"
 
 #: archive.php:45
 msgid "Images"
-msgstr "תמונות"
+msgstr "Imagini"
 
 #: archive.php:42
 msgid "Galleries"
-msgstr "גלריות"
+msgstr "Galerii"
 
 #: archive.php:39
 msgid "Asides"
-msgstr "קצרצרים"
+msgstr "Laterale"
 
 #: archive.php:36
 msgctxt "yearly archives date format"
@@ -299,7 +324,7 @@ msgstr "Y"
 
 #: archive.php:36
 msgid "Year: %s"
-msgstr "שנה: %s"
+msgstr "An: %s"
 
 #: archive.php:33
 msgctxt "monthly archives date format"
@@ -308,20 +333,20 @@ msgstr "F Y"
 
 #: archive.php:33
 msgid "Month: %s"
-msgstr "חודש: %s"
+msgstr "Lună: %s"
 
 #: archive.php:30
 msgid "Day: %s"
-msgstr "יום: %s"
+msgstr "Zi: %s"
 
 #: archive.php:27
 msgid "Author: %s"
-msgstr "מחבר: %s"
+msgstr "Autor: %s"
 
 #: 404.php:19
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
-msgstr "לא הצלחנו למצוא שום דבר בכתובת זו. כדאי לנסות את הקישורים הבאים, או את החיפוש."
+msgstr "Se pare că nu a fost găsit nimic la această locație. Poate încerci una din legăturile de mai jos sau o căutare?"
 
 #: 404.php:15
 msgid "Oops! That page can&rsquo;t be found."
-msgstr "אופס. העמוד שביקשת אינו קיים."
+msgstr "Hopa! Pagina nu a fost găsită."

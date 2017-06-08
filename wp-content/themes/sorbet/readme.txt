@@ -51,6 +51,31 @@ You can add links to a multitude of social services to a toggle menu (the heart 
 
 == Changelog ==
 
+= 8 June 2017 =
+* Add support for title tags. Add styles to prevent too-long text strings in widgets from overflowing.
+
+= 7 June 2017 =
+* Update JavaScript that toggles hidden widget area, to make sure new video and audio widgets are displaying correctly when opened.
+
+= 2 June 2017 =
+* Updating Google Font enqueueing method, to prevent 404 error in the editor.
+
+= 22 March 2017 =
+* add Custom Colors annotations directly to the theme
+* move fonts annotations directly into the theme
+
+= 27 January 2017 =
+* Replace get_the_tag_list() with the_tags() for a more straightforward approach that prevents potential fatal errors.
+
+= 29 July 2016 =
+* Add multiple-menus tag to style.css;
+
+= 17 June 2016 =
+* Add a class of .widgets-hidden to the body tag when the sidebar is active; allows the widgets to be targeted by Direct Manipulation.
+
+= 9 June 2016 =
+* Add Headstart annotations;
+
 = 8 March 2016 =
 * CSS header cleanup for preparing .org submission.
 

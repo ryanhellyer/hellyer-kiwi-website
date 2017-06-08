@@ -29,13 +29,8 @@ $formats = get_theme_support( 'post-formats' );
 		<?php sorbet_posted_on(); ?>
 		<?php
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', __( ', ', 'sorbet' ) );
-			if ( $tags_list ) :
+			the_tags( '<span class="tags-links">', __( ', ', 'sorbet' ), '</span>' );
 		?>
-		<span class="tags-links">
-			<?php echo $tags_list; ?>
-		</span>
-		<?php endif; // End if $tags_list ?>
 		<?php edit_post_link( __( 'Edit', 'sorbet' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post-## -->

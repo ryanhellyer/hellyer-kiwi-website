@@ -34,7 +34,15 @@ function sorbet_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	//Style the Tiny MCE editor
-	add_editor_style();
+	add_editor_style( array( 'editor-style.css', sorbet_fonts_url() ) );
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -114,8 +122,7 @@ add_action( 'widgets_init', 'sorbet_widgets_init' );
 function sorbet_scripts() {
 	wp_enqueue_style( 'sorbet-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'sorbet-source-sans-pro' );
-	wp_enqueue_style( 'sorbet-pt-serif' );
+	wp_enqueue_style( 'sorbet-fonts', sorbet_fonts_url(), array(), null );
 
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
 
@@ -154,30 +161,43 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-/**
- * Register Google Fonts
- */
-function sorbet_google_fonts() {
-	/*	translators: If there are characters in your language that are not supported
-		by Source Sans Pro, translate this to 'off'. Do not translate into your own language. */
+function sorbet_fonts_url() {
+	$fonts_url = '';
 
-	if ( 'off' !== _x( 'on', 'Source Sans Pro font: on or off', 'sorbet' ) ) {
+	/* Translators: If there are characters in your language that are not
+	* supported by Source Sans Pro, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$sourcesanspro = esc_html_x( 'on', 'Source Sans Pro font: on or off', 'sorbet' );
 
-		wp_register_style( 'sorbet-source-sans-pro', "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext" );
+	/* Translators: If there are characters in your language that are not
+	* supported by PT Serif, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$ptserif = esc_html_x( 'on', 'PT Serif font: on or off', 'sorbet' );
 
+	if ( 'off' !== $sourcesanspro || 'off' !== $ptserif ) {
+		$font_families = array();
+
+		if ( 'off' !== $sourcesanspro ) {
+			$font_families[] = 'Source Sans Pro:300,400,700,300italic,400italic,700italic';
+		}
+
+		if ( 'off' !== $ptserif ) {
+			$font_families[] = 'PT Serif:400,700,400italic,700italic';
+
+		}
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 	}
 
-	/*	translators: If there are characters in your language that are not supported
-		by PT Serif, translate this to 'off'. Do not translate into your own language. */
-
-	if ( 'off' !== _x( 'on', 'PT Serif font: on or off', 'sorbet' ) ) {
-
-		wp_register_style( 'sorbet-pt-serif', "https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext" );
-
-	}
-
+	return $fonts_url;
 }
-add_action( 'init', 'sorbet_google_fonts' );
 
 /**
  * Enqueue Google Fonts for custom headers
@@ -187,34 +207,10 @@ function sorbet_admin_scripts( $hook_suffix ) {
 	if ( 'appearance_page_custom-header' != $hook_suffix )
 		return;
 
-	wp_enqueue_style( 'sorbet-source-sans-pro' );
-	wp_enqueue_style( 'sorbet-pt-serif' );
+	wp_enqueue_style( 'sorbet-fonts', sorbet_fonts_url(), array(), null );
 
 }
 add_action( 'admin_enqueue_scripts', 'sorbet_admin_scripts' );
-
-/**
- * Adds additional stylesheets to the TinyMCE editor if needed.
- *
- * @param string $mce_css CSS path to load in TinyMCE.
- * @return string
- */
-function sorbet_mce_css( $mce_css ) {
-
-	$font = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext|PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext";
-
-	if ( empty( $font ) )
-		return $mce_css;
-
-	if ( ! empty( $mce_css ) )
-		$mce_css .= ',';
-
-	$font = str_replace( ',', '%2C', $font );
-	$font = esc_url_raw( str_replace( '|', '%7C', $font ) );
-
-	return $mce_css . $font;
-}
-add_filter( 'mce_css', 'sorbet_mce_css' );
 
 /**
  * Remove the separator from Eventbrite events meta.
@@ -223,3 +219,7 @@ add_filter( 'eventbrite_meta_separator', '__return_false' );
 
 
 
+/**
+ * Load plugin enhancement file to display admin notices.
+ */
+require get_template_directory() . '/inc/plugin-enhancements.php';

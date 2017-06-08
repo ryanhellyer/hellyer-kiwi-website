@@ -25,6 +25,13 @@ jQuery(document).ready(function($) {
 			sidebarNav.slideToggle();
 			myToggleClass($(this));
 
+			// Remove mejs players from sidebar
+			$( '#sidebar-toggle-nav .mejs-container' ).each( function( i, el ) {
+				if ( mejs.players[ el.id ] ) {
+					mejs.players[ el.id ].remove();
+				}
+			} );
+
 			socialLinksNav.hide();
 			menuNav.hide();
 			searchNav.hide();
@@ -32,6 +39,26 @@ jQuery(document).ready(function($) {
 			searchToggle.removeClass('active');
 			menuToggle.removeClass('active');
 			socialLinksToggle.removeClass('active');
+
+			if ( ! sidebarNav.hasClass( 'active' ) ) {
+				// Re-initialize mediaelement players.
+				setTimeout( function() {
+					if ( window.wp && window.wp.mediaelement ) {
+						window.wp.mediaelement.initialize();
+					}
+				} );
+
+				// Trigger resize event to display VideoPress player.
+				setTimeout( function(){
+					if ( typeof( Event ) === 'function' ) {
+						window.dispatchEvent( new Event( 'resize' ) );
+					} else {
+						var event = window.document.createEvent( 'UIEvents' );
+						event.initUIEvent( 'resize', true, false, window, 0 );
+						window.dispatchEvent( event );
+					}
+				} );
+			}
 
 			$('#sidebar-toggle-nav').resize();
 		});
