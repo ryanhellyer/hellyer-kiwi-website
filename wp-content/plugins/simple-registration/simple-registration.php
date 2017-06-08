@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple Regstration
+Plugin Name: Simple Registration
 Plugin URI: https://geek.hellyer.kiwi/plugins/simple-registration/
 Description: Simple Regstration
 Version: 1.0
@@ -67,7 +67,10 @@ class Simple_Registration {
 	 */
 	public function shortcode() {
 
-		if ( ! is_user_logged_in() ) {
+		// If logged in, redirect to home page, otherwise display registration form
+		if ( is_user_logged_in() ) {
+			return '<meta http-equiv="refresh" content="0;url=' . esc_url( home_url() ) . '" />';
+		} else {
 			return $this->registration_form();
 		}
 
@@ -153,9 +156,9 @@ class Simple_Registration {
 		} else {
 
 			if ( isset( $_POST['simple-registration-invalid-username'] ) ) {
-				$submit_text = __( 'Login', 'simple-registration' );
+				$submit_text = esc_html__( 'Login', 'simple-registration' );
 			} else {
-				$submit_text = __( 'Login / Register', 'simple-registration' );
+				$submit_text = esc_html__( 'Login / Register', 'simple-registration' );
 			}
 
 			$content .= '
