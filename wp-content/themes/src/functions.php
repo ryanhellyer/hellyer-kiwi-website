@@ -3,9 +3,7 @@
 
 
 
-
-
-if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+if (  'dev-hellyer.kiwi' !== $_SERVER['HTTP_HOST']      && ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 
 	echo '
 	<style>
@@ -195,16 +193,17 @@ add_action( 'admin_notices', 'sample_admin_notice__success' );
 require( 'inc/class-src-core.php' );
 require( 'inc/class-src-bbpress.php' );
 require( 'inc/class-src-bbcode.php' );
-require( 'inc/class-src-events.php' );
-require( 'inc/class-src-results.php' );
+require( 'inc/class-src-seasons.php' );
+//require( 'inc/class-src-results.php' );
 require( 'inc/class-src-results-temp.php' );
 require( 'inc/class-src-members.php' );
 require( 'inc/class-src-admin.php' );
 require( 'inc/class-src-setup.php' );
+require( 'inc/class-src-registration.php' );
 
-new SRC_Events;
-new SRC_Results;
 new SRC_Admin;
 new SRC_BBCode;
 new SRC_Results_Temp;
 new SRC_Members;
+new SRC_Seasons;
+new SRC_Registration;

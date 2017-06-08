@@ -117,6 +117,7 @@ class SRC_Theme_Setup {
 
 		// Adding option so that we can configure what post/page appears home page featured post area when user is logged out
 		add_option( 'src_featured_page', 1 );
+		add_option( 'src_registration_thanks_page', 1 );
 
 	}
 
