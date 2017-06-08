@@ -47,6 +47,82 @@
 		set_standings_sidebars();
 	});
 
+	// add keydown event listener
+	var pink27_position = konami_position = 0;
+	document.addEventListener('keydown', function(e) {
+
+		// a key map of allowed keys
+		var allowedKeys = {
+			37: 'left',
+			38: 'up',
+			39: 'right',
+			40: 'down',
+			48: '0',
+			49: '1',
+			50: '2',
+			51: '3',
+			52: '4',
+			53: '5',
+			54: '6',
+			55: '7',
+			56: '8',
+			57: '9',
+			65: 'a',
+			66: 'b',
+			67: 'c',
+			68: 'd',
+			69: 'e',
+			70: 'f',
+			71: 'g',
+			72: 'h',
+			73: 'i',
+			74: 'j',
+			75: 'k',
+			76: 'l',
+			77: 'm',
+			78: 'n',
+			79: 'o',
+			80: 'p',
+			81: 'q',
+			82: 'r',
+			83: 's',
+			84: 't',
+			85: 'u',
+			86: 'v',
+			87: 'w',
+			88: 'x',
+			89: 'y',
+			90: 'z',
+		};
+
+		// Konami code
+		var code = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+		var key = allowedKeys[e.keyCode];
+		var requiredKey = code[konami_position];
+		if (key == requiredKey) {
+			konami_position++;
+			if (konami_position == code.length) {
+				window.location = "https://www.youtube.com/watch?v=-IJIa-OFN0s";
+			}
+		} else {
+			konami_position = 0;
+		}
+
+		// "pink27" code
+		var code = ['p','i','n','k','2','7'];
+		var key = allowedKeys[e.keyCode];
+		var requiredKey = code[pink27_position];
+		if (key == requiredKey) {
+			pink27_position++;
+			if (pink27_position == code.length) {
+				window.location = "https://www.youtube.com/watch?v=20zmyPSeXkM";
+			}
+		} else {
+			pink27_position = 0;
+		}
+
+	});
+
 	function set_featured_news_height() {
 		var featured_news = document.getElementById("featured-news");
 		featured_news.style.height = ( window.innerHeight * 0.5 ) + "px";
@@ -107,12 +183,12 @@
 
 	function set_standings_sidebars() {
 
-			var sidebars = document.getElementsByClassName("other-race");
-			var count = 0;
-			for ( count = sidebars.length - 1; count >= 0; count--) {
-				sidebar = sidebars[count];
-				sidebar.style.height = document.getElementById("standings").clientHeight + "px";
-			}
+		var sidebars = document.getElementsByClassName("other-race");
+		var count = 0;
+		for ( count = sidebars.length - 1; count >= 0; count--) {
+			sidebar = sidebars[count];
+			sidebar.style.height = document.getElementById("standings").clientHeight + "px";
+		}
 
 	}
 
