@@ -48,7 +48,7 @@
 	});
 
 	// add keydown event listener
-	var pink27_position = konami_position = 0;
+	var realtrek_position = pink27_position = konami_position = 0;
 	document.addEventListener('keydown', function(e) {
 
 		// a key map of allowed keys
@@ -119,6 +119,19 @@
 			}
 		} else {
 			pink27_position = 0;
+		}
+
+		// "realtrek" code
+		var code = ['r','e','a','l','t','r','e','k'];
+		var key = allowedKeys[e.keyCode];
+		var requiredKey = code[realtrek_position];
+		if (key == requiredKey) {
+			realtrek_position++;
+			if (realtrek_position == code.length) {
+				window.location = "http://vid.pr0gramm.com/2017/06/08/6ea70e427f5ad989.mp4";
+			}
+		} else {
+			realtrek_position = 0;
 		}
 
 	});
