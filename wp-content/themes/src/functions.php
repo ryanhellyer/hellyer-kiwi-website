@@ -5,17 +5,7 @@
 
 
 
-
-add_filter( 'simple-registration-fields', 'bla' );
-function bla( $fields ) {
-
-	$fields['text'] = 'something';
-
-	return $fields;
-}
-
-
-if ( 'a' =='b' &&       ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+if ( ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 
 	echo '
 	<style>
