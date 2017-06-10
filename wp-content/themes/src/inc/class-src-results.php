@@ -2,6 +2,7 @@
 
 /**
  * Results.
+ * Temporary system until final version is ready.
  *
  * @copyright Copyright (c), Ryan Hellyer
  * @license http://www.gnu.org/licenses/gpl.html GPL
@@ -11,462 +12,245 @@
  */
 class SRC_Results extends SRC_Core {
 
-	const RESULT_KEY = 'result';
-
 	/**
 	 * Constructor.
 	 * Add methods to appropriate hooks and filters.
 	 */
 	public function __construct() {
-
-		$this->keys = array(
-			'driver',
-			'hours',
-			'minutes',
-			'seconds',
-			'laps-completed',
-			'time', // Options for seconds behind, laps behind or reason for retirement
-			'consistency',
-			'laps-led',
-			'note', // Penalties or general comments can be left here
-		);
-
-		// Add action hooks
-		add_action( 'init',           array( $this, 'init' ) );
-		add_action( 'admin_footer',   array( $this, 'scripts' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
-		add_action( 'save_post',      array( $this, 'save' ), 10, 2 );
-
+		add_shortcode( 'src-driver-standings', array( $this, 'driver_standings' ) );
+		add_shortcode( 'src-amdriver-standings', array( $this, 'amdriver_standings' ) );
+		add_shortcode( 'src-team-standings',   array( $this, 'team_standings' ) );
 	}
 
 	/**
-	 * Init.
+	 * Driver standings.
 	 */
-	public function init() {
+	public function driver_standings( $args ) {
 
-		$post_types = array(
-			'results' => array(
-				'public' => true,
-				'label'  => 'Results',
-				'supports' => array( 'title', 'thumbnail' )
-			),
-		);
-
-		foreach ( $post_types as $post_type => $args ) {
-			register_post_type( $post_type, $args );
-		}
-
-	}
-
-	/**
-	 * Add admin metabox.
-	 */
-	public function add_metabox() {
-		add_meta_box(
-			'_result', // ID
-			__( 'Enter results here', 'src' ), // Title
-			array(
-				$this,
-				'meta_box', // Callback to method to display HTML
-			),
-			'results', // Post type
-			'normal', // Context, choose between 'normal', 'advanced', or 'side'
-			'default'  // Position, choose between 'high', 'core', 'default' or 'low'
-		);
-	}
-
-	/**
-	 * Output the admin page.
-	 */
-	public function meta_box() {
-
-		// If brand new post
-		if ( ! isset( $_GET['season'] ) && ! isset( $_GET['post'] ) ) {
-			$this->select_event();
+		// Set Season
+		if ( isset( $args['season'] ) ) {
+			$season = $args['season'];
 		} else {
-			$this->enter_results();
+			return 'No season set';
 		}
 
-if ( isset( $_POST['post'] ) ) {
-echo '<textarea style="font-size:10px;font-family:monospace;">'.print_r( get_post_meta( $_POST['post'] ), true ) . '</textarea>';
-}
-	}
-
-	/**
-	 * Outputting the event selector.
-	 * User selects the event they want to provide results for here first.
-	 */
-	public function select_event() {
-
-		echo '<style>#publish {display:none;}</style>';
-
-		echo '<h3>Select which season, round and event/session</h3>';
-
-		$seasons = get_posts(
-			array(
-				'post_type' => 'season',
-			)
+		$order = array(
+			'Username',
+			'Nationality',
+			'Car',
+			'Team',
+			'Class',
+			'Pts',
 		);
 
-		if ( is_array( $seasons ) ) {
-			foreach ( $seasons as $key => $season ) {
-				echo '<p>';
-				echo '<h3>' . esc_html( $season->post_title ) . '</h3>';
+		$drivers = src_get_drivers( $season );
 
-				$events = get_post_meta( $season->ID, 'event', true );
+		$content = '';
+		if ( is_array( $drivers ) ) {
+			$content .= '<table>';
 
-				echo '<ol>';
-				foreach ( $events as $round_number => $event ) {
-					echo '<li>';
-					echo esc_html( $event['track_name'] );
+			$content .= '<thead><tr>';
+			$content .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Name', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Num', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Nationality', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Car', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Team', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Class', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Pts', 'src' ) . '</th>';
+			$content .= '</tr></thead>';
 
-					echo '<ul>';
-					foreach ( $this->event_types() as $name => $desc ) {
+			$count = 0;
+			foreach ( $drivers as $row_number => $driver ) {
+				$count++;
+				$content .= '<tr>';
 
-						echo '<li>';
+				$content .= '<td>' . esc_html( $count ) . '</td>';
 
-						$key_slug = 'event_' . sanitize_title( $name ) . '_timestamp';
-						if ( isset( $event[$key_slug] ) && '' != $event[$key_slug] ) {
+				foreach( $order as $column ) {
 
-							$url = get_admin_url() . 'post-new.php?post_type=results';
-							$url = add_query_arg( 'season', sanitize_title( $season->post_title ), $url );
-							$url = add_query_arg( 'round', ( $round_number + 1 ), $url );								
-							$url = add_query_arg( 'name', sanitize_title( $name ), $url );
+					foreach ( $this->driver_data_order() as $key => $col ) {
 
-							echo '<li>';
-							echo '<a href="' . esc_url( $url ) . '">';
-							echo ' ' . esc_html( $name );
-							echo '</a>';
-							echo '</li>';
+						if ( $column === $col ) {
 
-						}
+							$content .= '<td>';
+							if ( 'Username' == $col ) {
+								$username = $driver[$key];
+								$name = src_get_display_name_from_username( $username );
+								$url = src_get_memberurl_from_username( $username );
 
-					}
-					echo '</ul>';
-
-					echo '</li>';
-				}
-				echo '</ol>';
-
-				echo '</p>';
-			}
-		}
-
-	}
-
-	/**
-	 * Displays inputs for storing results for the selected event.
-	 */
-	public function enter_results() {
-
-		if ( isset( $_GET['season'] ) ) {
-			$season = esc_html( $_GET['season'] );
-			update_post_meta( get_the_ID(), '_season', $season );
-		} else {
-			$season = get_post_meta( get_the_ID(), '_season', true );
-		}
-
-		if ( isset( $_GET['name'] ) ) {
-			$name = esc_html( $_GET['name'] );
-			update_post_meta( get_the_ID(), '_name', $name );
-		} else {
-			$name = get_post_meta( get_the_ID(), '_name', true );
-		}
-
-		if ( isset( $_GET['round'] ) ) {
-			$round = esc_html( $_GET['round'] );
-			update_post_meta( get_the_ID(), '_round', $round );
-		} else {
-			$round = get_post_meta( get_the_ID(), '_round', true );
-		}
-
-		echo '
-		<p>
-			<label>' . esc_html__( 'Season', 'src' ) . '</label>
-			<input type="text" name="season" value="' . esc_attr( $season ) . '" />
-			 &nbsp; 
-			<label>' . esc_html__( 'Name', 'src' ) . '</label>
-			<input type="text" name="name" value="' . esc_attr( $name ) . '" />
-			 &nbsp; 
-			<label>' . esc_html__( 'Round number', 'src' ) . '</label>
-			<input type="text" name="round" value="' . esc_attr( $round ) . '" />
-		</p>';
-
-		/**
-		 * Getting event details.
-		 * And confirming that submitted event data is correct.
-		 */
-		$seasons = get_posts(
-			array(
-				'post_type' => 'season',
-			)
-		);
-
-		if ( is_array( $seasons ) ) {
-			foreach ( $seasons as $key => $the_season ) {
-				if ( $season === sanitize_title( $the_season->post_title ) ) {
-					$season_title = $the_season->post_title;
-
-					$events = get_post_meta( $the_season->ID, 'event', true );
-					foreach ( $events as $round_number => $event ) {
-						if ( (string) ( $round_number + 1 ) === $round ) {
-							$actual_round_number = $round_number + 1;
-							$track_name = $event['track_name'];
-
-							foreach ( $this->event_types() as $name => $desc ) {
-								if ( sanitize_title( $name ) == $name ) {
-									$event_name = $name;
+								if ( false !== $url ) {
+									$content .= '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>';
+								} else {
+									$content .= $name;
 								}
+
+							} else {
+								$content .= esc_html( $driver[$key] );
 							}
+							$content .= '</td>';
 
 						}
 
 					}
-
 				}
 
+				$content .= '<td>' . esc_html( src_get_driver_points( $season, $username ) ) . '</td>';
+
+				$content .= '</tr>';
 			}
+			$content .= '</table>';
 		}
 
-		if ( ! isset( $_GET['post'] ) ) {
-			echo '<script>
-			var result_title = document.getElementById("title");
-			result_title.value = "' . sprintf( __( '%s results', 'src' ), $event_name ) . ': Round ' . esc_html( $actual_round_number ) . ' ' . esc_html( $season_title ) . ' ' . __( 'at', 'src' ) . ' ' . esc_html( $track_name ) . '";
-			</script>';
-		}
+		return $content;
 
-		?>
-
-		<table class="wp-list-table widefat plugins">
-			<thead>
-				<tr>
-					<th>Driver</th>
-					<th>Time</th>
-					<th>Laps led</th>
-					<th>Consistency</th>
-					<th>Note</th>
-					<th></th>
-				</tr>
-			</thead>
-
-			<tfoot>
-				<tr>
-					<th>Driver</th>
-					<th>Time</th>
-					<th>Laps led</th>
-					<th>Consistency</th>
-					<th>Note</th>
-					<th></th>
-				</tr>
-			</tfoot>
-
-			<tbody id="add-rows"><?php
-/*
-			'hours',
-			'minutes',
-			'seconds',
-			'laps-completed',
-			'time', // Options for seconds behind, laps behind or reason for retirement
-			'consistency',
-			'laps-led',
-			'note', // Penalties or general comments can be left here
-*/
-
-			// Grab options array and output a new row for each setting
-			$result = get_post_meta( get_the_ID(), '_' . self::RESULT_KEY, true );
-			if ( is_array( $result ) ) {
-				foreach( $result as $key => $value ) {
-					echo $this->get_row( $value );
-				}
-			}
-
-			// Add a new row by default
-			echo $this->get_row();
-
-			?>
-			</tbody>
-		</table>
-
-		<input type="button" id="add-new-row" value="<?php _e( 'Add new row', 'plugin-slug' ); ?>" />
-		<input type="hidden" name="result-nonce" value="<?php echo esc_attr( wp_create_nonce( __FILE__ ) ); ?>"><?php
 	}
 
 	/**
-	 * Get a single table row.
-	 * 
-	 * @param  string  $value  Option value
-	 * @return string  The table row HTML
+	 * AM Driver standings.
 	 */
-	public function get_row( $value = '' ) {
+	public function amdriver_standings( $args ) {
 
-		if ( ! is_array( $value ) ) {
-			$value = array();
+		// Set Season
+		if ( isset( $args['season'] ) ) {
+			$season = $args['season'];
+		} else {
+			return 'No season set';
 		}
 
-		foreach (
-			$this->keys
-			as $key
-		) {
-			if ( ! isset( $value[ $key ] ) ) {
-				$value [ $key ] = '';
-			}
-		};
+		$order = array(
+			'Username',
+			'Nationality',
+			'Car',
+			'Team',
+			'Class',
+			'Pts',
+		);
 
-		$options = '<option selected disabled>' . esc_html__( 'Select a driver', 'src' ) . '</option>';
-		foreach ( $this->get_src_users() as $user_id => $name ) {
-			if ( $value['driver'] == $user_id ) {
-				$selected = ' selected="selected"';
-			} else {
-				$selected = '';
-			}
-			$options .= '<option' . $selected. ' value="' . esc_attr( $user_id ) . '">' . esc_html( $name ) . '</option>';
-		}
+		$drivers = src_get_drivers( $season, true );
 
-		// Create the required HTML
-		$row_html = '
+		$content = '';
+		if ( is_array( $drivers ) ) {
+			$content .= '<table>';
 
-					<tr class="sortable inactive">
-						<td style="width:18%">
-							<select name="' . esc_attr( self::RESULT_KEY ) . '[driver][]">' . $options . '</select>
-						</td>
-						<td style="width:16%">
-							<input class="small-text" style="width:40px" type="number" name="' . esc_attr( self::RESULT_KEY ) . '[hours][]" value="' . esc_attr( $value['hours'] ) . '" />
-							<label>Hours</label>
-							<br />
-							<input class="small-text" style="width:50px" type="number" name="' . esc_attr( self::RESULT_KEY ) . '[minutes][]" value="' . esc_attr( $value['minutes'] ) . '" />
-							<label>Minutes</label>
-							<br />
-							<input class="small-text" style="width:50px" type="number" name="' . esc_attr( self::RESULT_KEY ) . '[seconds][]" value="' . esc_attr( $value['seconds'] ) . '" />
-							<label>Seconds</label>
-						</td>
-						<td style="width:10%">
-							<input type="checkbox" name="' . esc_attr( self::RESULT_KEY ) . '[laps-led][]" />
-						</td>
-						<td style="width:10%">
-							<input type="text" name="' . esc_attr( self::RESULT_KEY ) . '[consistency][]" />
-						</td>
-						<td>
-							<textarea style="width:100px;height:100px;" name="' . esc_attr( self::RESULT_KEY ) . '[note][]"></textarea>
-						</td>
-					</tr>';
+			$content .= '<thead><tr>';
+			$content .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Name', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Num', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Nationality', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Car', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Team', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Class', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Pts', 'src' ) . '</th>';
+			$content .= '</tr></thead>';
 
-		// Strip out white space (need on line line to keep JS happy)
-		$row_html = str_replace( '	', '', $row_html );
-		$row_html = str_replace( "\n", '', $row_html );
+			$count = 0;
+			foreach ( $drivers as $row_number => $driver ) {
 
-		// Return the final HTML
-		return $row_html;
-	}
+				// Ignore PRO drivers
+				if ( 'PRO' === $driver[5] ) {
+					continue;
+				}
 
-	/**
-	 * Output scripts into the footer.
-	 * This is not best practice, but is implemented like this here to ensure that it can fit into a single file.
-	 */
-	public function scripts() {
+				$count++;
+				$content .= '<tr>';
 
-		// Bail out if not on results page
-		if ( 'results' !== get_post_type() ) {
-			return;
-		}
+				$content .= '<td>' . esc_html( $count ) . '</td>';
 
-		?>
-		<style>
-		.read-more-text {
-			display: none;
-		}
-		.sortable .toggle {
-			display: inline !important;
-		}
-		</style>
-		<script>
+				foreach( $order as $column ) {
 
-			jQuery(function($){ 
+					foreach ( $this->driver_data_order() as $key => $col ) {
 
-				/**
-				 * Adding some buttons
-				 */
-				function add_buttons() {
+						if ( $column === $col ) {
 
-					// Loop through each row
-					$( ".sortable" ).each(function() {
+							$content .= '<td>';
+							if ( 'Username' == $col ) {
+								$username = $driver[$key];
+								$name = src_get_display_name_from_username( $username );
+								$url = src_get_memberurl_from_username( $username );
 
-						// If no input field found with class .remove-setting, then add buttons to the row
-						if(!$(this).find('input').hasClass('remove-setting')) {
+								if ( false !== $url ) {
+									$content .= '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>';
+								} else {
+									$content .= $name;
+								}
 
-							// Add a remove button
-							$(this).append('<td style="width:3%;"><input type="button" class="remove-setting" value="&times;" /></td>');
-
-							// Remove button functionality
-							$('.remove-setting').click(function () {
-								$(this).parent().parent().remove();
-							});
+							} else {
+								$content .= esc_html( $driver[$key] );
+							}
+							$content .= '</td>';
 
 						}
 
-					});
-
+					}
 				}
 
-				// Create the required HTML (this should be added inline via wp_localize_script() once JS is abstracted into external file)
-				var html = '<?php echo $this->get_row( '' ); ?>';
+				$content .= '<td>' . esc_html( src_get_driver_ampoints( $season, $username ) ) . '</td>';
 
-				// Add the buttons
-				add_buttons();
+				$content .= '</tr>';
+			}
+			$content .= '</table>';
+		}
 
-				// Add a fresh row on clicking the add row button
-				$( "#add-new-row" ).click(function() {
-					$( "#add-rows" ).append( html ); // Add the new row
-					add_buttons(); // Add buttons tot he new row
-				});
+		return $content;
 
-				// Allow for resorting rows
-				$('#add-rows').sortable({
-					axis: "y", // Limit to only moving on the Y-axis
-				});
-
- 			});
-
-		</script><?php
 	}
 
 	/**
-	 * Save opening times meta box data.
-	 *
-	 * @param  int     $post_id  The post ID
-	 * @param  object  $post     The post object
+	 * Team standings.
 	 */
-	public function save( $post_id, $post ) {
+	public function team_standings( $args ) {
 
-		// Bail out if not processing results
-		if ( 'results' != get_post_type() || ! isset( $_POST['result-nonce'] ) ) {
-			return $post;
+		// Set Season
+		if ( isset( $args['season'] ) ) {
+			$season_slug = $args['season'];
+		} else {
+			return 'No season set';
 		}
 
-		// Do nonce security check
-		if ( ! wp_verify_nonce( $_POST['result-nonce'], __FILE__ ) ) {
+		// Get order into array
 
-			return $post;
-		}
+		$order = array(
+			'Team',
+			'Pts',
+		);
 
-		$total = count(   $_POST['result']['driver']    );
+		$teams = src_get_teams( $season_slug );
 
-		$count = 0;
-		$result = array();
-		while ( $count < $total ) {
+		$content = '';
+		if ( is_array( $teams ) ) {
+			$content .= '<table>';
 
-			foreach ( $this->keys as $key ) {
-				if ( isset( $_POST['result'][$key][$count] ) ) {
-					$result[$count][$key] = wp_kses_post( $_POST['result'][$key][$count] );
-				} else {
-					$result[$count][$key] = '';
-				}
+			$content .= '<thead><tr>';
+			$content .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Team', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Pts', 'src' ) . '</th>';
+			$content .= '</tr></thead>';
+
+			$count = 0;
+			foreach ( $teams as $team => $points ) {
+				$count++;
+
+				$content .= '<tr>';
+				$content .= '<td>' . esc_html( $count ) . '</td>';
+				$content .= '<td>' . esc_html( $team ) . '</td>';
+				$content .= '<td>' . esc_html( $points ) . '</td>';
+				$content .= '</tr>';
+
 			}
-
-			$count++;
+			$content .= '</table>';
 		}
 
-		update_post_meta( $post_id, '_' . self::RESULT_KEY, $result );
+		return $content;
 
+	}
+
+	function sort_callback( $a, $b ) {
+		return $a[ $this->orderby ] - $b[ $this->orderby ];
+	}
+
+	function sort_callback_reverse( $a, $b ) {
+		return $b[ $this->orderby ] - $a[ $this->orderby ];
 	}
 
 }

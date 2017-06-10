@@ -107,6 +107,7 @@ class SRC_bbPress {
 		$links['twitter'] = 'Twitter';
 		$links['facebook'] = 'Facebook';
 		$links['youtube'] = 'Youtube';
+		$links['steam'] = 'Steam';
 
 		// remove unwanted
 		unset( $links['aim'] );
@@ -118,3 +119,9 @@ class SRC_bbPress {
 
 }
 new SRC_bbPress;
+
+
+add_action( 'edit_user_profile',    'boob'     );
+function boob() {
+	echo 'xxxxxxxxxxxx';
+}

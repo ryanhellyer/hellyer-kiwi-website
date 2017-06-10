@@ -322,4 +322,18 @@ class SRC_Core {
 		return $types;
 	}
 
+	/**
+	 * The order driver data is stored in.
+	 */
+	public function driver_data_order() {
+		return array( 
+			0 => 'Username',
+			1 => 'Nationality',
+			2 => 'Car',
+			3 => 'Team',
+			4 => 'Class',
+			5 => 'Pts',
+		);
+	}
+
 }
