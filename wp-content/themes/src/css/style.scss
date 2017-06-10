@@ -654,7 +654,7 @@ td {
 #bbpress-forums {
 	float: left;
 	width: 63%;
-	padding: 0 0 60px 0;
+	padding: 0 0 0 0;
 
 	.bbp-breadcrumb {
 		display: none;
@@ -993,8 +993,10 @@ input#bbp_topic_subscription {
 }
 
 select {
-	display: inline-block;
-	font-size: 1rem;
+	display: block;
+	font-size: 1.2rem;
+	margin-top: 5px;
+	padding: 10px 20px;
 }
 
 img {
@@ -1077,6 +1079,7 @@ input[type=submit],
 	width: $wrap_width;
 	padding: 0 $wrap_padding;
 	background: $dark_background_colour;
+	margin-top: 60px;
 
 	p {
 		float: left;

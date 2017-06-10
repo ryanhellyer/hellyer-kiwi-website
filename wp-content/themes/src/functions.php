@@ -37,72 +37,24 @@ function sample_admin_notice__success() {
 	}
 
 	$message = '
-<textarea style="width:100%;">
+<textarea style="width:49%;">
 
 NEW FEATURE:
-Easter eggs - Konami code perhaps
-Steam link
-Years of experience
-Achievements in sim racings
-Leagues they compete in
+User meta:
+	Steam link
+	Years of experience
+	Achievements in sim racings
+	Leagues they compete in
 
-
-
-NEW DESIGN IDEA:
-Use top bit of https://thedroneracingleague.com/
-
-Above fold
-	Sticky header 
-		SRC logo on left
-		Menu 
-		Red JOIN button on right 
-	Header image (see below for functionality)
-	Latest News - three side by side news items ala F1.com
-Below fold
-	Calendar ala F1.com
-	Last race, points, Next race ala F1.com
-Footer - use current dark design, but with red JOIN button on right, like in the header
-
-HEADER IMAGE FUNCTIONALITY:
-Logged in: Shows latest news item
-Logged out: Always shows same "Drivers wanted" page
 Text:
 	* Drivers wanted *
 	We are accepting new driver registrations!
 	[link]Sign up here[/link]
 
-</textarea>
-<textarea style="width:100%;">NEW features
-
-Results page should show FP1, qual, race 1, race 2 results etc.
-OR IT COULD SHOW JUST ONE, BUT WHEN THE NEXT ONE IS DONE, IT COULD REMOVE THAT FROM THE FEATURED NEWS ITEMS AND REPLACE IT WITH THE NEXT ONE, WHICH WOULD LINK TO ALL THE PREVIOUS ONES FOR THAT ROUND.
-Should also show description. This will show up in news items.
-
-
-
-
-
-list laps down 
-fix laps led
-penalities
-fastest lap - new checkbox
-
-http://seacrestrc.liveracers.com/Results/Result/54202fc8-efa8-4c7a-a607-3a8914745021
-
-
-
-
-
-
-Put avatar where logo is, with driver number beside it. Car picture where drivers are.
-https://www.formula1.com/en/championship/teams/Red-Bull.html
-
 Tag posts with driver, so that those articles show up at bottom of their members page. Use same taxonomy for galleries post type.
 OR JUST DO SEARCH QUERY ON DRIVERS NAME AND NICKNAME, if insufficient posts with thumbnails, then could display avatar or their members page car picture instead.
 
 Maybe add galleries as forum post-type, but just style differently. Get bad URLs then though :/
-
-Make "WP Racing League plugin"
 
 Gertrudes Smith should be the site administrator
 Once an event is completed (determined by the last race being won), she should automatically send emails out to drivers asking them to answer the questions on a page.
@@ -118,10 +70,7 @@ Other things she could mention are:
 	admins could have the ability to add random quotes
 	biggest position gain in race
 
-Use this to make cars with white backgrounds: https://www.rfactorcentral.com/detail.cfm?ID=Modern%20Showroom
 
-Use this to import log files:
-https://github.com/mauserrifle/simresults
 </textarea>
 
 <textarea style="width:49%;">
@@ -138,47 +87,8 @@ Your forum profile is the page linked to from the results section etc. To update
 Private data:
 Your profile includes some "real" information. If you do not want to reveal some private information (your name, birthdate, whatever), just put fake data in there. Please keep it believable though and do not put anything stupid in there please :P
 
-Avatatars:
+Avatars:
 We require everyone to add an avatar. If you do not pick one yourself, we will just give you one, and it may not be pretty ;) So for your own sake, please upload a picture of yourself (or something representing you at least).
-
-
-Custom registration form:
-Register/login in one step
-If login does not work, then check if user wants to register instead
-Include "forgot your password" link
-On registration, redirect to league sign up page
-On logging in again, redirect to forum
-</textarea>
-
-<textarea style="width:49%;">
-REQUIRED PAGES
-
-About page
-	Goals of the league
-
-	History 
-		Who made the league
-		Why is it called Seacrest
-
-	Logic behind car choices
-
-	People
-		League Administrators
-			Paul and Tangofoxx
-		Website 
-			Ryan
-		Results
-			Jeffrey
-		Protests 
-			Ryan (or Paul if Ryan is being protested against or protesteing someone)
-
-Skins
-	Rules for SRC (required bits, colour schemes etc)
-	How to make them 
-	How to test them
-	Links to sources of good default skins
-
-
 </textarea>
 	';
 
@@ -194,16 +104,17 @@ require( 'inc/class-src-core.php' );
 require( 'inc/class-src-bbpress.php' );
 require( 'inc/class-src-bbcode.php' );
 require( 'inc/class-src-seasons.php' );
-//require( 'inc/class-src-results.php' );
-require( 'inc/class-src-results-temp.php' );
+require( 'inc/class-src-results.php' );
 require( 'inc/class-src-members.php' );
 require( 'inc/class-src-admin.php' );
 require( 'inc/class-src-setup.php' );
 require( 'inc/class-src-registration.php' );
 
+require( 'inc/functions.php' );
+
 new SRC_Admin;
 new SRC_BBCode;
-new SRC_Results_Temp;
+new SRC_Results;
 new SRC_Members;
 new SRC_Seasons;
 new SRC_Registration;

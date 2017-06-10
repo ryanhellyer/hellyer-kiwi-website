@@ -94,6 +94,11 @@ if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'facebook', true ) ) {
 if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'youtube', true ) ) {
 	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'youtube', true ) ) . '">YouTube</li>';
 }
+
+if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'steam', true ) ) {
+	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'steam', true ) ) . '">Steam</a></li>';
+}
+
 ?>
 </ul>
 

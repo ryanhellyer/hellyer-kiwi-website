@@ -21,17 +21,7 @@
 		<?php do_action( 'bbp_user_edit_before_name' ); ?>
 
 		<div>
-			<label for="first_name"><?php _e( 'First Name', 'bbpress' ) ?></label>
-			<input type="text" name="first_name" id="first_name" value="<?php bbp_displayed_user_field( 'first_name', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
-		</div>
-
-		<div>
-			<label for="last_name"><?php _e( 'Last Name', 'bbpress' ) ?></label>
-			<input type="text" name="last_name" id="last_name" value="<?php bbp_displayed_user_field( 'last_name', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
-		</div>
-
-		<div style="display:none;">
-			<label for="nickname"><?php _e( 'Nickname', 'bbpress' ); ?></label>
+			<label for="nickname"><?php _e( 'Name', 'bbpress' ); ?></label>
 			<input type="text" name="nickname" id="nickname" value="<?php bbp_displayed_user_field( 'nickname', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
@@ -81,6 +71,21 @@
 		<div>
 			<label for="description"><?php _e( 'Biographical Info', 'bbpress' ); ?></label>
 			<textarea name="description" id="description" rows="5" cols="30" tabindex="<?php bbp_tab_index(); ?>"><?php bbp_displayed_user_field( 'description', 'edit' ); ?></textarea>
+		</div>
+
+		<div>
+			<label for="sim_experience"><?php _e( 'How long have you been sim racing for?', 'bbpress' ); ?></label>
+			<input type="text" name="sim_experience" id="sim_experience" value="<?php bbp_displayed_user_field( 'sim_experience', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+		</div>
+
+		<div>
+			<label for="sim_racing_achievements"><?php _e( 'Sim racing achievements', 'bbpress' ); ?></label>
+			<input type="text" name="sim_racing_achievements" id="sim_racing_achievements" value="<?php bbp_displayed_user_field( 'sim_racing_achievements', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+		</div>
+
+		<div>
+			<label for="leagues_competed_in"><?php _e( 'Other leagues you have competed in', 'bbpress' ); ?></label>
+			<input type="text" name="leagues_competed_in" id="leagues_competed_in" value="<?php bbp_displayed_user_field( 'leagues_competed_in', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
 		<?php do_action( 'bbp_user_edit_after_about' ); ?>
