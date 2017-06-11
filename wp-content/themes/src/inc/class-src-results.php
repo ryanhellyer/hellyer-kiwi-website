@@ -132,7 +132,7 @@ class SRC_Results extends SRC_Core {
 			'Pts',
 		);
 
-		$drivers = src_get_drivers( $season );
+		$drivers = src_get_drivers( $season, true );
 
 		$content = '';
 		if ( is_array( $drivers ) ) {
