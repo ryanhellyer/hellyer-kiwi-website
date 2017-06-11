@@ -68,24 +68,46 @@
 
 		<?php do_action( 'bbp_user_edit_before_about' ); ?>
 
+
+
+		<?php wp_nonce_field( 'src_bpress_member_nonce', 'src_bpress_member_nonce', false ); ?>
+
+		<div>
+			<label for="nationality"><?php _e( 'Nationality', 'src' ); ?></label>
+			<select name="nationality" id="nationality"><?php
+
+			foreach ( src_get_countries() as $country_code => $country_name ) {
+
+				$selected = '';
+				if ( $country_code === get_user_meta( bbp_get_displayed_user_id(), 'nationality', true ) ) {
+					$selected = ' selected="selected"';
+				}
+
+				echo '<option' . $selected . ' value="' . esc_attr( $country_code ) . '">' . esc_html( $country_name ) . '</option>';
+			}
+
+			?>
+			</select>
+		</div>
+
 		<div>
 			<label for="description"><?php _e( 'Biographical Info', 'bbpress' ); ?></label>
 			<textarea name="description" id="description" rows="5" cols="30" tabindex="<?php bbp_tab_index(); ?>"><?php bbp_displayed_user_field( 'description', 'edit' ); ?></textarea>
 		</div>
 
 		<div>
-			<label for="sim_experience"><?php _e( 'How long have you been sim racing for?', 'bbpress' ); ?></label>
-			<input type="text" name="sim_experience" id="sim_experience" value="<?php bbp_displayed_user_field( 'sim_experience', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+			<label for="sim_experience"><?php _e( 'How long have you been sim racing for?', 'src' ); ?></label>
+			<input type="text" name="sim_experience" id="sim_experience" value="<?php echo esc_attr( get_user_meta( bbp_get_displayed_user_id(), 'sim_experience', true ) ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
 		<div>
-			<label for="sim_racing_achievements"><?php _e( 'Sim racing achievements', 'bbpress' ); ?></label>
-			<input type="text" name="sim_racing_achievements" id="sim_racing_achievements" value="<?php bbp_displayed_user_field( 'sim_racing_achievements', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+			<label for="sim_racing_achievements"><?php _e( 'Sim racing achievements', 'src' ); ?></label>
+			<input type="text" name="sim_racing_achievements" id="sim_racing_achievements" value="<?php echo esc_attr( get_user_meta( bbp_get_displayed_user_id(), 'sim_racing_achievements', true ) ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
 		<div>
-			<label for="leagues_competed_in"><?php _e( 'Other leagues you have competed in', 'bbpress' ); ?></label>
-			<input type="text" name="leagues_competed_in" id="leagues_competed_in" value="<?php bbp_displayed_user_field( 'leagues_competed_in', 'edit' ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+			<label for="leagues_competed_in"><?php _e( 'Other leagues you have competed in', 'src' ); ?></label>
+			<input type="text" name="leagues_competed_in" id="leagues_competed_in" value="<?php echo esc_attr( get_user_meta( bbp_get_displayed_user_id(), 'leagues_competed_in', true ) ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
 		<?php do_action( 'bbp_user_edit_after_about' ); ?>
