@@ -168,7 +168,7 @@ if ( is_super_admin() ) {
 
 <section id="results">
 
-	<div class="other-race" style="background-image:url(http://dev-hellyer.kiwi/bbpress/wp-content/themes/src/images/track.jpg">
+	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
 		<h2>Last Race</h2>
 		<p>Round 2<br />Monaco</p>
 	</div>
@@ -227,7 +227,7 @@ if ( is_super_admin() ) {
 
 	</div>
 
-	<div class="other-race" style="background-image:url(http://dev-hellyer.kiwi/bbpress/wp-content/themes/src/images/track.jpg">
+	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
 		<h2>Next Race</h2>
 		<p>Round 4<br />Bathurst</p>
 	</div>
