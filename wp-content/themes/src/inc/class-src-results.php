@@ -349,13 +349,7 @@ class SRC_Results extends SRC_Core {
 				$content .= '<td>' . esc_html( $time_fp1 ) .   ' <span>' . esc_html( $date_fp1 ) .   '</span></td>';
 				$content .= '<td>' . esc_html( $time_fp2 ) .   ' <span>' . esc_html( $date_fp2 ) .   '</span></td>';
 				$content .= '<td>' . esc_html( $time_qual ) .  ' <span>' . esc_html( $date_qual ) .  '</span></td>';
-				$content .= '<td>' . 
-
-				'Raw: ' . $event['event_race-1_timestamp'] . '<br>'.
-				'Date: ' . date( get_option( 'time_format' ), $event['event_race-1_timestamp'] ) . '<br>'.
-				'Processed: ' . get_date_from_gmt( date( get_option( 'time_format' ), $event['event_race-1_timestamp'] ), get_option( 'time_format' ) ).'<br>'
-
-				 . esc_html( $time_race1 ) . ' <span>' . esc_html( $date_race1 ) . '</span></td>';
+				$content .= '<td>' . esc_html( $time_race1 ) . ' <span>' . esc_html( $date_race1 ) . '</span></td>';
 				$content .= '<td>' . esc_html( $time_race2 ) . ' <span>' . esc_html( $date_race2 ) . '</span></td>';
 
 				if ( isset( $event['event_race-2_timestamp'] ) && ( $event['event_race-2_timestamp'] < time() ) ) {
