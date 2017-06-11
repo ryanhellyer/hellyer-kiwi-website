@@ -96,8 +96,8 @@
 		</div>
 
 		<div>
-			<label for="sim_experience"><?php _e( 'How long have you been sim racing for?', 'src' ); ?></label>
-			<input type="text" name="sim_experience" id="sim_experience" value="<?php echo esc_attr( get_user_meta( bbp_get_displayed_user_id(), 'sim_experience', true ) ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
+			<label for="sim_experience"><?php _e( 'When did you start sim racing?', 'src' ); ?></label>
+			<input type="date" name="sim_experience" id="sim_experience" value="<?php echo esc_attr( get_user_meta( bbp_get_displayed_user_id(), 'sim_experience', true ) ); ?>" class="regular-text" tabindex="<?php bbp_tab_index(); ?>" />
 		</div>
 
 		<div>
