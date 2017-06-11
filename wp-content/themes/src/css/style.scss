@@ -524,6 +524,10 @@ td span.tick-mark:before {
 		background: #fff;
 		padding-bottom: 60px;
 
+		h3 {
+			margin: 3rem 0 1.5rem 40px;
+		}
+
 		ul {
 			padding: 60px 30px 40px 30px;
 		}
@@ -548,6 +552,10 @@ td span.tick-mark:before {
 			}
 		}
 
+		.highlighted-link {
+			margin-top: 40px;
+		}
+
 		table {
 			width: 100%;
 			padding: 20px 30px 40px 30px;
@@ -557,10 +565,20 @@ td span.tick-mark:before {
 		}
 
 		td {
-  			padding: 5px 0;
+
+			&:first-child {
+				padding-left: 40px;
+			}
+
+			&:last-child {
+				text-align: right;
+				padding-right: 40px;
+			}
+
+  			padding: 15px 0;
 			font-family: $paragraph_font;
 			text-transform: uppercase;
-			font-size: 1.0rem;
+			font-size: 0.9rem;
 			font-weight: 600;
 			color: #333;		
 
@@ -1084,6 +1102,10 @@ input[type=submit],
 	padding: 0 $wrap_padding;
 	background: $dark_background_colour;
 	margin-top: 60px;
+
+	body.home & {
+		margin-top: 0;
+	}
 
 	p {
 		float: left;

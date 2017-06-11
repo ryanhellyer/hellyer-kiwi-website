@@ -360,6 +360,8 @@ td span.tick-mark:before {
     width: 60%;
     background: #fff;
     padding-bottom: 60px; }
+    #results #standings h3 {
+      margin: 3rem 0 1.5rem 40px; }
     #results #standings ul {
       padding: 60px 30px 40px 30px; }
     #results #standings li {
@@ -376,16 +378,23 @@ td span.tick-mark:before {
         color: #333; }
       #results #standings li:last-child {
         margin-right: 0; }
+    #results #standings .highlighted-link {
+      margin-top: 40px; }
     #results #standings table {
       width: 100%;
       padding: 20px 30px 40px 30px; }
     #results #standings td {
-      padding: 5px 0;
+      padding: 15px 0;
       font-family: "Open Sans", sans-serif;
       text-transform: uppercase;
-      font-size: 1.0rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: #333; }
+      #results #standings td:first-child {
+        padding-left: 40px; }
+      #results #standings td:last-child {
+        text-align: right;
+        padding-right: 40px; }
       #results #standings td span {
         display: block;
         color: #fff;
@@ -780,6 +789,8 @@ input[type=submit],
   padding: 0 4%;
   background: #202020;
   margin-top: 60px; }
+  body.home #site-footer {
+    margin-top: 0; }
   #site-footer p {
     float: left;
     color: #777;
