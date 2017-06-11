@@ -20,7 +20,8 @@ class SRC_bbPress {
 		// Add action hooks
 		add_action( 'wp_print_styles', array( $this, 'deregister_bbpress_styles' ), 15 );
 		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'personal_options_update', array( $this, 'update_user_options' ) );
+		add_action( 'personal_options_update',  array( $this, 'update_user_options' ) );
+		add_action( 'edit_user_profile_update', array( $this, 'update_user_options' )        );
 
 		// Add support for bbPress post thumbnails
 		add_theme_support( 'post-thumbnails', array( 'topic' ) );
