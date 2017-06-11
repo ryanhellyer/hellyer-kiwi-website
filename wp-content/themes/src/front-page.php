@@ -232,7 +232,7 @@ if ( is_super_admin() ) {
 
 	</div>
 
-	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
+	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/rosanski.jpg">
 		<h2>Next Race</h2>
 		<p>Round 4<br />Bathurst</p>
 	</div>
