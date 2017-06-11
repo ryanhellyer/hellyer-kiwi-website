@@ -20,6 +20,7 @@ class SRC_bbPress {
 		// Add action hooks
 		add_action( 'wp_print_styles', array( $this, 'deregister_bbpress_styles' ), 15 );
 		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'personal_options_update', array( $this, 'update_user_options' ) );
 
 		// Add support for bbPress post thumbnails
 		add_theme_support( 'post-thumbnails', array( 'topic' ) );
@@ -48,6 +49,30 @@ class SRC_bbPress {
 		remove_filter( 'bbp_edit_user_signature_handler', 'wp_filter_kses' );
 		remove_filter( 'bbp_edit_user_signature_handler', 'force_balance_tags' );
 		remove_filter( 'bbp_edit_user_signature_handler', '_wp_specialchars' );
+
+	}
+
+	/**
+	 * Update the custom user options.
+	 */
+	public function update_user_options(  $user_id  ) {
+
+		// Check for nonce otherwise bail
+		if ( ! isset( $_POST['src_bpress_member_nonce'] ) || ! wp_verify_nonce( $_POST['src_bpress_member_nonce'], 'src_bpress_member_nonce' ) ) {
+			return;
+		}
+
+		$metas = array(
+			'nationality',
+			'sim_experience',
+			'sim_racing_achievements',
+			'leagues_competed_in',
+		);
+
+		foreach ( $metas as $meta ) {
+			$value = wp_kses_post( $_POST[$meta] );
+			update_user_meta( $user_id, $meta, $value );
+		}
 
 	}
 
@@ -119,9 +144,3 @@ class SRC_bbPress {
 
 }
 new SRC_bbPress;
-
-
-add_action( 'edit_user_profile',    'boob'     );
-function boob() {
-	echo 'xxxxxxxxxxxx';
-}

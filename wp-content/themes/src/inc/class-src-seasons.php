@@ -75,7 +75,7 @@ class SRC_Seasons extends SRC_Core {
 			'name' => esc_html__( 'Track Country', 'src' ),
 			'id'         => 'country',
 			'type'       => 'select',
-			'options_cb' => array( $this, 'get_countries' ),
+			'options_cb' => 'src_get_countries',
 		) );
 
 		$cmb->add_group_field( $group_field_id, array(
@@ -198,7 +198,7 @@ class SRC_Seasons extends SRC_Core {
 
 				<tr>
 					<?php /* Important - don't leave spaces, as it goofs up the saving process in deleting them */ ?>
-					<th>Username</th><th>Number</th><th>Nationality</th><th>Car</th><th>Team</th><th>Class</th>
+					<th>Username</th><th>Number</th><th>Note</th><th>Car</th><th>Team</th><th>Class</th>
 				</tr><?php
 
 			$data = get_post_meta( get_the_ID(), '_seasons_drivers', true );
