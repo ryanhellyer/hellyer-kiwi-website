@@ -132,7 +132,7 @@ class SRC_Results extends SRC_Core {
 			'Pts',
 		);
 
-		$drivers = src_get_events( $season );
+		$drivers = src_get_drivers( $season );
 
 		$content = '';
 		if ( is_array( $drivers ) ) {
@@ -302,36 +302,36 @@ class SRC_Results extends SRC_Core {
 				}
 
 				if ( isset( $event['event_fp1_timestamp'] ) && '' !== $event['event_fp1_timestamp'] ) {
-					$date_fp1   = date_i18n( get_option( 'date_format' ), $event['event_fp1_timestamp'] );
-					$time_fp1   = date_i18n( get_option( 'time_format' ), $event['event_fp1_timestamp'] );
+					$date_fp1   = get_date_from_gmt( date( get_option( 'date_format' ), $event['event_fp1_timestamp'] ), get_option( 'date_format' ) );
+					$time_fp1   = get_date_from_gmt( date( get_option( 'time_format' ), $event['event_fp1_timestamp'] ), get_option( 'time_format' ) ) . ' CET';
 				} else {
 					$time_fp1 = $date_fp1 = '';
 				}
 
 				if ( isset( $event['event_fp2_timestamp'] ) && '' !== $event['event_fp2_timestamp'] ) {
-					$date_fp2   = date_i18n( get_option( 'date_format' ), $event['event_fp2_timestamp'] );
-					$time_fp2   = date_i18n( get_option( 'time_format' ), $event['event_fp2_timestamp'] );
+					$date_fp2   = get_date_from_gmt( date( get_option( 'date_format' ), $event['event_fp2_timestamp'] ), get_option( 'date_format' ) );
+					$time_fp2   = get_date_from_gmt( date( get_option( 'time_format' ), $event['event_fp2_timestamp'] ), get_option( 'time_format' ) ) . ' CET';
 				} else {
 					$time_fp2 = $date_fp2 = '';
 				}
 
 				if ( isset( $event['event_qualifying_timestamp'] ) && '' !== $event['event_qualifying_timestamp'] ) {
-					$date_qual  = date_i18n( get_option( 'date_format' ), $event['event_qualifying_timestamp'] );
-					$time_qual  = date_i18n( get_option( 'time_format' ), $event['event_qualifying_timestamp'] );
+					$date_qual  = get_date_from_gmt( date( get_option( 'date_format' ), $event['event_qualifying_timestamp'] ), get_option( 'date_format' ) );
+					$time_qual  = get_date_from_gmt( date( get_option( 'time_format' ), $event['event_qualifying_timestamp'] ), get_option( 'time_format' ) ) . ' CET';
 				} else {
 					$time_qual = $date_qual = '';
 				}
 
 				if ( isset( $event['event_race-1_timestamp'] ) && '' !== $event['event_race-1_timestamp'] ) {
-					$date_race1 = date_i18n( get_option( 'date_format' ), $event['event_race-1_timestamp'] );
-					$time_race1 = date_i18n( get_option( 'time_format' ), $event['event_race-1_timestamp'] );
+					$date_race1 = get_date_from_gmt( date( get_option( 'date_format' ), $event['event_race-1_timestamp'] ), get_option( 'date_format' ) );
+					$time_race1 = get_date_from_gmt( date( get_option( 'time_format' ), $event['event_race-1_timestamp'] ), get_option( 'time_format' ) ) . ' CET';
 				} else {
 					$time_race1 = $date_race1 = '';
 				}
 
 				if ( isset( $event['event_race-2_timestamp'] ) && '' !== $event['event_race-2_timestamp'] ) {
-					$date_race2 = date_i18n( get_option( 'date_format' ), $event['event_race-2_timestamp'], true );
-					$time_race2 = date_i18n( get_option( 'time_format' ), $event['event_race-2_timestamp'], true );
+					$date_race2 = get_date_from_gmt( date( get_option( 'date_format' ), $event['event_race-2_timestamp'] ), get_option( 'date_format' ) );
+					$time_race2 = get_date_from_gmt( date( get_option( 'time_format' ), $event['event_race-2_timestamp'] ), get_option( 'time_format' ) ) . ' CET';
 				} else {
 					$time_race2 = $date_race2 = '';
 				}
