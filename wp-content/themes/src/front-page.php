@@ -202,11 +202,16 @@ if ( is_super_admin() ) {
 
 				if ( $count < 9 ) {
 
-					$name = src_get_display_name_from_username( $username );
+					$name = esc_html( src_get_display_name_from_username( $username ) );
+
+					$url = src_get_memberurl_from_username( $username );
+					if ( false !== $url ) {
+						$name = '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>';
+					}
 
 					$content .= '<tr>';
 					$content .= '<td>' . esc_html( $count ) . '</td>';
-					$content .= '<td>' . esc_html( $name ) . '</td>';
+					$content .= '<td>' . $name /* Escaped already */ . '</td>';
 					$content .= '<td>' . esc_html( $driver[3] ) . '</td>';
 					$content .= '<td>' . esc_html( src_get_driver_points( $season_slug, $username ) ) . '</td>';
 
