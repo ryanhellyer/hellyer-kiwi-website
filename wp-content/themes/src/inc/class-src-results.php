@@ -330,8 +330,8 @@ class SRC_Results extends SRC_Core {
 				}
 
 				if ( isset( $event['event_race-2_timestamp'] ) && '' !== $event['event_race-2_timestamp'] ) {
-					$date_race2 = date_i18n( get_option( 'date_format' ), $event['event_race-2_timestamp'], false );
-					$time_race2 = date_i18n( get_option( 'time_format' ), $event['event_race-2_timestamp'], false );
+					$date_race2 = date_i18n( get_option( 'date_format' ), $event['event_race-2_timestamp'], true );
+					$time_race2 = date_i18n( get_option( 'time_format' ), $event['event_race-2_timestamp'], true );
 				} else {
 					$time_race2 = $date_race2 = '';
 				}
