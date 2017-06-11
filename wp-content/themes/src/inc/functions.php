@@ -6,6 +6,11 @@ function src_get_events( $season_slug ) {
 	return $events;
 }
 
+if ( isset( $_GET['test'] ) ) {
+	print_r( src_get_events( 3 ) );
+	die;
+}
+
 function src_get_id_from_slug( $slug, $post_type ) {
 
 	// Get season ID from slug
@@ -209,6 +214,9 @@ function src_get_memberurl_from_username( $username ) {
 function src_reorder_subarray( $a, $b ) {
 	return $b[6] - $a[6];
 }
+
+
+
 
 /**
  * Get every country.

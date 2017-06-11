@@ -40,9 +40,9 @@ address {
 /* =Fonts
 -------------------------------------------------------------- */
 @font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/icons/icomoon.eot?gfoklk");
-  src: url("../fonts/icons/icomoon.eot?gfoklk#iefix") format("embedded-opentype"), url("../fonts/icons/icomoon.ttf?gfoklk") format("truetype"), url("../fonts/icons/icomoon.woff?gfoklk") format("woff"), url("../fonts/icons/icomoon.svg?gfoklk#icomoon") format("svg");
+  font-family: 'src';
+  src: url("../fonts/icons/src.eot?gfoklk");
+  src: url("../fonts/icons/src.eot?gfoklk#iefix") format("embedded-opentype"), url("../fonts/icons/src.ttf?gfoklk") format("truetype"), url("../fonts/icons/src.woff?gfoklk") format("woff"), url("../fonts/icons/src.svg?gfoklk#src") format("svg");
   font-weight: normal;
   font-style: normal; }
 /* =Header
@@ -317,9 +317,17 @@ th {
 td {
   margin: 0;
   font-weight: 600; }
+  td span {
+    display: block;
+    font-weight: 300;
+    font-size: 0.8rem; }
 
 tr:nth-child(2n+1) td {
   background: #f4f4f4; }
+
+td span.tick-mark:before {
+  font-family: src;
+  content: "\e907"; }
 
 /* =Results
 -------------------------------------------------------------- */
@@ -795,7 +803,7 @@ input[type=submit],
     color: #777;
     text-decoration: none; }
     #site-footer a:before {
-      font-family: icomoon; }
+      font-family: src; }
     #site-footer a span {
       display: none; }
     #site-footer a[href*="twitter.com"], #site-footer a[href*="youtube.com"], #site-footer a[href*="facebook.com"] {
@@ -874,13 +882,13 @@ input[type=submit],
         width: 60px;
         height: 70px;
         color: #fff;
-        font-family: icomoon;
+        font-family: src;
         font-size: 2rem;
-        content: "\e900"; }
+        content: "\e906"; }
       #site-header nav:hover {
         cursor: pointer; }
       #site-header nav.open:before {
-        content: "\e904"; }
+        content: "\e905"; }
     #site-header .sign-up {
       height: 49px;
       color: #fff;

@@ -65,12 +65,12 @@ address {
 /* =Fonts
 -------------------------------------------------------------- */
 @font-face {
-	font-family: 'icomoon';
-	src:  url('../fonts/icons/icomoon.eot?gfoklk');
-	src:  url('../fonts/icons/icomoon.eot?gfoklk#iefix') format('embedded-opentype'),
-		url('../fonts/icons/icomoon.ttf?gfoklk') format('truetype'),
-		url('../fonts/icons/icomoon.woff?gfoklk') format('woff'),
-		url('../fonts/icons/icomoon.svg?gfoklk#icomoon') format('svg');
+	font-family: 'src';
+	src:  url('../fonts/icons/src.eot?gfoklk');
+	src:  url('../fonts/icons/src.eot?gfoklk#iefix') format('embedded-opentype'),
+		url('../fonts/icons/src.ttf?gfoklk') format('truetype'),
+		url('../fonts/icons/src.woff?gfoklk') format('woff'),
+		url('../fonts/icons/src.svg?gfoklk#src') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -461,13 +461,16 @@ th {
 	font-size: 0.8rem;
 }
 
-tr {
-	
-}
-
 td {
 	margin: 0;
 	font-weight: 600;
+
+	span {
+		display: block;
+		font-weight: 300;
+		font-size: 0.8rem;
+	}
+
 }
 
 tr:nth-child(2n+1) {
@@ -475,10 +478,11 @@ tr:nth-child(2n+1) {
 		background: #f4f4f4;
 	}
 }
-td {
-	
-}
 
+td span.tick-mark:before {
+	font-family: src;
+	content: "\e907";
+}
 
 /* =Results
 -------------------------------------------------------------- */
@@ -1117,7 +1121,7 @@ input[type=submit],
 		text-decoration: none;
 
 		&:before {
-			font-family: icomoon;
+			font-family: src;
 		}
 
 		span {
@@ -1247,9 +1251,9 @@ input[type=submit],
 				width: 60px;
 				height: 70px;
 				color: #fff;
-				font-family: icomoon;
+				font-family: src;
 				font-size: 2rem;
-				content: "\e900";
+				content: "\e906";
 			}
 
 			&:hover {
@@ -1258,7 +1262,7 @@ input[type=submit],
 
 			&.open {
 				&:before {
-					content: "\e904";
+					content: "\e905";
 				}
 			}
 
