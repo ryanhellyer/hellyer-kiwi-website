@@ -200,7 +200,7 @@ if ( is_super_admin() ) {
 
 				$username = $driver[0];
 
-				if ( 0 !== src_get_driver_points( $season_slug, $username ) ) {
+				if ( $count < 9 ) {
 
 					$name = src_get_display_name_from_username( $username );
 
