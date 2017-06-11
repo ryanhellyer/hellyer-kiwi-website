@@ -349,7 +349,7 @@ class SRC_Results extends SRC_Core {
 				$content .= '<td>' . esc_html( $time_fp1 ) .   ' <span>' . esc_html( $date_fp1 ) .   '</span></td>';
 				$content .= '<td>' . esc_html( $time_fp2 ) .   ' <span>' . esc_html( $date_fp2 ) .   '</span></td>';
 				$content .= '<td>' . esc_html( $time_qual ) .  ' <span>' . esc_html( $date_qual ) .  '</span></td>';
-				$content .= '<td>' . esc_html( $time_race1 ) . ' <span>' . esc_html( $date_race1 ) . '</span></td>';
+				$content .= '<td>' . $event['event_race-1_timestamp'] . ': ' . esc_html( $time_race1 ) . ' <span>' . esc_html( $date_race1 ) . '</span></td>';
 				$content .= '<td>' . esc_html( $time_race2 ) . ' <span>' . esc_html( $date_race2 ) . '</span></td>';
 
 				if ( isset( $event['event_race-2_timestamp'] ) && ( $event['event_race-2_timestamp'] < time() ) ) {
