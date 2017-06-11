@@ -167,7 +167,9 @@ class SRC_Results extends SRC_Core {
 						if ( $column === $col ) {
 
 							$content .= '<td>';
-							if ( 'Username' == $col ) {
+							if ( 2 === $key ) {
+								$content .= src_get_nationality( $username );
+							} else if ( 'Username' == $col ) {
 								$username = $driver[$key];
 								$name = src_get_display_name_from_username( $username );
 								$url = src_get_memberurl_from_username( $username );
