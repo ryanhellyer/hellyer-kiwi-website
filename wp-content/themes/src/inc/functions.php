@@ -223,22 +223,21 @@ $season_slug = 3;
 	// Form array of available car information
 	$available_cars = array();
 	foreach ( src_get_available_cars( $season_slug ) as $key => $car ) {
-		$available_cars[$key]['available']    = 2; // Add default number of cars available
 		$available_cars[$key]['manufacturer'] = $car['manufacturer'];
 		$available_cars[$key]['model']        = $car['model'];
 
 		foreach ( src_get_drivers( $season_slug ) as $x => $driver ) {
 
 			if ( $car['manufacturer'] . ' ' . $car['model'] === $driver[3] ) {
-				$available_cars[$key]['available'] = $available_cars[$key]['available'] - 1;
-
-				if ( isset( $available_cars[$key]['taken_by'] ) && $driver[4] !== $available_cars[$key]['taken_by'] ) {
-					$available_cars[$key]['taken_by'] .= ' ' . __( '&amp;', 'src' ) . ' ' . $driver[4];
-				} else {
-					$available_cars[$key]['taken_by'] = $driver[4];
-				}
-
+				$available_cars[$key]['taken_by'] = $driver[4];
 			}
+
+		}
+
+		if ( isset( $available_cars[$key]['taken_by'] ) ) {
+			$available_cars[$key]['available'] = src_how_many_spots_left_in_team( $season_slug, $driver[4] );
+		} else {
+			$available_cars[$key]['available']    = 2; // Add default number of cars available
 		}
 
 	}
@@ -254,21 +253,19 @@ $season_slug = 3;
 	foreach ( $available_cars as $key => $car ) {
 		$count++;
 
-		$content .= '<tr>';
+		$strike = '';
 
-		$content .= '<td>' . absint( $count ) . '</td>';
-		$content .= '<td>' . esc_html( $car['manufacturer'] ) . '</td>';
-		$content .= '<td>' . esc_html( $car['model'] ) . '</td>';
-
-		$cars_available = 2;
-		if ( isset( $car['taken_by'] ) ) {
-
-			if ( isset( $car['taken_by'] ) ) {
-				$cars_available = src_how_many_spots_left_in_team( $season_slug, $car['taken_by'] );
-			}
+		if ( 0 === $car['available'] ) {
+			$strike = '<s>';
 		}
 
-		$content .= '<td>' . esc_html( $cars_available ) . '</td>';
+		$content .= '<tr>';
+
+		$content .= '<td>' . $strike . absint( $count ) . $strike . '</td>';
+		$content .= '<td>' . $strike . esc_html( $car['manufacturer'] ) . $strike . '</td>';
+		$content .= '<td>' . $strike . esc_html( $car['model'] ) . $strike . '</td>';
+
+		$content .= '<td>' . $strike . esc_html( $car['available'] ) . $strike . '</td>';
 
 		$content .= '</tr>';
 	}
