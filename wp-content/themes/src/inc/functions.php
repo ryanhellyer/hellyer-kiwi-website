@@ -230,7 +230,6 @@ $season_slug = 3;
 		foreach ( src_get_drivers( $season_slug ) as $x => $driver ) {
 
 			if ( $car['manufacturer'] . ' ' . $car['model'] === $driver[3] ) {
-				echo $car['manufacturer'] . ' ' . $car['model'].': ' . $driver[3] . "\n";
 				$available_cars[$key]['taken_by'] = $driver[4];
 				$available_cars[$key]['available'] = src_how_many_spots_left_in_team( $season_slug, $driver[4] );
 			}
