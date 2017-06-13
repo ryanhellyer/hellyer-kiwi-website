@@ -1,5 +1,5 @@
 === Restricted Site Access ===
-Contributors: jakemgold, rcbth, 10up, thinkoomph
+Contributors: jakemgold, rcbth, 10up, thinkoomph, tlovett1
 Donate link: http://10up.com/plugins/restricted-site-access-wordpress/
 Tags: privacy, restricted, restrict, privacy, limited, permissions, security, block
 Requires at least: 3.5
@@ -72,6 +72,10 @@ Page caching plugins often hook into WordPress to quickly serve the last cached 
 1. Plenty of inline help! Looks and behaves like native WordPress help.
 
 == Changelog ==
+
+= 6.0.1 =
+* When plugin is network activated, don't touch individual blog visiblity settings.
+* When plugin is network deactivated, set all individual blogs to default visibility.
 
 = 6.0 =
 * Use Grunt to manage assets.
