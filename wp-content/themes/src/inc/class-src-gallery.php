@@ -114,14 +114,10 @@ class SRC_Gallery extends SRC_Core {
 					$driver_id = absint( $driver_id );
 					$drivers[] = $driver_id;
 
-//echo $attachment_id;
-//$meta = get_user_meta( $driver_id, 'gallery_image' );
-//print_r( $meta );
 					// Stash in users meta here
 					add_user_meta( $driver_id, 'gallery_image', $attachment_id );
 
 				}
-//die;
 
 				update_post_meta( $attachment_id, 'src_drivers', $drivers );
 			}
@@ -255,7 +251,7 @@ class SRC_Gallery extends SRC_Core {
 		$content = '
 		<form method="POST" action="">
 			' . $this->form_fields() . '
-			<input name="src-gallery-edit" value="' . esc_attr( get_the_ID() ) . '" type="text" />
+			<input name="src-gallery-edit" value="' . esc_attr( get_the_ID() ) . '" type="hidden" />
 			<p>
 				<input type="submit" value="' . esc_html__( 'Submit', 'src' ) . '" />
 			</p>
