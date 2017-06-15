@@ -9,8 +9,12 @@ function src_get_events( $season_slug ) {
 function src_get_current_user_weight_penalties( $season_slug, $username ) {
 	$season_id = src_get_id_from_slug( $season_slug );
 	$all_weight_penalties = get_post_meta( $season_id, '_seasons_weight_penalties', true );
-	$weight_penalties = $all_weight_penalties[$username];
 
+	if ( ! isset( $all_weight_penalties[$username] ) ) {
+		return false;
+	}
+
+	$weight_penalties = $all_weight_penalties[$username];
 	$weight_penalty = 0;
 	foreach ( $weight_penalties as $key => $penalty ) {
 		$weight_penalty = $weight_penalty + $penalty;

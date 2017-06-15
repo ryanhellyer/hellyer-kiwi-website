@@ -692,18 +692,8 @@ unset( $data[0] );
 
 							$track_initials = strtoupper( substr( $event['track_name'], 0, 3 ) );
 
-							if ( isset( $event['event_race-1_timestamp'] ) && '' !== $event['event_race-1_timestamp'] ) {
-								echo '<th>' . esc_html( $track_initials ) . '1</th>';
-								$event_counter++;
-							}
-							if ( isset( $event['event_race-2_timestamp'] ) && '' !== $event['event_race-2_timestamp'] ) {
-								echo '<th>' . esc_html( $track_initials ) . '2</th>';
-								$event_counter++;
-							}
-							if ( isset( $event['event_race-3_timestamp'] ) && '' !== $event['event_race-3_timestamp'] ) {
-								echo '<th>' . esc_html( $track_initials ) . '3</th>';
-								$event_counter++;
-							}
+							echo '<th>' . esc_html( $track_initials ) . '</th>';
+							$event_counter++;
 
 						}
 
