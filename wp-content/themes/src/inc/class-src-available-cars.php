@@ -9,7 +9,7 @@
  * @package SRC Theme
  * @since SRC Theme 1.0
  */
-class SRC_Availble_Cars extends SRC_Core {
+class SRC_Available_Cars extends SRC_Core {
 
 	/**
 	 * Constructor.
@@ -17,12 +17,69 @@ class SRC_Availble_Cars extends SRC_Core {
 	 */
 	public function __construct() {
 
+		add_shortcode( 'src-available-cars',   array( $this, 'available_cars_shortcode' ) );
+
 		// Add action hooks
 		add_action( 'init',            array( $this, 'init' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'events_metaboxes' ) );
 		add_action( 'add_meta_boxes',  array( $this, 'add_metaboxes' ) );
 		add_action( 'save_post',       array( $this, 'meta_boxes_save' ), 10, 2 );
 
+	}
+
+	public function available_cars_shortcode() {
+
+$season_slug = 3;
+
+		// Form array of available car information
+		$available_cars = array();
+		foreach ( src_get_available_cars( $season_slug ) as $key => $car ) {
+			$available_cars[$key]['manufacturer'] = $car['manufacturer'];
+			$available_cars[$key]['model']        = $car['model'];
+			$available_cars[$key]['available'] = 2;
+
+			foreach ( src_get_drivers( $season_slug ) as $x => $driver ) {
+
+				if ( $car['manufacturer'] . ' ' . $car['model'] === $driver[3] ) {
+					$available_cars[$key]['taken_by'] = $driver[4];
+					$available_cars[$key]['available'] = src_how_many_spots_left_in_team( $season_slug, $driver[4] );
+				}
+
+			}
+
+		}
+
+		$content = '<table>
+		<tr>
+			<th></th>
+			<th>Manufacturer</th>
+			<th>Model</th>
+			<th>Remaining</th>
+		</tr>';
+		$count = 0;
+		foreach ( $available_cars as $key => $car ) {
+			$count++;
+
+			$strike = '';
+
+			if ( 0 === $car['available'] ) {
+				$strike = '<s>';
+			}
+
+			$content .= '<tr>';
+
+			$content .= '<td>' . $strike . absint( $count ) . $strike . '</td>';
+			$content .= '<td>' . $strike . esc_html( $car['manufacturer'] ) . $strike . '</td>';
+			$content .= '<td>' . $strike . esc_html( $car['model'] ) . $strike . '</td>';
+
+			$content .= '<td>' . $strike . esc_html( $car['available'] ) . $strike . '</td>';
+
+			$content .= '</tr>';
+		}
+
+		$content .= '</table>';
+
+		return $content;
 	}
 
 	/**

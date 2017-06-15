@@ -98,6 +98,9 @@ class SRC_Theme_Setup {
 		// Add title tags
 		add_theme_support( 'title-tag' );
 
+		// User new gallery code
+		add_theme_support( 'html5', array( 'gallery', 'caption' ) );
+
 		// Enable support for Post Thumbnails
 		add_theme_support( 'post-thumbnails' );
 //		add_image_size( self::THEME_NAME . '-excerpt-thumb', 250, 350 );

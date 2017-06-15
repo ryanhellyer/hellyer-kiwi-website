@@ -6,11 +6,6 @@ function src_get_events( $season_slug ) {
 	return $events;
 }
 
-if ( isset( $_GET['test'] ) ) {
-	print_r( src_get_events( 3 ) );
-	die;
-}
-
 function src_get_id_from_slug( $slug, $post_type ) {
 
 	// Get season ID from slug
@@ -34,6 +29,63 @@ function src_get_id_from_slug( $slug, $post_type ) {
 	}
 
 	return $season_id;
+}
+
+function src_get_the_slug( $permalink = null ) {
+
+	if ( null === $permalink ) {
+		$permalink = get_permalink();
+	}
+
+	$slug = basename( $permalink );
+	$slug = apply_filters( 'slug_filter', $slug );
+
+	return $slug;
+}
+
+function src_get_drivers_from_all_seasons() {
+	$all_drivers = array();
+
+	$args = array(
+		'post_type'              => 'season',
+		'posts_per_page'         => 100,
+		'no_found_rows'          => true,  // useful when pagination is not needed.
+		'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+		'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+		'fields'                 => 'ids'
+	);
+
+	$seasons = new WP_Query( $args );
+	if ( $seasons->have_posts() ) {
+		while ( $seasons->have_posts() ) {
+			$seasons->the_post();
+
+			$season_slug = src_get_the_slug();
+
+			// Loop through each driver in each season
+			foreach ( src_get_drivers( $season_slug ) as $key => $driver ) {
+
+				$username = $driver[0];
+				$user = get_user_by( 'login', $username );
+
+				if ( isset( $user->data->ID ) ) {
+
+					// Set the name displayed
+					$name = $username;
+					if ( isset( $user->data->display_name ) ) {
+						$name = $user->data->display_name;
+					}
+
+					$all_drivers[$user->data->ID] = $name;
+				}
+
+			}
+
+
+		}
+	}
+
+	return $all_drivers;
 }
 
 function src_get_drivers( $season_slug, $reorder_by_am = false ) {
@@ -213,62 +265,6 @@ function src_get_memberurl_from_username( $username ) {
 
 function src_reorder_subarray( $a, $b ) {
 	return $b[6] - $a[6];
-}
-
-add_shortcode( 'src-available-cars', 'src_available_cars_shortcode' );
-function src_available_cars_shortcode() {
-
-$season_slug = 3;
-
-	// Form array of available car information
-	$available_cars = array();
-	foreach ( src_get_available_cars( $season_slug ) as $key => $car ) {
-		$available_cars[$key]['manufacturer'] = $car['manufacturer'];
-		$available_cars[$key]['model']        = $car['model'];
-		$available_cars[$key]['available'] = 2;
-
-		foreach ( src_get_drivers( $season_slug ) as $x => $driver ) {
-
-			if ( $car['manufacturer'] . ' ' . $car['model'] === $driver[3] ) {
-				$available_cars[$key]['taken_by'] = $driver[4];
-				$available_cars[$key]['available'] = src_how_many_spots_left_in_team( $season_slug, $driver[4] );
-			}
-
-		}
-
-	}
-
-	$content = '<table>
-	<tr>
-		<th></th>
-		<th>Manufacturer</th>
-		<th>Model</th>
-		<th>Remaining</th>
-	</tr>';
-	$count = 0;
-	foreach ( $available_cars as $key => $car ) {
-		$count++;
-
-		$strike = '';
-
-		if ( 0 === $car['available'] ) {
-			$strike = '<s>';
-		}
-
-		$content .= '<tr>';
-
-		$content .= '<td>' . $strike . absint( $count ) . $strike . '</td>';
-		$content .= '<td>' . $strike . esc_html( $car['manufacturer'] ) . $strike . '</td>';
-		$content .= '<td>' . $strike . esc_html( $car['model'] ) . $strike . '</td>';
-
-		$content .= '<td>' . $strike . esc_html( $car['available'] ) . $strike . '</td>';
-
-		$content .= '</tr>';
-	}
-
-	$content .= '</table>';
-
-	return $content;
 }
 
 function src_how_many_spots_left_in_team( $season_slug, $team_name ) {
