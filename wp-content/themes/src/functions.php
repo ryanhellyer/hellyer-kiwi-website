@@ -3,7 +3,7 @@
 
 
 
-if (       'dev-hellyer.kiwi' !== $_SERVER['HTTP_HOST']      && ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
+if (  'dev-hellyer.kiwi' !== $_SERVER['HTTP_HOST']      && ! is_user_logged_in() && ! is_admin() && $GLOBALS['pagenow'] != 'wp-login.php' ) {
 
 	echo '
 	<style>

@@ -1,5 +1,8 @@
 <?php
 
+// NEED NONCES AND USER PERMISSIONS CHECKS
+// BOTH ON FORM EDIT AND INITIAL FORM SUBMISSION
+
 /**
  * Gallery.
  *
@@ -33,6 +36,16 @@ class SRC_Gallery extends SRC_Core {
 	 */
 	public function init() {
 
+		// Quick security check
+		if (
+			! is_user_logged_in()
+			||
+			false === wp_verify_nonce( $_POST['src-gallery-nonce'], 'src-gallery-nonce' )
+		) {
+			return;
+		}
+
+		// Upload all the thingz!!!
 		if ( isset( $_FILES['gallery-file']['tmp_name'] ) ) {
 
 			require_once ( ABSPATH . 'wp-admin/includes/file.php' );
@@ -63,6 +76,27 @@ class SRC_Gallery extends SRC_Core {
 			wp_update_attachment_metadata( $attachment_id, $attachment_data );
 
 			set_post_thumbnail( get_the_ID(), $attachment_id );
+		}
+
+		if (
+			isset( $_FILES['gallery-file']['tmp_name'] )
+			||
+			isset( $_POST['src-gallery-edit'] )
+		) {
+
+			// Get attachment ID
+			if ( isset( $_POST['src-gallery-edit'] ) ) {
+				$attachment_id = get_the_ID();
+
+				// Update attachment title
+				$post_title = $_POST['post_title'];
+				$args = array(
+					'ID'           => $attachment_id,
+					'post_title'   => wp_kses_post( $post_title ),
+				);
+				wp_update_post( $args );
+
+			}
 
 			$event_exploded = explode( $this->spacer, $_POST['event'] );
 			if ( isset( $event_exploded[0] ) && isset( $event_exploded[1] ) ) {
@@ -80,7 +114,7 @@ class SRC_Gallery extends SRC_Core {
 					$drivers[] = $driver_id;
 
 					// Stash in users meta here
-					add_user_meta( $driver_id, 'gallery_image', $attachment_id );
+					update_user_meta( $driver_id, 'gallery_image', $attachment_id );
 
 				}
 
@@ -179,16 +213,57 @@ class SRC_Gallery extends SRC_Core {
 
 		}
 
+
+		if ( is_user_logged_in() ) {
+			echo ' &nbsp; <a style="display:inline;float:none;" id="add-a-photo" href="#">(' . esc_html__( 'edit image meta', 'src' ) . ')</a>';
+		}
+
 		echo '<p>';
 
 		previous_image_link( false, '<p class="alignleft button">&laquo; ' . __( 'Previous Image', 'src' ) . '</p>' );
 		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
+
+		if ( is_user_logged_in() ) {
+			echo '<div id="gallery-uploader">' . $this->form_edit() . '</div>';
+		}
+
 	}
 
 	public function uploader() {
 
 		$content = '
 		<form method="POST" action="" enctype="multipart/form-data">
+			' . $this->form_fields() . '
+			<p>
+				<input name="gallery-file" type="file" />
+			</p>
+			<p>
+				<input type="submit" value="' . esc_html__( 'Submit', 'src' ) . '" />
+			</p>
+		</form>';
+
+		return $content;
+	}
+
+	public function form_edit() {
+		$content = '
+		<form method="POST" action="">
+			' . $this->form_fields() . '
+			<input name="src-gallery-edit" value="' . esc_attr( get_the_ID() ) . '" type="text" />
+			<p>
+				<input type="submit" value="' . esc_html__( 'Submit', 'src' ) . '" />
+			</p>
+		</form>';
+
+		return $content;
+	}
+
+
+	public function form_fields() {
+
+		$content = wp_nonce_field( 'src-gallery-nonce', 'src-gallery-nonce', true, false );
+
+		$content .= '
 			<p>
 				<label>' . esc_html__( 'Title', 'src' ) . '</label>
 				<input name="post_title" type="text" />
@@ -238,14 +313,7 @@ class SRC_Gallery extends SRC_Core {
 
 		$content .= '
 				</select>
-			</p>
-			<p>
-				<input name="gallery-file" type="file" />
-			</p>
-			<p>
-				<input type="submit" value="Submit" />
-			</p>
-		</form>';
+			</p>';
 
 		return $content;
 	}

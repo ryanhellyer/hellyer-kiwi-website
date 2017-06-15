@@ -1,0 +1,81 @@
+--- attempt to post 24 hours after race, if fails, automatically email Luigi and Elise asking for more content ---
+
+
+1 Action at [event name] went off with a bang on Saturday night.
+2 There was action aplenty at the [event name] in [track country] on Saturday night.
+
+
+
+MENTION IF FIRST WIN FOR DRIVER OF SEASON
+MENTION IF FIRST ROUND WIN FOR DRIVER OF SEASON
+MENTION IF FIRST WEIGHT PENALTY OF SEASON
+MENTION EVENT DESCRIPTION IF IT EXISTS
+
+
+
+** NEW COMERS **
+
+$newcomer_x_from_countryx  $in_the_league  $finished_in_position
+
+$newcomer_x_from_countryx = array(
+	'Newcomer [newcomer_name] from [newcomer_country]',
+	'[newcomer name] from [newcomer country]',
+);
+
+$in_the_league = array(
+	'in the Seacrest Racing Club',
+	'',
+	'with SRC',
+);
+
+$competed_in_their_first_race = array(
+	'competed in their first race',
+	'had their first race in the league',
+);
+
+$finished_in_position = array(
+	'and finished a respectable [newcomer position]',
+);
+
+
+
+
+
+
+The feature race started off spectacularly with [winner] taking out out first place, followed by [second place] and [third place]. [dnf], [dnf] and [dnf] unfortunately failed to complete the race.
+
+The sprint race was won by [winner], with [second place] and [third] place following behind.
+
+** Weight penalties **
+Based on their finishing positions in the races, x, x and x will all be given higher weight penalties in [next track], but x, x and x will be given lower weight penalties.
+
+[show weight penalty table]
+
+** Photos **
+Photos
+	1st, 2nd, third. Find pic with all in it, otherwise just 1st.
+	Find pic with as many drivers as possible
+	Find pic with AM winner.
+
+
+
+
+---------------------------
+---------------------------
+---------------------------
+
+New drivers
+	Store all drivers in option
+	If new drivers appear, mention them in news post, show photo.
+	Add to option get_option( 'gertrude-drivers' ).
+
+
+Mention DNF's
+
+Championship positions
+	Mention if lead is extended.
+	Mention any changes of position.
+
+Weight penalities
+	Mention changes to weight penalities
+
