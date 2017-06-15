@@ -98,11 +98,12 @@ class SRC_Gallery extends SRC_Core {
 			return;
 		}
 
+		echo '<p>';
+
 		// The event
 		$event = get_post_meta( get_the_ID(), 'src_event', true );
 		if ( is_array( $event ) ) {
 
-//print_r( $event );
 			$args = array(
 				'name'                   => $event['season'],
 				'post_type'              => 'season',
@@ -126,12 +127,12 @@ class SRC_Gallery extends SRC_Core {
 						}
 					}
 
-					?>
-
-					<p>
-						<?php esc_html_e( 'Event', 'src' ); ?>: 
-						<?php the_title(); ?> &ndash; <?php echo esc_html( $event_name ); ?>
-					</p><?php
+					esc_html_e( 'Event', 'src' );
+					echo ': ';
+					the_title();
+					echo ' &ndash; ';
+					echo esc_html( $event_name );
+					echo '. ';
 
 				}
 			}
@@ -174,11 +175,11 @@ class SRC_Gallery extends SRC_Core {
 
 			}
 
-			echo '
-			<p>
-				' . esc_html__( 'Drivers', 'src' ) . ': ' . $string /* Already escaped */ . '
-			</p>';
+			echo esc_html__( 'Drivers', 'src' ) . ': ' . $string /* Already escaped */;
+
 		}
+
+		echo '<p>';
 
 	}
 
