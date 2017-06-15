@@ -45,6 +45,8 @@ if ( have_posts() ) {
 		the_content();
 	}
 
+	do_action( 'src_after_content' );
+
 	get_template_part( 'template-parts/numeric-pagination' );
 
 }

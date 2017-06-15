@@ -161,11 +161,6 @@ get_header();
 	</div><!-- .slider -->
 </section><!-- #schedule -->
 
-<?php
-
-if ( is_super_admin() ) {
-	?>
-
 <section id="results">
 
 	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
@@ -240,6 +235,5 @@ if ( is_super_admin() ) {
 </section><!-- #results -->
 
 <?php
-}
 
 get_footer();

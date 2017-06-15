@@ -100,9 +100,28 @@ if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'steam', true ) ) {
 }
 
 ?>
-</ul>
+</ul><?php
 
-	<?php do_action( 'bbp_template_after_user_profile' );
+
+// Output tagged images as gallery
+$gallery_images = get_user_meta( bbp_get_displayed_user_id(), 'gallery_image' );
+if ( is_array( $gallery_images ) ) {
+
+	$attachment_ids = '';
+	foreach ( $gallery_images as $key => $attachment_id ) {
+
+		if ( '' !== $attachment_ids ) {
+			$attachment_ids .= ',';
+		}
+
+		$attachment_ids .= $attachment_id;
+	}
+
+	echo do_shortcode( '[gallery ids="' . $attachment_ids . '"]' );
 
 }
- ?>
+
+
+do_action( 'bbp_template_after_user_profile' );
+
+}
