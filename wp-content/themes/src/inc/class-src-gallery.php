@@ -109,14 +109,19 @@ class SRC_Gallery extends SRC_Core {
 
 			$drivers = array();
 			if ( isset( $_POST['drivers'] ) && is_array( $_POST['drivers'] ) ) {
+				delete_user_meta( $driver_id, 'gallery_image' ); // Delete user meta to avoid repeated duplicates on update
 				foreach ( $_POST['drivers'] as $key => $driver_id ) {
 					$driver_id = absint( $driver_id );
 					$drivers[] = $driver_id;
 
+//echo $attachment_id;
+//$meta = get_user_meta( $driver_id, 'gallery_image' );
+//print_r( $meta );
 					// Stash in users meta here
-					update_user_meta( $driver_id, 'gallery_image', $attachment_id );
+					add_user_meta( $driver_id, 'gallery_image', $attachment_id );
 
 				}
+//die;
 
 				update_post_meta( $attachment_id, 'src_drivers', $drivers );
 			}
@@ -246,6 +251,7 @@ class SRC_Gallery extends SRC_Core {
 	}
 
 	public function form_edit() {
+
 		$content = '
 		<form method="POST" action="">
 			' . $this->form_fields() . '
