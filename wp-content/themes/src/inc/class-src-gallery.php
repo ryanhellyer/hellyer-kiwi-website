@@ -181,6 +181,8 @@ class SRC_Gallery extends SRC_Core {
 
 		echo '<p>';
 
+		previous_image_link( false, '<p class="alignleft button">&laquo; ' . __( 'Previous Image', 'src' ) . '</p>' );
+		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
 	}
 
 	public function uploader() {

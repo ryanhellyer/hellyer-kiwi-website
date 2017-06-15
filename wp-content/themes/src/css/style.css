@@ -240,6 +240,40 @@ address {
     .gallery img:hover {
       opacity: 0.8; }
 
+/* =WordPress core features
+-------------------------------------------------------------- */
+.alignnone {
+  margin: 5px 20px 20px 0; }
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto; }
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+a img.alignnone {
+  margin: 5px 20px 20px 0; }
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
 /* =Main content
 -------------------------------------------------------------- */
 #main {
@@ -856,10 +890,15 @@ input[type=submit],
   border: none;
   outline: none;
   text-decoration: none; }
-  input[type=submit]:hover,
+  input[type=submit] a,
+  .button a {
+    color: #fff; }
+  input[type=submit] a:hover, input[type=submit]:hover,
+  .button a:hover,
   .button:hover {
     cursor: pointer;
-    background: #de1314; }
+    background: #de1314;
+    text-decoration: none; }
 
 .highlighted-link {
   display: block;

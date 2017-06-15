@@ -352,6 +352,49 @@ address {
 
 }
 
+/* =WordPress core features
+-------------------------------------------------------------- */
+
+.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+	display: block;
+	margin: 5px auto 5px auto;
+}
+
+.alignright {
+	float:right;
+	margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+	float: right;
+	margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+	margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+	float: left;
+	margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /* =Main content
 -------------------------------------------------------------- */
 
@@ -726,7 +769,7 @@ td span.tick-mark:before {
 				padding-right: 40px;
 			}
 
-  			padding: 15px 0;
+			padding: 15px 0;
 			font-family: $paragraph_font;
 			text-transform: uppercase;
 			font-size: 0.9rem;
@@ -752,12 +795,12 @@ td span.tick-mark:before {
 				background: #ccc;
 				-webkit-transform: skewX(-20deg);
 				transform: skewX(-20deg);
-  			}
+			}
 
-  			img {
-  				width: 80px;
-  				display: block;
-  			}
+			img {
+				width: 80px;
+				display: block;
+			}
 
 			&.pink span {
 				border-bottom: 8px solid #ff88ff;
@@ -1205,9 +1248,15 @@ input[type=submit],
 	outline: none;
 	text-decoration: none;
 
+	a {
+		color: #fff;
+	}
+
+	a:hover,
 	&:hover {
 		cursor: pointer;
 		background: $hover_red;
+		text-decoration: none;
 	}
 
 }
