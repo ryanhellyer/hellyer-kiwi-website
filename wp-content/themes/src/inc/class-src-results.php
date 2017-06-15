@@ -20,6 +20,7 @@ class SRC_Results extends SRC_Core {
 		add_shortcode( 'src-driver-standings',   array( $this, 'driver_standings' ) );
 		add_shortcode( 'src-amdriver-standings', array( $this, 'amdriver_standings' ) );
 		add_shortcode( 'src-team-standings',     array( $this, 'team_standings' ) );
+		add_shortcode( 'src-weight-penalties',   array( $this, 'weight_penalties' ) );
 
 		add_shortcode( 'src-schedule',           array( $this, 'schedule' ) );
 	}
@@ -59,6 +60,7 @@ class SRC_Results extends SRC_Core {
 			$content .= '<th>' . esc_html__( 'Car', 'src' ) . '</th>';
 			$content .= '<th>' . esc_html__( 'Team', 'src' ) . '</th>';
 			$content .= '<th>' . esc_html__( 'Class', 'src' ) . '</th>';
+			$content .= '<th>' . esc_html__( 'Wt. Pen.', 'src' ) . '</th>';
 			$content .= '<th>' . esc_html__( 'Pts', 'src' ) . '</th>';
 			$content .= '</tr></thead>';
 
@@ -99,6 +101,8 @@ class SRC_Results extends SRC_Core {
 
 					}
 				}
+
+				$content .= '<td>' . esc_html( src_get_current_user_weight_penalties( $season, $username ) ) . ' kg</td>';
 
 				$content .= '<td>' . esc_html( src_get_driver_points( $season, $username ) ) . '</td>';
 

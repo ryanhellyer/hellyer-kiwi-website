@@ -179,6 +179,7 @@ $season_slug = 3;
 			'drivers'    => __( 'Drivers', 'src' ),
 			'results'    => __( 'Results Overall', 'src' ),
 			'results_am' => __( 'Results AM', 'src' ),
+			'weight_penalties' => __( 'Weight Penalties', 'src' ),
 		);
 
 		foreach ( $meta_boxes as $id => $title ) {
@@ -348,6 +349,12 @@ unset( $data[0] );
 						resultsam_table[i].contentEditable = "true";
 					}
 
+					// Making the weights penalty table cells editable.
+					var weight_penalties_table = document.getElementById("weight-penalties-table").getElementsByTagName('span');
+					for(i = 0; i < weight_penalties_table.length; i++) {
+						weight_penalties_table[i].contentEditable = "true";
+					}
+
 				}
 			);
 
@@ -374,6 +381,12 @@ unset( $data[0] );
 						var resultsam_table = document.getElementById("resultsam-table");
 						var seasons_resultsam = document.getElementById("seasons-resultsam");
 						seasons_resultsam.value = resultsam_table.innerHTML;
+
+						// Weights penalties table
+						var weight_penalties_table = document.getElementById("weight-penalties-table");
+						var seasons_weight_penalties = document.getElementById("seasons-weight-penalties");
+						seasons_weight_penalties.value = weight_penalties_table.innerHTML;
+
 					}
 
 				}
@@ -622,6 +635,125 @@ unset( $data[0] );
 	}
 
 	/**
+	 * Output the results AM meta box.
+	 */
+	public function weight_penalties_meta_box() {
+		?>
+		<input type="hidden" id="seasons-weight-penalties" name="seasons-weight-penalties" value="" />
+
+		<style>
+		#weight-penalties-wrapper {
+			width: 100%;
+			overflow-x: scroll;
+		}
+
+		#weight-penalties-table {
+			border-spacing: 0;
+			border-collapse: separate;
+		}
+
+		#weight-penalties-table tr.first-row td {
+			font-weight: bold;
+		}
+
+		#weight-penalties-table {
+			width: 100%;
+			border-top: 1px solid #ddd;
+			border-left: 1px solid #ddd;
+		}
+
+		#weight-penalties-table th,
+		#weight-penalties-table td {
+			text-align: left;
+			border-right: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			padding: 4px 4px;
+		}
+
+		#weight-penalties-table td span {
+			display: block;
+			min-height: 1rem;
+		}
+
+		</style>
+
+		<div id="weight-penalties-wrapper">
+
+			<table id="weight-penalties-table">
+
+				<tr>
+					<?php /* Important - don't leave spaces, as it goofs up the saving process in deleting them */ ?>
+					<th>Username</th><?php
+
+					$events = get_post_meta( get_the_ID(), 'event', true );
+					$event_counter = 0;
+					if ( is_array( $events ) ) {
+						foreach ( $events as $key => $event ) {
+
+							$track_initials = strtoupper( substr( $event['track_name'], 0, 3 ) );
+
+							if ( isset( $event['event_race-1_timestamp'] ) && '' !== $event['event_race-1_timestamp'] ) {
+								echo '<th>' . esc_html( $track_initials ) . '1</th>';
+								$event_counter++;
+							}
+							if ( isset( $event['event_race-2_timestamp'] ) && '' !== $event['event_race-2_timestamp'] ) {
+								echo '<th>' . esc_html( $track_initials ) . '2</th>';
+								$event_counter++;
+							}
+							if ( isset( $event['event_race-3_timestamp'] ) && '' !== $event['event_race-3_timestamp'] ) {
+								echo '<th>' . esc_html( $track_initials ) . '3</th>';
+								$event_counter++;
+							}
+
+						}
+
+					}
+					?>
+
+				</tr><?php
+
+			$drivers = get_post_meta( get_the_ID(), '_seasons_drivers', true );
+			$weight_penalties = get_post_meta( get_the_ID(), '_seasons_weight_penalties', true );
+
+			if ( is_array( $drivers ) ) {
+
+				foreach ( $drivers as $row_number => $row ) {
+					$username = $row[0];
+
+					// Style AM class drivers differently
+					$class = 'pro-class';
+					if ( isset( $row[5] ) && 'AM' === trim( $row[5] ) ) {
+						$class = 'am-class';
+					}
+
+					echo '<tr class="' . esc_attr( $class ) . '">';
+					if ( isset( $username ) ) {
+						echo '<td><span>' . esc_html( trim( $username ) ) . '</span></td>';
+					}
+					// Iterate through the events
+					for ( $x = 1; $x <= $event_counter; $x++ ) {
+
+						if ( isset( $weight_penalties[$username] ) ) {
+							$race = $weight_penalties[$username][$x];
+						} else {
+							$race = '';
+						}
+
+						echo '<td><span>' . esc_html( $race ) . '</span></td>';
+					}
+
+					echo '</tr>';
+
+				}
+
+			}
+
+			?>
+			</table>
+		</div><?php
+	}
+
+	/**
 	 * Save opening times meta box data.
 	 *
 	 * @param  int     $post_id  The post ID
@@ -664,11 +796,11 @@ unset( $data[0] );
 		}
 
 		// Only save if correct post data sent
-		foreach ( array( '','am' ) as $class ) {
+		foreach ( array( 'results','resultsam', 'weight-penalties' ) as $class ) {
 
-			if ( isset( $_POST['seasons-results' . $class] ) ) {
+			if ( isset( $_POST['seasons-' . $class] ) ) {
 
-				$string = $_POST['seasons-results' . $class];
+				$string = $_POST['seasons-' . $class];
 				$string = str_replace( '</td><td', '</td>,<td', $string );
 				$string = str_replace( '</th><th', '</th>,<th', $string );
 				$string = str_replace( '</tr><tr', "</tr>\n<tr", $string );
@@ -692,7 +824,9 @@ unset( $data[0] );
 				// First line of data is just from the heading
 				unset($data['Username']);
 
-				update_post_meta( $post_id, '_seasons_results' . $class, $data );
+				$key = str_replace( '-', '_', $class );
+				update_post_meta( $post_id, '_seasons_' . $key, $data );
+
 			}
 
 		}

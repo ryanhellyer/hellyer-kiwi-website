@@ -6,12 +6,30 @@ function src_get_events( $season_slug ) {
 	return $events;
 }
 
-function src_get_id_from_slug( $slug, $post_type ) {
+function src_get_current_user_weight_penalties( $season_slug, $username ) {
+	$season_id = src_get_id_from_slug( $season_slug );
+	$all_weight_penalties = get_post_meta( $season_id, '_seasons_weight_penalties', true );
+	$weight_penalties = $all_weight_penalties[$username];
+
+	$weight_penalty = 0;
+	foreach ( $weight_penalties as $key => $penalty ) {
+		$weight_penalty = $weight_penalty + $penalty;
+
+		if ( $weight_penalty < 0 ) {
+			$weight_penalty = 0;
+		}
+
+	}
+
+	return $weight_penalty;
+}
+
+function src_get_id_from_slug( $slug, $post_type = 'season' ) {
 
 	// Get season ID from slug
 	$query = new WP_Query(
 		array(
-			'post_type'              => 'season',
+			'post_type'              => $post_type,
 			'posts_per_page'         => 1,
 			'post_title'             => $slug,
 			'no_found_rows'          => true,

@@ -1,8 +1,5 @@
 <?php
 
-// NEED NONCES AND USER PERMISSIONS CHECKS
-// BOTH ON FORM EDIT AND INITIAL FORM SUBMISSION
-
 /**
  * Gallery.
  *
@@ -225,7 +222,14 @@ class SRC_Gallery extends SRC_Core {
 		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
 
 		if ( is_user_logged_in() ) {
-			echo '<div id="gallery-uploader">' . $this->form_edit() . '</div>';
+			echo '<div id="gallery-uploader">
+
+
+<h1>NEED TO ENSURE THAT ONLY POST AUTHOR AND EDITORS CAN EDIT ATTACHMENTS</h1>
+
+
+
+' . $this->form_edit() . '</div>';
 		}
 
 	}
