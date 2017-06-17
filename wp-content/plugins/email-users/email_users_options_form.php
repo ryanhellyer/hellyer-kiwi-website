@@ -242,6 +242,14 @@ print $reflection->getFileName();
                 size="80" id="from_sender_address_override"/><br/><div style="width: 90%;"><i><small><?php _e('An email address that can be used in place of the logged in user\'s email address when sending email or notifications.', MAILUSERS_I18N_DOMAIN); ?><br /><b><i><?php _e('Note:  Invalid email addresses are not saved.', MAILUSERS_I18N_DOMAIN); ?></i></b></small></i></div></td>
 	</tr>
 	<tr>
+        <th><?php _e('From Sender<br/>Role Exclude', MAILUSERS_I18N_DOMAIN); ?></th>
+		<td>
+			<input 	type="checkbox" name="mailusers_from_sender_role_exclude" id="mailusers_from_sender_role_exclude" value="true"
+					<?php if (mailusers_get_from_sender_role_exclude()=='true') echo 'checked="checked"';?> ></input>
+			<?php _e('Exclude sender\'s role from email recipient list.', MAILUSERS_I18N_DOMAIN); ?><br/>
+		</td>
+	</tr>
+	<tr>
 		<th scope="row" valign="top">
             <label for="send_bounces_to_address_override"><?php _e('Send Bounces To Email<br/>Address Override', MAILUSERS_I18N_DOMAIN); ?></th>
 		<td>

@@ -131,6 +131,17 @@
 
         if (!empty($send_users)) {
 		    $recipients = mailusers_get_recipients_from_custom_meta_filter($send_users, $exclude_id, $mailusers_mf, $mailusers_mv, $mailusers_mc);
+
+		    //  If there is more than one recipient selected, need to make sure users accepts Mass Emails
+            if (count($recipients) > 1)
+            {
+                $ids = array() ;
+
+                foreach ($recipients as $recipient)
+                    $ids[] = $recipient->ID ;
+
+		        $recipients = mailusers_get_recipients_from_ids($ids, '', MAILUSERS_ACCEPT_MASS_EMAIL_USER_META);
+            }
         }
         else if (!empty($send_roles)) {
 		    $recipients = mailusers_get_recipients_from_custom_meta_filter($send_roles, $exclude_id, $mailusers_mf, $mailusers_mv, $mailusers_mc);

@@ -28,10 +28,10 @@
 
 
 <?php
-        //printf('<div class="error nag"><p>Max Input Vars:  %s</p></div>', ini_get('max_input_vars')) ;
-        //printf('<div class="updated nag" style="border-left: 4px solid #89deee;"><p>Max Input Vars:  %s</p></div>', ini_get('max_input_vars')) ;
-//error_log(print_r($_POST, true)) ;
 	global $user_identity, $user_email, $user_ID;
+
+    // Update Custom Meta Filters
+    do_action('mailusers_update_custom_meta_filters') ;
 
 	$err_msg = '';
 	wp_get_current_user();

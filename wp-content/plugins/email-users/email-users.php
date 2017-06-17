@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 /*
 Plugin Name: Email Users
-Version: 4.8.4
+Version: 4.8.5
 Plugin URI: http://wordpress.org/extend/plugins/email-users/
 Description: Allows the site editors to send an e-mail to the blog users. Credits to <a href="http://www.catalinionescu.com">Catalin Ionescu</a> who gave me (Vincent Pratt) some ideas for the plugin and has made a similar plugin. Bug reports and corrections by Cyril Crua, Pokey and Mike Walsh.  Development for enhancements and bug fixes since version 4.1 primarily by <a href="http://michaelwalsh.org">Mike Walsh</a>.
 Author: Mike Walsh & MarvinLabs
@@ -27,7 +27,7 @@ Author URI: http://www.michaelwalsh.org
 */
 
 // Version of the plugin
-define( 'MAILUSERS_CURRENT_VERSION', '4.8.4');
+define( 'MAILUSERS_CURRENT_VERSION', '4.8.5');
 
 // i18n plugin domain
 define( 'MAILUSERS_I18N_DOMAIN', 'email-users' );
@@ -128,6 +128,8 @@ function mailusers_get_default_plugin_settings($option = null)
 		'mailusers_wpautop_processing' => 'false',
 		// Mail User - Default setting for From Sender Exclude
 		'mailusers_from_sender_exclude' => 'true',
+		// Mail User - Default setting for From Sender Role Exclude
+		'mailusers_from_sender_role_exclude' => 'true',
 		// Mail User - Default setting for Copy Sender
 		'mailusers_copy_sender' => 'false',
 		// Mail User - Default setting for Add X-Mailer header
@@ -426,6 +428,7 @@ function mailusers_add_pages() {
 
     foreach ($mailusers_user_custom_meta_filters as $mf)
     {
+        error_log(print_r($mf, true)) ;
         $slug = strtolower($mf['label']);
         $slug = preg_replace("/[^a-z0-9\s-]/", "", $slug);
         $slug = trim(preg_replace("/[\s-]+/", " ", $slug));
@@ -742,6 +745,7 @@ function mailusers_admin_init() {
     register_setting('email_users', 'mailusers_shortcode_processing') ;
     register_setting('email_users', 'mailusers_wpautop_processing') ;
     register_setting('email_users', 'mailusers_from_sender_exclude') ;
+    register_setting('email_users', 'mailusers_from_sender_role_exclude') ;
     register_setting('email_users', 'mailusers_enhanced_recipient_selection') ;
     register_setting('email_users', 'mailusers_omit_display_names') ;
     register_setting('email_users', 'mailusers_copy_sender') ;
@@ -1173,7 +1177,26 @@ function mailusers_update_from_sender_exclude( $from_sender_exclude ) {
 }
 
 /**
- * Wrapper for the from send exclude setting
+ * Wrapper for the from send role exclude setting
+ */
+function mailusers_get_from_sender_role_exclude() {
+    $option = get_option( 'mailusers_from_sender_role_exclude' );
+
+    if ($option === false)
+        $option = mailusers_get_default_plugin_settings( 'mailusers_from_sender_role_exclude' );
+
+    return $option;
+}
+
+/**
+ * Wrapper for the from sender role exclude setting
+ */
+function mailusers_update_from_sender_role_exclude( $from_sender_role_exclude ) {
+	return update_option( 'mailusers_from_sender_role_exclude', $from_sender_role_exclude );
+}
+
+/**
+ * Wrapper for the from copy sender setting
  */
 function mailusers_get_copy_sender() {
     $option = get_option( 'mailusers_copy_sender' );
@@ -1185,7 +1208,7 @@ function mailusers_get_copy_sender() {
 }
 
 /**
- * Wrapper for the from sender exclude setting
+ * Wrapper for the from copy sender setting
  */
 function mailusers_update_copy_sender( $copy_sender ) {
 	return update_option( 'mailusers_copy_sender', $copy_sender );
@@ -1292,6 +1315,8 @@ function mailusers_update_base64_encode( $base64_encode ) {
  * $meta_filter can be '', MAILUSERS_ACCEPT_NOTIFICATION_USER_META, or MAILUSERS_ACCEPT_MASS_EMAIL_USER_META
  */
 function mailusers_get_users( $exclude_id='', $meta_filter = '', $args = array(), $sortby = null, $meta_value = 'true', $meta_compare = '=') {
+    global $wpdb;
+
     if (MAILUSERS_DEBUG) printf('<!-- %s::%s -->%s', basename(__FILE__), __LINE__, PHP_EOL);
     
 	if ($sortby == null) $sortby = mailusers_get_default_sort_users_by();
@@ -1339,6 +1364,17 @@ function mailusers_get_users( $exclude_id='', $meta_filter = '', $args = array()
                 'meta_compare' => strtoupper(trim($meta_compare)))) ;
         }
 
+        $qa = array( 'meta_query' => array(
+	        array( 'compare' => $meta_compare, 'key' => $meta_filter, 'value' => $meta_value)) );
+
+        $meta_query = new WP_Meta_Query();
+        $meta_query->parse_query_vars( $qa );
+        $mq_sql = $meta_query->get_sql('user', $wpdb->users, 'ID', null);
+
+        error_log(sprintf('%s::%s',  basename(__FILE__), __LINE__));
+        error_log(print_r($mq_sql, true)) ;
+        error_log(sprintf('%s::%s',  basename(__FILE__), __LINE__));
+        
     }
 
     //  Filter users with no role on site from list?
@@ -1385,8 +1421,12 @@ function mailusers_get_users( $exclude_id='', $meta_filter = '', $args = array()
     while ($args['offset'] < $total)
     {
         if (MAILUSERS_DEBUG) printf('<!-- %s::%s  Query #%s  Memory Usage:  %s -->%s',
-            basename(__FILE__), __LINE__, $q++, mailusers_memory_usage(true), PHP_EOL) ;
+            basename(__FILE__), __LINE__, $q, mailusers_memory_usage(true), PHP_EOL) ;
+        $qs = microtime(true);
         $users = array_merge($users, get_users($args)) ;
+        $qe = microtime(true) - $qs ;
+        if (MAILUSERS_DEBUG) printf('<!-- %s::%s  Query #%s  Execution:  %ss / %sms -->%s',
+            basename(__FILE__), __LINE__, $q++, $qe, $qe*1000, PHP_EOL) ;
         $args['offset'] += $args['number'] ;
     }
 
@@ -1485,6 +1525,10 @@ function mailusers_get_roles( $exclude_id='', $meta_filter = '') {
 
 	$wp_roles = get_editable_roles( );
 
+    //  Explicitly include the user's role?
+    if (mailusers_get_from_sender_role_exclude() != 'true')
+        $wp_roles = array_merge($wp_roles, wp_get_current_user()->roles) ;
+
 	foreach ($wp_roles as $key => $value) {
 		$users_in_role = mailusers_get_recipients_from_roles(array($key), $exclude_id, $meta_filter);
 		if (!empty($users_in_role)) {
@@ -1551,7 +1595,6 @@ function mailusers_get_recipients_from_roles($roles, $exclude_id='', $meta_filte
  * $meta_filter can be '', MAILUSERS_ACCEPT_NOTIFICATION_USER_META, or MAILUSERS_ACCEPT_MASS_EMAIL_USER_META
  */
 function mailusers_get_recipients_from_custom_meta_filter( $ids, $exclude_id='', $meta_filter='', $meta_value='', $meta_compare='=') {
-
     return mailusers_get_users($exclude_id, $meta_filter, array('include' => $ids), null, $meta_value, $meta_compare) ;
 }
 
@@ -1787,8 +1830,7 @@ function mailusers_send_mail($recipients = array(), $subject = '', $message = ''
 			return $num_sent;
 		}
 		return $num_sent;
-	}
-
+	} 
     elseif ($bcc_limit != 0 && (count($recipients) > $bcc_limit))
     {
 		$count = 0;

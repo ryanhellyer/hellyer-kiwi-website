@@ -2,9 +2,9 @@
 Contributors: vprat, mpwalsh8, marvinlabs
 Donate link: http://michaelwalsh.org/wordpress/wordpress-plugins/email-users/
 Tags: email, users, list, admin
-Requires at least: 3.6.1
-Tested up to: 4.5.2
-Stable tag: 4.8.4
+Requires at least: 3.7
+Tested up to: 4.8
+Stable tag: 4.8.5
 License: GPL
 
 == Description ==
@@ -109,16 +109,29 @@ function first_name_alex()
 }
 `
 
-Regular SQL comparisons (=, !=, etc.) can be performed.  Wildcard matches (LIKE, NOT LIKE) are not yet supported due to how the WordPress get_users() API currently handles LIKE comparison.  A patch has been submitted and hopefully it will be addressed in WordPress 3.6.  Once addressed, you will be able to create filters like the one below to specifically match last names which begin with the letter M.
+Regular SQL comparisons (=, !=, etc.) can be performed.  Wildcard matches (LIKE, NOT LIKE) are not supported due to how the WordPress get_users() API currently handles LIKE comparison.  A better solution is to use the REGEXP/NOT REGEXP constructs added in WordPress 3.7.  Regular Expressions allow you to select groups of users based on matching meta values like first or last name or ranges within them.
 
 `
+add_action( 'mailusers_user_custom_meta_filter', 'first_names_starting_with_anything_but_d', 5 );
+
+function first_names_starting_with_anything_but_d()
+{
+    mailusers_register_user_custom_meta_filter('First Name: Not D', 'first_name', '^D', 'NOT REGEXP');
+}
+
 add_action( 'mailusers_user_custom_meta_filter', 'last_names_starting_with_m', 5 );
 
 function last_names_starting_with_m()
 {
-    mailusers_register_user_custom_meta_filter('Last Name: M', 'last_name', 'M%', 'LIKE');
+    mailusers_register_user_custom_meta_filter('Last Name: M', 'last_name', '^M', 'REGEXP');
 }
-`
+
+add_action( 'mailusers_user_custom_meta_filter', 'last_names_starting_with_s_through_z', 5 );
+
+function last_names_starting_with_s_through_z()
+{
+    mailusers_register_user_custom_meta_filter('Last Name: Z', 'last_name', '^[S-Z]', 'REGEXP');
+}`
 
 In addition to filtering on User Meta data to build a custom list of users, you can now define custom groups based on User Meta data.
 
@@ -220,6 +233,13 @@ function update_publicworks_meta_filter()
 `
 
 == Changelog ==
+
+= Version 4.8.5 =
+* Added new option to allow sender's current role to be included in list of available roles to send to.
+* Fixed issue where Custom Meta Filter did not honor user's notification and/or mass email preferences.
+* Added *mailusers_update_custom_meta_filters* action to User email.  Previously only worked with Group or Notification emails.
+* Added query execution time to HTML comments when Debug Mode enabled.
+* Updated examples in ReadMe file to reflect usage of REGEXP in place of LIKE to do custom user meta queries.
 
 = Version 4.8.4 =
 * Addressed secruity concern raised by WordPress.org - added nonce to Send to Users, Send to Groups, and Send Test Email forms.
