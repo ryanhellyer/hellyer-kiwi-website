@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: image, resize, rescale, bulk resize, bulk rescale, downsize, 
 Requires at least: 3.5
 Tested up to: 4.8
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 
 Automatically resize your images after upload using this plugin. Specify height&width, the plugin will do the rest quickly and transparently.
 
@@ -44,6 +44,12 @@ Is that simple, just give it a try, it is safe and free! :-)
 1. Full preview of the settings screen.
 
 == Changelog ==
+
+= 1.8.1 =
+
+Release date: 18th June 2017
+
+* [Fix] Notice not dismissing
 
 = 1.8.0 =
 
