@@ -4,7 +4,7 @@ Donate link: http://michaelwalsh.org/wordpress/wordpress-plugins/email-users/
 Tags: email, users, list, admin
 Requires at least: 3.7
 Tested up to: 4.8
-Stable tag: 4.8.5
+Stable tag: 4.8.6
 License: GPL
 
 == Description ==
@@ -233,6 +233,9 @@ function update_publicworks_meta_filter()
 `
 
 == Changelog ==
+
+= Version 4.8.6 =
+* Removed meta query debug code which was outputting information to the error log.
 
 = Version 4.8.5 =
 * Added new option to allow sender's current role to be included in list of available roles to send to.
