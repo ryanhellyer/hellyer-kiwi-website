@@ -24,6 +24,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		// Get client name
 		$terms = wp_get_post_terms( get_the_ID(), self::CLIENT_TAXONOMY );
 		$client_name = $terms[0]->name;
+		$client_description = $terms[0]->description;
 
 		// Get website string
 		$website = $data[ '_invoice_to_website' ];
@@ -34,6 +35,12 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		$new_tasks = array();
 		$tasks = $data[ '_tasks' ];
 		foreach ( $tasks as $key => $task ) {
+
+			// If no description set, then throw error
+			if ( ! isset( $task[ 'description' ] ) ) {
+				$task[ 'description' ] = '';
+			}
+
 			$hash = md5( $task[ 'title' ] . $task[ 'description' ] );
 
 			if ( ! isset( $new_tasks[ $hash ][ 'hours' ] ) ) {
