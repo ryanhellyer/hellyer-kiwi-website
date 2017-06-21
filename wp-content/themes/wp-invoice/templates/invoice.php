@@ -25,7 +25,7 @@
 		<span class="invoice-to-details"><?php
 
 			if ( '' !== $client_description ) {
-				$client_description = $client_description . "\n";
+				$client_description = $client_description . "\n\n";
 			} else {
 				$client_description = '';
 			}
