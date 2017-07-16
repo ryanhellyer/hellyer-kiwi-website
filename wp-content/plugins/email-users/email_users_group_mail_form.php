@@ -88,6 +88,9 @@
 			<th scope="row" valign="top"><label><?php _e('Sender', MAILUSERS_I18N_DOMAIN); ?></label></th>
             <?php if (empty($override_address)) { ?>
 			<td><?php echo $from_name;?> &lt;<?php echo $from_address;?>&gt;</td>
+            <?php } elseif (mailusers_get_always_use_from_sender_address_override() == 'true') { ?>
+            
+            <td><input name="from_sender" type="radio" value="0" disabled/><?php echo $from_name;?> &lt;<?php echo $from_address;?>&gt;<br/><input name="from_sender" type="radio" value="1" checked/><?php echo $override_name;?> &lt;<?php echo $override_address;?>&gt;</td>
             <?php } else { ?>
             <td><input name="from_sender" type="radio" value="0" checked/><?php echo $from_name;?> &lt;<?php echo $from_address;?>&gt;<br/><input name="from_sender" type="radio" value="1"/><?php echo $override_name;?> &lt;<?php echo $override_address;?>&gt;</td>
             <?php }?>

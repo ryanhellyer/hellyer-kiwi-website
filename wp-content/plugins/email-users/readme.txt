@@ -2,9 +2,9 @@
 Contributors: vprat, mpwalsh8, marvinlabs
 Donate link: http://michaelwalsh.org/wordpress/wordpress-plugins/email-users/
 Tags: email, users, list, admin
-Requires at least: 3.7
+Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 4.8.6
+Stable tag: 4.8.7
 License: GPL
 
 == Description ==
@@ -233,6 +233,10 @@ function update_publicworks_meta_filter()
 `
 
 == Changelog ==
+
+= Version 4.8.7 =
+* Added new option to force usage of sender override address when defined and option enabled.
+* Updated User Access Manager (UAM) integration to refect changes to UAM plugin and restore integration.
 
 = Version 4.8.6 =
 * Removed meta query debug code which was outputting information to the error log.

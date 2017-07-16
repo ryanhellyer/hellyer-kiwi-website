@@ -239,7 +239,12 @@ print $reflection->getFileName();
 		<td>
 			<input type="text" name="mailusers_from_sender_address_override" style="width: 235px;" 
 				value="<?php echo format_to_edit(mailusers_get_from_sender_address_override()); ?>" 
-                size="80" id="from_sender_address_override"/><br/><div style="width: 90%;"><i><small><?php _e('An email address that can be used in place of the logged in user\'s email address when sending email or notifications.', MAILUSERS_I18N_DOMAIN); ?><br /><b><i><?php _e('Note:  Invalid email addresses are not saved.', MAILUSERS_I18N_DOMAIN); ?></i></b></small></i></div></td>
+                size="80" id="from_sender_address_override"/><br/><div style="width: 90%;"><i><small><?php _e('An email address that can be used in place of the logged in user\'s email address when sending email or notifications.', MAILUSERS_I18N_DOMAIN); ?><br /><b><i><?php _e('Note:  Invalid email addresses are not saved.', MAILUSERS_I18N_DOMAIN); ?></i></b></small></i></div><br />
+			<input 	type="checkbox" name="mailusers_always_use_from_sender_address_override" id="mailusers_always_use_from_sender_address_override" value="true"
+                    <?php error_log(sprintf('%s::%s:  >%s<', basename(__FILE__), __LINE__, mailusers_get_always_use_from_sender_address_override())); ?>
+					<?php if (mailusers_get_always_use_from_sender_address_override()=='true') echo 'checked="checked"';?> ></input>
+			<?php _e('Always use Sender Email Address Override.', MAILUSERS_I18N_DOMAIN); ?><br/>
+		</td>
 	</tr>
 	<tr>
         <th><?php _e('From Sender<br/>Role Exclude', MAILUSERS_I18N_DOMAIN); ?></th>

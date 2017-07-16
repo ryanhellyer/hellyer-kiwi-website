@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 /*
 Plugin Name: Email Users
-Version: 4.8.6
+Version: 4.8.7
 Plugin URI: http://wordpress.org/extend/plugins/email-users/
 Description: Allows the site editors to send an e-mail to the blog users. Credits to <a href="http://www.catalinionescu.com">Catalin Ionescu</a> who gave me (Vincent Pratt) some ideas for the plugin and has made a similar plugin. Bug reports and corrections by Cyril Crua, Pokey and Mike Walsh.  Development for enhancements and bug fixes since version 4.1 primarily by <a href="http://michaelwalsh.org">Mike Walsh</a>.
 Author: Mike Walsh & MarvinLabs
@@ -27,7 +27,7 @@ Author URI: http://www.michaelwalsh.org
 */
 
 // Version of the plugin
-define( 'MAILUSERS_CURRENT_VERSION', '4.8.6');
+define( 'MAILUSERS_CURRENT_VERSION', '4.8.7');
 
 // i18n plugin domain
 define( 'MAILUSERS_I18N_DOMAIN', 'email-users' );
@@ -55,7 +55,7 @@ define( 'MAILUSERS_USERS_GROUPS_PREFIX', 'ug') ;
 //  Enable integration with User Access Manager plugin?
 //  @see http://wordpress.org/plugins/user-access-manager/
 
-define( 'MAILUSERS_USER_ACCESS_MANAGER_CLASS', 'UserAccessManager' );
+define( 'MAILUSERS_USER_ACCESS_MANAGER_CLASS', 'UserAccessManager\UserAccessManager' );
 define( 'MAILUSERS_USER_ACCESS_MANAGER_PREFIX', 'uam') ;
 
 //  Enable integration with ItThinx Groups plugin?
@@ -110,6 +110,8 @@ function mailusers_get_default_plugin_settings($option = null)
 		'mailusers_from_sender_name_override' => '',
 		// Mail User - Default setting for From Sender Address Override
 		'mailusers_from_sender_address_override' => '',
+		// Mail User - Default setting for Always Use From Sender Address Override
+		'mailusers_always_use_from_sender_address_override' => 'false',
 		// Mail User - Default setting for Send Bounces To Address Override
 		'mailusers_send_bounces_to_address_override' => '',
 		// Mail User - Maximum number of rows to show in the User Settings table
@@ -428,7 +430,7 @@ function mailusers_add_pages() {
 
     foreach ($mailusers_user_custom_meta_filters as $mf)
     {
-        error_log(print_r($mf, true)) ;
+        //error_log(print_r($mf, true)) ;
         $slug = strtolower($mf['label']);
         $slug = preg_replace("/[^a-z0-9\s-]/", "", $slug);
         $slug = trim(preg_replace("/[\s-]+/", " ", $slug));
@@ -750,6 +752,7 @@ function mailusers_admin_init() {
     register_setting('email_users', 'mailusers_omit_display_names') ;
     register_setting('email_users', 'mailusers_copy_sender') ;
     register_setting('email_users', 'mailusers_from_sender_name_override') ;
+    register_setting('email_users', 'mailusers_always_use_from_sender_address_override') ;
     register_setting('email_users', 'mailusers_group_taxonomy') ;
     register_setting('email_users',
         'mailusers_from_sender_address_override', 'mailusers_from_sender_address_override_validate') ;
@@ -969,6 +972,25 @@ function mailusers_update_from_sender_name_override( $from_sender_name_override 
  */
 function mailusers_get_from_sender_address_override() {
 	return get_option( 'mailusers_from_sender_address_override' );
+}
+
+/**
+ * Wrapper for the always use from sender address override option
+ */
+function mailusers_get_always_use_from_sender_address_override() {
+    $option = get_option( 'mailusers_always_use_from_sender_address_override' );
+
+    if ($option === false)
+        $option = mailusers_get_default_plugin_settings( 'mailusers_always_use_from_sender_address_override' );
+
+    return $option;
+}
+
+/**
+ * Wrapper for the always use from sender address override option
+ */
+function mailusers_update_always_use_from_sender_address_override( $always_use_from_sender_address_override ) {
+	return update_option( 'mailusers_always_use_from_sender_address_override', $always_use_from_sender_address_override );
 }
 
 /**
