@@ -1,15 +1,15 @@
-# Translation of Plugins - EWWW Image Optimizer - Development (trunk) in English (Canada)
-# This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Development (trunk) package.
+# Translation of Plugins - EWWW Image Optimizer - Stable (latest release) in English (Canada)
+# This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-07-19 00:07:56+0000\n"
+"PO-Revision-Date: 2017-07-20 17:29:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_CA\n"
-"Project-Id-Version: Plugins - EWWW Image Optimizer - Development (trunk)\n"
+"Project-Id-Version: Plugins - EWWW Image Optimizer - Stable (latest release)\n"
 
 #: common.php:7454
 msgid "Enable Embedded Help"
@@ -115,13 +115,13 @@ msgstr "Allow EWWW Image Optimizer to track plugin usage? Opt-in to tracking to 
 msgid "*PDF optimization cannot be enabled because the fileinfo extension is missing."
 msgstr "*PDF optimization cannot be enabled because the fileinfo extension is missing."
 
-#: ewww-image-optimizer.php:115
-msgid "EWWW Image Optimizer requires PHP 5.3 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure, as PHP 5.2 has been unsupported for several years. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
-msgstr "EWWW Image Optimizer requires PHP 5.3 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure, as PHP 5.2 has been unsupported for several years. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
-
 #: ewww-image-optimizer.php:122
 msgid "Only one version of the EWWW Image Optimizer can be active at a time. Please deactivate other copies of the plugin."
 msgstr "Only one version of the EWWW Image Optimizer can be active at a time. Please deactivate other copies of the plugin."
+
+#: ewww-image-optimizer.php:115
+msgid "EWWW Image Optimizer requires PHP 5.3 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure, as PHP 5.2 has been unsupported for several years. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
+msgstr "EWWW Image Optimizer requires PHP 5.3 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure, as PHP 5.2 has been unsupported for several years. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
 
 #: common.php:7391
 msgid "Provide paths containing images to be optimized using the Bulk Optimizer and Scheduled Optimization."
@@ -139,6 +139,14 @@ msgstr "*Include Media Library Folders has been disabled because it will cause t
 msgid "Use this to override the default WordPress quality level of 82. Applies to image editing, resizing, PNG to JPG conversion, and JPG to WebP conversion. Does not affect the original uploaded image unless maximum dimensions are set and resizing occurs."
 msgstr "Use this to override the default WordPress quality level of 82. Applies to image editing, resizing, PNG to JPG conversion, and JPG to WebP conversion. Does not affect the original uploaded image unless maximum dimensions are set and resizing occurs."
 
+#: common.php:7321
+msgid "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
+msgstr "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
+
+#: common.php:7320
+msgid "Backup Originals"
+msgstr "Backup Originals"
+
 #. translators: %s: S3 Image Optimizer (link)
 #: common.php:6969
 msgid "Images stored in an Amazon S3 bucket can be optimized using our %s."
@@ -148,6 +156,14 @@ msgstr "Images stored in an Amazon S3 bucket can be optimized using our %s."
 #: common.php:5980 common.php:6018
 msgid "%s compression disabled"
 msgstr "%s compression disabled"
+
+#: common.php:2889
+msgid "Unable to restore image."
+msgstr "Unable to restore image."
+
+#: common.php:2873
+msgid "No image ID was provided."
+msgstr "No image ID was provided."
 
 #. translators: %s: number of seconds
 #. Translators: %s: number of seconds, localized
@@ -166,6 +182,10 @@ msgid_plural "Elapsed: %s seconds"
 msgstr[0] "Elapsed: %s second"
 msgstr[1] "Elapsed: %s seconds"
 
+#: bulk.php:461
+msgid "remaining"
+msgstr "remaining"
+
 #. translators: %d: number of images
 #: bulk.php:53 classes/class-ewwwio-cli.php:93
 msgid "%1$d image in the Media Library has been selected."
@@ -173,29 +193,9 @@ msgid_plural "%1$d images in the Media Library have been selected."
 msgstr[0] "%1$d image in the Media Library has been selected."
 msgstr[1] "%1$d images in the Media Library have been selected."
 
-#: common.php:2889
-msgid "Unable to restore image."
-msgstr "Unable to restore image."
-
-#: common.php:2873
-msgid "No image ID was provided."
-msgstr "No image ID was provided."
-
-#: bulk.php:461
-msgid "remaining"
-msgstr "remaining"
-
 #: bulk.php:456
 msgid "Previous failure due to broken/missing metadata, skipped resizes for attachment:"
 msgstr "Previous failure due to broken/missing metadata, skipped resizes for attachment:"
-
-#: common.php:7321
-msgid "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
-msgstr "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
-
-#: common.php:7320
-msgid "Backup Originals"
-msgstr "Backup Originals"
 
 #. translators: 1: $table_prefix 2: wp-config.php
 #: common.php:3742
@@ -210,29 +210,21 @@ msgstr "Increasing PHP's memory_limit setting will allow for faster scanning wit
 msgid "Stage 2 unable to complete due to memory restrictions. Please increase the memory_limit setting for PHP and try again."
 msgstr "Stage 2 unable to complete due to memory restrictions. Please increase the memory_limit setting for PHP and try again."
 
-#: common.php:7408 common.php:7412
-msgid "in pixels"
-msgstr "in pixels"
-
 #: common.php:7759
 msgid "Detect Scaled Images"
 msgstr "Detect Scaled Images"
+
+#: common.php:7408 common.php:7412
+msgid "in pixels"
+msgstr "in pixels"
 
 #: common.php:7406
 msgid "*Imsanity settings override the EWWW resize dimensions."
 msgstr "*Imsanity settings override the EWWW resize dimensions."
 
-#: bulk.php:707
-msgid "List of attachment IDs not found."
-msgstr "List of attachment IDs not found."
-
-#: common.php:6273
-msgid "Savings"
-msgstr "Savings"
-
-#: common.php:6273
-msgid "Image Size"
-msgstr "Image Size"
+#: common.php:7429
+msgid "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
+msgstr "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
 
 #: common.php:7398
 msgid "A file that matches any pattern or path provided will not be optimized."
@@ -245,10 +237,6 @@ msgstr "One path per line, partial paths allowed, but no urls."
 #: common.php:7396
 msgid "Folders to ignore"
 msgstr "Folders to ignore"
-
-#: common.php:7429
-msgid "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
-msgstr "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
 
 #. translators: %d: The number of resize/thumbnail images
 #: common.php:6086 common.php:6168
@@ -269,10 +257,17 @@ msgid_plural "%d sizes compressed"
 msgstr[0] "%d size compressed"
 msgstr[1] "%d sizes compressed"
 
-#. translators: %d: number of images
-#: bulk.php:125 bulk.php:1161
-msgid "Stage 1, %d images left to scan."
-msgstr "Stage 1, %d images left to scan."
+#: common.php:6273
+msgid "Savings"
+msgstr "Savings"
+
+#: common.php:6273
+msgid "Image Size"
+msgstr "Image Size"
+
+#: bulk.php:707
+msgid "List of attachment IDs not found."
+msgstr "List of attachment IDs not found."
 
 #: bulk.php:455
 msgid "Received an invalid response from your website, please check for errors in the Developer Tools console of your browser."
@@ -285,6 +280,11 @@ msgstr "Scan Again"
 #: bulk.php:130
 msgid "Scan for unoptimized images"
 msgstr "Scan for unoptimized images"
+
+#. translators: %d: number of images
+#: bulk.php:125 bulk.php:1161
+msgid "Stage 1, %d images left to scan."
+msgstr "Stage 1, %d images left to scan."
 
 #: bulk.php:54 classes/class-ewwwio-cli.php:94 classes/class-ewwwio-cli.php:154
 msgid "The active theme, BuddyPress, WP Symposium, and folders that you have configured will also be scanned for unoptimized images."
@@ -350,6 +350,11 @@ msgstr "Unknown file type"
 msgid "Scan did not complete, will try again"
 msgstr "Scan did not complete, will try again"
 
+#. translators: 1: Size of savings in bytes, kb, mb 2: Percentage savings
+#: common.php:3960
+msgid "Reduced by %1$s (%2$s)"
+msgstr "Reduced by %1$s (%2$s)"
+
 #: common.php:1672
 msgid "Reset Counters"
 msgstr "Reset Counters"
@@ -359,18 +364,21 @@ msgstr "Reset Counters"
 msgid "The EWWW Image Optimizer has detected excessive re-optimization of multiple images. Please turn on the Debugging setting, wait for approximately 12 hours, and then visit the %s page."
 msgstr "The EWWW Image Optimizer has detected excessive re-optimization of multiple images. Please turn on the Debugging setting, wait for approximately 12 hours, and then visit the %s page."
 
-#. translators: 1: Size of savings in bytes, kb, mb 2: Percentage savings
-#: common.php:3960
-msgid "Reduced by %1$s (%2$s)"
-msgstr "Reduced by %1$s (%2$s)"
+#: unique.php:517
+msgid "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode unless you have an API key."
+msgstr "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode unless you have an API key."
 
-#: common.php:7498
-msgid "WebP URLs"
-msgstr "WebP URLs"
+#: unique.php:505
+msgid "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
+msgstr "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
 
 #: common.php:7498
 msgid "If Force WebP is enabled, enter URL patterns that should be permitted for Alternative WebP Rewriting. One pattern per line, may be partial URLs, but must include the domain name."
 msgstr "If Force WebP is enabled, enter URL patterns that should be permitted for Alternative WebP Rewriting. One pattern per line, may be partial URLs, but must include the domain name."
+
+#: common.php:7498
+msgid "WebP URLs"
+msgstr "WebP URLs"
 
 #: common.php:7494
 msgid "WebP images will be generated and saved for all JPG/PNG images regardless of their size. The Alternative WebP Rewriting will not check if a file exists, only that the domain matches the home url."
@@ -389,14 +397,6 @@ msgstr "WebP Settings"
 #: common.php:2344
 msgid "Restoring"
 msgstr "Restoring"
-
-#: unique.php:505
-msgid "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
-msgstr "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
-
-#: unique.php:517
-msgid "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode unless you have an API key."
-msgstr "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode unless you have an API key."
 
 #: common.php:7269
 msgid "This will remove ALL metadata: EXIF, comments, color profiles, and anything else that is not pixel data."
@@ -439,26 +439,18 @@ msgstr "All resizes generated from a single upload are optimized in parallel for
 msgid "Parallel optimization"
 msgstr "Parallel optimization"
 
-#: vendor/wp-background-process.php:464
-msgid "Every %d Minutes"
-msgstr "Every %d Minutes"
-
 #: classes/class-ewww-flag.php:745 classes/class-ewww-nextcellent.php:388
 #: common.php:6048 common.php:6100
 msgid "In Progress"
 msgstr "In Progress"
 
+#: vendor/wp-background-process.php:464
+msgid "Every %d Minutes"
+msgstr "Every %d Minutes"
+
 #: common.php:7416
 msgid "Allow resizing of existing Media Library images."
 msgstr "Allow resizing of existing Media Library images."
-
-#: common.php:7051
-msgid "Not installed, enable in Advanced Settings"
-msgstr "Not installed, enable in Advanced Settings"
-
-#: common.php:7920
-msgid "Cannot display trace"
-msgstr "Cannot display trace"
 
 #: unique.php:2311
 msgid "GIF optimization is disabled"
@@ -472,6 +464,14 @@ msgstr "PNG optimization is disabled"
 msgid "JPG optimization is disabled"
 msgstr "JPG optimization is disabled"
 
+#: common.php:7920
+msgid "Cannot display trace"
+msgstr "Cannot display trace"
+
+#: common.php:7416
+msgid "Resize Existing Images"
+msgstr "Resize Existing Images"
+
 #: common.php:7413
 msgid "Resizes images uploaded indirectly to the Media Library, like theme images or front-end uploads."
 msgstr "Resizes images uploaded indirectly to the Media Library, like theme images or front-end uploads."
@@ -483,6 +483,14 @@ msgstr "Resize Other Images"
 #: common.php:7409
 msgid "Resizes images uploaded directly to the Media Library and those uploaded within a post or page."
 msgstr "Resizes images uploaded directly to the Media Library and those uploaded within a post or page."
+
+#: common.php:7408 common.php:7412
+msgid "Max Height"
+msgstr "Max Height"
+
+#: common.php:7408 common.php:7412
+msgid "Max Width"
+msgstr "Max Width"
 
 #: common.php:7408
 msgid "Resize Media Images"
@@ -528,31 +536,14 @@ msgstr "No Compression"
 msgid "JPG Optimization Level"
 msgstr "JPG Optimization Level"
 
-#: common.php:7416
-msgid "Resize Existing Images"
-msgstr "Resize Existing Images"
-
-#: common.php:7408 common.php:7412
-msgid "Max Height"
-msgstr "Max Height"
-
-#: common.php:7408 common.php:7412
-msgid "Max Width"
-msgstr "Max Width"
+#: common.php:7051
+msgid "Not installed, enable in Advanced Settings"
+msgstr "Not installed, enable in Advanced Settings"
 
 #: bulk.php:1212 bulk.php:1217 classes/class-ewww-flag.php:483
 #: classes/class-ewww-nextcellent.php:610 classes/class-ewww-nextgen.php:720
 msgid "Error retrieving list of images"
 msgstr "Error retrieving list of images"
-
-#: bulk.php:1304 bulk.php:1306
-msgid "Could not find image"
-msgstr "Could not find image"
-
-#: bulk.php:28 bulk.php:1184 classes/class-ewww-flag.php:104
-#: classes/class-ewww-nextcellent.php:433 classes/class-ewww-nextgen.php:535
-msgid "Image credits available:"
-msgstr "Image credits available:"
 
 #: common.php:7908
 msgid "PHP trace"
@@ -570,6 +561,10 @@ msgstr "Number of attempted optimizations"
 msgid "File path"
 msgstr "File path"
 
+#: bulk.php:1304 bulk.php:1306
+msgid "Could not find image"
+msgstr "Could not find image"
+
 #: common.php:1670 common.php:2143 common.php:7893
 msgid "Dynamic Image Debugging"
 msgstr "Dynamic Image Debugging"
@@ -583,6 +578,11 @@ msgstr "Optimization Log"
 #: classes/class-ewww-nextcellent.php:458 classes/class-ewww-nextgen.php:561
 msgid "Last Image Optimized"
 msgstr "Last Image Optimized"
+
+#: bulk.php:28 bulk.php:1184 classes/class-ewww-flag.php:104
+#: classes/class-ewww-nextcellent.php:433 classes/class-ewww-nextgen.php:535
+msgid "Image credits available:"
+msgstr "Image credits available:"
 
 #: unique.php:1146 unique.php:1168 unique.php:1190 unique.php:1212
 #: unique.php:1234 unique.php:1297
