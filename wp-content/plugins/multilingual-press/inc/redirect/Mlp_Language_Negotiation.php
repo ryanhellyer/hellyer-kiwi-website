@@ -45,7 +45,7 @@ class Mlp_Language_Negotiation implements Mlp_Language_Negotiation_Interface {
 		 *
 		 * @param float $factor The factor used to compute the priority of language-only matches.
 		 */
-		$factor = (float) apply_filters( 'multilingualpress.language_only_priority_factor', .7 );
+		$factor = (float) apply_filters( 'multilingualpress.language_only_priority_factor', .8 );
 		$factor = min( 1, $factor );
 		$factor = max( 0, $factor );
 
@@ -80,18 +80,27 @@ class Mlp_Language_Negotiation implements Mlp_Language_Negotiation_Interface {
 	 */
 	private function get_possible_matches( Array $translations ) {
 
-		$possible = array ();
-
 		$user = $this->parse_accept_header( $_SERVER[ 'HTTP_ACCEPT_LANGUAGE' ] );
+		if ( empty( $user ) ) {
+			return array();
+		}
 
-		if ( empty ( $user ) )
-			return $possible;
+		$matches = array();
 
-		/** @type Mlp_Translation $translation */
-		foreach ( $translations as $site_id => $translation )
-			$this->collect_matches( $possible, $site_id, $translation, $user );
+		/** @var Mlp_Translation $translation */
+		foreach ( $translations as $site_id => $translation ) {
+			$this->collect_matches( $matches, $site_id, $translation, $user );
+		}
 
-		return $possible;
+		/**
+		 * Filters the possible redirect target objects.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @param array[]           $matches      Possible redirect targets.
+		 * @param Mlp_Translation[] $translations Translation objects.
+		 */
+		return (array) apply_filters( 'multilingualpress.redirect_targets', $matches, $translations );
 	}
 
 	/**
