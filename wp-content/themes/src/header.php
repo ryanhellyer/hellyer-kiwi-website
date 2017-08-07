@@ -26,7 +26,7 @@
 if ( is_user_logged_in() ) {
 	?><a class="sign-up" href="<?php bbp_user_profile_url( bbp_get_current_user_id() ); ?>"><?php esc_html_e( 'Welcome', 'src' ); ?> <span><?php esc_html_e( 'View Profile', 'src' ); ?></span></a><?php
 } else {
-	?><a class="sign-up" href="<?php echo esc_url( home_url( '/register/' ) ); ?>"><?php esc_html_e( 'Welcome', 'src' ); ?> <span><?php esc_html_e( 'Join Us', 'src' ); ?></span></a><?php
+	?><a class="sign-up" href="<?php echo esc_url( home_url( '/register/' ) ); ?>"><?php esc_html_e( 'Login or', 'src' ); ?> <span><?php esc_html_e( 'Join Us', 'src' ); ?></span></a><?php
 }
 ?>
 
