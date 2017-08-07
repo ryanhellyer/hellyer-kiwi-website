@@ -10,7 +10,18 @@ get_header();
 
 echo '<div id="bbpress-wrapper">';
 
-bbp_breadcrumb();
+if ( ! is_page() ) {
+	bbp_breadcrumb();
+} else {
+	?>
+	<div class="bbp-breadcrumb">
+		<p><a href="<?php echo esc_url( home_url() ); ?>" class="bbp-breadcrumb-home">Home</a> 
+		 <span class="bbp-breadcrumb-sep">&rsaquo;</span> 
+		 <span class="bbp-breadcrumb-current"><?php the_title(); ?></span> 
+		</p>
+	</div><?php
+
+}
 
 
 // Load main loop

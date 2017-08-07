@@ -37,7 +37,11 @@ class SRC_Gallery extends SRC_Core {
 		if (
 			! is_user_logged_in()
 			||
-			false === wp_verify_nonce( $_POST['src-gallery-nonce'], 'src-gallery-nonce' )
+			(
+				isset( $_POST['src-gallery-nonce'] )
+				&&
+				false === wp_verify_nonce( $_POST['src-gallery-nonce'], 'src-gallery-nonce' )
+			)
 		) {
 			return;
 		}

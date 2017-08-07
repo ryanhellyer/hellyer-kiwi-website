@@ -1,5 +1,64 @@
 <?php
 
+function src_get_most_recent_event() {
+
+	// Grab all the past events
+	$past_events = array();
+	$args = array(
+		'post_type'              => 'season',
+		'posts_per_page'         => 100,
+		'no_found_rows'          => true,  // useful when pagination is not needed.
+		'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+		'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+		'fields'                 => 'ids'
+	);
+	$seasons = new WP_Query( $args );
+	if ( $seasons->have_posts() ) {
+		while ( $seasons->have_posts() ) {
+			$seasons->the_post();
+
+			$season_slug = src_get_the_slug();
+
+			$events = src_get_events( $season_slug );
+			if ( is_array( $events ) ) {
+				foreach ( $events as $key => $event ) {
+
+					// Grab the event name
+					if ( isset( $event['name'] ) && '' != $event['name'] ) {
+						$event_name = $event['name'];
+					} else if ( isset( $event['track_name'] ) && '' != $event['track_name'] ) {
+						$event_name = $event['track_name'];
+					} else {
+						break;
+					}
+
+					foreach ( array( 3, 2, 1 ) as $race_number ) {
+
+						if (
+							isset( $event['event_race-' . $race_number . '_timestamp'] )
+							&&
+							is_numeric( $event['event_race-' . $race_number . '_timestamp'] )
+							&&
+							time() > $event['event_race-' . $race_number . '_timestamp']
+						) {
+							$past_events[$event['event_race-' . $race_number . '_timestamp']]['name'] = $event_name;
+							$past_events[$event['event_race-' . $race_number . '_timestamp']]['season'] = $season_slug;
+						}
+
+					}
+
+				}
+			}
+		}
+	}
+
+
+	ksort( $past_events, SORT_NUMERIC );
+	$most_recent_event = array_pop( $past_events );
+
+	return $most_recent_event;
+}
+
 function src_get_events( $season_slug ) {
 	$season_id = src_get_id_from_slug( $season_slug, 'season' );
 	$events = get_post_meta( $season_id, 'event', true );

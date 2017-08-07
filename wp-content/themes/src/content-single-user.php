@@ -76,12 +76,9 @@ h1 img {
 
 	<?php endif; ?>
 
-<strong>RESULTS AND SHIT WILL BE POSTED HERE</strong>
-
-	<p class="bbp-user-topic-count"><?php printf( __( 'Topics Started: %s',  'bbpress' ), bbp_get_user_topic_count_raw() ); ?></p>
-	<p class="bbp-user-reply-count"><?php printf( __( 'Replies Created: %s', 'bbpress' ), bbp_get_user_reply_count_raw() ); ?></p>
-
-<ul>
+<ul id="src-members-social-links">
+	<li><?php printf( __( 'Topics Started: %s',  'bbpress' ), bbp_get_user_topic_count_raw() ); ?></li>
+	<li><?php printf( __( 'Replies Created: %s', 'bbpress' ), bbp_get_user_reply_count_raw() ); ?></li>
 <?php
 if ( '' != get_user_meta( bbp_get_displayed_user_id(), 'twitter', true ) ) {
 	echo '<li><a href="' . esc_url( get_user_meta( bbp_get_displayed_user_id(), 'twitter', true ) ) . '">Twitter</a></li>';

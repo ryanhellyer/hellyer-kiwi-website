@@ -39,7 +39,7 @@ if ( is_user_logged_in() ) {
 	$url = home_url();
 	$text = __( 'Rules', 'src' );
 } else {
-	$url = 'thesignuppage';
+	$url = home_url( '/register/' );
 	$text = __( 'Sign Up', 'src' );
 }
 
