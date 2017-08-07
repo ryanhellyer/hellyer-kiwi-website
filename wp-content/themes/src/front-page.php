@@ -139,10 +139,11 @@ get_header();
 
 				}
 
+				$country_code = $event['country'];
 				echo '
 			<li class="' . esc_attr( 'post-' . $count . ' slide' . $extra_class ) . '"' . $data_width . '>
 				<div>
-					<img src="' . esc_url( get_template_directory_uri() . '/images/flag1.png' ) . '" />
+					<img src="' . esc_url( get_template_directory_uri() . '/images/flags/' . strtolower( $country_code ) . '.gif' ) . '" />
 					' . esc_html( $text1 ) .
 
 					/* Already escaped */
