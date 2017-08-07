@@ -36,7 +36,7 @@
 <?php
 
 if ( is_user_logged_in() ) {
-	$url = home_url();
+	$url = home_url( '/rules/' );
 	$text = __( 'Rules', 'src' );
 } else {
 	$url = home_url( '/register/' );
