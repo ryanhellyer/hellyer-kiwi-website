@@ -164,10 +164,10 @@ get_header();
 
 <section id="results">
 
-	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
-		<h2>Last Race</h2>
-		<p>Round 2<br />Monaco</p>
-	</div>
+	<a href="<?php echo esc_url( home_url( '/available-cars/' ) ); ?>" class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/track.jpg">
+		<h2>Cars</h2>
+		<p>Check out the cars available to drive</p>
+	</a>
 
 	<div id="standings">
 		<h3><?php esc_html_e( 'Drivers Championship', 'src' ); ?></h3>
@@ -228,10 +228,10 @@ get_header();
 
 	</div>
 
-	<div class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/rosanski.jpg">
-		<h2>Next Race</h2>
-		<p>Round 4<br />Bathurst</p>
-	</div>
+	<a href="<?php echo esc_url( home_url( '/gallery/' ) ); ?>" class="other-race" style="background-image:url(<?php echo home_url(); ?>/wp-content/themes/src/images/rosanski.jpg">
+		<h2>Gallery</h2>
+		<p>Checkout out our photos gallery</p>
+	</a>
 
 </section><!-- #results -->
 
