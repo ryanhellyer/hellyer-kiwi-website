@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-05 02:52:07+0000\n"
+"PO-Revision-Date: 2017-08-08 13:25:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,7 +91,7 @@ msgstr "Deaktiviert, Funktion sleep fehlt"
 msgid "Disabled by administrator"
 msgstr "Durch einen Administrator deaktiviert"
 
-#: aux-optimize.php:685
+#: aux-optimize.php:699
 msgid "Why are there so many images?"
 msgstr "Warum sind da so viele Bilder?"
 
@@ -201,7 +201,7 @@ msgstr "Keine Bild-ID angegeben."
 #. translators: %s: number of seconds
 #. translators: %s: number of seconds
 #. translators: %s: number of seconds
-#: bulk.php:1591 bulk.php:1597 classes/class-ewww-flag.php:587
+#: bulk.php:1602 bulk.php:1608 classes/class-ewww-flag.php:587
 #: classes/class-ewww-nextcellent.php:697 classes/class-ewww-nextgen.php:824
 #: classes/class-ewwwio-cli.php:298 classes/class-ewwwio-cli.php:397
 #: classes/class-ewwwio-cli.php:477 common.php:4041
@@ -234,7 +234,7 @@ msgstr "<strong>FEHLER</strong>: %1$s in %2$s kann nur Zahlen, Buchstaben und Un
 msgid "Increasing PHP's memory_limit setting will allow for faster scanning with fewer database queries. Please allow up to 10 minutes for changes to memory limit to be detected."
 msgstr "Das Erhöhen der PHP memory_limit Einstellung wird das Scannen durch reduzierte Datanbankabfragen beschleunigen. Bitte warte bis zu 10 Minuten, bevor eine solche Änderung erkannt wird."
 
-#: aux-optimize.php:391
+#: aux-optimize.php:405
 msgid "Stage 2 unable to complete due to memory restrictions. Please increase the memory_limit setting for PHP and try again."
 msgstr "Stufe 2 kann aufgrund Speicherbeschränkungen nicht beendet werden. Bitte erhöhe die memory_limit Einstellung für PHP und versuche es erneut."
 
@@ -328,7 +328,7 @@ msgid "Last Batch Optimized"
 msgstr "Zuletzt massenoptimiert"
 
 #. translators: %d: number of images
-#: aux-optimize.php:684 bulk.php:50 classes/class-ewww-nextcellent.php:444
+#: aux-optimize.php:698 bulk.php:50 classes/class-ewww-nextcellent.php:444
 #: classes/class-ewwwio-cli.php:110 classes/class-ewwwio-cli.php:120
 #: classes/class-ewwwio-cli.php:163 classes/class-ewwwio-cli.php:189
 msgid "There is %d image ready to optimize."
@@ -336,7 +336,7 @@ msgid_plural "There are %d images ready to optimize."
 msgstr[0] "%d Bild ist bereit zum Optimieren."
 msgstr[1] "%d Bilder sind bereit zum Optimieren."
 
-#: aux-optimize.php:383 aux-optimize.php:404 bulk.php:1191
+#: aux-optimize.php:397 aux-optimize.php:418 bulk.php:1191
 msgid "Stage 2, please wait."
 msgstr "Stufe 2, bitte warten."
 
@@ -402,7 +402,7 @@ msgstr "EWWW Image Optimizer erfordert exec() oder einen API-Schlüssel. Dein Sy
 
 #: common.php:7435
 msgid "If Force WebP is enabled, enter URL patterns that should be permitted for Alternative WebP Rewriting. One pattern per line, may be partial URLs, but must include the domain name."
-msgstr "Falls \"WebP erzwingen\" aktiviert ist, gib URL-Muster ein, die für Alternatives WebP-Rewriting erlaubt sein sollen. Ein Muster pro Zeile, unvollständige URLs sind möglich, müssen aber den Domainnamen beinhalten."
+msgstr "Falls „WebP erzwingen“ aktiviert ist, gib URL-Muster ein, die für Alternatives WebP-Rewriting erlaubt sein sollen. Ein Muster pro Zeile, unvollständige URLs sind möglich, müssen aber den Domainnamen beinhalten."
 
 #: common.php:7435
 msgid "WebP URLs"
@@ -560,7 +560,7 @@ msgstr "Keine Kompression"
 msgid "JPG Optimization Level"
 msgstr "JPG-Optimierungsgrad"
 
-#: bulk.php:1236 bulk.php:1241 classes/class-ewww-flag.php:483
+#: bulk.php:1244 bulk.php:1249 classes/class-ewww-flag.php:483
 #: classes/class-ewww-nextcellent.php:612 classes/class-ewww-nextgen.php:722
 msgid "Error retrieving list of images"
 msgstr "Fehler beim Abruf der Bilderliste"
@@ -581,7 +581,7 @@ msgstr "Anzahl versuchter Optimierungen"
 msgid "File path"
 msgstr "Dateipfad"
 
-#: bulk.php:1488 bulk.php:1490
+#: bulk.php:1499 bulk.php:1501
 msgid "Could not find image"
 msgstr "Bild konnte nicht gefunden werden"
 
@@ -618,7 +618,7 @@ msgid "S3 Image Optimizer"
 msgstr "S3 Image Optimizer"
 
 #. translators: used for Bulk Optimize progress bar, like so: Optimized 32/346
-#: bulk.php:467 bulk.php:1549 bulk.php:1552 classes/class-ewww-flag.php:253
+#: bulk.php:467 bulk.php:1560 bulk.php:1563 classes/class-ewww-flag.php:253
 #: classes/class-ewww-nextcellent.php:591 classes/class-ewww-nextgen.php:702
 #: common.php:4033
 msgid "Optimized"
@@ -1402,7 +1402,7 @@ msgstr "Migriere WebP-Bilder"
 msgid "Settings saved"
 msgstr "Einstellungen gesichert"
 
-#: bulk.php:1648
+#: bulk.php:1659
 msgid "Return to Media Library"
 msgstr "Zurück zur Mediathek"
 
@@ -1438,7 +1438,7 @@ msgstr "Vorgang unterbrochen"
 msgid "Optimization stopped, reload page to resume."
 msgstr "Optimierung beendet, Seite neu laden um weiterzumachen"
 
-#: bulk.php:1517 classes/class-ewww-flag.php:558
+#: bulk.php:1528 classes/class-ewww-flag.php:558
 #: classes/class-ewww-nextcellent.php:681 classes/class-ewww-nextgen.php:797
 #: common.php:4023 common.php:4027
 msgid "License Exceeded"
@@ -1503,11 +1503,11 @@ msgstr "Optimierung starten"
 msgid "Bulk Optimize"
 msgstr "Massenoptimierung"
 
-#: aux-optimize.php:713 bulk.php:1648 mwebp.php:233
+#: aux-optimize.php:727 bulk.php:1659 mwebp.php:233
 msgid "Finished"
 msgstr "Beendet"
 
-#: bulk.php:1254 bulk.php:1256 bulk.php:1609 bulk.php:1611
+#: bulk.php:1265 bulk.php:1267 bulk.php:1620 bulk.php:1622
 #: classes/class-ewww-flag.php:492 classes/class-ewww-flag.php:494
 #: classes/class-ewww-flag.php:596 classes/class-ewww-flag.php:598
 #: classes/class-ewww-flag.php:643 classes/class-ewww-nextcellent.php:621
@@ -1521,7 +1521,7 @@ msgstr "Beendet"
 msgid "Optimizing"
 msgstr "Optimiere"
 
-#: aux-optimize.php:705 bulk.php:623 classes/class-ewww-flag.php:377
+#: aux-optimize.php:719 bulk.php:623 classes/class-ewww-flag.php:377
 #: classes/class-ewww-flag.php:380 classes/class-ewww-flag.php:450
 #: classes/class-ewww-flag.php:453 classes/class-ewww-flag.php:472
 #: classes/class-ewww-nextcellent.php:185
@@ -1575,7 +1575,7 @@ msgid "Previously Optimized"
 msgstr "Bereits optimiert"
 
 #: aux-optimize.php:153 aux-optimize.php:251 bulk.php:630 bulk.php:1205
-#: bulk.php:1222 bulk.php:1442 bulk.php:1639 classes/class-ewww-flag.php:529
+#: bulk.php:1222 bulk.php:1453 bulk.php:1650 classes/class-ewww-flag.php:529
 #: classes/class-ewww-flag.php:612 classes/class-ewww-nextcellent.php:659
 #: classes/class-ewww-nextcellent.php:722 classes/class-ewww-nextgen.php:771
 #: classes/class-ewww-nextgen.php:849 common.php:2873 common.php:3976
