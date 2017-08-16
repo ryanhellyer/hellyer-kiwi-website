@@ -30,10 +30,10 @@ class SRC_Seasons extends SRC_Core {
 		register_post_type(
 			'season',
 			array(
-				'public'    => true,
-				'label'     => __( 'Season', 'src' ),
-				'supports'  => array( 'thumbnail', 'title', 'editor' ),
-				'menu_icon' => 'dashicons-calendar',
+				'public'       => true,
+				'label'        => __( 'Season', 'src' ),
+				'supports'     => array( 'thumbnail', 'title', 'editor' ),
+				'show_in_menu' => 'edit.php?post_type=event',
 			)
 		);
 

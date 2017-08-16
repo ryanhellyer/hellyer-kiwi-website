@@ -32,7 +32,7 @@ class SRC_Events extends SRC_Core {
 			'event',
 			array(
 				'public' => true,
-				'label'  => __( 'Event', 'src' ),
+				'label'  => __( 'Events', 'src' ),
 				'supports' => array( 'title', 'editor' ),
 				'menu_icon' => 'dashicons-flag',
 			)
