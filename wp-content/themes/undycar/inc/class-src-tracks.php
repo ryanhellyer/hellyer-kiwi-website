@@ -34,9 +34,9 @@ class SRC_Tracks extends SRC_Core {
 			array(
 				'public'             => true,
 				'publicly_queryable' => false,
-				'label'              => __( 'Track', 'src' ),
+				'label'              => __( 'Tracks', 'src' ),
 				'supports'           => array( 'thumbnail', 'title', 'editor' ),
-				'menu_icon'          => 'dashicons-location',
+				'show_in_menu'       => 'edit.php?post_type=event',
 			)
 		);
 
