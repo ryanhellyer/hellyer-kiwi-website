@@ -63,6 +63,18 @@ class Mlp_Hreflang_Header_Output {
 			return;
 		}
 
+		/**
+		 * Filters if the hreflang links should be rendered.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param bool     $render       Whether or not hreflang links should be rendered.
+		 * @param string[] $translations The available translations to be used for hreflang links.
+		 */
+		if ( ! apply_filters( 'multilingualpress.render_hreflang', count( $translations ) > 1, $translations ) ) {
+			return;
+		}
+
 		foreach ( $translations as $lang => $url ) {
 			$html = sprintf(
 				'<link rel="alternate" hreflang="%1$s" href="%2$s">',
@@ -96,6 +108,11 @@ class Mlp_Hreflang_Header_Output {
 
 		$translations = $this->get_translations();
 		if ( ! $translations ) {
+			return;
+		}
+
+		/** This filter is documented in inc/hreflang-header/Mlp_Hreflang_Header_Output.php */
+		if ( ! apply_filters( 'multilingualpress.render_hreflang', count( $translations ) > 1, $translations ) ) {
 			return;
 		}
 
@@ -133,9 +150,21 @@ class Mlp_Hreflang_Header_Output {
 
 		$this->translations = array();
 
+		/**
+		 * Filters the allowed status for posts to be included in hreflang links.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param string[] $post_status Allowed post status.
+		 */
+		$post_status = (array) apply_filters( 'multilingualpress.hreflang_post_status', array(
+			'publish',
+		) );
+
 		/** @var Mlp_Translation_Interface[] $translations */
 		$translations = $this->language_api->get_translations( array(
 			'include_base' => true,
+			'post_status'  => $post_status,
 		) );
 		if ( ! $translations ) {
 			return $this->translations;
