@@ -42,7 +42,7 @@ get_header();
 			$count++;
 
 			$event_id = get_the_ID();
-			$event_date = get_post_meta( $event_id, 'event_date', true );
+			$event_date = get_post_meta( $event_id, 'date', true );
 
 			$track_id = get_post_meta( $event_id, 'track', true );
 			$track_query = new WP_Query( array(
@@ -58,26 +58,24 @@ get_header();
 			if ( $track_query->have_posts() ) {
 				while ( $track_query->have_posts() ) {
 					$track_query->the_post();
-echo "\n\ntrack id: " . $track_id . "\n";
-echo 'get_the_ID(): ' . get_the_ID() . "\n";
+
 					$track_logo = get_post_meta( get_the_ID(), 'logo_id', true );
 					$track_name = get_the_title( get_the_ID() );
 					$track_type_slug = get_post_meta( get_the_ID(), 'track_type', true );
 					$track_type = src_get_track_types()[$track_type_slug];
 
-					$event_array[$event_date] = array(
-						'event_id'        => $event_id,
-						'track_logo'      => $track_logo,
-						'track_name'      => $track_name,
-						'track_type_slug' => $track_type_slug,
-						'track_type'      => $track_type,
-						'event_date'      => $event_date,
-					);
-echo 'event array: ' . print_r( $event_array, true ) . "\n";
-
 				}
 
 			}
+
+			$event_array[$event_date] = array(
+				'event_id'        => $event_id,
+				'track_logo'      => $track_logo,
+				'track_name'      => $track_name,
+				'track_type_slug' => $track_type_slug,
+				'track_type'      => $track_type,
+				'event_date'      => $event_date,
+			);
 
 		}
 	}
