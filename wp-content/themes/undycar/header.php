@@ -72,7 +72,7 @@ if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
 	$title = get_the_title( get_the_ID() );
 	$content = '';
 	$image_url = get_the_post_thumbnail_url( get_the_ID() );
-echo $image_url .'........';
+
 	// If no image URL, then grab the one from the featured image on front page
 	if ( false === $image_url ) {
 
@@ -105,7 +105,7 @@ wp_reset_query();
 
 $image_url = apply_filters( 'src_featured_image_url', $image_url );
 $title     = apply_filters( 'src_featured_title', $title );
-echo $image_url . '...........';
+
 ?>
 
 <section id="featured-news" style="background-image: url(<?php echo esc_url( $image_url ); ?>)">
