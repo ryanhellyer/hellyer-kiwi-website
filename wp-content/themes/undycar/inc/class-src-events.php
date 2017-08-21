@@ -220,7 +220,7 @@ class SRC_Events extends SRC_Core {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
-				$date  = get_post_meta( get_the_ID(), 'event_date', true );
+				$date  = get_post_meta( get_the_ID(), 'date', true );
 				$track = get_post_meta( get_the_ID(), 'track', true );
 
 				$events[$date] = array(
