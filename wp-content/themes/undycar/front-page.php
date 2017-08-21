@@ -40,11 +40,12 @@ get_header();
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			$count++;
-the_title();echo ' ... ';
+
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'event_date', true );
 
 			$track_id = get_post_meta( $event_id, 'track', true );
+echo "\n\ntrack id: " . $track_id . "\n";
 			$track_query = new WP_Query( array(
 				'p'                      => $track_id,
 				'post_type'              => 'track',
@@ -58,7 +59,7 @@ the_title();echo ' ... ';
 			if ( $track_query->have_posts() ) {
 				while ( $track_query->have_posts() ) {
 					$track_query->the_post();
-
+echo 'get_the_ID(): ' . get_the_ID() . "\n\";
 					$track_logo = get_post_meta( get_the_ID(), 'logo_id', true );
 					$track_name = get_the_title( get_the_ID() );
 					$track_type_slug = get_post_meta( get_the_ID(), 'track_type', true );
