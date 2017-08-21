@@ -653,6 +653,11 @@ class SRC_Events extends SRC_Core {
 		}
 
 		$results = json_decode( $results, true );
+		if ( empty( $results ) ) {
+//			return $content;
+			echo 'empty';
+		}
+echo "\n\n\n\n.......\n";print_r( $results );die;
 
 
 		$html .= '<h3>' . esc_html__( 'Results table', 'src' ) . '</h3>';
