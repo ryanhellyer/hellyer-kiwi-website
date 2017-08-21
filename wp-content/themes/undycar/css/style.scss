@@ -263,7 +263,7 @@ address {
 
 	.gallery-item {
 		float: left;
-		margin: 1%;
+		margin: 0.5%;
 	}
 
 	img {
@@ -358,16 +358,19 @@ a img.aligncenter {
 	position: relative;
 	width: 100%;
 	height: 550px;
+	margin-top: 70px;
 	background-position: center 0;
 	background-size: cover;
 	text-align: center;
 
+	body.error404 &,
 	body.single &,
 	body.page & {
 		height: 300px;
 
 		h1 {
 			font-size: 5rem;
+			line-height: 5rem;
 		}
 
 	}
@@ -512,12 +515,21 @@ a img.aligncenter {
 		text-align: center;
 		color: #bbb;
 
-		div {
+		a {
+			display: block;
 			padding: 20px 0;
 			border-left: 1px solid #333;
+			color: #fff;
+			opacity: 0.9;
+
+			&:hover {
+				text-decoration: none;
+				opacity: 1;
+			}
+
 		}
 
-		&.post-1 div {
+		&.post-1 a {
 			border-left: none;
 		}
 
@@ -629,6 +641,7 @@ td span.tick-mark:before {
 			padding: 40px 30px 0 30px;
 			text-transform: uppercase;
 			font-size: 1.4rem;
+			line-height: 1.6rem;
 			font-weight: 600;
 			color: #fff;		
 		}
@@ -744,7 +757,7 @@ td span.tick-mark:before {
 	background: #efefef;
 	border-left: 6px solid #aaa;
 	padding: 40px;
-	margin: 0 0 60px 0;
+	margin: 0 0 60px 40px;
 
 	h3 {
 		color: #000;
@@ -765,6 +778,11 @@ td span.tick-mark:before {
 		margin: 0 0 0 25px;
 		padding: 5px 0;
 		font-size: 1rem;
+	}
+
+	p {
+		font-size: 1rem;
+		line-height: 1.5rem;
 	}
 
 }
@@ -818,11 +836,13 @@ li {
 }
 
 p {
+	line-height: 2.4rem;
 	margin: 10px 0 30px 0;
 }
 
-input {
-	padding: 10px 20px;
+form p {
+	font-weight: bold;
+	margin: 0 0 60px 0;
 }
 
 textarea {
@@ -834,16 +854,18 @@ textarea {
 label {
 	display: inline-block;
 	margin: 20px 0 0 0;
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 
 input {
 	display: block;
 	margin: 5px 0 20px 0;	
+	padding: 10px 20px;
 }
 
-input#bbp_topic_subscription {
+input[type=checkbox] {
 	display: inline-block;
+	margin: 5px 10px 5px 20px;
 }
 
 select {
@@ -855,6 +877,107 @@ select {
 
 img {
 	max-width: 100%;
+}
+
+/* =Comments
+-------------------------------------------------------------- */
+
+#comments {
+	margin-top: 60px;
+	border-top: 1px solid #ddd;
+
+	.comment-notes {
+		font-style: italic;
+	}
+
+	form p {
+		margin: 0;
+		font-weight: normal;
+	}
+
+}
+
+ol.commentlist {
+
+	#main & {
+		li {
+			list-style: none;
+			margin-left: 0;
+		}
+	}
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li.trackback,
+	li.pingback,
+	li.comment {
+		list-style: none;
+		background: #fafafa;
+		border: 1px solid #eee;
+		margin: 0 0 1.5em 0;
+		padding: 0;
+		font-size: 1rem;
+		color: #999;
+	}
+
+	li.trackback ul,
+	li.pingback ul,
+	li.comment ul {
+		margin: 0 1.5em 1.5em 1.5em;
+		padding: 0;
+	}
+
+	li.trackback .comment-body,
+	li.pingback .comment-body,
+	li.comment .comment-body {
+		padding: 1.5em;
+	}
+
+	li.comment li.comment {
+		font-size: 1.2rem;
+		background: #f6f6f6;
+		margin: 1.5em 0 0 0;
+	}
+
+	li.comment li.comment li.comment {
+		background: #f3f3f3;
+	}
+
+	cite {
+		font-style: normal;
+	}
+
+	img.avatar {
+		float: right;
+		border: 1px solid #eee;
+		margin: 0 0 1.5em 1.5em;
+	}
+
+	.comment-reply-link {
+		background: #eee;
+		border: 1px solid #eee;
+		font-size: 1rem;
+		padding: 0.4em 0.8em;
+		color: #333;
+	}
+
+	.comment-reply-link:hover {
+		background: $red;
+		color: #fff;
+		text-decoration: none;
+	}
+
+}
+
+.comment-author,
+.comment-meta {
+	line-height: 1.5em;
+}
+
+.comment-meta {
+	font-size: 1rem;
 }
 
 /* =Links
@@ -915,6 +1038,13 @@ input[type=submit],
 
 }
 
+#next-prev-buttons {
+	margin-top: 60px;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
 /* =Site footer
 -------------------------------------------------------------- */
 #site-footer {
@@ -933,6 +1063,7 @@ input[type=submit],
 		color: #777;
 		font-family: $paragraph_font;
 		font-size: 0.8rem;
+		line-height: 1rem;
 		margin: 20px 0;
 	}
 
@@ -1079,37 +1210,6 @@ input[type=submit],
 			//display: none;
 		}
 
-	}
-
-	/* Forum */
-	.bbp-meta,
-	.bbp-reply-author,
-	.bbp-reply-content {
-		float: none;
-		width: 100%;
-		text-align: left;
-
-		br {
-			display: none;
-		}
-
-	}
-
-	.bbp-reply-header {
-		margin-top: 20px;
-	}
-
-	.bbp-reply-author img,
-	.bbp-reply-signature {
-		display: none;
-	}
-
-	.bbp-admin-links {
-		float: right;
-	}
-
-	#bbpress-wrapper h1 {
-		margin-bottom: 0;
 	}
 
 	/* Site footer */
