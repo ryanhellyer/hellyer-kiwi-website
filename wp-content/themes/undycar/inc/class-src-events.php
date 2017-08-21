@@ -45,7 +45,6 @@ class SRC_Events extends SRC_Core {
 	public function filter_featured_image_url( $image_url ) {
 
 		if ( 'event' === get_post_type() ) {
-echo '..........'.$this->event['current_round']['track'];die;
 			$image_url = get_the_post_thumbnail_url( $this->event['current_round']['track'], 'full' );
 		}
 
@@ -244,7 +243,7 @@ echo '..........'.$this->event['current_round']['track'];die;
 
 		}
 		wp_reset_query();
-
+print_r( $events );die;
 		// Sort events into date order
 		ksort( $events );
 
