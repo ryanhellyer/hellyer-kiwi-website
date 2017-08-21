@@ -273,7 +273,11 @@ class SRC_Events extends SRC_Core {
 
 				// Get next round
 				if ( $key < $number_of_rounds_in_season ) {
-					$next_round = $new_events[$key + 1];
+					if ( isset( $new_events[$key + 1] ) ) {
+						$next_round = $new_events[$key + 1];
+					} else {
+						$next_round = false;
+					}
 				} else {
 					$next_round = false;
 				}
