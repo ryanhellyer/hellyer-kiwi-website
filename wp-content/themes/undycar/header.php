@@ -58,7 +58,16 @@ $args = array(
 	'fields'                 => 'ids',
 ) ;
 
-if ( is_single() || is_page() ) {
+if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
+	global $display_name;
+	$title = $display_name;
+	$content = '';
+	$image_url = get_template_directory_uri() . '/images/cars/404-page.jpg';
+} else if ( is_404() ) {
+	$title = '404 error';
+	$content = '';
+	$image_url = get_template_directory_uri() . '/images/cars/404-page.jpg';
+} else if ( is_single() || is_page() ) {
 
 	$title = get_the_title( get_the_ID() );
 	$content = '';
@@ -92,13 +101,17 @@ if ( is_single() || is_page() ) {
 	}
 
 }
+wp_reset_query();
 
-			?>
+$image_url = apply_filters( 'src_featured_image_url', $image_url );
+$title     = apply_filters( 'src_featured_title', $title );
+
+?>
 
 <section id="featured-news" style="background-image: url(<?php echo esc_url( $image_url ); ?>">
 	<div class="text">
 		<h1><?php echo esc_html( $title ); ?></h1>
-		<?php echo $content; /* shouldn't be escaped */ ?>
+		<?php echo do_shortcode( $content ); /* shouldn't be escaped */ ?>
 	</div>
 </section><!-- #featured-news -->
 <main id="main">

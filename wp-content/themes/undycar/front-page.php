@@ -16,31 +16,9 @@ get_header();
 		<h2>Latest news</h2>
 	</header>
 
-<?php
-// Load main loop
-query_posts( array( 'posts_per_page' => 4 ) );
-if ( have_posts() ) {
+	<?php echo src_news( 4 ); ?>
 
-	// Start of the Loop
-	while ( have_posts() ) {
-		the_post();
-
-		?>
-
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<a href="<?php the_permalink(); ?>">
-				<img src="<?php echo esc_url( get_the_post_thumbnail_url() ); ?>" />
-				<date><?php echo get_the_date( get_option( 'date_format' ) ); ?></date>
-				<p><?php the_title(); ?></p>
-			</a>
-		</article><?php
-	}
-
-}
-
-?>
-
-		<a href="#" onclick="alert('Link does not work yet!')" class="highlighted-link">See more news</a>
+	<a href="<?php echo esc_url( home_url() . '/news/' ); ?>" class="highlighted-link">See more news</a>
 
 </section><!-- #latest-news -->
 
@@ -49,14 +27,14 @@ if ( have_posts() ) {
 
 	$query = new WP_Query( array(
 		'post_type'      => 'event',
-		'post_status'    => 'future',
-		'posts_per_page' => 5,
+		'post_status'    => 'publish',
+		'posts_per_page' => 100,
 		'no_found_rows'  => true,
 		'update_post_meta_cache' => false,
 		'update_post_term_cache' => false,
 		'fields'         => 'ids'
 	) );
-
+	$event_array = array();
 	if ( $query->have_posts() ) {
 		$count = 0;
 		while ( $query->have_posts() ) {
@@ -64,6 +42,7 @@ if ( have_posts() ) {
 			$count++;
 
 			$event_id = get_the_ID();
+			$event_date = get_post_meta( $event_id, 'event_date', true );
 
 			$track_id = get_post_meta( $event_id, 'track', true );
 			$track_query = new WP_Query( array(
@@ -80,7 +59,7 @@ if ( have_posts() ) {
 				while ( $track_query->have_posts() ) {
 					$track_query->the_post();
 
-					$track_logo = get_the_post_thumbnail_url();
+					$track_logo = get_post_meta( get_the_ID(), 'logo_id', true );
 					$track_name = get_the_title( get_the_ID() );
 					$track_type_slug = get_post_meta( get_the_ID(), 'track_type', true );
 					$track_type = src_get_track_types()[$track_type_slug];
@@ -89,29 +68,52 @@ if ( have_posts() ) {
 
 			}
 
-			?>
-
-			<li class="<?php echo esc_attr( 'post-' . $count ); ?>">
-				<div>
-					<img src="<?php echo esc_url( $track_logo ); ?>" />
-					<h3 class="screen-reader-text"><?php echo esc_html( $track_name ); ?></h3>
-					<?php
-
-					echo esc_html( $track_type );
-
-					$month = get_the_date( 'M', $event_id );
-					$day_of_month = get_the_date( 'd', $event_id );
-					?>
-
-					<date>
-						<span><?php echo esc_html( $day_of_month ); ?></span>
-						<?php echo esc_html( $month ); ?>
-
-					</date>
-				</div>
-			</li><?php
+			$event_array[$event_date] = array(
+				'event_id'        => $event_id,
+				'track_logo'      => $track_logo,
+				'track_name'      => $track_name,
+				'track_type_slug' => $track_type_slug,
+				'track_type'      => $track_type,
+				'event_date'      => $event_date,
+			);
 
 		}
+	}
+
+	ksort( $event_array );
+
+	$count = 0;
+	foreach ( $event_array as $time_stamp => $event ) {
+		$count++;
+		if ( $count > 5 ) {
+			continue;
+		}
+
+		$image_url = wp_get_attachment_image_src( $event['track_logo'], 'src-logo' );
+		$image_url = $image_url[0];
+
+		?>
+
+		<li class="<?php echo esc_attr( 'post-' . $count ); ?>">
+			<a href="<?php echo esc_url( get_the_permalink( $event['event_id'] ) ); ?>">
+				<img src="<?php echo esc_url( $image_url ); ?>" />
+				<h3 class="screen-reader-text"><?php echo esc_html( $event['track_name'] ); ?></h3>
+				<?php
+
+				echo esc_html( $event['track_type'] );
+
+				$month = date( 'M', $event['event_date'] );
+				$day_of_month = date( 'd', $event['event_date'] );
+
+				?>
+
+				<date>
+					<span><?php echo esc_html( $day_of_month ); ?></span>
+					<?php echo esc_html( $month ); ?>
+
+				</date>
+			</a>
+		</li><?php
 	}
 
 	?>
@@ -121,8 +123,8 @@ if ( have_posts() ) {
 
 <section id="results">
 
-	<a href="<?php echo esc_url( home_url( '/car/' ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( get_template_directory_uri() . '/images/long2.png' ); ?>);">
-		<h2>Dallara DW12</h2>
+	<a href="<?php echo esc_url( get_permalink( get_option( 'src-current-season' ) ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( get_template_directory_uri() . '/images/long2.png' ); ?>);">
+		<h2>New Season</h2>
 		<p>Free with iRacing. Fixed setups provided for each track.</p>
 	</a>
 
