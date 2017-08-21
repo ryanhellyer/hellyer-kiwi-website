@@ -647,6 +647,7 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 
 		$results = get_post_meta( get_the_ID(), '_results', true );
+$html .= print_r( $results, true );
 		if ( '' === $results ) {
 			return $content;
 		}
