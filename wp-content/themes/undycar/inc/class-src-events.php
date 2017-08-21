@@ -243,7 +243,7 @@ class SRC_Events extends SRC_Core {
 
 		}
 		wp_reset_query();
-print_r( $events );die;
+
 		// Sort events into date order
 		ksort( $events );
 
