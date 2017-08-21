@@ -40,7 +40,7 @@ get_header();
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			$count++;
-
+the_title();echo ' ... ';
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'event_date', true );
 
