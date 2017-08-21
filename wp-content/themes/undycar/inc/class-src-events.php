@@ -339,7 +339,7 @@ class SRC_Events extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function add_extra_content( $content ) {
-
+$content = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 		if ( 'event' !== get_post_type() ) {
 			return $content;
 		}
