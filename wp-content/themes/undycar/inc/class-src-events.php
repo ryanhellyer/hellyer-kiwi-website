@@ -229,7 +229,7 @@ class SRC_Events extends SRC_Core {
 					'title'       => get_the_title(),
 					'track'       => $track,
 				);
-echo get_the_title() . "\n\n";
+print_r( $events );echo "\n..........\n";
 				foreach ( $this->event_types() as $name => $desc ) {
 
 					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
