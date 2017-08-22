@@ -80,7 +80,7 @@ class SRC_Seasons extends SRC_Core {
 				while ( $query->have_posts() ) {
 					$query->the_post();
 
-					$date = get_post_meta( get_the_ID(), 'event_date', true );
+					$date = get_post_meta( get_the_ID(), 'date', true );
 
 					$events[$date]['id'] = get_the_ID();
 					$events[$date]['track']      = get_post_meta( get_the_ID(), 'track', true );
@@ -106,7 +106,6 @@ class SRC_Seasons extends SRC_Core {
 							}
 
 							$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
-print_r( $events );echo '<br><br>';
 						}
 
 					}
