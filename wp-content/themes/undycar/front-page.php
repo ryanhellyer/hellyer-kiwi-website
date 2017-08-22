@@ -129,93 +129,9 @@ get_header();
 	</a>
 
 	<div id="standings">
-		<h3><?php esc_html_e( 'Drivers Championship', 'src' ); ?></h3>
-		<table>
-			<col width="13%">
-			<col width="25%">
-			<col width="7%">
-			<col width="10%">
-			<col width="20%">
-			<col width="25%">
-			<thead>
-				<tr>
-					<th>Pos</th>
-					<th>Name</th>
-					<th>Nat</th>
-					<th>Num</th>
-					<th></th>
-					<th>Pts</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td><a href="#">Paul Roozanski</a></td>
-					<td>23</td>
-					<td>DEU</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>89</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td><a href="#">Ryan Hellyer</a></td>
-					<td>27</td>
-					<td>NZL</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>27</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td><a href="#">Paul Roozanski</a></td>
-					<td>23</td>
-					<td>DEU</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>89</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td><a href="#">Ryan Hellyer</a></td>
-					<td>27</td>
-					<td>NZL</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>27</td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td><a href="#">Paul Roozanski</a></td>
-					<td>23</td>
-					<td>DEU</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>89</td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td><a href="#">Ryan Hellyer</a></td>
-					<td>27</td>
-					<td>NZL</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>27</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td><a href="#">Paul Roozanski</a></td>
-					<td>23</td>
-					<td>DEU</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>89</td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td><a href="#">Ryan Hellyer</a></td>
-					<td>27</td>
-					<td>NZL</td>
-					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
-					<td>27</td>
-				</tr>
-			</tbody>
-		</table>
+		<?php echo SRC_Core::championship( '', true ); ?>
 
-		<a href="<?php echo esc_url( home_url() . '/championship/' ); ?>" class="highlighted-link">See all championship standings</a>
+		<a href="<?php echo esc_url( get_permalink( get_option( 'src-current-season' ) ) ); ?>" class="highlighted-link">See all championship standings</a>
 
 	</div>
 

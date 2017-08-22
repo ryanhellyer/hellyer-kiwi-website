@@ -15,6 +15,7 @@ require( 'inc/class-src-register.php' );
 require( 'inc/class-src-members.php' );
 require( 'inc/class-src-settings.php' );
 require( 'inc/class-src-cars.php' );
+require( 'inc/class-src-schedule.php' );
 
 require( 'inc/functions.php' );
 
@@ -28,3 +29,4 @@ new SRC_Register();
 new SRC_Members();
 new SRC_Settings();
 new SRC_Cars();
+new SRC_Schedule();
