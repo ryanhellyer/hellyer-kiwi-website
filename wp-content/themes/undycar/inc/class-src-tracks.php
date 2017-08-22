@@ -62,6 +62,13 @@ class SRC_Tracks extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
+			'name'       => esc_html__( 'Length', 'src' ),
+			'description'=> esc_html__( 'The track length in kilometers', 'src' ),
+			'id'         => 'track_length',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
 			'name' => esc_html__( 'Country', 'src' ),
 			'id'         => 'country',
 			'type'       => 'select',

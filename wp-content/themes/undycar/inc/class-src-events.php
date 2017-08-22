@@ -453,7 +453,7 @@ class SRC_Events extends SRC_Core {
 					esc_html( get_permalink( $this->event['season_id'] ) ),
 				 	esc_html( get_the_title( $season_id ) ),
 					esc_html( $date ),
-					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
+					esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
 					esc_url( $track_url ),
 					esc_html( $this->event['current_round']['track_name'] ),
 					esc_html( $this->event['current_round']['track_type'] ),
