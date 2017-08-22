@@ -150,10 +150,10 @@ get_header();
 			<tbody>
 				<tr>
 					<td>1</td>
-					<td><a href="#">Paul Rosanski</a></td>
+					<td><a href="#">Paul Roozanski</a></td>
 					<td>23</td>
 					<td>DEU</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>89</td>
 				</tr>
 				<tr>
@@ -161,15 +161,15 @@ get_header();
 					<td><a href="#">Ryan Hellyer</a></td>
 					<td>27</td>
 					<td>NZL</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>27</td>
 				</tr>
 				<tr>
 					<td>3</td>
-					<td><a href="#">Paul Rosanski</a></td>
+					<td><a href="#">Paul Roozanski</a></td>
 					<td>23</td>
 					<td>DEU</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>89</td>
 				</tr>
 				<tr>
@@ -177,15 +177,15 @@ get_header();
 					<td><a href="#">Ryan Hellyer</a></td>
 					<td>27</td>
 					<td>NZL</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>27</td>
 				</tr>
 				<tr>
 					<td>5</td>
-					<td><a href="#">Paul Rosanski</a></td>
+					<td><a href="#">Paul Roozanski</a></td>
 					<td>23</td>
 					<td>DEU</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>89</td>
 				</tr>
 				<tr>
@@ -193,15 +193,15 @@ get_header();
 					<td><a href="#">Ryan Hellyer</a></td>
 					<td>27</td>
 					<td>NZL</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>27</td>
 				</tr>
 				<tr>
 					<td>7</td>
-					<td><a href="#">Paul Rosanski</a></td>
+					<td><a href="#">Paul Roozanski</a></td>
 					<td>23</td>
 					<td>DEU</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>89</td>
 				</tr>
 				<tr>
@@ -209,7 +209,7 @@ get_header();
 					<td><a href="#">Ryan Hellyer</a></td>
 					<td>27</td>
 					<td>NZL</td>
-					<td><img src="http://dev-hellyer.kiwi/wp-content/themes/undycar/images/car1.png" /></td>
+					<td><img src="<?php echo get_template_directory_uri(); ?>/images/car1.png" /></td>
 					<td>27</td>
 				</tr>
 			</tbody>
