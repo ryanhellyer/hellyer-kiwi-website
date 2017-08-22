@@ -77,6 +77,7 @@ class SRC_Theme_Setup {
 			'after_title'   => '</h3>',
 		) );
 
+		add_image_size( 'src-featured', 1920, 300, true );
 		add_image_size( 'src-logo', 300, 150, true );
 		add_image_size( 'src-four', 480, 240, true );
 

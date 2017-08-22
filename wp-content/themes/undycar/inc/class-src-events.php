@@ -38,14 +38,14 @@ class SRC_Events extends SRC_Core {
 
 	/**
 	 * When on event, use tracks featured image.
-	 *
+	 *c
 	 * @string  string  $image_url  The featured image URL
 	 * @return  string  The modified image URL
 	 */
 	public function filter_featured_image_url( $image_url ) {
 
 		if ( 'event' === get_post_type() ) {
-			$image_url = get_the_post_thumbnail_url( $this->event['current_round']['track'], 'full' );
+			$image_url = get_the_post_thumbnail_url( $this->event['current_round']['track'], 'src-featured' );
 		}
 
 		return $image_url;

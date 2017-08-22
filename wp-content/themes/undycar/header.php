@@ -71,7 +71,7 @@ if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
 
 	$title = get_the_title( get_the_ID() );
 	$content = '';
-	$image_url = get_the_post_thumbnail_url( get_the_ID() );
+	$image_url = get_the_post_thumbnail_url( get_the_ID(), 'src-featured' );
 
 	// If no image URL, then grab the one from the featured image on front page
 	if ( false === $image_url ) {
@@ -81,9 +81,10 @@ if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
 			while ( $featured_item->have_posts() ) {
 				$featured_item->the_post();
 
-				$image_url = get_the_post_thumbnail_url();
+				$image_url = get_the_post_thumbnail_url( get_the_ID(), 'src-featured' );
 			}
 		}
+		wp_reset_query();
 
 	}
 
