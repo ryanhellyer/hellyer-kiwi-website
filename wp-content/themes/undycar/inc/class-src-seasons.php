@@ -79,7 +79,7 @@ class SRC_Seasons extends SRC_Core {
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
 					$query->the_post();
-the_title(); echo '<br />';
+
 					$date = get_post_meta( get_the_ID(), 'event_date', true );
 
 					$events[$date]['id'] = get_the_ID();
@@ -106,7 +106,7 @@ the_title(); echo '<br />';
 							}
 
 							$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
-
+print_r( $events );echo '<br><br>';
 						}
 
 					}
