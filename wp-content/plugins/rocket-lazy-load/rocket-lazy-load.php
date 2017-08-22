@@ -1,11 +1,11 @@
 <?php
-defined( 'ABSPATH' ) or	die( 'Cheatin\' uh?' );
+defined( 'ABSPATH' ) ||	die( 'Cheatin\' uh?' );
 
 /**
  * Plugin Name: Rocket Lazy Load
  * Plugin URI: http://wordpress.org/plugins/rocket-lazy-load/
  * Description: The tiny Lazy Load script for WordPress without jQuery or others libraries.
- * Version: 1.1.1
+ * Version: 1.2.1
  * Author: WP Media
  * Author URI: https://wp-rocket.me
  * Text Domain: rocket-lazy-load
@@ -26,11 +26,11 @@ defined( 'ABSPATH' ) or	die( 'Cheatin\' uh?' );
  *     You should have received a copy of the GNU General Public License
  * 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-define( 'ROCKET_LL_VERSION', '1.1' );
+define( 'ROCKET_LL_VERSION', '1.2' );
 define( 'ROCKET_LL_PATH', realpath( plugin_dir_path( __FILE__ ) ) . '/' );
 define( 'ROCKET_LL_ASSETS_URL', plugin_dir_url( __FILE__ ) . 'assets/' );
 define( 'ROCKET_LL_FRONT_JS_URL', ROCKET_LL_ASSETS_URL . 'js/' );
-define( 'ROCKET_LL_JS_VERSION'  , '3.0' );
+define( 'ROCKET_LL_JS_VERSION'  , '8.0.3' );
 
 
 /**
@@ -64,8 +64,7 @@ function rocket_lazyload_get_option( $option, $default = false ) {
 }
 
 /**
- * Add Lazy Load JavaScript in the header
- * No jQuery or other library is required
+ * Set lazyload options
  *
  * @since 1.0
  */
@@ -74,43 +73,81 @@ function rocket_lazyload_script() {
 		return;
 	}
 
+	$threshold = apply_filters( 'rocket_lazyload_threshold', 300 );
+
+	echo <<<HTML
+	<script>
+	window.lazyLoadOptions = {
+		elements_selector: "img, iframe",
+		data_src: "lazySrc",
+		data_srcset: "lazySrcset",
+		class_loading: "lazyloading",
+		class_loaded: "lazyloaded",
+		threshold: $threshold,
+		callback_set: function(element) {
+			//todo: check fitvids compatibility (class or data-attribute)
+			if (  element.tagName === "IFRAME" && element.classList.contains("fitvidscompatible") ) {
+				if ( element.classList.contains("lazyloaded") ) {
+					//todo: check if $.fn.fitvids() is available
+					if ( typeof $ === "function" ) {
+						$( element ).parent().fitVids();
+					}
+				} else {
+					var temp = setInterval( function() {
+						//todo: check if $.fn.fitvids() is available
+						if ( element.classList.contains("lazyloaded") && typeof $ === "function" ) {
+							$( element ).parent().fitVids();
+							clearInterval( temp );
+						} else {
+							clearInterval( temp );
+						}
+					}, 50 );
+				}
+			} // if element is an iframe
+		}	
+	};
+	</script>
+HTML;
+}
+add_action( 'wp_footer', 'rocket_lazyload_script', 9 );
+
+/**
+ * Enqueue the lazyload script
+ *
+ * @since 1.2
+ * @author Remy Perona
+ */
+function rocket_lazyload_enqueue() {
+	if ( ! rocket_lazyload_get_option( 'images' ) && ! rocket_lazyload_get_option( 'iframes' ) || ! apply_filters( 'do_rocket_lazyload', true ) ) {
+		return;
+	}
+
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	$ll_url = ROCKET_LL_FRONT_JS_URL . 'lazyload-' . ROCKET_LL_JS_VERSION . $suffix . '.js';
 
-	echo <<<HTML
-	<script data-cfasync="false">(function(w,d){function loadScript(c,b){var a=d.createElement("script");a.async=!0;a.readyState?a.onreadystatechange=function(){if("loaded"===a.readyState||"complete"===a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()};a.src=c;d.getElementsByTagName("head")[0].appendChild(a)}loadScript("$ll_url",function(){
-		var rocket_ll = new LazyLoad({
-			elements_selector: "img, iframe",
-			data_src: "lazy-src",
-			data_srcset: "lazy-srcset",
-			class_loading: "lazyloading",
-			class_loaded: "lazyloaded",
-			callback_set: function(element) {
-				//todo: check fitvids compatibility (class or data-attribute)
-				if (  element.tagName === "IFRAME" && element.classList.contains("fitvidscompatible") ) {
-					if ( element.classList.contains("lazyloaded") ) {
-						//todo: check if $.fn.fitvids() is available
-						if ( typeof $ === "function" ) {
-							$( element ).parent().fitVids();
-						}
-					} else {
-						var temp = setInterval( function() {
-							//todo: check if $.fn.fitvids() is available
-							if ( element.classList.contains("lazyloaded") && typeof $ === "function" ) {
-								$( element ).parent().fitVids();
-								clearInterval( temp );
-							} else {
-								clearInterval( temp );
-							}
-						}, 50 );
-					}
-				} // if element is an iframe
-			}	
-		});
-	});})(window,document);</script>
-HTML;
+	wp_enqueue_script( 'rocket-lazyload', $ll_url, null, null, true );
 }
-add_action( 'wp_head', 'rocket_lazyload_script', PHP_INT_MAX );
+add_action( 'wp_enqueue_scripts', 'rocket_lazyload_enqueue', PHP_INT_MAX );
+
+/**
+ * Add tags to the lazyload script to async and prevent concatenation
+ *
+ * @since 1.2
+ * @author Remy Perona
+ *
+ * @param string $tag HTML for the script.
+ * @param string $handle Handle for the script.
+ *
+ * @return string Updated HTML
+ */
+function rocket_lazyload_async_script( $tag, $handle ) {
+	if ( 'rocket-lazyload' === $handle ) {
+		return str_replace( '<script', '<script async data-cfasync="false" data-minify="1"', $tag );
+	}
+
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'rocket_lazyload_async_script', 10, 2 );
 
 /**
  * Replace Gravatar, thumbnails, images in post content and in widget text by LazyLoad
@@ -122,8 +159,8 @@ add_action( 'wp_head', 'rocket_lazyload_script', PHP_INT_MAX );
  * @return string Updated HTML code
  */
 function rocket_lazyload_images( $html ) {
-	// Don't LazyLoad if the thumbnail is in admin, a feed or a post preview.
-	if ( ! rocket_lazyload_get_option( 'images' ) || is_admin() || is_feed() || is_preview() || empty( $html ) || ( defined( 'DONOTLAZYLOAD' ) && DONOTLAZYLOAD ) || wp_script_is( 'twentytwenty-twentytwenty', 'enqueued' ) ) {
+	// Don't LazyLoad if the thumbnail is in admin, a feed, REST API or a post preview.
+	if ( ! rocket_lazyload_get_option( 'images' ) || is_admin() || is_feed() || is_preview() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || empty( $html ) || ( defined( 'DONOTLAZYLOAD' ) && DONOTLAZYLOAD ) || wp_script_is( 'twentytwenty-twentytwenty', 'enqueued' ) ) {
 		return $html;
 	}
 
