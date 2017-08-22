@@ -231,7 +231,7 @@ class SRC_Events extends SRC_Core {
 				);
 
 				foreach ( $this->event_types() as $name => $desc ) {
-
+echo $name . "\n\n";
 					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
 					if ( '' !== $time ) {
 						$events[$date][sanitize_title( $name ) . '_timestamp'] = $time;
