@@ -157,9 +157,18 @@ get_header();
 	</a>
 
 	<div id="standings">
-		<?php echo SRC_Core::championship( '', true ); ?>
+		<?php
 
-		<a href="<?php echo esc_url( get_permalink( get_option( 'src-current-season' ) ) ); ?>" class="highlighted-link">See all championship standings</a>
+		echo SRC_Core::championship( '', true );
+
+		if ( '' === get_option( 'src-current-season' ) ) {
+			$season_id = get_option( 'src-last-season' );
+		} else {
+			$season_id = get_option( 'src-current-season' );
+		}
+
+		?>
+		<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See more information</a>
 
 	</div>
 
