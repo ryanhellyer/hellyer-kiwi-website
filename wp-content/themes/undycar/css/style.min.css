@@ -308,9 +308,9 @@ a img.aligncenter {
     color: #fff;
     text-align: center;
     font-family: "Open Sans", sans-serif;
-    text-shadow: 0 0 2px #000;
     font-weight: 700;
-    border: none; }
+    border: none;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.6); }
   #featured-news form {
     display: inline-block; }
     #featured-news form input {
@@ -553,12 +553,16 @@ td span.tick-mark:before {
 
 /* =Sidebar
 -------------------------------------------------------------- */
+#base-content {
+  float: left;
+  width: 47%; }
+
 #sidebar {
   float: right;
   width: 25%;
   background: #efefef;
   border-left: 6px solid #aaa;
-  padding: 40px;
+  padding: 4%;
   margin: 0 0 60px 40px; }
   #sidebar h3 {
     color: #000;
@@ -841,25 +845,6 @@ input[type=submit],
 
 /* =Smaller devices
 -------------------------------------------------------------- */
-@media only screen and (max-width: 1024px) {
-  /*
-  	// Sidebar setup
-  	#sidebar {
-  		display: none;
-  	}
-  
-  	// Main
-  	#main {
-  		margin: 60px 0 0 0;
-  	}
-  
-  	// Schedule
-  	#schedule {
-  		width: 100%;
-  		padding-right: 0;
-  		padding-left: 0;
-  	}
-  */ }
 @media only screen and (max-width: 768px) {
   #latest-news article {
     width: 48%; }
@@ -929,6 +914,22 @@ input[type=submit],
     #schedule li.post-3, #schedule li.post-4, #schedule li.post-5 {
       display: none; }
 
+  #base-content {
+    width: 100%; }
+
+  #sidebar {
+    border-left: 0;
+    width: 80%;
+    padding: 0 10%; }
+
+  #next-prev-buttons {
+    text-align: center;
+    margin-bottom: 60px; }
+    #next-prev-buttons .alignright,
+    #next-prev-buttons .alignleft {
+      float: none;
+      margin: 5px 0; }
+
   .gallery.gallery-columns-4 .gallery-item {
     width: 100%; }
 
@@ -943,6 +944,14 @@ input[type=submit],
 
   td,
   th {
-    padding: 0.8rem 0.2rem; } }
+    padding: 0.8rem 0.2rem; }
+
+  #site-footer a[href*="twitter.com"], #site-footer a[href*="youtube.com"], #site-footer a[href*="facebook.com"] {
+    margin: 0; }
+  #site-footer a[href*="twitter.com"]:before, #site-footer a[href*="youtube.com"]:before, #site-footer a[href*="facebook.com"]:before {
+    padding: 3px;
+    margin-top: -10px; }
+  #site-footer ul#footer-menu li {
+    margin-left: 10px; } }
 
 /*# sourceMappingURL=style.min.css.map */

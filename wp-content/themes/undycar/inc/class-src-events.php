@@ -336,24 +336,24 @@ class SRC_Events extends SRC_Core {
 
 		$track_url = get_permalink( $this->event['current_round']['track'] );
 
-		$html = '
+		$sidebar_html = '
 		<div id="sidebar">
 ';
 
 		if ( isset( $track_logo_image_url ) ) {
-			$html .= '
+			$sidebar_html .= '
 			<a href="' . esc_url( $track_url ) . '">
 				<img style="width:100%;" src="' . esc_url( $track_logo_image_url ) . '" />
 			</a>';
 		}
 
-		$html .= '
+		$sidebar_html .= '
 			<p>
 				<strong>' . esc_html( $date ) . '</strong>
 			</p>';
 
 		foreach ( $this->event_types() as $name => $desc ) {
-			$html .= '<p>';
+			$sidebar_html .= '<p>';
 			$meta_key = 'event_' . sanitize_title( $name ) . '_timestamp';
 			$time = get_post_meta( get_the_ID(), $meta_key, true );
 			if ( '' !== $time ) {
@@ -378,18 +378,20 @@ class SRC_Events extends SRC_Core {
 
 				}
 
-				$html .= '<strong>' . esc_html( $desc ) . '</strong><br />Start time: ' . esc_html( $time ) . ' GMT';
+				$sidebar_html .= '<strong>' . esc_html( $desc ) . '</strong><br />Start time: ' . esc_html( $time ) . ' GMT';
 				if ( '' !== $length ) {
-					$html .= '<br />Length: ' . esc_html( $length );
+					$sidebar_html .= '<br />Length: ' . esc_html( $length );
 				}
-				$html .= '<br />' . $extra_session_info;
+				$sidebar_html .= '<br />' . $extra_session_info;
 			}
-			$html .= '</p>';
+			$sidebar_html .= '</p>';
 		}
 
 		$season_id = get_post_meta( get_the_ID(), 'season', true );
-		$html .= '
+		$sidebar_html .= '
 		</div>';
+
+		$html = '';
 
 		// If no content is present, then lets auto-generate it ... 
 		if ( '' === $content ) {
@@ -450,10 +452,6 @@ class SRC_Events extends SRC_Core {
 
 		}
 
-		$content = $html . $content;
-
-
-
 		$track_map = $this->event['current_round']['track_map'];
 		$track_map_image = wp_get_attachment_image_src( $track_map, 'large' );
 		if ( isset( $track_map_image[0] ) ) {
@@ -477,6 +475,8 @@ class SRC_Events extends SRC_Core {
 			$content .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'src' ) . '&raquo;</a>';
 		}
 		$content .= '</div>';
+
+		$content = '<div id="base-content">' . $html . $content . '</div>' . $sidebar_html;
 
 		return $content;
 
