@@ -26,7 +26,6 @@ class SRC_Events extends SRC_Core {
 
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
-		add_filter( 'src_featured_title',     array( $this, 'filtered_featured_title' ) );
 		add_filter( 'the_content',            array( $this, 'add_results' ), 9 );
 
 		// iRacing results uploader
@@ -49,23 +48,6 @@ class SRC_Events extends SRC_Core {
 		}
 
 		return $image_url;
-	}
-
-	/**
-	 * When on event, use tracks featured title.
-	 *
-	 * @string  string  $title   The featured title
-	 * @return  string  The modified featured title
-	 */
-	public function filtered_featured_title( $title ) {
-
-		if ( 'event' === get_post_type() ) {
-			$title = __( 'Round', 'src' ) . ' ' . $this->event['round_number'] . ': ' . $this->event['season_name'];
-			$title .= "\n";
-			$title .= $this->event['current_round']['track_name'];
-		}
-
-		return $title;
 	}
 
 	/**
