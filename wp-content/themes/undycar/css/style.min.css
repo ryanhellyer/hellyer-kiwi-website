@@ -250,14 +250,18 @@ a img.aligncenter {
 #featured-news {
   position: relative;
   width: 100%;
-  height: 550px;
   margin-top: 70px;
   background-position: center 0;
   background-size: cover;
   text-align: center; }
-  body.error404 #featured-news, body.single #featured-news, body.page #featured-news {
+  body.home.page #featured-news {
+    height: 550px; }
+    body.home.page #featured-news h1 {
+      font-size: 3rem;
+      line-height: 1; }
+  body.error404 #featured-news, body.single #featured-news, body.archive #featured-news, body.blog #featured-news, body.page #featured-news {
     height: 300px; }
-    body.error404 #featured-news h1, body.single #featured-news h1, body.page #featured-news h1 {
+    body.error404 #featured-news h1, body.single #featured-news h1, body.archive #featured-news h1, body.blog #featured-news h1, body.page #featured-news h1 {
       font-size: 5rem;
       line-height: 5rem; }
   #featured-news .text {
@@ -271,7 +275,6 @@ a img.aligncenter {
     color: #fff;
     text-align: center;
     font-family: "Open Sans", sans-serif;
-    font-size: 3rem;
     text-shadow: 0 0 2px #000;
     font-weight: 700;
     border: none; }
@@ -313,7 +316,7 @@ a img.aligncenter {
     padding-left: 30px;
     color: #000; }
   #latest-news date {
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 0.8rem; }
@@ -329,6 +332,14 @@ a img.aligncenter {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px; }
+
+/* =Avatar
+-------------------------------------------------------------- */
+.avatar {
+  float: right;
+  width: 33%;
+  height: auto;
+  margin: 0 0 60px 60px; }
 
 /* =Schedule
 -------------------------------------------------------------- */
@@ -798,19 +809,30 @@ input[type=submit],
 /* =Smaller devices
 -------------------------------------------------------------- */
 @media only screen and (max-width: 1024px) {
-  #sidebar {
-    display: none; }
-
-  #main {
-    margin: 60px 0 0 0; }
-
-  #schedule {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0; } }
+  /*
+  	// Sidebar setup
+  	#sidebar {
+  		display: none;
+  	}
+  
+  	// Main
+  	#main {
+  		margin: 60px 0 0 0;
+  	}
+  
+  	// Schedule
+  	#schedule {
+  		width: 100%;
+  		padding-right: 0;
+  		padding-left: 0;
+  	}
+  */ }
 @media only screen and (max-width: 768px) {
-  #main article {
-    width: 80%; }
+  #latest-news article {
+    width: 48%; }
+
+  #schedule li {
+    width: 18%; }
 
   #results .other-race {
     display: none; }
@@ -827,6 +849,59 @@ input[type=submit],
     #site-footer ul {
       margin: 0; }
     #site-footer li {
-      margin-right: 0; } }
+      margin-right: 0; }
+
+  #social-icons {
+    clear: both; } }
+@media only screen and (max-width: 481px) {
+  #site-header {
+    height: 40px; }
+    #site-header h1 {
+      font-size: 32px;
+      background-size: 25%;
+      text-indent: 71px;
+      height: 40px; }
+
+  #featured-news {
+    margin-top: 40px; }
+    #featured-news h1 {
+      width: 90%;
+      padding: 5%; }
+    #featured-news form input {
+      margin-bottom: 10px; }
+    #featured-news form input[type=submit],
+    #featured-news form .button {
+      min-width: 50%; }
+    body.error404 #featured-news, body.single #featured-news, body.archive #featured-news, body.blog #featured-news, body.page #featured-news {
+      height: 300px; }
+      body.error404 #featured-news h1, body.single #featured-news h1, body.archive #featured-news h1, body.blog #featured-news h1, body.page #featured-news h1 {
+        font-size: 2.5rem;
+        line-height: 2.5rem; }
+
+  #latest-news article {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px; }
+
+  #schedule li {
+    width: 46%; }
+    #schedule li.post-3, #schedule li.post-4, #schedule li.post-5 {
+      display: none; }
+
+  .gallery.gallery-columns-4 .gallery-item {
+    width: 100%; }
+
+  .gallery .gallery-item {
+    margin: 3% 0; }
+
+  .col-fp1,
+  .col-fp2,
+  .col-number,
+  .col-nationality {
+    display: none; }
+
+  td,
+  th {
+    padding: 0.8rem 0.2rem; } }
 
 /*# sourceMappingURL=style.min.css.map */
