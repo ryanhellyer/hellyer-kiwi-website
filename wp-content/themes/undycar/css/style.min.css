@@ -86,6 +86,39 @@ address {
       font-size: 50px;
       content: "\e906"; }
 
+#main-menu {
+  min-width: 300px;
+  max-width: 300px;
+  width: 90%;
+  position: absolute;
+  right: -300px;
+  top: 70px;
+  background: #202020;
+  height: calc(100vh - 70px);
+  transition: 0.3s; }
+  #main-menu.menu-open {
+    display: block;
+    right: 0; }
+  #main-menu li {
+    display: block;
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #111; }
+    #main-menu li:last-child {
+      border-bottom: none; }
+  #main-menu a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    padding: 25px 30px; }
+    #main-menu a:hover {
+      text-decoration: none;
+      background: #333; }
+
 /* =Gallery
 -------------------------------------------------------------- */
 #add-a-photo {
@@ -857,10 +890,18 @@ input[type=submit],
   #site-header {
     height: 40px; }
     #site-header h1 {
-      font-size: 32px;
-      background-size: 25%;
-      text-indent: 71px;
+      border-left: 5px solid #e43146;
+      font-size: 33px;
+      background-size: 26%;
+      text-indent: 75px;
       height: 40px; }
+    #site-header nav:before {
+      font-size: 34px;
+      margin: 2px 7px 0 0; }
+
+  #main-menu {
+    top: 40px;
+    height: calc(100vh - 40px); }
 
   #featured-news {
     margin-top: 40px; }

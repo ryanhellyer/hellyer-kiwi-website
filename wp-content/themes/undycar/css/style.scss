@@ -127,6 +127,53 @@ address {
 
 }
 
+#main-menu {
+	min-width: 300px;
+	max-width: 300px;
+	width: 90%;
+	position: absolute;
+	right: -300px;
+	top: $header_height;
+	background: #202020;
+	height: calc(100vh - 70px);
+	transition: 0.3s;
+
+	&.menu-open {
+		display: block;
+		right: 0;
+	}
+
+	li {
+		display: block;
+		width: 100%;
+		font-family: "Open Sans", sans-serif;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		font-weight: 800;
+		border-top: 1px solid #333;
+		border-bottom: 1px solid #111;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+	}
+
+	a {
+		color: #fff;
+		display: block;
+		width: 100%;
+		padding: 25px 30px;
+
+		&:hover {
+			text-decoration: none;
+			background: #333;
+		}
+
+	}
+
+}
+
 /* =Gallery
 -------------------------------------------------------------- */
 
@@ -1262,12 +1309,27 @@ input[type=submit],
 		height: $header_height_mobile;
 
 		h1 {
-			font-size: 32px;
-			background-size: 25%;
-			text-indent: 71px;
+			border-left: 5px solid #e43146;
+			font-size: 33px;
+			background-size: 26%;
+			text-indent: 75px;
 			height: $header_height_mobile;
 		}
 
+		nav {
+
+			&:before {
+				font-size: 34px;
+				margin: 2px 7px 0 0;
+			}
+
+		}
+
+	}
+
+	#main-menu {
+		top: $header_height_mobile;
+		height: calc(100vh - 40px);
 	}
 
 	#featured-news {
