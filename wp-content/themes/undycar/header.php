@@ -67,7 +67,17 @@ if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
 	$title = '404 error';
 	$content = '';
 	$image_url = get_template_directory_uri() . '/images/cars/404-page.jpg';
-} else if ( is_single() || is_page() ) {
+} else if ( is_archive() || is_home() ) {
+
+	$title = get_the_title( get_option( 'page_for_posts' ) );
+	$content = '';
+	$image_url = get_the_post_thumbnail_url( get_option( 'page_for_posts' ), 'src-featured' );
+
+} else if (
+	( is_single() || is_page() )
+	&&
+	! is_front_page()
+) {
 
 	$title = get_the_title( get_the_ID() );
 	$content = '';
