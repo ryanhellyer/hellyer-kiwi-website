@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - CMB2 - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-15 16:55:19+0000\n"
+"PO-Revision-Date: 2017-08-22 22:33:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_CA\n"
 "Project-Id-Version: Plugins - CMB2 - Development (trunk)\n"
+
+#: includes/CMB2_Hookup_Base.php:42
+msgid "%1$s should be implemented by the extended class."
+msgstr "%1$s should be implemented by the extended class."
 
 #. Author URI of the plugin/theme
 msgid "https://cmb2.io"
@@ -39,7 +43,7 @@ msgstr "Settings updated."
 msgid "Theme Options"
 msgstr "Theme Options"
 
-#: includes/CMB2_hookup.php:437
+#: includes/CMB2_hookup.php:458
 msgid "Toggle panel: %s"
 msgstr "Toggle panel: %s"
 
@@ -47,23 +51,23 @@ msgstr "Toggle panel: %s"
 msgid "Custom CMB2 field type classes must extend CMB2_Type_Base."
 msgstr "Custom CMB2 field type classes must extend CMB2_Type_Base."
 
-#: example-functions.php:729
+#: example-functions.php:730
 msgid "Will show in REST API \"editable\" contexts only (`POST` requests)."
 msgstr "Will show in REST API \"editable\" contexts only (`POST` requests)."
 
-#: example-functions.php:728
+#: example-functions.php:729
 msgid "REST Editable Test Text"
 msgstr "REST Editable Test Text"
 
-#: example-functions.php:722
+#: example-functions.php:723
 msgid "Will show in the REST API for this box and for pages."
 msgstr "Will show in the REST API for this box and for pages."
 
-#: example-functions.php:721
+#: example-functions.php:722
 msgid "REST Test Text"
 msgstr "REST Test Text"
 
-#: example-functions.php:712
+#: example-functions.php:713
 msgid "REST Test Box"
 msgstr "REST Test Box"
 
@@ -95,11 +99,11 @@ msgstr "Current page of the collection."
 #: includes/shim/WP_REST_Controller.php:142
 #: includes/shim/WP_REST_Controller.php:154
 #: includes/shim/WP_REST_Controller.php:167
-msgid "Method '%s' not implemented. Must be over-ridden in subclass."
-msgstr "Method '%s' not implemented. Must be over-ridden in subclass."
+msgid "Method '%s' not implemented. Must be overridden in subclass."
+msgstr "Method '%s' not implemented. Must be overridden in subclass."
 
 #: includes/shim/WP_REST_Controller.php:24
-msgid "The register_routes() method must be overriden"
+msgid "The register_routes() method must be overridden"
 msgstr "The register_routes() method must be overridden"
 
 #: includes/rest-api/CMB2_REST_Controller_Fields.php:415
@@ -172,8 +176,8 @@ msgstr "This box does not have read permissions."
 msgid "Invalid %1$s method: %2$s"
 msgstr "Invalid %1$s method: %2$s"
 
-#: includes/CMB2_Base.php:475 includes/CMB2_Hookup_Base.php:87
-#: includes/types/CMB2_Type_Base.php:149
+#: includes/CMB2_Base.php:475 includes/CMB2_Hookup_Base.php:100
+#: includes/CMB2_Options_Hookup.php:233 includes/types/CMB2_Type_Base.php:149
 msgid "Invalid %1$s property: %2$s"
 msgstr "Invalid %1$s property: %2$s"
 
@@ -219,11 +223,11 @@ msgstr "Sorry, this field does not have a cmb_id specified."
 msgid "Custom Rendered Field"
 msgstr "Custom Rendered Field"
 
-#: includes/CMB2_hookup.php:167
+#: includes/CMB2_hookup.php:185
 msgid "Term metaboxes configuration requires a \"taxonomies\" parameter."
 msgstr "Term metaboxes configuration requires a \"taxonomies\" parameter."
 
-#: includes/CMB2_hookup.php:163
+#: includes/CMB2_hookup.php:181
 msgid "Term Metadata is a WordPress 4.4+ feature. Please upgrade your WordPress install."
 msgstr "Term Metadata is a WordPress 4.4+ feature. Please upgrade your WordPress install."
 
@@ -403,15 +407,15 @@ msgstr "Remove Embed"
 msgid "Please Try Again"
 msgstr "Please Try Again"
 
-#: includes/CMB2.php:546
+#: includes/CMB2.php:553
 msgid "Click to toggle"
 msgstr "Click to toggle"
 
-#: includes/CMB2.php:174
+#: includes/CMB2.php:175
 msgid "Metabox configuration is required to have an ID parameter."
 msgstr "Metabox configuration is required to have an ID parameter."
 
-#: example-functions.php:676
+#: example-functions.php:677
 msgid "Site Background Color"
 msgstr "Site Background Colour"
 
@@ -656,7 +660,7 @@ msgstr "Test Text Small"
 #: example-functions.php:577 example-functions.php:584
 #: example-functions.php:591 example-functions.php:618
 #: example-functions.php:626 example-functions.php:633
-#: example-functions.php:677
+#: example-functions.php:678
 msgid "field description (optional)"
 msgstr "field description (optional)"
 
