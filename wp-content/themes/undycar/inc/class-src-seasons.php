@@ -128,7 +128,15 @@ class SRC_Seasons extends SRC_Core {
 
 				// Only load the columns being used
 				if ( true === $column ) {
-					$html .= '<th>' . esc_html( $label ) . '</th>';
+
+					// Shortening stuff for mobile
+					if ( 'Qualifying' === $label ) {
+						$label = 'Qual';
+					} else if ( 'Num' === $label ) {
+						$label = '#';
+					}
+
+					$html .= '<th class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . esc_html( $label ) . '</th>';
 				}
 
 			}
@@ -180,7 +188,7 @@ class SRC_Seasons extends SRC_Core {
 							}
 						}
 
-						$html .= '<td>' . $text /* do not escape */ . '</td>';
+						$html .= '<td class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . $text /* do not escape */ . '</td>';
 
 					}
 

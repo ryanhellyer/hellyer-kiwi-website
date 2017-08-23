@@ -92,24 +92,45 @@ class SRC_Core {
 			$content .= '<thead><tr>';
 
 			$content .= '
-				<th>Pos</th>
-				<th>Name</th>
-				<th>Num</th>
-				<th>Nationality</th>
-				<th>Pts</th>';
+				<th class="col-pos">Pos</th>
+				<th class="col-name">Name</th>
+				<th class="col-number">Num</th>
+				<th class="col-nationality">Nationality</th>
+				<th class="col-pts">Pts</th>';
 			$content .= '</tr></thead>';
 
 			$content .= '<tbody>';
+
 			$position = 0;
+			$car_number = '';
+			$nationality = '';
 			foreach ( $stored_results as $name => $points ) {
 				$position++;
+
+				$linked_name = $name;
+				$member = get_user_by( 'login', sanitize_title( $name ) );
+				if ( isset( $member->data->ID ) ) {
+					$member_id = $member->data->ID;
+
+					if ( '' !== get_user_meta( $member_id, 'car_number', true ) ) {
+						$car_number = get_user_meta( $member_id, 'car_number', true );
+					}
+
+					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
+						$nationality = get_user_meta( $member_id, 'nationality', true );
+					}
+
+					$linked_name = '<a href="' . esc_url( home_url() . '/members/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
+
+				}
+
 				$content .= '<tr>';
 
-				$content .= '<td>' . esc_html( $position ) . '</td>';
-				$content .= '<td><a href="#">' . esc_html( $name ) . '</a></td>';
-				$content .= '<td>27</td>';
-				$content .= '<td>NZL</td>';
-				$content .= '<td>' . esc_html( $points ) . '</td>';
+				$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
+				$content .= '<td class="col-name">' . $linked_name . '</td>';
+				$content .= '<td class="col-number">' . esc_html( $car_number ) . '</td>';
+				$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
+				$content .= '<td class="col-pts">' . esc_html( $points ) . '</td>';
 
 				$content .= '</tr>';
 			}

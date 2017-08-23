@@ -3,7 +3,6 @@
 	window.addEventListener(
 		'load',
 		function (){
-			set_featured_news_height();
 			set_standings_sidebars();
 		}
 	);
@@ -14,46 +13,21 @@
 	window.addEventListener(
 		'click',
 		function (e){
+			if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id) {
+				console.log( 'clicked' );
+//console.log( e.target.children[0.style.display = 'block' );
 
-			// Applications topic - transfers custom selections to a normal topic submission
-			if ( 'bbp_topic_submit' === e.target.id ) {
+var menu = e.target.children[0];
+//var menu = document.querySelector('.menu') // Using a class instead, see note below.
+menu.classList.toggle('menu-open');
 
-				var src_drive_name  = document.getElementById( 'src-driver-name' );
-				var src_team_name   = document.getElementById( 'src-team-name' );
-				var src_vehicle     = document.getElementById( 'src-vehicle' );
-				var src_description = document.getElementById( 'src-description' );
-				var src_number      = document.getElementById( 'src-number' );
-
-				var src_topic_title = document.getElementById( 'bbp_topic_title' );
-				var src_topic_textarea = document.getElementById( 'bbp_topic_content' );
-				src_topic_title.value = 'driver name';
-				src_topic_textarea.innerHTML = 'Team name: ' + src_team_name.value + "\n\nVehicle: " + src_vehicle.value + "\n\nDescription: " + src_description.value + "\n\nNumber: " + src_number.value;
-
-				//e.preventDefault();
-				//e.stopPropagation();
-			}
-
-			// Menu button click
-			var main_menu_wrap = document.getElementById( 'main-menu-wrap' );
-			if (
-				'main-menu-wrap' === e.target.id
-				&&
-				'open' != main_menu_wrap.className
-			) {
-				main_menu_wrap.classList.add('open');
-			} else if (
-				'open' === main_menu_wrap.className
-				||
-				'main-menu-wrap' === e.target.id
-			) {
-				main_menu_wrap.classList.remove('open');
-			} else if (
-				'add-a-photo' === e.target.id
-			) {
-				var gallery_uploader = document.getElementById( 'gallery-uploader' );
-				document.getElementById( 'gallery-uploader' ).className = 'clicked';
-
-				e.preventDefault()
+/*
+				if ( 'none' === e.target.children[0].style.display ) {
+					e.target.children[0].style.display = 'block';
+				} else {
+					e.target.children[0].style.display = 'none';
+				}
+*/
 			}
 
 		}
@@ -162,15 +136,6 @@
 		}
 
 	});
-
-	function set_featured_news_height() {
-return;
-		var featured_news = document.getElementById("featured-news");
-
-		if ( null !== featured_news ) {
-			featured_news.style.height = ( window.innerHeight * 0.5 ) + "px";
-		}
-	}
 
 	function set_standings_sidebars() {
 

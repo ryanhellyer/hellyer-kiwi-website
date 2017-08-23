@@ -38,7 +38,7 @@ class SRC_Events extends SRC_Core {
 
 	/**
 	 * When on event, use tracks featured image.
-	 *c
+	 *
 	 * @string  string  $image_url  The featured image URL
 	 * @return  string  The modified image URL
 	 */
