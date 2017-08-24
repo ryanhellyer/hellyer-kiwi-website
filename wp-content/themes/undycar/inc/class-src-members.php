@@ -177,6 +177,7 @@ class SRC_Members extends SRC_Core {
 		$member_path = str_replace( 'http://', '', home_url() );
 		$member_path = str_replace( 'https://', '', $member_path );
 		$member_path = str_replace( $_SERVER['SERVER_NAME'], '', $member_path );
+		$member_path = str_replace( $_SERVER['HTTP_HOST'], '', $member_path );
 		$member_path = $member_path . '/member/';
 print_r( $_SERVER );
 echo "\n\n\n".$_SERVER['REQUEST_URI'] . "\n--------\n" . $member_path;
