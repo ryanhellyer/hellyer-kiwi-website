@@ -161,6 +161,8 @@ get_header();
 
 		echo SRC_Core::championship( '', true );
 
+echo 'x'.get_option( 'src-current-season' ).'x';
+
 		if ( '' === get_option( 'src-current-season' ) ) {
 			$season_id = get_option( 'src-last-season' );
 		} else {
