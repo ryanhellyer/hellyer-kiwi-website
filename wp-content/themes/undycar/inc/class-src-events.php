@@ -622,12 +622,12 @@ class SRC_Events extends SRC_Core {
 					}
 
 				}
+
 				$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
-print_r( $results );
 				update_post_meta( $post_id, '_results_' . $race_number, $results );
 			}
+
 		}
-die('done');
 
 	}
 
