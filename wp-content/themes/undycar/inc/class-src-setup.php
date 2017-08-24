@@ -79,7 +79,7 @@ class SRC_Theme_Setup {
 
 		add_image_size( 'src-featured', 1920, 300, true );
 		add_image_size( 'src-logo', 300, 150, true );
-		add_image_size( 'src-four', 240, 120, true );
+		add_image_size( 'src-four', 480, 240, true );
 		add_image_size( 'src-three', 580, 305, true );
 
 	}
