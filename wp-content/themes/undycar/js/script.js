@@ -19,7 +19,7 @@
 				menu.classList.toggle('menu-open');
 			} else if ( 'A' !== e.target.tagName ) {
 				var menu = document.getElementById( 'main-menu' );
-				menu.classList.toggle('menu-open');
+				menu.classList.remove('menu-open');
 			}
 
 		}
