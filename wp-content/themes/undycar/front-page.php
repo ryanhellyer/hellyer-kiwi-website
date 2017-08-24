@@ -134,15 +134,16 @@ get_header();
 
 				echo esc_html( $event['track_type'] );
 
+				$day_of_week = date( 'D', $event['event_date'] );
 				$month = date( 'M', $event['event_date'] );
 				$day_of_month = date( 'd', $event['event_date'] );
 
 				?>
 
 				<date>
+					<?php echo esc_html( $day_of_week ); ?>
 					<span><?php echo esc_html( $day_of_month ); ?></span>
 					<?php echo esc_html( $month ); ?>
-
 				</date>
 			</a>
 		</li><?php
