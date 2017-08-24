@@ -12,7 +12,7 @@ get_header();
 
 <section id="latest-news">
 	<header>
-		<h2>Latest news</h2>
+		<h2>Latest News</h2>
 	</header><?php
 
 	// Load main loop
@@ -34,7 +34,7 @@ get_header();
 
 			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
 				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
-					<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-three' ) ) . '" />
+					<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-four' ) ) . '" />
 					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
 					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
 				</a>
