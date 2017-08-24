@@ -13,21 +13,13 @@
 	window.addEventListener(
 		'click',
 		function (e){
+
 			if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id) {
-				console.log( 'clicked' );
-//console.log( e.target.children[0.style.display = 'block' );
-
-var menu = e.target.children[0];
-//var menu = document.querySelector('.menu') // Using a class instead, see note below.
-menu.classList.toggle('menu-open');
-
-/*
-				if ( 'none' === e.target.children[0].style.display ) {
-					e.target.children[0].style.display = 'block';
-				} else {
-					e.target.children[0].style.display = 'none';
-				}
-*/
+				var menu = e.target.children[0];
+				menu.classList.toggle('menu-open');
+			} else if ( 'A' !== e.target.tagName ) {
+				var menu = document.getElementById( 'main-menu' );
+				menu.classList.toggle('menu-open');
 			}
 
 		}
