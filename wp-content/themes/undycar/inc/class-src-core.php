@@ -37,8 +37,9 @@ class SRC_Core {
 	 * @param  string  $content   The post content
 	 * @param  bool    $bypass    true if bypassing post-type check
 	 * @param  int     $limit     the max number of drivers to show
+	 * @param  string  $title     title to use
 	 */
-	static function championship( $content, $bypass = false, $limit = 100 ) {
+	static function championship( $content, $bypass = false, $limit = 100, $title = false ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -106,8 +107,12 @@ class SRC_Core {
 		arsort( $stored_results );
 		wp_reset_query();
 
+		if ( false === $title ) {
+			$title = __( 'Championship', 'src' );
+		}
+
 		if ( array() !== $stored_results ) {
-			$content .= '<h3>' . esc_html__( 'Championship', 'src' ) . '</h3>';
+			$content .= '<h3>' . esc_html( $title ) . '</h3>';
 			$content .= '<table id="src-championship">';
 
 			$content .= '<thead><tr>';

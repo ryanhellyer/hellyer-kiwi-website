@@ -174,13 +174,14 @@ get_header();
 	<div id="standings">
 		<?php
 
-		echo SRC_Core::championship( '', true, 10 );
-
 		if ( '' === get_option( 'current-season' ) ) {
 			$season_id = get_option( 'last-season' );
 		} else {
 			$season_id = get_option( 'current-season' );
 		}
+
+		$championship_title = esc_html( get_the_title( $season_id ) . ' Championship' );
+		echo SRC_Core::championship( '', true, 10, $championship_title );
 
 		?>
 		<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See full championship standings</a>
