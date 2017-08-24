@@ -45,10 +45,10 @@ class SRC_Core {
 
 		if ( is_front_page() ) {
 
-			if ( '' === get_option( 'src-current-season' ) ) {
-				$season_id = get_option( 'src-last-season' );
+			if ( '' === get_option( 'current-season' ) ) {
+				$season_id = get_option( 'last-season' );
 			} else {
-				$season_id = get_option( 'src-current-season' );
+				$season_id = get_option( 'current-season' );
 			}
 
 		} else {
