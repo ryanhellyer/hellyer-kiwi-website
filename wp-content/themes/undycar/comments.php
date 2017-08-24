@@ -55,7 +55,13 @@ if ( have_comments() ) { ?>
 	hellish_comments_navigation( 'comment-nav-above' );
 	?>
 
-	<ol class="commentlist"><?php wp_list_comments(); ?></ol><!-- .commentlist --><?php
+	<ol class="commentlist"><?php
+
+wp_list_comments( array(
+	'avatar_size' => 96,
+) );
+
+	?></ol><!-- .commentlist --><?php
 
 	hellish_comments_navigation( 'comment-nav-below' );
 
