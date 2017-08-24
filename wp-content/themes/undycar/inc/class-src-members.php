@@ -104,7 +104,7 @@ class SRC_Members extends SRC_Core {
 				),
 				'description'        => array(
 					'meta_key' => 'description',
-					'sanitize' => 'wp_kses_limited',
+					'sanitize' => 'wp_kses_post',
 				),
 				'car-number'         => array(
 					'meta_key' => 'car_number',
