@@ -96,14 +96,18 @@ get_header();
 
 			}
 
-			$event_array[$event_date] = array(
-				'event_id'        => $event_id,
-				'track_logo'      => $track_logo,
-				'track_name'      => $track_name,
-				'track_type_slug' => $track_type_slug,
-				'track_type'      => $track_type,
-				'event_date'      => $event_date,
-			);
+			if ( $event_date > time() ) {
+
+				$event_array[$event_date] = array(
+					'event_id'        => $event_id,
+					'track_logo'      => $track_logo,
+					'track_name'      => $track_name,
+					'track_type_slug' => $track_type_slug,
+					'track_type'      => $track_type,
+					'event_date'      => $event_date,
+				);
+
+			}
 
 		}
 	}
