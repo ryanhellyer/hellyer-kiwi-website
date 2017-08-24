@@ -163,43 +163,11 @@ class SRC_Register extends SRC_Core {
 				return;
 			}
 
-			// Create the user
-			$user_data = array(
-				'user_login'   => $username,
-				'display_name' => $display_name,
-				'user_pass'    => $password,
-				'user_email'   => $email,
-			);
-			$user_id = wp_insert_user( $user_data ) ;
-
-			// If no error, then add meta keys and log the person in
-			if ( ! is_wp_error( $user_id ) ) {
-
-				// Add some meta keys
-				$meta_keys = array(
-					'location',
-					'oval_avg_inc',
-					'oval_license',
-					'oval_irating',
-					'road_avg_inc',
-					'road_license',
-					'road_irating',
-					'custid',
-				);
-				foreach ( $meta_keys as $meta_key ) {
-					update_user_meta(
-						$user_id,
-						esc_html( $meta_key ),
-						esc_html( $member_info[$meta_key] )
-					);
-				}
-
+			// Register user and log them in
+			if ( true === $this->register_user( $username, $display_name, $password, $email ) ) {
 				// Log the user in
 				$this->attempt_user_login( $user_id, $username, $email, $password );
-			} else {
-				define( 'SRC_LOGIN_ERROR', true );
 			}
-
 		}
 
 	}
@@ -315,26 +283,5 @@ class SRC_Register extends SRC_Core {
 
 	}
 
-	/**
-	 * Does the name exist within iRacing?
-	 * If they do return their info.
-	 *
-	 * @param  string  $display_name  Name of member
-	 * @return array|bool   array if member exists in iRacing, otherwise false
-	 */
-	public function iracing_member_info( $display_name ) {
-		$dir = wp_upload_dir();
-
-		$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
-		$stats = json_decode( $stats, true );
-
-		// If user exists in iRacing, then return their stats, otherwise return false
-		if ( isset( $stats[$display_name] ) ) {
-			return $stats[$display_name];
-		} else {
-			return false;
-		}
-
-	}
 
 }

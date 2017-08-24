@@ -504,14 +504,31 @@ class SRC_Events extends SRC_Core {
 	public function results_upload_metabox_html() {
 		echo '
 		<p>
-			<input type="file" name="result-file" />
-			<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
+			<label for="result-1-file">' . esc_html__( 'Race 1 results', 'src' ) . '</label>
+			<input type="file" id="result-1-file" name="result-1-file" />
 		</p>
 		<p>
-			' . print_r(
-					get_post_meta( get_the_ID(), json_decode( '_results' ), true ),
+			<label for="result-2-file">' . esc_html__( 'Race 2 results', 'src' ) . '</label>
+			<input type="file" id="result-2-file" name="result-2-file" />
+		</p>
+		<p>
+			<label for="result-3-file">' . esc_html__( 'Race 3 results', 'src' ) . '</label>
+			<input type="file" id="result-3-file" name="result-3-file" />
+		</p>
+		<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
+		<p>';
+
+
+		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+			echo '
+			<textarea style="font-family:monospace;font-size:9px;line-height:9px;width:100%;height:100px;">' . 
+				print_r(
+					json_decode( get_post_meta( get_the_ID(), '_results_' . $race_number, true ), true ),
 					true
-				) . '
+				) . 
+			'</textarea>';
+		}
+		echo '
 
 		</p>';
 	}
@@ -524,64 +541,86 @@ class SRC_Events extends SRC_Core {
 	 */
 	public function results_upload_save( $post_id, $post ) {
 
+		if ( ! isset( $_POST['result-nonce'] ) ) {
+			return $post_id;
+		}
 
-		// Only save if correct post data sent
-		if ( isset( $_FILES['result-file']['tmp_name'] ) ) {
+		// Do nonce security check
+		if ( ! wp_verify_nonce( $_POST['result-nonce'], __FILE__ ) ) {
+			return $post_id;
+		}
 
-			// Do nonce security check
-			if ( ! wp_verify_nonce( $_POST['result-nonce'], __FILE__ ) ) {
-				return;
-			}
+		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-			// Get the file and split it into rows
-			$temp_file =  $_FILES['result-file']['tmp_name'];
-			$csv = file_get_contents( $temp_file );
-			$rows = explode( "\n", $csv );
+			// Only save if correct post data sent
+			if ( isset( $_FILES['result-' . $race_number . '-file']['tmp_name'] ) && '' !== $_FILES['result-' . $race_number . '-file']['tmp_name'] ) {
+
+				// Get the file and split it into rows
+				$temp_file =  $_FILES['result-' . $race_number . '-file']['tmp_name'];
+				$csv = file_get_contents( $temp_file );
+				$rows = explode( "\n", $csv );
 
 
-			$column_labels = $rows[3];
+				$column_labels = $rows[3];
 
-			unset( $rows[0] );
-			unset( $rows[1] );
-			unset( $rows[2] );
-			unset( $rows[3] );
+				unset( $rows[0] );
+				unset( $rows[1] );
+				unset( $rows[2] );
+				unset( $rows[3] );
 
-			$columns_to_keep = array(
-				7 => 'name',
-				8 => 'start_pos',
-				9 => 'car_no',
-				11 => 'out',
-				12 => 'interval',
-				13 => 'laps_led',
-				14 => 'qual_time',
-				15 => 'avg_lap_time',
-				16 => 'fastest_lap_time',
-				17 => 'fastest_lap',
-				18 => 'laps-completed',
-				19 => 'incidents',
-			);
+				$columns_to_keep = array(
+					7 => 'name',
+					8 => 'start_pos',
+					9 => 'car_no',
+					11 => 'out',
+					12 => 'interval',
+					13 => 'laps_led',
+					14 => 'qual_time',
+					15 => 'avg_lap_time',
+					16 => 'fastest_lap_time',
+					17 => 'fastest_lap',
+					18 => 'laps-completed',
+					19 => 'incidents',
+				);
 
-			$results = array();
-			foreach ( $rows as $key => $row ) {
-				$row = str_replace( '"', '', $row );
+				$results = array();
+				foreach ( $rows as $key => $row ) {
+					$row = str_replace( '"', '', $row );
 
-				$driver_result = array();
-				$row_array = explode( ',', $row );
-				foreach ( $row_array as $column_number => $cell ) {
+					$driver_result = array();
+					$row_array = explode( ',', $row );
 
-					if ( isset( $columns_to_keep[$column_number] ) ) {
+					// Register the member if they're not in the system already
+					$display_name = $row_array[7];
+					$username = sanitize_title( $display_name );
+					if ( ! username_exists( sanitize_title( $username ) ) ) {
 
-						$column_name = $columns_to_keep[$column_number];
-						$results[ $row_array[0] ][$column_name] = utf8_encode( $cell );
+						// Check if iRacing member exists
+						if ( $member_info = $this->iracing_member_info( $display_name ) ) {
+
+							// Register user
+							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@me.com', $member_info );
+
+						}
+
+					}
+
+					foreach ( $row_array as $column_number => $cell ) {
+
+						if ( isset( $columns_to_keep[$column_number] ) ) {
+
+							$column_name = $columns_to_keep[$column_number];
+							$results[ $row_array[0] ][$column_name] = utf8_encode( $cell );
+
+						}
 
 					}
 
 				}
 
+				$results = json_encode( $results );
+				update_post_meta( $post_id, '_results_' . $race_number, $results );
 			}
-
-			$results = json_encode( $results );
-			update_post_meta( $post_id, '_results', $results );
 		}
 
 	}
@@ -624,61 +663,63 @@ class SRC_Events extends SRC_Core {
 	public function add_results() {
 		$html = '';
 
-		$results = get_post_meta( get_the_ID(), '_results', true );		
+		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-		if ( '' === $results ) {
-			return $content;
-		}
+			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
 
-		$results = json_decode( $results, true );
-		if ( empty( $results ) ) {
-			return $content;
-		}
-
-
-		$html .= '<h3>' . esc_html__( 'Results table', 'src' ) . '</h3>';
-		$html .= '<table>';
-
-		$html .= '<thead><tr>';
-
-
-		$columns_to_keep = array(
-			'Name',
-			'Start',
-			'Car',
-			'Out',
-			'Interval',
-			'Laps led',
-			'Qual',
-			'Avg lap',
-			'Fastest lap',
-			'fastest lap',
-			'laps compl',
-			'Inc',
-		);
-
-		$html .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';			
-		foreach ( $columns_to_keep as $key => $label ) {
-			$html .= '<th>' . esc_html( $label ) . '</th>';			
-		}
-
-		$html .= '</thead>';
-		$html .= '<tbody>';
-
-		foreach ( $results as $key => $result ) {
-			$html .= '<tr>';
-			$html .= '<td>' . esc_html( $key ) . '</td>';
-
-			foreach ( $result as $k => $cell ) {
-				$html .= '<td>' . esc_html( $cell ) . '</td>';
+			if ( '' === $results ) {
+				continue;
 			}
 
-			$html .= '</tr>';
+			$results = json_decode( $results, true );
+			if ( empty( $results ) ) {
+				continue;
+			}
+
+			$html .= '<h3>' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
+			$html .= '<table>';
+
+			$html .= '<thead><tr>';
+
+
+			$columns_to_keep = array(
+				'Name',
+				'Start',
+				'Car',
+				'Out',
+				'Interval',
+				'Laps led',
+				'Qual',
+				'Avg lap',
+				'Fastest lap',
+				'fastest lap',
+				'laps compl',
+				'Inc',
+			);
+
+			$html .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';			
+			foreach ( $columns_to_keep as $key => $label ) {
+				$html .= '<th>' . esc_html( $label ) . '</th>';			
+			}
+
+			$html .= '</thead>';
+			$html .= '<tbody>';
+
+			foreach ( $results as $key => $result ) {
+				$html .= '<tr>';
+				$html .= '<td>' . esc_html( $key ) . '</td>';
+
+				foreach ( $result as $k => $cell ) {
+					$html .= '<td>' . esc_html( $cell ) . '</td>';
+				}
+
+				$html .= '</tr>';
+			}
+
+			$html .= '</tbody>';
+
+			$html .= '</table>';
 		}
-
-		$html .= '</tbody>';
-
-		$html .= '</table>';
 
 		return $html;
 	}

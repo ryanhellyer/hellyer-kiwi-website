@@ -120,7 +120,7 @@ class SRC_Seasons extends SRC_Core {
 			ksort( $events );
 
 			$html = '<h3>' . esc_html__( 'Schedule', 'src' ) . '</h3>';
-			$html .= '<table>';
+			$html .= '<table id="src-schedule">';
 
 			// Create the THEAD
 			$html .= '<thead><tr>';

@@ -72,28 +72,42 @@ class SRC_Core {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
-				$results = get_post_meta( get_the_ID(), '_results', true );
-				$results = json_decode( $results, true );
+				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-				$points_positions = get_post_meta( $season_id, 'points_positions', true );
+					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+					$results = json_decode( $results, true );
 
-				if ( is_array( $results ) ) {
-					foreach ( $results as $pos => $result ) {
-						$name = $result['name'];
-						if ( isset( $points_positions[$pos - 1] ) ) {
-							$stored_results[$name] = $points_positions[$pos - 1];
+					$points_positions = get_post_meta( $season_id, 'points_positions', true );
+
+					if ( is_array( $results ) ) {
+
+						foreach ( $results as $pos => $result ) {
+
+							$name = $result['name'];
+							if ( isset( $points_positions[$pos - 1] ) ) {
+
+								if ( isset( $stored_results[$name] ) ) {
+									$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
+								} else {
+									$stored_results[$name] = $points_positions[$pos - 1];
+								}
+
+							}
 						}
+
 					}
+
 				}
 
 			}
 		}
+
 		arsort( $stored_results );
 		wp_reset_query();
 
 		if ( array() !== $stored_results ) {
 			$content .= '<h3>' . esc_html__( 'Championship', 'src' ) . '</h3>';
-			$content .= '<table>';
+			$content .= '<table id="src-championship">';
 
 			$content .= '<thead><tr>';
 
@@ -126,7 +140,7 @@ class SRC_Core {
 						$nationality = get_user_meta( $member_id, 'nationality', true );
 					}
 
-					$linked_name = '<a href="' . esc_url( home_url() . '/members/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
+					$linked_name = '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
 
 				}
 
@@ -146,6 +160,76 @@ class SRC_Core {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Register the user.
+	 *
+	 * @todo Complete PHPDoc
+	 */
+	public function register_user( $username, $display_name, $password, $email, $member_info ) {
+		// Create the user
+		$user_data = array(
+			'user_login'   => $username,
+			'display_name' => $display_name,
+			'user_pass'    => $password,
+			'user_email'   => $email,
+		);
+		$user_id = wp_insert_user( $user_data ) ;
+
+		// If no error, then add meta keys and log the person in
+		if ( ! is_wp_error( $user_id ) ) {
+
+			// Add some meta keys
+			$meta_keys = array(
+				'location',
+				'oval_avg_inc',
+				'oval_license',
+				'oval_irating',
+				'road_avg_inc',
+				'road_license',
+				'road_irating',
+				'custid',
+			);
+			foreach ( $meta_keys as $meta_key ) {
+				if ( isset( $member_info[$meta_key] ) ) {
+					update_user_meta(
+						$user_id,
+						esc_html( $meta_key ),
+						esc_html( $member_info[$meta_key] )
+					);
+				}
+			}
+
+			return true;
+
+		} else {
+			define( 'SRC_LOGIN_ERROR', true );
+
+			return false;
+		}
+	}
+
+	/**
+	 * Does the name exist within iRacing?
+	 * If they do return their info.
+	 *
+	 * @param  string  $display_name  Name of member
+	 * @return array|bool   array if member exists in iRacing, otherwise false
+	 */
+	public function iracing_member_info( $display_name ) {
+		$dir = wp_upload_dir();
+
+		$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
+		$stats = json_decode( $stats, true );
+
+		// If user exists in iRacing, then return their stats, otherwise return false
+		if ( isset( $stats[$display_name] ) ) {
+			return $stats[$display_name];
+		} else {
+			return false;
+		}
+
 	}
 
 }
