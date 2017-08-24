@@ -178,6 +178,7 @@ class SRC_Members extends SRC_Core {
 		$member_path = str_replace( 'https://', '', $member_path );
 		$member_path = str_replace( $_SERVER['SERVER_NAME'], '', $member_path );
 		$member_path = $member_path . '/member/';
+print_r( $_SERVER );
 echo "\n\n\n".$_SERVER['REQUEST_URI'] . "\n--------\n" . $member_path;
 		// If path isn't even in the REQUEST_URI, then we aint on a members page
 		if ( strpos( $_SERVER['REQUEST_URI'], $member_path ) !== false ) {
