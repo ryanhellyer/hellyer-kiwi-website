@@ -23,6 +23,9 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'the_content',     array( $this, 'championship' ), 8 );
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 
+		// Add shortcode
+		add_shortcode( 'src-schedule',   array( $this, 'schedule' ) );
+
 		// Add filters
 		add_filter( 'the_content', array( $this, 'add_points_info_to_content' ) );
 
@@ -51,160 +54,166 @@ class SRC_Seasons extends SRC_Core {
 	 * @param  string  $content    The post content
 	 * @return string  The modified post content
 	 */
-	public function schedule( $content ) {
-
+	public function schedule( $content, $args ) {
+//print_r( $args );
 		if ( 'season' === get_post_type() ) {
+			$season_id = get_the_ID();
+		} else if ( 'a' === 'b' ) {
+			return $content;
+			//
+		} else {
+			return $content;
+		}
 
-			$columns = array(
-				'Num'        => true,
-				'Event'      => true,
-				'FP1'       => false,
-				'FP2'       => false,
-				'Qualifying' => false,
-				'Race 1'     => false,
-				'Race 2'     => false,
-				'Race 3'     => false,
-			);
+		$columns = array(
+			'Num'        => true,
+			'Event'      => true,
+			'FP1'        => false,
+			'FP2'        => false,
+			'Qualifying' => false,
+			'Race 1'     => false,
+			'Race 2'     => false,
+			'Race 3'     => false,
+		);
 
-			// Get all events from that season
-			$query = new WP_Query( array(
-				'posts_per_page'         => 100,
-				'post_type'              => 'event',
+		// Get all events from that season
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
 
-				'meta_key'               => 'season',
-				'meta_value'             => get_the_ID(),
+			'meta_key'               => 'season',
+			'meta_value'             => $season_id,
 
-				'no_found_rows'          => true,
-				'update_post_meta_cache' => false,
-				'update_post_term_cache' => false,
-			) );
-			$events = array();
-			if ( $query->have_posts() ) {
-				while ( $query->have_posts() ) {
-					$query->the_post();
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+		$events = array();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
 
-					$date = get_post_meta( get_the_ID(), 'date', true );
+				$date = get_post_meta( get_the_ID(), 'date', true );
 
-					$events[$date]['id'] = get_the_ID();
-					$events[$date]['track']      = get_post_meta( get_the_ID(), 'track', true );
+				$events[$date]['id'] = get_the_ID();
+				$events[$date]['track']      = get_post_meta( get_the_ID(), 'track', true );
 
-					$events[$date]['title'] = get_the_title();
+				$events[$date]['title'] = get_the_title();
 
-					foreach ( $this->event_types() as $name => $desc ) {
-						$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
-						if ( '' !== $time ) {
+				foreach ( $this->event_types() as $name => $desc ) {
+					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+					if ( '' !== $time ) {
 
-							if ( 'FP1' === $name ) {
-								$columns['FP1'] = true;
-							} else if ( 'FP2' === $name ) {
-								$columns['FP2'] = true;
-							} else if ( 'Qualifying' === $name ) {
-								$columns['Qualifying'] = true;
-							} else if ( 'Race 1' === $name ) {
-								$columns['Race 1'] = true;
-							} else if ( 'Race 2' === $name ) {
-								$columns['Race 2'] = true;
-							} else if ( 'Race 3' === $name ) {
-								$columns['Race 3'] = true;
-							}
-
-							$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+						if ( 'FP1' === $name ) {
+							$columns['FP1'] = true;
+						} else if ( 'FP2' === $name ) {
+							$columns['FP2'] = true;
+						} else if ( 'Qualifying' === $name ) {
+							$columns['Qualifying'] = true;
+						} else if ( 'Race 1' === $name ) {
+							$columns['Race 1'] = true;
+						} else if ( 'Race 2' === $name ) {
+							$columns['Race 2'] = true;
+						} else if ( 'Race 3' === $name ) {
+							$columns['Race 3'] = true;
 						}
 
+						$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
 					}
 
 				}
 
 			}
 
-			ksort( $events );
+		}
 
-			$html = '<h3>' . esc_html__( 'Schedule', 'src' ) . '</h3>';
-			$html .= '<table id="src-schedule">';
+		ksort( $events );
 
-			// Create the THEAD
-			$html .= '<thead><tr>';
+		$html = '<h3>' . esc_html__( 'Schedule', 'src' ) . '</h3>';
+		$html .= '<table id="src-schedule">';
+
+		// Create the THEAD
+		$html .= '<thead><tr>';
+		foreach ( $columns as $label => $column ) {
+
+			// Only load the columns being used
+			if ( true === $column ) {
+
+				// Shortening stuff for mobile
+				if ( 'Qualifying' === $label ) {
+					$label = 'Qual';
+				} else if ( 'Num' === $label ) {
+					$label = '#';
+				}
+
+				$html .= '<th class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . esc_html( $label ) . '</th>';
+			}
+
+		}
+		$html .= '</tr></thead>';
+
+		$html .= '<tbody>';
+		$count = 0;
+		foreach ( $events as $date => $event ) {
+			$count++;
+			$formatted_date = ' GMT <span>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</span>';
+
+			$html .= '<tr>';
+
+			// Only load the columns being used
 			foreach ( $columns as $label => $column ) {
 
-				// Only load the columns being used
 				if ( true === $column ) {
 
-					// Shortening stuff for mobile
-					if ( 'Qualifying' === $label ) {
-						$label = 'Qual';
-					} else if ( 'Num' === $label ) {
-						$label = '#';
-					}
-
-					$html .= '<th class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . esc_html( $label ) . '</th>';
-				}
-
-			}
-			$html .= '</tr></thead>';
-
-			$html .= '<tbody>';
-			$count = 0;
-			foreach ( $events as $date => $event ) {
-				$count++;
-				$formatted_date = '<span>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</span>';
-
-				$html .= '<tr>';
-
-				// Only load the columns being used
-				foreach ( $columns as $label => $column ) {
-
-					if ( true === $column ) {
-
-						$text = '';
-						if ( 'Num' == $label ) {
-							$text = $count;
-						} else if ( 'FP1' == $label ) {
-							if ( isset( $event['fp1_timestamp'] ) ) {
-								$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date;
-							}
-						} else if ( 'Event' == $label ) {
-							if ( isset( $event['track'] ) ) {
-								$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['track'] ) ) . '</a>';
-							}
-						} else if ( 'FP2' == $label ) {
-							if ( isset( $event['fp2_timestamp'] ) ) {
-								$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
-							}
-						} if ( 'Qualifying' == $label ) {
-							if ( isset( $event['qualifying_timestamp'] ) ) {
-								$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date;
-							}
-						} if ( 'Race 1' == $label ) {
-							if ( isset( $event['race-1_timestamp'] ) ) {
-								$text = esc_html( $event['race-1_timestamp'] ) . $formatted_date;
-							}
-						} if ( 'Race 2' == $label ) {
-							if ( isset( $event['race-2_timestamp'] ) ) {
-								$text = esc_html( $event['race-2_timestamp'] ) . $formatted_date;
-							}
-						} if ( 'Race 3' == $label ) {
-							if ( isset( $event['race-3_timestamp'] ) ) {
-								$text = esc_html( $event['race-3_timestamp'] ) . $formatted_date;
-							}
+					$text = '';
+					if ( 'Num' == $label ) {
+						$text = $count;
+					} else if ( 'FP1' == $label ) {
+						if ( isset( $event['fp1_timestamp'] ) ) {
+							$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date;
 						}
-
-						$html .= '<td class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . $text /* do not escape */ . '</td>';
-
+					} else if ( 'Event' == $label ) {
+						if ( isset( $event['track'] ) ) {
+							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['track'] ) ) . '</a>';
+						}
+					} else if ( 'FP2' == $label ) {
+						if ( isset( $event['fp2_timestamp'] ) ) {
+							$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
+						}
+					} if ( 'Qualifying' == $label ) {
+						if ( isset( $event['qualifying_timestamp'] ) ) {
+							$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date;
+						}
+					} if ( 'Race 1' == $label ) {
+						if ( isset( $event['race-1_timestamp'] ) ) {
+							$text = esc_html( $event['race-1_timestamp'] ) . $formatted_date;
+						}
+					} if ( 'Race 2' == $label ) {
+						if ( isset( $event['race-2_timestamp'] ) ) {
+							$text = esc_html( $event['race-2_timestamp'] ) . $formatted_date;
+						}
+					} if ( 'Race 3' == $label ) {
+						if ( isset( $event['race-3_timestamp'] ) ) {
+							$text = esc_html( $event['race-3_timestamp'] ) . $formatted_date;
+						}
 					}
+
+					$html .= '<td class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . $text /* do not escape */ . '</td>';
 
 				}
 
-				$html .= '</tr>';
-
 			}
-			$html .= '</tbody>';
 
-			$html .= '</table>';
+			$html .= '</tr>';
 
-			wp_reset_query();
-
-			$content .= $html;
 		}
+		$html .= '</tbody>';
+
+		$html .= '</table>';
+
+		wp_reset_query();
+
+		$content .= $html;
 
 		return $content;
 	}
