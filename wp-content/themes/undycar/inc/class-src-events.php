@@ -587,12 +587,11 @@ class SRC_Events extends SRC_Core {
 				$results = array();
 				foreach ( $rows as $key => $row ) {
 					$row = str_replace( '"', '', $row );
-
 					$driver_result = array();
 					$row_array = explode( ',', $row );
 
 					// Register the member if they're not in the system already
-					$display_name = $row_array[7];
+					$display_name = utf8_encode( $row_array[7] );
 					$username = sanitize_title( $display_name );
 					if ( ! username_exists( sanitize_title( $username ) ) ) {
 
