@@ -639,10 +639,10 @@ table {
 
 td,
 th {
-	text-align: left;
+	text-align: center;
 	font-family: $paragraph_font;
 	font-size: 0.9rem;
-	padding: 0.8rem 1rem;
+	padding: 0.8rem 0.1rem;
 }
 
 th {
@@ -819,12 +819,12 @@ td span.tick-mark:before {
 
 #base-content {
 	float: left;
-	width: 47%;
+	width: 70%;
 }
 
 #sidebar {
 	float: right;
-	width: 25%;
+	width: 17%;
 	background: #efefef;
 	border-left: 6px solid #aaa;
 	padding: 4%;
@@ -1235,6 +1235,11 @@ input[type=submit],
 
 @media only screen and (max-width: 768px) {
 
+	#base-content {
+		width: 68%;
+		overflow: scroll;
+	}
+
 	#latest-news article {
 		width: 48%;
 	}
@@ -1372,6 +1377,7 @@ input[type=submit],
 
 	#base-content {
 		width: 100%;
+		overflow: scroll;
 	}
 
 	#sidebar {

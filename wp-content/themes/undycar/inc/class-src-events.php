@@ -26,7 +26,6 @@ class SRC_Events extends SRC_Core {
 
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
-		add_filter( 'the_content',            array( $this, 'add_results' ), 9 );
 
 		// iRacing results uploader
 		add_action( 'add_meta_boxes', array( $this, 'results_upload_metabox' ) );
@@ -391,92 +390,90 @@ class SRC_Events extends SRC_Core {
 		$sidebar_html .= '
 		</div>';
 
-		$html = '';
 
-		// If no content is present, then lets auto-generate it ... 
-		if ( '' === $content ) {
+		/**
+		 * Generate event description.
+		 */
 
-			// Count up how many races there are
-			$race_count = 0;
-			if ( '' !== get_post_meta( get_the_ID(), 'event_race-1_timestamp', true ) ) {
-				$race_count++;
+		// Count up how many races there are
+		$race_count = 0;
+		if ( '' !== get_post_meta( get_the_ID(), 'event_race-1_timestamp', true ) ) {
+			$race_count++;
+		}
+		if ( '' !== get_post_meta( get_the_ID(), 'event_race-2_timestamp', true ) ) {
+			$race_count++;
+		}
+		if ( '' !== get_post_meta( get_the_ID(), 'event_race-3_timestamp', true ) ) {
+			$race_count++;
+		}
+		$suffix = '';
+		if ( 0 < $race_count ) {
+			$suffix = 's';
+
+			// Add text for reversed grid races.
+			$qualifying_grid = '';
+			if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
+				$qualifying_grid = ' ' . esc_html__( 'The grid for race two will be reversed.', 'src' );
 			}
-			if ( '' !== get_post_meta( get_the_ID(), 'event_race-2_timestamp', true ) ) {
-				$race_count++;
-			}
-			if ( '' !== get_post_meta( get_the_ID(), 'event_race-3_timestamp', true ) ) {
-				$race_count++;
-			}
-			$suffix = '';
-			if ( 0 < $race_count ) {
-				$suffix = 's';
-
-				// Add text for reversed grid races.
-				$qualifying_grid = '';
-				if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
-					$qualifying_grid = ' ' . esc_html__( 'The grid for race two will be reversed.', 'src' );
-				}
-
-			}
-
-			/**
-			 * Load number formatter.
-			 *
-			 * uncomment extension=php_intl.dll in php.ini FPM
-			 * sudo apt-get install php7.0-intl
-			 * sudo service php7.0-fpm restart
-			 */
-			$number = new NumberFormatter( 'en', NumberFormatter::SPELLOUT );
-
-			// Output event description
-			$content .= wpautop(
-				sprintf(
-					'Round %s of %s in <a href="%s">%s</a> of the <a href="https://undycar.com/">Undycar Series</a> will be held on %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s, followed by %s %s race%s.%s',
-					esc_html( $this->event['round_number'] ),
-					esc_html( $this->event['number_of_rounds_in_season'] ),
-					esc_html( get_permalink( $this->event['season_id'] ) ),
-				 	esc_html( get_the_title( $season_id ) ),
-					esc_html( $date ),
-					esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
-					esc_url( $track_url ),
-					esc_html( $this->event['current_round']['track_name'] ),
-					esc_html( $this->event['current_round']['track_type'] ),
-					esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
-					esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
-					$number->format( $race_count ),
-					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
-					$suffix,
-					$qualifying_grid
-				)
-			);
 
 		}
 
+		/**
+		 * Load number formatter.
+		 *
+		 * uncomment extension=php_intl.dll in php.ini FPM
+		 * sudo apt-get install php7.0-intl
+		 * sudo service php7.0-fpm restart
+		 */
+		$number = new NumberFormatter( 'en', NumberFormatter::SPELLOUT );
+
+		// Output event description
+		$html = '';
+		$html .= wpautop(
+			sprintf(
+				'Round %s of %s in <a href="%s">%s</a> of the <a href="https://undycar.com/">Undycar Series</a> will be held on %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s, followed by %s %s race%s.%s',
+				esc_html( $this->event['round_number'] ),
+				esc_html( $this->event['number_of_rounds_in_season'] ),
+				esc_html( get_permalink( $this->event['season_id'] ) ),
+			 	esc_html( get_the_title( $season_id ) ),
+				esc_html( $date ),
+				esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
+				esc_url( $track_url ),
+				esc_html( $this->event['current_round']['track_name'] ),
+				esc_html( $this->event['current_round']['track_type'] ),
+				esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
+				esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
+				$number->format( $race_count ),
+				esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
+				$suffix,
+				$qualifying_grid
+			)
+		);
+
+		// Add track map
 		$track_map = $this->event['current_round']['track_map'];
 		$track_map_image = wp_get_attachment_image_src( $track_map, 'large' );
 		if ( isset( $track_map_image[0] ) ) {
 			$track_map_image_url = $track_map_image[0];
 		}
-
-		$content .= '
+		$map_html = '
 		<img src="' . $track_map_image_url . '" />
 		';
 
-
 		// Next/Previous race navigation buttons
-		$content .= '<div id="next-prev-buttons">';
+		$nav_html = '<div id="next-prev-buttons">';
 		if ( isset( $this->event['previous_round'] ) && false !==  $this->event['previous_round'] ) {
 			$url = get_permalink( $this->event['previous_round']['id'] );
-			$content .= '<a href="' . esc_url( $url ) . '" class="button alignleft">&laquo; ' . esc_html__( 'Last race', 'src' ) . '</a>';
+			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignleft">&laquo; ' . esc_html__( 'Last race', 'src' ) . '</a>';
 		}
 
 		if ( isset( $this->event['next_round'] ) && false !== $this->event['next_round'] ) {
 			$url = get_permalink( $this->event['next_round']['id'] );
-			$content .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'src' ) . '&raquo;</a>';
-		}
-		$content .= '</div>';
+			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'src' ) . '&raquo;</a>';
+		}-
+		$nav_html .= '</div>';
 
-		$content = '<div id="base-content">' . $html . $content . '</div>' . $sidebar_html;
+		$content = '<div id="base-content">' . $content . $html . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 
 		return $content;
 
@@ -622,10 +619,9 @@ class SRC_Events extends SRC_Core {
 	/**
 	 * Add results to events pages.
 	 *
-	 * @param  string  $content  The page content
 	 * @return string  The modified page content
 	 */
-	public function add_results( $content ) {
+	public function add_results() {
 		$html = '';
 
 		$results = get_post_meta( get_the_ID(), '_results', true );		
@@ -684,7 +680,7 @@ class SRC_Events extends SRC_Core {
 
 		$html .= '</table>';
 
-		return $content . $html;
+		return $html;
 	}
 
 }
