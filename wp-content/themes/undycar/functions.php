@@ -1,5 +1,7 @@
 <?php
 
+require( 'temp.php' );
+
 add_option( 'src_featured_page', '' );
 add_option( 'src-season', '' );
 
