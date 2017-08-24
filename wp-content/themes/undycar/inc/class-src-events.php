@@ -591,6 +591,10 @@ class SRC_Events extends SRC_Core {
 					$row_array = explode( ',', $row );
 
 					// Register the member if they're not in the system already
+					if ( ! isset( $row_array[7] ) ) {
+						continue;
+					}
+
 					$display_name = utf8_encode( $row_array[7] );
 					$username = sanitize_title( $display_name );
 					if ( ! username_exists( sanitize_title( $username ) ) ) {
@@ -610,18 +614,20 @@ class SRC_Events extends SRC_Core {
 						if ( isset( $columns_to_keep[$column_number] ) ) {
 
 							$column_name = $columns_to_keep[$column_number];
-							$results[ $row_array[0] ][$column_name] = utf8_encode( $cell );
+							$cell = utf8_encode( $cell );
+							$results[ $row_array[0] ][$column_name] = $cell;
 
 						}
 
 					}
 
 				}
-
-				$results = json_encode( $results );
+				$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
+print_r( $results );
 				update_post_meta( $post_id, '_results_' . $race_number, $results );
 			}
 		}
+die('done');
 
 	}
 
