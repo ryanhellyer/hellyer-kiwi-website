@@ -146,7 +146,7 @@ class SRC_Seasons extends SRC_Core {
 			$count = 0;
 			foreach ( $events as $date => $event ) {
 				$count++;
-				$formatted_date = date( get_option( 'date_format' ), $date );
+				$formatted_date = '<span>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</span>';
 
 				$html .= '<tr>';
 
@@ -160,7 +160,7 @@ class SRC_Seasons extends SRC_Core {
 							$text = $count;
 						} else if ( 'FP1' == $label ) {
 							if ( isset( $event['fp1_timestamp'] ) ) {
-								$text = esc_html( $event['fp1_timestamp'] );
+								$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date;
 							}
 						} else if ( 'Event' == $label ) {
 							if ( isset( $event['track'] ) ) {
@@ -168,23 +168,23 @@ class SRC_Seasons extends SRC_Core {
 							}
 						} else if ( 'FP2' == $label ) {
 							if ( isset( $event['fp2_timestamp'] ) ) {
-								$text = esc_html( $event['fp2_timestamp'] );
+								$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
 							}
 						} if ( 'Qualifying' == $label ) {
 							if ( isset( $event['qualifying_timestamp'] ) ) {
-								$text = $event['qualifying_timestamp'] . '<span>' . esc_html( $formatted_date ) . '</span>';
+								$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date;
 							}
 						} if ( 'Race 1' == $label ) {
 							if ( isset( $event['race-1_timestamp'] ) ) {
-								$text = esc_html( $event['race-1_timestamp'] ) . '<span>' . esc_html( $formatted_date ) . '</span>';
+								$text = esc_html( $event['race-1_timestamp'] ) . $formatted_date;
 							}
 						} if ( 'Race 2' == $label ) {
 							if ( isset( $event['race-2_timestamp'] ) ) {
-								$text = esc_html( $event['race-2_timestamp'] ) . '<span>' . esc_html( $formatted_date ) . '</span>';
+								$text = esc_html( $event['race-2_timestamp'] ) . $formatted_date;
 							}
 						} if ( 'Race 3' == $label ) {
 							if ( isset( $event['race-3_timestamp'] ) ) {
-								$text = esc_html( $event['race-3_timestamp'] ) . '<span>' . esc_html( $formatted_date ) . '</span>';
+								$text = esc_html( $event['race-3_timestamp'] ) . $formatted_date;
 							}
 						}
 

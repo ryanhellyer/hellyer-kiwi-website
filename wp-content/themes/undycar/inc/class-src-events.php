@@ -431,11 +431,12 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 		$html .= wpautop(
 			sprintf(
-				'Round %s of %s in <a href="%s">%s</a> of the <a href="https://undycar.com/">Undycar Series</a> will be held on %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s, followed by %s %s race%s.%s',
+				'Round %s of %s in <a href="%s">%s</a> of the Undycar Series will be held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s',
 				esc_html( $this->event['round_number'] ),
 				esc_html( $this->event['number_of_rounds_in_season'] ),
 				esc_html( get_permalink( $this->event['season_id'] ) ),
 			 	esc_html( get_the_title( $season_id ) ),
+				esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 				esc_html( $date ),
 				esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
 				esc_url( $track_url ),
