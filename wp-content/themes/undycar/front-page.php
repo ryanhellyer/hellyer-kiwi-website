@@ -151,7 +151,17 @@ get_header();
 
 <section id="results">
 
-	<a href="<?php echo esc_url( get_permalink( get_option( 'current-season' ) ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( get_template_directory_uri() . '/images/long2.png' ); ?>);">
+	<a href="<?php
+
+		if ( '' === get_option( 'current-season' ) ) {
+			$season_id = get_option( 'next-season' );
+		} else {
+			$season_id = get_option( 'current-season' );
+		}
+
+		echo esc_url( get_permalink( $season_id ) );
+
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( get_template_directory_uri() . '/images/long2.png' ); ?>);">
 		<h2>New Season</h2>
 		<p>Free with iRacing. Fixed setups provided for each track.</p>
 	</a>
