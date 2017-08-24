@@ -169,7 +169,7 @@ get_header();
 	<div id="standings">
 		<?php
 
-		echo SRC_Core::championship( '', true );
+		echo SRC_Core::championship( '', true, 15 );
 
 		if ( '' === get_option( 'current-season' ) ) {
 			$season_id = get_option( 'last-season' );

@@ -36,8 +36,9 @@ class SRC_Core {
 	 *
 	 * @param  string  $content   The post content
 	 * @param  bool    $bypass    true if bypassing post-type check
+	 * @param  int     $limit     the max number of drivers to show
 	 */
-	static function championship( $content, $bypass = false ) {
+	static function championship( $content, $bypass = false, $limit = 100 ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -126,6 +127,11 @@ class SRC_Core {
 			$nationality = '';
 			foreach ( $stored_results as $name => $points ) {
 				$position++;
+
+				// Limit the number of drivers shown
+				if ( $position > $limit ) {
+					continue;
+				}
 
 				$linked_name = $name;
 				$member = get_user_by( 'login', sanitize_title( $name ) );
