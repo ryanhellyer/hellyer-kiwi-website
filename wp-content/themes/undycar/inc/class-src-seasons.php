@@ -54,7 +54,7 @@ class SRC_Seasons extends SRC_Core {
 	 * @param  string  $content    The post content
 	 * @return string  The modified post content
 	 */
-	public function schedule( $content, $args ) {
+	public function schedule( $content ) {
 //print_r( $args );
 		if ( 'season' === get_post_type() ) {
 			$season_id = get_the_ID();

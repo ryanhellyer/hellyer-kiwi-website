@@ -113,10 +113,8 @@ class SRC_Cron extends SRC_Core {
 
 		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
 
-		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats ) );
+		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
-
-		//$new_stats = json_decode( file_get_contents( get_template_directory() . '/test.txt' ), true );
 	}
 
 }

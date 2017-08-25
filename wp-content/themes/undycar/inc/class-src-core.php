@@ -231,6 +231,7 @@ class SRC_Core {
 	public function iracing_member_info( $display_name ) {
 		$dir = wp_upload_dir();
 
+		/*
 		$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
 		$stats = json_decode( $stats, true );
 
@@ -240,6 +241,17 @@ class SRC_Core {
 		} else {
 			return false;
 		}
+		*/
+
+
+
+		$stats = file_get_contents( $dir['basedir'] . '/iracing-members-simple.json' );
+		$stats = json_decode( $stats, true );
+
+		if ( in_array ( $display_name , $stats ) ) {
+			return true;
+		}
+
 
 	}
 

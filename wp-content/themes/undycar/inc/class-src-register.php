@@ -31,6 +31,7 @@ class SRC_Register extends SRC_Core {
 	 * @param   array   $args  The shortcodes arguments
 	 */
 	public function register_shortcode( $args ) {
+		$content = '';
 
 		// Don't show shortcode when logged in and on front page (form serves no purpose there then)
 		if ( is_user_logged_in() && is_front_page() ) {
@@ -81,21 +82,21 @@ class SRC_Register extends SRC_Core {
 		}
 
 		if ( isset( $message_text ) ) {
-			echo '<p><strong>' . esc_html( $message_text ) . '</strong></p>';
+			$content .= '<p><strong>' . esc_html( $message_text ) . '</strong></p>';
 		}
 
-		echo '
+		$content .= '
 <form action="' . esc_attr( $url ) . '" method="POST">
 ';
 
 		do_action( 'src_register_start' );
 
-		echo '
+		$content .= '
 
 	<input name="src-name" type="text" value="' . esc_attr( $display_name ) . '" placeholder="iRacing name" required />';
 
 		if ( ! defined( 'SRC_USERNAME_EXISTS' ) ) {
-			echo '
+			$content .= '
 	<input name="src-email" type="email" value="' . esc_attr( $email ) . '" placeholder="Email address" required />';
 		}
 
@@ -111,7 +112,7 @@ class SRC_Register extends SRC_Core {
 				$password_placeholder = __( 'Enter a unique password', 'src' );
 			}
 
-			echo '
+			$content .= '
 	<input name="src-password" type="password" value="' . esc_attr( $password ) . '" placeholder="' . esc_attr( $password_placeholder ) . '" required />';
 		}
 
@@ -123,9 +124,18 @@ class SRC_Register extends SRC_Core {
 			$joinus_text = __( 'Join us', 'src' );
 		}
 
-		echo '
+		$content .= '
 	<input type="submit" value="' . $joinus_text . '" />
 </form>';
+
+
+		// If argument of "echo" is set, then echo it
+		if ( ! isset( $args['echo'] ) ) {
+			echo $content;
+		} else {
+			return $content;
+		}
+
 	}
 
 	/**
