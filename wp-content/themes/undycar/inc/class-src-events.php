@@ -603,7 +603,7 @@ class SRC_Events extends SRC_Core {
 						if ( $member_info = $this->iracing_member_info( $display_name ) ) {
 
 							// Register user
-							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@me.com', $member_info );
+							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@mem.com', $member_info );
 
 						}
 
