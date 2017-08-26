@@ -145,6 +145,9 @@ class SRC_Register extends SRC_Core {
 
 		if ( isset( $_POST['src-name'] ) || isset( $_POST['src-email'] ) ) {
 
+			// Create cookie, as some signup processes are triggering 404's when there's an error
+			setcookie( 'undycar_signup', true, time() + ( 86400 * 30 ), '/' );
+
 			// Sanitize inputs
 			$username     = sanitize_title( sanitize_user(  $_POST['src-name'] ) );
 			$email        = sanitize_email( $_POST['src-email'] );
