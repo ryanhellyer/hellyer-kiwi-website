@@ -118,8 +118,11 @@ if ( 0 < $social_network_counter ) {
 
 echo '</p>';
 
-if ( 2 < $missing_data_count ) {
-	echo '<p>If you want to see more information about this driver, please ask them to update their Undycar profile.</p>';
+
+if ( $member_id === get_current_user_id() ) {
+	echo '<p>Please fill out your profile. If you need to edit anything here later, just ask me (Ryan Hellyer) via the iRacing messaging system. This section of the website is still under development and the bit that handles passwords has not been completed yet, but I can send a password to you manually :)</p>';
+} else if ( 2 < $missing_data_count ) {
+//	echo '<p>If you want to see more information about this driver, please ask them to update their Undycar profile.</p>';
 }
 
 
