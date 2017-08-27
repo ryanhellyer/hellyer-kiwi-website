@@ -48,7 +48,7 @@ class SRC_Admin {
 			'index.php'                       => 'TOP',
 			'edit-tags.php?taxonomy=category' =>'edit.php', // This doesn't actually do anything since posts aren't present, but left here so that you can see how to remove sub menus if needed in your own projects
 			//'edit.php'                        => 'TOP',
-			'edit-comments.php'               => 'TOP',
+//			'edit-comments.php'               => 'TOP',
 			//'tools.php'                       => 'TOP',
 			'link-manager.php'                => 'TOP',
 		);

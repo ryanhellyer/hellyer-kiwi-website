@@ -23,7 +23,7 @@ class SRC_Theme_Setup {
 	 * 
 	 * @var string
 	 */
-	const THEME_NAME = 'src';
+	const THEME_NAME = 'undycar';
 
 	/**
 	 * Constructor.
@@ -43,7 +43,7 @@ class SRC_Theme_Setup {
 		add_shortcode( 'src-news',        'src_news' );
 
 		// Add filters
-		add_filter('private_title_format', array( $this, 'remove_private_title_format' ) );
+		add_filter( 'private_title_format', array( $this, 'remove_private_title_format' ) );
 
 	}
 
