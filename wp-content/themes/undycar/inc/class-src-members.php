@@ -52,7 +52,11 @@ class SRC_Members extends SRC_Core {
 			&&
 			is_user_logged_in()
 			&&
-			( is_super_admin() || $_POST['member-id'] === get_current_user_id() )
+			(
+				absint( $_POST['member-id'] ) === get_current_user_id()
+				||
+				is_super_admin()
+			)
 		) {
 
 			$member_id = absint( $_POST['member-id'] );
@@ -155,6 +159,34 @@ class SRC_Members extends SRC_Core {
 					}
 
 				}
+
+			}
+
+			// Set the password
+			if ( isset( $_POST['password'] ) && '' !== $_POST['password'] ) {
+				$password = $_POST['password'];
+
+				wp_update_user(
+					array(
+						'ID'        => $member_id,
+						'user_pass' => $password
+					)
+				);
+
+				update_user_meta( $member_id, 'password_set', true );
+
+				$member_info = get_userdata( $member_id );
+				$username = sanitize_title( $member_info->data->display_name );
+
+				$credentials = array();
+				$credentials['user_login']    = $username;
+				$credentials['user_password'] = $password;
+				$credentials['remember']      = true;
+
+				$user = wp_signon( $credentials, false );
+				if ( is_wp_error( $user ) ) {
+					wp_die( 'uh oh! Something went wrong. Please private message "Ryan Hellyer" on iRacing and let him know that error #248 occurred.' );
+				} else {}
 
 			}
 

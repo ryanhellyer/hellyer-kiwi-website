@@ -19,9 +19,42 @@ class SRC_Register extends SRC_Core {
 
 		// Add action hooks
 		add_action( 'init',                array( $this, 'init' ) );
+		add_action( 'init',                array( $this, 'process_login' ) );
 		add_shortcode( 'src-register',     array( $this, 'register_shortcode' ) );
+		add_shortcode( 'src-login',        array( $this, 'login_shortcode' ) );
 		add_action( 'src_register_start',  array( $this, 'register_start_fields' ) );
 		add_action( 'src_register_end',    array( $this, 'register_end_fields' ) );
+
+	}
+
+	/**
+	 * Display registration/login/profile page shortcode content.
+	 *
+	 * @param   array   $args  The shortcodes arguments
+	 */
+	public function login_shortcode() {
+
+		// Don't show shortcode when logged in and on front page (form serves no purpose there then)
+		if ( is_user_logged_in() ) {
+			return;
+		}
+
+		$content = '
+<form action="" method="POST">
+	<input name="src-login-name" type="text" value="" placeholder="iRacing name" required />
+	<input name="src-login-password" type="password" value="" placeholder="Enter your password here" required />
+	<input type="submit" value="Log in" />
+</form>';
+
+		return $content;
+	}
+
+	public function process_login() {
+
+		if ( isset( $_POST['src-login-name'] ) && isset( $_POST['src-login-password'] ) ) {
+			$username = sanitize_title( $_POST['src-login-name'] );
+			$this->attempt_user_login( 'XXX', $username, 'XXX', $_POST['src-login-password'] );
+		}
 
 	}
 
