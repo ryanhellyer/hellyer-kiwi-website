@@ -41,6 +41,7 @@
 				echo '<li><a href="' . esc_url( wp_logout_url( home_url() ) ) . '">Log out</a></li>';
 			} else {
 				echo '<li><a href="' . esc_url( home_url() . '/login/' ) . '">Log in</a></li>';
+				echo '<li><a href="' . esc_url( home_url() . '/register/' ) . '">Register</a></li>';
 			}
 
 

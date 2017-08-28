@@ -39,12 +39,18 @@ class SRC_Register extends SRC_Core {
 			return;
 		}
 
+		if ( defined( 'UNDYCAR_LOGIN_ERROR' ) ) {
+			echo '<p>Woops! Something went wrong!</p>';
+		}
+
 		$content = '
 <form action="" method="POST">
 	<input name="src-login-name" type="text" value="" placeholder="iRacing name" required />
 	<input name="src-login-password" type="password" value="" placeholder="Enter your password here" required />
 	<input type="submit" value="Log in" />
 </form>';
+
+
 
 		return $content;
 	}
@@ -53,7 +59,11 @@ class SRC_Register extends SRC_Core {
 
 		if ( isset( $_POST['src-login-name'] ) && isset( $_POST['src-login-password'] ) ) {
 			$username = sanitize_title( $_POST['src-login-name'] );
-			$this->attempt_user_login( 'XXX', $username, 'XXX', $_POST['src-login-password'] );
+
+
+			if ( false === $this->attempt_user_login( 'XXX', $username, 'XXX', $_POST['src-login-password'] ) ) {
+				define( 'UNDYCAR_LOGIN_ERROR', true );
+			}
 		}
 
 	}
@@ -308,18 +318,7 @@ class SRC_Register extends SRC_Core {
 
 		$user = wp_signon( $credentials, false );
 		if ( is_wp_error( $user ) ) {
-
-			// Don't worry about invalid username errors, since we're just going to register them if they get it wrong anyway
-			if ( ! isset( $user->errors['invalid_username'] ) ) {
-				$this->error_messages[] = $user->get_error_message();
-			} else {
-				$this->invalid_username = true;
-			}
-
-			// Set var here so that most of the form can be hidden and replaced with a confirmation page
-			$this->confirm = true;
-
-			return;
+			return false;
 		}
 
 		// Redirect after login
