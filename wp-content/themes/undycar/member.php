@@ -134,6 +134,7 @@ if (
 	||
 	is_super_admin()
 ) {
+
 	echo '
 	<hr />
 
@@ -141,6 +142,16 @@ if (
 
 		<label>Email address</label>
 		<input name="email" type="email" value="' . esc_attr( $email ) . '" />
+
+		<label>Password</label>
+		<input name="password" ';
+
+		// If password never set, then highlight this field as it's critical for them to log back in
+		if ( '1' !== get_user_meta( $member_id, 'password_set', true ) ) {
+			echo 'class="highlighted-field" ';
+		}
+
+		echo 'type="text" value="" placeholder="Enter a password here" />
 
 		<label>Location</label>
 		<input name="location" type="text" value="' . esc_attr( $location ) . '" />
