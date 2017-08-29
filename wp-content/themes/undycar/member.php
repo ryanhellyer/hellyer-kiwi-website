@@ -36,6 +36,8 @@ echo get_avatar( $member_id, 512, 'monsterid' );
 
 echo '<h2>' . esc_html( $display_name )  . '</h2>';
 
+
+
 echo '<p>' . $description . '</p>';
 
 echo '<p>';
@@ -118,6 +120,14 @@ if ( 0 < $social_network_counter ) {
 
 echo '</p>';
 
+if (
+	$member_id === get_current_user_id()
+	&&
+	'2' !== get_user_meta( $member_id, 'season', true )
+) {
+	echo '<p><strong><u>Unfortunately all positions are now filled for season 2</u></strong>, but you have been placed on the reserve list and will be notified if any spots become availble or of any special events we may hold.</p>';
+}
+
 
 if ( $member_id === get_current_user_id() ) {
 	echo '<p>Please fill out your profile. If you need to edit anything here later, just ask me (Ryan Hellyer) via the iRacing messaging system. This section of the website is still under development and the bit that handles passwords has not been completed yet, but I can send a password to you manually :)</p>';
@@ -134,6 +144,7 @@ if (
 	||
 	is_super_admin()
 ) {
+
 
 	echo '
 	<hr />
