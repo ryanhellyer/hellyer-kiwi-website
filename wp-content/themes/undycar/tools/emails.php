@@ -98,14 +98,16 @@ The Undycar Series is bursting at the seams with drivers now. This is a very goo
 
 You can see a full list of the confirmed drivers here:
 [url]https://undycar.com/confirmed-signups/[/url]
-Our list of reserve drivers is actually a lot larger than listed there, so we are at no risk of a driver a shortage ;)
+Our list of reserve drivers is actually a lot larger than listed there, so we are at no risk of a driver shortage ;)
 
 
 There was a glitch in the login system when you signed up. This should now be fixed and you can login now with the following credentials:
 
 [url]https://undycar.com/login/[/url]
 iRacing name: \" + member_name + \"
-Password: \" + md5( member_name ) + \"
+Password: \" + MD5( member_name ) + \"
+
+You can update your profile image, header image at the top and any other information you might like to add. I added information in for some of you already (mostly auto-scraped from your iRacing profile), but of course feel free to change it to whatever you feel is most appropriate.
 
 If you experience any more problems with this site, please let me know.";
 
