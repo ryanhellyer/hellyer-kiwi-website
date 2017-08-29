@@ -166,7 +166,7 @@ class SRC_Seasons extends SRC_Core {
 			$html .= '<tr>';
 
 			$past_class = '';
-			if ( true === $events[$date]['past'] ) {
+			if ( isset( $events[$date]['past'] ) && true === $events[$date]['past'] ) {
 				$past_class = ' past-event';
 			}
 
