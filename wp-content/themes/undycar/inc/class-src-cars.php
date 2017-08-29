@@ -96,8 +96,10 @@ class SRC_Cars extends SRC_Core {
 		}
 
 		$car_ids = get_post_meta( get_the_ID(), 'cars', true );
-//unset( $car_ids[1]);
-//update_post_meta( get_the_ID(), 'cars', $car_ids );
+
+		if ( ! isset( $car_ids[0] ) ) {
+			return $content;
+		}
 
 		// Add text
 		if ( 1 === count( $car_ids ) ) {
