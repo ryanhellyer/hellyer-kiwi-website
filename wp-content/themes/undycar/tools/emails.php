@@ -93,14 +93,18 @@ The login/registration system is somewhat broken on the website. I didn't realis
 
 
 $message = "Hi \" + shortened_name + \",
-Sorry for the recent problems with the login system on undycar.com.
+It seems I made a mistake, as I grossly underestimated how many people would be interested in the Undycar Series. People had told me that drivers are nearly impossible to find for iRacing leagues, so as soon as I launched the website I went looking for as many drivers as possible. Then most of you signed up, and I very quickly became swamped with applications. Your application was lodged in the system, but there is no way I can accommodate everyone, so I have only placed the first applicants intot he official Undycar Series driver lineup. Unfortunately you were not in that first bunch of applicants :(
 
-The problem should be fixed now. You can login to your account via https://undycar.com/login/.
+I will be holding some special events from time to time, so unless you request otherwise, I'll private message you whenever these are happening so that you can join in, and I will modify how the league works next season to make it possible for many of you to enter. It is also possible that some drivers will pull out, and then I can add some of you into the official Undycar Series driver lineup then.
 
-Your password is \" + md5( member_name ) + \"
+
+Also, When you signed up, there was a glitch in the login system. This should now be fixed and you can login now with the following credentials:
+
+https://undycar.com/login/
+iRacing name: \" + member_name + \"
+Password: \" + md5( member_name ) + \"
 
 If you experience any more problems with this site, please let me know.";
-
 
 
 $message = str_replace( "\n", '\n', $message );

@@ -1,5 +1,8 @@
 <?php
-//echo md5( 'Ty Majeski' );die;
+
+//echo md5( 'Evan Fitzgerald' );die;
+//203752a9c3f0adbc77103a5516821858
+
 // Bail out if not processing users now
 if ( ! isset( $_GET['user_processing'] ) ) {
 	return;
@@ -61,6 +64,27 @@ if ( 'special' === $_GET['user_processing'] ) {
 			'1' !== get_user_meta( $driver_id, 'password_set' )
 			&&
 			'1' === get_user_meta( $driver_id, 'season', true )
+		) {
+			continue;
+		}
+
+		echo $driver->data->display_name . ',';
+
+	}
+
+}
+
+if ( 'reserves' === $_GET['user_processing'] ) {
+
+	$drivers = get_users();
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+
+		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
+		if (
+			'1' !== get_user_meta( $driver_id, 'password_set' )
+			&&
+			( '1' === get_user_meta( $driver_id, 'season', true ) || '2' === get_user_meta( $driver_id, 'season', true ) )
 		) {
 			continue;
 		}
