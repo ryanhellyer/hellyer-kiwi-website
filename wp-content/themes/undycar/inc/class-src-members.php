@@ -18,6 +18,7 @@ class SRC_Members extends SRC_Core {
 		add_action( 'init',       array( $this, 'save' ) );
 		add_filter( 'init',       array( $this, 'member_template' ), 99 );
 		add_filter( 'get_avatar', array( $this, 'avatar_filter' ) , 1 , 5 );
+		add_shortcode( 'undycar_drivers', array( $this, 'display_driver_table' ) );
 	}
 
 	/**
@@ -257,6 +258,51 @@ class SRC_Members extends SRC_Core {
 		}
 
 		return $image_url;
+	}
+
+	public function display_driver_table( $args, $content ) {
+
+		if ( isset( $args['season'] ) ) {
+			$season = $args['season'];
+		} else {
+			$season = 'all';
+		}
+
+		$drivers = $this->get_seasons_drivers( $season );
+
+		$content .= '
+		<table id="src-schedule">
+			<thead>
+				<tr>
+					<th class="col">#</th>
+					<th class="col-event">Driver Name</th>
+					<th class="col-event">Number</th>
+				</tr>
+			</thead>
+			<tbody>';
+
+		$count = 0;
+		foreach ( $drivers as $key => $driver_id ) {
+			$count++;
+
+			$driver = get_userdata( $driver_id );
+			$driver_name = $driver->display_name;
+
+			$content .= '
+				<tr>
+					<td>' . esc_html( $count ) . '</td>
+					<td><a href="' . esc_url( home_url() . '/member/' . sanitize_title( $driver_name ) . '/' ) . '">' . esc_html( $driver_name ) . '</a></td>
+					<td>' . esc_html( get_user_meta( $driver_id, 'car_number', true ) ) . '</td>
+				</tr>';
+
+		}
+
+		$content .= '
+			</tbody>
+		</table>
+		';
+
+		return $content;
 	}
 
 }
