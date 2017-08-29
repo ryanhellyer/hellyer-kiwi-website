@@ -164,6 +164,18 @@ if (
 
 		echo 'type="text" value="" placeholder="Enter a password here" />
 
+		<br />
+		<label>Receive extra Undycar Series communication?</label>
+		<input name="receive-extra-communication" type="checkbox" style="font-size:40px;" ';
+
+		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
+		 echo checked( $checked, 1, false );
+
+		 echo ' value="1" />
+		<br />
+		<span>Includes upcoming race information and various updates via iRacing PM or email</span>
+		<br /><br />
+
 		<label>Location</label>
 		<input name="location" type="text" value="' . esc_attr( $location ) . '" />
 
