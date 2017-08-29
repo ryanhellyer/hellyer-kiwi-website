@@ -91,6 +91,18 @@ The login/registration system is somewhat broken on the website. I didn't realis
 
 
 
+
+$message = "Hi \" + shortened_name + \",
+Sorry for the recent problems with the login system on undycar.com.
+
+The problem should be fixed now. You can login to your account via https://undycar.com/login/.
+
+Your password is \" + md5( member_name ) + \"
+
+If you experience any more problems with this site, please let me know.";
+
+
+
 $message = str_replace( "\n", '\n', $message );
 echo $message;
 die;
