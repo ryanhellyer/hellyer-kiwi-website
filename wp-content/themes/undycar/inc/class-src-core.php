@@ -279,16 +279,16 @@ class SRC_Core {
 					'1' !== get_user_meta( $driver_id, 'season', true )
 				)
 				&&
-				get_option( 'next-season' ) !== get_user_meta( $driver_id, 'season', true )
+				get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) ) !== get_user_meta( $driver_id, 'season', true )
 			) {
-				echo 'option: ' . get_option( 'next-season' ) . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
+//				echo 'option: ' . get_option( 'next-season' ) . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
 				$drivers[] = $driver->ID;
 			} else if  (
 				'all' === $season || $season === get_user_meta( $driver_id, 'season', true )
 				&&
 				'reserve' !== $season
 			) {
-//				$drivers[] = $driver->ID;
+				$drivers[] = $driver->ID;
 			}
 
 		}
