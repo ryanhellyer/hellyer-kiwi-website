@@ -96,7 +96,7 @@ class SRC_Seasons extends SRC_Core {
 
 				$date = get_post_meta( get_the_ID(), 'date', true );
 
-				if ( $date < time() && ! isset( $_GET['past'] ) ) {
+				if ( $date < time() ) {
 					$events[$date]['past'] = true;
 				}
 
