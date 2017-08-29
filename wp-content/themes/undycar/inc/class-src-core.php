@@ -274,8 +274,8 @@ class SRC_Core {
 				'reserve' === $season
 				&&
 				(
-					'1' === get_user_meta( $driver_id, 'password_set' )
-					||
+					'1' !== get_user_meta( $driver_id, 'password_set' )
+					&&
 					'1' !== get_user_meta( $driver_id, 'season', true )
 				)
 				&&
@@ -287,7 +287,7 @@ class SRC_Core {
 				&&
 				'reserve' !== $season
 			) {
-				$drivers[] = $driver->ID;
+//				$drivers[] = $driver->ID;
 			}
 
 		}
