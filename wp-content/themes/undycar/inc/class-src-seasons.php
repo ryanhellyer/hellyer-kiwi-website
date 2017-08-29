@@ -20,6 +20,7 @@ class SRC_Seasons extends SRC_Core {
 		// Add action hooks
 		add_action( 'init',            array( $this, 'init' ) );
 		add_action( 'the_content',     array( $this, 'schedule' ) );
+		add_action( 'the_content',     array( $this, 'drivers' ) );
 		add_action( 'the_content',     array( $this, 'championship' ), 8 );
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 
@@ -214,6 +215,20 @@ class SRC_Seasons extends SRC_Core {
 		wp_reset_query();
 
 		$content .= $html;
+
+		return $content;
+	}
+
+	public function drivers( $content ) {
+
+		$season_title = get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) );
+		if ( '' === $season_title ) {
+			$season_title = get_post_field( 'post_name', get_post( get_option( 'current-season' ) ) );
+		}
+
+		if ( get_the_title( get_the_ID() ) === $season_title ) {
+			$content .= '[undycar_drivers season="' . esc_attr( $season_title ) . '"]';
+		}
 
 		return $content;
 	}
