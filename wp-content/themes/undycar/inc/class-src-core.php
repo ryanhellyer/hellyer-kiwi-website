@@ -285,7 +285,7 @@ class SRC_Core {
 			} else if  (
 				'all' === $season || $season === get_user_meta( $driver_id, 'season', true )
 				&&
-				'reserve' === $season
+				'reserve' !== $season
 			) {
 				$drivers[] = $driver->ID;
 			}
