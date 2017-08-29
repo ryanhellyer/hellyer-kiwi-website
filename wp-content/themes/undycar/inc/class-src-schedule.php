@@ -56,7 +56,7 @@ class SRC_Schedule extends SRC_Core {
 				$query->the_post();
 
 				$date = get_post_meta( get_the_ID(), 'date', true );
-echo "\n.....\n" . $date . ': ' . time() . "\n.....\n";
+
 				if ( $date < time() && ! isset( $_GET['past'] ) ) {
 					continue;
 				} else if ( $date > time() && isset( $_GET['past'] ) ) {

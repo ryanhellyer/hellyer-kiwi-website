@@ -56,7 +56,7 @@ class SRC_Seasons extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function schedule( $content ) {
-//print_r( $args );
+
 		if ( 'season' === get_post_type() ) {
 			$season_id = get_the_ID();
 		} else if ( 'a' === 'b' ) {
@@ -95,6 +95,10 @@ class SRC_Seasons extends SRC_Core {
 				$query->the_post();
 
 				$date = get_post_meta( get_the_ID(), 'date', true );
+
+				if ( $date < time() && ! isset( $_GET['past'] ) ) {
+					$events[$date]['past'] = true;
+				}
 
 				$events[$date]['id'] = get_the_ID();
 				$events[$date]['track']      = get_post_meta( get_the_ID(), 'track', true );
@@ -161,6 +165,11 @@ class SRC_Seasons extends SRC_Core {
 
 			$html .= '<tr>';
 
+			$past_class = '';
+			if ( true === $events[$date]['past'] ) {
+				$past_class = ' past-event';
+			}
+
 			// Only load the columns being used
 			foreach ( $columns as $label => $column ) {
 
@@ -199,7 +208,7 @@ class SRC_Seasons extends SRC_Core {
 						}
 					}
 
-					$html .= '<td class="' . esc_attr( sanitize_title( 'col-' . $label ) ) . '">' . $text /* do not escape */ . '</td>';
+					$html .= '<td class="' . esc_attr( sanitize_title( 'col-' . $label ) . $past_class ) . '">' . $text /* do not escape */ . '</td>';
 
 				}
 
