@@ -271,7 +271,7 @@ class SRC_Core {
 
 			// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
 			if (
-				'reserve' == $season
+				'reserve' === $season
 				&&
 				(
 					'1' === get_user_meta( $driver_id, 'password_set' )
@@ -282,7 +282,11 @@ class SRC_Core {
 				get_option( 'next-season' ) !== get_user_meta( $driver_id, 'season', true )
 			) {
 				$drivers[] = $driver->ID;
-			} else if  ( 'all' === $season || $season === get_user_meta( $driver_id, 'season', true ) ) {
+			} else if  (
+				'all' === $season || $season === get_user_meta( $driver_id, 'season', true )
+				&&
+				'reserve' === $season
+			) {
 				$drivers[] = $driver->ID;
 			}
 
