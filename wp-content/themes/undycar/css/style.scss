@@ -1220,6 +1220,7 @@ input[type=submit],
 			display: none;
 		}
 
+		&[href*="discord.gg"],
 		&[href*="twitter.com"],
 		&[href*="youtube.com"],
 		&[href*="facebook.com"] {
@@ -1232,6 +1233,7 @@ input[type=submit],
 
 		}
 
+		&[href*="discord.gg"]:before,
 		&[href*="twitter.com"]:before,
 		&[href*="youtube.com"]:before,
 		&[href*="facebook.com"]:before {
@@ -1239,6 +1241,10 @@ input[type=submit],
 			font-size: 1.4rem;
 			padding: 10px;
 			margin-top: -10px;
+		}
+
+		&[href*="discord.gg"]:before {
+			content: "\e908";
 		}
 
 		&[href*="twitter.com"]:before {
