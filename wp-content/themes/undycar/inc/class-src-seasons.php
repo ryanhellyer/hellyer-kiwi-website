@@ -221,13 +221,15 @@ class SRC_Seasons extends SRC_Core {
 
 	public function drivers( $content ) {
 
-		$season_title = get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) );
-		if ( '' === $season_title ) {
-			$season_title = get_post_field( 'post_name', get_post( get_option( 'current-season' ) ) );
+		$season_slug = get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) );
+		if ( '' === $season_slug ) {
+			$season_slug = get_post_field( 'post_name', get_post( get_option( 'current-season' ) ) );
 		}
 
-		if ( get_the_title( get_the_ID() ) === $season_title ) {
-			$content .= '[undycar_drivers season="' . esc_attr( $season_title ) . '"]';
+		$current_season_slug = get_post_field( 'post_name', get_the_ID() );
+
+		if ( $current_season_slug === $season_slug ) {
+			$content .= '[undycar_drivers season="' . esc_attr( $season_slug ) . '"]';
 		}
 
 		return $content;
