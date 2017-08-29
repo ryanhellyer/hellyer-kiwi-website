@@ -1,11 +1,9 @@
 <?php
 
-//echo md5( 'Ty Majeski' );die;
+// ******** update_user_meta( $member_id, 'receive_extra_communication', $receive_extra_communication ); HANDLE EMAIL COMMUNICATION CHECK
 
-//update_user_meta( 586, 'season', '2' );
+// ******** SHOULD PROCESS STUFF HERE WITH $this->get_seasons_drivers()
 
-//echo md5( 'Evan Fitzgerald' );die;
-//203752a9c3f0adbc77103a5516821858
 
 // Bail out if not processing users now
 if ( ! isset( $_GET['user_processing'] ) ) {

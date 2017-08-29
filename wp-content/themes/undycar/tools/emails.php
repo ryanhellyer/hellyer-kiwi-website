@@ -4,6 +4,14 @@ if ( ! isset( $_GET['format_email_content'] ) ) {
 	return;
 }
 
+/** LEAGUE REQUESTS 
+Hi [NAME],
+You recently applied to join the Undycar Series league, but we're totally maxed out on drivers now. If you'd like to sign up on our website though, you will be notified if a space becomes available, and also notified when there are special events on that you may be interested in.
+
+The sign up form is in the header area of the home page:
+[size=24][b]https://undycar.com/[/b][/size]
+
+*/
 
 
 /*----- to Indycar drivers -------
