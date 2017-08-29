@@ -1,5 +1,9 @@
 <?php
 
+//echo md5( 'Ty Majeski' );die;
+
+//update_user_meta( 586, 'season', '2' );
+
 //echo md5( 'Evan Fitzgerald' );die;
 //203752a9c3f0adbc77103a5516821858
 

@@ -91,16 +91,19 @@ The login/registration system is somewhat broken on the website. I didn't realis
 
 
 
+// APOLOGY EMIAL			document.getElementsByName('message')[0].value = "Hi " + shortened_name + ",\nIt seems I made a mistake, as I grossly underestimated how many people would be interested in the Undycar Series. People had told me that drivers are nearly impossible to find for iRacing leagues, so as soon as I launched the website I went looking for as many drivers as possible. Then most of you signed up, and I very quickly became swamped with applications. Your application was lodged in the system, but there is no way I can accommodate everyone, so I have only placed the first applicants into the official Undycar Series driver lineup. Unfortunately you were not in that first bunch of applicants :(\n\nI will be holding some special events from time to time, so unless you request otherwise, I'll private message you whenever these are happening so that you can join in, and I will modify how the league works next season to make it possible for many of you to enter. It is also possible that some drivers will pull out, and then I can add some of you into the official Undycar Series driver lineup.\n\n\nAlso, When you signed up, there was a glitch in the login system. This is fixed and you should now be able to login with the following credentials:\n\nhttps://undycar.com/login/\niRacing name: " + member_name + "\nPassword: " + MD5( member_name ) + "\n\nIf you experience any more problems with the site, please let me know.";
 
 $message = "Hi \" + shortened_name + \",
-It seems I made a mistake, as I grossly underestimated how many people would be interested in the Undycar Series. People had told me that drivers are nearly impossible to find for iRacing leagues, so as soon as I launched the website I went looking for as many drivers as possible. Then most of you signed up, and I very quickly became swamped with applications. Your application was lodged in the system, but there is no way I can accommodate everyone, so I have only placed the first applicants intot he official Undycar Series driver lineup. Unfortunately you were not in that first bunch of applicants :(
+The Undycar Series is bursting at the seams with drivers now. This is a very good problem to have :)
 
-I will be holding some special events from time to time, so unless you request otherwise, I'll private message you whenever these are happening so that you can join in, and I will modify how the league works next season to make it possible for many of you to enter. It is also possible that some drivers will pull out, and then I can add some of you into the official Undycar Series driver lineup then.
+You can see a full list of the confirmed drivers here:
+[url]https://undycar.com/confirmed-signups/[/url]
+Our list of reserve drivers is actually a lot larger than listed there, so we are at no risk of a driver a shortage ;)
 
 
-Also, When you signed up, there was a glitch in the login system. This should now be fixed and you can login now with the following credentials:
+There was a glitch in the login system when you signed up. This should now be fixed and you can login now with the following credentials:
 
-https://undycar.com/login/
+[url]https://undycar.com/login/[/url]
 iRacing name: \" + member_name + \"
 Password: \" + md5( member_name ) + \"
 
