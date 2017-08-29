@@ -1,6 +1,10 @@
 <?php
 
-require( 'temp.php' );
+require( 'tools/user-processing.php' );
+require( 'tools/emails.php' );
+require( 'tools/pull-names-from-csv.php' );
+require( 'tools/convert-json.php' );
+
 
 add_option( 'src_featured_page', '' );
 add_option( 'src-season', '' );
