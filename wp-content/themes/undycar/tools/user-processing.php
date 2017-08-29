@@ -13,8 +13,11 @@ if ( 'process' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		$password = md5( $driver->data->display_name );
-		wp_set_password( $password, $driver_id );
+		if ( 'Ryan' !== $driver->data-> ) {
+			$password = md5( $driver->data->display_name );
+			wp_set_password( $password, $driver_id );
+			echo $driver_id . "\n";
+		}
 
 		update_user_meta( $driver_id, 'season', 'special' );
 
