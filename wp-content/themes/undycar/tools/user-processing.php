@@ -1,9 +1,10 @@
 <?php
-
+//echo md5( 'Ty Majeski' );die;
 // Bail out if not processing users now
 if ( ! isset( $_GET['user_processing'] ) ) {
 	return;
 }
+
 
 
 if ( 'process' === $_GET['user_processing'] ) {
@@ -11,6 +12,9 @@ if ( 'process' === $_GET['user_processing'] ) {
 	$drivers = get_users();
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
+
+		$password = md5( $driver->data->display_name );
+		wp_set_password( $password, $driver_id );
 
 		update_user_meta( $driver_id, 'season', 'special' );
 
