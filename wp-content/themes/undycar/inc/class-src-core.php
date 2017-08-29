@@ -281,6 +281,7 @@ class SRC_Core {
 				&&
 				get_option( 'next-season' ) !== get_user_meta( $driver_id, 'season', true )
 			) {
+				echo 'option: ' . get_option( 'next-season' ) . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
 				$drivers[] = $driver->ID;
 			} else if  (
 				'all' === $season || $season === get_user_meta( $driver_id, 'season', true )
