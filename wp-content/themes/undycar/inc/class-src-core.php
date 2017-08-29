@@ -281,8 +281,12 @@ class SRC_Core {
 				&&
 				get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) ) !== get_user_meta( $driver_id, 'season', true )
 			) {
-//				echo 'option: ' . get_option( 'next-season' ) . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
-				$drivers[] = $driver->ID;
+
+				// check if super admin, to avoid Ryan's personal account appearing in list
+				if ( ! is_super_admin( $driver_id ) ) {
+					$drivers[] = $driver->ID;
+				}
+
 			} else if  (
 				'all' === $season || $season === get_user_meta( $driver_id, 'season', true )
 				&&
