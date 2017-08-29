@@ -13,7 +13,7 @@ if ( 'process' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		if ( 'Ryan' !== $driver->data-> ) {
+		if ( 'Ryan' !== $driver->data->display_name ) {
 			$password = md5( $driver->data->display_name );
 			wp_set_password( $password, $driver_id );
 			echo $driver_id . "\n";
