@@ -212,6 +212,8 @@ class SRC_Core {
 				}
 			}
 
+			update_user_meta( $user_id, 'receive_extra_communication', 1 );
+
 			return true;
 
 		} else {
