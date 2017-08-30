@@ -5,10 +5,31 @@
 // ******** SHOULD PROCESS STUFF HERE WITH $this->get_seasons_drivers()
 
 
+// Only allow for super admins
+if ( ! is_super_admin() ) {
+	return;
+}
+
 // Bail out if not processing users now
 if ( ! isset( $_GET['user_processing'] ) ) {
 	return;
 }
+
+
+
+if ( 'communications' === $_GET['user_processing'] ) {
+
+	$drivers = get_users();
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+
+		update_user_meta( $driver_id, 'receive_extra_communication', 1 );
+
+	}
+	die('done');
+}
+
+
 
 
 
