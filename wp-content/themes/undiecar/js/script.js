@@ -36,7 +36,7 @@
 	});
 
 	window.addEventListener("resize", function() {
-		set_featured_news_height();
+//		set_featured_news_height();
 		set_standings_sidebars();
 	});
 
