@@ -27,6 +27,7 @@ $facebook           = get_user_meta( $member_id, 'facebook', true );
 $youtube            = get_user_meta( $member_id, 'youtube', true );
 $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
+$season             = get_user_meta( $member_id, 'season', true );
 
 get_header();
 
@@ -123,7 +124,7 @@ echo '</p>';
 if (
 	$member_id === get_current_user_id()
 	&&
-	'2' !== get_user_meta( $member_id, 'season', true )
+	'2' !== $season
 ) {
 	echo '<p><strong><u>Unfortunately all positions are now filled for season 2</u></strong>, but you have been placed on the reserve list and will be notified if any spots become availble or of any special events we may hold.</p>';
 }
@@ -149,8 +150,15 @@ if (
 	echo '
 	<hr />
 
-	<form action="" method="POST" enctype="multipart/form-data">
+	<form action="" method="POST" enctype="multipart/form-data">';
 
+	if ( is_super_admin() ) {
+		echo '
+		<label>Season?</label>
+		<input name="season" type="text" value="' . esc_attr( $season ) . '" />';
+	}
+
+	echo '
 		<label>Email address</label>
 		<input name="email" type="email" value="' . esc_attr( $email ) . '" />
 
