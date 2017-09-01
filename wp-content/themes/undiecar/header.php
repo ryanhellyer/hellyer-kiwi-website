@@ -82,7 +82,11 @@ $args = array(
 	'fields'                 => 'ids',
 ) ;
 
-if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
+if ( is_search() ) {
+	$title = sprintf( esc_html__( 'Search Results for: "%s"', 'undiecar' ), get_search_query() );
+	$content = '';
+	$image_url = get_template_directory_uri() . '/images/cars/richard-browell.jpg';
+} else if ( defined( 'SRC_MEMBERS_TEMPLATE' ) ) {
 	global $display_name;
 	$title = $display_name;
 	$content = '';

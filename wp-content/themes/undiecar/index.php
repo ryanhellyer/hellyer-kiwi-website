@@ -17,11 +17,21 @@ if ( have_posts() ) {
 	while ( have_posts() ) {
 		the_post();
 
-		the_content();
+		if ( is_search() ) {
 
-		// If comments are open or we have at least one comment, load up the comment template
-		if ( comments_open() || '0' != get_comments_number() ) {
-			comments_template( '', true );
+			echo '<h3><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . esc_html( get_the_title( get_the_ID() ) ) . '</a></h3>';
+			the_excerpt();
+			echo '<hr />';
+
+		} else {
+
+			the_content();
+
+			// If comments are open or we have at least one comment, load up the comment template
+			if ( comments_open() || '0' != get_comments_number() ) {
+				comments_template( '', true );
+			}
+
 		}
 
 	}
