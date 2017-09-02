@@ -146,7 +146,10 @@ if (
 	is_super_admin()
 ) {
 
-
+if ( is_super_admin() ) {
+	print_r( get_user_meta( $member_id ) );
+//	echo '___'.get_user_meta( $member_id, 'road_irating', true );
+}
 	echo '
 	<hr />
 
