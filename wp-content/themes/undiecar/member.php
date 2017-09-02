@@ -28,6 +28,7 @@ $youtube            = get_user_meta( $member_id, 'youtube', true );
 $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
+$custid             = get_user_meta( $member_id, 'custid', true );
 
 get_header();
 
@@ -78,6 +79,10 @@ if ( '' !== $first_racing_games ) {
 	echo '<strong>First racing games:</strong> ' . $first_racing_games . '<br />';
 } else {
 	$missing_data_count++;
+}
+
+if ( '' !== $custid ) {
+	echo '<strong>iRacing account:</strong> <a href="' . esc_url( 'http://members.iracing.com/membersite/member/CareerStats.do?custid=' . $custid ) . '">' . esc_html( $display_name ) . ' on iRacing</a><br />';
 }
 
 $social_network_counter = 0;
@@ -146,10 +151,30 @@ if (
 	is_super_admin()
 ) {
 
-if ( is_super_admin() ) {
-	print_r( get_user_meta( $member_id ) );
-//	echo '___'.get_user_meta( $member_id, 'road_irating', true );
-}
+	if ( is_super_admin() ) {
+
+		$meta_keys = array(
+			'oval_irating',
+			'oval_license',
+			'oval_avg_inc',
+			'road_irating',
+			'road_license',
+			'road_avg_inc',
+			'custid',
+		);
+
+		echo '
+		<hr />
+		<p>
+			<strong>Super admin only data</strong><br /><small style="line-height:18px;display:block;">';
+		foreach ( $meta_keys as $meta_key ) {
+			echo $meta_key . ': ' . esc_html( get_user_meta( $member_id, $meta_key, true ) ) . '<br />';
+		}
+		echo '</small></p>';
+
+	}
+
+
 	echo '
 	<hr />
 
