@@ -105,50 +105,68 @@ if ( 'reserves' === $_GET['user_processing'] ) {
 
 }
 
-die();
+if ( 'update_iracing_info' === $_GET['user_processing'] ) {
+
+	$dir = wp_upload_dir();
+
+	$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
+	$stats = json_decode( $stats, true );
+
+	// If user exists in iRacing, then return their stats, otherwise return false
+
+	$meta_keys = array(
+		'oval_irating',
+		'oval_license',
+		'oval_avg_inc',
+		'road_irating',
+		'road_license',
+		'road_avg_inc',
+		'custid',
+	);
 
 
-function undycar_get_season_2_drivers() {
+	$drivers = get_users();
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+		$display_name = $driver->data->display_name;
 
-	$drivers = 'Evan Fitzgerald
-Ryan Hellyer
-Kaue Gomes
-Tim Williams
-Patrick Hingston
-M B Dickey2
-Cristian Otarola
-Lucas Stinziano2
-Anthony Cothran
-Craig P Kasper
-Craig Shepherd
-Kevin McCarthy
-Patrick Langley
-Adam Crapser
-JW Miller
-Andre Heidstra
-Stephane Parent
-Claudius Wied
-Ramon Regalado
-Steven Roberts4
-Egoitz Elorz
-Dirk Rommeswinkel
-A J Burton
-Daniel Wright4
-Casey Drake
-Marco A Pereira
-Philippe Tortue
-Art Seeger
-Victor H. Santana
-Richard Browell
-Stuart John
-Joshua S Lee
-Said Gonzalez
-Nikolay Ladushkin
-Kleber Bottaro Moura
-Javier Perez M.
-Neil A. Jackson	8';
+		if ( isset( $stats[$display_name] ) ) {
 
-	$drivers = explode( "\n", $drivers );
+			print_r( $stats[$display_name] );
+			foreach ( $meta_keys as $key => $meta_key ) {
 
-	return $drivers;
+				if ( isset( $stats[$display_name][$meta_key] ) ) {
+					update_user_meta( $driver_id, $meta_key, $stats[$display_name][$meta_key] );
+				}
+
+			}
+
+		}
+
+	}
+
+	die( 'All iRacing meta data updated :)' );
 }
+
+if ( 'list_by_road_irating' === $_GET['user_processing'] ) {
+
+	$drivers = get_users();
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+		$irating = get_user_meta( $driver_id, 'road_irating', true );
+
+		if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
+			$stats[$irating] = $driver->data->display_name;
+		}
+
+	}
+
+	ksort( $stats );
+	foreach ( $stats as $irating => $driver_name ) {
+		echo $driver_name . ': ' . $irating . "\n";
+	}
+
+	die( "\n\n".'Done :)' );
+}
+
+
