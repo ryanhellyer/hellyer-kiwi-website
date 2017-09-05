@@ -72,6 +72,19 @@ get_header();
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'date', true );
 
+			foreach ( array( 3, 2, 1 ) as $race ) {
+				$race_time = get_post_meta( get_the_ID(), 'event_race-' . $race . '_timestamp', true );
+				if ( '' !== $race_time && ! isset( $time ) ) {
+					$exploded_race_time = explode( ':', $race_time );
+
+					$hours_in_seconds = $exploded_race_time[0] * 60 * 60;
+					$minutes_in_seconds = $exploded_race_time[1] * 60;
+					$time = $hours_in_seconds + $minutes_in_seconds;
+				}
+
+			}
+			$event_time = $event_date + $time;
+
 			$track_id = get_post_meta( $event_id, 'track', true );
 			$track_query = new WP_Query( array(
 				'p'                      => $track_id,
@@ -91,14 +104,13 @@ get_header();
 					$track_name = get_the_title( get_the_ID() );
 					$track_type_slug = get_post_meta( get_the_ID(), 'track_type', true );
 					$track_type = src_get_track_types()[$track_type_slug];
-
 				}
 
 			}
 
-			if ( $event_date > time() ) {
+			if ( $event_time > time() ) {
 
-				$event_array[$event_date] = array(
+				$event_array[$event_time] = array(
 					'event_id'        => $event_id,
 					'track_logo'      => $track_logo,
 					'track_name'      => $track_name,
