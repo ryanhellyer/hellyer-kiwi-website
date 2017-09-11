@@ -26,12 +26,25 @@ class SRC_Events extends SRC_Core {
 
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
+		add_filter('upload_mimes',            array( $this, 'allow_setup_uploads' ) );
 
 		// iRacing results uploader
 		add_action( 'add_meta_boxes', array( $this, 'results_upload_metabox' ) );
 		add_action( 'save_post',      array( $this, 'results_upload_save' ), 10, 2 );
 		add_action( 'post_edit_form_tag', array( $this, 'update_form_enctype' ) );
 
+	}
+
+	/**
+	 * Allow setup file uploads.
+	 *
+	 * @param  array   $mime_types   The allowed mime types
+	 * @return array  modified mime types
+	 */
+	public function allow_setup_uploads( $mime_types ){
+		$mime_types['sto'] = 'application/octet-stream';
+
+		return $mime_types;
 	}
 
 	/**
@@ -136,6 +149,12 @@ class SRC_Events extends SRC_Core {
 			) );
 
 		}
+
+		$cmb->add_field( array(
+			'name' => esc_html__( 'Setup file', 'src' ),
+			'id'   => 'setup_file',
+			'type' => 'file',
+		) );
 
 	}
 
@@ -384,6 +403,12 @@ class SRC_Events extends SRC_Core {
 				$sidebar_html .= '<br />' . $extra_session_info;
 			}
 			$sidebar_html .= '</p>';
+		}
+
+		$setup_file_id = get_post_meta( get_the_ID(), 'setup_file_id', true );
+		if ( '' !== $setup_file_id ) {
+			$setup_file = wp_get_attachment_url( $setup_file_id );
+			$sidebar_html .= '<p><a href="' . esc_url( $setup_file ) . '">Download fixed setup</a></p>';
 		}
 
 		$season_id = get_post_meta( get_the_ID(), 'season', true );
