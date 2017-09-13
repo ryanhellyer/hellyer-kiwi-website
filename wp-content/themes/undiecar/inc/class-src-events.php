@@ -86,10 +86,6 @@ class SRC_Events extends SRC_Core {
 	public function events_metaboxes() {
 		$slug = 'event';
 
-		if ( ! isset( $_GET['post'] ) || 'event' !== get_post_type( $_GET['post'] ) ) {
-			return;
-		}
-
 		$cmb = new_cmb2_box( array(
 			'id'           => $slug,
 			'title'        => esc_html__( 'Event Information', 'src' ),

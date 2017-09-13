@@ -236,7 +236,7 @@ class SRC_Core {
 
 				// Don't bother showing drivers who haven't scored any points yet
 				$points = absint( round( $points ) );
-				if ( 0 !== $points ) {
+				if ( 0 !== $points && '' !== $name) {
 
 					$content .= '<tr>';
 
