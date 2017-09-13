@@ -103,6 +103,11 @@ class SRC_Core {
 
 							}
 
+							// Store fastest laps
+							if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
+								$fastest_laps[$name] = $result['fastest_lap_time'];
+							}
+
 							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
 							if (
 								$results[1]['laps-completed'] === $result['laps-completed']
@@ -167,6 +172,18 @@ class SRC_Core {
 					if ( isset( $stored_results[$name] ) ) {
 						$stored_results[$name] = $stored_results[$name] + 1;
 					}
+				}
+
+				// Add bonus points for fastest lap in each race
+				asort( $fastest_laps );
+				foreach ( $fastest_laps as $name => $fastest_lap_time ) {
+
+					if ( isset( $stored_results[$name] ) ) {
+						$stored_results[$name] = $stored_results[$name] + 1;
+					} else {
+						$stored_results[$name] = 1;
+					}
+
 				}
 
 			}
