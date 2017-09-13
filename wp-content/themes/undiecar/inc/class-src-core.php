@@ -237,7 +237,7 @@ class SRC_Core {
 				$inc = $inc / self::FRACTION;
 
 				// Don't bother showing drivers who haven't scored any points yet
-				if ( 0 !== absint( $points ) ) {
+				if ( 0 !== round( $points ) ) {
 
 					$content .= '<tr>';
 
@@ -245,8 +245,8 @@ class SRC_Core {
 					$content .= '<td class="col-name">' . $linked_name . '</td>';
 					$content .= '<td class="col-number">' . esc_html( $car_number ) . '</td>';
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
-					$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
-					$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
+					$content .= '<td class="col-pts">' . round( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 
 					$content .= '</tr>';
 				}
