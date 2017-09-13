@@ -44,7 +44,7 @@
 				if ( 'ryan' === $username ) {
 					$username = 'ryan-hellyer';
 				}
-				echo '<li><a href="' . esc_url( home_url() . '/members/' . $username . '/' ) . '">View profile</a></li>';
+				echo '<li><a href="' . esc_url( home_url() . '/member/' . $username . '/' ) . '">View profile</a></li>';
 
 				echo '<li><a href="' . esc_url( wp_logout_url( home_url() ) ) . '">Log out</a></li>';
 			} else {
