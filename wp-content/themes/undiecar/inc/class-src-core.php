@@ -129,14 +129,12 @@ class SRC_Core {
 						}
 
 						// Give bonus points for most spectacular crash in each race
-/*
 						$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
 						if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
 							$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
 						} else {
 							$stored_results[$most_spectacular_crash_name] = 1;
 						}
-*/
 
 					}
 
