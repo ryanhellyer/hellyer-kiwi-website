@@ -13,6 +13,12 @@
 class SRC_Core {
 
 	/**
+	 * Fraction used for assigning negative points for incidents.
+	 * A tiny fraction of a point is removed for each incident to split drivers who are on equal points.
+	 */
+	const FRACTION = 0.0001;
+
+	/**
 	* Event types.
 	*
 	* @return array
@@ -78,11 +84,12 @@ class SRC_Core {
 
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 					$results = json_decode( $results, true );
-
 					$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
 					if ( is_array( $results ) ) {
 
+						// Add points for finishing position and calc incidents
+						$incident_results = array();
 						foreach ( $results as $pos => $result ) {
 
 							$name = $result['name'];
@@ -95,10 +102,63 @@ class SRC_Core {
 								}
 
 							}
+
+
+							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
+							if (
+								$results[1]['laps-completed'] === $result['laps-completed']
+								||
+								( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
+							) {
+								$name = $result['name'];
+								$incident_results[$name] = $result['incidents'];
+							}
+
+							// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
+							if ( isset( $stored_results[$name] ) ) {
+								$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
+							} else {
+								$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
+							}
+
+						}
+
+						// Give bonus points for most spectacular crash in each race
+						$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
+						if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
+							$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
+						} else {
+							$stored_results[$most_spectacular_crash_name] = 1;
+						}
+
+						// Work out who gets points for the least incidents
+						asort( $incident_results );
+						foreach ( $incident_results as $driver_name => $incidents ) {
+
+							if ( ! isset( $lowest ) ) {
+								$lowest = $incidents;
+							}
+
+							// Hand out bonus point for everyone who had the lowest number of incidents
+							if ( $incidents === $lowest ) {
+								$stored_results[$name] = $stored_results[$name] + 1;
+							}
+
 						}
 
 					}
 
+				}
+
+				// Add bonus point for pole
+				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
+				$qual_results = json_decode( $qual_results, true );
+				if ( isset( $qual_results[1] ) ) {
+					$pole_position = $qual_results[1];
+					$name = $pole_position['name'];
+					if ( isset( $stored_results[$name] ) ) {
+						$stored_results[$name] = $stored_results[$name] + 1;
+					}
 				}
 
 			}
@@ -122,6 +182,7 @@ class SRC_Core {
 				<th class="col-name">Name</th>
 				<th class="col-number">Num</th>
 				<th class="col-nationality">Nationality</th>
+				<th class="col-inc">Inc</th>
 				<th class="col-pts">Pts</th>';
 			$content .= '</tr></thead>';
 
@@ -155,13 +216,24 @@ class SRC_Core {
 
 				}
 
+				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
+				$whole = floor( $points );
+				$inc = ( 1 - ( $points - $whole ) ) / self::FRACTION;
+				$inc = ( 0 + ( $points - $whole ) );
+				if ( 0 == $inc ) {
+					$inc = 1;
+				}
+				$inc = 1 - $inc;
+				$inc = $inc / self::FRACTION;
+
 				$content .= '<tr>';
 
 				$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
 				$content .= '<td class="col-name">' . $linked_name . '</td>';
 				$content .= '<td class="col-number">' . esc_html( $car_number ) . '</td>';
 				$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
-				$content .= '<td class="col-pts">' . esc_html( $points ) . '</td>';
+				$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
+				$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 
 				$content .= '</tr>';
 			}

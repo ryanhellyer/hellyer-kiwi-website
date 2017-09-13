@@ -63,6 +63,7 @@ if ( 'season_2' === $_GET['user_processing'] ) {
 
 }
 
+// https://undiecar.com/?user_processing=special
 if ( 'special' === $_GET['user_processing'] ) {
 
 	$drivers = get_users();
@@ -71,6 +72,8 @@ if ( 'special' === $_GET['user_processing'] ) {
 
 		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
 		if (
+			'banned' !== get_user_meta( $driver_id, 'season' )
+			&&
 			'1' !== get_user_meta( $driver_id, 'password_set' )
 			&&
 			'1' === get_user_meta( $driver_id, 'season', true )

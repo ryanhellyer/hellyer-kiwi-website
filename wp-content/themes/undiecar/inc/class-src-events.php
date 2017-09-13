@@ -150,6 +150,15 @@ class SRC_Events extends SRC_Core {
 
 		}
 
+		foreach ( array( '1', '2', '3' ) as $kx => $num ) {
+			$cmb->add_field( array(
+				'name'       => 'Race ' . $num . ' most spectacular crash',
+				'id'         => $slug . '_race_' . $num . '_most_spectacular_crash',
+				'type'       => 'select',
+				'options'    => $this->get_seasons_drivers_array( $_GET['post'] ),
+			) );
+		}
+
 		$cmb->add_field( array(
 			'name' => esc_html__( 'Setup file', 'src' ),
 			'id'   => 'setup_file',
@@ -167,6 +176,47 @@ class SRC_Events extends SRC_Core {
 			'4lap' => esc_html__( 'Two lap solo', 'src' ),
 		);
 	}
+
+	public function get_seasons_drivers_array( $event_id ) {
+
+		$season_id = get_post_meta( $event_id, 'season', true );
+		$query = new WP_Query( array(
+			'p'                      => $season_id,
+			'posts_per_page'         => 1,
+			'post_type'              => 'season',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+		$drivers_array = array(
+			'' => 'None',
+		);
+		if ( $query->have_posts() ) {
+
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$season_slug = basename( get_permalink() );
+				$drivers = $this->get_seasons_drivers( $season_slug );
+			}
+
+			foreach ( $drivers as $driver_key => $driver_id ) {
+
+				if ( $season_slug === get_user_meta( $driver_id, 'season', true ) ) {
+					$driver = get_userdata( $driver_id );
+					if ( isset( $driver->data->display_name ) && '' !== $driver->data->display_name ) {
+						$driver_name = $driver->data->display_name;
+						//$driver_slug = sanitize_title( $driver->data->display_name );
+						$drivers_array[$driver_name] = $driver_name;
+					}
+				}
+
+			}
+
+		}
+
+		return $drivers_array;
+	}
+
 
 	public function qualifying_grid() {
 		return array(
@@ -528,7 +578,16 @@ class SRC_Events extends SRC_Core {
 	 * Results upload HTML.
 	 */
 	public function results_upload_metabox_html() {
+
+		if ( 'event' !== get_post_type() ) {
+			return;
+		}
+
 		echo '
+		<p>
+			<label for="result-qual-file">' . esc_html__( 'Qualifying results', 'src' ) . '</label>
+			<input type="file" id="result-qual-file" name="result-qual-file" />
+		</p>
 		<p>
 			<label for="result-1-file">' . esc_html__( 'Race 1 results', 'src' ) . '</label>
 			<input type="file" id="result-1-file" name="result-1-file" />
@@ -544,6 +603,14 @@ class SRC_Events extends SRC_Core {
 		<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
 		<p>';
 
+
+		echo '
+		<textarea style="font-family:monospace;font-size:9px;line-height:9px;width:100%;height:100px;">' . 
+			print_r(
+				json_decode( get_post_meta( get_the_ID(), '_results_qual', true ), true ),
+				true
+			) . 
+		'</textarea>';
 
 		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 			echo '
@@ -576,7 +643,7 @@ class SRC_Events extends SRC_Core {
 			return $post_id;
 		}
 
-		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+		foreach ( array( 1, 2, 3, 'qual' ) as $key => $race_number ) {
 
 			// Only save if correct post data sent
 			if ( isset( $_FILES['result-' . $race_number . '-file']['tmp_name'] ) && '' !== $_FILES['result-' . $race_number . '-file']['tmp_name'] ) {
@@ -737,11 +804,38 @@ class SRC_Events extends SRC_Core {
 			$html .= '<tbody>';
 
 			foreach ( $results as $key => $result ) {
+
 				$html .= '<tr>';
 				$html .= '<td>' . esc_html( $key ) . '</td>';
 
 				foreach ( $result as $k => $cell ) {
-					$html .= '<td>' . esc_html( $cell ) . '</td>';
+
+					// Shove qualifying result into main results
+					if ( 'qual_time' === $k ) {
+						$cell = 'xxx';
+						$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
+						$qual_results = json_decode( $qual_results, true );
+
+						foreach ( $qual_results as $q_key => $q_value ) {
+							if ( $q_value['name'] === $result['name'] ) {
+								$cell = $q_value['qual_time'];
+							}
+
+						}
+
+					}
+
+					// Link the drivers name
+					$link_start = $link_end = '';
+					if ( 'name' === $k ) {
+						$driver_slug = sanitize_title( $cell );
+						if ( username_exists( $driver_slug ) ) {
+							$link_start = '<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '/">';
+							$link_end = '</a>';
+						}
+					}
+
+					$html .= '<td>' . $link_start . esc_html( $cell ) . $link_end . '</td>';
 				}
 
 				$html .= '</tr>';
