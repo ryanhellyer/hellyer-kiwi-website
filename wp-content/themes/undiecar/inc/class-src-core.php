@@ -103,7 +103,6 @@ class SRC_Core {
 
 							}
 
-
 							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
 							if (
 								$results[1]['laps-completed'] === $result['laps-completed']

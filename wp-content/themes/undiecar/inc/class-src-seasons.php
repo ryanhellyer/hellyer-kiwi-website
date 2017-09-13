@@ -378,13 +378,13 @@ class SRC_Seasons extends SRC_Core {
 			$bonuses[] = __( 'pole position', 'src' );
 		}
 		if ( '' !== $bonus_point_fastest_lap ) {
-			$bonuses[] = __( 'fastest lap', 'src' );
+			$bonuses[] = __( 'fastest lap in each race', 'src' );
 		}
 		if ( '' !== $bonus_point_most_laps_led ) {
-			$bonuses[] = __( 'most laps led', 'src' );
+			$bonuses[] = __( 'most laps led in each race', 'src' );
 		}
 		if ( '' !== $bonus_point_best_crash ) {
-			$bonuses[] = __( 'most spectacular crash', 'src' );
+			$bonuses[] = __( 'most spectacular crash in each race', 'src' );
 		}
 
 		if ( 0 < count( $bonuses ) ) {
