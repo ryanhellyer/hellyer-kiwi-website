@@ -1,5 +1,19 @@
 <?php
 
+/*
+function bla() {
+	$name = 'Eddie Bareford';
+
+	$userdata = array(
+	    'user_login'  =>  santiize_title( $name ),
+	    'user_pass'   =>  'abc',
+	);
+
+	$user_id = wp_insert_user( $userdata ) ;
+}
+add_action( 'init', 'bla' );
+*/
+
 require( 'tools/user-processing.php' );
 require( 'tools/emails.php' );
 require( 'tools/pull-names-from-csv.php' );
