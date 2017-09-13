@@ -1,18 +1,18 @@
 <?php
 
 /*
+*/
 function bla() {
 	$name = 'Eddie Bareford';
 
 	$userdata = array(
-	    'user_login'  =>  santiize_title( $name ),
+	    'user_login'  =>  sanitiize_title( $name ),
 	    'user_pass'   =>  'abc',
 	);
 
-	$user_id = wp_insert_user( $userdata ) ;
+//	$user_id = wp_insert_user( $userdata ) ;
 }
-add_action( 'init', 'bla' );
-*/
+add_action( 'template_redirect', 'bla' );
 
 require( 'tools/user-processing.php' );
 require( 'tools/emails.php' );
