@@ -273,10 +273,6 @@ class SRC_Core {
 			$content .= '</table>';
 		}
 
-if ( ! is_front_page() ) {
-	$content .= '<p><small>Due to technical difficulties (Ryan stupidly forgot to factor this into the code that calculates the points table), the bonus points for pole position, fastest lap and most spectacular crash are not yet registered in the points table. These will be added once Ryan has time to fix the code generating this stuff later next week. Apologies for the inconvenience.</small></p>';
-}
-
 		return $content;
 	}
 
