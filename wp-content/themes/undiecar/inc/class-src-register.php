@@ -107,7 +107,7 @@ class SRC_Register extends SRC_Core {
 		if ( defined( 'SRC_LOGIN_ERROR' ) ) {
 			$message_text = __( 'We detected that you were already a member, so tried logging you in and something went wrong.', 'src' );
 		} else if ( defined( 'SRC_IRACING_MEMBER_DOES_NOT_EXIST' ) ) {
-			$message_text = __( 'The name you specified does not appear to exist within the database provided by iRacing. If the name you used is definitely registered within iRacing, just send a message to "<a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">Ryan Hellyer</a>" on iRacing.com who will manually register your account for you.', 'src' );
+			$message_text = __( 'That name was not found within iRacing. This often happens when an account is new (less than two months old) and iRacing has not updated their whole system yet. Simply send a private message to "<a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">Ryan Hellyer</a>" on iRacing.com and he will manually register your account for you.', 'src' );
 		} else if ( defined( 'SRC_USERNAME_EXISTS' ) || defined( 'SRC_EMAIL_EXISTS' ) ) {
 
 			if ( defined( 'SRC_USERNAME_EXISTS' ) ) {
