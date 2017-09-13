@@ -159,7 +159,7 @@ class SRC_Core {
 					}
 
 				}
-/*
+
 				// Add bonus point for pole
 				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
 				$qual_results = json_decode( $qual_results, true );
@@ -170,7 +170,7 @@ class SRC_Core {
 						$stored_results[$name] = $stored_results[$name] + 1;
 					}
 				}
-*/
+
 			}
 		}
 
