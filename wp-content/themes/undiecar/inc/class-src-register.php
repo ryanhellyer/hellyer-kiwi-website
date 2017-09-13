@@ -125,7 +125,7 @@ class SRC_Register extends SRC_Core {
 		}
 
 		if ( isset( $message_text ) ) {
-			$content .= '<p><strong>' . esc_html( $message_text ) . '</strong></p>';
+			$content .= '<p><strong>' . wp_kses_post( $message_text ) . '</strong></p>';
 		}
 
 		$content .= '
