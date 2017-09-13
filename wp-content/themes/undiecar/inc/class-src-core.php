@@ -80,6 +80,7 @@ class SRC_Core {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
+				$incident_results = array();
 				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
@@ -89,7 +90,6 @@ class SRC_Core {
 					if ( is_array( $results ) ) {
 
 						// Add points for finishing position and calc incidents
-						$incident_results = array();
 						foreach ( $results as $pos => $result ) {
 
 							$name = $result['name'];
@@ -111,7 +111,13 @@ class SRC_Core {
 								( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
 							) {
 								$name = $result['name'];
-								$incident_results[$name] = $result['incidents'];
+								if ( isset( $incident_results[$name] ) ) {
+									$incident_results[$name] = $incident_results[$name] + $result['incidents'];
+								} else {
+									$incident_results[$name] = $result['incidents'];
+								}
+							} else {
+								$incident_results[$name] = 100000;
 							}
 
 							// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
@@ -131,21 +137,24 @@ class SRC_Core {
 							$stored_results[$most_spectacular_crash_name] = 1;
 						}
 
-						// Work out who gets points for the least incidents
-						asort( $incident_results );
-						foreach ( $incident_results as $driver_name => $incidents ) {
+					}
 
-							if ( ! isset( $lowest ) ) {
-								$lowest = $incidents;
-							}
+				}
 
-							// Hand out bonus point for everyone who had the lowest number of incidents
-							if ( $incidents === $lowest ) {
-								$stored_results[$name] = $stored_results[$name] + 1;
-							}
+				// Work out who gets points for the least incidents
+				asort( $incident_results );
+				foreach ( $incident_results as $driver_name => $incidents ) {
+					if ( $incidents > 99999 ) {
+					continue;
+					}
 
-						}
+					if ( ! isset( $lowest ) ) {
+						$lowest = $incidents;
+					}
 
+					// Hand out bonus point for everyone who had the lowest number of incidents
+					if ( $incidents === $lowest ) {
+						$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
 					}
 
 				}
