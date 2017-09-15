@@ -32,21 +32,17 @@ if ( 'process' === $_GET['user_processing'] ) {
 //			wp_set_password( $password, $driver_id );
 //			echo $driver_id . "\n";
 		}
-/*
-		update_user_meta( $driver_id, 'season', 'reserve' );
 
-		if ( strpos( $driver->user_email, '@me.com' ) !== false ) {
-			update_user_meta( $driver_id, 'season', '1' );
+
+		$season = get_user_meta( $driver_id, 'season', true );
+		if ( '2' !== $season && strpos( $driver->user_email, '@me.com' ) === false ) {
+			update_user_meta( $driver_id, 'season', 'reserve' );
 		}
 
-		foreach ( undycar_get_season_2_drivers() as $key => $driver_name ) {
+		//if ( strpos( $driver->user_email, '@me.com' ) !== false ) {
+		//	update_user_meta( $driver_id, 'season', '1' );
+		//}
 
-			if ( $driver->data->display_name === $driver_name ) {
-				update_user_meta( $driver_id, 'season', '2' );
-			}
-
-		}
-*/
 	}
 }
 
