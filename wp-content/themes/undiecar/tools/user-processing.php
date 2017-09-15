@@ -61,7 +61,7 @@ if ( 'season_2' === $_GET['user_processing'] ) {
 
 }
 
-// https://undiecar.com/?user_processing=special
+// Get all drivers eligible for special races
 if ( 'special' === $_GET['user_processing'] ) {
 
 	$drivers = get_users();
@@ -79,7 +79,15 @@ if ( 'special' === $_GET['user_processing'] ) {
 			continue;
 		}
 
-		echo $driver->data->display_name . ',';
+		if (
+			'special' === get_user_meta( $driver_id, 'season' )
+			&&
+			'reserve' === get_user_meta( $driver_id, 'season' )
+			&&
+			'2' === get_user_meta( $driver_id, 'season' )
+		) {
+			echo $driver->data->display_name . ',';
+		}
 
 	}
 
