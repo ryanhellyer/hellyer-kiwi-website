@@ -32,7 +32,7 @@ if ( 'process' === $_GET['user_processing'] ) {
 //			wp_set_password( $password, $driver_id );
 //			echo $driver_id . "\n";
 		}
-
+/*
 		update_user_meta( $driver_id, 'season', 'reserve' );
 
 		if ( strpos( $driver->user_email, '@me.com' ) !== false ) {
@@ -46,7 +46,7 @@ if ( 'process' === $_GET['user_processing'] ) {
 			}
 
 		}
-
+*/
 	}
 }
 
