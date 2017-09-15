@@ -21,6 +21,7 @@ if ( ! isset( $_GET['user_processing'] ) ) {
 
 
 if ( 'process' === $_GET['user_processing'] ) {
+	return;
 
 	$drivers = get_users();
 	foreach ( $drivers as $driver ) {
@@ -64,7 +65,6 @@ if ( 'season_2' === $_GET['user_processing'] ) {
 if ( 'special' === $_GET['user_processing'] ) {
 
 	$drivers = get_users();
-print_r( $drivers );
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
@@ -72,7 +72,7 @@ print_r( $drivers );
 		if (
 			'banned' !== get_user_meta( $driver_id, 'season' )
 			&&
-			'1' !== get_user_meta( $driver_id, 'password_set' )
+			'2' !== get_user_meta( $driver_id, 'season' )
 			&&
 			'1' === get_user_meta( $driver_id, 'season', true )
 		) {
