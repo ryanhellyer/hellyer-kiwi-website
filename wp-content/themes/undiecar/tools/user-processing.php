@@ -88,16 +88,11 @@ if ( 'reserves' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
 		if (
-			'1' !== get_user_meta( $driver_id, 'password_set' )
-			&&
-			( '1' === get_user_meta( $driver_id, 'season', true ) || '2' === get_user_meta( $driver_id, 'season', true ) )
+			'reserve' === get_user_meta( $driver_id, 'season', true )
 		) {
-			continue;
+			echo $driver->data->display_name . ',';
 		}
-
-		echo $driver->data->display_name . ',';
 
 	}
 
