@@ -68,22 +68,11 @@ if ( 'special' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
-		if (
-			'banned' !== get_user_meta( $driver_id, 'season' )
-			&&
-			'2' !== get_user_meta( $driver_id, 'season' )
-			&&
-			'1' === get_user_meta( $driver_id, 'season', true )
-		) {
-			continue;
-		}
-
 		if (
 			'special' === get_user_meta( $driver_id, 'season' )
-			&&
+			||
 			'reserve' === get_user_meta( $driver_id, 'season' )
-			&&
+			||
 			'2' === get_user_meta( $driver_id, 'season' )
 		) {
 			echo $driver->data->display_name . ',';
