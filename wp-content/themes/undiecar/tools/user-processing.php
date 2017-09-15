@@ -21,7 +21,6 @@ if ( ! isset( $_GET['user_processing'] ) ) {
 
 
 if ( 'process' === $_GET['user_processing'] ) {
-	return;
 
 	$drivers = get_users();
 	foreach ( $drivers as $driver ) {
@@ -33,7 +32,7 @@ if ( 'process' === $_GET['user_processing'] ) {
 			echo $driver_id . "\n";
 		}
 
-		update_user_meta( $driver_id, 'season', 'special' );
+		update_user_meta( $driver_id, 'season', 'reserve' );
 
 		if ( strpos( $driver->user_email, '@me.com' ) !== false ) {
 			update_user_meta( $driver_id, 'season', '1' );
