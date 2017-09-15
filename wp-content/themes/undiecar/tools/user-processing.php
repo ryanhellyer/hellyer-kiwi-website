@@ -69,11 +69,11 @@ if ( 'special' === $_GET['user_processing'] ) {
 		$driver_id = $driver->ID;
 
 		if (
-			'special' === get_user_meta( $driver_id, 'season' )
+			'special' === get_user_meta( $driver_id, 'season', true )
 			||
-			'reserve' === get_user_meta( $driver_id, 'season' )
+			'reserve' === get_user_meta( $driver_id, 'season', true )
 			||
-			'2' === get_user_meta( $driver_id, 'season' )
+			'2' === get_user_meta( $driver_id, 'season', true )
 		) {
 			echo $driver->data->display_name . ',';
 		}
