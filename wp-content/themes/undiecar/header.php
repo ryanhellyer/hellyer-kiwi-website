@@ -149,7 +149,10 @@ $title     = apply_filters( 'src_featured_title', $title );
 
 <section id="featured-news" style="background-image: url(<?php echo esc_url( $image_url ); ?>)">
 	<div class="text">
-		<h1><?php echo esc_html( $title ); ?></h1>
+		<h1><?php
+			echo esc_html( $title );
+			edit_post_link( '*', '<sup>', '</sup>' );
+		?></h1>
 		<?php echo do_shortcode( $content ); /* shouldn't be escaped */ ?>
 	</div>
 </section><!-- #featured-news -->
