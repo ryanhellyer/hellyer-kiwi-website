@@ -24,6 +24,32 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 
 		setTimeout( function() {
 
+
+			// Get name slug
+			var string_to_slug = function (str)
+			{
+				str = str.replace(/^\s+|\s+$/g, ''); // trim
+				str = str.toLowerCase();
+
+				// remove accents, swap ñ for n, etc
+				var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+				var to   = "aaaaeeeeiiiioooouuuunc------";
+
+				for (var i=0, l=from.length ; i<l ; i++)
+				{
+					str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+				}
+
+				str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+					.replace(/\s+/g, '-') // collapse whitespace and replace by -
+					.replace(/-+/g, '-'); // collapse dashes
+
+				return str;
+			}
+
+			var slug_name = string_to_slug( member_name );
+
+			// Get shortened (first) name
 			var shortened_name = member_name.split( ' ' );
 			shortened_name = shortened_name[0];
 
@@ -35,6 +61,7 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 			// Process shortcodes
 			var message = items.message;
 			message = message.replace( '[NAME]', shortened_name );
+			message = message.replace( '[NAME_SLUG]', slug_name );
 
 			document.getElementsByName('toUsername' )[0].value = member_name;
 			document.getElementsByName('subject')[0].value = items.subject;
@@ -57,7 +84,7 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 	setInterval( function () {
 
 		if ( '' != document.getElementsByName('toUsername' )[0].value ) {
-//			var submit_button = document.getElementById('btnSubmit').click();
+			var submit_button = document.getElementById('btnSubmit').click();
 		}
 
 	}, 1000);

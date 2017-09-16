@@ -316,6 +316,7 @@ class SRC_Core {
 			}
 
 			update_user_meta( $user_id, 'receive_extra_communication', 1 );
+			update_user_meta( $driver_id, 'season', 'reserve' );
 			wp_mail(
 				'ryanhellyer@gmail.com',
 				'New Undiecar driver: ' . $display_name,
@@ -341,7 +342,6 @@ class SRC_Core {
 	public function iracing_member_info( $display_name ) {
 		$dir = wp_upload_dir();
 
-		/*
 		$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
 		$stats = json_decode( $stats, true );
 
@@ -351,7 +351,7 @@ class SRC_Core {
 		} else {
 			return false;
 		}
-		*/
+		/*
 
 
 
@@ -361,6 +361,7 @@ class SRC_Core {
 		if ( in_array ( $display_name , $stats ) ) {
 			return true;
 		}
+		*/
 
 
 	}

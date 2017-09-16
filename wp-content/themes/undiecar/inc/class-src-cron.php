@@ -10,7 +10,7 @@ class SRC_Cron extends SRC_Core {
 	 */
 	public function __construct() {
 //add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
-//add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
+add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
 	}
 
@@ -73,10 +73,10 @@ class SRC_Cron extends SRC_Core {
 
 				// Creating individual drivers data array
 				$data = array();
-				
-				//if ( isset( $values[1] ) ) {
-				//	$data['custid'] = $values[1];
-				//}
+
+				if ( isset( $values[1] ) ) {
+					$data['custid'] = $values[1];
+				}
 				if ( isset( $values[2] ) ) {
 					$data['location'] = $values[2];
 				}
