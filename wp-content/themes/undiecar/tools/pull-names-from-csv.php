@@ -43,7 +43,7 @@ foreach ( array_merge(
 	explode( ',', $contacts ),
 	explode( ',', $contacted )
 ) as $x => $driver_name ) {
-//	$personal_contacts[$driver_name] = true;
+	$personal_contacts[$driver_name] = true;
 }
 
 
