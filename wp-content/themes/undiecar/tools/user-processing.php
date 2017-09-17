@@ -23,13 +23,23 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 	public function __construct() {
 
+		if ( ! isset( $_GET['start'] ) ) {
+			return;
+		}
+
 		if ( 'update_iracing_info' === $_GET['user_processing'] ) {
 
 			$drivers = get_users();
-			foreach ( $drivers as $driver ) {
+			$x =  $_GET['start'];
+			$end = $_GET['start'] + 10;
+			while( $x <= $end ) {
+
+				$driver = $drivers[$x];
 				$driver_id = $driver->ID;
+
 				$name = $driver->data->display_name;
 				$driver_data = $this->iracing_member_info( $name );
+				echo $name;
 
 				// Add some meta keys
 				$meta_keys = array(
@@ -51,7 +61,14 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 					}
 				}
 
+				$x++;
 			}
+
+			echo '<meta http-equiv="refresh" content="0;URL=\'' . 
+				esc_url(
+					home_url() . '/?user_processing=update_iracing_info&start=' . ( $end + 1 )
+				)
+			. '\'" />';
 
 		}
 
@@ -139,7 +156,7 @@ if ( 'reserves' === $_GET['user_processing'] ) {
 
 }
 
-if ( 'update_iracing_info' === $_GET['user_processing'] ) {
+if ( 'update_iracing_infoXXXXXXXXXXXXXXX' === $_GET['user_processing'] ) {
 
 	$dir = wp_upload_dir();
 
@@ -166,7 +183,7 @@ if ( 'update_iracing_info' === $_GET['user_processing'] ) {
 
 		if ( isset( $stats[$display_name] ) ) {
 
-			print_r( $stats[$display_name] );
+//			print_r( $stats[$display_name] );
 			foreach ( $meta_keys as $key => $meta_key ) {
 
 				if ( isset( $stats[$display_name][$meta_key] ) ) {
