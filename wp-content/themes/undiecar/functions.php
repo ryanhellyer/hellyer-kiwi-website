@@ -1,6 +1,5 @@
 <?php
 
-require( 'tools/user-processing.php' );
 require( 'tools/emails.php' );
 require( 'tools/pull-names-from-csv.php' );
 require( 'tools/convert-json.php' );
@@ -25,6 +24,8 @@ require( 'inc/class-src-cars.php' );
 require( 'inc/class-src-schedule.php' );
 
 require( 'inc/functions.php' );
+
+require( 'tools/user-processing.php' );
 
 new SRC_Admin;
 new SRC_Gallery;
