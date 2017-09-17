@@ -316,7 +316,7 @@ class SRC_Core {
 			}
 
 			update_user_meta( $user_id, 'receive_extra_communication', 1 );
-			update_user_meta( $driver_id, 'season', 'reserve' );
+			update_user_meta( $user_id, 'season', 'reserve' );
 			wp_mail(
 				'ryanhellyer@gmail.com',
 				'New Undiecar driver: ' . $display_name,
