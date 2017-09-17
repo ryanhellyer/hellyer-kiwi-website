@@ -812,7 +812,7 @@ class SRC_Events extends SRC_Core {
 
 					// Shove qualifying result into main results
 					if ( 'qual_time' === $k ) {
-						$cell = 'xxx';
+						$cell = '';
 						$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
 						$qual_results = json_decode( $qual_results, true );
 
