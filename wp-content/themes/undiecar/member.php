@@ -28,6 +28,7 @@ $youtube            = get_user_meta( $member_id, 'youtube', true );
 $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
+$note               = get_user_meta( $member_id, 'note', true );
 $custid             = get_user_meta( $member_id, 'custid', true );
 
 get_header();
@@ -184,6 +185,11 @@ if (
 		echo '
 		<label>Season?</label>
 		<input name="season" type="text" value="' . esc_attr( $season ) . '" />';
+
+		echo '
+		<label>Note</label>
+		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
+
 	}
 
 	echo '
