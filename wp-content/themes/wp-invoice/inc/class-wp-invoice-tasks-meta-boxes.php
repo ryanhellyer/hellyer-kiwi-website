@@ -159,9 +159,14 @@ class WP_Invoice_Tasks_Meta_Boxes extends WP_Invoice_Core {
 			if ( ! wp_verify_nonce( $_POST[self::META_KEY . '-nonce'], __FILE__ ) ) {
 				return;
 			}
-
+//print_r( $_POST );
+//echo "\n\n\n...............\n\n\n";
 			foreach ( $this->possible_keys as $key => $label ) {
-				$data[ $key ] = $_POST[ self::META_KEY . '_' . $key ];
+				if ( isset( $_POST[ self::META_KEY . '_' . $key ] ) ) {
+					$data[ $key ] = $_POST[ self::META_KEY . '_' . $key ];
+				} else {
+					$data[ $key ] = '';
+				}
 			}
 
 			// Sanitize the data

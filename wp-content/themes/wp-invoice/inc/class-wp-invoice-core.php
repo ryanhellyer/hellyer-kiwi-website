@@ -38,6 +38,10 @@ class WP_Invoice_Core {
 				'label' => __( 'Currency', 'plugin-slug' ),
 				'type'  => 'text',
 			),
+			'show_completed_date' => array(
+				'label' => __( 'Show completed date?', 'plugin-slug' ),
+				'type'  => 'checkbox',
+			),
 			'due_date' => array(
 				'label' => __( 'Due date', 'plugin-slug' ),
 				'type'  => 'date',
@@ -88,7 +92,7 @@ class WP_Invoice_Core {
 	 * @return  array            The sanitized string
 	 */
 	public function sanitize( $input ) {
-
+//print_r( $input );die;
 		// Loop through each bit of data
 		$output = array();
 		foreach( $input as $key => $values ) {
