@@ -144,7 +144,13 @@ get_header();
 				<h3 class="screen-reader-text"><?php echo esc_html( $event['track_name'] ); ?></h3>
 				<?php
 
-				echo esc_html( $event['track_type'] );
+				$season_id = get_post_meta( $event['event_id'], 'season', true );
+				$season_name = get_the_title( $season_id );
+				if ( 'Special Events' === $season_name ) {
+					echo 'Special Event';
+				} else {
+					echo esc_html( $event['track_type'] );
+				}
 
 				$day_of_week = date( 'D', $event['event_date'] );
 				$month = date( 'M', $event['event_date'] );
