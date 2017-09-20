@@ -75,7 +75,7 @@ class SRC_Core {
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
 		) );
-		$stored_results = array();
+		$stored_results = $fastest_laps = array();
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
