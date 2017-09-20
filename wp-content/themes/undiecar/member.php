@@ -207,7 +207,7 @@ if (
 		echo 'type="text" value="" placeholder="Enter a password here" />
 
 		<br />
-		<label>Receive extra Undycar Series communication?</label>
+		<label>Receive extra Undiecar Championship communication?</label>
 		<input name="receive-extra-communication" type="checkbox" style="font-size:40px;" ';
 
 		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
