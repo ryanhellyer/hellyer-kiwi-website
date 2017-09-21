@@ -105,7 +105,6 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			}
 		}
 
-
 		// Load template
 		require( dirname( dirname( __FILE__ ) ) . '/templates/invoice.php' );
 	}
