@@ -84,13 +84,20 @@ foreach ( $data['_tasks'] as $key => $task ) {
 
 	}
 
+	$meta_data = get_post_meta( get_the_ID(), '_wp_invoice', true );
+	if ( 'on' === $meta_data['_show_completed_date'] ) {
+		$date = $task['completed_date'];
+	} else {
+		$date = $data[ '_due_date' ];
+	}
+
 	echo '
 			<tr>
 				<td>
 					<strong>' . esc_html( $task[ 'title' ] ) . '</strong>
 					' . esc_html( $task[ 'description' ] ) . '
 				</td>
-				<td>' . esc_html( $data[ '_due_date' ] ) . '</td>
+				<td>' . esc_html( $date ) . '</td>
 				<td>' . esc_html( $task[ 'hours' ] ) . '</td>
 				<td>' . esc_html( $data['_currency'] . round( $task[ 'amount' ] ) ) . '</td>
 			</tr>';
