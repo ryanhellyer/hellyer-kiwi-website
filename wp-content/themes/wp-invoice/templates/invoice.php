@@ -54,7 +54,7 @@
 
 				$meta_data = get_post_meta( get_the_ID(), '_wp_invoice', true );
 				if ( 'on' === $meta_data['_show_completed_date'] ) {
-					echo 'Completion date';
+					echo 'Date';
 				} else {
 					echo 'Due date';
 				}
