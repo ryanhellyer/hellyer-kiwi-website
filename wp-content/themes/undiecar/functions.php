@@ -1,10 +1,12 @@
 <?php
 
-require( 'tools/emails.php' );
-require( 'tools/pull-names-from-csv.php' );
-require( 'tools/convert-json.php' );
-require( 'tools/girls.php' );
-
+if ( is_super_admin() ) {
+	require( 'tools/emails.php' );
+	require( 'tools/pull-names-from-csv.php' );
+	require( 'tools/convert-json.php' );
+	require( 'tools/girls.php' );
+	require( 'tools/create-user.php' );
+}
 
 add_option( 'src_featured_page', '' );
 add_option( 'src-season', '' );
