@@ -183,7 +183,6 @@ if ( 'update_iracing_infoXXXXXXXXXXXXXXX' === $_GET['user_processing'] ) {
 
 		if ( isset( $stats[$display_name] ) ) {
 
-//			print_r( $stats[$display_name] );
 			foreach ( $meta_keys as $key => $meta_key ) {
 
 				if ( isset( $stats[$display_name][$meta_key] ) ) {
