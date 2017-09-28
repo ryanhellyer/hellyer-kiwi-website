@@ -145,7 +145,8 @@ foreach ( $events as $event => $vars ) {
 	$time_1 = $vars['time_1'];
 	$time_2 = $vars['time_2'];
 	$time_3 = $vars['time_3'];
-	$directory = '/home/ryan/nginx/dev.hellyer.kiwi/public_html/wp-content/themes/undiecar/tools/results/' . $event . '/';
+
+	$directory = get_template_directory() . '/tools/results/' . $event . '/';
 
 
 	// Get iRacing stats
