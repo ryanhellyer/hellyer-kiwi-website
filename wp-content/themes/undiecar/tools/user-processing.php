@@ -85,6 +85,7 @@ if ( 'remove' === $_GET['user_processing'] ) {
 	add_action( 'init', 'undiecar_remove_drivers' );
 	function undiecar_remove_drivers() {
 		require_once( ABSPATH . 'wp-admin/includes/user.php' );
+		require_once( ABSPATH . 'wp-admin/includes/ms.php' );
 		$drivers = array(
 			'Henry Bennett',
 			'Austin Espitee',
@@ -98,6 +99,7 @@ if ( 'remove' === $_GET['user_processing'] ) {
 			'Jeffrey Oakley',
 			'Carl Barrick',
 			'Vinicius Marega',
+			'Daniel Wright4',
 		);
 		$all_drivers = get_users();
 
@@ -107,6 +109,8 @@ if ( 'remove' === $_GET['user_processing'] ) {
 				$driver_id = $driver->ID;
 				if ( $display_name === $driver->data->display_name ) {
 					wp_delete_user( $driver_id );
+					wpmu_delete_user( $driver_id );
+					echo $display_name . "\n";
 				}
 			}
 		}
