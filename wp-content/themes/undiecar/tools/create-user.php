@@ -11,6 +11,7 @@ function undiecar_create_user() {
 
 	$password = md5( $_GET['create_user'] . time() );
 
+	// should add display name in here, not just the username
 	$user_id = wp_insert_user(
 		array(
 			'user_login'  =>  esc_html( $_GET['create_user'] ),
