@@ -5,6 +5,18 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 }
 
 
+//define( 'ALLOW_ROOKIES', true );
+define( 'ALLOW_B_LICENSES', true );
+define( 'ALLOW_C_LICENSES', true );
+define( 'ALLOW_D_LICENSES', true );
+
+//define( 'MIN_OVAL_IRATING', 3000 );
+//define( 'MIN_ROAD_IRATING', 2000 );
+define( 'MIN_OVAL_IRATING', 400 );
+define( 'MIN_ROAD_IRATING', 400 );
+
+
+
 /*****
  ****** IMPORTANT:
  ****** use GET_USERS() to CHECK FOR EXISTING USERS - needs new code for this
@@ -25,7 +37,9 @@ $randoms = 'Bryant Ward,Kevin T Firlein,Lisa Ryan';
 // ********** NOT SENT YET ***********
 $formula_renault_last_2_batch_one = 'Ian Dimmock,Daniel Bridgman,Mark Cossins,Manel Segret,Damien Courtaillier,Patrick Søby,Patrick Fleischer,Tanguy Pedrazzoli2,Daniel Fletcher,Julia Pros Albert,Alistair Hay,Harrison Finch,Manfred Bachinger,Michael Jeanes,Robin De Becker,Marcel Boersma,Jannik D Strelow,Matt Malone,Brandon Crowe,Koichi Wakiyama,Shogo Yamagata,Jonathan Croteau-Dicaire,Thomas Ingram,Marc Estruch,Matthew Pepperell,Estruch Christophe,Don Manuel,Kurt Buyst3,Jack Sadler,Ivan Mula Vivero,Gareth Hickling,DongJae Shin,R Schouten2,Christophe Brengard,Rian Moore,Chris Crawford4,Luciano C Pereira,Nikolaj Plet,Jorge Jorda,Miguel Angel Muñoz Juarez,Jorge Cabrita,Guillaume Sebastien,Mamoud Tetteh,Wibo Pot,Igor Kalinin,Paul Scutt,Carlos Fernandez Espinosa2,Antonio Iglesias Osuna,Hugo Queniat,Sergi Martinez,Miguel Antolin,Gerard Cabrera,Anthony Lepagnot,Sebastian Peter Schaar,Mickael Patient,Jan Janás,Igor Ghisi,Charles Germain3,Jorge Reinoso,Javier M. Alonso,Sebastien Brossard,Justin Bhadjan,Wouter Remmerswaal,Paolo Varolo,Ben Hutchinson,Stephane Boyer,Martin Brouwers,Gabi Moreno Cordoba,Mark Bartholomew,Jorge Fernandez,Tomasz Hamryszak,Ricardo Pallavidino,Achille Cinquegrana,Chris Knight,Yohann Harth,Roel Houben,Sébastien PETIT,Mark Jarvis,Martin Cruz,John Siemer,Gisler Sascha,Jaime Duque C,Lance Simon,Andres Guindi,Raymond Darwent,Ayrton Shelly,Mitchell J Kunst,Pelayo Lastra Garcia,Roberto Stefano Kovac,Jens Falk,David H. Santana,Alexis Meireloso,Stefan Mommen,Vincent Revel,Carlos Castilla,Rob Boer,Diego Jiménez Hormilla,Santtu MÃ¤kinen,Thomas Zieger,I.M Keeman,Ivan Alvarez,Vincenzo Marchiafava,Markus Kuttelwascher,Jose Portilla,Joao Dario,Baden Swain,Matt Miller,Charles Couture,Clive Norton,Luc Couture,Linden Swaby,Greg McEneaney,Stephen R Smith,Lyssimacos Maraslis,Jose Cortes Sanchez,Carlo Morman';
 $formula_renault_last_2_batch_two = 'Luis Gonçalves,Ainsley Martin,Steve Rock,Christian Målmark,Andrew Berry2,Jose Antonio Camara Paredes,Joao Paulo Ferreira,Jose Mariscal,Danny Navas,Daniel PILUSO,Luke Barton,Sandra Castrogiovanni,Marco Oliveira2,Carlos Newmar,Gerry Moersdorf,Montserrat Cervera,Jeremy Shelton,Andy Corkhill,Mauricio Tjon-Sien-Fat,Marcelo Bradaschia,Luc Fontaine,Ransom Cubitt,Kirk Schneider,Jeff Huh,Phillipp Urquhart,Kasper Thrane,Gabriel Borghi,Scott B Layton,Alec Hudson,Christopher Sykes,Friedrich Ladwig,Julien François,Charlie Summers,Mike Cannon,Borja Bueno,Duarte Pires,André Machado Domingues,Aitor Cantó Prieto,Felipe Mallada,Jonatan Lira Vilches,Dennis Zegers,Naeem Ali,José Luis Duran Gonzalez,Javier Navarro,Arne Stops,Francisco González,Timo Pruijn,Simon Christmann,Aitor Garcia,Karl-Johan Hagelin,Anthony Catt,Joseph Tavora,Jarrod Cook,Danny Zwoferink,Juan Maldonado,Patrick Gallo,Eric W. Patterson,Nate Ulrich,Doug Chappell,Joshua Stuart,Kenny Tinnion,Josh Radford,Fernando C Rodriguez,Joakim Jansson2,Kevin Whittaker,James Merriman,Marinho Silva,Ricardo Ruy,Francisco Canovas,Alex Thornton,Jokin Ortega Zugazaga,Elijah Bautista,Stephen Day,Helmut Weber3,Balta Fernandez,Michael Schlegelmilch,Shaun Abbate,Nathaniel Simpson,Chris Lazarevic,Alex Baciu,Jamie McKnight,Pedro Miguel Santos,William Moody2,Michael Bergh,Nuno Santos,Alaric van den Bos,Daniel Medina,Edy Carlos,Lynn Kennedy,Tim Bailey3,Mike Powers,Tibor Wittmann,James Bulmer4,Joseph Curcio,Eude Cyrille,JBen Cote,Edward Schofield,Sasa Varga,Carlos Ventura,Mustafa N. Erden,Thierry Daveine,Timo Kraske2,Marco Lodi Rizzini,Christopher Block,Hans Hasperhoven,John Mcconville,Josh Thompson,Simone Maria Marcenò,Jason Baird,Antonio Amaro,Scott Newton2,Leandro Bignardi,Matt Carr,Wyatt Nelmes,Martin Brandon,Jose Gregorio Martín Linares,Jean Marc Rey,Toni Andrade,Rubens Barrichello,Ashley Howell,Sergio Jimenez,Tamas szene,Zakaria Riat,Brandon Ziegler,Alessandro A Sais,Philippe Schyns,Maarten van Loozenoord,Olli Kwoka,Jan Schwitter,Mario Gil,Paulo Blanco,Lionel Oberto,Juan Carlos Botia Lorca,Christoph Aymon,Dan Kilbank,Zafer Derelioglu,Enrique Navarro Izquierdo,Daniel Sibbons,Hans Hennekes,Santiago Carducci,Enrique Tramontin,Liam Gordon,Benedikt Huber,Michael Duforest,Guillermo Dieste Ponzán,Axel Stasse,Jared de Kruijff,Karolis Jovaisa2,Laurynas Vaitiekunas,Tom Depke,Gonzalo Camara,David Sanchez Lopez,Xavier Empereur,Julien jourdan,Alexander Koffard,Dustin Williams2,German Jimenez Ramirez,Jeroen Pol,Keisuke Shouji,Jenno Buelders,C Bibo,Donald Sadusky,Roberto Alvarez,Henri Brieskorn,Jouni Silvasti,Richard ARNAUD,Knut Martinsen,Bob van Katwijk,Luiz Felipe,Eric Kilen,Marcos Aroztegui,Kevin Cochran,Mariano Martin Garcia,Thiago Canola,Anthony Burroughs,Brian Chatfield,Mark W Turner,Landan Nash,Joel Raymond,Dan McGuirk,Luis Moedinger,Aitor Martinez Bertomeu,Trym Selvag,Harry Cowan,Sean Gaffney,Marco Barbanera,Daniel Casas,Kyle Vallejos,Derek Carmenate,Grant Henderson2,Tom Andre Munkhaug,Antonio Trueba Buenaga,Jayden Thurlow,Miguel Cela,Jens Paul,Neil Bontems,Dave Sanchez,Samuel Martínez,Alessandro Tolfo,Guillermo Leon de la Barra,Fernando Dasilva,Gary Weaver,Miguel Silva2,Brandon DeGuire,Jason Trifonov,Mitchell Mullens,Rafael Acquesta,Paulo Nogaroto,JP Foster,Barry Merinsky,Michael Morris6,Antonio Urbano Checa,Kyle Bucklew,Sam Dunstall,Rene Penquitt,Miguel Aguilar,Isaac Silva Gonzalez,Miguel Monroy,Dustin Bouchard,Jon Ford,John Castillo,Miguel Invernon de Julian,Blasius Giers,Mickael Moreau,Vincent Genereux-de Guise,Lluc I.Trulolls,?ukasz Walczak,Andre Duennbier,Anthony Obrohta,Lars Ole Wandel,Chris Ritter,Boban Matic,Michael Partington,Andrew Jones2,Paul Carter3,Marie-Helene Bredeaux,Rémi courtey,William Marshall,Bruno Oliveira5,Paul Denton,Juuso Niinivaara,Alberto Gomez C,Andrés Mora,Daniel C.Lentijo,Alex Ellis,Reece Ushijima,Martin Lippincott2,Brian Duray,Paul J Brown,Michael Geringer,Átila Peretto dos Reis,Jorge Destro,Martin Pereira,Luciano Fernandes,Alexander Galahov,Kazuki M Tanaka,Christopher DeHay,James Beardsley,Josh Conquer,Aaron Hernandez Ponce,Alberto casas2,John Gibson5,Adam Illman,Mariusz Gromiec,Aitor Mediavilla,Felix Pollan Tome2,Bekir OZAKIN,Stefan Ritter,Joonas Haapiainen,Axel Straub,Alistair Glen2,Matthieu Chauvière,Adam Alicki,Daniel Abal Freire,Jesus Martin Sanchez,Aart Kraaijenhof,Peter Parnell,Andre Heller,Jonathan Hambrick,Igor López,Phoenix Tucker,Olivier de Wilde,Guus Franken,Silvio Hirt,Davy Schaepdryver,Eduard Clavero,Amal Youness,Stephen Baxter2,Yoshiki Nagashima3,Benjamin Brenot,Victor Pijpers,Jos Honig,Kuuya Takabayashi3,Matt Harvey2,Christoph John,Steven Thompson2,Nick Percat,James Mikrut,Connor Clifford,Milan Gavric,';
-
+// Grab latest Indycar road races
+// Grab latest A-license guys from Skip Barber
+// Grab latest high iRating guys from Skip Barber
 
 
 
@@ -54,8 +68,16 @@ foreach ( array_merge(
 
 
 $events = array(
+	'indycar-spa' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
+
 /*
-	*/
 	'indycar' => array(
 		'incident_ratio_1' => 0.1,
 		'incident_ratio_2' => 0.2,
@@ -112,6 +134,7 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
+	*/
 );
 
 foreach ( $events as $event => $vars ) {
@@ -122,16 +145,13 @@ foreach ( $events as $event => $vars ) {
 	$time_1 = $vars['time_1'];
 	$time_2 = $vars['time_2'];
 	$time_3 = $vars['time_3'];
-	$directory = '/home/ryan/Downloads/dash-results/' . $event . '/';
+	$directory = '/home/ryan/nginx/dev.hellyer.kiwi/public_html/wp-content/themes/undiecar/tools/results/' . $event . '/';
 
 
 	// Get iRacing stats
 	$dir = wp_upload_dir();
 	$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
 	$stats = json_decode( $stats, true );
-
-
-
 
 	$csv_files = scandir( $directory, 1 );
 
@@ -231,6 +251,23 @@ foreach ( $events as $event => $vars ) {
 				continue;
 			}
 
+			// If no iRating, then set it to 0
+			if ( ! isset( $stats[$driver_name]['oval_irating'] ) ) {
+				$stats[$driver_name]['oval_irating'] = 0;
+			}
+			if ( ! isset( $stats[$driver_name]['road_irating'] ) ) {
+				$stats[$driver_name]['road_irating'] = 0;
+			}
+
+			// Bail out if they don't meet either oval or road iRating minimums
+			if (
+				$stats[$driver_name]['oval_irating'] < MIN_OVAL_IRATING
+				&&
+				$stats[$driver_name]['road_irating'] < MIN_ROAD_IRATING
+			) {
+				continue;
+			}
+
 			// Warn about unfound drivers
 			if ( ( ! isset( $stats[$driver_name]['road_license'] ) && ! isset( $stats[$driver_name]['oval_license'] ) ) ) {
 
@@ -243,8 +280,9 @@ foreach ( $events as $event => $vars ) {
 					if ( $incident_ratio < $incident_ratio_2 ) {
 
 						// Not licensed, but fast enough and little incidents, so lets allow them anyway
-						$drivers[$driver_name] = $event;
-
+						if ( defined( 'ALLOW_ROOKIES' ) ) {
+							$drivers[$driver_name] = $event;
+						}
 					}
 
 					continue;
@@ -253,6 +291,8 @@ foreach ( $events as $event => $vars ) {
 
 			}
 
+			/*
+			SEEMS TO BE ONLY ALLOWING THOSE WITH HIGH OVAL LICENSES
 			// Only allow highly rated oval licenses
 			if ( isset( $stats[$driver_name]['oval_license'] ) ) {
 
@@ -270,22 +310,31 @@ foreach ( $events as $event => $vars ) {
 					'D' === $stats[$driver_name]['oval_license']
 					&&
 					$incident_ratio < $incident_ratio_3
+					&&
+					defined( 'ALLOW_D_LICENSES' )
 				) {
 					$drivers[$driver_name] = $event;
 					continue;
 				}
 
 			}
-
+			*/
 			if ( isset( $stats[$driver_name]['road_license'] ) ) {
 
 				// Allow A B C drivers
 				if (
 					'A' === $stats[$driver_name]['road_license']
 					||
-					'B' === $stats[$driver_name]['road_license']
+					(
+						'B' === $stats[$driver_name]['road_license']
+						&& defined( 'ALLOW_B_LICENSES' )
+					)
 					||
-					'C' === $stats[$driver_name]['road_license']
+					(
+						'C' === $stats[$driver_name]['road_license']
+						&&
+						defined( 'ALLOW_C_LICENSES' )
+					)
 				) {
 					$drivers[$driver_name] = $event;
 					continue;
@@ -296,6 +345,8 @@ foreach ( $events as $event => $vars ) {
 					'D' === $stats[$driver_name]['road_license']
 					&&
 					$incident_ratio < $incident_ratio_3
+					&&
+					defined( 'ALLOW_D_LICENSES' )
 				) {
 					$drivers[$driver_name] = $event;
 					continue;
@@ -311,11 +362,12 @@ foreach ( $events as $event => $vars ) {
 }
 
 
-
 // Specify which to keep
 $count = 0;
 $listed_drivers = $drivers;
 foreach ( $drivers as $driver_name => $track ) {
+/*
+	ONLY INCLUDES FR DRIVERS, WHIC
 
 	if (
 		'formula-renault-last-2' !== $track
@@ -323,10 +375,25 @@ foreach ( $drivers as $driver_name => $track ) {
 //		echo $driver_name . ': ' . $track . "\n";
 		unset( $listed_drivers[$driver_name] );
 	}
+*/
+}
+
+/**
+ * Remove existing members.
+ */
+$users = get_users();
+foreach ( $users as $key => $data ) {
+	$driver_name = $data->display_name;
+
+	if ( isset( $listed_drivers[$driver_name] ) ) {
+		unset( $listed_drivers[$driver_name] );
+	}
 
 }
 
-
+/**
+ * Finally, output names.
+ */
 if ( 'csv' === $_GET['pull_names'] ) {
 
 	foreach ( $listed_drivers as $driver_name => $track ) {
