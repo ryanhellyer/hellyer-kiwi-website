@@ -78,6 +78,42 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 new Undiecar_Update_iRacing_Info;
 
 
+
+
+
+if ( 'remove' === $_GET['user_processing'] ) {
+	add_action( 'init', 'undiecar_remove_drivers' );
+	function undiecar_remove_drivers() {
+		require_once( ABSPATH . 'wp-admin/includes/user.php' );
+		$drivers = array(
+			'Henry Bennett',
+			'Austin Espitee',
+			'Richard Tam',
+			'Andrey Efimenko',
+			'Martin Kober',
+			'Sergio Morresi',
+			'Pebst Augusta',
+			'Bill Gallacher Jr',
+			'Carlos López',
+			'Jeffrey Oakley',
+			'Carl Barrick',
+			'Vinicius Marega',
+		);
+		$all_drivers = get_users();
+
+		foreach ( $drivers as $key => $display_name ) {
+
+			foreach ( $all_drivers as $driver ) {
+				$driver_id = $driver->ID;
+				if ( $display_name === $driver->data->display_name ) {
+					wp_delete_user( $driver_id );
+				}
+			}
+		}
+	}
+}
+
+
 if ( 'process' === $_GET['user_processing'] ) {
 	return;
 
@@ -219,5 +255,3 @@ if ( 'list_by_road_irating' === $_GET['user_processing'] ) {
 	die( "\n\n".'Done :)' );
 }
 
-
-die( "\n\nDONE" );
