@@ -10,12 +10,13 @@ add_action( 'init', 'undiecar_create_user' );
 function undiecar_create_user() {
 
 	$password = md5( $_GET['create_user'] . time() );
-
+//echo sanitize_title( $_GET['create_user'] );die;
 	// should add display name in here, not just the username
 	$user_id = wp_insert_user(
 		array(
-			'user_login'  =>  esc_html( $_GET['create_user'] ),
-			'user_pass'   =>  $password
+			'user_login'   => sanitize_title( $_GET['create_user'] ),
+			'display_name' => esc_html( $_GET['create_user'] ),
+			'user_pass'    => $password,
 		)
 	) ;
 
