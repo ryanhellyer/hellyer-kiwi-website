@@ -66,7 +66,7 @@ class SRC_Core {
 		// Don't show championship listings for special season
 		$season = get_post( $season_id ); 
 		if ( 'special-events' === $season->post_name ) {
-			return;
+			return $content;
 		}
 
 		// Get all events from that season
