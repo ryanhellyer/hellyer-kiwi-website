@@ -150,12 +150,18 @@ class SRC_Events extends SRC_Core {
 
 		}
 
+		if ( isset( $_GET['post'] ) ) {
+			$event_id = $_GET['post'];
+		} else {
+			$event_id = null;
+		}
+
 		foreach ( array( '1', '2', '3' ) as $kx => $num ) {
 			$cmb->add_field( array(
 				'name'       => 'Race ' . $num . ' most spectacular crash',
 				'id'         => $slug . '_race_' . $num . '_most_spectacular_crash',
 				'type'       => 'select',
-				'options'    => $this->get_events_drivers_array( isset( $_GET['post'] ) ),
+				'options'    => $this->get_events_drivers_array( $event_id ),
 			) );
 		}
 
@@ -216,15 +222,7 @@ class SRC_Events extends SRC_Core {
 			}
 
 		}
-echo "\n\n\n\n\n\n.....................\n";
-echo '<!-- ';
-echo "\nGET('post'): " . $_GET['post'];
-echo "\nEvent ID: " . $event_id;
-echo "\nSeason ID: " . $season_id;
-echo "\nSeason slug: " . $season_slug;
-echo "\n\n" . print_r( $drivers ) . "\n";
-echo '-->';
-echo "\n.....................\n\n\n\n\n\n";
+
 		return $drivers_array;
 	}
 
