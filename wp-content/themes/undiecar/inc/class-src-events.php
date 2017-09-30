@@ -218,7 +218,10 @@ class SRC_Events extends SRC_Core {
 		}
 echo "\n\n\n\n\n\n.....................\n";
 echo '<!-- ';
-echo $season_slug;print_r( $drivers );
+echo "\nEvent ID: " . $event_id;
+echo "\nSeason ID: " . $season_id;
+echo "\nSeason slug: " . $season_slug;
+echo "\n\n" . print_r( $drivers ) . "\n";
 echo '-->';
 echo "\n.....................\n\n\n\n\n\n";
 		return $drivers_array;
