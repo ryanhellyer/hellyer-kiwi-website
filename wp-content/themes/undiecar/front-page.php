@@ -184,7 +184,7 @@ get_header();
 
 		echo esc_url( get_permalink( $season_id ) );
 
-	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( get_template_directory_uri() . '/images/long2.png' ); ?>);">
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall4.jpg);">
 		<h2>Next Season</h2>
 		<p>Free with iRacing. Fixed setups provided for each track.</p>
 	</a>
