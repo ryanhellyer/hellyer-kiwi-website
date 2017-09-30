@@ -170,13 +170,13 @@ class SRC_Events extends SRC_Core {
 	public function qualifying_formats() {
 		return array(
 			'5min' => esc_html__( '5 min shared track', 'src' ),
-			'10min' => esc_html__( '15 min shared track', 'src' ),
+			'10min' => esc_html__( '10 min shared track', 'src' ),
 			'15min' => esc_html__( '15 min shared track', 'src' ),
-			'30min' => esc_html__( '15 min shared track', 'src' ),
-			'60min' => esc_html__( '15 min shared track', 'src' ),
-			'1lap' => esc_html__( 'Two lap solo', 'src' ),
+			'30min' => esc_html__( '30 min shared track', 'src' ),
+			'60min' => esc_html__( '60 min shared track', 'src' ),
+			'1lap' => esc_html__( 'One lap solo', 'src' ),
 			'2lap' => esc_html__( 'Two lap solo', 'src' ),
-			'4lap' => esc_html__( 'Two lap solo', 'src' ),
+			'4lap' => esc_html__( 'Four lap solo', 'src' ),
 		);
 	}
 
