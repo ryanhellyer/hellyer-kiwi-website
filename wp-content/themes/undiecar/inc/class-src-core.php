@@ -63,6 +63,12 @@ class SRC_Core {
 			$season_id = get_the_ID();
 		}
 
+		// Don't show championship listings for special season
+		$season = get_post( $season_id ); 
+		if ( 'special-events' === $season->post_name ) {
+			return;
+		}
+
 		// Get all events from that season
 		$query = new WP_Query( array(
 			'posts_per_page'         => 100,
