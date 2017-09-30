@@ -218,6 +218,7 @@ class SRC_Events extends SRC_Core {
 		}
 echo "\n\n\n\n\n\n.....................\n";
 echo '<!-- ';
+echo "\nGET('post'): " . $_GET['post'];
 echo "\nEvent ID: " . $event_id;
 echo "\nSeason ID: " . $season_id;
 echo "\nSeason slug: " . $season_slug;
