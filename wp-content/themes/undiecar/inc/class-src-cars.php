@@ -101,6 +101,7 @@ class SRC_Cars extends SRC_Core {
 			return $content;
 		}
 
+/*
 		// Add text
 		if ( 1 === count( $car_ids ) ) {
 			$single_car = true;
@@ -108,6 +109,7 @@ class SRC_Cars extends SRC_Core {
 		} else {
 			$content .= '<h3>' . esc_html__( 'Allowed cars', 'src' ) . '</h3>';
 		}
+*/
 
 		// Fixed setups?
 		$content .= '<p>';
@@ -118,7 +120,7 @@ class SRC_Cars extends SRC_Core {
 		}
 		$content .= '</p>';
 
-
+/*
 		// Add information about each car
 		foreach ( $car_ids as $key => $car_id ) {
 
@@ -145,7 +147,8 @@ class SRC_Cars extends SRC_Core {
 			$content .= '[gallery link="file" columns="' . esc_attr( $count ) . '" size="medium" ids="' . esc_attr( $image_ids ) . '"]';
 
 		}
-
+*/
+		
 		return $content;
 	}
 
