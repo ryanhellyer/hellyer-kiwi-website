@@ -169,8 +169,11 @@ class SRC_Events extends SRC_Core {
 
 	public function qualifying_formats() {
 		return array(
-			'5min' => esc_html__( '15 min shared track', 'src' ),
+			'5min' => esc_html__( '5 min shared track', 'src' ),
+			'10min' => esc_html__( '15 min shared track', 'src' ),
 			'15min' => esc_html__( '15 min shared track', 'src' ),
+			'30min' => esc_html__( '15 min shared track', 'src' ),
+			'60min' => esc_html__( '15 min shared track', 'src' ),
 			'1lap' => esc_html__( 'Two lap solo', 'src' ),
 			'2lap' => esc_html__( 'Two lap solo', 'src' ),
 			'4lap' => esc_html__( 'Two lap solo', 'src' ),
@@ -695,7 +698,8 @@ class SRC_Events extends SRC_Core {
 						if ( $member_info = $this->iracing_member_info( $display_name ) ) {
 
 							// Register user
-							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@mem.com', $member_info );
+// REMOVED BECAUSE WAS ADDING PEOPLE WITHOUT THEIR KNOWLEDGE
+//							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@mem.com', $member_info );
 
 						}
 
