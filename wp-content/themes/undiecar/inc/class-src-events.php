@@ -155,7 +155,7 @@ class SRC_Events extends SRC_Core {
 				'name'       => 'Race ' . $num . ' most spectacular crash',
 				'id'         => $slug . '_race_' . $num . '_most_spectacular_crash',
 				'type'       => 'select',
-				'options'    => $this->get_seasons_drivers_array( isset( $_GET['post'] ) ),
+				'options'    => $this->get_events_drivers_array( isset( $_GET['post'] ) ),
 			) );
 		}
 
@@ -180,7 +180,7 @@ class SRC_Events extends SRC_Core {
 		);
 	}
 
-	public function get_seasons_drivers_array( $event_id ) {
+	public function get_events_drivers_array( $event_id ) {
 
 		$season_id = get_post_meta( $event_id, 'season', true );
 		$query = new WP_Query( array(
