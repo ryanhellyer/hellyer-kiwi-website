@@ -820,11 +820,15 @@ class SRC_Events extends SRC_Core {
 						$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
 						$qual_results = json_decode( $qual_results, true );
 
-						foreach ( $qual_results as $q_key => $q_value ) {
-							if ( $q_value['name'] === $result['name'] ) {
-								$cell = $q_value['qual_time'];
-							}
+						if ( is_array( $qual_results ) ) {
 
+							foreach ( $qual_results as $q_key => $q_value ) {
+
+								if ( $q_value['name'] === $result['name'] ) {
+									$cell = $q_value['qual_time'];
+								}
+
+							}
 						}
 
 					}
