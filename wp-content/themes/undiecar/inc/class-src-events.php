@@ -216,8 +216,7 @@ class SRC_Events extends SRC_Core {
 			}
 
 		}
-echo $season_slug;
-print_r( $drivers );die;
+//echo $season_slug;print_r( $drivers );die;
 		return $drivers_array;
 	}
 
