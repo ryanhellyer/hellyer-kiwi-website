@@ -59,8 +59,8 @@ class Ryans_Secure_Admin {
 	public function __construct() {
 
 		// Disable things via definitions or filters
-		define( 'WP_POST_REVISIONS', false ); // We don't want post revisions in case we accidentally stash something important
-		define( 'AUTOSAVE_INTERVAL', 1000 * 60 *60 * 60 * 24 * 365 ); // Auto save once per thousand years
+//		define( 'WP_POST_REVISIONS', false ); // We don't want post revisions in case we accidentally stash something important
+//		define( 'AUTOSAVE_INTERVAL', 1000 * 60 *60 * 60 * 24 * 365 ); // Auto save once per thousand years
 		add_filter( 'user_can_richedit' , create_function( '' , 'return false;' ) , 50 ); // Disable the visual editor since it goofs up encrypted shit
 
 		// Add action hooks
