@@ -242,6 +242,12 @@ class SRC_Members extends SRC_Core {
 
 		$member_slug = str_replace( $member_path, '', $_SERVER['REQUEST_URI'] );
 		$member_slug = str_replace( '/', '', $member_slug );
+
+		// Redirect if name not quite correct
+		if ( sanitize_title( $member_slug ) !== $member_slug ) {
+			wp_redirect( $member_path . sanitize_title( $member_slug ), 200 ) );
+		}
+
 		$src_member = get_user_by( 'login', $member_slug );
 
 		if ( is_object( $src_member ) ) {
