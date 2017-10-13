@@ -115,6 +115,7 @@ if ( '' !== $youtube ) {
 	$social_network_counter++;
 }
 
+$plaural = '';
 if ( 1 !== $social_network_counter ) {
 	$plaural = 's';
 }
