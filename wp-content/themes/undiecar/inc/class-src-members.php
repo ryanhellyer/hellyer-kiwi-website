@@ -251,7 +251,7 @@ class SRC_Members extends SRC_Core {
 		) {
 			wp_redirect(
 				$member_path . sanitize_title( $member_slug ) . '/',
-				200
+				301
 			);
 		}
 
