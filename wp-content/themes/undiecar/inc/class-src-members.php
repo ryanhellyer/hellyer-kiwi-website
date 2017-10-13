@@ -244,7 +244,11 @@ class SRC_Members extends SRC_Core {
 		$member_slug = str_replace( '/', '', $member_slug );
 
 		// Redirect if name not quite correct
-		if ( sanitize_title( $member_slug ) !== $member_slug ) {
+		if (
+			sanitize_title( $member_slug ) !== $member_slug
+			||
+			$_SERVER['REQUEST_URI'] === $member_path . sanitize_title( $member_slug )
+		) {
 			wp_redirect(
 				$member_path . sanitize_title( $member_slug ) . '/',
 				200
