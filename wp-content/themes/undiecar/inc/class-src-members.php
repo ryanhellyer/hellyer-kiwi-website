@@ -246,7 +246,7 @@ class SRC_Members extends SRC_Core {
 		// Redirect if name not quite correct
 		if ( sanitize_title( $member_slug ) !== $member_slug ) {
 			wp_redirect(
-				$member_path . sanitize_title( $member_slug ),
+				$member_path . sanitize_title( $member_slug ) . '/',
 				200
 			);
 		}
