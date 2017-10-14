@@ -321,12 +321,14 @@ class SRC_Members extends SRC_Core {
 			$driver = get_userdata( $driver_id );
 			$driver_name = $driver->display_name;
 
-			$content .= '
+			if ( 'banned' !== get_user_meta( $driver_id, 'note', true ) ) {
+				$content .= '
 				<tr>
 					<td>' . esc_html( $count ) . '</td>
 					<td><a href="' . esc_url( home_url() . '/member/' . sanitize_title( $driver_name ) . '/' ) . '">' . esc_html( $driver_name ) . '</a></td>
 					<td>' . esc_html( get_user_meta( $driver_id, 'car_number', true ) ) . '</td>
 				</tr>';
+			}
 
 		}
 
