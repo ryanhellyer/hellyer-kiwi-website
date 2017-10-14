@@ -157,27 +157,46 @@ if ( 'season_3' === $_GET['user_processing'] ) {
 
 	}
 
+	die;
 }
 
-// Get all drivers eligible for special races
-if ( 'special' === $_GET['user_processing'] ) {
+/**
+ * Get all drivers eligible for special races.
+ *
+ * Only special people ... http://dev-hellyer.kiwi/undycar/?user_processing=special
+ *
+ * All special eligible people ... http://dev-hellyer.kiwi/undycar/?user_processing=special&include_season=3
+ */
+if (
+	'special' === $_GET['user_processing']
+) {
 
 	$drivers = get_users();
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
+
+		$include_season = 'randomstring';
+		if ( isset( $_GET['include_season'] ) ) {
+			$include_season = $_GET['include_season'];
+		}
+
 
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
 			'reserve' === get_user_meta( $driver_id, 'season', true )
 			||
-			'2' === get_user_meta( $driver_id, 'season', true )
+			$include_season === get_user_meta( $driver_id, 'season', true )
 		) {
-			echo $driver->data->display_name . ',';
+
+			if ( 'banned' !== get_user_meta( $driver_id, 'note', true ) ) {
+				echo $driver->data->display_name . ',';
+			}
 		}
 
 	}
 
+	die;
 }
 
 if ( 'reserves' === $_GET['user_processing'] ) {
