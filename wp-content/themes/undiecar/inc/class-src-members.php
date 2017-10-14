@@ -18,7 +18,7 @@ class SRC_Members extends SRC_Core {
 		add_action( 'init',       array( $this, 'save' ) );
 		add_filter( 'init',       array( $this, 'member_template' ), 99 );
 		add_filter( 'get_avatar', array( $this, 'avatar_filter' ) , 1 , 5 );
-		add_shortcode( 'undycar_drivers', array( $this, 'display_driver_table' ) );
+		add_shortcode( 'undiecar_drivers', array( $this, 'display_driver_table' ) );
 	}
 
 	/**
