@@ -189,7 +189,7 @@ if (
 			$include_season === get_user_meta( $driver_id, 'season', true )
 		) {
 
-			if ( 'banned' !== get_user_meta( $driver_id, 'note', true ) ) {
+			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
 				echo $driver->data->display_name . ',';
 			}
 		}
@@ -272,7 +272,7 @@ if ( 'list_by_road_irating' === $_GET['user_processing'] ) {
 
 	ksort( $stats );
 	foreach ( $stats as $irating => $driver_name ) {
-		echo $driver_name . ': ' . $irating . "\n";
+		echo $driver_name . ': ' . $irating . ' - ' . get_userdata( $driver_id )->user_registered . "\n";
 	}
 
 	die( "\n\n".'Done :)' );
