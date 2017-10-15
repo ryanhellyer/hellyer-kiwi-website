@@ -265,14 +265,15 @@ if ( 'list_by_road_irating' === $_GET['user_processing'] ) {
 		$irating = get_user_meta( $driver_id, 'road_irating', true );
 
 		if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
-			$stats[$irating] = $driver->data->display_name;
+			$stats[$irating]['name'] = $driver->data->display_name;
+			$stats[$irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
 		}
 
 	}
 
 	ksort( $stats );
-	foreach ( $stats as $irating => $driver_name ) {
-		echo $driver_name . ': ' . $irating . ' - ' . get_userdata( $driver_id )->user_registered . "\n";
+	foreach ( $stats as $irating => $driver_data ) {
+		echo $driver_data['name'] . ': ' . $irating . '       - ' . $driver_data['registered_date'] . "\n";
 	}
 
 	die( "\n\n".'Done :)' );
