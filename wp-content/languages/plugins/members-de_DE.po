@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Members - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-07-20 16:06:08+0000\n"
+"PO-Revision-Date: 2017-09-08 13:32:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,6 +14,14 @@ msgstr ""
 #: members.php:282
 msgid "Members requires PHP version %1$s. You are running version %2$s. Please upgrade and try again."
 msgstr "Members benötigt die PHP Version %1$s. Du verwendest Version %2$s. Bitte aktualisiere die PHP Version und versuche es erneut."
+
+#: inc/functions-private-site.php:194
+msgid "If you reached this page by accident and meant to visit one of your own sites, try one of the following links."
+msgstr "Wenn du diese Seite per Zufall erreicht hast und eigentlich eine andere deiner Websites aufrufen wolltest, dann versuche einen der folgenden Links."
+
+#: inc/functions-private-site.php:187
+msgid "You do not currently have access to the \"%s\" site. If you believe you should have access, please contact your network administrator."
+msgstr "Du hast momentan keinen Zugriff auf die Seite \"%s\". Wenn du glaubst, dass du Zugriff haben solltest, dann kontaktiere bitte deinen Netzwerk-Administrator."
 
 #: inc/functions-private-site.php:163
 msgid "You are not currently logged in."
@@ -263,13 +271,33 @@ msgstr "Dateien bearbeiten"
 msgid "Edit Dashboard"
 msgstr "Dashboard bearbeiten"
 
+#: admin/views/class-view-general.php:411
+msgid "Tick the checkbox to show human-readable capabilities when possible. Note that custom capabilities and capabilities from third-party plugins will show the machine-readable capability name unless they are registered."
+msgstr "Setze das Häkchen der Checkbox, um wenn möglich den vollen Namen der Berechtigung anzuzeigen. Beachte, dass benutzerdefinierte Berechtigungen und Berechtigungen von Drittpartei-Plugins die Titelform der Berechtigung anzeigen, ausser sie sind registriert."
+
 #: admin/views/class-view-general.php:281
 msgid "Require authentication for access to the REST API."
 msgstr "Erzwinge Authentifizierung für Zugang zur REST API."
 
+#: admin/views/class-view-general.php:168
+msgid "Show human-readable capabilities when possible."
+msgstr "Zeige wenn möglich volle Namen von Berechtigungen."
+
 #: admin/views/class-view-general.php:84
 msgid "REST API"
 msgstr "REST API"
+
+#: admin/views/class-view-addons.php:241
+msgid "Some add-ons may require purchase before downloading them. Clicking the purchase button will take you off-site to view the add-on in more detail."
+msgstr "Einige Erweiterungen müssen möglicherweise gekauft werden, bevor sie heruntergeladen werden können. Ein Klick auf den Kaufen-Button führt dich auf eine andere Webseite, um die Erweiterung im Detail anzuzeigen."
+
+#: admin/views/class-view-addons.php:227
+msgid "Some plugins may be available for direct download. In such cases, you can click the download button to get a ZIP file of the plugin."
+msgstr "Einige Plugins sind möglicherweise für den direkten Download verfügbar. In diesem Fall kannst du auf den Download-Button klicken, um eine ZIP-Datei des Plugins zu erhalten."
+
+#: admin/views/class-view-addons.php:213
+msgid "The Add-Ons screen allows you to view available add-ons for the Members plugin. You can download some plugins directly. Others may be available to purchase."
+msgstr "Die Seite für Erweiterungen zeigt dir Erweiterungen, die für das Members-Plugin verfügbar sind. Du kannst einige Plugins direkt herunterladen. Andere werden zum Kauf angeboten."
 
 #: admin/views/class-view-addons.php:145
 msgid "%s+ Active Installs"
@@ -296,10 +324,18 @@ msgstr "Es gibt aktuell keine Add-Ons. Versuche es später erneut."
 msgid "Add-Ons"
 msgstr "Add-Ons"
 
+#: admin/functions-help.php:114
+msgid "Visit the %s page in the WordPress Codex to see a complete list of roles, capabilities, and their definitions."
+msgstr "Besuche die Seite \"%s\" im WordPress Codex für eine komplette Liste von Rollen, Berechtigungen und deren Definitionen."
+
 #: admin/class-role-edit.php:301 admin/class-roles.php:173
 msgctxt "role"
 msgid "Add New"
 msgstr "Hinzufügen"
+
+#: admin/class-role-edit.php:234
+msgid "The %s role is typically the most important role on the site. Please take extreme caution that you do not inadvertently remove necessary capabilities."
+msgstr "Die Rolle \"%s\" ist normalerweise die wichtigste Rolle auf der Website. Bitte sei extrem vorsichtig, sodass du nicht versehentlich eine notwendige Rolle löschst."
 
 #: admin/class-meta-box-custom-cap.php:90
 msgctxt "capability"
@@ -329,6 +365,10 @@ msgstr "Einer der ausgewählten Benutzer ist nicht Mitglied dieser Site."
 #: admin/class-manage-users.php:107
 msgid "Role removed from other selected users."
 msgstr "Rolle von anderen ausgewählten Benutzern entfernt."
+
+#: admin/class-manage-users.php:106
+msgid "The current user&#8217;s role must have user editing capabilities."
+msgstr "Die Rolle des aktuellen Benutzers braucht die Berechtigung, Benutzer zu bearbeiten."
 
 #: admin/class-manage-users.php:102
 msgid "Role removed from selected users."

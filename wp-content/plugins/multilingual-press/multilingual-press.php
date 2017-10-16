@@ -5,7 +5,7 @@
  * Description: Create a fast translation network on WordPress multisite. Run each language in a separate site, and connect the content in a lightweight user interface. Use a customizable widget to link to all sites.
  * Author:      Inpsyde GmbH
  * Author URI:  https://inpsyde.com
- * Version:     2.8.1
+ * Version:     2.9.2
  * Text Domain: multilingual-press
  * Domain Path: /languages
  * License:     GPLv3
@@ -160,3 +160,24 @@ function mlp_debug( $message ) {
 if ( defined( 'MULTILINGUALPRESS_DEBUG' ) && MULTILINGUALPRESS_DEBUG ) {
 	add_action( 'mlp_debug', 'mlp_debug' );
 }
+
+/**
+ * Triggers the plugin initialization routine on activation.
+ *
+ * @since   2.9.0
+ * @wp-hook activated_plugin
+ *
+ * @return void
+ */
+function mlp_init_on_activation( $plugin ) {
+
+	$mlp_plugin_file = defined( 'MLP_PLUGIN_FILE' ) ? MLP_PLUGIN_FILE : __FILE__;
+	if ( plugin_basename( $mlp_plugin_file ) === $plugin ) {
+		add_filter( 'multilingualpress.force_system_check', '__return_true' );
+
+		// Bootstrap MultilingualPress right now to take care of installation or upgrade routines.
+		mlp_init();
+	}
+}
+
+add_action( 'activated_plugin', 'mlp_init_on_activation', 0 );

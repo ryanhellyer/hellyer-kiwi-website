@@ -1,9 +1,9 @@
-=== Rocket Lazy Load ===
+=== Lazy Load by WP Rocket ===
 Contributors: creativejuiz, tabrisrp, wp_media
 Tags: lazyload, lazy load, images, iframes, thumbnail, thumbnails, smiley, smilies, avatar, gravatar
 Requires at least: 3.0
-Tested up to: 4.8.1
-Stable tag: 1.3
+Tested up to: 4.8
+Stable tag: 1.4.3
 
 The tiny Lazy Load script for WordPress without jQuery, works for images and iframes.
 
@@ -24,7 +24,7 @@ This plugin works on thumbnails, all images in a post content or in a widget tex
 
 == Frequently Asked Questions ==
 
-= How can i deactivate Lazy Load on some pages? = 
+= How can I deactivate Lazy Load on some pages? = 
 
 You can use the `do_rocket_lazyload` filter.
 
@@ -39,17 +39,55 @@ function deactivate_rocket_lazyload_on_single() {
 }
 `
 
-= How can i deactivate Lazy Load on some images? = 
+= How can I deactivate Lazy Load on some images? = 
 
 Simply add a `data-no-lazy="1"` property in you `img` or `iframe` tag.
 
 You can also use the filters `rocket_lazyload_excluded_attributes` or `rocket_lazyload_excluded_src` to exclude specific patterns.
+
+= How can I change the threshold to trigger the load? =
+
+You can use the `rocket_lazyload_threshold` filter.
+
+Code sample:
+
+`
+function rocket_lazyload_custom_threshold( $threshold ) {
+	return 100;
+}
+add_filter( 'rocket_lazyload_threshold', 'rocket_lazyload_custom_threshold' );
+`
 
 = I use plugin X and my images don't show anymore =
 
 Some plugins are not compatible without lazy loading. Please open a support thread, and we will see how we can solve the issue by excluding lazy loading for this plugin.
 
 == Changelog ==
+
+= 1.4.3 =
+* Plugin is compatible again with PHP < 5.4
+
+= 1.4.2 =
+* Update lazyload script to bring back compatibility with IE9/10
+
+= 1.4.1 =
+* Fix bug caused by a too aggressive cleanup
+
+= 1.4 =
+* New option: replace Youtube videos by thumbnail. This option can improve your loading time a lot, especially if you have multiple videos on the same page
+
+= 1.3.3 =
+* 2017-09-16
+* Prevent scripts and styles being removed during html parsing
+
+= 1.3.2 =
+* 2017-09-12
+* Fix images not displaying in certain conditions because image attributes exclusion was not working correctly
+
+= 1.3.1 =
+* 2017-09-07
+* Don't apply lazyload on Divi slider
+
 = 1.3 =
 * 2017-09-01
 * Improve HTML parsing of images and iframes to be faster and more efficient

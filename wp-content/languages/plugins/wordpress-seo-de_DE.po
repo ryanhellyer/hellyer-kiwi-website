@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-22 08:50:17+0000\n"
+"PO-Revision-Date: 2017-09-05 08:28:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,6 +54,12 @@ msgstr "Alle Lesbarkeits Bewertungen"
 #: admin/class-meta-columns.php:202
 msgid "Filter by Readability Score"
 msgstr "Filter nach Lesbarkeits Bewertungen"
+
+#. translators: %1$s expands to the product name. %2$s expands to a link to My
+#. Yoast
+#: admin/class-license-page-manager.php:197
+msgid "You are not receiving updates or support! Fix this problem by adding this site and enabling %1$s for it in %2$s."
+msgstr "Du erhältst weder Updates noch Support! Behebe dieses Problem, indem du diese Website hinzufügst und %1$s dafür in %2$s aktivierst."
 
 #: vendor/yoast/whip/src/facades/wordpress.php:29
 msgid "Remind me again in 4 weeks."
@@ -170,6 +176,10 @@ msgstr "%s Spalten"
 msgid "Readability score"
 msgstr "Lesbarkeitsbewertung"
 
+#: admin/banner/class-admin-banner-sidebar.php:362
+msgid "Take the online Structured Data Training course and learn how to create rich snippets!"
+msgstr "Belege den online Structured Data Training Kurs und lerne wie man Rich Snippets erstellt!"
+
 #: languages/yoast-seo-js.php:208
 msgid "The focus keyword appears only in %2$d (out of %1$d) subheadings in your copy. Try to use it in at least one more subheading."
 msgstr "Das Fokus-Keyword kommt lediglich in %2$d (von %1$d) Unterüberschriften in dieser Kopie vor. Versuche welche in mindestens einer Unterüberschrift hinzuzufügen."
@@ -233,6 +243,12 @@ msgstr "Bleibe up-to-date"
 #: admin/config-ui/components/class-component-suggestions.php:72
 msgid "Attract more customers near you"
 msgstr "Gewinne mehr Kunden in deiner Nähe"
+
+#. translators: %1$s resolves to Yoast SEO, %2$s resolves to Yoast SEO plugin
+#. training
+#: admin/config-ui/components/class-component-suggestions.php:58
+msgid "Get the most out of %1$s with the %2$s"
+msgstr "Hole das Meiste mit %2$s aus %1$s heraus"
 
 #: admin/config-ui/components/class-component-suggestions.php:36
 msgid "Upgrade to Premium"
@@ -309,6 +325,12 @@ msgstr "24/7 Support"
 #: admin/class-premium-upsell-admin-block.php:47
 msgid "Superfast internal linking suggestions"
 msgstr "Superschnelle interne Verlinkungsvorschläge"
+
+#. translators: %1$s expands to a 'Yoast SEO Premium' text linked to the
+#. yoast.com website.
+#: admin/metabox/class-metabox-add-keyword-tab.php:33
+msgid "Great news: you can, with %1$s!"
+msgstr "Großartige Neuigkeit: Du kannst es, mit %1$s!"
 
 #: admin/class-yoast-form.php:121
 msgid "Save changes"
@@ -1937,17 +1959,17 @@ msgstr "Dashboard"
 
 #. translators: %1$s resolves to the starting tag of the link to the permalink
 #. settings page, %2$s resolves to the closing tag of the link
-#: admin/class-admin-init.php:250
+#: admin/class-admin-init.php:201
 msgid "You can fix this on the %1$sPermalink settings page%2$s."
 msgstr "Du kannst dies auf der %1$sPermalink-Einstellungen-Seite%2$s beheben."
 
 #. translators: %1$s resolves to the opening tag of the link to the comment
 #. setting page, %2$s resolves to the closing tag of the link
-#: admin/class-admin-init.php:207
+#: admin/class-admin-init.php:158
 msgid "Simply uncheck the box before \"Break comments into pages...\" on the %1$sComment settings page%2$s."
 msgstr "Entferne einfach den Haken vor \"Breche Kommentare in Seiten um...\" auf der %1$sKommentare Einstellungs-Seite%2$s."
 
-#: admin/class-admin-init.php:202
+#: admin/class-admin-init.php:153
 msgid "Paging comments is enabled, this is not needed in 999 out of 1000 cases, we recommend to disable it."
 msgstr "Paginierung der Kommentare ist aktiviert. Diese ist in 999 von 1000 Fällen nicht notwendig. Wir empfehlen, sie zu deaktivieren."
 
@@ -2319,13 +2341,13 @@ msgid "%1$s of %2$s done."
 msgstr "%1$s von %2$s erledigt"
 
 #. translators: %s expands to the actual filter/action that has been used.
-#: admin/class-admin-init.php:560
+#: admin/class-admin-init.php:511
 msgid "%s filter/action"
 msgstr "%s Filter/Aktion"
 
 #. translators: 1: is a link to 'admin_url /
 #. admin.php?page=wpseo_tools&recalculate=1' 2: closing link tag
-#: admin/class-admin-init.php:389
+#: admin/class-admin-init.php:340
 msgid "We've updated our SEO score algorithm. %1$sRecalculate the SEO scores%2$s for all posts and pages."
 msgstr "Wir haben unseren Algorithmus für die SEO-Wertung aktualisiert. %1$s Klicke hier, um die aktuelle Gesamtwertung für alle Beiträge und Seiten %2$s neu zu berechnen."
 
@@ -3722,7 +3744,7 @@ msgstr "Über Dich"
 msgid "Company info"
 msgstr "Über das Unternehmen"
 
-#: admin/class-admin-init.php:246
+#: admin/class-admin-init.php:197
 msgid "You do not have your postname in the URL of your posts and pages, it is highly recommended that you do. Consider setting your permalink structure to <strong>/%postname%/</strong>."
 msgstr "Du hast bisher den Artikel-/ Seitentitel nicht in der URL Deiner Artikel und Seiten, dies wird jedoch dringend empfohlen. Überlege Dir deshalb, Deine Permalinkstruktur auf <strong>/%postname%/</strong> einzustellen."
 
@@ -4362,7 +4384,7 @@ msgstr "Toll gemacht! Dieses Fokus-Keyword hast du noch nie zuvor benutzt!"
 msgid "No focus keyword was set for this page. If you do not set a focus keyword, no score can be calculated."
 msgstr "Es wurde kein Fokus-Keyword für diese Seite festgelegt. Wenn du kein Fokus-Keyword festlegst, kann keine Bewertung der Seite errechnet werden."
 
-#: admin/class-meta-columns.php:110 admin/class-meta-columns.php:559
+#: admin/class-meta-columns.php:110 admin/class-meta-columns.php:558
 #: admin/taxonomy/class-taxonomy-columns.php:130
 msgid "Focus keyword not set."
 msgstr "Es wurde kein Fokus-Schlüsselwort festgelegt."
@@ -4407,7 +4429,7 @@ msgstr "(kein Elternelement)"
 msgid "No focus keyword set."
 msgstr "Kein \"Focus Keyword\" gewählt."
 
-#: admin/class-meta-columns.php:550 admin/metabox/class-metabox.php:171
+#: admin/class-meta-columns.php:549 admin/metabox/class-metabox.php:171
 msgid "Post is set to noindex."
 msgstr "Der Artikel wird nicht indexiert."
 
@@ -4728,11 +4750,11 @@ msgstr "Einstellungen"
 
 #. translators: %1$s resolves to the opening tag of the link to the reading
 #. settings, %1$s resolves to the closing tag for the link
-#: admin/class-admin-init.php:174
+#: admin/class-admin-init.php:125
 msgid "You must %1$sgo to your Reading Settings%2$s and uncheck the box for Search Engine Visibility."
 msgstr "Geh bitte zu %1$sEinstellungen \"Lesen\"%2$s und entferne den Haken bei \"Search Engine Visibility\" (sichtbar für Suchmaschinen)."
 
-#: admin/class-admin-init.php:171
+#: admin/class-admin-init.php:122
 msgid "Huge SEO Issue: You're blocking access to robots."
 msgstr "Wichtiges SEO-Problem: Du blockierst den Zugriff von Suchmaschinen."
 
@@ -4834,16 +4856,16 @@ msgstr "SEO"
 #. to Google Analytics by Yoast
 #. translators: %1$s expands to Yoast SEO, %2$s expands to the plugin version,
 #. %3$s expands to the plugin name
-#: admin/class-admin-init.php:307 admin/class-admin-init.php:356
+#: admin/class-admin-init.php:258 admin/class-admin-init.php:307
 msgid "%1$s detected you are using version %2$s of %3$s, please update to the latest version to prevent compatibility issues."
 msgstr "%1$s hat festgestellt, dass du Version  %2$s von %3$s nutzt. Bitte aktualisiere auf die neueste Version, um Fehler zu vermeiden."
 
-#: admin/class-admin-init.php:237
+#: admin/class-admin-init.php:188
 msgid "Just another WordPress site"
 msgstr "Nur eine weitere Wordpress Seite"
 
 #. translators: 1: link open tag; 2: link close tag.
-#: admin/class-admin-init.php:144
+#: admin/class-admin-init.php:95
 msgid "You still have the default WordPress tagline, even an empty one is probably better. %1$sYou can fix this in the customizer%2$s."
 msgstr "Du hast noch den Standard-WordPress-Slogan, selbst ein leerer ist vermutlich besser. %1$sIm Customizer kannst du dies anpassen%2$s."
 
