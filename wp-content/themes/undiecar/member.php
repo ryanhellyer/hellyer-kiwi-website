@@ -131,9 +131,9 @@ echo '</p>';
 if (
 	$member_id === get_current_user_id()
 	&&
-	'2' !== $season
+	'3' !== $season
 ) {
-	echo '<p><strong><u>Unfortunately all positions are now filled for season 2</u></strong>, but you have been placed on the reserve list and will be notified if any spots become availble or of any special events we may hold.</p>';
+	echo '<p><strong><u>Unfortunately all positions are now filled for season 3</u></strong>, but you have been placed on the reserve list and will be notified if any spots become availble or of any special events we may hold. If you only want to compete in the special events, please contact <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a> via either <a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">iRacing private message</a> or via our <a href="https://discord.gg/csjKs6z">Discord channel</a>.</p>';
 }
 
 
