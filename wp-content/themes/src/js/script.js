@@ -27,7 +27,7 @@
 
 				var src_topic_title = document.getElementById( 'bbp_topic_title' );
 				var src_topic_textarea = document.getElementById( 'bbp_topic_content' );
-				src_topic_title.value = 'driver name';
+//				src_topic_title.value = 'driver name';
 				src_topic_textarea.innerHTML = 'Team name: ' + src_team_name.value + "\n\nVehicle: " + src_vehicle.value + "\n\nDescription: " + src_description.value + "\n\nNumber: " + src_number.value;
 
 				//e.preventDefault();
