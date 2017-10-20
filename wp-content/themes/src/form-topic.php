@@ -72,7 +72,7 @@
 					<?php do_action( 'bbp_theme_before_topic_form_title' ); ?>
 
 <?php
-
+/*
 if ( 'Applications' === get_the_title() ) {
 
 	echo '
@@ -99,7 +99,7 @@ if ( 'Applications' === get_the_title() ) {
 
 
 }
-
+*/
 ?>
 
 					<p>
@@ -227,11 +227,11 @@ if ( 'Applications' === get_the_title() ) {
 
 					<?php endif; ?>
 <?php
-
+/*
 if ( 'Applications' === get_the_title() ) {
 	echo '</div>';
 }
-
+*/
 ?>
 
 					<?php do_action( 'bbp_theme_before_topic_form_submit_wrapper' ); ?>

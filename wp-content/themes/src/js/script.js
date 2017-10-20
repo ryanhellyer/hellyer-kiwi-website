@@ -15,10 +15,9 @@
 	window.addEventListener(
 		'click',
 		function (e){
-
+/*
 			// Applications topic - transfers custom selections to a normal topic submission
 			if ( 'bbp_topic_submit' === e.target.id ) {
-
 				var src_drive_name  = document.getElementById( 'src-driver-name' );
 				var src_team_name   = document.getElementById( 'src-team-name' );
 				var src_vehicle     = document.getElementById( 'src-vehicle' );
@@ -27,12 +26,13 @@
 
 				var src_topic_title = document.getElementById( 'bbp_topic_title' );
 				var src_topic_textarea = document.getElementById( 'bbp_topic_content' );
-//				src_topic_title.value = 'driver name';
+				src_topic_title.value = 'xxxdriver name';
 				src_topic_textarea.innerHTML = 'Team name: ' + src_team_name.value + "\n\nVehicle: " + src_vehicle.value + "\n\nDescription: " + src_description.value + "\n\nNumber: " + src_number.value;
 
 				//e.preventDefault();
 				//e.stopPropagation();
 			}
+*/
 
 			// Menu button click
 			var main_menu_wrap = document.getElementById( 'main-menu-wrap' );
