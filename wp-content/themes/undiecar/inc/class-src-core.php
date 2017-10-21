@@ -110,7 +110,7 @@ if ( true === $save_results ) {
 						$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
 						if ( is_array( $results ) ) {
-
+$content .= '<!-- Results: ' . print_r( $results, true ) . '-->';
 							// Add points for finishing position and calc incidents
 							foreach ( $results as $pos => $result ) {
 
