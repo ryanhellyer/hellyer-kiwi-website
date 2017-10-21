@@ -218,7 +218,8 @@ if ( true === $save_results ) {
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
 				update_post_meta( $season_id, '_stored_results', $stored_results );
-				$content = 'Updating stored results: ' . $season_id .  ' - ' . print_r( $stored_results ) . ' -->';
+$stored_results = get_post_meta( $season_id, '_stored_results', true );
+$content .= 'Updating stored results: ' . $season_id .  ' - ' . print_r( $stored_results ) . ' -->';
 			}
 
 		} // End of championship positions calculation
