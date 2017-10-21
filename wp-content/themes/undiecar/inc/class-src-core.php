@@ -214,6 +214,9 @@ class SRC_Core {
 			}
 
 		} // End of championship positions calculation
+		else {
+			$content .= "\n\n<!-- Using permanently stored results -->\n";
+		}
 
 		if ( false === $title ) {
 			$title = __( 'Championship', 'src' );
