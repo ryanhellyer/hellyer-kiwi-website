@@ -258,10 +258,12 @@ class SRC_Core {
 				if ( isset( $member->data->ID ) ) {
 					$member_id = $member->data->ID;
 
+					$car_number = '';
 					if ( '' !== get_user_meta( $member_id, 'car_number', true ) ) {
 						$car_number = get_user_meta( $member_id, 'car_number', true );
 					}
 
+					$nationality = '';
 					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
 						$nationality = get_user_meta( $member_id, 'nationality', true );
 					}
