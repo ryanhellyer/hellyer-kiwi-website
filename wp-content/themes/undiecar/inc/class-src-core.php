@@ -78,12 +78,12 @@ class SRC_Core {
 $content .= '<!-- stored results: ' . print_r( $stored_results, true ) . '-->';
 $content .= '<!-- save_results var: ' . print_r( $save_results, true ) . '-->';
 if ( true === $save_results ) {
-	$content .= 'TRUE';
+//	$content .= 'TRUE';
 } else {
-	$content .= 'FALSE';
+//	$content .= 'FALSE';
 }
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
-		if ( '' === $stored_results || false === $use_stored_results ) {
+		if ( '' === $stored_results || true !== $use_stored_results ) {
 
 			// Get all events from that season
 			$query = new WP_Query( array(
