@@ -44,8 +44,9 @@ class SRC_Core {
 	 * @param  bool    $bypass    true if bypassing post-type check
 	 * @param  int     $limit     the max number of drivers to show
 	 * @param  string  $title     title to use
+	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
 	 */
-	static function championship( $content, $bypass = false, $limit = 100, $title = false ) {
+	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -69,134 +70,150 @@ class SRC_Core {
 			return $content;
 		}
 
-		// Get all events from that season
-		$query = new WP_Query( array(
-			'posts_per_page'         => 100,
-			'post_type'              => 'event',
+		/*
+		 * Use stored results if available and set to use them.
+		 *  Otherwise recalculate the results (normal mid-season)
+		 */
+		$stored_results = get_post_meta( $season_id, '_stored_results', true );
+		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
+		if ( '' === $stored_results || false === $use_stored_results ) {
 
-			'meta_key'               => 'season',
-			'meta_value'             => $season_id,
+			// Get all events from that season
+			$query = new WP_Query( array(
+				'posts_per_page'         => 100,
+				'post_type'              => 'event',
 
-			'no_found_rows'          => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		) );
-		$stored_results = $fastest_laps = array();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
+				'meta_key'               => 'season',
+				'meta_value'             => $season_id,
 
-				$incident_results = array();
-				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			) );
+			$stored_results = $fastest_laps = array();
+			if ( $query->have_posts() ) {
+				while ( $query->have_posts() ) {
+					$query->the_post();
 
-					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
-					$results = json_decode( $results, true );
-					$points_positions = get_post_meta( $season_id, 'points_positions', true );
+					$incident_results = array();
+					foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-					if ( is_array( $results ) ) {
+						$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+						$results = json_decode( $results, true );
+						$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
-						// Add points for finishing position and calc incidents
-						foreach ( $results as $pos => $result ) {
+						if ( is_array( $results ) ) {
 
-							$name = $result['name'];
-							if ( isset( $points_positions[$pos - 1] ) ) {
+							// Add points for finishing position and calc incidents
+							foreach ( $results as $pos => $result ) {
 
-								if ( isset( $stored_results[$name] ) ) {
-									$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
-								} else {
-									$stored_results[$name] = $points_positions[$pos - 1];
-								}
-
-							}
-
-							// Store fastest laps
-							if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
-								$fastest_laps[$name] = $result['fastest_lap_time'];
-							}
-
-							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
-							if (
-								$results[1]['laps-completed'] === $result['laps-completed']
-								||
-								( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
-							) {
 								$name = $result['name'];
-								if ( isset( $incident_results[$name] ) ) {
-									$incident_results[$name] = $incident_results[$name] + $result['incidents'];
-								} else {
-									$incident_results[$name] = $result['incidents'];
+								if ( isset( $points_positions[$pos - 1] ) ) {
+
+									if ( isset( $stored_results[$name] ) ) {
+										$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
+									} else {
+										$stored_results[$name] = $points_positions[$pos - 1];
+									}
+
 								}
-							} else {
-								$incident_results[$name] = 100000;
+
+								// Store fastest laps
+								if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
+									$fastest_laps[$name] = $result['fastest_lap_time'];
+								}
+
+								// Get least incident info (we ignore anyone who isn't within one lap of the lead)
+								if (
+									$results[1]['laps-completed'] === $result['laps-completed']
+									||
+									( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
+								) {
+									$name = $result['name'];
+									if ( isset( $incident_results[$name] ) ) {
+										$incident_results[$name] = $incident_results[$name] + $result['incidents'];
+									} else {
+										$incident_results[$name] = $result['incidents'];
+									}
+								} else {
+									$incident_results[$name] = 100000;
+								}
+
+								// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
+								if ( isset( $stored_results[$name] ) ) {
+									$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
+								} else {
+									$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
+								}
+
 							}
 
-							// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
-							if ( isset( $stored_results[$name] ) ) {
-								$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
+							// Give bonus points for most spectacular crash in each race
+							$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
+							if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
+								$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
 							} else {
-								$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
+								$stored_results[$most_spectacular_crash_name] = 1;
 							}
 
 						}
 
-						// Give bonus points for most spectacular crash in each race
-						$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
-						if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
-							$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
+					}
+
+					// Work out who gets points for the least incidents
+					asort( $incident_results );
+					foreach ( $incident_results as $driver_name => $incidents ) {
+						if ( $incidents > 99999 ) {
+						continue;
+						}
+
+						if ( ! isset( $lowest ) ) {
+							$lowest = $incidents;
+						}
+
+						// Hand out bonus point for everyone who had the lowest number of incidents
+						if ( $incidents === $lowest ) {
+							$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
+						}
+
+					}
+
+					// Add bonus point for pole
+					$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
+					$qual_results = json_decode( $qual_results, true );
+					if ( isset( $qual_results[1] ) ) {
+						$pole_position = $qual_results[1];
+						$name = $pole_position['name'];
+						if ( isset( $stored_results[$name] ) ) {
+							$stored_results[$name] = $stored_results[$name] + 1;
+						}
+					}
+
+					// Add bonus points for fastest lap in each race
+					asort( $fastest_laps );
+					foreach ( $fastest_laps as $name => $fastest_lap_time ) {
+
+						if ( isset( $stored_results[$name] ) ) {
+							$stored_results[$name] = $stored_results[$name] + 1;
 						} else {
-							$stored_results[$most_spectacular_crash_name] = 1;
+							$stored_results[$name] = 1;
 						}
 
 					}
 
 				}
-
-				// Work out who gets points for the least incidents
-				asort( $incident_results );
-				foreach ( $incident_results as $driver_name => $incidents ) {
-					if ( $incidents > 99999 ) {
-					continue;
-					}
-
-					if ( ! isset( $lowest ) ) {
-						$lowest = $incidents;
-					}
-
-					// Hand out bonus point for everyone who had the lowest number of incidents
-					if ( $incidents === $lowest ) {
-						$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
-					}
-
-				}
-
-				// Add bonus point for pole
-				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
-				$qual_results = json_decode( $qual_results, true );
-				if ( isset( $qual_results[1] ) ) {
-					$pole_position = $qual_results[1];
-					$name = $pole_position['name'];
-					if ( isset( $stored_results[$name] ) ) {
-						$stored_results[$name] = $stored_results[$name] + 1;
-					}
-				}
-
-				// Add bonus points for fastest lap in each race
-				asort( $fastest_laps );
-				foreach ( $fastest_laps as $name => $fastest_lap_time ) {
-
-					if ( isset( $stored_results[$name] ) ) {
-						$stored_results[$name] = $stored_results[$name] + 1;
-					} else {
-						$stored_results[$name] = 1;
-					}
-
-				}
-
 			}
-		}
 
-		arsort( $stored_results );
-		wp_reset_query();
+			arsort( $stored_results );
+
+			wp_reset_query();
+
+			// Someone has asked for the results to be stored permanently (used for end of season)
+			if ( true === $save_results ) {
+				update_post_meta( $season_id, '_stored_results', $stored_results );
+			}
+
+		} // End of championship positions calculation
 
 		if ( false === $title ) {
 			$title = __( 'Championship', 'src' );

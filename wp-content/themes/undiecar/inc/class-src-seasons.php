@@ -23,6 +23,8 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'the_content',     array( $this, 'drivers' ) );
 		add_action( 'the_content',     array( $this, 'championship' ), 8 );
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
+		add_action( 'add_meta_boxes',  array( $this, 'permanently_store_results_metabox' ) );
+		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
 
 		// Add shortcode
 		add_shortcode( 'src-schedule',   array( $this, 'schedule' ) );
@@ -306,6 +308,69 @@ class SRC_Seasons extends SRC_Core {
 			),
 
 		) );
+
+	}
+
+	/**
+	 * Store results for ever.
+	 */
+	public function permanently_store_results_metabox() {
+		add_meta_box(
+			'permanently-store-results', // ID
+			__( 'Permanently store results', 'src' ), // Title
+			array(
+				$this,
+				'permanently_store_results_html', // Callback to method to display HTML
+			),
+			array( 'season' ), // Post type
+			'side', // Context, choose between 'normal', 'advanced', or 'side'
+			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+	}
+
+	public function permanently_store_results_html() {
+
+		if ( 'season' !== get_post_type() ) {
+			return;
+		}
+
+		$checked = get_post_meta( get_the_ID(), '_permanently_store_results', true );
+		echo '
+		<p>
+			<label for="permanently-store-results">' . esc_html__( 'Use permanently stored results? Intended for stashing results for historical purposes after season has ended.', 'src' ) . '</label>
+			<input type="checkbox" ' . checked( true, $checked, false ) . 'id="permanently-store-results" name="permanently-store-results" />
+		</p>
+		<input type="hidden" id="permanently-store-results-nonce" name="permanently-store-results-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">';
+
+	}
+
+	/**
+	 * Save results upload save.
+	 *
+	 * @param  int     $post_id  The post ID
+	 * @param  object  $post     The post object
+	 */
+	public function permanently_store_results_save( $post_id, $post ) {
+
+		if ( ! isset( $_POST['permanently-store-results-nonce'] ) ) {
+			return $post_id;
+		}
+
+		// Do nonce security check
+		if ( ! wp_verify_nonce( $_POST['permanently-store-results-nonce'], __FILE__ ) ) {
+			return $post_id;
+		}
+
+		/*
+		 * This is a bit of a hack, as we're loading the championship table and 
+		 * just triggering it to stash the results mid-table then bailing out.
+		 */
+		if ( 'on' === $_POST['permanently-store-results'] ) {
+			update_post_meta( get_the_ID(), '_permanently_store_results', true );
+			$this->championship( '', false, 100, false, true );
+		} else {
+			delete_post_meta( get_the_ID(), '_permanently_store_results' );
+		}
 
 	}
 
