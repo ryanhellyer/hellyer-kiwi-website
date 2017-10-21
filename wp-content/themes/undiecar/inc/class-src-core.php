@@ -97,6 +97,7 @@ if ( true === $save_results ) {
 				'update_post_meta_cache' => false,
 				'update_post_term_cache' => false,
 			) );
+$content .= '<!-- query: ' . print_r( $query, true ) . '-->';
 			$stored_results = $fastest_laps = array();
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
