@@ -366,11 +366,10 @@ class SRC_Seasons extends SRC_Core {
 		 * just triggering it to stash the results mid-table then bailing out.
 		 */
 		if ( 'on' === $_POST['permanently-store-results'] ) {
-echo $_POST['permanently-store-results'];die;
-			update_post_meta( get_the_ID(), '_permanently_store_results', true );
+			update_post_meta( $post_id, '_permanently_store_results', true );
 			$this->championship( '', false, 100, false, true );
 		} else {
-			delete_post_meta( get_the_ID(), '_permanently_store_results' );
+			delete_post_meta( $post_id, '_permanently_store_results' );
 		}
 
 	}
