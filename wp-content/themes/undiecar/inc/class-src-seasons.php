@@ -238,8 +238,10 @@ class SRC_Seasons extends SRC_Core {
 		$current_season_slug = get_post_field( 'post_name', get_the_ID() );
 
 		if ( $current_season_slug === $season_slug ) {
-			$content .= '<h3>Drivers</h3>';
-			$content .= '[undycar_drivers season="' . esc_attr( $season_slug ) . '"]';
+//			$content .= '<h3>Drivers</h3>';
+//			$content .= '<p><a href="https://undiecar.com/confirmed-signups/"></a></p>';
+
+//			$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
 		}
 
 		return $content;
