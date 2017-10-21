@@ -45,8 +45,9 @@ class SRC_Core {
 	 * @param  int     $limit     the max number of drivers to show
 	 * @param  string  $title     title to use
 	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
+	 * @param  int     $season_id the ID of the season of the championship table
 	 */
-	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false ) {
+	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -60,7 +61,7 @@ class SRC_Core {
 				$season_id = get_option( 'current-season' );
 			}
 
-		} else {
+		} else if ( null === $season_id ) {
 			$season_id = get_the_ID();
 		}
 
@@ -91,7 +92,7 @@ class SRC_Core {
 				'update_post_meta_cache' => false,
 				'update_post_term_cache' => false,
 			) );
-$content .= '<!-- query: ' . print_r( $query, true ) . '-->';
+
 			$stored_results = $fastest_laps = array();
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
@@ -213,8 +214,6 @@ $content .= '<!-- query: ' . print_r( $query, true ) . '-->';
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
 				update_post_meta( $season_id, '_stored_results', $stored_results );
-$stored_results = get_post_meta( $season_id, '_stored_results', true );
-$content .= 'Updating stored results: ' . $season_id .  ' - ' . print_r( $stored_results ) . ' -->';
 			}
 
 		} // End of championship positions calculation
