@@ -367,7 +367,8 @@ class SRC_Seasons extends SRC_Core {
 		 */
 		if ( 'on' === $_POST['permanently-store-results'] ) {
 			update_post_meta( $post_id, '_permanently_store_results', true );
-			$this->championship( '', false, 100, false, true );
+			$x = $this->championship( '', false, 100, false, true );
+print_r( $x );
 echo 'processed';die;
 		} else {
 			delete_post_meta( $post_id, '_permanently_store_results' );
