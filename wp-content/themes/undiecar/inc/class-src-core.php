@@ -76,6 +76,8 @@ class SRC_Core {
 		 */
 		$stored_results = get_post_meta( $season_id, '_stored_results', true );
 $content .= '<!-- stored results: ' . print_r( $stored_results, true ) . '-->';
+$content .= '<!-- save_results var: ' . print_r( $save_results, true ) . '-->';
+
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 		if ( '' === $stored_results || false === $use_stored_results ) {
 
