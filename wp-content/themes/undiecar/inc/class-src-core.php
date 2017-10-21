@@ -75,6 +75,7 @@ class SRC_Core {
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
 		$stored_results = get_post_meta( $season_id, '_stored_results', true );
+$content .= '<!--' . print_r( $stored_results, true ) . '-->';
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 		if ( '' === $stored_results || false === $use_stored_results ) {
 
@@ -215,7 +216,7 @@ class SRC_Core {
 
 		} // End of championship positions calculation
 		else {
-			$content .= "\n\n<!-- Using permanently stored results -->\n";
+			$content .= "<!-- Using permanently stored results -->";
 		}
 
 		if ( false === $title ) {
