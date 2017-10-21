@@ -368,6 +368,7 @@ class SRC_Seasons extends SRC_Core {
 		if ( 'on' === $_POST['permanently-store-results'] ) {
 			update_post_meta( $post_id, '_permanently_store_results', true );
 			$x = SRC_Core::championship( '', true, 100, false, true );
+echo ' $post_id = ' . $post_id . "\n";
 echo '__';
 print_r( $x );
 echo '__';

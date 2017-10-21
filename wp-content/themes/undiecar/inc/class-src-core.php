@@ -75,13 +75,7 @@ class SRC_Core {
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
 		$stored_results = get_post_meta( $season_id, '_stored_results', true );
-$content .= '<!-- stored results: ' . print_r( $stored_results, true ) . '-->';
-$content .= '<!-- save_results var: ' . print_r( $save_results, true ) . '-->';
-if ( true === $save_results ) {
-//	$content .= 'TRUE';
-} else {
-//	$content .= 'FALSE';
-}
+
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 		if ( '' === $stored_results || true !== $use_stored_results ) {
 
@@ -111,7 +105,7 @@ $content .= '<!-- query: ' . print_r( $query, true ) . '-->';
 						$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
 						if ( is_array( $results ) ) {
-$content .= '<!-- Results: ' . print_r( $results, true ) . '-->';
+
 							// Add points for finishing position and calc incidents
 							foreach ( $results as $pos => $result ) {
 
