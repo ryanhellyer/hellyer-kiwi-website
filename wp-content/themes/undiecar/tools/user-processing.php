@@ -222,8 +222,9 @@ if ( 'adjust_season_one' === $_GET['user_processing'] ) {
 			'1' === get_user_meta( $driver_id, 'season', true )
 		) {
 
-			echo get_user_meta( $driver_id, 'password_set', true ) . ': ';
-			echo $driver->display_name . "\n";
+			if ( true === get_user_meta( $driver_id, 'password_set', true ) ) {
+				echo $driver->display_name . "\n";
+			}
 
 		}
 
