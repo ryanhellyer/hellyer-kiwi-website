@@ -173,7 +173,6 @@ if (
 
 	$count = 0;
 	$drivers = get_users( array( 'number' => 1000 ) );
-print_r( $drivers );die;
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
@@ -194,10 +193,10 @@ print_r( $drivers );die;
 		) {
 
 			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
-				echo $driver->data->display_name . ',';
-				$count++;
 			}
 		}
+				echo $driver->data->display_name . ',';
+				$count++;
 
 	}
 
