@@ -209,7 +209,7 @@ if (
 
 
 
-if ( isset( $_GET['adjust_season_one'] ) ) {
+if ( 'adjust_season_one' === $_GET['user_processing'] ) {
 
 	$all_drivers = get_users();
 	foreach ( $all_drivers as $driver ) {
