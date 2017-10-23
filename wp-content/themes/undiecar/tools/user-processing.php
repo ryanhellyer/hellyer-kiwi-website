@@ -181,7 +181,6 @@ if (
 			$include_season = $_GET['include_season'];
 		}
 
-
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
@@ -193,19 +192,46 @@ if (
 		) {
 
 			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
-//				echo $driver->data->display_name . ',';
-//				$count++;
+				echo $driver->data->display_name . ',';
+				$count++;
 			}
 		}
-
-echo $driver->data->display_name . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
-
 
 	}
 
 	echo "\nTotal count: " . $count;
 	die;
 }
+
+
+
+
+
+
+
+if ( isset( $_GET['adjust_season_one'] ) ) {
+
+	$all_drivers = get_users();
+	foreach ( $all_drivers as $driver ) {
+		$driver_id = $driver->ID;
+
+		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
+		if (
+			'1' === get_user_meta( $driver_id, 'password_set' )
+			&&
+			'1' === get_user_meta( $driver_id, 'season', true )
+		) {
+
+			$drivers[] = $driver->display_name;
+
+		}
+
+	}
+
+	print_r( $drivers );die;
+}
+
+
 
 if ( 'reserves' === $_GET['user_processing'] ) {
 
