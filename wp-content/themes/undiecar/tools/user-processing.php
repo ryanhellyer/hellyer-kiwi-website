@@ -171,6 +171,7 @@ if (
 	'special' === $_GET['user_processing']
 ) {
 
+	$count = 0;
 	$drivers = get_users( array( 'number' => 1000 ) );
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
@@ -193,11 +194,13 @@ if (
 
 			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
 				echo $driver->data->display_name . ',';
+				$count++;
 			}
 		}
 
 	}
 
+	echo "\nTotal count: " . $count;
 	die;
 }
 
