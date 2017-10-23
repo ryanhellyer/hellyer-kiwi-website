@@ -173,6 +173,7 @@ if (
 
 	$count = 0;
 	$drivers = get_users( array( 'number' => 1000 ) );
+print_r( $drivers );die;
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
