@@ -416,11 +416,7 @@ class SRC_Core {
 			if (
 				'reserve' === $season
 				&&
-				(
-					'1' !== get_user_meta( $driver_id, 'password_set' )
-					&&
-					'1' !== get_user_meta( $driver_id, 'season', true )
-				)
+				'1' !== get_user_meta( $driver_id, 'season', true )
 				&&
 				get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) ) !== get_user_meta( $driver_id, 'season', true )
 			) {
