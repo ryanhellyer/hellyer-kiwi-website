@@ -186,6 +186,8 @@ if (
 			||
 			'reserve' === get_user_meta( $driver_id, 'season', true )
 			||
+			'2' === get_user_meta( $driver_id, 'season', true )
+			||
 			$include_season === get_user_meta( $driver_id, 'season', true )
 		) {
 
