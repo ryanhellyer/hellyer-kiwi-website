@@ -217,18 +217,19 @@ if ( 'adjust_season_one' === $_GET['user_processing'] ) {
 
 		// Ignore season 1 drivers who haven't set their password (means they never intended to register for the site)
 		if (
-			'1' === get_user_meta( $driver_id, 'password_set' )
-			&&
+//			'1' === get_user_meta( $driver_id, 'password_set' )
+//			&&
 			'1' === get_user_meta( $driver_id, 'season', true )
 		) {
 
-			$drivers[] = $driver->display_name;
+			echo get_user_meta( $driver_id, 'password_set', true ) . ': ';
+			echo $driver->display_name . "\n";
 
 		}
 
 	}
 
-	print_r( $drivers );die;
+	die;
 }
 
 
