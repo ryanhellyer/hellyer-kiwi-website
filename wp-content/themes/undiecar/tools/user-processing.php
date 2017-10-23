@@ -193,10 +193,13 @@ if (
 		) {
 
 			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
+//				echo $driver->data->display_name . ',';
+//				$count++;
 			}
 		}
-				echo $driver->data->display_name . ',';
-				$count++;
+
+echo $driver->data->display_name . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
+
 
 	}
 
