@@ -133,20 +133,6 @@ if ( 'season_3' === $_GET['user_processing'] ) {
 	die;
 }
 
-if ( 'convert_blanks' === $_GET['user_processing'] ) {
-
-	$count = 0;
-	$drivers = get_users( array( 'number' => 1000 ) );
-	foreach ( $drivers as $driver ) {
-		$driver_id = $driver->ID;
-
-		if ( '' === get_user_meta( $driver_id, 'season', true ) ) {
-			update_user_meta( $driver_id, 'season', 'special' );
-		}
-
-	}
-
-}
 
 /**
  * Get all drivers eligible for special races.
