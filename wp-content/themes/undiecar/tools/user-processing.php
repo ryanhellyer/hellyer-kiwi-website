@@ -133,6 +133,21 @@ if ( 'season_3' === $_GET['user_processing'] ) {
 	die;
 }
 
+if ( 'convert_blanks' === $_GET['user_processing'] ) {
+
+	$count = 0;
+	$drivers = get_users( array( 'number' => 1000 ) );
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+
+		if ( '' === get_user_meta( $driver_id, 'season', true ) ) {
+			update_user_meta( $driver_id, 'season', 'special' );
+		}
+
+	}
+
+}
+
 /**
  * Get all drivers eligible for special races.
  *
@@ -152,17 +167,6 @@ if ( 'special' === $_GET['user_processing'] ) {
 			$include_season = $_GET['include_season'];
 		}
 
-if (
-	'special' !== get_user_meta( $driver_id, 'season', true )
-	&&
-	'reserve' !== get_user_meta( $driver_id, 'season', true )
-	&&
-	$include_season !== get_user_meta( $driver_id, 'season', true )
-) {
-	echo $driver->data->display_name . ': ' . get_user_meta( $driver_id, 'season', true ) . "\n";
-}
-
-
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
@@ -172,7 +176,7 @@ if (
 		) {
 
 			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
-//				echo $driver->data->display_name . ',';
+				echo $driver->data->display_name . ',';
 				$count++;
 			}
 		}
