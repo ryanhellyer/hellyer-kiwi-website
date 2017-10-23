@@ -171,7 +171,7 @@ if (
 	'special' === $_GET['user_processing']
 ) {
 
-	$drivers = get_users();
+	$drivers = get_users( array( 'number' => 1000 ) );
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
