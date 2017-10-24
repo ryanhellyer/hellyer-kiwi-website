@@ -3,7 +3,7 @@ Contributors: inpsyde, toscho, tfrommen, Bueltge, hughwillfayle, nullbyte, Biont
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
 Requires at least: 4.2
 Tested up to: 4.8
-Stable tag: 2.9.2
+Stable tag: 2.10.0
 
 Create a fast translation network on WordPress multisite.
 
@@ -113,6 +113,14 @@ tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/).
 12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
 
 == Changelog ==
+
+= 2.10.0 =
+- Add PHP_CodeSniffer configs, and adapt code accordingly, see [#283](https://github.com/inpsyde/MultilingualPress/pull/283).
+- Relations: Include scheduled posts in the remote post search, see [#284](https://github.com/inpsyde/MultilingualPress/issues/284).
+- Relations: Introduce a new filter, `multilingualpress.remote_post_search_arguments`, to manipulate the query arguments for the remote post search.
+- Quicklinks: Introduce a new filter, `multilingualpress.quicklinks_nofollow`, to render nofollow quicklinks, see [#251](https://github.com/inpsyde/MultilingualPress/issues/251).
+- Post Translation: Fix meta box not rendered for CPTs with custom capabilities, see [#286](https://github.com/inpsyde/MultilingualPress/issues/286).
+- Redirection: Introduce JavaScript-based redirection.
 
 = 2.9.2 =
 - Languages API: Fetch the language with the highest priority as site language.
