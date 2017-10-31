@@ -166,8 +166,9 @@ class SRC_Core {
 					// Work out who gets points for the least incidents
 					asort( $incident_results );
 					foreach ( $incident_results as $driver_name => $incidents ) {
+
 						if ( $incidents > 99999 ) {
-						continue;
+							continue;
 						}
 
 						if ( ! isset( $lowest ) ) {
@@ -177,6 +178,7 @@ class SRC_Core {
 						// Hand out bonus point for everyone who had the lowest number of incidents
 						if ( $incidents === $lowest ) {
 							$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
+//record who won least incidents
 						}
 
 					}
@@ -189,6 +191,7 @@ class SRC_Core {
 						$name = $pole_position['name'];
 						if ( isset( $stored_results[$name] ) ) {
 							$stored_results[$name] = $stored_results[$name] + 1;
+//record who won pole
 						}
 					}
 
@@ -197,9 +200,9 @@ class SRC_Core {
 					foreach ( $fastest_laps as $name => $fastest_lap_time ) {
 
 						if ( isset( $stored_results[$name] ) ) {
+// record who won bonus point
 							$stored_results[$name] = $stored_results[$name] + 1;
-						} else {
-							$stored_results[$name] = 1;
+							break;
 						}
 
 					}
@@ -408,7 +411,7 @@ class SRC_Core {
 	public function get_seasons_drivers( $season = 'all' ) {
 		$drivers = array();
 
-		$all_drivers = get_users();
+		$all_drivers = get_users( array( 'number' => 1000 ) );
 		foreach ( $all_drivers as $driver ) {
 			$driver_id = $driver->ID;
 
