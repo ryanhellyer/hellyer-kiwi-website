@@ -559,14 +559,28 @@ class SRC_Events extends SRC_Core {
 		}-
 		$nav_html .= '</div>';
 
+		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
+		if ( is_array( $least_incidents ) ) {
+			foreach ( $least_incidents as $key => $driver ) {
+
+				if ( isset( $least_incidents_text ) ) {
+					$least_incidents_text .= ', ';
+				} else {
+					$least_incidents_text = '';
+				}
+
+				$least_incidents_text .= $driver;
+			}
+		}
+
 		$bonus_points = '
 		<h3>Bonus points</h3>
 		<p>
-			Least incidents: ' . get_post_meta( get_the_ID(), '_least_incidents', true ) . '
+			Least incidents: ' . esc_html( $least_incidents_text ) . '
 			<br />
-			Pole position: ' . get_post_meta( get_the_ID(), '_pole_position', true ) . '
+			Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
 			<br />
-			Fastest lap: ' . get_post_meta( get_the_ID(), '_fastest_lap', true ) . '
+			Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) . '
 		</p>';
 
 
@@ -648,16 +662,29 @@ class SRC_Events extends SRC_Core {
 		</p>';
 
 
+		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
+		if ( is_array( $least_incidents ) ) {
+			foreach ( $least_incidents as $key => $driver ) {
+
+				if ( isset( $least_incidents_text ) ) {
+					$least_incidents_text .= ', ';
+				} else {
+					$least_incidents_text = '';
+				}
+
+				$least_incidents_text .= $driver;
+			}
+		}
 
 		echo '
 		<p>
-			Least incidents: ' . get_post_meta( get_the_ID(), '_least_incidents', true ) . '
+			Least incidents: ' . esc_html( $least_incidents_text ) . '
 		</p>
 		<p>
-			Pole position: ' . get_post_meta( get_the_ID(), '_pole_position', true ) . '
+			Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
 		</p>
 		<p>
-			Fastest lap: ' . get_post_meta( get_the_ID(), '_fastest_lap', true ) . '
+			Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) . '
 		</p>';
 
 	}

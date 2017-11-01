@@ -148,13 +148,9 @@ class SRC_Core {
 									( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
 								) {
 									$name = $result['name'];
-									if ( isset( $incident_results[$name] ) ) {
-										$incident_results[$name] = $incident_results[$name] + $result['incidents'];
-									} else {
-										$incident_results[$name] = $result['incidents'];
-									}
+									$incident_results[$name][$key] = $result['incidents'];
 								} else {
-									$incident_results[$name] = 100000;
+									$incident_results[$name][$key] = 100000;
 								}
 
 								// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
@@ -179,29 +175,42 @@ class SRC_Core {
 					}
 
 					// Work out who gets points for the least incidents
-					asort( $incident_results );
-					foreach ( $incident_results as $driver_name => $incidents ) {
+					// Work out how many races there were - only want to count drivers who completed both races
+					foreach ( $incident_results as $x => $driver_incidents ) {
 
-						if ( $incidents > 99999 ) {
-							continue;
-						}
-
-						if ( ! isset( $lowest ) ) {
-							$lowest = $incidents;
-						}
-
-						// Hand out bonus point for everyone who had the lowest number of incidents
-						if ( $incidents === $lowest ) {
-							$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
-
-							// Record who won least incidents
-							if ( '' === get_post_meta( get_the_ID(), '_least_incidents', true ) ) {
-								update_post_meta( get_the_ID(), '_least_incidents', $name );
-							}
-
+						if ( isset( $max ) && $max < count( $driver_incidents ) ) {
+							$max = count( $driver_incidents );
+						} else if ( ! isset( $max ) ) {
+							$max = count( $driver_incidents );
 						}
 
 					}
+					// Remove drivers who weren't in both races
+					foreach ( $incident_results as $x => $driver_incidents ) {
+
+						if ( $max !== count( $driver_incidents ) ) {
+							unset( $incident_results[$x] );
+						} else {
+							$incident_results[$x] = array_sum( $driver_incidents );
+						}
+
+					}
+					asort( $incident_results );
+					foreach ( $incident_results as $driver_name => $incidents ) {
+
+						// Grab definite least incidents value
+						if ( ! ( isset( $least_incidents ) ) ) {
+							$least_incidents = $incidents;
+						}
+
+						if ( $least_incidents === $incidents ) {
+							$least_incident_drivers[] = $driver_name;
+						}
+
+					}
+					if ( empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
+					}
+						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
 
 					// Add bonus point for pole
 					$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
