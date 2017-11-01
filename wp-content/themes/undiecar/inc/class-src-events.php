@@ -26,11 +26,11 @@ class SRC_Events extends SRC_Core {
 
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
-		add_filter('upload_mimes',            array( $this, 'allow_setup_uploads' ) );
+		add_filter( 'upload_mimes',           array( $this, 'allow_setup_uploads' ) );
 
 		// iRacing results uploader
-		add_action( 'add_meta_boxes', array( $this, 'results_upload_metabox' ) );
-		add_action( 'save_post',      array( $this, 'results_upload_save' ), 10, 2 );
+		add_action( 'add_meta_boxes',     array( $this, 'results_upload_metabox' ) );
+		add_action( 'save_post',          array( $this, 'results_upload_save' ), 10, 2 );
 		add_action( 'post_edit_form_tag', array( $this, 'update_form_enctype' ) );
 
 	}
@@ -542,7 +542,8 @@ class SRC_Events extends SRC_Core {
 			$track_map_image_url = $track_map_image[0];
 		}
 		$map_html = '
-		<img src="' . $track_map_image_url . '" />
+		<p>&nbsp;</p><!-- crude spacing hack -->
+		<img class="event-image" src="' . $track_map_image_url . '" />
 		';
 
 		// Next/Previous race navigation buttons
@@ -558,7 +559,19 @@ class SRC_Events extends SRC_Core {
 		}-
 		$nav_html .= '</div>';
 
-		$content = '<div id="base-content">' . $content . $html . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
+		$bonus_points = '
+		<h3>Bonus points</h3>
+		<p>
+			Least incidents: ' . get_post_meta( get_the_ID(), '_least_incidents', true ) . '
+			<br />
+			Pole position: ' . get_post_meta( get_the_ID(), '_pole_position', true ) . '
+			<br />
+			Fastest lap: ' . get_post_meta( get_the_ID(), '_fastest_lap', true ) . '
+		</p>';
+
+
+
+		$content = '<div id="base-content">' . $content . $html . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 
 		return $content;
 
@@ -633,6 +646,20 @@ class SRC_Events extends SRC_Core {
 		echo '
 
 		</p>';
+
+
+
+		echo '
+		<p>
+			Least incidents: ' . get_post_meta( get_the_ID(), '_least_incidents', true ) . '
+		</p>
+		<p>
+			Pole position: ' . get_post_meta( get_the_ID(), '_pole_position', true ) . '
+		</p>
+		<p>
+			Fastest lap: ' . get_post_meta( get_the_ID(), '_fastest_lap', true ) . '
+		</p>';
+
 	}
 
 	/**

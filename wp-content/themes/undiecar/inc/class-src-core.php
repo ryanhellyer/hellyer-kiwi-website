@@ -123,7 +123,22 @@ class SRC_Core {
 
 								// Store fastest laps
 								if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
-									$fastest_laps[$name] = $result['fastest_lap_time'];
+
+									$time_exploded = explode( ':', $result['fastest_lap_time'] );
+									$time = $time_exploded[0] * 60 + $time_exploded[1];
+
+									if (
+										! isset( $fastest_laps[$name] )
+										||
+										(
+											isset( $fastest_laps[$name] )
+											&&
+											$fastest_laps[$name] > $time
+										)
+									) {
+										$fastest_laps[$name] = $time;
+									}
+
 								}
 
 								// Get least incident info (we ignore anyone who isn't within one lap of the lead)
@@ -178,7 +193,12 @@ class SRC_Core {
 						// Hand out bonus point for everyone who had the lowest number of incidents
 						if ( $incidents === $lowest ) {
 							$stored_results[$driver_name] = $stored_results[$driver_name] + 1;
-//record who won least incidents
+
+							// Record who won least incidents
+							if ( '' === get_post_meta( get_the_ID(), '_least_incidents', true ) ) {
+								update_post_meta( get_the_ID(), '_least_incidents', $name );
+							}
+
 						}
 
 					}
@@ -191,16 +211,26 @@ class SRC_Core {
 						$name = $pole_position['name'];
 						if ( isset( $stored_results[$name] ) ) {
 							$stored_results[$name] = $stored_results[$name] + 1;
-//record who won pole
+
+							// Record who won pole
+							if ( '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
+								update_post_meta( get_the_ID(), '_pole_position', $name );
+							}
+
 						}
 					}
 
-					// Add bonus points for fastest lap in each race
+					// Add bonus points for fastest lap in each event
 					asort( $fastest_laps );
 					foreach ( $fastest_laps as $name => $fastest_lap_time ) {
 
 						if ( isset( $stored_results[$name] ) ) {
-// record who won bonus point
+
+							// Record who won bonus point
+							if ( '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
+								update_post_meta( get_the_ID(), '_fastest_lap', $name );
+							}
+
 							$stored_results[$name] = $stored_results[$name] + 1;
 							break;
 						}
