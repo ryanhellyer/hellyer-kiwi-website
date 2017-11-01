@@ -209,8 +209,8 @@ class SRC_Core {
 
 					}
 					if ( empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
-					}
 						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
+					}
 
 					// Add bonus point for pole
 					$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
