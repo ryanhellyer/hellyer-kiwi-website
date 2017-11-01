@@ -454,6 +454,8 @@ class SRC_Seasons extends SRC_Core {
 			$bonuses[] = __( 'most spectacular crash in each race', 'src' );
 		}
 
+		$bonuses[] = __( 'least incidents in each event (must have completed all races and not be more than one lap down on the leader)', 'src' );
+
 		if ( 0 < count( $bonuses ) ) {
 
 			$number = __( 'Bonus', 'src' );
