@@ -571,17 +571,19 @@ class SRC_Events extends SRC_Core {
 
 				$least_incidents_text .= $driver;
 			}
-		}
 
-		$bonus_points = '
-		<h3>Bonus points</h3>
-		<p>
-			Least incidents: ' . esc_html( $least_incidents_text ) . '
-			<br />
-			Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
-			<br />
-			Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) . '
-		</p>';
+			$bonus_points = '
+			<h3>Bonus points</h3>
+			<p>
+				Least incidents: ' . esc_html( $least_incidents_text ) . '
+				<br />
+				Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
+				<br />
+				Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) . '
+			</p>';
+		} else {
+			$bonus_points = '';
+		}
 
 
 

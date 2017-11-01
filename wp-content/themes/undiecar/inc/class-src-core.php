@@ -125,7 +125,12 @@ class SRC_Core {
 								if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
 
 									$time_exploded = explode( ':', $result['fastest_lap_time'] );
-									$time = $time_exploded[0] * 60 + $time_exploded[1];
+
+									if ( isset( $time_exploded[1] ) ) {
+										$time = $time_exploded[0] * 60 + $time_exploded[1];
+									} else {
+										$time = $time_exploded[0];
+									}
 
 									if (
 										! isset( $fastest_laps[$name] )
