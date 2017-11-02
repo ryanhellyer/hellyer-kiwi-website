@@ -124,7 +124,11 @@ if ( 'season_3' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		if ( '3' === get_user_meta( $driver_id, 'season', true ) ) {
+		if (
+			'3' === get_user_meta( $driver_id, 'season', true )
+			&&
+			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+		) {
 			echo $driver->data->display_name . ',';
 		}
 
