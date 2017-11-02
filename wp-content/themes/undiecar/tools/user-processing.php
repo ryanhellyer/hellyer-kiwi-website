@@ -165,7 +165,11 @@ if ( 'special' === $_GET['user_processing'] ) {
 			$include_season === get_user_meta( $driver_id, 'season', true )
 		) {
 
-			if ( 'banned' !== get_user_meta( $driver_id, 'season', true ) ) {
+			if (
+				'banned' !== get_user_meta( $driver_id, 'season', true )
+				&&
+				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+			) {
 				echo $driver->data->display_name . ',';
 				$count++;
 			}
