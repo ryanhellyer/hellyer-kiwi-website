@@ -117,7 +117,7 @@ function sorbet_scripts() {
 	wp_enqueue_style( 'sorbet-source-sans-pro' );
 	wp_enqueue_style( 'sorbet-pt-serif' );
 
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.3' );
+	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.4.1' );
 
 	wp_enqueue_script( 'sorbet-menus', get_template_directory_uri() . '/js/menus.js', array( 'jquery' ), '20120206', true );
 
@@ -158,15 +158,12 @@ require get_template_directory() . '/inc/jetpack.php';
  * Register Google Fonts
  */
 function sorbet_google_fonts() {
-
-	$protocol = is_ssl() ? 'https' : 'http';
-
 	/*	translators: If there are characters in your language that are not supported
 		by Source Sans Pro, translate this to 'off'. Do not translate into your own language. */
 
 	if ( 'off' !== _x( 'on', 'Source Sans Pro font: on or off', 'sorbet' ) ) {
 
-		wp_register_style( 'sorbet-source-sans-pro', "$protocol://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext" );
+		wp_register_style( 'sorbet-source-sans-pro', "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext" );
 
 	}
 
@@ -175,7 +172,7 @@ function sorbet_google_fonts() {
 
 	if ( 'off' !== _x( 'on', 'PT Serif font: on or off', 'sorbet' ) ) {
 
-		wp_register_style( 'sorbet-pt-serif', "$protocol://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext" );
+		wp_register_style( 'sorbet-pt-serif', "https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext" );
 
 	}
 
@@ -204,9 +201,7 @@ add_action( 'admin_enqueue_scripts', 'sorbet_admin_scripts' );
  */
 function sorbet_mce_css( $mce_css ) {
 
-	$protocol = is_ssl() ? 'https' : 'http';
-
-	$font = "$protocol://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext|PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext";
+	$font = "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic&subset=latin,latin-ext|PT+Serif:400,700,400italic,700italic&subset=latin,latin-ext";
 
 	if ( empty( $font ) )
 		return $mce_css;
@@ -225,3 +220,6 @@ add_filter( 'mce_css', 'sorbet_mce_css' );
  * Remove the separator from Eventbrite events meta.
  */
 add_filter( 'eventbrite_meta_separator', '__return_false' );
+
+
+

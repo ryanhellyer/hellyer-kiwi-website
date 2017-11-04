@@ -1,22 +1,16 @@
-/* Theme Name: Sorbet
- * Theme URI: https://wordpress.com/themes/sorbet/
- * Author: WordPress.com
- * Author URI: https://wordpress.com/themes/
- * Description: Sorbet is a delicious treat for your blog or website. Colorful post formats help your content pop, while secondary information (navigation, search, social links, and widgets) is tucked neatly away in the header for easy access that doesn't crowd your content.
- * Version: 1.2.1
- * License: GNU General Public License v2 or later
- * License URI: license.txt
- * Tags: blue, gray, green, orange, pink, red, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, rtl-language-support, sticky-post, translation-ready
- *
- * This theme, like WordPress, is licensed under the GPLv2 or later.
- * Use it to make something cool, have fun, and share what you've learned with others.
- *
- * Readable is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
- *
- * Resetting and rebuilding styles have been helped along thanks to the fine work of
- * Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
- * along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
- * and Blueprint http://www.blueprintcss.org/ */
+/*
+Theme Name: Sorbet
+Theme URI: https://wordpress.com/themes/sorbet/
+Description: Sorbet is a delicious treat for your blog or website. Colorful post formats help your content pop, while secondary information (navigation, search, social links, and widgets) is tucked neatly away in the header for easy access that doesn't crowd your content.
+Version: 1.2.2
+Author: Automattic
+Author URI: https://wordpress.com/themes/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sorbet
+Tags: blue, gray, green, orange, pink, red, light, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, rtl-language-support, sticky-post, translation-ready, photoblogging
+*/
+
 /* =Reset
 -------------------------------------------------------------- */
 html, body, div, span, applet, object, iframe,
@@ -298,8 +292,6 @@ img {
 	left: 0;
 }
 
-.screen-reader-text:hover,
-.screen-reader-text:active,
 .screen-reader-text:focus {
   background-color: #fff;
   border: 1px solid #000;
@@ -2457,51 +2449,84 @@ div.sharedaddy div.sd-block {
 .social-links ul:last-of-type {
   margin-right: 0;
 }
-.social-links ul a[href*="wordpress.org"]:before,
-.social-links ul a[href*="wordpress.com"]:before {
-  content: "\f205";
+.social-links ul a[href*='wordpress.org']:before,
+.social-links ul a[href*='wordpress.com']:before {
+    content: '\f205';
 }
-.social-links ul a[href*="facebook.com"]:before {
-  content: "\f204";
+.social-links ul a[href*='facebook.com']:before {
+    content: '\f204';
 }
-.social-links ul a[href*="twitter.com"]:before {
-  content: "\f202";
+.social-links ul a[href*='twitter.com']:before {
+    content: '\f202';
 }
-.social-links ul a[href*="dribbble.com"]:before {
-  content: "\f201";
+.social-links ul a[href*='dribbble.com']:before {
+    content: '\f201';
 }
-.social-links ul a[href*="plus.google.com"]:before {
-  content: "\f206";
+.social-links ul a[href*='plus.google.com']:before {
+    content: '\f206';
 }
-.social-links ul a[href*="pinterest.com"]:before {
-  content: "\f209";
+.social-links ul a[href*='pinterest.com']:before {
+    content: '\f209';
 }
-.social-links ul a[href*="github.com"]:before {
-  content: "\f200";
+.social-links ul a[href*='github.com']:before {
+    content: '\f200';
 }
-.social-links ul a[href*="tumblr.com"]:before {
-  content: "\f214";
+.social-links ul a[href*='tumblr.com']:before {
+    content: '\f214';
 }
-.social-links ul a[href*="youtube.com"]:before {
-  content: "\f213";
+.social-links ul a[href*='youtube.com']:before {
+    content: '\f213';
 }
-.social-links ul a[href*="flickr.com"]:before {
-  content: "\f211";
+.social-links ul a[href*='flickr.com']:before {
+    content: '\f211';
 }
-.social-links ul a[href*="vimeo.com"]:before {
-  content: "\f212";
+.social-links ul a[href*='vimeo.com']:before {
+    content: '\f212';
 }
-.social-links ul a[href*="instagram.com"]:before {
-  content: "\f215";
+.social-links ul a[href*='instagram.com']:before {
+    content: '\f215';
 }
-.social-links ul a[href*="codepen.io"]:before {
-  content: "\f216";
+.social-links ul a[href*='codepen.io']:before {
+    content: '\f216';
 }
-.social-links ul a[href*="linkedin.com"]:before {
-  content: "\f207";
+.social-links ul a[href*='linkedin.com']:before {
+    content: '\f207';
 }
-.social-links ul a[href*="/feed"]:before {
-  content: "\f413";
+.social-links ul a[href*='foursquare.com']:before {
+    content: '\f226';
+}
+.social-links ul a[href*='reddit.com']:before {
+    content: '\f222';
+}
+.social-links ul a[href*='digg.com']:before {
+    content: '\f221';
+}
+.social-links ul a[href*='getpocket.com']:before {
+    content: '\f224';
+}
+.social-links ul a[href*='path.com']:before {
+    content: '\f219';
+}
+.social-links ul a[href*='stumbleupon.com']:before {
+    content: '\f223';
+}
+.social-links ul a[href*='spotify.com']:before {
+    content: '\f515';
+}
+.social-links ul a[href*='twitch.tv']:before {
+    content: '\f516';
+}
+.social-links ul a[href*='dropbox.com']:before {
+    content: '\f225';
+}
+.social-links ul a[href*='/feed']:before {
+    content: '\f413';
+}
+.social-links ul a[href*='skype']:before {
+    content: '\f220';
+}
+.social-links ul a[href*='mailto']:before {
+    content: '\f410';
 }
 .social-links ul a:before {
   content: "\f415";

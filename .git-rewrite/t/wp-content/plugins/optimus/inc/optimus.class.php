@@ -32,21 +32,28 @@ class Optimus
 	* Konstruktor der Klasse
 	*
 	* @since   0.0.1
-	* @change  1.3.1
+	* @change  1.4.0
 	*/
 
 	public function __construct()
 	{
-		/* Fire! */
-		add_filter(
-			'wp_generate_attachment_metadata',
-			array(
-				'Optimus_Request',
-				'optimize_upload_images'
-			),
-			10,
-			2
-		);
+		/* Get plugin options */
+		$options = Optimus::get_options();
+
+		/* Check if manual optimization is enabled */
+		if ( ! $options['manual_optimize'] ) {
+			/* Fire! */
+			add_filter(
+				'wp_generate_attachment_metadata',
+				array(
+					'Optimus_Request',
+					'optimize_upload_images'
+				),
+				10,
+				2
+			);
+		}
+
 		add_filter(
 			'wp_delete_file',
 			array(
@@ -232,7 +239,7 @@ class Optimus
 						),
 						network_admin_url('plugins.php#_optimus_key')
 					),
-					( Optimus_HQ::get_key() ? __("Enter a different Optimus HQ license key", "optimus") : '<span style="color:#006505">'.__("Activate Optimus HQ", "optimus").'</span>' )
+					( Optimus_HQ::get_key() ? __("Enter a different Optimus HQ license key", "optimus") : '<span style="color:#dd3d36">'.__("Activate Optimus HQ", "optimus").'</span>' )
 				)
 			)
 		);
@@ -325,7 +332,7 @@ class Optimus
 	* Return plugin options
 	*
 	* @since   1.1.2
-	* @change  1.3.6
+	* @change  1.4.0
 	*
 	* @return  array  $diff  Data pairs
 	*/
@@ -338,7 +345,8 @@ class Optimus
 				'copy_markers'		=> 0,
 				'webp_convert' 		=> 0,
 				'keep_original'		=> 0,
-				'secure_transport'	=> 0
+				'secure_transport'	=> 0,
+				'manual_optimize'	=> 0
 			)
 		);
 	}
@@ -363,7 +371,7 @@ class Optimus
 
 		$handle = 'optimus-scripts';
 
-		wp_register_script( $handle, plugins_url('js/scripts.js', OPTIMUS_FILE), array('jquery'), TRUE );
+		wp_register_script( $handle, plugins_url('js/scripts.js', OPTIMUS_FILE), array('jquery'), '2', TRUE );
 		wp_localize_script($handle, 'optimusOptimize', array(
 			'nonce' => wp_create_nonce('optimus-optimize'),
 			'bulkDone' => __("All images have been optimized.", "optimus"),

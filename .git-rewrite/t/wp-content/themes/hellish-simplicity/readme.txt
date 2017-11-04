@@ -10,6 +10,19 @@ A clean simple design. Responsive design makes the theme look good on all device
 
 == Changelog ==
 
+== Version 1.9 ==
+October 8th 2015
+* Fixed bug in title tags
+* Switching to constants instead of public variables where possible
+* Fixed non-closing aside tag bug
+* Fixed output bugs in search form
+* Escaped most translation strings - needed since dot org now allows external translations
+* Improved styling for textarea's
+* Improved styling of forms, specifically JetPack / Grunion contact forms
+* Moved footer meta into template part
+* Moved CSS into sub-folder to clean up root folder
+* Moved sidebar into sub-folder to clean up root folder
+
 == Version 1.8 ==
 August 1st 2015
 * Changed header link to point to header section of customizer

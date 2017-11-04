@@ -1,17 +1,18 @@
 === Ryans Simple CMS ===
 Contributors: ryanhellyer
 Tags: cms, simple, static, admin, theme, admin-theme
-Donate link: http://geek.ryanhellyer.net/donate/
-Requires at least: 3.4
-Stable tag: 2.0
+Donate link: https://geek.hellyer.kiwi/donate/
+Requires at least: 4.3
+Tested up to: 4.6
+Stable tag: 2.0.2
 
-The <a href="http://geek.ryanhellyer.net/products/simplecms/">Simple CMS plugin</a> converts your WordPress admin panel into a simple CMS. This is aimed at web designers who want to provide a simple adminstration panel for their clients to update basic static websites.
+The <a href="https://geek.hellyer.kiwi/products/simplecms/">Simple CMS plugin</a> converts your WordPress admin panel into a simple CMS. This is aimed at web designers who want to provide a simple adminstration panel for their clients to update basic static websites.
 
 All extraneous admin areas which are unnecessary for a bare bones, basic CMS are removed from the administration menus.
 
-Visit the <a href="http://geek.ryanhellyer.net/products/simplecms/">Simple CMS page</a> for more information.
+Visit the <a href="https://geek.hellyer.kiwi/products/simplecms/">Simple CMS page</a> for more information.
 
-To help with theming, we have created a theme called <a href="http://geek.ryanhellyer.net/simple-cms-theme-update/">Simple CMS theme</a> which is designed to simplify the design process for web designers by only implementing the features needed for a basic static site. The theme is not designed to look pretty, but is a practical, simple theme to build your own designs from ... <strong><a href="http://geek.ryanhellyer.net/simple-cms-theme-update/">Simple CMS Theme</a></strong>
+To help with theming, we have created a theme called <a href="https://geek.hellyer.kiwi/simple-cms-theme-update/">Simple CMS theme</a> which is designed to simplify the design process for web designers by only implementing the features needed for a basic static site. The theme is not designed to look pretty, but is a practical, simple theme to build your own designs from ... <strong><a href="https://geek.hellyer.kiwi/simple-cms-theme-update/">Simple CMS Theme</a></strong>
 
 == Installation ==
 
@@ -22,12 +23,14 @@ After you've downloaded and extracted the files:
 3. That's it, all non-"WordPress Administrators" will now see an admin panel which contains only the necessities for a basic CMS for a static website
 4. Login as a "WordPress Editor" or lower to see the new admin panel
 
-Visit the <a href="http://geek.ryanhellyer.net/products/simplecms/">Simple CMS page</a> for more information.
+Visit the <a href="https://geek.hellyer.kiwi/products/simplecms/">Simple CMS page</a> for more information.
 
 <small>Note: This plugin intentionally does not affect the admin panel if you are a "WordPress Administrator". This ensures that you as the owner/designer of the site have full control over the admin panel, yet anyone at a lower userlevel (ie: "WordPress Editor") will see a massively simplified panel. You can alter user levels via the "Users" option in the regular WordPress admin panel.</small>
 
 == History ==
 
+Version 2.0.2: Updated supported to notice
+Version 2.0.1: Documented support for newer versions of WordPress and updated domain
 Version 2.0: Removed block prevent excerpts from appear for static pages
 Version 1.9: Added support for setting a constant of 'SIMPLECMS_EVERYBODY' in wp-config.php to simplify the administration panel for admins and super admins too
 Version 1.7.1: Major rewrite. Moved to OOP approach. Added support for removing admin bar menu items. Added support for removing extraneous meta boxes.

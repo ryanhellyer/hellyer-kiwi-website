@@ -312,7 +312,7 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_styles() {
-		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css' );
+		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20151204' );
 	}
 
 	/**
@@ -325,7 +325,7 @@ final class MN_Reorder {
 	 */
 	public function print_scripts() {
 		wp_register_script( 'reorder_nested', REORDER_URL . '/scripts/jquery.mjs.nestedSortable.js', array( 'jquery-ui-sortable' ), '1.3.5', true );
-		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ) );
+		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ), '20151101', true );
 		wp_localize_script( 'reorder_posts', 'reorder_posts', array(
 			'action' => 'post_sort',
 			'expand' => esc_js( __( 'Expand', 'metronet-reorder-posts' ) ),
@@ -394,7 +394,7 @@ final class MN_Reorder {
 		<?php
 		//Output non hierarchical posts
 		$page = isset( $_GET[ 'paged' ] ) ? absint( $_GET[ 'paged' ] ) : 0;
-		if ( $page == 0 ) {
+		if ( $page == 0 || $page == 1 ) {
 			$offset = 0;	
 		} elseif ( $page > 1 ) {
 			$offset = $this->offset * ( $page - 1 );

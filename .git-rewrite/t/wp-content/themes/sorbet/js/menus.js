@@ -52,9 +52,9 @@ jQuery(document).ready(function($) {
 		menuToggle.on('click', function() {
 			menuNav.slideToggle();
 			myToggleClass($(this));
-			
+
 			container = document.getElementById( 'site-navigation' );
-	
+
 			// Fix child menus for touch devices.
 			function fixMenuTouchTaps( container ) {
 				var touchStartFn,

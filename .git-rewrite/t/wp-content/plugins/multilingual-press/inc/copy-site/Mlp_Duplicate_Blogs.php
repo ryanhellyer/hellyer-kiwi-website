@@ -112,6 +112,12 @@ class Mlp_Duplicate_Blogs {
 			);
 		}
 
+		if ( isset( $_POST['blog']['activate_plugins'] ) ) {
+			$this->activate_plugins();
+		} else {
+			$this->deactivate_plugins();
+		}
+
 		$this->update_admin_email( $current_admin_email );
 
 		// if an url was used in the old blog, we set it to this url to change all content elements
@@ -285,7 +291,7 @@ class Mlp_Duplicate_Blogs {
 					`ml_elementid`,
 					`ml_type`
 				)
-				SELECT $source_blog_id, `ID`, $blog, ID, `post_type`
+				SELECT $source_blog_id, `ID`, $blog, ID, 'post'
 					FROM {$this->wpdb->posts}
 					WHERE `post_status` IN('publish', 'future', 'draft', 'pending', 'private')"
 			);
@@ -321,6 +327,36 @@ class Mlp_Duplicate_Blogs {
 
 		if ( $copy_files->copy_attachments() )
 			$this->update_file_urls( $copy_files );
+	}
+
+	/**
+	 * Fires the plugin activation hooks for all active plugins on the duplicated site.
+	 *
+	 * @return void
+	 */
+	private function activate_plugins() {
+
+		$active_plugins = get_option( 'active_plugins' );
+		foreach ( $active_plugins as $plugin ) {
+			/** This action is documented in wp-admin/includes/plugin.php */
+			do_action( 'activate_plugin', $plugin, false );
+
+			/** This action is documented in wp-admin/includes/plugin.php */
+			do_action( 'activate_' . $plugin, false );
+
+			/** This action is documented in wp-admin/includes/plugin.php */
+			do_action( 'activated_plugin', $plugin, false );
+		}
+	}
+
+	/**
+	 * Deactivates all plugins on the duplicated site.
+	 *
+	 * @retuvn void
+	 */
+	private function deactivate_plugins() {
+
+		update_option( 'active_plugins', array() );
 	}
 
 	/**
@@ -395,6 +431,21 @@ class Mlp_Duplicate_Blogs {
 				<select id="inpsyde_multilingual_based" name="blog[basedon]" autocomplete="off">
 					<?php echo $options; ?>
 				</select>
+			</td>
+		</tr>
+
+		<tr class="form-field hide-if-js">
+			<td>
+				<?php esc_html_e( 'Plugins', 'multilingualpress' ); ?>
+			</td>
+			<td>
+				<label for="blog_activate_plugins">
+					<input type="checkbox" value="1" id="blog_activate_plugins" name="blog[activate_plugins]"
+						checked="checked">
+					<?php
+					esc_html_e( 'Activate all plugins that are active on the source site', 'multilingualpress' );
+					?>
+				</label>
 			</td>
 		</tr>
 		<?php

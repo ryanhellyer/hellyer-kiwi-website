@@ -9,7 +9,7 @@
  */
 class Spam_Destroyer {
 
-	public $version = '2.0';                     // The pluin version number
+	public $version = '2.0';                       // The pluin version number
 	public $spam_key;                              // Key used for confirmation of bot-like behaviour
 	public $speed = 2;                             // Will be killed as spam if posted faster than this
 	public $encryption_method = 'AES-256-CBC';     // The encryption method used
@@ -258,6 +258,8 @@ class Spam_Destroyer {
 
 			// Check the hidden input field against the key
 			if ( $_POST['killer_value'] != $this->spam_key ) {
+//echo $_POST['killer_value']."\n";
+//echo $this->spam_key;die;
 				$this->comment_issue = 'hidden-field-not-set';
 				$this->kill_spam_dead( $comment ); // BOOM! Silly billy didn't have the correct input field so killing it before it reaches your eyes.
 			}
@@ -312,7 +314,7 @@ class Spam_Destroyer {
 
 		// If the user is logged in, then they're clearly trusted, so continue without checking
 		if ( is_user_logged_in() ) {
-			return $comment;
+			return $result;
 		}
 
 		// Check the hidden input field against the key
@@ -352,11 +354,11 @@ class Spam_Destroyer {
 
 		if ( function_exists( 'openssl_decrypt' ) ) {
 			$text = openssl_decrypt(
-				$text, // The text to be decrypted
+				$text,                    // The text to be decrypted
 				$this->encryption_method, // The cipher method
-				$this->spam_key, // The password
-				0, // Options - leave at 0
-				'ik3m3mfmenektn37' // Initialization vector
+				$this->spam_key,          // The password
+				0,                        // Options - leave at 0
+				'ik3m3mfmenektn37'        // Initialization vector
 			);
 		}
 
@@ -425,12 +427,7 @@ class Spam_Destroyer {
 		}
 
 		$error .= '
-		</form>
-		<script>
-			// Set the key as JS variable for use in the payload
-			var spam_destroyer = {"key":"' . esc_js( $this->spam_key ) . '","lifetime":"' . absint( apply_filters( 'spam_destroyer_cookie_lifetime', HOUR_IN_SECONDS ) ) . '"};
-		</script>
-		<script src="' . esc_url( SPAM_DESTROYER_URL . 'assets/kill.js' ) . '"></script>';
+		</form>';
 
 		wp_die( $error );
 	}

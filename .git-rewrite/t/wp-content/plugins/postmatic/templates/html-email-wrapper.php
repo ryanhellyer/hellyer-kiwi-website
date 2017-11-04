@@ -306,19 +306,19 @@ img.featured {
     .alignright {float: right !important; margin: 0 0 10px 10px !important;}
 
 /*Sharedaddy by Jetpackm Juiz Social Share, Easy Social Share Buttons*/
-.sd-content ul li, ul.juiz_sps_links_list li, ul.essb_links_list {
+.sd-content ul li, ul.juiz_sps_links_list li, ul.essb_links_list li {
   list-style: none;
   display: inline;
 }
 
 .sd-title { clear: both !important;}
 
-.content .sd-content ul li, ul.juiz_sps_links_list li, essb_links_list essb_hide_name li {
+.content .sd-content ul li, ul.juiz_sps_links_list li, .essb_links_list  li {
   margin: 0 5px 10px 0 !important;
   display: block;
   float: left;
 }
-.content .sd-content ul li a, ul.juiz_sps_links_list li a,essb_links_list essb_hide_name li a {
+.content .sd-content ul li a, ul.juiz_sps_links_list li a, .essb_links_list li a {
   color: #555 !important;
   font-size: 12px;
   padding: 5px 8px;
@@ -331,6 +331,71 @@ img.featured {
 
 }
 
+.sd-social-icon ul li span {
+  display: none !important; height: 0 !important;
+}
+
+.sharedaddy {
+  padding-bottom: 20px;
+}
+
+ul.essb_links_list {
+  width: 100%;
+}
+
+.sd-social-icon .sd-content ul li a {
+  width: 40px;
+  padding: 0;
+  height: 40px;
+  display: block;
+  border: none;
+}
+
+.sd-social-icon .sd-content ul li.share-email a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_em.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-print a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_pr.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-google-plus-1 a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_gp.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-pinterest a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_pi.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-reddit a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_re.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-twitter a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_tw.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-facebook a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_fb.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-tumblr a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_tm.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-linkedin a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_li.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-pocket a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_po.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+.sd-social-icon .sd-content ul li.share-end a {
+  background: url(<?php echo Prompt_Core::$url_path . '/media/icons/jp_re.gif' ;?>) !important;
+  background-size: 100% !important;
+}
+
 .abuse {
   font-size: 85%;
 }
@@ -338,7 +403,36 @@ img.featured {
   float: left;
   margin-right: 10px;
 }
-.sd-like {display: none !important;}
+.sd-like {display: none !important; height: 0 !important;}
+
+.ssba-wrap {
+  display: block;
+  min-height: 40px;
+  margin: 35px 0;
+  text-align: left !important;
+}
+
+.ssba-wrap div {
+  text-align: left !important;
+}
+
+.ssba-wrap a {
+  display: block;
+  width: 35px; height: 35px;
+  margin: 35px 5px 20px 0 !important;
+}
+
+.ssba-wrap img {
+  width: 50px;
+  height: 50px;
+  height: auto;
+}
+
+/*flare*/
+.flare-horizontal {display: none !important; height: 0 !important;}
+
+/*wp author box*/
+#wpautbox-below,.mashsb-container {display: none !important; height: 0 !important;}
 
 /*Jetpack tiled gallery*/
 .gallery-row {width: 675px !important; float: none !important;}
@@ -405,7 +499,7 @@ img.featured {
   height: 90%;
 }
 
-.et_social_inline {display: none !important;}
+.et_social_inline {display: none !important; height: 0 !important;}
 
 /*zemanta related posts*/
 div.zem_rp_wrap {
@@ -464,7 +558,7 @@ ul.dpe-flexible-posts li a img {
 .wpurp-responsive-desktop,.wpurp-recipe-image,.wpurp-recipe-servings-changer {display: none;}
 
 /*Hupso social*/
-.hupso_toolbar {display: none;}
+.hupso_toolbar {display: none !important; height: 0 !important;}
 
 /*Official twitter plugin*/
 .twitter-share .twitter-share-button {
@@ -488,7 +582,7 @@ ul.dpe-flexible-posts li a img {
 }
 
 .nc_socialPanel .totes, .nc_socialPanel .sw_count {
-  display: none !important;
+  display: none !important; height: 0 !important;
 }
 
 .nc_socialPanel .nc_tweetContainer {
@@ -525,7 +619,7 @@ ul.dpe-flexible-posts li a img {
   background: #3A589E;
 }
 .nc_pinterest {
-  display: none !important;
+  display: none !important; height: 0 !important;
 }
 .nc_tweetContainer.linkedIn a {
   background: #0D77B7;
@@ -571,9 +665,26 @@ a.sw_CTT span.sw-ctt-btn {
   margin: 0 10px 10px 0 !important;
 }
 
-/*Juiz social share*/
-.juiz_sps_maybe_hidden_text {display: none;}
+/*Darth vader*/
+.darth_vendor_container a {
+    display: block;
+    float: left;
+    width: 49%;
+    border: 1px solid #F6F6F6;
+    box-sizing: border-box;
+}
 
+/*Juiz social share*/
+.juiz_sps_maybe_hidden_text {display: none !important; height: 0 !important;}
+.pmcc-comments-report-link {display: none !important; height: 0 !important;}
+
+/*Subtitle*/
+.entry-subtitle {display:block;font-size:85%;margin-top:5px;}
+
+/*after post widgets*/
+.awac-wrapper, .widget_prompt_subscribe_widget {
+  display: none !important; height: 0 !important;
+}
 
 /*Mobile syles*/
     @media only screen and (max-width: 480px) {
@@ -615,12 +726,17 @@ a.sw_CTT span.sw-ctt-btn {
     #content img {float: none !important; margin: 10px auto !important;}
     img.avatar {float: left !important;}
     #content img.avatar, #content img.reply-icon {float: left !important; clear: left !important; margin: 0 10px 0 0 !important;}
-    .gallery br {display:none !important; clear: none !important;}
+    .gallery br {display: none !important; height: 0 !important; clear: none !important;}
     .gallery-item, .ngg-gallery-thumbnail-box {margin: 5px auto !important; float: none !important; display: block !important; width: 100% !important; text-align: center !important;}
     .gallery-item img, .ngg-gallery-thumbnail-box img {margin: 0 auto !important; display: block !important;}
     .gallery-caption {width: auto !important; text-align: center;}
     #demo { float: none; width: auto; padding: 20px; margin: 20px 0;}
     #demo p, #demo h3, #demo h4 { margin: 5px 0;}
+    
+    .sd-social-icon .sd-content ul li a {
+      width: 20px;
+      height: 20px;
+      }
     }
 
 /*Comments Template*/
@@ -654,7 +770,7 @@ img.avatar {width: 48px !important; height: 48px !important; max-height: 48px !i
 .depth-3 {margin-left: 25px; margin-bottom: 15px;}
 .depth-4 {margin-left: 25px; margin-bottom: 15px;}
 .depth-5 {margin-left: 25px; margin-bottom: 15px;}
-.the-reply, {margin-bottom: 25px;}
+.the-reply {margin-bottom: 25px;}
 .reply-content {margin-left: 60px;}
 .comment blockquote, .previous-comments blockquote, .reply-content blockquote {
   background: #fff;
@@ -669,6 +785,7 @@ img.avatar {width: 48px !important; height: 48px !important; max-height: 48px !i
 .context h4 {margin-bottom: 10px;}
 .context img {float: left; margin-right: 15px; padding: 0px; border: 1px solid #ddd; margin-bottom: 25px;}
 
+<?php do_action( 'prompt/html_email/print_styles' ); ?>
     </style>
     <!-- body -->
 

@@ -14,8 +14,8 @@ class Prompt_Admin_Options_Options_Tab extends Prompt_Admin_Options_Tab {
 				'type' => 'checkbox',
 				'name' => 'auto_subscribe_authors',
 				'desc' => __(
-					'Subscribe authors to comments on their own posts.<small>(Recommended)</small>',
-					'Postmatic'
+						'Subscribe authors to comments on their own posts.<small>(Recommended)</small>',
+						'Postmatic'
 					) . html( 'p',
 						__(
 							'This will automatically subscribe post authors to new comment notifications on their posts. This works well to keep the author up to date with the latest comments and discussion.',
@@ -115,7 +115,21 @@ class Prompt_Admin_Options_Options_Tab extends Prompt_Admin_Options_Tab {
 
 		$this->override_entries( $table_entries );
 
-		return $this->form_table( $table_entries );
+		ob_start();
+		wp_editor( Prompt_Core::$options->get( 'subscribed_introduction' ), 'subscribed_introduction' );
+		$introduction_editor = ob_get_clean();
+
+		$introduction_html = html( 'h2', __( 'Custom welcome message', 'Postmatic' ) ) .
+			html(
+				'p',
+				__(
+					'This message will be included in the welcome email sent to new subscribers.',
+					'Postmatic'
+				)
+			) .
+			$introduction_editor;
+
+		return $this->form_wrap( $this->table( $table_entries ) . $introduction_html );
 	}
 
 	/**
@@ -157,6 +171,10 @@ class Prompt_Admin_Options_Options_Tab extends Prompt_Admin_Options_Tab {
 		$flood_trigger_count = is_numeric( $flood_trigger_count ) ? absint( $flood_trigger_count ) : 6;
 		$flood_trigger_count = ( $flood_trigger_count < 3 ) ? 3 : $flood_trigger_count;
 		$valid_data['comment_flood_control_trigger_count'] = $flood_trigger_count;
+
+		if ( isset( $new_data['subscribed_introduction'] ) ) {
+			$valid_data['subscribed_introduction'] = wp_kses_post( wp_unslash( $new_data['subscribed_introduction'] ) );
+		}
 
 		return $valid_data;
 	}

@@ -1,8 +1,8 @@
 === Postmatic - Post and comment subscriptions that invite you to hit reply. Now with Optins. ===
 Contributors: Postmatic
-Tags: email, notification, notify, posts, subscribe, subscription, email, subscribe to comments, commenting, reply, email, optins, popups, optin forms, opt-in, subscribe form, comments, posts, reply, subscribe, mail, listserve, mailing, subscriptions, newsletter, newsletters, email newsletter, email subscription, newsletter signup, post notification, newsletter alert, auto newsletter, automatic post notification, email newsletters, email signup, auto post notifications, subscribe widget, signup widget, email subscription, newsletter plugin, widget, subscription, emailing, mandrill, mailchimp, mailgun, email comming, reply to email, email replies, engagement, invite, invitations, jetpack, subscribe2
+Tags: email, notification, notify, posts, subscribe, subscription, email, subscribe to comments, commenting, reply, email, optins, popups, optin forms, opt-in, subscribe form, comments, posts, reply, subscribe, mail, listserve, mailing, subscriptions, newsletter, newsletters, email newsletter, email subscription, newsletter signup, post notification, newsletter alert, auto newsletter, automatic post notification, email newsletters, email signup, auto post notifications, subscribe widget, signup widget, email subscription, newsletter plugin, widget, subscription, emailing, mandrill, mailchimp, mailgun, email commenting, reply to email, email replies, engagement, invite, invitations
 Requires at least: 3.9
-Tested up to: 4.2
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -40,11 +40,10 @@ No browsers. Easy.
 = Key Features =
 
 * Start building your subscriber list by reaching out to past commenters or using 35 different Optins including popups, top bars, sliders, and after-the-post.		
-* Posts are converted into fully responsive html emails on the fly. We support images, video, shortcodes, and oEmbed.
-* We handle email delivery through partnerships with Mailchimp and Rackspace. Lists with thousands of subscribers are no trouble atll.
+* Posts are converted into fully responsive html emails on the fly.
+* Users can reply to new post notifications to leave a comment.
 * Replies are posted as comments in as little as 6 seconds.
-* Intelligent comment templates provide conversational context and threaded commenting.
-* Comment moderation via email (approve, trash, spam) with a single reply.
+* Users commenting from your posts can subscribe to new comment notifications and reply to each to send back a response.
 * Single-click migration tools for Jetpack, MailPoet, and Mailchimp lists.
 * An incredible invitation system that turns past commenters into subscribers.
 * Postmatic strictly adheres to WordPress best practices. It uses the native commenting and user systems. We’re just a magical email gateway.
@@ -83,6 +82,92 @@ Find a few hundred more answers at our [big FAQ](http://gopostmatic.com/faq/).
 15. The optin configuration screeen.
 
 == Changelog ==
+
+= 1.4.13 =
+
+A quick update to patch a few bugs while we continue to focus on Postmatic 2. Keep an eye on [our blog](http://gopostmatic.com/blog) for news.
+
+- Fixed the white background on edit post screen in wp-admin
+- Improvements to formatting and auto_p on the thankyou message which gets sent when a user subscribes
+- Added support for WPML to our widget and optins
+- Added x-Postmatic-Site-Url header to outbound emails
+- Misc widget fixes
+- Misc translation string fixes
+
+= 1.4.12.1 =
+
+- Just a quick fix for the optins option screen. It got obliterated in our previous release. If you want to blame Dylan you can. If you want to blame Jason you might be closer to the truth. It's kind of gray though.
+- Some updates to the Russian translation
+- We adjusted the breakpoint on the Topbar optin for better mobile compatibility. 
+- We hunted down every last string that was not translatable and made it so they are. Thanks again, Dmitry. 
+
+= 1.4.12 =
+
+- We've added the ability to incentivize your opt-in forms with ebooks, how-tos, or whatever by customizing the subscription confirmation message. Very handy for helping your list grow. See [our blog post](http://gopostmatic.com/2015/12/offer-subscrip…stmatic-1-4-12)
+- With the above we've also changed the subscription confirmation message to no longer show your previous post. It wasn't a real winning feature anyway.
+- We've added support for [Add Widget After the Content](http://gopostmatic.com/2015/12/offer-subscrip…stmatic-1-4-12). That is to say widgets which are set by it will not show up in your Postmatic email. So we support it by not supporting it. Which is to say its safe to use.
+- Even more improvements to stripping out signatures on incoming replies. We've moved all of that up to our servers so we can now tweak things in realtime.
+- We've got a Russian translation! Many thanks to Dmitry Kornyukhov. He is seriously the [Best Russian Translator](http://bestrussiantranslator.com/).
+
+= 1.4.11 =
+
+- Added improved support for Simple Share Button Adder
+- Added more signature stripping for fancy html signatures
+- We're all WordPress 4.4 ready now
+- Cleaned up output from Flare
+- Cleand up output from WP Author Box
+- Cleaned up output of whatever sharing plugin it is you are using, BobWP!
+- More Postmatic 2.0 preparedness
+
+= 1.4.10 =
+
+- The below-the-post optin now will only show up on the 'posts' content type.
+- Added initial support for Shortcodes Ultimate column layouts, pullquotes, and other box-related doohikies. Improved styling of all coming soon.
+- Improved support for Ultimate Book Blogger, including the book-info shortcode.
+- New optin style: lilac. Want a style for your site? Let us know. We're happy to cook more up.
+- Lots of under the hood tweaks and api changes as we gear up for 2.0.
+
+= 1.4.9 =
+
+- Nothing too exciting here. We've increased the timeout to reach our api which should reduce the number of messages not finding their way home.
+- Site admins can now manually unsubscribe users from conversations. Useful for a certain kind of subscriber.
+- Updated Italian translation.
+- Updated German translation.
+- Added support for Simple Share Buttons Adder.
+- More fixes for more social sharing buttons.
+
+
+= 1.4.8 =
+
+- Get realtime access to our documentation and support team from right inside Postmatic. Look for the help icon in the lower right hand corner of Settings > Postmatic.
+- We did more work in making sure your featured image is not repeated twice. So long as your featured image and your leadin image use the same filename you'll be safe.
+- The popup optin that is supposed to pop after the user leaves a comment now does so in iframe mode as well when running Epoch.
+- The after-the-comment popup now has a timer set to a convenient 3 seconds. It's no so spazzy. 
+- Comment moderation notices from Crowd Control will now come through Postmatic... where you can take action right from your inbox. 
+
+= 1.4.7 =
+
+- Added support for our new comment moderation plugin: [Crowd Control](http://wordpress.org/plugins/crowd-control). 
+- Fixed the Spanish translation. Jason overrwrote it in 1.4.6. He's a doofus sometimes.
+- Better support for Easy Share Social Buttons. Try now, Tim.
+- Postmatic is now even smarter. If it tries to publish a duplicate comment to your site it won't freeze up and get comment constipation like it used to.
+- Added a new hook that's going to mean some serious fun for other plugin developers that want to get funky in your inbox. Blog post coming.
+
+= 1.4.6 =
+
+- Fixed an XSS vulnerability identified by [Chris Klosowski](http://kungfugrep.com)
+
+= 1.4.5 =
+
+- Cure duplicated site icons in the media library
+
+= 1.4.4 =
+
+- Updated German Translation
+- Added nify new Jetpack sharing icons if you run Jetpack in icon mode
+- Removed the read post online button
+- Improvements to look and language on _content not available in your email client_ content.
+- Made sure authors get comment moderation emails even if they have unsubscribed from comments on a post.
 
 = 1.4.3 =
 
@@ -364,3 +449,9 @@ Just a quick fix to address a couple of outstanding issues.
 - We've added an option to disable widgets in the footer and instead display definable text
 - Moved the advanced options to their own tab in the settings screen
 - Lots of little bugs squashed
+
+== Upgrade Notice ==
+
+= 1.4.6 =
+
+This version fixes a security related bug.  Upgrade immediately.

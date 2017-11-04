@@ -23,6 +23,13 @@ class Prompt_Web_Api_Handling {
 		self::set_return_code_and_die( $configurator->pull_configuration() );
 	}
 
+	public static function receive_ping() {
+
+		self::validate_or_die();
+
+		wp_send_json_success();
+	}
+
 	protected static function validate_or_die() {
 		if ( !self::validate_request() ) {
 			status_header( 401 );

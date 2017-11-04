@@ -1,8 +1,8 @@
-=== Optimus Image Optimizer ===
+=== Optimus - WordPress Image Optimizer ===
 Contributors: keycdn
-Tags: images, optimize, compress, progressive, performance, png, jpeg, webp
+Tags: images, optimize, compress, progressive, performance, png, jpeg, webp, image optimizer, wordpress image optimizer, optimize image, optimize jpg, optimize jpeg, optimize png, compress image, progressive jpeg, progressive jpg
 Requires at least: 3.8
-Tested up to: 4.2.2
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,16 +15,12 @@ Effective image compression and optimization during the upload process. Automati
 
 == Description ==
 
-= (Fast) Magie =
-*Optimus* verkleinert die Dateigröße hochgeladener Medien. Abhängig vom Bild und Format ist eine Reduzierung der Größe um bis zu 70 Prozent möglich. Pro Bild lassen sich mehrere Kilobytes einsparen – diese Sparmaßnahme trägt der Blogseiten-Performance positiv bei. Das Beeindruckende an der Kompressionstechnologie: Die Qualität der Bilder bleibt garantiert erhalten. Alle Details zum Funktionsumfang und den einzelnen Preismodellen auf [optimus.io](https://optimus.io)
-
-
-= (Almost) Magic =
+= WordPress Image Optimizer =
 Optimus reduces the file size of uploaded media files. Depending on the image and format, reductions in size of up to 70% are possible. Several kilobytes can be saved per image—these savings contribute positively to the performance of the blog website. What’s most impressive about the compression technology: the quality of the images is maintained—guaranteed.
 
 
 > #### There are three different versions of Optimus:
-> 1. **Optimus** *(Free)* as base version with limitations (e.g. max of 100kb for JPEGs)
+> 1. **Optimus** *(Free)* as base version with limitations (e.g. max of 100kb)
 > 2. **Optimus HQ** *(Premium)* with expanded functionality for personal projects
 > 3. **Optimus HQ PRO** *(Premium)* as professional solution for customer websites
 >
@@ -34,12 +30,13 @@ Optimus reduces the file size of uploaded media files. Depending on the image an
 = How does it work? =
 During the uploading process of images to the media library, the *Optimus* plugin simultaneously sends the images to the *Optimus* server, where the incoming material is processed and sent back in optimized form. Afterwards, the *Optimus* plugin saves the image version with a reduced file size in the media library.
 
-The optimization of images - *including thumbnails* - is conducted in the background and outside of the view of the user. The compression gains per file are displayed by Optimus within the media library in form of a percentage value, see [screenshot](https://wordpress.org/plugins/optimus/screenshots/).
+The optimization of images - *including thumbnails* - is conducted in the background and outside of the view of the user. The image compression gains per file are displayed by Optimus within the media library in form of a percentage value, see [screenshot](https://wordpress.org/plugins/optimus/screenshots/).
 
-Differently from common optimization tools, Optimus never alters the quality of images. Instead, superfluous information that is saved by image processing programs and is not even necessary for displaying the image is extracted from image files. This way, the quality of the graphics remains intact while the image size can be reduced significantly. If you wish, Optimus keeps all author, EXIF and copyright information contained within the photos — the compressional gains will be correspondingly lower.
+Differently from common optimization tools, this WordPress image optimization pluign never alters the quality of images. Instead, superfluous information that is saved by image processing programs and is not even necessary for displaying the image is extracted from image files. This way, the quality of the graphics remains intact while the image size can be reduced significantly. If you wish, Optimus keeps all author, EXIF and copyright information contained within the photos — the compressional gains will be correspondingly lower.
 
-Optimus optional support the conversion of images to the thrifty [*WebP* image format](https://www.keycdn.com/blog/convert-to-webp-the-successor-of-jpeg/).
+Optimus supports the conversion of images to the new [*WebP* image format](https://www.keycdn.com/blog/convert-to-webp-the-successor-of-jpeg/).
 
+> It is recommended to use the [WordPress Cache Enabler](https://wordpress.org/plugins/cache-enabler/) plugin to integrate the converted WebP images.
 
 = Features =
 * [Progressive JPEGs](https://optimus.io/support/progressive-jpegs/)
@@ -49,16 +46,17 @@ Optimus optional support the conversion of images to the thrifty [*WebP* image f
 * Optional: no removal of EXIF and IPTC metadata
 * Optional: HTTPS connection for the image transfer (Optimus HQ)
 * Optional: [conversion to the WebP](https://optimus.io/support/convert-jpeg-and-png-to-webp-image-format/) image format (Optimus HQ)
+* Optional: Disable automatic optimizaion during upload process
 * Optimized for WordPress Mobile Apps and Windows Live Writer
 * More advantageous PageSpeed, influencing the Ranking Factor
 * Faster load times for blog pages
 * Support for WooCommerce
 * WordPress multisite-support
-* Bulk optimization
+* [Bulk optimization](https://optimus.io/support/image-bulk-optimization/) (optimize existing images)
 
 
 = Privacy =
-* After the optimization and transfer process, the *Optimus* server immediately deletes all the temporarily stored files. No files are stored!
+* After the image optimization and transfer process, the *Optimus* server immediately deletes all the temporarily stored files. No files are stored!
 * The Optimus servers are located in Germany.
 
 
@@ -97,6 +95,24 @@ Optimus optional support the conversion of images to the thrifty [*WebP* image f
 
 
 == Changelog ==
+
+= 1.4.5 =
+* Optimization to avoid conflicts with other plugins or themes
+
+= 1.4.4 =
+* Fixed static function warning in PHP 5.6
+
+= 1.4.3 =
+* Increased timeout value to 180 seconds
+
+= 1.4.2 =
+* Allow to generate WebP images on already optimzed images (bulk optimizer)
+
+= 1.4.1 =
+* Improves bulk optimization error handling
+
+= 1.4.0 =
+* Added PNG in the free version and the manual optimization setting
 
 = 1.3.9 =
 * Bug fixing and activation update

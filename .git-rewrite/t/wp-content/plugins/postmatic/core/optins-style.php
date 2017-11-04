@@ -34,6 +34,20 @@ class Prompt_Optins_Style {
 				),
 				'label' => __( 'Dark', 'Postmatic' ),
 			),
+			'spruce' => array(
+				'colors' => array(
+					'background' => '#727362',
+					'background-image' => 'e-white.png',
+					'button-background' => '#883435',
+					'accent' => '#9D9D8A',
+					'button-type' => '#fff',
+					'type' => '#fff',
+					'grad-start' => '#727362',	
+					'grad-end' => '#727362',
+					'border-color' => '#727362',
+				),
+			'label' => __( 'Spruce', 'Postmatic' ),
+			),
 			'orange' => array(
 				'colors' => array(
 					'background' => '#EB593C',
@@ -75,6 +89,20 @@ class Prompt_Optins_Style {
 					'border-color' => 'RGB(167, 211, 82)',
 				),
 				'label' => __( 'Green', 'Postmatic' ),
+			),
+			'lilac' => array(
+				'colors' => array(
+					'background' => '#eaecee',
+					'background-image' => 'e-white.png',
+					'button-background' => '#967095',
+					'accent' => '#eaecee',
+					'button-type' => '#fff',
+					'type' => '#171717',
+					'grad-end' => '#eaecee',	
+					'grad-start' => '#ffffff',
+					'border-color' => '#eaecee',
+				),
+				'label' => __( 'Lilac', 'Postmatic' ),
 			),
 		);
 	}
@@ -540,7 +568,7 @@ class Prompt_Optins_Style {
 		cursor:pointer
 		}
 		
-		@media only screen and (max-width : 600px) {
+		@media only screen and (max-width : 800px) {
 		#postmatic-optin-topbar {
 		height: 70px !important;
 		}

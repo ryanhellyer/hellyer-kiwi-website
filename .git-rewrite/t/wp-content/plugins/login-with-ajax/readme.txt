@@ -1,9 +1,9 @@
 ﻿=== Login With Ajax ===
 Contributors: netweblogic
 Tags: login, ajax, ajax login, registration, redirect redirect, buddypress, multi site, sidebar, admin, widget
-Requires at least: 3.1
-Tested up to: 4.0
-Stable tag: 3.1.4
+Requires at least: 3.7
+Tested up to: 4.3.1
+Stable tag: 3.1.5
 License: GPLv2 or later
 
 Add smooth ajax login/registration effects and choose where users get redirected upon log in/out. Supports SSL, MultiSite, and BuddyPress.
@@ -35,27 +35,36 @@ If you have any problems with the plugin after reading the FAQ, Other Notes, etc
 
 Here's a list of currently translated languages. Translations that have been submitted are greatly appreciated and hopefully make this plugin a better one. If you'd like to contribute, please have a look at [our translation site](http://translate.netweblogic.com/projects/login-with-ajax), or let us know on the [support forums](http://wordpress.org/support/plugin/login-with-ajax).
 
-* Finnish - Jaakko Kangosjärvi
-* Russian - [xl32](http://wordpress.org/support/profile/xl32),
-* French - [Geoffroy Deleury](http://wall.clan-zone.dk)
-* German - Linus Metzler
+* Afrikaans - [Johnny Dunhin](http://helpendehand.co.za)
+* Albanian - [Besnik Bleta](http://blogu.programeshqip.org/)
+* Arabic (SA) - Adel Madshel
+* Bosnian - Nenad Cvetkovic
+* Catalan - Xavi Valenti
 * Chinese - [Simon Lau](http://fashion-bop.com)
-* Italian - Marco aka teethgrinder
-* Romanian - Gabriel Berzescu
+* Czech -  Marek Liolias, Ondra Kalous, Henry Greek, Viktor Jezek 
 * Danish - Christian B.
 * Dutch - Sjors Spoorendonk
-* Brazilian - Humberto S. Ribeiro, Diogo Goncalves, Fabiano Arruda
-* Turkish - Mesut Soylu
-* Polish - Ryszard Rysz
-* Lithuanian - [Gera Dieta](http://www.kulinare.lt/)
-* Albanian - [Besnik Bleta](http://blogu.programeshqip.org/)
-* Spanish - Myself and [Danilo Casati](http://e-rgonomy.com)
+* Estonian - Oliver Busch
+* Finnish - Jaakko Kangosjärvi
+* French - [Geoffroy Deleury](http://wall.clan-zone.dk)
+* German - Linus Metzler
+* Greek - George Alexakis, Lamprakis Fousekis
+* Hebrew - Menachem Shapiro
+* Hindi - Anonymous
 * Hungarian - Lorinc Borda
+* Italian - Marco aka teethgrinder
 * Japanese - [Ryuei Sasaki](http://ryueisasaki.com/)
-* Arabic (SA) - Adel Madshel
+* Limburgish - Anonymous
+* Lithuanian - [Gera Dieta](http://www.kulinare.lt/)
 * Persian - [Mohammad Hosein Ameri](http://khandoon.ir/)
-* Afrikaans - [Johnny Dunhin](http://helpendehand.co.za)
-* Hebrew = Menachem Shapiro
+* Polish - Ryszard Rysz
+* Portuguese (Brazil) - Humberto S. Ribeiro, Diogo Goncalves, Fabiano Arruda
+* Romanian - Gabriel Berzescu
+* Russian - [xl32](http://wordpress.org/support/profile/xl32),
+* Slovak - [Branco](http://webhostinggeeks.com/blog/)
+* Spanish - Myself and [Danilo Casati](http://e-rgonomy.com)
+* Swedish - Tommy Wahlund
+* Turkish - Mesut Soylu, Oskay Yurtturk
 
 == Installation ==
 
@@ -164,6 +173,16 @@ For further questions and answers (or to submit one yourself) go to our [http://
 
 
 == Changelog ==
+= 3.1.5 =
+* fixed 4.3 password update which now sends a link for user to set password instead
+* fixed login redirect issues when using shortcode and template tags
+* added script localization via LWA JS parameter,
+* changed JS destination url to admin-ajax.php which fixes some incompatibilities with WPML
+* fixed WPML status messages not being translated upon login/registration/password-recovery
+* added and updated loads of languages, see here for full list - http://translate.netweblogic.com/projects/login-with-ajax/
+* added some minor label layout improvements for admin area labels/forms
+* added minor widget admin settings layout improvements
+
 = 3.1.4 =
 * fixed MIME type errors between HTTP <> HTTPS ajax requests,
 * added redirect shortcode attribute

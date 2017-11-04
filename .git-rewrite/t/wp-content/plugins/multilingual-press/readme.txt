@@ -1,9 +1,9 @@
 === MultilingualPress ===
-Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot, ipm-frommen, Biont, dnaber-de
+Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot, tfrommen, Biont, dnaber-de
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 2.2.2
+Tested up to: 4.4
+Stable tag: 2.3.2
 
 Create a fast translation network on WordPress multisite.
 
@@ -50,10 +50,10 @@ when you don't use widgets or a sidebar.
 without affecting the output of the front-end.
 - Show posts with incomplete translations in a dashboard widget.
 
-= Premium Version =
+= Premium Support =
 
-Our [premium-version](http://marketpress.com/product/multilingual-press-pro/) offers premium support to save your time.
-The features are the same, but you support the development and get help from the developers of the plugin.
+We also offer [premium support](http://marketpress.com/product/multilingual-press-pro/) to save your time.
+You get direct help from the developers of the plugin-and support the development.
 
 = WPML to MultilingualPress =
 
@@ -61,11 +61,18 @@ If you would like to switch from the WPML plugin to MultilingualPress, you can u
 [WPML to MultilingualPress](https://wordpress.org/plugins/wpml-to-multilingualpress/). This plugin converts posts from
 an existing WPML multilingual site via XLIFF export/import for MultilingualPress.
 
+= Crafted by Inpsyde =
+The team at [Inpsyde](http://inpsyde.com) is engineering the Web since 2006. And yes, we also run that
+[marketplace for premium WordPress plugins and themes](https://marketpress.com).
+
 == Installation ==
 
 = Requirements =
 - WordPress Multisite 4.0+.
 - PHP 5.2.4, newer PHP versions will work faster.
+
+If you're new to WordPress multisite, you might find our [WordPress multisite installation
+tutorial](https://marketpress.com/2015/wordpress-multisite-installation/) helpful.
 
 Use the installer via back-end of your install or ...
 
@@ -91,6 +98,11 @@ You can find all official translation files in the according
 That would require changes to the way WordPress stores post content. Other plugins do that; we think this is wrong,
 because it creates a lock-in: you would lose access to your content after the plugin deactivation.
 
+= I'm new to WordPress multisite. Are there any tutorials to get me started? =
+
+Yes, just have a look at our [WordPress multisite installation
+tutorial](https://marketpress.com/2015/wordpress-multisite-installation/).
+
 == Screenshots ==
 
 1. New columns in the site list table for the _Relationships_ (i.e., connections with other sites) and the _Site Language_.
@@ -107,6 +119,42 @@ because it creates a lock-in: you would lose access to your content after the pl
 12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
 
 == Changelog ==
+
+= 2.3.2 =
+- Fix leftover entry from site option included in languages data, see
+[issue #183](https://github.com/inpsyde/multilingual-press/issues/183), props kraftner.
+- Fix potentially invisibe plugin activation row on Add New Site page.
+- Run `post_name` through `urldecode` to account for non-ASCII characters, see
+[issue #186](https://github.com/inpsyde/multilingual-press/issues/186), props luisarn.
+- Fix incorrect `ml_type` value of duplicated custom post type posts, see
+[issue #185](https://github.com/inpsyde/multilingual-press/issues/185), props kraftner.
+- **Developers:** As we would like to use [the official WordPress.org GlotPress for translating
+MultilingualPress](https://translate.wordpress.org/projects/wp-plugins/multilingual-press), we will (have to) change the
+plugin text domain from `multilingualpress` to `multilingual-press` with the next (major) release. So, in case you are
+doing _crazy_ things with our translations (which you basically should really not), please be informed.
+
+= 2.3.1 =
+- Fix potentially invalid semi-hard-coded paths.
+
+= 2.3.0 =
+- Adapt potentially deprecated settings of Language Switcher widget, see
+[issue #170](https://github.com/inpsyde/multilingual-press/issues/170).
+- Delete `state_modules` site option on uninstall, props tiagoschenkel.
+- Adapt Site Settings tab code for WordPress 4.4, props patricia70.
+- Change settings page headings from h2 to h1.
+- Integrate WordPress multisite installation tutorial into readme, see
+[issue #178](https://github.com/inpsyde/multilingual-press/issues/178).
+- Hide Redirect UI if the Redirect feature is disabled, see
+[issue #177](https://github.com/inpsyde/multilingual-press/issues/177).
+- Fix missing noredirect query var for all URLs of linked elements, see
+[issue #174](https://github.com/inpsyde/multilingual-press/issues/174).
+- New setting: Fire plugin activation hooks for active plugins when a site has been duplicated.
+- Feature: Show sites with their alternative language title in the admin bar, see
+[issue #110](https://github.com/inpsyde/multilingual-press/issues/110).
+
+= 2.2.3 =
+- Bugfix Translation meta box not visible, see [issue #166](https://github.com/inpsyde/multilingual-press/issues/166),
+props gabsoftware.
 
 = 2.2.2 =
 - Bugfix term auto-selecting, again.

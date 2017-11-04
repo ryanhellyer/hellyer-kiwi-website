@@ -15,6 +15,7 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 	protected $origin;
 	/** @var string */
 	protected $origin_meta_key = 'prompt_subscriber_origin';
+	protected static $subscribed_object_ids;
 
 	/**
 	 * Create an Prompt_Core user.
@@ -93,17 +94,33 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 	public function update_profile_options( $options ) {
 		$site = new Prompt_Site;
 
-		if ( empty( $options['prompt_site_subscribed'] ) )
+		if ( empty( $options['prompt_site_subscribed'] ) ) {
 			$site->unsubscribe( $this->id );
-		elseif ( $this->is_current_user() )
+		} elseif ( $this->is_current_user() ) {
 			$site->subscribe( $this->id );
+		}
 
 		$site_comments = new Prompt_Site_Comments();
 
-		if ( empty( $options['prompt_site_comments_subscribed'] ) )
+		if ( empty( $options['prompt_site_comments_subscribed'] ) ) {
 			$site_comments->unsubscribe( $this->id );
-		elseif ( $this->is_current_user() )
+		} elseif ( $this->is_current_user() ) {
 			$site_comments->subscribe( $this->id );
+		}
+
+		$subscribed_post_ids = Prompt_Post::subscribed_object_ids( $this->id );
+		if ( ! empty( $subscribed_post_ids ) ) {
+			$checked_post_ids = isset( $options['prompt_post_subscribed'] ) ? $options['prompt_post_subscribed'] : array();
+			$unsubscribe_post_ids = array_diff( $subscribed_post_ids, $checked_post_ids );
+			$this->unsubscribe_from_posts( $unsubscribe_post_ids );
+		}
+
+		$subscribed_author_ids = self::subscribed_object_ids( $this->id );
+		if ( ! empty( $subscribed_author_ids ) ) {
+			$checked_author_ids = isset( $options['prompt_author_subscribed'] ) ? $options['prompt_author_subscribed'] : array();
+			$unsubscribed_author_ids = array_diff( $subscribed_author_ids, $checked_author_ids );
+			$this->unsubscribe_from_authors( $unsubscribed_author_ids );
+		}
 	}
 
 	public function subscription_url() {
@@ -189,13 +206,20 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 		if ( empty( $subscribed_author_ids ) )
 			return '';
 
-
 		$author_items = '';
 		foreach( $subscribed_author_ids as $author_id ) {
 			$author = get_userdata( $author_id );
 			$author_items .= html(
 				'li',
-				html( 'a', array( 'href' => get_author_posts_url( $author_id ) ), $author->display_name )
+				scbForms::input(
+					array(
+						'name' => 'prompt_author_subscribed[]',
+						'type' => 'checkbox',
+						'value' => $author_id,
+						'checked' => true,
+						'desc' => html( 'a', array( 'href' => get_author_posts_url( $author_id ) ), $author->display_name ),
+					)
+				)
 			);
 		}
 
@@ -209,16 +233,24 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 	protected function profile_post_subscriptions() {
 		$subscribed_post_ids = Prompt_Post::subscribed_object_ids( $this->id );
 		
-		if ( empty( $subscribed_post_ids ) )
+		if ( empty( $subscribed_post_ids ) ) {
 			return '';
+		}
 		
 		$post_items = '';
 		foreach ( $subscribed_post_ids as $post_id ) {
 			$post = get_post( $post_id );
 			$post_items .= html(
 				'li',
-				html( 'a', array( 'href' => get_permalink( $post_id ) ), $post->post_title ),
-				' ',
+				scbForms::input(
+					array(
+						'name' => 'prompt_post_subscribed[]',
+						'type' => 'checkbox',
+						'value' => $post_id,
+						'checked' => true,
+						'desc' => html( 'a', array( 'href' => get_permalink( $post_id ) ), $post->post_title ),
+					)
+				),
 				/* translators: indicates that comments are closed on a post */
 				comments_open( $post_id ) ? '' : __( '(closed)', 'Postmatic' )
 			);
@@ -230,6 +262,32 @@ class Prompt_User extends Prompt_Meta_Subscribable_Object {
 
 			html( 'ul', $post_items )
 		);
+	}
+
+	/**
+	 *
+	 * @since 1.5.0
+	 *
+	 * @param array $post_ids
+	 */
+	protected function unsubscribe_from_posts( array $post_ids ) {
+		foreach ( $post_ids as $post_id ) {
+			$prompt_post = new Prompt_Post( $post_id );
+			$prompt_post->unsubscribe( $this->id );
+		}
+	}
+
+	/**
+	 *
+	 * @since 1.5.0
+	 *
+	 * @param array $author_ids
+	 */
+	protected function unsubscribe_from_authors( array $author_ids ) {
+		foreach ( $author_ids as $author_id ) {
+			$prompt_user = new Prompt_User( $author_id );
+			$prompt_user->unsubscribe( $this->id );
+		}
 	}
 
 	/**

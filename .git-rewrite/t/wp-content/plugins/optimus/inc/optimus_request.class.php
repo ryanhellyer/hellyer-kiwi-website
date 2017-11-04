@@ -9,7 +9,7 @@ defined('ABSPATH') OR exit;
 * Optimus_Request
 *
 * @since 1.1.7
-* @change  1.3.8
+* @change  1.4.0
 */
 
 class Optimus_Request
@@ -29,7 +29,7 @@ class Optimus_Request
 	* Image optimization post process (ajax)
 	*
 	* @since   1.3.8
-	* @change  1.3.8
+	* @change  1.4.2
 	*
 	* @return  json    $metadata    Update metadata information
 	*/
@@ -62,18 +62,17 @@ class Optimus_Request
 			exit;
 		}
 
-		/* check if already optimized */
-		if (isset($metadata['optimus'])) {
-			$message = __("Already optimized", "optimus");
-			echo json_encode(array('info' => $message));
-			exit;
-		}
-
 		/* optimize image */
 		$optimus_metadata = self::optimize_upload_images($metadata, $id);
 
-		if (!empty($optimus_metadata['optimus']['error'])) {
+		if ( !empty($optimus_metadata['optimus']['error']) ) {
 			echo json_encode(array('error' => $optimus_metadata['optimus']['error']));
+			exit;
+		}
+
+		/* check if optimus array empty */
+		if ( empty($optimus_metadata['optimus']) ) {
+			echo json_encode(array('error' => __("Internal error", "optimus")));
 			exit;
 		}
 
@@ -89,7 +88,7 @@ class Optimus_Request
 	* Build optimization for a upload image including previews
 	*
 	* @since   0.0.1
-	* @change  1.3.6
+	* @change  1.4.2
 	*
 	* @param   array    $upload_data    Incoming upload information
 	* @param   integer  $attachment_id  Attachment ID
@@ -97,8 +96,11 @@ class Optimus_Request
 	*/
 
 	public static function optimize_upload_images($upload_data, $attachment_id) {
+		/* Get plugin options */
+		$options = Optimus::get_options();
+
 		/* Already optimized? */
-		if ( ! empty($upload_data['optimus']) ) {
+		if ( ( ! empty($upload_data['optimus']) && $options['webp_convert'] == 0 ) || ( ! empty($upload_data['optimus']['webp']) && $upload_data['optimus']['webp'] == 1 ) ) {
 			return $upload_data;
 		}
 
@@ -150,9 +152,6 @@ class Optimus_Request
 			return $upload_data;
 		}
 
-		/* Get plugin options */
-		$options = Optimus::get_options();
-
 		/* Init arrays */
 		$todo_files = array();
 		$diff_filesizes = array();
@@ -182,7 +181,7 @@ class Optimus_Request
 		/* Search for thumbs */
 		if ( ! empty($upload_data['sizes']) ) {
 			foreach( $upload_data['sizes'] as $thumb ) {
-				if ( $thumb['file'] && self::_allowed_mime_type($thumb['mime-type']) ) {
+				if ( $thumb['file'] && ( empty($thumb['mime-type']) || self::_allowed_mime_type($thumb['mime-type']) ) ) {
 					array_push(
 						$todo_files,
 						$thumb['file']
@@ -268,9 +267,20 @@ class Optimus_Request
 
 		/* Average values */
 		if ( $received ) {
+
+			/* Reallocate optimization results */
+			if ( !empty($upload_data['optimus']['profit']) and ( $upload_data['optimus']['profit'] > max($diff_filesizes) ) ) {
+				$profit = $upload_data['optimus']['profit'];
+				$quantity = $upload_data['optimus']['quantity'];
+			} else {
+				$profit = max($diff_filesizes);
+				$quantity = round( $received * 100 / $ordered );
+			}
+
 			$upload_data['optimus'] = array(
-				'profit'   => max($diff_filesizes),
-				'quantity' => round( $received * 100 / $ordered )
+				'profit'   => $profit,
+				'quantity' => $quantity,
+				'webp'	   => $options['webp_convert']
 			);
 		}
 
@@ -295,19 +305,13 @@ class Optimus_Request
 	private static function _do_image_action($file, $args)
 	{
 		/* Start request */
-
 		$response = self::_do_api_request($file, $args);
 
 		/* Response status code */
 		$response_code = (int)wp_remote_retrieve_response_code($response);
 
-		/* Not success status code? */
+		/* Not success status code? $response->get_error_message() */
 		if ( $response_code !== 200 ) {
-//$response_code = '<textarea>'.$response_code;
-//$response_code .= "\n\n".print_r( $file, true );
-//$response_code .= "\n\n".print_r( $args, true );
-//$response_code .= '</textarea>';
-
 			return 'code '.$response_code;
 		}
 
@@ -352,7 +356,7 @@ class Optimus_Request
 	* Optimus API request
 	*
 	* @since   1.1.4
-	* @change  1.3.5
+	* @change  1.4.3
 	*
 	* @param   string  $file  Image file
 	* @param   array   $args  Request arguments
@@ -372,7 +376,7 @@ class Optimus_Request
 			),
 			array(
 				'body'	  => file_get_contents($file),
-				'timeout' => 30
+				'timeout' => 180
 			)
 		);
 	}
@@ -508,7 +512,7 @@ class Optimus_Request
 	* Return Optimus quota for a plugin type
 	*
 	* @since   1.1.0
-	* @change  1.3.5
+	* @change  1.4.0
 	*
 	* @return  array  Optimus quota
 	*/
@@ -519,7 +523,8 @@ class Optimus_Request
 		$quota = array(
 			/* Optimus */
 			false => array(
-				'image/jpeg' => 100 * 1024
+				'image/jpeg' => 100 * 1024,
+				'image/png'  => 100 * 1024
 			),
 
 			/* Optimus HQ */
@@ -603,4 +608,3 @@ class Optimus_Request
 		);
 	}
 }
-

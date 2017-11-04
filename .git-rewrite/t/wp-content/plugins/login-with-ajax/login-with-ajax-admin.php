@@ -21,11 +21,16 @@ class LoginWithAjaxAdmin{
 	// action function for above hook
 	function LoginWithAjaxAdmin() {
 		global $user_level;
+		$lwa = LoginWithAjax::$data;
 		add_action ( 'admin_menu', array (&$this, 'menus') );
-		if( !empty($_GET['lwa_dismiss_notice']) && $_GET['lwa_dismiss_notice'] == '1' ){
-			update_option('lwa_notice', 1);
-		}elseif( get_option('lwa_notice') != 1 && $user_level == 10 ){
-			add_action('admin_notices', array(&$this, 'admin_notices') );			
+		if( !empty($_REQUEST['lwa_dismiss_notice']) && wp_verify_nonce($_REQUEST['_nonce'], 'lwa_notice_'.$_REQUEST['lwa_dismiss_notice']) && current_user_can('manage_options') ){
+			if( key_exists($_REQUEST['lwa_dismiss_notice'], $lwa['notices']) ){
+			    unset($lwa['notices'][$_REQUEST['lwa_dismiss_notice']]);
+			    if( empty($lwa['notices']) ) unset($lwa['notices']); 
+    			update_option('lwa_data', $lwa);
+			}
+		}elseif( !empty($lwa['notices']) && is_array($lwa['notices']) && count($lwa['notices']) > 0 && current_user_can('manage_options') ){
+			add_action('admin_notices', array(&$this, 'admin_notices'));
 		}
 	}
 	
@@ -35,18 +40,27 @@ class LoginWithAjaxAdmin{
 	}
 
 	function admin_notices() {
-		$dismiss = $_SERVER['REQUEST_URI'];
-		$dismiss .= (strpos($dismiss, '?')) ? "&amp;":"?";
-		$dismiss .= "lwa_dismiss_notice=1";
-		?>
-		<div id='lwa-warning' class='updated fade'>
-			<p>
-				<?php _e('New features in Login With AJAX (including registration!), check out the settings and widget pages!', 'login-with-ajax') ?> - 
-				<a href="<?php echo bloginfo('wpurl'); ?>/wp-admin/options-general.php?page=login-with-ajax">Settings</a> | 
-				<a href="<?php echo $dismiss ?>"><?php _e('Dismiss','login-with-ajax') ?></a> 
-			</p>
-		</div>
-		<?php
+	    if( !empty(LoginWithAjax::$data['notices']['password_link']) ){
+    		?>
+    		<div class="updated notice notice-success is-dismissible password_link">
+                <p>
+                    <?php echo esc_html_e("Since WordPress 4.3 passwords are not emailed to users anymore, they're replaced with a link to create a new password.", 'login-with-ajax'); ?>
+                    <a href="<?php echo admin_url('options-general.php?page=login-with-ajax'); ?>"><?php echo esc_html_e("Check your registration email template.", 'login-with-ajax'); ?></a>
+                </p>
+                <button type="button" class="notice-dismiss"><span class="screen-reader-text"><?php esc_html_e('Dismiss','login-with-ajax') ?></span></button>
+            </div>
+    	    <script type="text/javascript">
+    			jQuery('document').ready(function($){
+    				$(document).on('click', '.updated.notice.password_link .notice-dismiss', function(event){
+    					jQuery.post('<?php echo esc_url(admin_url('admin-ajax.php'))?>', {
+							'lwa_dismiss_notice':'password_link', 
+							'_nonce':'<?php echo wp_create_nonce('lwa_notice_password_link'); ?>'
+        				});
+    				});
+    			});
+    	    </script>
+    		<?php
+	    }
 	}
 	
 	
@@ -56,12 +70,13 @@ class LoginWithAjaxAdmin{
 			.nwl-plugin table { width:100%; }
 			.nwl-plugin table .col { width:100px; }
 			.nwl-plugin table input.wide { width:100%; padding:2px; }
+			
 		</style>
 		<?php
 	}
 	
 	function options() {
-		global $LoginWithAjax;
+		global $LoginWithAjax, $wp_version;
 		add_option('lwa_data');
 		$lwa_data = array();	
 		
@@ -96,7 +111,7 @@ class LoginWithAjaxAdmin{
 		}
 		?>
 		<div class="wrap nwl-plugin">
-			<h2>Login With Ajax</h2>
+			<h1>Login With Ajax</h1>
 			<div id="poststuff" class="metabox-holder has-right-sidebar">
 				<div id="side-info-column" class="inner-sidebar">
 					<div id="categorydiv" class="postbox ">
@@ -135,9 +150,9 @@ class LoginWithAjaxAdmin{
 						<table class="form-table">
 							<?php if( count(LoginWithAjax::$templates) > 1 ) : ?>
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Default Template", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<select name="lwa_template"  style="margin:0px; padding:0px; width:auto;">
 					            		<?php foreach( array_keys(LoginWithAjax::$templates) as $template ): ?>
@@ -151,9 +166,9 @@ class LoginWithAjaxAdmin{
 							</tr>
 							<?php endif; ?>
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Disable refresh upon login?", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<input style="margin:0px; padding:0px; width:auto;" type="checkbox" name="lwa_no_login_refresh" value='1' class='wide' <?php echo ( !empty($lwa_data['no_login_refresh']) && $lwa_data['no_login_refresh'] == '1' ) ? 'checked="checked"':''; ?> />
 									<br />
@@ -166,9 +181,9 @@ class LoginWithAjaxAdmin{
 						<h2><?php _e("Redirection Settings", 'login-with-ajax'); ?></h2>
 						<table class="form-table">
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Global Login Redirect", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<input type="text" name="lwa_login_redirect" value='<?php echo (!empty($lwa_data['login_redirect'])) ? $lwa_data['login_redirect']:''; ?>' class='wide' />
 									<em><?php _e("If you'd like to send the user to a specific URL after login, enter it here (e.g. http://wordpress.org/)", 'login-with-ajax'); ?></em>
@@ -186,7 +201,7 @@ class LoginWithAjaxAdmin{
 													if( substr(get_locale(),0,2) != $lang['language_code'] ){
 													?>
 													<tr>
-														<td style="width:100px;"><?php echo $lang['translated_name']?>: </td>
+														<th style="width:100px;"><?php echo $lang['translated_name']?>: </th>
 														<td><input type="text" name="lwa_<?php echo $name; ?>_<?php echo $lang['language_code']; ?>" value='<?php echo ( !empty($lwa_data[$name.'_'.$lang['language_code']]) ) ? $lwa_data[$name.'_'.$lang['language_code']]:''; ?>' class="wide" /></td>
 													</tr>
 													<?php
@@ -204,9 +219,9 @@ class LoginWithAjaxAdmin{
 								</td>
 							</tr>
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Global Logout Redirect", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<input type="text" name="lwa_logout_redirect" value='<?php echo (!empty($lwa_data['logout_redirect'])) ? $lwa_data['logout_redirect']:''; ?>' class='wide' />
 									<em><?php _e("If you'd like to send the user to a specific URL after logout, enter it here (e.g. http://wordpress.org/)", 'login-with-ajax'); ?></em>
@@ -217,9 +232,9 @@ class LoginWithAjaxAdmin{
 								</td>
 							</tr>
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Role-Based Custom Login Redirects", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<em><?php _e("If you would like a specific user role to be redirected to a custom URL upon login, place it here (blank value will default to the global redirect)", 'login-with-ajax'); ?></em>
 									<table>
@@ -238,7 +253,7 @@ class LoginWithAjaxAdmin{
 													if( substr(get_locale(),0,2) != $lang['language_code'] ){
 													?>
 													<tr>
-														<td style="width:100px;"><?php echo $lang['translated_name']?>: </td>
+														<th style="width:100px;"><?php echo $lang['translated_name']?>: </th>
 														<td><input type="text" name="lwa_<?php echo $name; ?>_<?php echo $role ?>_<?php echo $lang['language_code']; ?>" value='<?php echo ( !empty($lwa_data[$name][$role.'_'.$lang['language_code']]) ) ? $lwa_data[$name][$role.'_'.$lang['language_code']]:''; ?>' class="wide" /></td>
 													</tr>
 													<?php
@@ -255,7 +270,7 @@ class LoginWithAjaxAdmin{
 										$role_login = ( !empty($lwa_data['role_login']) && is_array($lwa_data['role_login']) && array_key_exists($role, $lwa_data['role_login']) ) ? $lwa_data['role_login'][$role]:''
 										?>
 										<tr>
-											<td class="col"><?php echo translate_user_role($details['name']) ?></td>
+											<th class="col"><?php echo translate_user_role($details['name']) ?></th>
 											<td>
 												<input type='text' class='wide' name='lwa_role_login_<?php echo esc_attr($role) ?>' value="<?php echo $role_login ?>" />
 												<?php 												
@@ -270,9 +285,9 @@ class LoginWithAjaxAdmin{
 								</td>
 							</tr>
 							<tr valign="top">
-								<td scope="row">
+								<th scope="row">
 									<label><?php _e("Role-Based Custom Logout Redirects", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<em><?php _e("If you would like a specific user role to be redirected to a custom URL upon logout, place it here (blank value will default to the global redirect)", 'login-with-ajax'); ?></em>
 									<table>
@@ -283,7 +298,7 @@ class LoginWithAjaxAdmin{
 										$role_logout = ( !empty($lwa_data['role_logout']) && is_array($lwa_data['role_logout']) && array_key_exists($role, $lwa_data['role_logout']) ) ? $lwa_data['role_logout'][$role]:''
 										?>
 										<tr>
-											<td class='col'><?php echo translate_user_role($details['name']) ?></td>
+											<th class='col'><?php echo translate_user_role($details['name']) ?></th>
 											<td>
 												<input type='text' class='wide' name='lwa_role_logout_<?php echo esc_attr($role) ?>' value="<?php echo $role_logout ?>" />
 												<?php lwa_icl_inputs_roles('role_logout', $lwa_data, $role); ?>
@@ -304,37 +319,53 @@ class LoginWithAjaxAdmin{
 						</p>
 						<table class="form-table">
 							<tr valign="top">
-								<td>
+								<th>
 									<label><?php _e("Override Default Email?", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<input style="margin:0px; padding:0px; width:auto;" type="checkbox" name="lwa_notification_override" value='1' class='wide' <?php echo ( !empty($lwa_data['notification_override']) && $lwa_data['notification_override'] == '1' ) ? 'checked="checked"':''; ?> />
 								</td>
 							</tr>
 							<tr valign="top">
-								<td>
+								<th>
 									<label><?php _e("Subject", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
-									<?php 
+									<?php
 									if(empty($lwa_data['notification_subject'])){
 										$lwa_data['notification_subject'] = __('Your registration at %BLOGNAME%', 'login-with-ajax');
 									}
 									?>
 									<input type="text" name="lwa_notification_subject" value='<?php echo (!empty($lwa_data['notification_subject'])) ? $lwa_data['notification_subject'] : ''; ?>' class='wide' />
 									<em><?php _e("<code>%USERNAME%</code> will be replaced with a username.", 'login-with-ajax'); ?></em><br />
+									<?php if( version_compare($wp_version, '4.3', '>=') ): ?>
+									<em><strong><?php echo sprintf(esc_html__("%s will be replaced with a link to set the user password.", 'login-with-ajax'), '<code>%PASSWORD%</code>'); ?></strong></em><br />
+									<?php else: ?>
 									<em><?php _e("<code>%PASSWORD%</code> will be replaced with the user's password.", 'login-with-ajax'); ?></em><br />
+									<?php endif; ?>
 									<em><?php _e("<code>%BLOGNAME%</code> will be replaced with the name of your blog.", 'login-with-ajax'); ?></em>
 									<em><?php _e("<code>%BLOGURL%</code> will be replaced with the url of your blog.", 'login-with-ajax'); ?></em>
 								</td>
 							</tr>
 							<tr valign="top">
-								<td>
+								<th>
 									<label><?php _e("Message", 'login-with-ajax'); ?></label>
-								</td>
+								</th>
 								<td>
 									<?php 
 										if( empty($lwa_data['notification_message']) ){
+										    if( version_compare($wp_version, '4.3', '>=') ){
+										        $lwa_data['notification_message'] = __('Thanks for signing up to our blog. 
+
+You can login with the following credentials by visiting %BLOGURL%
+
+Username: %USERNAME%
+To set your password, visit the following address: %PASSWORD%
+
+We look forward to your next visit!
+
+The team at %BLOGNAME%', 'login-with-ajax');
+										    }else{
 											$lwa_data['notification_message'] = __('Thanks for signing up to our blog. 
 
 You can login with the following credentials by visiting %BLOGURL%
@@ -345,9 +376,16 @@ Password : %PASSWORD%
 We look forward to your next visit!
 
 The team at %BLOGNAME%', 'login-with-ajax');
+										    }
 										}
 										?>
 									<textarea name="lwa_notification_message" class='wide' style="width:100%; height:250px;"><?php echo $lwa_data['notification_message'] ?></textarea>
+									<em><?php _e("<code>%USERNAME%</code> will be replaced with a username.", 'login-with-ajax'); ?></em><br />
+									<?php if( version_compare($wp_version, '4.3', '>=') ): ?>
+									<em><strong><?php echo sprintf(esc_html__("%s will be replaced with a link to set the user password.", 'login-with-ajax'), '<code>%PASSWORD%</code>'); ?></strong></em><br />
+									<?php else: ?>
+									<em><?php _e("<code>%PASSWORD%</code> will be replaced with the user's password.", 'login-with-ajax'); ?></em><br />
+									<?php endif; ?>
 									<em><?php _e("<code>%BLOGNAME%</code> will be replaced with the name of your blog.", 'login-with-ajax'); ?></em>
 									<em><?php _e("<code>%BLOGURL%</code> will be replaced with the url of your blog.", 'login-with-ajax'); ?></em>
 								</td>

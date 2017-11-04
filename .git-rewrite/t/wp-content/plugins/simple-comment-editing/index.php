@@ -4,8 +4,8 @@ Plugin Name: Simple Comment Editing
 Plugin URI: http://wordpress.org/extend/plugins/simple-comment-editing/
 Description: Simple comment editing for your users.
 Author: Ronald Huereca
-Version: 1.5.3
-Requires at least: 3.5
+Version: 1.9.1
+Requires at least: 4.1
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
 Text Domain: simple-comment-editing
@@ -131,6 +131,7 @@ class Simple_Comment_Editing {
 		$sce_content .= '<div class="sce-edit-button" style="display:none;">';
 		$ajax_edit_url = add_query_arg( array( 'cid' => $comment_id, 'pid' => $post_id ) , wp_nonce_url( admin_url( 'admin-ajax.php' ), 'sce-edit-comment' . $comment_id ) );
 		$sce_content .= sprintf( '<a href="%s">%s</a>', esc_url( $ajax_edit_url ), esc_html__( 'Click to Edit', 'simple-comment-editing' ) );
+		$sce_content .= '&nbsp;&ndash;&nbsp;';
 		$sce_content .= '<span class="sce-timer"></span>';
 		$sce_content .= '</div><!-- .sce-edit-button -->';
 		
@@ -162,6 +163,8 @@ class Simple_Comment_Editing {
 		$textarea_button_content = '<div class="sce-comment-edit-buttons">';
 		$textarea_buttons = sprintf( '<button class="sce-comment-save">%s</button>', esc_html__( 'Save', 'simple-comment-editing' ) );
 		$textarea_buttons .= sprintf( '<button class="sce-comment-cancel">%s</button>', esc_html__( 'Cancel', 'simple-comment-editing' ) );
+		$textarea_buttons .= sprintf( '<button class="sce-comment-delete">%s</button>', esc_html__( 'Delete', 'simple-comment-editing' ) );
+		$textarea_buttons .= '<div class="sce-timer"></div>';
 		/**
 		* Filter: sce_buttons
 		*
@@ -210,7 +213,7 @@ class Simple_Comment_Editing {
 	 *
 	 */
 	 public function add_scripts() {
-	 	if ( !is_single() && !is_page() ) return;
+	 	if ( !is_single() && !is_singular() && !is_page() ) return;
 	 	
 	 	//Check if there are any cookies present, otherwise don't load the scripts - WPAC_PLUGIN_NAME is for wp-ajaxify-comments (if the plugin is installed, load the JavaScript file)
 	 	
@@ -228,15 +231,18 @@ class Simple_Comment_Editing {
 	 	
 	 	
 	 	$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.min.js' );
+	 	$hooks_script_url = $this->get_plugin_url( '/js/event-manager.min.js' );
 	 	if ( defined( 'SCRIPT_DEBUG' ) ) {
 	 		if ( SCRIPT_DEBUG == true ) {
 	 			$main_script_uri = $this->get_plugin_url( '/js/simple-comment-editing.js' );
+	 			$hooks_script_url = $this->get_plugin_url( '/js/event-manager.js' );
 	 		}
 	 	}
-	 	include( 'class-sce-timer.php' );
+	 	require_once( 'class-sce-timer.php' );
 	 	$timer_internationalized = new SCE_Timer();
-	 	wp_enqueue_script( 'wp-hooks', $this->get_plugin_url( '/js/event-manager.js' ) ); //https://core.trac.wordpress.org/attachment/ticket/21170/21170-2.patch
-	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20150818', true );
+	 	wp_enqueue_script( 'wp-hooks', $hooks_script_url, array(), '20151103', true ); //https://core.trac.wordpress.org/attachment/ticket/21170/21170-2.patch
+	 	wp_enqueue_script( 'simple-comment-editing', $main_script_uri, array( 'jquery', 'wp-ajax-response' ), '20151021', true );
+	 	
 	 	wp_localize_script( 'simple-comment-editing', 'simple_comment_editing', array(
 	 		'and' => __( 'and', 'simple-comment-editing' ),
 	 		'confirm_delete' => __( 'Do you want to delete this comment?', 'simple-comment-editing' ),
@@ -245,7 +251,7 @@ class Simple_Comment_Editing {
 	 		'allow_delete' => $this->allow_delete,
 	 		'timer' => $timer_internationalized->get_timer_vars(),
 	 		'ajax_url' => admin_url( 'admin-ajax.php' ),
-	 		'nonce' => wp_create_nonce( 'sce-general-ajax-nonce' )
+	 		'nonce' => wp_create_nonce( 'sce-general-ajax-nonce' ),
 	 	) );
 	 } //end add_scripts
 	 
@@ -281,7 +287,16 @@ class Simple_Comment_Editing {
 	 	$query = $wpdb->prepare( "SELECT ( $comment_time * 60 - (UNIX_TIMESTAMP('" . current_time('mysql') . "') - UNIX_TIMESTAMP(comment_date))) comment_time FROM {$wpdb->comments} where comment_ID = %d", $comment_id );
 	 	$comment_time_result = $wpdb->get_row( $query, ARRAY_A );
 	 	
-	 	$time_left = absint( $comment_time_result[ 'comment_time' ] );
+	 	$time_left = $comment_time_result[ 'comment_time' ];
+	 	if ( $time_left < 0 ) {
+    	 	$response = array(
+    			'minutes' => 0,
+    			'comment_id' => $comment_id, 
+    			'seconds' => 0,
+    			'can_edit' => false
+    		);
+    		die( json_encode( $response ) );
+        }
 	 	$minutes = floor( $time_left / 60 );
 		$seconds = $time_left - ( $minutes * 60 );
 		$response = array(
@@ -360,6 +375,7 @@ class Simple_Comment_Editing {
 		* @param array Comment array
 		*/
 		$comment = apply_filters( 'sce_get_comment', get_comment( $comment_id, ARRAY_A ) );
+		$comment[ 'comment_html' ] = $this->get_comment_content( (object)$comment );
 		
 		if ( $comment ) {
 			die( json_encode( $comment ) );	
@@ -558,18 +574,36 @@ class Simple_Comment_Editing {
 		//Check to see if time has elapsed for the comment
 		$comment_timestamp = strtotime( $comment->comment_date );
 		$time_elapsed = current_time( 'timestamp', get_option( 'gmt_offset' ) ) - $comment_timestamp;
-		$minuted_elapsed = round( ( ( ( $time_elapsed % 604800 ) % 86400 )  % 3600 ) / 60 );
-		if ( ( $minuted_elapsed - $this->comment_time ) > 0 ) return false;
+		$minutes_elapsed = ( ( ( $time_elapsed % 604800 ) % 86400 )  % 3600 ) / 60;
 		
-		//Now check for post meta and cookie values being the same
+		if ( ( $minutes_elapsed - $this->comment_time ) >= 0 ) return false;
+		
 		$comment_date_gmt = date( 'Y-m-d', strtotime( $comment->comment_date_gmt ) );
 		$cookie_hash = md5( $comment->comment_author_IP . $comment_date_gmt . $comment->user_id . $comment->comment_agent );
-		$cookie_value = $this->get_cookie_value( 'SimpleCommentEditing' . $comment_id . $cookie_hash );
-		if ( !$cookie_value ) return false;
-		$post_meta_hash = get_post_meta( $post_id, '_' . $comment_id, true );
+			
+		if ( !is_user_logged_in() ) {
+			//Now check for post meta and cookie values being the same
+			
+			$cookie_value = $this->get_cookie_value( 'SimpleCommentEditing' . $comment_id . $cookie_hash );
+			if ( !$cookie_value ) return false;
+			$post_meta_hash = get_post_meta( $post_id, '_' . $comment_id, true );
+			
+			//Check to see if the cookie value matches the post meta hash
+			if ( $cookie_value !== $post_meta_hash ) return false;
+		} else {
+			$user = wp_get_current_user();
+			
+			if ( $user->ID != $comment->user_id ) {
+				return false;
+			}				
+
+			$meta_hash = get_user_meta( $user->ID, '_' . $comment_id, true );	
+			if ( $meta_hash !== $cookie_hash ) {
+				return false;	
+			}
+			
+		}
 		
-		//Check to see if the cookie value matches the post meta hash
-		if ( $cookie_value !== $post_meta_hash ) return false;
 		
 		//All is well, the person/place/thing can edit the comment
 		/**
@@ -752,11 +786,21 @@ class Simple_Comment_Editing {
 		$comment_date_gmt = current_time( 'Y-m-d', 1 );
 		$user_agent = substr( isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '', 0, 254 );
 		$hash = md5( $comment_author_ip . $comment_date_gmt . $this->get_user_id() . $user_agent );
+		
+		
+		
 		$rand = '_wpAjax' . $hash . md5( wp_generate_password( 30, true, true ) );
 		$maybe_save_meta = get_post_meta( $post_id, '_' . $comment_id, true );
 		$cookie_name = 'SimpleCommentEditing' . $comment_id . $hash;
 		$cookie_value = $rand;
 		$cookie_expire = time() + (  60 * $this->comment_time );
+		
+		/* Check to see if user is logged in and skip cookie checks */
+		if ( is_user_logged_in() ) {
+			$user = wp_get_current_user();
+			update_user_meta( $user->ID, '_' . $comment_id, $hash );
+			return;
+		}
 		
 		if ( !$maybe_save_meta ) {
 			//Make sure we don't set post meta again for security reasons and subsequent calls to this method will generate a new key, so no calling it twice unless you want to remove a cookie
@@ -867,8 +911,13 @@ class Simple_Comment_Editing {
 	 * @return bool True to load scripts, false if not
 	 */
 	public function maybe_load_scripts( $yes ) {
-		if ( defined( 'WPAC_PLUGIN_NAME' ) || defined( 'EPOCH_VER' ) ) {
+		if ( defined( 'WPAC_PLUGIN_NAME' ) || defined( 'EPOCH_VER' ) || is_user_logged_in() ) {
 			return true; 	
+		}
+		
+		/* Return True if user is logged in */
+		if ( is_user_logged_in() ) {
+			return true;	
 		}
 	 	
 	 	if ( !isset( $_COOKIE ) || empty( $_COOKIE ) ) return;

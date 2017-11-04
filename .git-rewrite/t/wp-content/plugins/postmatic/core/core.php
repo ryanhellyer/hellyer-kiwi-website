@@ -84,6 +84,8 @@ class Prompt_Core {
 			'enable_optins' => false,
 			'enable_skimlinks' => false,
 			'skimlinks_publisher_id' => '',
+			'emails_per_chunk' => 25,
+			'subscribed_introduction' => '',
 		);
 		$default_options = array_merge( $default_options, Prompt_Optins::options_fields() );
 		self::prevent_options_errors();
@@ -112,6 +114,13 @@ class Prompt_Core {
 			self::$activate_notice = new Prompt_Admin_Activate_Notice( $key, self::$settings_page );
 		}
 
+		/**
+		 * Fires when Postmatic has loaded.
+		 *
+		 * This happens after plugins are loaded {@see 'plugins_loaded'}, and always fires when Postmatic is active.
+		 *
+		 * @since 1.0.0
+		 */
 		do_action( 'prompt/core_loaded' );
 	}
 
@@ -137,7 +146,7 @@ class Prompt_Core {
 		register_deactivation_hook( self::$basename, array( 'Prompt_Event_Handling', 'record_deactivation' ) );
 		register_activation_hook( self::$basename, array( 'Prompt_Event_Handling', 'record_reactivation' ) );
 
-		add_action( 'init',         array( __CLASS__, 'ensure_site_icon' ) );
+		register_activation_hook( self::$basename, array( __CLASS__, 'ensure_site_icon' ) );
 		add_action( 'admin_init',   array( __CLASS__, 'detect_version_change' ) );
 
 		add_action( 'widgets_init', array( 'Prompt_Widget_Handling', 'register' ), 100 ); // Let theme load first
@@ -147,11 +156,14 @@ class Prompt_Core {
 
 		add_action( 'wp_ajax_nopriv_prompt/pull-updates',       array( 'Prompt_Web_Api_Handling', 'receive_pull_updates' ) );
 		add_action( 'wp_ajax_nopriv_prompt/pull-configuration', array( 'Prompt_Web_Api_Handling', 'receive_pull_configuration' ) );
+		add_action( 'wp_ajax_nopriv_prompt/ping',               array( 'Prompt_Web_Api_Handling', 'receive_ping' ) );
 
 		add_action( 'transition_post_status',           array( 'Prompt_Outbound_Handling', 'action_transition_post_status' ), 10, 3 );
 		add_action( 'wp_insert_comment',                array( 'Prompt_Outbound_Handling', 'action_wp_insert_comment' ), 10, 2 );
 		add_action( 'transition_comment_status',        array( 'Prompt_Outbound_Handling', 'action_transition_comment_status' ), 10, 3 );
+		add_action( 'comment_approved_to_unapproved',   array( 'Prompt_Outbound_Handling', 'action_comment_approved_to_unapproved' ) );
 		add_filter( 'comment_moderation_recipients',    array( 'Prompt_Outbound_Handling', 'filter_comment_moderation_recipients' ), 10, 2 );
+		add_filter( 'comment_notification_recipients',  array( 'Prompt_Outbound_Handling', 'filter_comment_notification_recipients' ) );
 
 		add_action( 'prompt/post_mailing/send_notifications',      array( 'Prompt_Post_Mailing', 'send_notifications' ) );
 		add_action( 'prompt/comment_mailing/send_notifications',   array( 'Prompt_Comment_Mailing', 'send_notifications' ) );
@@ -200,6 +212,15 @@ class Prompt_Core {
 		add_shortcode( 'postmatic_subscribe_widget', array( 'Prompt_Subscribe_Widget_Shortcode', 'render' ) );
 
 		add_image_size( 'prompt-post-featured', 1420, 542, true );
+
+		/**
+		 * Fires after Postmatic has added its main hooks.
+		 *
+		 * This only happens when a key has been entered.
+		 *
+		 * @since 1.4.11
+		 */
+		do_action( 'prompt/hooks_added' );
 	}
 
 	public static function detect_version_change() {

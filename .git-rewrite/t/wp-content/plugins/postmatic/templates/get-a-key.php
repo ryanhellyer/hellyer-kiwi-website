@@ -14,7 +14,7 @@
 		subscriber info, and send mail for you).</p>
 
 	<p>
-		<a href="<?php echo $new_site_url; ?>" target="_blank" class="button button-primary button-large">Get an API key</a>
+		<a href="<?php echo $new_site_url; ?>" target="_blank" class="button button-primary button-large">Get a free API key</a>
 	</p>
 
 </div>

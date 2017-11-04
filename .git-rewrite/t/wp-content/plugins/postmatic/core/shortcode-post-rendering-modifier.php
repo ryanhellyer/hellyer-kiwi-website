@@ -4,7 +4,7 @@ class Prompt_Shortcode_Post_Rendering_Modifier extends Prompt_Post_Rendering_Mod
 
 	/** @var array */
 	protected static $shortcode_whitelist = array(
-		'gallery', 'caption', 'wpv-post-body', 'types', 'yumprint-recipe', 'ultimate-recipe', 'table', 'clickToTweet'
+		'gallery', 'caption', 'wpv-post-body', 'types', 'yumprint-recipe', 'ultimate-recipe', 'table', 'clickToTweet', 'su_row', 'su_column', 'su_pullquote', 'su_box', 'book-info', 'wp_cart'
 	);
 
 	/** @var  array */

@@ -1,9 +1,9 @@
 === Simple Comment Editing ===
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment, admin
-Requires at least: 4.0
-Tested up to: 4.3.0
-Stable tag: 1.5.3
+Requires at least: 4.1
+Tested up to: 4.3
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,8 @@ If you like this plugin, please help spread the word.  Rate the plugin.  Write a
 <li>Dutch (Netherlands) - Thanks <a href="https://github.com/senlin">Senlin</a></li>
 <li>French (France) - Thanks <a href="http://wordpress.org/support/profile/colin101">colin101</a>.</li>
 <li>German - Thanks Wilfried Kahrs.</li>
+<li>Latvian - Thanks Kaspars.</li>
+<li>Lithuanian - Thanks MamasLT</li>
 <li>Norwegian Bokmål - Thanks Jan Hagen.</li>
 <li>Norwegian Nynorsk - Thanks Jan Hagen.</li>
 <li>Persian - Thanks <a href="http://www.wordpress98.com/">Ali HajiMohamadi</a>.</li>
@@ -73,6 +75,62 @@ For advanced options, please see the <a href="https://github.com/ronalfy/simple-
 2. Textarea and Save/Cancel buttons.
 
 == Changelog ==
+
+= 1.9.1 =
+* Released 2015-11-04
+* Added minified script for events hooks
+
+= 1.9.0 =
+* Released 2015-10-27
+* Timer now shows below save/cancel/delete buttons for convenience
+
+= 1.8.5 =
+* Released 2015-10-21
+* Fixed Portuguese translation (thanks Marco Santos)
+* Added Lithuanian translation
+* Fixed timer scroll issue where the delay was too long (thanks MamasLT) 
+
+= 1.8.3 =
+* Released 2015-10-20
+* Fixing user logged in issue where unusual timer values are being shown, and the comment appears editable, but is not
+
+= 1.8.1 =
+* Released 2015-10-12
+* Logged in users who log out can no longer edit comments
+* Added Delete button
+* Updated translations for language packs
+
+= 1.7.1 =
+* Released 2015-09-26
+* Fixed Epoch+SCE user logged in dilemma 
+
+= 1.7.0 =
+* Released 2015-09-20
+* Fixed timer issue on many sites. New JS hook for allowing customization of output.
+
+= 1.6.7 =
+* Released 2015-09-20
+* Fixing PHP bug declaring fatal error for multiple class instances. Props volresource.
+
+= 1.6.5 =
+* Released 2015-09-17
+* Fixing strings that are not replaced in the timer. Sorry I didn't catch this error.
+
+= 1.6.1 =
+* Released 2015-09-16
+* Fixed undefined JavaScript errors in timer. Sorry about that.
+
+= 1.6.0 =
+* Released 2015-09-16
+* Added filter for custom timer output
+* Added support for logged in users to bypass cookie checks
+* Added support for custom post types
+
+= 1.5.5 =
+* Released 2015-09-07
+* Fixed return call to be better compatible with third-party customizations
+* Added Latvian translation
+* Revised WP Ajaxify Comments integration
 
 = 1.5.3 =
 * Released 2015-08-23
@@ -182,14 +240,23 @@ For advanced options, please see the <a href="https://github.com/ronalfy/simple-
 
 == Upgrade Notice ==
 
-= 1.5.3 =
-Fixing PHP parse error.
+= 1.9.1 =
+Added minified script for events hooks
 
-= 1.5.1 =
-Minified JS updated. Integration update for third-party plugins. Extra fields and Ajax comment posting/editing are now possible.
+= 1.9.0 =
+Timer now shows below save/cancel/delete buttons for convenience
 
-= 1.5.0 =
-Integration update for third-party plugins. Extra fields and Ajax comment posting/editing are now possible.
+= 1.8.5 =
+Updated translations (Portuguese and Lithuanian). Scroll after comment issue is now much faster.
+
+= 1.8.3 =
+Fixing user logged in issue where unusual timer values are being shown, and the comment appears editable, but is not
+
+= 1.8.1 =
+Forgot to add deletion script. Added delete button.
+
+= 1.8.0 =
+Added delete button.
 
 == Customization ==
 

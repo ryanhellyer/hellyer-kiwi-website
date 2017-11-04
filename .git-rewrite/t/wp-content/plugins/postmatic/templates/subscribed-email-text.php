@@ -3,7 +3,7 @@
 * Template variables in scope:
 * @var WP_User               $subscriber
 * @var Prompt_Interface_Subscribable   $object        The thing being subscribed to
-* @var WP_Post               $latest_post   For site and author subscriptions, the latest relevant post
+* @var WP_Post $subscribed_introduction Custom introduction content.
 * @var array                 $comments      Comments so far for post subscriptions
 */
 ?>
@@ -22,30 +22,15 @@ printf(
 ?>
 
 <?php
-if ( $latest_post ) :
-	/* translators: %1$s is title, %2$s date */
-	printf(
-		__( 'We\'ve included the latest, %1$s from %2$s, below.', 'Postmatic' ),
-		get_the_title(),
-		get_the_date()
-	);
+if ( $object instanceof Prompt_Site or $object instanceof Prompt_User ) :
+	echo  Prompt_Html_To_Markdown::convert( $subscribed_introduction );
 elseif ( $comments ) :
 	_e( 'The conversation so far is included below.', 'Postmatic' );
 endif;
 ?> 
 
 
-<?php if ( $latest_post ) : ?>
-------
-
-<?php echo Prompt_Html_To_Markdown::h1( get_the_title() . ' :: ' . get_the_date() ); ?>
-
-<?php echo Prompt_Html_To_Markdown::convert( get_the_content() ); ?>
-
-
-<?php _e( 'View this post online', 'Postmatic' ); ?> at <?php the_permalink(); ?>
-
-<?php elseif ( $comments ) : ?>
+<?php if ( $comments ) : ?>
 
 <?php echo Prompt_Html_To_Markdown::h2( __( "Here is the discussion so far", 'Postmatic' ) ); ?>
 
@@ -56,10 +41,6 @@ wp_list_comments( array(
 	'style' => 'div',
 ), $comments );
 ?>
-
-<?php endif; ?>
-
-<?php if ( $latest_post or $comments ) : ?>
 
 <?php _e( '* To leave a comment simply reply to this email. *', 'Postmatic' ); ?>
 

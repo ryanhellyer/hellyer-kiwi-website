@@ -22,6 +22,7 @@
 		init_email_tab();
 		init_invite_tab();
 		init_import_tab();
+		init_helpscout_beacon();
 
 	} );
 
@@ -267,14 +268,14 @@
 		}
 
 		function set_manual_recipients() {
-			var input_text = $manual_addresses_input.val(),
-				recipients = input_text.split( /\s*[,\n\r]\s*/ );
+			var input_text = $manual_addresses_input.val();
 
 			if ( !input_text ) {
 				set_recipients( [] );
 				return;
 			}
 
+			var recipients = input_text.split( /\s*[,\n\r]\s*/ );
 			set_recipients( recipients );
 		}
 
@@ -365,6 +366,17 @@
 		}
 	}
 
+	function init_helpscout_beacon() {
+		HS.beacon.config({
+				modal: false,
+				topArticles: true,
+				color: '#DE4F0F',
+				icon: 'question',
+				attachment: true,
+				poweredBy: false
+		});
+	}
+
 	// load mailchimp lists
 	$(document).on('click', '#mail_chimp_load_lists', function( e ){
 
@@ -416,3 +428,6 @@
 	});
 
 }( jQuery ));
+
+// Add helpscout beacon
+!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"https://postmatic.helpscoutdocs.com/"},contact:{enabled:!0,formId:"0eebf042-62db-11e5-8846-0e599dc12a51"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});

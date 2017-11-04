@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Simple CMS
-Plugin URI: http://geek.ryanhellyer.net/simplecms/
-Description: The <a href="http://geek.ryanhellyer.net/products/simplecms/">Ryans Simple CMS Plugin</a> converts your WordPress admin panel into a simple CMS. It is aimed at web designers who want to provide a simple adminstration panel for their clients to update basic static websites.
+Plugin URI: https://geek.hellyer.kiwi/simplecms/
+Description: The <a href="https://geek.hellyer.kiwi/products/simplecms/">Ryans Simple CMS Plugin</a> converts your WordPress admin panel into a simple CMS. It is aimed at web designers who want to provide a simple adminstration panel for their clients to update basic static websites.
 
 Author: Ryan Hellyer
-Version: 2.0
-Author URI: http://geek.ryanhellyer.net/
+Version: 2.0.2
+Author URI: https://geek.hellyer.kiwi/
 
-Copyright 2010 - 2013 Ryan Hellyer
+Copyright 2010 - 2016 Ryan Hellyer
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ new RyansSimpleCMS();
 /**
  * Ryans Simple CMS Setup
  * 
- * @copyright Copyright (c), Metronet
+ * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  * @since 1.8
  */
@@ -161,7 +161,7 @@ class RyansSimpleCMS {
 	function simplecms_comments() {
 		
 		// Add comments
-		echo "\n	<!-- Ryans Simple CMS plugin for WordPress ... http://geek.ryanhellyer.net/products/simplecms/ -->\n";
+		echo "\n	<!-- Ryans Simple CMS plugin for WordPress ... https://geek.hellyer.kiwi/products/simplecms/ -->\n";
 	}
 }
 
