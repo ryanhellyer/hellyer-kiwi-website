@@ -1,4 +1,0 @@
-comic-glot
-==========
-
-Comic GLot
