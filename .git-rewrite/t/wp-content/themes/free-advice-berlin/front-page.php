@@ -36,7 +36,18 @@ if ( $query->have_posts() ) :
 		$query->the_post();
 		?>
 
-		<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li><?php
+		<li>
+			<a href="<?php the_permalink(); ?>">
+				<strong><?php the_title(); ?></strong>
+
+				<?php
+				if ( function_exists( 'the_subheading' ) ) {
+					the_subheading( '', '' );
+				}
+				?>
+
+			</a>
+		</li><?php
 
     endwhile;
 

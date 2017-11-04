@@ -3,7 +3,7 @@
 Plugin Name: Metro Share
 Plugin URI: http://metronet.no
 Description: Super fast and super customizable social sharing
-Version: 0.5.8
+Version: 0.5.10
 Author: Metronet AS
 Author URI: http://metronet.no
 Text Domain: metro-share
@@ -14,7 +14,7 @@ $metro_share = new Metro_Share;
 
 /**
  * Metro Share class
- * 
+ *
  * @copyright Copyright (c), Metronet
  * @author Kaspars Dambis <kaspars@metronet.no>
  * @since 0.4
@@ -46,7 +46,7 @@ class Metro_Share {
 				),
 				'email' => array(
 					'enabled' => 'email',
-					'message' => ''
+					'message' => '',
 				),
 				'google-plus' => array(
 					'enabled' => 'google-plus',
@@ -74,7 +74,7 @@ class Metro_Share {
 	}
 
 	/*
-	 * Close Facebook ... 
+	 * Close Facebook ...
 	 *
 	 * @since 0.4
 	 * @author Kaspars Dambis <kaspars@metronet.no>
@@ -85,7 +85,7 @@ class Metro_Share {
 			return;
 		}
 
-		if ( $_GET['metro-share'] == 'done' ) {
+		if ( 'done' === $_GET['metro-share'] ) {
 			echo '<script type="text/javascript">self.close();</script>';
 		}
 
@@ -132,7 +132,7 @@ class Metro_Share {
 		);
 		add_submenu_page( 'options-general.php', __( 'Sharing Icon Settings', 'metro-share' ), __( 'Sharing Icons', 'metro-share' ), 'administrator', __FILE__, array( $this, 'settings_display' ) );
 	}
-	
+
 	/*
 	 * Sanitising each chunk of data submitted from the admin page
 	 *
@@ -142,7 +142,7 @@ class Metro_Share {
 	public function sanitise_chunk( $input ) {
 
 		// Strip @ characters from Twitter handles
-		if ( 'twitter' == $input['enabled'] ) {
+		if ( ! empty( $input['enabled'] ) && 'twitter' == $input['enabled'] ) {
 			$input['username'] = str_replace( '@', '', $input['username'] );
 		}
 
@@ -185,8 +185,8 @@ class Metro_Share {
 		}
 		$destinations = $input['destinations'];
 
-		foreach( $destinations as $destination => $value ) {
-			$output['destinations'][$destination] = $this->sanitise_chunk( $destinations[$destination] );
+		foreach ( $destinations as $destination => $value ) {
+			$output['destinations'][ $destination ] = $this->sanitise_chunk( $destinations[ $destination ] );
 		}
 
 		return $output;
@@ -204,22 +204,22 @@ class Metro_Share {
 			'title' => 'Twitter',
 			'action' => 'https://twitter.com/share',
 			'fields' => array(
-				'message' => array( 
+				'message' => array(
 					'type' => 'textarea',
 					'label' => __( 'Default message:', 'metro-share' ),
-					'help' => __( 'You can use the following tags: <code>{{title}}</code>, <code>{{link}}</code>, <code>{{post_title}}</code> and <code>{{shortlink}}</code>.', 'metro-share' )
+					'help' => __( 'You can use the following tags: <code>{{title}}</code>, <code>{{link}}</code>, <code>{{post_title}}</code> and <code>{{shortlink}}</code>.', 'metro-share' ),
 				),
-				'username' => array( 
+				'username' => array(
 					'type' => 'text',
 					'label' => __( 'Your Twitter handle:', 'metro-share' ),
-					'help' => __( 'This will be appended to the tweet automatically.', 'metro-share' )
-				)
+					'help' => __( 'This will be appended to the tweet automatically.', 'metro-share' ),
+				),
 			),
 			'hidden' => array(
 				'url' => '{{link}}',
 				'via' => '{{username}}',
-				'text' => '{{message}}'
-			)
+				'text' => '{{message}}',
+			),
 		);
 
 		// https://developers.facebook.com/docs/reference/dialogs/feed/
@@ -227,18 +227,18 @@ class Metro_Share {
 			'title' => 'Facebook',
 			'action' => 'https://www.facebook.com/dialog/feed',
 			'fields' => array(
-				'app_id' => array( 
+				'app_id' => array(
 					'type' => 'text',
 					'label' => __( 'App ID:', 'metro-share' ),
-					'help' => __( 'Facebook requires an Application ID which you can create at the <a href="https://developers.facebook.com/apps/">developers center</a>.', 'metro-share' )
-				)
+					'help' => __( 'Facebook requires an Application ID which you can create at the <a href="https://developers.facebook.com/apps/">developers center</a>.', 'metro-share' ),
+				),
 			),
 			'hidden' => array(
 				'app_id' => '{{app_id}}',
 				'link' => '{{link}}',
 				'redirect_uri' => '{{link}}?metroshare=done',
-				'display' => 'popup'
-			)
+				'display' => 'popup',
+			),
 		);
 
 		// https://developers.google.com/+/plugins/share/
@@ -247,8 +247,8 @@ class Metro_Share {
 			'description' => __( 'There is nothing to configure. Google+ automatically extracts all content meta data from the open graph tags on the page.', 'metro-share' ),
 			'action' => 'https://plus.google.com/share',
 			'hidden' => array(
-				'url' => '{{link}}'
-			)
+				'url' => '{{link}}',
+			),
 		);
 
 		// https://developer.linkedin.com/documents/share-linkedin
@@ -260,23 +260,23 @@ class Metro_Share {
 			'hidden' => array(
 				'title' => '{{post_title}}',
 				'url' => '{{link}}',
-				'mini' => true
-			)			
+				'mini' => true,
+			),
 		);
 
 		$this->destinations['email'] = array(
 			'title' => 'Email',
 			'action' => 'http://api.addthis.com/oexchange/0.8/forward/email/offer',
 			'fields' => array(
-				'message' => array( 
+				'message' => array(
 					'type' => 'textarea',
-					'label' => __( 'Default message:', 'metro-share' )
+					'label' => __( 'Default message:', 'metro-share' ),
 				),
 			),
 			'hidden' => array(
 				'note' => '{{message}}',
-				'url' => '{{link}}'
-			)
+				'url' => '{{link}}',
+			),
 		);
 
 		$this->destinations = apply_filters( 'metroshare_destinations', $this->destinations );
@@ -285,7 +285,7 @@ class Metro_Share {
 		if ( isset( $this->settings['destinations'] ) ) {
 			$this->destinations = array_merge( $this->settings['destinations'], $this->destinations );
 		}
-		
+
 	}
 
 	/*
@@ -300,7 +300,7 @@ class Metro_Share {
 	public function show_the_content( $content = '' ) {
 		global $post;
 
-		if ( is_singular() && $post->ID == get_queried_object_id() || $this->settings['allposts'] == true ) {
+		if ( is_singular() && get_queried_object_id() == $post->ID  ||  true == $this->settings['allposts'] ) {
 			$icons = $this->get_sharing_icons();
 			$content .= $icons;
 		}
@@ -374,19 +374,18 @@ class Metro_Share {
 			if ( isset( $destination['enabled'] ) ) {
 				$href = add_query_arg( $hidden_fields, $this->destinations[ $d ]['action'] );
 				$tabs[] = sprintf(
-					apply_filters( 'metro-share-item', '<li class="metroshare-%s"><a rel="nofollow" href="%s"><span class="icon"></span>%s</a></li>' ),  
+					apply_filters( 'metro-share-item', '<li class="metroshare-%s"><a rel="nofollow" href="%s"><span class="icon"></span>%s</a></li>' ),
 					$d,
 					$href,
 					esc_html( $this->destinations[ $d ]['title'] )
 				);
 			}
-
 		}
 
 		// Generate final HTML and add it to the main post content
 		if ( ! empty( $tabs ) ) {
 			$prefix = apply_filters( 'metro-share-prefix', $this->settings['prefix'] ); // Adding filter to allow users to edit the prefix text - useful for doing translations or changing the text based on which page you are on
-			$share_html = sprintf( 
+			$share_html = sprintf(
 				'<div class="metroshare">
 					<h4 class="share-prefix">%s</h4>
 					<ul class="metro-tabs">%s</ul>
@@ -407,16 +406,16 @@ class Metro_Share {
 	 */
 	public function settings_display() {
 		$network_settings = array();
-		$enabled_settings = array(); 
+		$enabled_settings = array();
 
 		foreach ( $this->destinations as $n => $network ) {
 			if ( ! isset( $this->settings['destinations'][ $n ]['enabled'] ) ) {
 				$this->settings['destinations'][ $n ]['enabled'] = false;
 			}
-			$enabled_settings[ $n ] = sprintf( 
+			$enabled_settings[ $n ] = sprintf(
 				'<li>
 					<label>
-						<input name="metroshare_settings[destinations][%s][enabled]" type="checkbox" value="%s" %s /> 
+						<input name="metroshare_settings[destinations][%s][enabled]" type="checkbox" value="%s" %s />
 						%s
 					</label>
 				</li>',
@@ -426,7 +425,7 @@ class Metro_Share {
 				esc_html( $network['title'] )
 			);
 
-			$network_settings[ $n ] = sprintf( 
+			$network_settings[ $n ] = sprintf(
 				'<tr id="destination-%s" class="metroshare-destination">
 					<th>%s</th>
 					<td>%s</td>
@@ -449,10 +448,10 @@ class Metro_Share {
 		<div class="wrap metroshare-wrap">';
 		screen_icon( 'metronet' );
 
-		printf( 
-				'
+		printf(
+			'
 					<h2>%s</h2>
-					
+
 					<table class="form-table metroshare-global">
 						<tr class="metroshare-prefix">
 							<th>%s</th>
@@ -494,19 +493,19 @@ class Metro_Share {
 						</tr>
 					</table>
 				</div>',
-				__( 'Sharing Icon Settings', 'metro-share' ),
-				__( 'Invitation Text', 'metro-share' ),
-				esc_attr( $this->settings['prefix'] ),
-				__( 'Display in <strong>all</strong> post areas?', 'metro-share' ),
-				checked( $this->settings['allposts'], true, false ),
-				__( 'Sharing Destinations', 'metro-share' ),
-				__( 'Select which sharing destinations you want to enable and use drag and drop to change their order:', 'metro-share' ),
-				implode( '', $enabled_settings ),
-				__( 'Update', 'metro-share' ),
-				__( 'Destination Settings', 'metro-share' ),
-				implode( '', $network_settings ),
-				__( 'Update', 'metro-share' )
-			);
+			__( 'Sharing Icon Settings', 'metro-share' ),
+			__( 'Invitation Text', 'metro-share' ),
+			esc_attr( $this->settings['prefix'] ),
+			__( 'Display in <strong>all</strong> post areas?', 'metro-share' ),
+			checked( $this->settings['allposts'], true, false ),
+			__( 'Sharing Destinations', 'metro-share' ),
+			__( 'Select which sharing destinations you want to enable and use drag and drop to change their order:', 'metro-share' ),
+			implode( '', $enabled_settings ),
+			__( 'Update', 'metro-share' ),
+			__( 'Destination Settings', 'metro-share' ),
+			implode( '', $network_settings ),
+			__( 'Update', 'metro-share' )
+		);
 
 		echo '</form>';
 	}
@@ -524,13 +523,13 @@ class Metro_Share {
 
 		$inputs = array(
 			'text' => '<input type="text" class="input-text" name="metroshare_settings[destinations][%1$s][%2$s]" value="%3$s" />',
-			'textarea' => '<textarea class="input-textarea" name="metroshare_settings[destinations][%1$s][%2$s]">%3$s</textarea>'
+			'textarea' => '<textarea class="input-textarea" name="metroshare_settings[destinations][%1$s][%2$s]">%3$s</textarea>',
 		);
 
-		if ( isset( $this->destinations[ $n ]['description'] ) )
-			$fields['destination-desc'] = sprintf( '<p class="destination-desc">%s</p>', $this->destinations[ $n ]['description'] );
+		if ( isset( $this->destinations[ $n ]['description'] ) ) {
+			$fields['destination-desc'] = sprintf( '<p class="destination-desc">%s</p>', $this->destinations[ $n ]['description'] ); }
 
-		if ( ! empty( $this->destinations[ $n ]['fields'] ) )
+		if ( ! empty( $this->destinations[ $n ]['fields'] ) ) {
 			foreach ( $this->destinations[ $n ]['fields'] as $f => $custom_field ) {
 
 				if ( isset( $custom_field['help'] ) ) {
@@ -539,7 +538,7 @@ class Metro_Share {
 					$help = '';
 				}
 
-				$fields[ $f ] = sprintf( 
+				$fields[ $f ] = sprintf(
 					'<p class="input-wrap field-%s">
 						<label class="label-%s">
 							<strong class="label">%s</strong>
@@ -549,16 +548,16 @@ class Metro_Share {
 					esc_attr( $f ),
 					esc_attr( $f ),
 					esc_html( $custom_field['label'] ),
-					sprintf( 
-						$inputs[ $custom_field['type'] ], 
-						esc_attr( $n ), 
-						esc_attr( $f ), 
-						esc_attr( $this->settings['destinations'][ $n ][ $f ] ) 
+					sprintf(
+						$inputs[ $custom_field['type'] ],
+						esc_attr( $n ),
+						esc_attr( $f ),
+						esc_attr( $this->settings['destinations'][ $n ][ $f ] )
 					) . $help
 				);
 			}
+		}
 
 		return apply_filters( 'metroshare-settings-fields', $fields, $n );
 	}
-
 }

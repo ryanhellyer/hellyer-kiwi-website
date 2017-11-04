@@ -2,10 +2,11 @@
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment, admin
 Requires at least: 4.1
-Tested up to: 4.5
-Stable tag: 1.9.4
+Tested up to: 4.7
+Stable tag: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://mediaron.com/contribute/
 
 Simple Comment Editing for your website.
 
@@ -25,10 +26,11 @@ Simple Comment Editing features:
 <li>Advanced customization can be achieved using filters.</li>
 </ol>
 
-<h3>Spread the Word</h3>
-If you like this plugin, please help spread the word.  Rate the plugin.  Write about the plugin.  Something :)
+<h3>Help Contribute</h3>
 
-You are welcome to help us out and <a href="https://github.com/ronalfy/simple-comment-editing">contribute on GitHub</a>.
+* Leave a star rating
+* <a href="https://translate.wordpress.org/projects/wp-plugins/simple-comment-editing">Contribute a translation</a>
+* <a href="https://github.com/ronalfy/simple-comment-editing">Contribute some code</a>
 
 == Installation ==
 
@@ -52,8 +54,28 @@ For advanced options, please see the <a href="https://github.com/ronalfy/simple-
 
 == Changelog ==
 
+= 2.1.3 =
+* Released 2016-12-07
+* Added Thesis compatibility
+
+= 2.1.1 =
+* Released 2016-10-18
+* Re-added filter `sce_return_comment_text`
+
+= 2.1.0 =
+* Released 2016-09-17
+* Post meta is no longer used and comment meta is used instead
+
+= 2.0.0 =
+* Released 2016-08-14
+* Bug fix: Deletion filter now works in JS and in HTML output
+* Bug fix: Changing comment time in filter resulted in undefined in JS output
+* New filters: Allow changing of edit and save/cancel/delete buttons
+* Epoch 2.0 compatible 
+
+
 = 1.9.4 =
-* Released 2015-04-02
+* Released 2016-04-02
 * Polish translation added
 
 = 1.9.3 =
@@ -226,6 +248,15 @@ For advanced options, please see the <a href="https://github.com/ronalfy/simple-
 
 == Upgrade Notice ==
 
+= 2.1.1 =
+Re-added filter `sce_return_comment_text`
+
+= 2.1.0 =
+Post meta is no longer used and comment meta is used instead (better reliability and less database bloat).
+
+= 2.0.0 =
+New filters and bug fixes. See changelog for more information.
+
 = 1.9.4 =
 Translations updated
 
@@ -234,21 +265,6 @@ Fixes Ajax calls to SSL admin and Epoch incompatibility issues
 
 = 1.9.1 =
 Added minified script for events hooks
-
-= 1.9.0 =
-Timer now shows below save/cancel/delete buttons for convenience
-
-= 1.8.5 =
-Updated translations (Portuguese and Lithuanian). Scroll after comment issue is now much faster.
-
-= 1.8.3 =
-Fixing user logged in issue where unusual timer values are being shown, and the comment appears editable, but is not
-
-= 1.8.1 =
-Forgot to add deletion script. Added delete button.
-
-= 1.8.0 =
-Added delete button.
 
 == Customization ==
 

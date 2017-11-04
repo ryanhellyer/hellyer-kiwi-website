@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The main template file.
  *
@@ -17,11 +18,13 @@ if ( have_posts() ) {
 		echo '<article>';
 		echo '<h1>';
 		the_title();
-		if ( current_user_can( 'edit_pages' ) ) {
-			echo ' <a href="' . esc_url( get_edit_post_link() ) . '"><small>(edit)</small></a>';
-		}
 		echo '</h1>';
-		echo '<p id="updated">' . sprintf( __( 'Last updated: %s', 'free-advice-berlin' ), get_the_modified_time( 'jS \of F Y' ) ) . '</p>';
+		echo '<p id="updated">';
+		echo sprintf( __( 'Last updated: %s', 'free-advice-berlin' ), get_the_modified_time( 'jS \of F Y' ) );
+		if ( current_user_can( 'edit_pages' ) ) {
+			echo '<a class="alignright" href="' . esc_url( get_edit_post_link() ) . '"><strong>Edit</strong></a>';
+		}
+		echo '</p>';
 		the_content();
 		echo '</article>';
 
