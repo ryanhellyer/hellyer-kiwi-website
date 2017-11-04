@@ -1,0 +1,210 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+<link rel="stylesheet" href="http://localhost/wordpress/wp-content/themes/pixopoint-revived/style6.css" media="screen" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no" />
+	<!--[if lt IE 9]><script src="http://prsb.co/wp-content/themes/pressabl/scripts/html5.js" type="text/javascript"></script><![endif]-->
+	<meta name='robots' content='noindex,nofollow' />
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.2.5 - http://yoast.com/wordpress/seo/ -->
+<title>blitz.io | Ryan Hellyer</title>
+<meta name="description" content="I went on the hunt for a tool to let me DDOS my own site and provide graphs to show me how slow (or fast) it is under heavy load."/>
+<link rel="canonical" href="http://geek.ryanhellyer.net/2012/09/01/blitz-lo/" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Ryan Hellyer &raquo; blitz.io Comments Feed" href="http://geek.ryanhellyer.net/2012/09/01/blitz-lo/feed/" />
+<link rel='stylesheet' id='colorbox-css'  href='http://prsb.co/wp-content/plugins/simple-colorbox/themes/theme1/colorbox.css' type='text/css' media='screen' />
+<script type='text/javascript' src='http://prsb.co/wp-includes/js/jquery/jquery.js'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://geek.ryanhellyer.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://prsb.co/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.4.1" />
+<link rel='shortlink' href='http://geek.ryanhellyer.net/?p=2556' />
+
+
+<!-- PixoPoint Google Analytics v0.2 - http://pixopoint.com/products/google-analytics/ -->
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-2481610-5']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+<!-- Simple Colorbox Plugin v1.0.1 by Ryan Hellyer ... http://pixopoint.com/products/simple-colorbox/ -->
+
+<script>
+	jQuery(function($){
+		$("a[href$='jpg'],a[href$='jpeg'],a[href$='png'],a[href$='bmp'],a[href$='gif'],a[href$='JPG'],a[href$='JPEG'],a[href$='PNG'],a[href$='BMP'],a[href$='GIF']").colorbox({
+			maxWidth:'95%',
+			maxHeight:'95%',
+			opacity:'0.6',
+			rel:'group'
+		});
+	});
+</script></head>
+<body class="single single-post postid-2556 single-format-standard">
+
+<header id="header_wrapper">
+	<div id="header" class="wrapper">
+		<h1>
+			<a href="http://geek.ryanhellyer.net" title="Ryan Hellyer | WordPress ramblings">
+				Ryan
+				<span>Hellyer</span>
+			</a>
+		</h1>
+		<p>
+			WordPress geekiness.<br />
+			Plugins, code tips and more!
+		</p>
+		<img src="http://prsb.co/wp-content/themes/pixopoint-2/images/ryan-cut-small.png" />
+	</div>
+</header>
+
+<nav id="nav_wrapper">
+	<div id="nav">
+		<div class="wrapper menu-header"><ul id="menu-primary" class="menu"><li id="menu-item-2408" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2408"><a href="http://pressabl.hellyer.net.nz/geek/">Blog</a></li>
+<li id="menu-item-2456" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2456"><a href="http://geek.ryanhellyer.net/products/wordpress-plugins/">Plugins</a></li>
+<li id="menu-item-2409" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2409"><a href="http://geek.ryanhellyer.net/about/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-2462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2462"><a href="http://geek.ryanhellyer.net/services/">Services</a></li>
+</ul>
+</li>
+<li id="menu-item-2410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2410"><a href="http://geek.ryanhellyer.net/contact/">Contact</a></li>
+</ul></div>	</div>
+</nav>
+
+<div id="wrapper" class="wrapper">
+	<div id="contentwrapper">
+
+		<div id="maincontent">
+<div class="post" id="post-2556">
+		<h2 id="post_title">blitz.io</h2>
+	<p class="post_subheader">		Published September 1st, 2012 under <a href="http://geek.ryanhellyer.net/category/general/" title="View all posts in General" rel="category tag">General</a>			</p>
+	<div class="postcontent">
+		<p>I&#8217;ve been messing around with servers lately. Server administration has been the bane of my web development existence for quite some time now, but I&#8217;m slowly getting the hang of it now thanks to some excellent lessons from <a href="http://konstruktors.com/">Kaspars Dambis</a> and Simen Thorsrud.</p>
+<p>In the interests of kerbing my curiosity I went on the hunt for a tool to let me DDOS my own site and provide me with some nice little graphs to show me how slow (or fast) it is under heavy load. The tool I used was <a href="http://blitz.io/">blitz.io</a> which I found via <a href="http://ryanmccue.info/">Ryan McCue</a> and <a href="http://anthonycole.me/">Anthony Cole</a>.</p>
+<p>I knew the new server I had setup for <a href="http://ryanhellyer.net/">RyanHellyer.net</a> was running significantly faster than th server it had been on until recently, but I was still rather shocked to see the results. My old server was a 1 GB RAM VPS hosted at Uberhost.net; it was a bog-standard cPanel setup. My new server is a 512 MB RAM VPS hosted at <a href="http://linode.com/">linode.com</a> running NGINX and APC. Despite having half the RAM I still expected my new machine to outperform the old one. The final results however showed a rather spectacular change in performance.</p>
+<h3>Old Uberhost cPanel box</h3>
+<p>During the test I could not access the site at all. It totally locked up and was inaccessible. The report said 29 hits, 15 errors and 3098 timeouts. So basically, it only loaded 29 pages within a one minute test. 99% of the users attempting to visit the site failed to load the page.</p>
+<div id="attachment_2416" class="wp-caption aligncenter" style="width: 490px"><a href="http://prsb.co/6/files/2012/09/blitzlo-diha.jpg"><img class="size-medium wp-image-2416" title="blitz.io result for old ryanhellyer.net server" src="http://prsb.co/6/files/2012/09/blitzlo-diha-480x219.jpg" alt="" width="480" height="219" /></a><p class="wp-caption-text">Load test result for old ryanhellyer.net server</p></div>
+<h3>New Linode box</h3>
+<p>During the test I noticed a slight lag in the page when I attempted to load it, but nothing major. The results came back with 12108 hits, 142 errors and 355 timeouts. It maxed out at 962 concurrent users, but around 15% of the pages were being reported as timeouts. Up until 250 concurrent users there were no timeouts or errors at all. At 500 concurrent users, 1.7% of users were experiencing failed page loads.</p>
+<div id="attachment_2415" class="wp-caption aligncenter" style="width: 490px"><a href="http://prsb.co/6/files/2012/09/blitzlo-ryanhellyer-net.jpg"><img class="size-medium wp-image-2415" title="blitz.io result for ryanhellyer.net" src="http://prsb.co/6/files/2012/09/blitzlo-ryanhellyer-net-480x219.jpg" alt="" width="480" height="219" /></a><p class="wp-caption-text">blitz.io result for ryanhellyer.net</p></div>
+<h3>Conclusion #1</h3>
+<p>My old server can handle around 29 users per minute. New server can handle around 500 before user experience drops and still works even at 1000, albeit users will have to wait a few seconds for the page to load and occasionally they won&#8217;t load at all.</p>
+<h3>Conclusion #2</h3>
+<p>You should go sign up for an account at blitz.io. It&#8217;s great fun seeing how your site behaves under extreme load conditions, not to mention the practical uses in helping you find bottlenecks and potential problems that you may experience when your sites&#8217; traffic climbs.</p>
+	</div>
+</div>
+
+	
+	 
+<div id="respond_wrapper">
+<div id="respond">
+<h3>Leave a Reply</h3>
+<div class="cancel-comment-reply">
+	<small><a rel="nofollow" id="cancel-comment-reply-link" href="/2012/09/01/blitz-lo/#respond" style="display:none;">Click here to cancel reply.</a></small>
+</div>
+<form action="http://geek.ryanhellyer.net/wp-comments-post.php" method="post" id="commentform">
+<p>
+	<label for="author">Name (required)</label>
+	<input type="text" name="author" id="author" value="Ryan" size="22" tabindex="1" aria-required='true' />
+</p>
+
+<p>
+	<label for="email">Email (required)</label>
+	<input type="text" name="email" id="email" value="ryan@pixopoint.com" size="22" tabindex="2" aria-required='true' />
+</p>
+
+<p>
+	<label for="url">Website (optional:)</label>
+	<input type="text" name="url" id="url" value="http://ryanhellyer.net/" size="22" tabindex="3" />
+</p>
+
+<p>
+	<label for="url">Message:</label>
+	<textarea name="comment" id="comment" cols="58" rows="10" tabindex="4"></textarea>
+</p>
+
+<p>
+	<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+	<input type='hidden' name='comment_post_ID' value='2556' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>
+<input type="hidden" id="killer_value" name="killer_value" value="9431c87f273e507e6040fcb07dcb4509"/><noscript>Sorry, but you are required to use a javascript enabled brower to comment here.</noscript>
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" />
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+
+</form>
+
+</div>
+</div>
+
+<ul id="numeric_pagination"></ul>
+		</div>
+
+
+
+
+		<div id="sidebar">
+		<div class="widget-wrapper"><div class="widget">			<div class="textwidget"><p>
+I'm Ryan Hellyer; WordPress obsessed Kiwi former scientist living in beautiful Norway. To learn more about me, check out my <a href="http://geek.ryanhellyer.net/about/">about page</a> or head onto over to <a href="http://ryanhellyer.net/">my personal site</a>.
+</p></div>
+		</div></div><div class="widget-wrapper"><div class="widget"><h3><a href='http://twitter.com/ryanhellyer'>Twitter</a></h3><ul class="tweets">
+<li>@<a href='http://twitter.com/Krogsgard'>Krogsgard</a> Awesome. Hopefully the plugin does what you need it to :) <a href="http://twitter.com/ryanhellyer/statuses/243806586903089152" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+<li>@<a href='http://twitter.com/Krogsgard'>Krogsgard</a> Yep, anything uploaded through the media upload should be automatically sent to Amazon S3. <a href="http://twitter.com/ryanhellyer/statuses/243805876547366912" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+<li>@<a href='http://twitter.com/no_fear_inc'>no_fear_inc</a> Oh dear. I&#039;m not touching that with a pole then. That sounds horrid. Thanks for the heads up. <a href="http://twitter.com/ryanhellyer/statuses/243634298761138176" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+<li>@<a href='http://twitter.com/no_fear_inc'>no_fear_inc</a> Does it send the actual password itself? <a href="http://twitter.com/ryanhellyer/statuses/243633573020717056" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+<li>@<a href='http://twitter.com/no_fear_inc'>no_fear_inc</a> Thanks. Looks interesting. <a href="http://twitter.com/ryanhellyer/statuses/243622156414619648" class="timesince">1&nbsp;day&nbsp;ago</a></li>
+</ul>
+</div></div><div class="widget-wrapper"><div class="widget"><h3>Categories</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://geek.ryanhellyer.net/category/general/" title="View all posts filed under General">General</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://geek.ryanhellyer.net/category/plugins/" title="Posts about our WordPress plugins">Plugins</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://geek.ryanhellyer.net/category/portfolio/" title="View all posts filed under Portfolio">Portfolio</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://geek.ryanhellyer.net/category/templates/" title="Posts about WordPress themes, default templates and other template related items">Templates</a>
+</li>
+		</ul>
+</div></div>		</div>
+
+
+
+
+
+
+		<div class="clear"></div>
+	</div>
+
+
+	<footer id="footer" class="wrapper">
+		<p>
+		Copyright &copy; <a href="http://geek.ryanhellyer.net/" title="Ryan Hellyer">Ryan Hellyer</a>
+		2012. Design by SP.
+		</p>
+	</footer>
+</div>
+
+<script type='text/javascript' src='http://prsb.co/wp-content/plugins/simple-colorbox/scripts/jquery.colorbox-min.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var spam_destroyer = {"key":"342298a3451d9d07d07b8fe4e7cc0443"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://geek.ryanhellyer.net/wp-content/plugins/spam-destroyer/kill.js?ver=1.2'></script>
+<!-- Number of queries = 15. Time to execute = 0.109 -->
+</body>
+</html>
