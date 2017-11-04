@@ -122,8 +122,9 @@ class Multilingual_Press {
 
 		global $pagenow;
 
-		if ( in_array( $pagenow, array ( 'admin-post.php', 'admin-ajax.php' ) ) )
-			return TRUE;
+		if ( in_array( $pagenow, array( 'admin-post.php', 'admin-ajax.php' ), true ) ) {
+			return true;
+		}
 
 		if ( is_network_admin() )
 			return TRUE;
@@ -161,7 +162,7 @@ class Multilingual_Press {
 		$rel_path = dirname( plugin_basename( $this->plugin_file_path ) )
 				. $this->plugin_data->get( 'text_domain_path' );
 
-		load_plugin_textdomain( 'multilingualpress', FALSE, $rel_path );
+		load_plugin_textdomain( 'multilingual-press', FALSE, $rel_path );
 	}
 
 	/**
@@ -174,20 +175,19 @@ class Multilingual_Press {
 		/** @type Mlp_Assets $assets */
 		$assets = $this->plugin_data->get( 'assets' );
 
-		$l10n = array(
-			'mlpRelationshipControlL10n' => array(
-				'unsavedPostRelationships' => __(
-					'You have unsaved changes in your post relationships. The changes you made will be lost if you navigate away from this page.',
-					'multilingualpress'
-				),
-				'noPostSelected'           => __( 'Please select a post.', 'multilingualpress' ),
+		$admin_url = admin_url();
+		$admin_url = parse_url( $admin_url, PHP_URL_PATH );
+		$admin_url = esc_url( $admin_url );
+
+		$assets->add( 'mlp-admin', 'admin.js', array( 'backbone' ), array(
+			'mlpSettings' => array(
+				'urlRoot' => $admin_url,
 			),
-		);
-		$assets->add( 'mlp_admin_js', 'admin.js', array( 'jquery' ), $l10n );
+		) );
 
 		$assets->add( 'mlp_admin_css', 'admin.css' );
 
-		$assets->add( 'mlp_frontend_js', 'frontend.js', array( 'jquery' ) );
+		$assets->add( 'mlp-frontend', 'frontend.js' );
 
 		$assets->add( 'mlp_frontend_css', 'frontend.css' );
 
@@ -206,6 +206,17 @@ class Multilingual_Press {
 			$this->plugin_data->get( 'assets' )
 		);
 		add_action( 'plugins_loaded', array( $settings, 'setup' ), 8 );
+
+		$plugin_file = defined( 'MLP_PLUGIN_FILE' )
+			? plugin_basename( MLP_PLUGIN_FILE )
+			: $this->plugin_data->get( 'plugin_base_name' );
+
+		$url = network_admin_url( 'settings.php?page=mlp' );
+
+		$action_link = new Mlp_Network_Plugin_Action_Link( array(
+			'settings' => '<a href="' . esc_url( $url ) . '">' . __( 'Settings', 'multilingual-press' ) . '</a>',
+		) );
+		add_filter( "network_admin_plugin_action_links_$plugin_file", array( $action_link, 'add' ) );
 	}
 
 	/**
@@ -334,7 +345,7 @@ class Multilingual_Press {
 	public function check_for_user_errors_admin_notice() {
 
 		if ( TRUE == $this->check_for_errors() ) {
-			?><div class="error"><p><?php _e( 'You didn\'t setup any site relationships. You have to setup these first to use MultilingualPress. Please go to Network Admin &raquo; Sites &raquo; and choose a site to edit. Then go to the tab MultilingualPress and set up the relationships.' , 'multilingualpress' ); ?></p></div><?php
+			?><div class="error"><p><?php _e( 'You didn\'t setup any site relationships. You have to setup these first to use MultilingualPress. Please go to Network Admin &raquo; Sites &raquo; and choose a site to edit. Then go to the tab MultilingualPress and set up the relationships.' , 'multilingual-press' ); ?></p></div><?php
 		}
 	}
 

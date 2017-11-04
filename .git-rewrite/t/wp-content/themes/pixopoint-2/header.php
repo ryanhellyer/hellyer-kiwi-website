@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php wp_title( '|' ); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no" />
-	<!--[if lt IE 9]><script src="https://ryan.hellyer.kiwi/wp-content/themes/hellish-simplicity/scripts/html5.js" type="text/javascript"></script><![endif]-->
+	<!--[if lt IE 9]><script src="https://geek.hellyer.kiwi/wp-content/themes/hellish-simplicity/scripts/html5.js" type="text/javascript"></script><![endif]-->
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -22,11 +22,7 @@
 			Plugins, code tips and more!
 		</p>
                 <?php
-if ( is_ssl() ) {
-        $http = 'https://hellyer.kiwi';
-} else {
-        $http = 'http:////files.ryanhellyer.net';
-}
+$http = 'https://geek.hellyer.kiwi';
 
 ?>
                 <img src="<?php echo $http; ?>/wp-content/themes/pixopoint-2/images/ryan-cut-small.png" />

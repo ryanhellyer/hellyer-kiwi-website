@@ -56,7 +56,7 @@ class Yoast_GA_Dashboards_Collector {
 	 * Fetch the data from Google Analytics and store it
 	 */
 	public function aggregate_data() {
-		if ( is_numeric( $this->ga_profile_id ) ) {
+		if ( ! empty ( $this->ga_profile_id ) && is_numeric( $this->ga_profile_id ) ) {
 			// ProfileID is set
 
 			/**
@@ -456,7 +456,7 @@ class Yoast_GA_Dashboards_Collector {
 	private function log_error( $error ) {
 		if ( true == WP_DEBUG ) {
 			if ( function_exists( 'error_log' ) ) {
-				error_log( 'Google Analytics by Yoast (Dashboard API): ' . $error );
+				error_log( 'Google Analytics by MonsterInsights (Dashboard API): ' . $error );
 			}
 		}
 	}

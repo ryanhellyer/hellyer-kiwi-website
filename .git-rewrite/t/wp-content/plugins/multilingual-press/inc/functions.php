@@ -1,6 +1,20 @@
 <?php # -*- coding: utf-8 -*-
 
 /**
+ * Wrapper for the exit language construct.
+ *
+ * Introduced to allow for easy unit testing.
+ *
+ * @param int|string $status Exit status.
+ *
+ * @return void
+ */
+function mlp_exit( $status = '' ) {
+
+	exit( $status );
+}
+
+/**
  * Wrapper for Mlp_Helpers:is_redirect, which returns
  * a blog's redirect setting
  *
@@ -149,7 +163,7 @@ function mlp_get_blog_language( $blog_id = 0, $short = TRUE ) {
 	return Mlp_Helpers::get_blog_language( $blog_id, $short );
 }
 
-// TODO: Eventually remove the following function, with version 2.3.0 at the earliest
+// TODO: Eventually remove this, with version 2.2.0 + 4 at the earliest.
 if ( ! function_exists( 'get_blog_language' ) ) {
 
 	/**

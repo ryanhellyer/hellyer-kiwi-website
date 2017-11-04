@@ -1,14 +1,15 @@
-# Translation of Twenty Sixteen in German
-# This file is distributed under the same license as the Twenty Sixteen package.
+# Translation of Themes - Twenty Sixteen in German
+# This file is distributed under the same license as the Themes - Twenty Sixteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2015-12-06 18:40:00+0000\n"
+"PO-Revision-Date: 2016-10-09 18:50:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/1.0-alpha-1100\n"
-"Project-Id-Version: Twenty Sixteen\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: de\n"
+"Project-Id-Version: Themes - Twenty Sixteen\n"
 
 #. Theme Name of the plugin/theme
 msgid "Twenty Sixteen"
@@ -16,21 +17,21 @@ msgstr "Twenty Sixteen"
 
 #. Description of the plugin/theme
 msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
-msgstr "Twenty Sixteen ist die moderne Interpretation eines allzeit beliebten WordPress-Layouts – einer horizontalen Kopfzeile mit einer optionalen rechten Sidebar die gleichermaßen bei Blogs wie klassischen Websites perfekt funktioniert. Das Theme bietet Einstellungsmöglichkeiten für individuelle​ Farben mit schönen Standard-Farbvorlagen​, ein harmonisches, flexibles​ Raster mit einem Mobile-First-Ansatz und einem makellosen Schliff in jedem Detail. Twenty Sixteen sorgt für einen tollen Look ​bei​ all deinen WordPress-Websites."
+msgstr "Twenty Sixteen ist die moderne Interpretation eines allzeit beliebten WordPress-Layouts – einer horizontalen Kopfzeile mit einer optionalen rechten Seitenleiste, die gleichermaßen bei Blogs wie klassischen Websites perfekt funktioniert. Das Theme bietet Einstellungsmöglichkeiten für individuelle​ Farben mit schönen Standard-Farbvorlagen​, ein harmonisches, flexibles​ Raster mit einem Mobile-First-Ansatz und einem makellosen Schliff in jedem Detail. Twenty Sixteen sorgt für einen tollen Look ​bei​ all deinen WordPress-Websites."
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:184 template-parts/content.php:28
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "<span class=\"screen-reader-text\">&#8222;%s&#8220; </span>weiterlesen"
 
 #. translators: %s: Name of current post
 #: image.php:84 template-parts/content-page.php:37
 #: template-parts/content-search.php:28 template-parts/content-search.php:43
 #: template-parts/content-single.php:45 template-parts/content.php:49
 msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr "<span class=\"screen-reader-text\"> &#8220;%s&#8221;</span> bearbeiten"
+msgstr "<span class=\"screen-reader-text\">&#8222;%s&#8220;</span> bearbeiten"
 
-#. translators: %s: Name of current post
-#: inc/template-tags.php:184 template-parts/content.php:28
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr "<span class=\"screen-reader-text\">&#8220;%s&#8221; </span>weiterlesen"
-
-#: inc/customizer.php:246
+#: inc/customizer.php:283
 msgid "Red"
 msgstr "Rot"
 
@@ -38,7 +39,7 @@ msgstr "Rot"
 #: comments.php:31
 msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
-msgstr "Ein Gedanke zu &ldquo;%s&rdquo;"
+msgstr "Ein Gedanke zu &#8222;%s&#8220;"
 
 #: searchform.php:16
 msgctxt "submit button"
@@ -50,22 +51,22 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Suche&#160;&hellip;"
 
-#: searchform.php:13 searchform.php:14
+#: searchform.php:13
 msgctxt "label"
 msgid "Search for:"
 msgstr "Suche nach:"
-
-#: footer.php:17
-msgid "Footer Primary Menu"
-msgstr "Footer-Hauptmenü"
 
 #: footer.php:28
 msgid "Footer Social Links Menu"
 msgstr "Footer-Social-Links-Menü"
 
-#: functions.php:144
+#: footer.php:17
+msgid "Footer Primary Menu"
+msgstr "Primäres Footer-Menü"
+
+#: functions.php:158
 msgid "Add widgets here to appear in your sidebar."
-msgstr "Widgets hier hinzufügen, um sie in der Seitenleiste einzubauen."
+msgstr "Widgets hier hinzufügen, um sie in die Seitenleiste einzubauen."
 
 #: template-parts/content.php:14
 msgid "Featured"
@@ -73,7 +74,7 @@ msgstr "Empfohlen"
 
 #: template-parts/content-none.php:28
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "Es scheint, dass wir dir nicht weiterhelfen können. Möglicherweise hilft die Suche."
+msgstr "Es sieht so aus, als ob wir nicht das finden konnten, wonach du gesucht hast. Möglicherweise hilft eine Suche."
 
 #: template-parts/content-none.php:23
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
@@ -81,7 +82,7 @@ msgstr "Es gibt keine passenden Suchergebnisse. Bitte versuche es mit anderen Su
 
 #: template-parts/content-none.php:19
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Bist du bereit deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Hier geht es los</a>."
+msgstr "Bereit, deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Starte hier</a>."
 
 #: template-parts/content-none.php:13
 msgid "Nothing Found"
@@ -89,7 +90,7 @@ msgstr "Nichts gefunden"
 
 #: template-parts/biography.php:33
 msgid "View all posts by %s"
-msgstr "Zeige alle Artikel von %s"
+msgstr "Zeige alle Beiträge von %s"
 
 #: template-parts/biography.php:28
 msgid "Author:"
@@ -99,17 +100,17 @@ msgstr "Autor:"
 msgid "Previous post:"
 msgstr "Vorheriger Beitrag:"
 
+#: single.php:37
+msgid "Previous"
+msgstr "Zurück"
+
 #: single.php:35
 msgid "Next post:"
 msgstr "Nächster Beitrag:"
 
-#: single.php:37
-msgid "Previous"
-msgstr "Vorheriger Beitrag"
-
 #: single.php:34
 msgid "Next"
-msgstr "Nächster Beitrag"
+msgstr "Weiter"
 
 #: search.php:18
 msgid "Search Results for: %s"
@@ -149,37 +150,37 @@ msgctxt "Used before post author name."
 msgid "Author"
 msgstr "Autor"
 
-#: inc/customizer.php:256
+#: inc/customizer.php:293
 msgid "Yellow"
 msgstr "Gelb"
 
-#: inc/customizer.php:236
+#: inc/customizer.php:273
 msgid "Gray"
 msgstr "Grau"
 
-#: inc/customizer.php:226
+#: inc/customizer.php:263
 msgid "Dark"
 msgstr "Dunkel"
 
-#: inc/customizer.php:171
-msgid "Secondary Text Color"
-msgstr "Zweite Textfarbe"
+#: inc/customizer.php:172
+msgid "Main Text Color"
+msgstr "Primäre Textfarbe"
 
-#: inc/customizer.php:216
+#: inc/customizer.php:253
 msgid "Default"
 msgstr "Standard"
 
-#: inc/customizer.php:159
-msgid "Main Text Color"
-msgstr "Textfarbe"
+#: inc/customizer.php:184
+msgid "Secondary Text Color"
+msgstr "Sekundäre Textfarbe"
 
-#: inc/customizer.php:147
+#: inc/customizer.php:160
 msgid "Link Color"
 msgstr "Linkfarbe"
 
-#: inc/customizer.php:132
+#: inc/customizer.php:145
 msgid "Page Background Color"
-msgstr "Hintergrundfarbe"
+msgstr "Hintergrundfarbe des Inhalts"
 
 #: image.php:102 single.php:29
 msgctxt "Parent post link"
@@ -190,7 +191,7 @@ msgstr "<span class=\"meta-nav\">Veröffentlicht in</span><span class=\"post-tit
 msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
 msgstr "Twenty Sixteen benötigt mindestens WordPress-Version 4.4. Du verwendest Version %s. Bitte aktualisiere und versuche es erneut."
 
-#: inc/customizer.php:117
+#: inc/customizer.php:130
 msgid "Base Color Scheme"
 msgstr "Basis-Farbvorlage"
 
@@ -212,7 +213,7 @@ msgstr "Nächstes Bild"
 msgid "Previous Image"
 msgstr "Vorheriges Bild"
 
-#: header.php:45
+#: header.php:47
 msgid "Menu"
 msgstr "Menü"
 
@@ -220,18 +221,38 @@ msgstr "Menü"
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: functions.php:270
+#: functions.php:284
 msgid "expand child menu"
 msgstr "Untermenü anzeigen"
 
-#: functions.php:271
+#: functions.php:285
 msgid "collapse child menu"
 msgstr "Untermenü verbergen"
 
 #. translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:213
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:166
+msgid "Content Bottom 1"
+msgstr "Unterhalb des Inhalts 1"
+
+#: functions.php:168 functions.php:178
+msgid "Appears at the bottom of the content on posts and pages."
+msgstr "Erscheint unterhalb des Inhalts von Beiträgen und Seiten."
+
+#: functions.php:176
+msgid "Content Bottom 2"
+msgstr "Unterhalb des Inhalts 2"
+
+#. translators: If there are characters in your language that are not supported
 #. by Merriweather, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:189
+#: functions.php:203
 msgctxt "Merriweather font: on or off"
 msgid "on"
 msgstr "on"
@@ -239,42 +260,22 @@ msgstr "on"
 #. translators: If there are characters in your language that are not supported
 #. by Montserrat, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:194
+#: functions.php:208
 msgctxt "Montserrat font: on or off"
 msgid "on"
 msgstr "on"
 
-#. translators: If there are characters in your language that are not supported
-#. by Inconsolata, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:199
-msgctxt "Inconsolata font: on or off"
-msgid "on"
-msgstr "on"
-
-#: functions.php:152
-msgid "Content Bottom 1"
-msgstr "Unterhalb des Inhalts 1"
-
-#: functions.php:162
-msgid "Content Bottom 2"
-msgstr "Unterhalb des Inhalts 2"
-
-#: functions.php:154 functions.php:164
-msgid "Appears at the bottom of the content on posts and pages."
-msgstr "Erscheint unterhalb des Inhalts von Beiträgen und Seiten."
-
-#: functions.php:142
+#: functions.php:156
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:78 header.php:60
+#: functions.php:89 header.php:62
 msgid "Social Links Menu"
 msgstr "Social-Links-Menü"
 
-#: functions.php:77 header.php:49
+#: functions.php:88 header.php:51
 msgid "Primary Menu"
-msgstr "Hauptmenü"
+msgstr "Primäres Menü"
 
 #: footer.php:51
 msgid "Proudly powered by %s"
@@ -289,8 +290,8 @@ msgstr "Kommentare sind geschlossen."
 msgctxt "comments title"
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "Ein Gedanke zu &bdquo;%2$s&ldquo;"
-msgstr[1] "%1$s Gedanken zu &bdquo;%2$s&ldquo;"
+msgstr[0] "Ein Gedanke zu &#8222;%2$s&#8220;"
+msgstr[1] "%1$s Gedanken zu &#8222;%2$s&#8220;"
 
 #: archive.php:51 image.php:60 index.php:48 search.php:39
 #: template-parts/content-page.php:27 template-parts/content-single.php:29
@@ -308,22 +309,22 @@ msgstr "Vorherige Seite"
 
 #: 404.php:21
 msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "Es sieht so aus, als ob wir nicht das finden konnten, wonach du gesucht hast. Möglicherweise hilft eine Suche."
+msgstr "Wie es aussieht, wurde an dieser Stelle nichts gefunden. Möchtest du eine Suche starten?"
 
 #: 404.php:17
 msgid "Oops! That page can&rsquo;t be found."
-msgstr "Diese Seite konnte leider nicht gefunden werden."
+msgstr "Die Seite konnte leider nicht gefunden werden."
 
 #. Theme URI of the plugin/theme
 msgid "https://wordpress.org/themes/twentysixteen/"
-msgstr "https://wordpress.org/themes/twentysixteen/"
+msgstr "https://de.wordpress.org/themes/twentysixteen/"
 
 #. Author of the plugin/theme
 msgid "the WordPress team"
 msgstr "dem WordPress-Team"
 
-#. #-#-#-#-#  twentysixteen.pot (Twenty Sixteen 1.1)  #-#-#-#-#
+#. #-#-#-#-#  twentysixteen.pot (Twenty Sixteen 1.3)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:51
 msgid "https://wordpress.org/"
-msgstr "https://wordpress.org/"
+msgstr "https://de.wordpress.org/"

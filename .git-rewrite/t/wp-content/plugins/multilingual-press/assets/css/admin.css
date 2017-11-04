@@ -1,13 +1,15 @@
-.clear {
+.mlp-translation-meta-box:after, .mlp-taxonomy-fieldset-container:after, #mlp-quicklink-positions:after, .mlp-rc-settings:after {
+  content: '';
+  display: table;
   clear: both;
 }
 
-.mlp_titlediv {
+.mlp-titlediv {
   position: relative;
   margin-bottom: 10px;
 }
 
-.mlp_title {
+.mlp-title {
   padding: 3px 8px;
   width: 100%;
   height: 1.7em;
@@ -17,7 +19,7 @@
   font-size: 1.7em;
 }
 
-.mlp_name {
+.mlp-name {
   padding: 3px 8px;
   line-height: 150%;
   background: #fff;
@@ -25,7 +27,8 @@
   font-size: 1.2em;
 }
 
-.mlp_excerpt {
+.mlp-excerpt {
+  display: block;
   padding: 3px 8px;
   width: 100%;
   min-width: 100%;
@@ -36,25 +39,25 @@
   font-size: 1.2em;
 }
 
-.mlp_taxonomy_box {
+.mlp-taxonomy-box {
   float: left;
   margin: 5px;
   border: 1px solid #aaa;
   padding: 10px 20px;
 }
-.mlp_taxonomy_box legend {
+.mlp-taxonomy-box legend {
   display: block;
   margin: 0 auto;
-  font-weight: bold;
+  font-weight: 600;
   text-align: center;
 }
 
-.mlp_copy_button {
+.mlp-copy-post-button {
   float: left;
   position: relative;
   z-index: 10;
 }
-.mlp_copy_button:before {
+.mlp-copy-post-button:before {
   margin-right: 5px;
   line-height: 20px;
   color: #888;
@@ -67,7 +70,6 @@
   border-left: 4px solid #dd3d36;
   padding: 1px 12px;
   background: #f1f1f1;
-  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 .mlp-warning p {
@@ -93,7 +95,7 @@
   outline: 2px solid #8cf;
 }
 
-#mlp_quicklink_position_setting label {
+#mlp-quicklink-position-setting label {
   display: inline-block;
   margin-left: 10px;
   border: 1px solid #eee;
@@ -103,10 +105,10 @@
   color: #000;
   text-align: center;
 }
-#mlp_quicklink_position_setting label:hover {
+#mlp-quicklink-position-setting label:hover {
   background: #eee;
 }
-#mlp_quicklink_position_setting label:before {
+#mlp-quicklink-position-setting label:before {
   content: ' ';
   display: block;
   margin-bottom: 10px;
@@ -114,29 +116,18 @@
   height: 78px;
   background: url("../images/quicklinkpositions.png?20151206") no-repeat top right #fff;
 }
-#mlp_quicklink_position_setting label.quicklink-position-tr:before {
+#mlp-quicklink-position-setting label.quicklink-position-tr:before {
   background-position: top left;
 }
-#mlp_quicklink_position_setting label.quicklink-position-bl:before {
+#mlp-quicklink-position-setting label.quicklink-position-bl:before {
   background-position: bottom left;
 }
-#mlp_quicklink_position_setting label.quicklink-position-br:before {
+#mlp-quicklink-position-setting label.quicklink-position-br:before {
   background-position: bottom right;
-}
-
-#multilingualpress_settings h3 {
-  margin: 0;
-  padding: 7px 10px;
-}
-
-#inpsyde_multilingualpress_link textarea {
-  width: 98%;
 }
 
 .mlp-admin-feature-table,
 .mlp-extra-settings-box {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 2em 0 0;
   border: 1px solid #ddd;

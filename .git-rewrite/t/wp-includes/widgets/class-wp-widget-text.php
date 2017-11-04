@@ -23,9 +23,13 @@ class WP_Widget_Text extends WP_Widget {
 	 * @access public
 	 */
 	public function __construct() {
-		$widget_ops = array('classname' => 'widget_text', 'description' => __('Arbitrary text or HTML.'));
-		$control_ops = array('width' => 400, 'height' => 350);
-		parent::__construct('text', __('Text'), $widget_ops, $control_ops);
+		$widget_ops = array(
+			'classname' => 'widget_text',
+			'description' => __( 'Arbitrary text or HTML.' ),
+			'customize_selective_refresh' => true,
+		);
+		$control_ops = array( 'width' => 400, 'height' => 350 );
+		parent::__construct( 'text', __( 'Text' ), $widget_ops, $control_ops );
 	}
 
 	/**
@@ -46,7 +50,7 @@ class WP_Widget_Text extends WP_Widget {
 		$widget_text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 
 		/**
-		 * Filter the content of the Text widget.
+		 * Filters the content of the Text widget.
 		 *
 		 * @since 2.3.0
 		 * @since 4.4.0 Added the `$this` parameter.

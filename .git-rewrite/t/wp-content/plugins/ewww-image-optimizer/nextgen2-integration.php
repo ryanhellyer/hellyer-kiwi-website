@@ -1,25 +1,31 @@
 <?php 
-if ( ! class_exists('ewwwngg')) {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+if ( ! class_exists( 'ewwwngg' ) ) {
 class ewwwngg {
 	/* initializes the nextgen integration functions */
-	function ewwwngg() {
-		add_action('admin_init', array(&$this, 'admin_init'));
-		add_filter('ngg_manage_images_columns', array(&$this, 'ewww_manage_images_columns'));
-		add_filter('ngg_manage_images_number_of_columns', array(&$this, 'ewww_manage_images_number_of_columns'));
-		add_filter('ngg_manage_images_row_actions', array(&$this, 'ewww_manage_images_row_actions'));
-		add_action('ngg_manage_image_custom_column', array(&$this, 'ewww_manage_image_custom_column'), 10, 2);
-		if ( ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_noauto' ) ) {
-			add_action('ngg_added_new_image', array(&$this, 'ewww_added_new_image'));
+	public function __construct() {
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_filter( 'ngg_manage_images_columns', array( $this, 'ewww_manage_images_columns' ) );
+		add_filter( 'ngg_manage_images_number_of_columns', array( $this, 'ewww_manage_images_number_of_columns' ) );
+		add_filter( 'ngg_manage_images_row_actions', array( $this, 'ewww_manage_images_row_actions' ) );
+		add_action( 'ngg_manage_image_custom_column', array( $this, 'ewww_manage_image_custom_column' ), 10, 2 );
+		if ( ewww_image_optimizer_test_background_opt() ) {
+			add_action( 'ngg_added_new_image', array( $this, 'queue_new_image' ) );
+		} else {
+			add_action( 'ngg_added_new_image', array( $this, 'ewww_added_new_image' ) );
 		}
-		add_action('admin_action_ewww_ngg_manual', array(&$this, 'ewww_ngg_manual'));
-		add_action('admin_menu', array(&$this, 'ewww_ngg_bulk_menu'));
-		add_action( 'admin_head', array( &$this, 'ewww_ngg_bulk_actions_script' ) );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'ewww_ngg_bulk_script' ), 20 );
-		add_action('wp_ajax_bulk_ngg_preview', array(&$this, 'ewww_ngg_bulk_preview'));
-		add_action('wp_ajax_bulk_ngg_init', array(&$this, 'ewww_ngg_bulk_init'));
-		add_action('wp_ajax_bulk_ngg_filename', array(&$this, 'ewww_ngg_bulk_filename'));
-		add_action('wp_ajax_bulk_ngg_loop', array(&$this, 'ewww_ngg_bulk_loop'));
-		add_action('wp_ajax_bulk_ngg_cleanup', array(&$this, 'ewww_ngg_bulk_cleanup'));
+		add_action( 'admin_action_ewww_ngg_manual', array( $this, 'ewww_ngg_manual' ) );
+		add_action( 'admin_menu', array( $this, 'ewww_ngg_bulk_menu' ) );
+		add_action( 'admin_head', array( $this, 'ewww_ngg_bulk_actions_script' ) );
+		add_action( 'admin_enqueue_scripts', array( $this,'ewww_ngg_bulk_script' ), 20 );
+		add_action( 'wp_ajax_bulk_ngg_preview', array( $this, 'ewww_ngg_bulk_preview' ) );
+		add_action( 'wp_ajax_bulk_ngg_init', array( $this, 'ewww_ngg_bulk_init' ) );
+		add_action( 'wp_ajax_bulk_ngg_filename', array( $this, 'ewww_ngg_bulk_filename' ) );
+		add_action( 'wp_ajax_bulk_ngg_loop', array( $this, 'ewww_ngg_bulk_loop' ) );
+		add_action( 'wp_ajax_bulk_ngg_cleanup', array( $this, 'ewww_ngg_bulk_cleanup' ));
+		add_action( 'ngg_generated_image', array( $this, 'ewww_ngg_generated_image' ), 10, 2);
 	}
 
 	function admin_init() {
@@ -32,13 +38,42 @@ class ewwwngg {
 		if ( ! defined( 'NGGFOLDER' ) ) {
 			return;
 		}
-		add_submenu_page(NGGFOLDER, esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), esc_html__('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN), 'NextGEN Manage gallery', 'ewww-ngg-bulk', array (&$this, 'ewww_ngg_bulk_preview'));
+		add_submenu_page( NGGFOLDER, esc_html__( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ), esc_html__( 'Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN ), apply_filters( 'ewww_image_optimizer_manual_permissions', '' ), 'ewww-ngg-bulk', array ( &$this, 'ewww_ngg_bulk_preview' ) );
+	}
+	function queue_new_image( $image, $storage = null ) {
+		ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
+		if ( empty( $storage ) ) {
+			// creating the 'registry' object for working with nextgen
+			$registry = C_Component_Registry::get_instance();
+			// creating a database storage object from the 'registry' object
+			$storage  = $registry->get_utility( 'I_Gallery_Storage' );
+		}
+		// find the image id
+		if ( is_array( $image ) ) {
+			$image_id = $image['id'];
+                	$image = $storage->object->_image_mapper->find( $image_id, TRUE );
+		} else {
+			$image_id = $storage->object->_get_image_id( $image );
+		}
+		global $ewwwio_ngg2_background;
+		if ( ! class_exists( 'WP_Background_Process' ) ) {
+			require_once( EWWW_IMAGE_OPTIMIZER_PLUGIN_PATH . 'background.php' );
+		}
+		if ( ! is_object( $ewwwio_ngg2_background ) ) {
+			$ewwwio_ngg2_background = new EWWWIO_Ngg2_Background_Process();
+		}
+		ewwwio_debug_message( "backgrounding optimization for $image_id" );
+		$ewwwio_ngg2_background->push_to_queue( array(
+			'id' => $image_id,
+		) );
+		$ewwwio_ngg2_background->save()->dispatch();
+		set_transient( 'ewwwio-background-in-progress-ngg-' . $image_id, true, 24 * HOUR_IN_SECONDS );
+		ewww_image_optimizer_debug_log();
 	}
 
 	/* ngg_added_new_image hook */
 	function ewww_added_new_image ( $image, $storage = null ) {
 		ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
-		global $ewww_defer;
 		if ( empty( $storage ) ) {
 			// creating the 'registry' object for working with nextgen
 			$registry = C_Component_Registry::get_instance();
@@ -53,36 +88,49 @@ class ewwwngg {
 			$image_id = $storage->object->_get_image_id( $image );
 		}
 		ewwwio_debug_message( "image id: $image_id" );
-		if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-			ewww_image_optimizer_add_deferred_attachment( "nextgen2,$image_id" );
-			return;
-		}
 		// get an array of sizes available for the $image
 		$sizes = $storage->get_image_sizes();
 		// run the optimizer on the image for each $size
-		foreach ($sizes as $size) {
-			if ( $size === 'full' ) {
-				$full_size = true;
-			} else {
-				$full_size = false;
-			} 
-			// get the absolute path
-			$file_path = $storage->get_image_abspath($image, $size);
-			ewwwio_debug_message( "optimizing (nextgen): $file_path" );
-			// optimize the image and grab the results
-			$res = ewww_image_optimizer($file_path, 2, false, false, $full_size);
-			ewwwio_debug_message( "results {$res[1]}" );
-			// only if we're dealing with the full-size original
-			if ($size === 'full') {
-				// update the metadata for the optimized image
-				$image->meta_data['ewww_image_optimizer'] = $res[1];
-			} else {
-				$image->meta_data[$size]['ewww_image_optimizer'] = $res[1];
+		if ( ewww_image_optimizer_iterable( $sizes ) ) {
+			foreach ( $sizes as $size ) {
+				if ( $size === 'full' ) {
+					$full_size = true;
+				} else {
+					$full_size = false;
+				} 
+				// get the absolute path
+				$file_path = $storage->get_image_abspath($image, $size);
+				ewwwio_debug_message( "optimizing (nextgen): $file_path" );
+				// optimize the image and grab the results
+				$res = ewww_image_optimizer( $file_path, 2, false, false, $full_size );
+				ewwwio_debug_message( "results {$res[1]}" );
+				// only if we're dealing with the full-size original
+				if ( $size === 'full' ) {
+					// update the metadata for the optimized image
+					$image->meta_data['ewww_image_optimizer'] = $res[1];
+				} else {
+					$image->meta_data[ $size ]['ewww_image_optimizer'] = $res[1];
+				}
+				nggdb::update_image_meta( $image_id, $image->meta_data );
+				ewwwio_debug_message( 'storing results for full size image' );
 			}
-			nggdb::update_image_meta($image_id, $image->meta_data);
-			ewwwio_debug_message( 'storing results for full size image' );
 		}
 		return $image;
+	}
+
+	function ewww_ngg_generated_image( $image, $size ) {
+		// creating the 'registry' object for working with nextgen
+		$registry = C_Component_Registry::get_instance();
+		// creating a database storage object from the 'registry' object
+		$storage  = $registry->get_utility( 'I_Gallery_Storage' );
+		$filename = $storage->get_image_abspath( $image, $size );
+		if ( file_exists( $filename ) ) {
+			ewww_image_optimizer( $filename, 2 );
+			ewwwio_debug_message( "nextgen dynamic thumb saved: $filename" );
+			$image_size = ewww_image_optimizer_filesize( $filename );
+			ewwwio_debug_message( "optimized size: $image_size" );
+		}
+		ewww_image_optimizer_debug_log();
 	}
 
 	/* Manually process an image from the NextGEN Gallery */
@@ -107,7 +155,7 @@ class ewwwngg {
 		$storage  = $registry->get_utility('I_Gallery_Storage');
 		// get an image object
 		$image = $storage->object->_image_mapper->find($id);
-		$image = $this->ewww_added_new_image ($image, $storage);
+		$image = $this->ewww_added_new_image( $image, $storage );
 		// get the referring page, and send the user back there
 		$sendback = wp_get_referer();
 		$sendback = preg_replace('|[^a-z0-9-~+_.?#=&;,/:]|i', '', $sendback);
@@ -125,7 +173,7 @@ class ewwwngg {
 	/* ngg_manage_images_columns hook */
 	function ewww_manage_images_columns( $columns = null ) {
 		if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_JPEGTRAN' ) ) {
-			ewww_image_optimizer_tool_init();
+//			ewww_image_optimizer_tool_init();
 		}
 		if ( is_array ( $columns ) ) {
 			$columns['ewww_image_optimizer'] = esc_html__( 'Image Optimizer', EWWW_IMAGE_OPTIMIZER_DOMAIN );
@@ -165,24 +213,29 @@ class ewwwngg {
        		        $file_size = str_replace('B ', 'B', $file_size);
 			$valid = true;
 			// check to see if we have a tool to handle the mimetype detected
-	                switch($type) {
+			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_JPEGTRAN' ) ) {
+				ewww_image_optimizer_tool_init();
+				ewww_image_optimizer_notice_utils( 'quiet' );
+			}
+//			$skip = ewww_image_optimizer_skip_tools();
+	                switch ( $type ) {
         	                case 'image/jpeg':
 					// if jpegtran is missing, tell the user
-					if( ! EWWW_IMAGE_OPTIMIZER_JPEGTRAN && ! ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_jpg')) {
+					if( ! EWWW_IMAGE_OPTIMIZER_JPEGTRAN && ! $skip['jpegtran'] ) {
 						$valid = false;
 						$msg = '<br>' . wp_kses( sprintf(__('%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN), '<em>jpegtran</em>'), array( 'em' => array() ) );
 					}
 					break;
 				case 'image/png':
 					// if the PNG tools are missing, tell the user
-					if( ! EWWW_IMAGE_OPTIMIZER_PNGOUT && ! EWWW_IMAGE_OPTIMIZER_OPTIPNG && ! ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_png')) {
+					if( ! EWWW_IMAGE_OPTIMIZER_PNGOUT && ! EWWW_IMAGE_OPTIMIZER_OPTIPNG && ! $skip['optipng'] && ! $skip['pngout'] ) {
 						$valid = false;
 						$msg = '<br>' . wp_kses( sprintf(__('%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN), '<em>optipng/pngout</em>'), array( 'em' => array() ) );
 					}
 					break;
 				case 'image/gif':
 					// if gifsicle is missing, tell the user
-					if(!EWWW_IMAGE_OPTIMIZER_GIFSICLE && !ewww_image_optimizer_get_option('ewww_image_optimizer_cloud_gif')) {
+					if( ! EWWW_IMAGE_OPTIMIZER_GIFSICLE && ! $skip['gifsicle'] ) {
 						$valid = false;
 						$msg = '<br>' . wp_kses( sprintf(__('%s is missing', EWWW_IMAGE_OPTIMIZER_DOMAIN), '<em>gifsicle</em>'), array( 'em' => array() ) );
 					}
@@ -198,12 +251,14 @@ class ewwwngg {
 			// if we have a valid status, display it
 			if ( ! empty( $image->meta_data['ewww_image_optimizer'] ) ) {
 				$output .= esc_html( $image->meta_data['ewww_image_optimizer'] );
+			} elseif ( get_transient( 'ewwwio-background-in-progress-ngg-' . $image->pid ) ) {
+				$output .= esc_html( 'In Progress', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 			// otherwise, give the image size, and a link to optimize right now
 			} else {
 				$output .=  esc_html__('Not processed', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 			}
 			// display the image size
-			$output .= "<br>" . sprintf(esc_html__('Image Size: %s', EWWW_IMAGE_OPTIMIZER_DOMAIN), $file_size) . "<br>";
+			$output .= "<br>" . sprintf( esc_html__( 'Image Size: %s', EWWW_IMAGE_OPTIMIZER_DOMAIN ), $file_size ) . "<br>";
 			// display the optimization link with the appropriate text
 			$output .= $this->ewww_render_optimize_action_link( $id, $image );
 
@@ -216,12 +271,12 @@ class ewwwngg {
 	}
 
 	// output the action link for the manage gallery page
-	function ewww_render_optimize_action_link($id, $image) {
+	function ewww_render_optimize_action_link( $id, $image ) {
 		if ( ! current_user_can( apply_filters( 'ewww_image_optimizer_manual_permissions', '' ) ) )  {
 			return '';
 		}
 		$ewww_manual_nonce = wp_create_nonce( "ewww-manual-" . $image->pid );
-		if ( !empty( $image->meta_data['ewww_image_optimizer'] ) ) {
+		if ( ! empty( $image->meta_data['ewww_image_optimizer'] ) ) {
 			$link = sprintf("<a href=\"admin.php?action=ewww_ngg_manual&amp;ewww_manual_nonce=$ewww_manual_nonce&amp;ewww_force=1&amp;ewww_attachment_ID=%d\">%s</a>",
                                         $image->pid,
                                         esc_html__('Re-optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN));
@@ -261,7 +316,7 @@ class ewwwngg {
 		<div class="wrap">
                 <h1><?php esc_html_e('Bulk Optimize', EWWW_IMAGE_OPTIMIZER_DOMAIN);
 			if ( ewww_image_optimizer_get_option( 'ewww_image_optimizer_cloud_key' ) ) {
-				$verify_cloud = ewww_image_optimizer_cloud_verify( false ); 
+				ewww_image_optimizer_cloud_verify(); 
 				echo '<a id="ewww-bulk-credits-available" target="_blank" class="page-title-action" style="float:right;" href="https://ewww.io/my-account/">' . esc_html__( 'Image credits available:', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . ' ' . ewww_image_optimizer_cloud_quota() . '</a>';
 			}
 		echo '</h1>';
@@ -391,9 +446,9 @@ class ewwwngg {
 			$images = $wpdb->get_col( "SELECT pid FROM $wpdb->nggpictures ORDER BY sortorder ASC" );
 		}
 		// store the image IDs to process in the db
-		update_option( 'ewww_image_optimizer_bulk_ngg_attachments', $images );
+		update_option( 'ewww_image_optimizer_bulk_ngg_attachments', $images, false );
 		// add the EWWW IO script
-		wp_enqueue_script( 'ewwwbulkscript', plugins_url( '/includes/eio.js', __FILE__ ), array( 'jquery', 'jquery-ui-progressbar', 'jquery-ui-slider', 'postbox', 'dashboard' ) );
+		wp_enqueue_script( 'ewwwbulkscript', plugins_url( '/includes/eio.js', __FILE__ ), array( 'jquery', 'jquery-ui-progressbar', 'jquery-ui-slider', 'postbox', 'dashboard' ), EWWW_IMAGE_OPTIMIZER_VERSION );
 		//replacing the built-in nextgen styling rules for progressbar, partially because the bulk optimize page doesn't work without them
 		wp_deregister_style( 'ngg-jqueryui' );
 		wp_deregister_style( 'ngg-jquery-ui' );
@@ -421,18 +476,28 @@ class ewwwngg {
                 if ( ! wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' ) || ! current_user_can( $permissions ) ) {
 			wp_die( esc_html__( 'Access denied.', EWWW_IMAGE_OPTIMIZER_DOMAIN ) );
                 }
+		$output = array();
 		// toggle the resume flag to indicate an operation is in progress
                 update_option( 'ewww_image_optimizer_bulk_ngg_resume', 'true' );
 		$attachments = get_option( 'ewww_image_optimizer_bulk_ngg_attachments' );
+	        if ( ! is_array( $attachments ) && ! empty( $attachments ) ) {
+	                $attachments = unserialize( $attachments );
+	        }
+	        if ( ! is_array( $attachments ) ) {
+	                $output['error'] = esc_html__( 'Error retrieving list of images' );
+	                echo json_encode( $output );
+	                die();
+	        }
 		$id = array_shift( $attachments );
 		$file = $this->ewww_ngg_bulk_filename( $id );
 		// let the user know we are starting
                 $loading_image = plugins_url( '/images/wpspin.gif', __FILE__ );
 		if ( empty( $file ) ) {
-			echo "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
+			$output['results'] = "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
 		} else {
-			echo "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . " <b>$file</b>&nbsp;<img src='$loading_image' alt='loading'/></p>";
+			$output['results'] = "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . " <b>$file</b>&nbsp;<img src='$loading_image' alt='loading'/></p>";
 		}
+		echo json_encode( $output );
                 die();
         }
 
@@ -464,6 +529,14 @@ class ewwwngg {
 			echo json_encode( $output );
 			die();
                 }
+		session_write_close();
+		// find out if our nonce is on it's last leg/tick
+		$tick = wp_verify_nonce( $_REQUEST['ewww_wpnonce'], 'ewww-image-optimizer-bulk' );
+		if ( $tick === 2 ) {
+			$output['new_nonce'] = wp_create_nonce( 'ewww-image-optimizer-bulk' );
+		} else {
+			$output['new_nonce'] = '';
+		}
 		// find out what time we started, in microseconds
 		$started = microtime( true );
 		// get the list of attachments remaining from the db
@@ -476,8 +549,8 @@ class ewwwngg {
 		// get an image object
 		$image = $storage->object->_image_mapper->find( $id );
 		$image = $this->ewww_added_new_image( $image, $storage );
-		global $ewww_exceed;
-		if ( ! empty ( $ewww_exceed ) ) {
+		$ewww_status = get_transient( 'ewww_image_optimizer_cloud_status' );
+		if ( ! empty ( $ewww_status ) && preg_match( '/exceeded/', $ewww_status ) ) {
 			$output['error'] = esc_html__( 'License Exceeded', EWWW_IMAGE_OPTIMIZER_DOMAIN );
 			echo json_encode( $output );
 			die();
@@ -487,22 +560,25 @@ class ewwwngg {
 		// get an array of sizes available for the $image
 		$sizes = $storage->get_image_sizes();
 		// run the optimizer on the image for each $size
-		foreach ( $sizes as $size ) {
-			if ( $size === 'full' ) {
-				$output['results'] .= sprintf( esc_html__( 'Full size - %s', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "<br>", esc_html( $image->meta_data['ewww_image_optimizer'] ) );
-			} elseif ( $size === 'thumbnail' ) {
-				// output the results of the thumb optimization
-				$output['results'] .= sprintf( esc_html__( 'Thumbnail - %s', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "<br>", esc_html( $image->meta_data[ $size ]['ewww_image_optimizer'] ) );
-			} else {
-				// output savings for any other sizes, if they ever exist...
-				$output['results'] .= ucfirst( $size ) . " - " . esc_html( $image->meta_data[ $size ]['ewww_image_optimizer'] ) . "<br>";
+		if ( ewww_image_optimizer_iterable( $sizes ) ) {
+			foreach ( $sizes as $size ) {
+				if ( $size === 'full' ) {
+					$output['results'] .= sprintf( esc_html__( 'Full size - %s', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "<br>", esc_html( $image->meta_data['ewww_image_optimizer'] ) );
+				} elseif ( $size === 'thumbnail' ) {
+					// output the results of the thumb optimization
+					$output['results'] .= sprintf( esc_html__( 'Thumbnail - %s', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "<br>", esc_html( $image->meta_data[ $size ]['ewww_image_optimizer'] ) );
+				} else {
+					// output savings for any other sizes, if they ever exist...
+					$output['results'] .= ucfirst( $size ) . " - " . esc_html( $image->meta_data[ $size ]['ewww_image_optimizer'] ) . "<br>";
+				}
 			}
 		}
 		// outupt how much time we spent
 		$elapsed = microtime( true ) - $started;
 		$output['results'] .= sprintf( esc_html__( 'Elapsed: %.3f seconds', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . "</p>", $elapsed );
+		$output['completed'] = 1;
 		// store the list back in the db
-		update_option('ewww_image_optimizer_bulk_ngg_attachments', $attachments);
+		update_option('ewww_image_optimizer_bulk_ngg_attachments', $attachments, false);
 		if ( ! empty( $attachments ) ) {
 			$next_attachment = array_shift( $attachments );
 			$next_file = $this->ewww_ngg_bulk_filename( $next_attachment );
@@ -512,9 +588,10 @@ class ewwwngg {
 			} else {
 				$output['next_file'] =  "<p>" . esc_html__('Optimizing', EWWW_IMAGE_OPTIMIZER_DOMAIN) . "&nbsp;<img src='$loading_image' alt='loading'/></p>";
 			}
+		} else {
+			$output['done'] = 1;
 		}
-		echo json_encode( $output );
-		die();
+		die( json_encode( $output ) );
 	}
 
 	/* finish the bulk operation */
@@ -525,7 +602,7 @@ class ewwwngg {
                 }
 		// reset all the bulk options in the db
 		update_option('ewww_image_optimizer_bulk_ngg_resume', '');
-		update_option('ewww_image_optimizer_bulk_ngg_attachments', '');
+		update_option('ewww_image_optimizer_bulk_ngg_attachments', '', false);
 		// and let the user know we are done
 		echo '<p><b>' . esc_html__( 'Finished Optimization!', EWWW_IMAGE_OPTIMIZER_DOMAIN ) . '</b></p>';
 		die();
@@ -549,22 +626,16 @@ global $ewwwngg;
 $ewwwngg = new ewwwngg();
 }
 
-if ( ! empty( $_REQUEST['page'] ) && $_REQUEST['page'] !== 'ngg_other_options' && ! class_exists( 'EWWWIO_Gallery_Storage' ) && class_exists( 'Mixin' ) && class_exists( 'C_Gallery_Storage' ) && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_noauto' ) ) {
-//if ( ! class_exists( 'EWWWIO_Gallery_Storage' ) && class_exists( 'Mixin' ) && class_exists( 'C_Gallery_Storage' ) && ! ewww_image_optimizer_get_option( 'ewww_image_optimizer_noauto' ) ) {
+if ( ! empty( $_REQUEST['page'] ) && $_REQUEST['page'] !== 'ngg_other_options' && ! class_exists( 'EWWWIO_Gallery_Storage' ) && class_exists( 'Mixin' ) && class_exists( 'C_Gallery_Storage' ) ) {
 	class EWWWIO_Gallery_Storage extends Mixin {
 		function generate_image_size( $image, $size, $params = null, $skip_defaults = false ) {
 			ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
-			global $ewww_defer;
 			if ( ! defined( 'EWWW_IMAGE_OPTIMIZER_CLOUD' ) ) {
-				ewww_image_optimizer_init();
+				ewww_image_optimizer_cloud_init();
 			}
 			$success = $this->call_parent( 'generate_image_size', $image, $size, $params, $skip_defaults );
 			if ( $success ) {
 				$filename = $success->fileName;
-				if ( $ewww_defer && ewww_image_optimizer_get_option( 'ewww_image_optimizer_defer' ) ) {
-					ewww_image_optimizer_add_deferred_attachment( "file,$filename" );
-					return $saved;
-				}
 				ewww_image_optimizer( $filename );
 				ewwwio_debug_message( "nextgen dynamic thumb saved: $filename" );
 				$image_size = ewww_image_optimizer_filesize($filename);

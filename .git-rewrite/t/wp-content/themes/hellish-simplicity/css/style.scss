@@ -73,8 +73,7 @@ address {
 
 /* =Hidden sections
 -------------------------------------------------------------- */
-.assistive-text,
-.assistive-text {
+.screen-reader-text {
 	display: none;
 }
 
@@ -98,13 +97,18 @@ a:hover {
 	border-bottom: $border;
 	overflow: auto;
 
-	.hgroup {
+	.site-branding {
 		overflow: hidden;
 		margin: 2em auto 1em auto;
 		max-width: $max_page_width;
 	}
 
 	h1 {
+		font-size: 1em;
+		margin: 0;
+	}
+
+	#page-title {
 
 		float: left;
 		font-family: $font_sans_serif;
@@ -115,21 +119,18 @@ a:hover {
 		text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 		margin: 0 0 0 2%;
 
-		a {
-			color: #000;
+		color: #000;
 
-			&:hover {
-				text-decoration: none;
-			}
+		&:hover {
+			text-decoration: none;
+		}
 	
-			span {
-				color: $red_colour;
-			}
+		span {
+			color: $red_colour;
+		}
 	
-			small {
-				font-size: 65%;
-			}
-
+		small {
+			font-size: 65%;
 		}
 
 	}
@@ -179,6 +180,8 @@ h6 {
 
 }
 
+.page-title,
+.entry-title,
 h1 {
 	font-size: 2.4em;
 	margin: 1em 0 0.3em;
@@ -720,11 +723,12 @@ input[type=submit]:hover {
 	text-align: center;
 	font-family: $font_sans_serif;
 	font-size: $font_standard_size;
-}
 
-#site-info {
-	border-top: $border;
-	padding: 1.6em 0;
+	.site-info {
+		border-top: $border;
+		padding: 1.6em 0;
+	}
+
 }
 
 /* =Responsive
@@ -777,27 +781,27 @@ input[type=submit]:hover {
 -------------------------------------------------------------- */
 .rtl {
 
-	#site-header h1 {
+	.page-title {
 		float: right;
 		margin: 0 2% 0 0;
 	}
-	
+
 	#site-header h2 {
 		float: left;
 		margin: 1.5em 0 0 2%;
 	}
-	
+
 	#site-content {
 		padding: 0 3% 0 0;
 		float: right;
 	}
-	
+
 	#sidebar {
 		float: left;
 		border-right: $border;
 		border-left: none;
 	}
-	
+
 	#numeric-pagination li {
 		float: right;
 	}

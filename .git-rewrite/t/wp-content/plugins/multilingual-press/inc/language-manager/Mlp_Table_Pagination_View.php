@@ -87,22 +87,24 @@ class Mlp_Table_Pagination_View {
 
 		// Do not work twice.
 		if ( '' !== $this->pagination ) {
-			print $this->pagination;
+			echo $this->pagination;
+
 			return;
 		}
 
 		$this->set_context_vars();
 
-		$page_class        = 1 === $this->total_pages ? ' one-page' : '';
-		$this->pagination .= "<div class='tablenav-pages{$page_class}'>";
-		$this->pagination .= $this->get_item_count();
+		echo $this->pagination;
 
-		if ( 1 < $this->total_pages )
-			$this->pagination .= $this->get_pagination_links();
-
-		$this->pagination .= "</div>";
-
-		print $this->pagination;
+		$page_class = 1 === $this->total_pages ? ' one-page' : '';
+		?>
+		<div class="tablenav-pages<?php echo esc_attr( $page_class ); ?>">
+			<?php echo $this->get_item_count() ?>
+			<?php if ( 1 < $this->total_pages ) { ?>
+				<?php echo $this->get_pagination_links(); ?>
+			<?php } ?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -117,11 +119,13 @@ class Mlp_Table_Pagination_View {
 		$this->current_page = $this->data->get_current_page();
 		$this->current_url  = $this->get_current_url();
 
-		if ( $this->current_page === 1 )
+		if ( $this->current_page === 1 ) {
 			$this->disable_first = ' disabled';
+		}
 
-		if ( $this->current_page === $this->total_pages )
+		if ( $this->current_page === $this->total_pages ) {
 			$this->disable_last = ' disabled';
+		}
 	}
 
 	/**
@@ -152,13 +156,13 @@ class Mlp_Table_Pagination_View {
 			number_format_i18n( $this->total_pages )
 		);
 
-		return '<span class="paging-input">'
-			. sprintf(
-				_x( '%1$s of %2$s', 'paging', 'multilingualpress' ),
-				$this->current_page,
-				$total
-			)
-			. '</span>';
+		$paging = sprintf(
+			_x( '%1$s of %2$s', 'paging', 'multilingual-press' ),
+			number_format_i18n( $this->current_page ),
+			$total
+		);
+
+		return '<span class="paging-input">' . $paging . '</span>';
 	}
 
 	/**
@@ -170,7 +174,7 @@ class Mlp_Table_Pagination_View {
 
 		return $this->get_anchor(
 			$this->get_paged_url( $this->total_pages ),
-			esc_attr__( 'Go to the last page', 'multilingualpress' ),
+			__( 'Go to the last page', 'multilingual-press' ),
 			'last-page' . $this->disable_last,
 			'&raquo;'
 		);
@@ -187,7 +191,7 @@ class Mlp_Table_Pagination_View {
 
 		return $this->get_anchor(
 			$this->get_paged_url( $page ),
-			esc_attr__( 'Go to the next page', 'multilingualpress' ),
+			__( 'Go to the next page', 'multilingual-press' ),
 			'next-page' . $this->disable_last,
 			'&rsaquo;'
 		);
@@ -202,7 +206,7 @@ class Mlp_Table_Pagination_View {
 
 		return $this->get_anchor(
 			$this->get_paged_url( max( 1, $this->current_page -1 ) ),
-			esc_attr__( 'Go to the previous page', 'multilingualpress' ),
+			__( 'Go to the previous page', 'multilingual-press' ),
 			'prev-page' . $this->disable_first,
 			'&lsaquo;'
 		);
@@ -217,7 +221,7 @@ class Mlp_Table_Pagination_View {
 
 		return $this->get_anchor(
 			$this->get_paged_url( 1 ),
-			esc_attr__( 'Go to the first page', 'multilingualpress' ),
+			__( 'Go to the first page', 'multilingual-press' ),
 			'first-page' . $this->disable_first,
 			'&laquo;'
 		);
@@ -234,7 +238,13 @@ class Mlp_Table_Pagination_View {
 	 */
 	private function get_anchor( $url, $title, $class, $text ) {
 
-		return "<a class='$class' title='$title' href='$url'>$text</a>";
+		return sprintf(
+			'<a href="%2$s" class="%3$s" title="%4$s">%1$s</a>',
+			esc_html( $text ),
+			esc_url( $url ),
+			esc_attr( $class ),
+			esc_attr( $title )
+		);
 	}
 
 	/**
@@ -244,12 +254,12 @@ class Mlp_Table_Pagination_View {
 	 */
 	private function get_item_count() {
 
-		return '<span class="displaying-num">'
-			. sprintf(
-			_n( '1 item', '%s items', $this->total_items, 'multilingualpress' ),
+		$num = sprintf(
+			_n( '1 item', '%s items', (int) $this->total_items, 'multilingual-press' ),
 			number_format_i18n( $this->total_items )
-		)
-		. '</span>';
+		);
+
+		return '<span class="displaying-num">' . esc_html( $num ) . '</span>';
 	}
 
 	/**
@@ -260,12 +270,11 @@ class Mlp_Table_Pagination_View {
 	 */
 	private function get_paged_url( $page ) {
 
-		if ( 1 === $page )
-			$url = remove_query_arg( 'paged', $this->current_url );
-		else
-			$url = add_query_arg( 'paged', $page, $this->current_url );
+		if ( 1 === $page ) {
+			return remove_query_arg( 'paged', $this->current_url );
+		}
 
-		return esc_url( $url );
+		return add_query_arg( 'paged', $page, $this->current_url );
 	}
 
 	/**
@@ -278,6 +287,7 @@ class Mlp_Table_Pagination_View {
 		$url = set_url_scheme(
 			'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
 		);
+
 		// We use 'msg' as parameter internally. Not needed for pagination.
 		return remove_query_arg( 'msg', $url );
 	}

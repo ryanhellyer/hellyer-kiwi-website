@@ -153,7 +153,15 @@ final class MN_Reorder {
 	 * @param array $args    If not set, then uses $defaults instead
 	 */
 	public function __construct( $args = array() ) {
-
+		
+		// Get posts per page
+		$user_id = get_current_user_id();
+		$posts_per_page = get_user_meta( $user_id, 'reorder_items_per_page', true );
+		if ( ! is_numeric( $posts_per_page ) ) {
+			$posts_per_page = 50;
+		}
+		$offset = $posts_per_page - 2;
+		
 		// Parse arguments
 		$defaults = array(
 			'post_type'   => 'post',                     // Setting the post type to be reordered
@@ -163,11 +171,11 @@ final class MN_Reorder {
 			'final'       => '',                         // Initial text displayed before sorting code
 			'post_status' => 'publish',                  // Post status of posts to be reordered
 			'menu_label'  => __( 'Reorder', 'metronet-reorder-posts' ), //Menu label for the post type
-			'offset' => 48,
-			'posts_per_page' => 50
+			'offset' => $offset,
+			'posts_per_page' => $posts_per_page
 		);
 		$args = wp_parse_args( $args, $defaults );
-
+		
 		// Set variables
 		$this->post_type   = $args[ 'post_type' ];
 		$this->order       = $args[ 'order' ];;
@@ -185,6 +193,7 @@ final class MN_Reorder {
 		}
 		
 		// Add actions
+		add_filter( 'set-screen-option', array( $this, 'add_screen_option_save' ), 10, 3 );
 		add_action( 'wp_ajax_post_sort',   array( $this, 'ajax_save_post_order'  ) );
 		add_action( 'admin_menu',          array( $this, 'enable_post_sort' ), 10, 'page' );
 		add_action( 'metronet_reorder_posts_interface_' . $this->post_type, array( $this, 'output_interface' ) );
@@ -312,7 +321,7 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_styles() {
-		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20151204' );
+		wp_enqueue_style( 'reorderpages_style', REORDER_URL . '/css/admin.css', array(), '20160813' );
 	}
 
 	/**
@@ -324,8 +333,10 @@ final class MN_Reorder {
 	 * @global string $pagenow Used internally by WordPress to designate what the current page is in the admin panel
 	 */
 	public function print_scripts() {
-		wp_register_script( 'reorder_nested', REORDER_URL . '/scripts/jquery.mjs.nestedSortable.js', array( 'jquery-ui-sortable' ), '1.3.5', true );
-		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ), '20151101', true );
+		wp_enqueue_script( 'jquery-ui-touch-punch', REORDER_URL . '/scripts/jquery.ui.touch-punch.js', array( 'jquery-ui-sortable' ), '0.2.3', true );
+		wp_register_script( 'reorder_nested', REORDER_URL . '/scripts/jquery.mjs.nestedSortable.js', array( 'jquery-ui-touch-punch' ), '2.0.0', true );
+		
+		wp_enqueue_script( 'reorder_posts', REORDER_URL . '/scripts/sort.js', array( 'reorder_nested' ), '20160813', true );
 		wp_localize_script( 'reorder_posts', 'reorder_posts', array(
 			'action' => 'post_sort',
 			'expand' => esc_js( __( 'Expand', 'metronet-reorder-posts' ) ),
@@ -366,10 +377,41 @@ final class MN_Reorder {
 			);
 			$this->reorder_page = add_query_arg( array( 'page' => 'reorder-posts' ), admin_url( 'edit.php' ) );
 		}
+		add_action( "load-$hook", array( $this, 'add_screen_option' ) );
 		do_action( 'metronet_reorder_posts_add_menu_' . $post_type, $hook ); //Allow other plugin authors to add scripts/styles to our menu items
 		do_action( 'metronet_reorder_menu_url_' . $post_type, $this->reorder_page );
 		add_action( 'admin_print_styles-' . $hook,  array( $this, 'print_styles'     ) );
 		add_action( 'admin_print_scripts-' . $hook, array( $this, 'print_scripts'    ) );
+	}
+	
+	/**
+	 * Add screen option for setting items per page
+	 *
+	 * @author Ronald Huereca
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function add_screen_option() {
+		$args = array(
+			'label' => __( 'Items per Page', 'metronet_reorder_posts' ),
+			'default' => 50,
+			'option' => 'reorder_items_per_page'
+		);
+
+		add_screen_option( 'per_page', $args );
+	}
+	
+	/**
+	 * Saves the screen options setting
+	 *
+	 * @author Ronald Huereca
+	 * @since 2.3.0
+	 * @access public
+	 */
+	public function add_screen_option_save( $status, $option, $value ) {
+		if ( 'reorder_items_per_page' == $option ) return $value;
+		
+		return $status;
 	}
 	
 	/**
@@ -466,11 +508,33 @@ final class MN_Reorder {
 			//Output parent title
 			if( $children->have_posts() ) {
 				?>
-				<div><?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?><a href='#' style="float: right"><?php esc_html_e( 'Expand', 'metronet-reorder-posts' ); ?></a></div>
+				<div class="row">
+					<div class="expand row-action">
+						<span class="dashicons dashicons-arrow-right"></span>
+					</div><!-- .row-action -->
+					<div class="row-content">
+						<?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?>
+					</div><!-- .row-content -->
+				</div><!-- .row -->
 				<?php
 			} else {
 				?>
-				<div><?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?></div>
+				<div class="row">
+					<?php
+					$is_hierarchical = true;	
+					if( is_post_type_hierarchical( $post->post_type ) ) {
+						?>
+						<div class="row-action">
+						</div><!-- .row-action -->
+						<?php
+					} else {
+						$is_hierarchical = false;
+					}
+					?>
+					<div class="row-content <?php echo $is_hierarchical ? '' : 'non-hierarchical'; ?>">
+						<?php the_title(); ?><?php echo ( defined( 'REORDER_DEBUG' ) && REORDER_DEBUG == true ) ? ' - Menu Order:' . absint( $post->menu_order ) : ''; ?>
+					</div><!-- .row-content -->
+				</div><!-- .row -->
 				<?php
 			}
 			

@@ -1,9 +1,9 @@
 === MultilingualPress ===
-Contributors: inpsyde, toscho, Bueltge, nullbyte, hughwillfayle, paddelboot, tfrommen, Biont, dnaber-de
+Contributors: inpsyde, toscho, tfrommen, Bueltge, hughwillfayle, nullbyte, Biont, ChriCo, dnaber-de, paddelboot
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
-Requires at least: 4.0
-Tested up to: 4.4
-Stable tag: 2.3.2
+Requires at least: 4.2
+Tested up to: 4.7
+Stable tag: 2.5.0
 
 Create a fast translation network on WordPress multisite.
 
@@ -21,10 +21,6 @@ In contrast to most other translation plugins there is **no lock-in effect**: Wh
 will still work as separate sites without any data-loss or garbage output.
 
 Our **Language Manager** offers 174 languages, and you can edit them.
-
-We cannot guarantee free ad hoc support. Please be patient, we are a small team.
-You can follow our progress and development notices on our
-[developer blog](http://make.marketpress.com/multilingualpress/).
 
 = Features =
 
@@ -50,9 +46,13 @@ when you don't use widgets or a sidebar.
 without affecting the output of the front-end.
 - Show posts with incomplete translations in a dashboard widget.
 
+We cannot guarantee free ad hoc support. Please be patient, we are a small team.
+You can follow our progress and development notices on our
+[developer blog](http://make.multilingualpress.org).
+
 = Premium Support =
 
-We also offer [premium support](http://marketpress.com/product/multilingual-press-pro/) to save your time.
+We also offer [premium support](https://multilingualpress.org) to save your time.
 You get direct help from the developers of the plugin-and support the development.
 
 = WPML to MultilingualPress =
@@ -62,17 +62,16 @@ If you would like to switch from the WPML plugin to MultilingualPress, you can u
 an existing WPML multilingual site via XLIFF export/import for MultilingualPress.
 
 = Crafted by Inpsyde =
-The team at [Inpsyde](http://inpsyde.com) is engineering the Web since 2006. And yes, we also run that
-[marketplace for premium WordPress plugins and themes](https://marketpress.com).
+The team at [Inpsyde](http://inpsyde.com) is engineering the Web since 2006.
 
 == Installation ==
 
 = Requirements =
-- WordPress Multisite 4.0+.
+- WordPress Multisite 4.2+.
 - PHP 5.2.4, newer PHP versions will work faster.
 
 If you're new to WordPress multisite, you might find our [WordPress multisite installation
-tutorial](https://marketpress.com/2015/wordpress-multisite-installation/) helpful.
+tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/) helpful.
 
 Use the installer via back-end of your install or ...
 
@@ -88,11 +87,6 @@ need at least two sites with an assigned language.
 
 No, it will not. It manages relationships between sites and translations, but it doesn't change the content.
 
-= Where can I get additional language files? =
-
-You can find all official translation files in the according
-[GlotPress project](http://translate.marketpress.com/projects/plugins/multilingualpress).
-
 = Can I use MultilingualPress on a single-site installation? =
 
 That would require changes to the way WordPress stores post content. Other plugins do that; we think this is wrong,
@@ -101,7 +95,7 @@ because it creates a lock-in: you would lose access to your content after the pl
 = I'm new to WordPress multisite. Are there any tutorials to get me started? =
 
 Yes, just have a look at our [WordPress multisite installation
-tutorial](https://marketpress.com/2015/wordpress-multisite-installation/).
+tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/).
 
 == Screenshots ==
 
@@ -119,6 +113,109 @@ tutorial](https://marketpress.com/2015/wordpress-multisite-installation/).
 12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
 
 == Changelog ==
+
+= 2.5.0 =
+- Installation: Fix _Incorrect index name ''_ errors, see
+[issue #246](https://github.com/inpsyde/multilingual-press/issues/246).
+- Alternate Languages: Fix `hreflang` HTTP Headers and HTML `<link />` tags being provided on paged requests.
+- Advanced Translator: Fix saving two posts due to (auto-)draft behavior.
+- User Backend Language: Don't register module for WordPress 4.7+.
+- Sites: Fix having two active nav tabs.
+- General: Use `(get_)home_url()` for all front-end requests/URLs, see
+[issue #247](https://github.com/inpsyde/multilingual-press/issues/247), props ptrckvzn.
+- Nav Menu: Introduce CSS class for current language item, see
+[issue #243](https://github.com/inpsyde/multilingual-press/issues/243), props ChriCo.
+- Functions: Introduce filter for `Mlp_Helpers::show_linked_elements()` output, see
+[issue #228](https://github.com/inpsyde/multilingual-press/issues/228), props dasllama.
+
+= 2.4.8 =
+- Install/Uninstall: Prevent potential PHP notice due to deprecated `wp_get_sites()` function, see
+[issue #229](https://github.com/inpsyde/multilingual-press/issues/229) and
+[issue #236](https://github.com/inpsyde/multilingual-press/issues/236).
+- Language Manager: Fix HTTP code of _Chinese (Singapore)_, see
+[issue #232](https://github.com/inpsyde/multilingual-press/issues/232).
+- Language Manager: Fix HTTP code of _French (Switzerland)_, see
+[issue #233](https://github.com/inpsyde/multilingual-press/issues/233).
+- Redirect: Fix priority of language-only redirect matches, see
+[issue #234](https://github.com/inpsyde/multilingual-press/issues/234).
+- Post Translator: Prevent potential update of wrong posts, props 082net.
+
+= 2.4.7 =
+- CSS: Use font weight "600" instead of "bold", see
+[Native Fonts in 4.6](https://make.wordpress.org/core/2016/07/07/native-fonts-in-4-6/).
+- Redirect: Fix user setting not being respected, see
+[issue #227](https://github.com/inpsyde/multilingual-press/issues/227).
+
+= 2.4.6 =
+- Post Translator: Fix translations not being saved, see
+[issue #219](https://github.com/inpsyde/multilingual-press/issues/219).
+- Advanced Translator: Fix just-in-place translation not working, see
+[issue #220](https://github.com/inpsyde/multilingual-press/issues/220).
+
+= 2.4.5 =
+- Improve CopyPost script, see [issue #214](https://github.com/inpsyde/multilingual-press/issues/214).
+
+= 2.4.4 =
+- Fix HTTP redirection even though the user disabled it, see
+[issue #218](https://github.com/inpsyde/multilingual-press/issues/218).
+- JavaScript: Fix array check.
+
+= 2.4.3 =
+- Fix missing flag for the current site in the Language Switcher widget due to a regression introduced in
+MultilingualPress 2.4.0, see [issue #212](https://github.com/inpsyde/multilingual-press/issues/212).
+- Fix stylesheet not being enqueued when using the Language Switcher widget only (i.e., no Quicklinks) due to a
+regression introduced in MultilingualPress 2.4.0, see
+[issue #213](https://github.com/inpsyde/multilingual-press/issues/213).
+
+= 2.4.2 =
+- Fix incorrect styling due to a regression introduced in MultilingualPress 2.4.0, see
+[issue #208](https://github.com/inpsyde/multilingual-press/issues/208).
+- Fix incorrect Language Switcher form markup due to a regression introduced in MultilingualPress 2.4.0, see
+[issue #209](https://github.com/inpsyde/multilingual-press/issues/209), props MBD.berlin.
+
+= 2.4.1 =
+- Fix potentially incorrect type hint, see [issue #204](https://github.com/inpsyde/multilingual-press/issues/204), props
+tyrann0us.
+- Fix MultilinguaPress JavaScript settings not being available when using minified JavaScript files, see
+[issue #205](https://github.com/inpsyde/multilingual-press/issues/205), props kraftner.
+
+= 2.4.0 =
+- Overall improvement of nonce usage.
+- Rename plugin text domain, and adapt gettext calls and translations files.
+- When creating a new site, the language is set to the default site language.
+- When the site language is changed, the MultilingualPress language select adapts to this.
+- Improve _clearfix_ usage, props tiagoschenkel.
+- Complete JavaScript refactor, see [issue #168](https://github.com/inpsyde/multilingual-press/issues/168).
+- Refactor and improve the post translator's "Copy source post" functionality, see
+[issue #140](https://github.com/inpsyde/multilingual-press/issues/140).
+- Indicate if "Copy source post" button was used, see
+[issue #169](https://github.com/inpsyde/multilingual-press/issues/169).
+- Fire the `switch_theme` action when a site has been duplicated.
+- Fix term relation not being deleted when term is deleted.
+- Fix dynamic CPT permalinks (due to regression during merge).
+- Add filter for remote post search minimum input length, see
+[issue #193](https://github.com/inpsyde/multilingual-press/issues/193).
+- Sort remote post search results by relevance.
+- Improve CPT translator: allow translation for all editable post types, see
+[issue #184](https://github.com/inpsyde/multilingual-press/issues/184), props kraftner.
+- Use the full slug when copying post data, see [issue #195](https://github.com/inpsyde/multilingual-press/issues/195),
+props luisarn.
+- Improve (i.e., prepare/escape) several MySQL queries, props vaurdan.
+- Introduce `get_term_by_term_taxonomy_id` cache for term translator, props vaurdan.
+- Replace an uncached, direct MySQL query with a `get_posts()` call, props vaurdan.
+- Lots of
+[late](https://vip.wordpress.com/documentation/best-practices/security/validating-sanitizing-escaping/#always-escape-late)
+[escaping](https://vip.wordpress.com/2014/06/20/the-importance-of-escaping-all-the-things/).
+- [Implement](https://make.wordpress.org/core/?p=17066) [selective refresh](https://make.wordpress.org/core/?p=16546)
+support for the Language Switcher widget.
+- Adapt the Term Translator to the new Edit Tag admin page introduced in WordPress 4.5.0.
+- Use the new `network_site_new_form` action hook (where available) instead of injecting markup with jQuery. Yay!
+- Delete the according Language nav menu items when a site is deleted.
+- Improve site language(s) on network settings pages.
+- Full JavaScript unit test coverage, see [pull request #201](https://github.com/inpsyde/multilingual-press/pull/201).
+- Add the MultilingualPress settings page link to the plugin list in the WordPress Network Admin.
+- Fix `hreflang` links and headers, see [issue #202](https://github.com/inpsyde/multilingual-press/issues/202), props
+jasuja.
 
 = 2.3.2 =
 - Fix leftover entry from site option included in languages data, see
@@ -314,7 +411,7 @@ later.
 - Improved German translation.
 - Made all text domain references static strings.
 - Unify hook names. **Developers: we will change our API completely in version 1.2.** If you have
-  any questions, please [contact us](http://marketpress.com/contact/) before you write new code.
+  any questions, please [contact us](http://inpsyde.com/#contact) before you write new code.
 - Added a language list in `inc/language-list.php` to get languages in native and English writing by ISO codes.
 - Added a helper class `Mlp_Db_Replace` to update multiple tables and columns at once.
 - Many minor stability and performance improvements.

@@ -58,8 +58,9 @@ class Mlp_Save_Post_Request_Validator implements Mlp_Request_Validator_Interface
 
 		$post = get_post( $post_id );
 
-		if ( in_array( $post->post_status, array( 'publish', 'draft', 'private', 'auto-draft' ) ) )
-			return FALSE;
+		if ( in_array( $post->post_status, array( 'publish', 'draft', 'private', 'auto-draft' ), true ) ) {
+			return false;
+		}
 
 		/* Auto-drafts are sent as revision with a status 'inherit'.
 		 * We have to inspect the $_POST array to distinguish them from real
@@ -72,9 +73,6 @@ class Mlp_Save_Post_Request_Validator implements Mlp_Request_Validator_Interface
 		if ( 'revision' !== $post->post_type )
 			return FALSE;
 
-		if ( empty ( $_POST[ 'original_post_status' ] ) )
-			return TRUE;
-
-		return 'auto-draft' !== $_POST[ 'original_post_status' ];
+		return 'auto-draft' !== filter_input( INPUT_POST, 'original_post_status' );
 	}
 }

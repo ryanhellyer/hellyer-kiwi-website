@@ -102,7 +102,7 @@ class Mlp_Network_Site_Settings_Controller implements Mlp_Updatable {
 
 		$url = add_query_arg( 'msg', 'updated', $_POST[ '_wp_http_referer' ] );
 		wp_safe_redirect( $url );
-		exit;
+		mlp_exit();
 	}
 
 	/**
@@ -213,7 +213,7 @@ class Mlp_Network_Site_Settings_Controller implements Mlp_Updatable {
 		if ( empty ( $_GET[ 'msg' ] ) or 'updated' !== $_GET[ 'msg' ] )
 			return;
 
-		$msg    = esc_html__( 'Settings saved.', 'multilingualpress' );
+		$msg    = esc_html__( 'Settings saved.', 'multilingual-press' );
 		$notice = new Mlp_Admin_Notice( $msg, array( 'class' => 'updated' ) );
 		$notice->show();
 	}

@@ -28,13 +28,29 @@ class Mlp_Term_Translation_Selector {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function get_fieldset_id() {
+
+		return 'mlp_term_translation';
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function print_fieldset_id() {
 
-		print 'mlp_term_translation';
+		echo $this->get_fieldset_id();
 
 		return TRUE;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_title() {
+
+		return empty( $this->related_sites ) ? '' : $this->presenter->get_group_title();
 	}
 
 	/**
@@ -42,10 +58,7 @@ class Mlp_Term_Translation_Selector {
 	 */
 	public function print_title() {
 
-		if ( empty ( $this->related_sites ) )
-			return FALSE;
-
-		print $this->presenter->get_group_title();
+		echo $this->get_title();
 
 		return TRUE;
 	}
@@ -63,26 +76,29 @@ class Mlp_Term_Translation_Selector {
 
 		$this->print_style();
 		?>
-		<table class="mlp_term_selections">
+		<table id="mlp-term-translations">
 			<?php foreach ( $this->related_sites as $site_id => $language ) : ?>
 				<?php
-				$key = $this->presenter->get_key_base( $site_id );
-				$label_id = $this->get_label_id( $key );
-				$terms = $this->presenter->get_terms_for_site( $site_id );
-				$current_term = $this->get_current_term( $site_id );
+				$key                = $this->presenter->get_key_base( $site_id );
+				$label_id           = $this->get_label_id( $key );
+				$terms              = $this->presenter->get_terms_for_site( $site_id );
+				$current_term       = $this->get_current_term( $site_id );
 				$empty_option_value = $current_term > 0 ? 0 : -1;
 				?>
 				<tr>
 					<th>
-						<label for="<?php print $label_id; ?>"><?php echo $language; ?></label>
+						<label for="<?php echo esc_attr( $label_id ); ?>"><?php echo esc_html( $language ); ?></label>
 					</th>
 					<td>
 						<?php if ( empty( $terms ) ) : ?>
 							<?php echo $this->get_no_terms_found_message( $site_id ); ?>
 						<?php else : ?>
-							<select name="<?php echo $key; ?>" id="<?php echo $label_id; ?>" autocomplete="off">
-								<option value="<?php echo $empty_option_value; ?>" class="mlp_empty_option">
-									<?php esc_html_e( 'No translation', 'multilingualpress' ); ?>
+							<select
+								name="<?php echo esc_attr( $key ); ?>"
+								id="<?php echo esc_attr( $label_id ); ?>"
+								autocomplete="off">
+								<option value="<?php echo esc_attr( $empty_option_value ); ?>" class="mlp_empty_option">
+									<?php esc_html_e( 'No translation', 'multilingual-press' ); ?>
 								</option>
 								<?php $this->print_term_options( $terms, $current_term, $site_id ); ?>
 							</select>
@@ -117,7 +133,7 @@ class Mlp_Term_Translation_Selector {
 		$taxonomy_object = get_taxonomy( $taxonomy_name );
 		$text = isset( $taxonomy_object->labels->not_found )
 			? esc_html( $taxonomy_object->labels->not_found )
-			: esc_html__( 'No terms found.', 'multilingualpress' );
+			: esc_html__( 'No terms found.', 'multilingual-press' );
 
 		return sprintf( '<p><a href="%1$s">%2$s</a></p>', $url, $text );
 	}
@@ -167,26 +183,20 @@ class Mlp_Term_Translation_Selector {
 	private function print_style() {
 		?>
 		<style>
-			#<?php $this->print_fieldset_id(); ?> {
-				margin: 1em 0;
-			}
-			#<?php $this->print_fieldset_id(); ?> legend {
-				font-weight: bold;
-			}
-			.mlp_term_selections th {
+			#mlp-term-translations th {
 				text-align: right;
 			}
-			.mlp_term_selections select {
+			#mlp-term-translations select {
 				width: 20em;
 			}
 			.mlp_empty_option {
 				font-style: italic;
 			}
-			.mlp_term_selections th, .mlp_term_selections td {
+			#mlp-term-translations th, #mlp-term-translations td {
 				padding: 0 5px;
+				width: auto;
 				vertical-align: middle;
 				font-weight: normal;
-				width: auto;
 			}
 		</style>
 	<?php

@@ -19,28 +19,37 @@ class Mlp_Relationship_Control_Ajax_Search {
 	 * @param Mlp_Relationship_Control_Data $data
 	 */
 	public function __construct( Mlp_Relationship_Control_Data $data ) {
+
 		$this->data = $data;
+	}
+
+	public function get_formatted_results() {
+
+		$results = $this->data->get_search_results();
+
+		return $this->format_results( $results );
 	}
 
 	public function render() {
 
-		$results = $this->data->get_search_results();
-
-		print $this->format_results( $results );
-
-		if ( defined( 'DOING_AJAX') && DOING_AJAX )
-			die;
+		echo $this->get_formatted_results();
 	}
 
-	public function show_search_results()
-	{
+	public function send_response() {
 
-		$results = $this->data->get_search_results();
+		wp_send_json_success( array(
+			'html'         => $this->get_formatted_results(),
+			'remoteSiteID' => $this->data->get_remote_site_id(),
+		) );
+	}
 
-		print $this->format_results( $results );
+	public function show_search_results() {
 
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX )
-			die;
+		$this->render();
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			mlp_exit();
+		}
 	}
 
 	/**
@@ -51,18 +60,18 @@ class Mlp_Relationship_Control_Ajax_Search {
 
 		if ( empty ( $results ) )
 			return '<li>'
-			. esc_html__( 'Nothing found.', 'multilingualpress' )
+			. esc_html__( 'Nothing found.', 'multilingual-press' )
 			. '</li>';
 
 		$out      = '';
-		$blog_id  = $this->data->get_remote_blog_id();
+		$site_id  = $this->data->get_remote_site_id();
 		$results  = $this->prepare_titles( $results );
 
 		/** @var WP_Post $result */
 		foreach ( $results as $result ) {
 
-			$id     = "id_{$blog_id}_$result->ID";
-			$name   = 'mlp_add_post[' . $blog_id . ']';
+			$id     = "id_{$site_id}_$result->ID";
+			$name   = 'mlp_add_post[' . $site_id . ']';
 			$status = $this->get_translated_status( $result->post_status );
 
 			$out .= "<li><label for='$id'>"

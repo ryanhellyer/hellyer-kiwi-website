@@ -1,9 +1,12 @@
 === Metro Share ===
-Contributors: kasparsd, ryanhellyer, metronet, ronalfy
+Contributors: kasparsd, ryanhellyer, metronet, ronalfy, PerS
 Donate link: http://www.metronet.no/
 Tags: share, icons, metronet, sharing
 Requires at least: 3.6
-Stable tag: 0.5.8
+Tested up to: 4.7
+Stable tag: 0.5.10
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Super fast and super customizable social sharing
 
@@ -12,10 +15,14 @@ Super fast and super customizable social sharing
 Super fast and super customizable social sharing. Adds Facebook, Twitter, Google+, LinkedIn and Email icons to your posts and pages.
 
 = Extension plugins =
-* <a href="http://soderlind.no/metro-share-social-fonts/">Metro Share Social Fonts</a>
+
+* <a href="https://wordpress.org/plugins/metro-share-social-fonts/">Metro Share Social Fonts</a>
 * <a href="https://geek.hellyer.kiwi/plugins/metro-share-remover/">Metro Share Remover</a>
 * <a href="https://geek.hellyer.kiwi/2013/04/03/metro-share-styles/">Metro Share Styles</a>
 
+= GitHub =
+
+The files are also [available at GitHub](https://github.com/soderlind/metro-share)
 
 == Installation ==
 
@@ -40,6 +47,13 @@ The plugin is provided with CSS by default, but you can unhook this and add your
 * A. This plugin is intended for use by developers. The plugin is intended to be as extensible. Most changes you might like to make can be achieved via a few lines in a short custom plugin (or in your theme).
 
 == Changelog ==
+
+= 0.5.10 =
+* Tested & found compatible with WP 4.7.
+
+= 0.5.9 (30/8/2016) =
+* Update plugin for [WordPress Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/).
+* Tested & found compatible with WP 4.6.
 
 = 0.5.8 (4/1/2015) =
 * Fixed critical bug affecting people using do_action( 'metroshare' )

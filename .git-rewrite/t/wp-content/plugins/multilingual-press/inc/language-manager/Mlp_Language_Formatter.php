@@ -91,10 +91,11 @@ class Mlp_Language_Formatter {
 	 * @return string
 	 */
 	private function get_rtl_checkbox( $value, $id ) {
+
 		return sprintf(
-			'<input type="checkbox" name="languages[%1$d][is_rtl]" value="1" %2$s />',
+			'<input type="checkbox" name="languages[%d][is_rtl]" value="1"%s>',
 			$id,
-			checked( $value, 1, FALSE )
+			checked( $value, 1, false )
 		);
 	}
 
@@ -114,17 +115,26 @@ class Mlp_Language_Formatter {
 
 	/**
 	 * @param $name
+	 *
 	 * @return string
 	 */
 	private function get_size( $name ) {
 
-		$num = 5;
+		switch ( $name ) {
+			case 'english_name':
+			case 'native_name':
+			case 'custom_name':
+				$num = 20;
+				break;
 
-		if ( in_array( $name, array ( 'english_name', 'native_name', 'custom_name' ) ) )
-			$num = 20;
+			case 'text_direction':
+			case 'iso_639_2':
+				$num = 3;
+				break;
 
-		if ( in_array( $name, array ( 'text_direction', 'iso_639_2' ) ) )
-			$num = 3;
+			default:
+				$num = 5;
+		}
 
 		return " size='$num'";
 	}

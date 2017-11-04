@@ -57,7 +57,7 @@ class Mlp_Network_Site_Settings {
 
 		$this->set_pagenow();
 
-		if ( ! empty( $pagenow ) && in_array( $pagenow, $this->targets ) ) {
+		if ( ! empty( $pagenow ) && in_array( $pagenow, $this->targets, true ) ) {
 			add_action( 'network_admin_notices', array( $this, 'start_buffer' ) );
 		}
 	}
@@ -101,7 +101,7 @@ class Mlp_Network_Site_Settings {
 
 			$page = $marked[1];
 
-			$content = $marked[0] . $marked[2];
+			$content = str_replace( 'nav-tab-active', '', $marked[0] . $marked[2] );
 		}
 
 		$closing_tag = '</' . $this->get_heading_level() . '>';

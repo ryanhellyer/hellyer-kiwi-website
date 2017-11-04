@@ -257,24 +257,27 @@ class Mlp_Helpers {
 	) {
 
 		if ( empty( $element_id ) )
-			return new WP_Error( 'mlp_empty_custom_element', __( 'Empty Element', 'multilingualpress' ) );
+			return Mlp_WP_Error_Factory::create(
+				'mlp_empty_custom_element',
+				__( 'Empty Element', 'multilingual-press' )
+			);
 
 		if ( empty( $type ) )
-			return new WP_Error( 'mlp_empty_custom_type', __( 'Empty Type', 'multilingualpress' ) );
+			return Mlp_WP_Error_Factory::create( 'mlp_empty_custom_type', __( 'Empty Type', 'multilingual-press' ) );
 
 		if ( empty ( $hook ) || ! is_callable( $hook ) )
-			return new WP_Error( 'mlp_empty_custom_hook', __( 'Invalid Hook', 'multilingualpress' ) );
+			return Mlp_WP_Error_Factory::create( 'mlp_empty_custom_hook', __( 'Invalid Hook', 'multilingual-press' ) );
 
 		// set the current element in the mlp class
 		$languages    = mlp_get_available_languages();
-		$current_blog = get_current_blog_id();
+		$current_blog_id = get_current_blog_id();
 
 		if ( 0 == count( $languages ) )
 			return NULL;
 
 		foreach ( $languages as $language_id => $language_name ) {
 
-			if ( $current_blog == $language_id )
+			if ( $current_blog_id == $language_id )
 				continue;
 
 			switch_to_blog( $language_id );
@@ -361,7 +364,7 @@ class Mlp_Helpers {
 		);
 		$params = wp_parse_args( $args, $defaults );
 
-		// TODO: Eventually remove this, with version 2.6.0 at the earliest
+		// TODO: Eventually remove this, with version 2.2.0 + 4 at the earliest.
 		switch ( $params[ 'link_text' ] ) {
 			case 'text_flag':
 				_doing_it_wrong(
@@ -390,8 +393,6 @@ class Mlp_Helpers {
 		 * Get the Language API object.
 		 *
 		 * @param Mlp_Language_Api_Interface $language_api Language API object.
-		 *
-		 * @return Mlp_Language_Api_Interface
 		 */
 		$api = apply_filters( 'mlp_language_api', NULL );
 		/** @var Mlp_Language_Api_Interface $api */
@@ -442,32 +443,40 @@ class Mlp_Helpers {
 				break;
 		}
 
-		$output = '<div class="mlp_language_box"><ul>';
+		$output = '<div class="mlp-language-box mlp_language_box"><ul>';
 
 		foreach ( $items as $site_id => $item ) {
 			$text = $item[ 'name' ];
 
-			if ( ! empty ( $item[ 'icon' ] ) ) {
-				$img = '<img src="' . $item[ 'icon' ] . '" alt="' . esc_attr( $item[ 'name' ] ) . '" />';
+			$img = ( ! empty( $item['icon'] ) && $params['display_flag'] )
+				? '<img src="' . esc_url( $item['icon'] ) . '" alt="' . esc_attr( $item['name'] ) . '"> '
+				: '';
 
-				if ( $params[ 'display_flag' ] ) {
-					$text = "$img $text";
-				}
-			}
-
-			if ( $site_id === get_current_blog_id() ) {
-				$output .= '<li><a class="current-language-item" href="">' . $text . '</a></li>';
+			if ( get_current_blog_id() === $site_id ) {
+				$output .= '<li><a class="current-language-item" href="">' . $img . esc_html( $text ) . '</a></li>';
 			} else {
 				$output .= sprintf(
-					'<li><a rel="alternate" hreflang="%1$s"  href="%2$s">%3$s</a></li>',
-					$item[ 'http' ],
-					$item[ 'url' ],
-					$text
+					'<li><a rel="alternate" hreflang="%1$s" href="%2$s">%3$s%4$s</a></li>',
+					esc_attr( $item['http'] ),
+					esc_url( $item[ 'url' ] ),
+					$img,
+					esc_html( $text )
 				);
 			}
 		}
 
 		$output .= '</ul></div>';
+
+		/**
+		 * Filters the output of the linked elements.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param string  $output The generated HTML
+		 * @param array[] $items  The language items
+		 * @param array   $params The passed arguments (including missing defaults).
+		 */
+		$output = (string) apply_filters( 'mlp_linked_elements_html', $output, $items, $params );
 
 		return $output;
 	}

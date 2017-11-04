@@ -2,10 +2,11 @@
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment, admin
 Requires at least: 4.1
-Tested up to: 4.3
-Stable tag: 1.9.1
+Tested up to: 4.7
+Stable tag: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://mediaron.com/contribute/
 
 Simple Comment Editing for your website.
 
@@ -25,32 +26,11 @@ Simple Comment Editing features:
 <li>Advanced customization can be achieved using filters.</li>
 </ol>
 
-<h3>Spread the Word</h3>
-If you like this plugin, please help spread the word.  Rate the plugin.  Write about the plugin.  Something :)
+<h3>Help Contribute</h3>
 
-<h3>Translations</h3>
-<ul>
-<li>Arabic - Thanks Soufiane Sabiri.</li>
-<li>Czech - Thanks <a href="http://blog.doprofilu.cz/">Petr Baloun</a>.</li>
-<li>Dutch (Netherlands) - Thanks <a href="https://github.com/senlin">Senlin</a></li>
-<li>French (France) - Thanks <a href="http://wordpress.org/support/profile/colin101">colin101</a>.</li>
-<li>German - Thanks Wilfried Kahrs.</li>
-<li>Latvian - Thanks Kaspars.</li>
-<li>Lithuanian - Thanks MamasLT</li>
-<li>Norwegian Bokmål - Thanks Jan Hagen.</li>
-<li>Norwegian Nynorsk - Thanks Jan Hagen.</li>
-<li>Persian - Thanks <a href="http://www.wordpress98.com/">Ali HajiMohamadi</a>.</li>
-<li>Portuguese (European) - Thanks <a href="https://twitter.com/porreirinha">Marco Pereirinha</a>.</li>
-<li>Romanian (with diacritics) - Thanks Vasile Ruscior.</li>
-<li>Russian - Thanks Nataliya Zav'yalova (Наталия Завьялова).</li>
-<li>Serbian - Thanks <a href="https://twitter.com/lanche86">Milan Ivanovic</a>.</li>
-<li>Spanish - Thanks Google Translate :P</li>
-<li>Swedish - Thanks Håkan Persson.</li>
-</ul>
-
-If you would like to contribute a translation, please leave a support request with a link to your translation  or <a href="http://www.ronalfy.com/contact/">get in touch</a>.  If you would like to update an existing translation, please visit <a href="https://poeditor.com/join/project?hash=b65f6d06a1d423e3d4713a9f4a304d5c">POEditor.com and request access</a>.
-
-You are welcome to help us out and <a href="https://github.com/ronalfy/simple-comment-editing">contribute on GitHub</a>.
+* Leave a star rating
+* <a href="https://translate.wordpress.org/projects/wp-plugins/simple-comment-editing">Contribute a translation</a>
+* <a href="https://github.com/ronalfy/simple-comment-editing">Contribute some code</a>
 
 == Installation ==
 
@@ -67,14 +47,42 @@ No options :) - Just simple comment editing.
 = How do I customize this plugin? =
 For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a>. 
 
-
-
 == Screenshots ==
 
 1. Edit button and timer.
 2. Textarea and Save/Cancel buttons.
 
 == Changelog ==
+
+= 2.1.3 =
+* Released 2016-12-07
+* Added Thesis compatibility
+
+= 2.1.1 =
+* Released 2016-10-18
+* Re-added filter `sce_return_comment_text`
+
+= 2.1.0 =
+* Released 2016-09-17
+* Post meta is no longer used and comment meta is used instead
+
+= 2.0.0 =
+* Released 2016-08-14
+* Bug fix: Deletion filter now works in JS and in HTML output
+* Bug fix: Changing comment time in filter resulted in undefined in JS output
+* New filters: Allow changing of edit and save/cancel/delete buttons
+* Epoch 2.0 compatible 
+
+
+= 1.9.4 =
+* Released 2016-04-02
+* Polish translation added
+
+= 1.9.3 =
+* Released 2016-03-23
+* Fixes issue where Ajax call wouldn't work on non-SSL site but SSL admin
+* Resolves double query issue with Epoch
+* Resolves comment ghosting with Epoch
 
 = 1.9.1 =
 * Released 2015-11-04
@@ -240,23 +248,23 @@ For advanced options, please see the <a href="https://github.com/ronalfy/simple-
 
 == Upgrade Notice ==
 
+= 2.1.1 =
+Re-added filter `sce_return_comment_text`
+
+= 2.1.0 =
+Post meta is no longer used and comment meta is used instead (better reliability and less database bloat).
+
+= 2.0.0 =
+New filters and bug fixes. See changelog for more information.
+
+= 1.9.4 =
+Translations updated
+
+= 1.9.3 =
+Fixes Ajax calls to SSL admin and Epoch incompatibility issues
+
 = 1.9.1 =
 Added minified script for events hooks
-
-= 1.9.0 =
-Timer now shows below save/cancel/delete buttons for convenience
-
-= 1.8.5 =
-Updated translations (Portuguese and Lithuanian). Scroll after comment issue is now much faster.
-
-= 1.8.3 =
-Fixing user logged in issue where unusual timer values are being shown, and the comment appears editable, but is not
-
-= 1.8.1 =
-Forgot to add deletion script. Added delete button.
-
-= 1.8.0 =
-Added delete button.
 
 == Customization ==
 

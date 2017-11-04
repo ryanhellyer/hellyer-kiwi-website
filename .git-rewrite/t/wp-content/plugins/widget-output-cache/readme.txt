@@ -3,7 +3,7 @@
 Contributors: kasparsd   
 Tags: cache, caching, widget, widgets, output, transient, object cache, memcache, apc, performance   
 Requires at least: 3.0.1   
-Tested up to: 4.0    
+Tested up to: 4.5.2    
 Stable tag: trunk   
 License: GPLv2 or later   
 
@@ -34,8 +34,11 @@ None.
 
 == Changelog ==
 
+= 0.5.2 =
+* Tested with WordPress 4.5.2.
+
 = 0.5.1 =
-* Fixed transient name generation issue
+* Fixed transient name generation issue.
 
 = 0.5 =
 * Remove menu cache due to "active" menu item bug.

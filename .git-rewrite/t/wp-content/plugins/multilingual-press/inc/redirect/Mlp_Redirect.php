@@ -6,11 +6,6 @@
 class Mlp_Redirect {
 
 	/**
-	 * @var string
-	 */
-	private $image_url;
-
-	/**
 	 * @var Mlp_Language_Api_Interface
 	 */
 	private $language_api;
@@ -30,17 +25,15 @@ class Mlp_Redirect {
 	 *
 	 * @param Mlp_Module_Manager_Interface $modules
 	 * @param Mlp_Language_Api_Interface   $language_api
-	 * @param string                       $image_url
+	 * @param                              $deprecated
 	 */
 	public function __construct(
 		Mlp_Module_Manager_Interface $modules,
 		Mlp_Language_Api_Interface $language_api,
-		$image_url
+		$deprecated
 	) {
 
 		$this->modules = $modules;
-
-		$this->image_url = $image_url;
 
 		$this->language_api = $language_api;
 	}
@@ -55,6 +48,8 @@ class Mlp_Redirect {
 		if ( ! $this->register_setting() ) {
 			return false;
 		}
+
+		$this->user_settings();
 
 		if ( ! is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 			$this->frontend_redirect();
@@ -93,7 +88,18 @@ class Mlp_Redirect {
 	 */
 	private function activation_column() {
 
-		$controller = new Mlp_Redirect_Column( $this->option, $this->image_url );
+		$controller = new Mlp_Redirect_Column( null, null );
+		$controller->setup();
+	}
+
+	/**
+	 * Sets up user-specific settings.
+	 *
+	 * @return void
+	 */
+	private function user_settings() {
+
+		$controller = new Mlp_Redirect_User_Settings();
 		$controller->setup();
 	}
 

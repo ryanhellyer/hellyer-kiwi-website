@@ -13,9 +13,10 @@ function mlp_nav_menu_init( Inpsyde_Property_List_Interface $data ) {
 		$data->get( 'language_api' ),
 		$data->get( 'assets' )
 	);
+	$controller->initialize();
 
 	if ( is_admin() ) {
-		$controller->backend_setup( $data->get( 'js_url' ) );
+		$controller->backend_setup();
 	} else {
 		add_action( 'template_redirect', array( $controller, 'frontend_setup' ) );
 	}

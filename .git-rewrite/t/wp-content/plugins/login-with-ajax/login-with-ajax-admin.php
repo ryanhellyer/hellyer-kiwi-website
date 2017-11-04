@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Class initialization
 class LoginWithAjaxAdmin{
 	// action function for above hook
-	function LoginWithAjaxAdmin() {
+	function __construct() {
 		global $user_level;
 		$lwa = LoginWithAjax::$data;
 		add_action ( 'admin_menu', array (&$this, 'menus') );
