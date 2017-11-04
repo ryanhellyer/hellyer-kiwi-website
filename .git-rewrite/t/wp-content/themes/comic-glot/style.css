@@ -1,0 +1,50 @@
+/*
+Theme Name: Comic Glot
+Theme URI: https://geek.hellyer.kiwi/products/comic-glot/
+Description: Provides an interface for displaying comic books in an easy to read slidable format
+Author: Ryan Hellyer
+Author URI: https://geek.hellyer.kiwi/
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: white, one-columns, slider
+Text Domain: comic-glot
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll;
+	color: #333;
+	font-family: sans-serif;
+	text-align: center;
+}
+
+#mySwipe {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+}
+.swipe-wrap {
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+}
+.swipe-wrap > div {
+	float:left;
+	width:100%;
+	position: relative;
+}
+.swipe-wrap img {
+	width: 100%;
+	height: auto;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.buttons {
+	text-align: center;
+}
