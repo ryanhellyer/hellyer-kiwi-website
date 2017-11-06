@@ -9,9 +9,9 @@ class SRC_Cron extends SRC_Core {
 	 * Class constructor
 	 */
 	public function __construct() {
-//add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
-//add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
-		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
+add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
+add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
+//		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
 	}
 
 	/**
@@ -26,6 +26,11 @@ class SRC_Cron extends SRC_Core {
 	 * Convert raw iRacing member file to JSON format.
 	 */
 	public function download_iracing_members_files() {
+
+		if ( ! isset( $_GET['download_file'] ) || ! is_super_admin() ) {
+			return;
+		}
+
 		$dir = wp_upload_dir();
 
 		$oval_stats = file_get_contents( 'https://s3.amazonaws.com/ir-data-now/csv/Oval_driver_stats.csv' );
@@ -43,6 +48,11 @@ class SRC_Cron extends SRC_Core {
 	 * Convert raw iRacing member file to JSON format.
 	 */
 	public function convert_iracing_members_file_to_json() {
+
+		if ( ! isset( $_GET['convert_file'] ) || ! is_super_admin() ) {
+			return;
+		}
+
 		$dir = wp_upload_dir();
 
 		// Get raw file paths
