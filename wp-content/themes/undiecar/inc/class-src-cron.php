@@ -42,6 +42,8 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 		$road_file_path = $dir['basedir'] . '/Road_driver_stats.csv';
 		file_put_contents( $road_file_path, $road_stats );
 		unset( $road_stats );
+
+		die('done');
 	}
 
 	/**
@@ -125,6 +127,8 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
+
+		die('done');
 	}
 
 }
