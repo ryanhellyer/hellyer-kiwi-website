@@ -107,29 +107,10 @@ class SRC_Events extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Practice(s) Length', 'src' ),
-			'id'         => 'practise_length',
-			'type'       => 'text',
-		) );
-
-		$cmb->add_field( array(
 			'name' => esc_html__( 'Qualifying Format', 'src' ),
 			'id'         => 'qualifying_format',
 			'type'       => 'select',
 			'options_cb' => array( $this, 'qualifying_formats' ),
-		) );
-
-		$cmb->add_field( array(
-			'name' => esc_html__( 'Qualifying Grid', 'src' ),
-			'id'         => 'qualifying_grid',
-			'type'       => 'select',
-			'options_cb' => array( $this, 'qualifying_grid' ),
-		) );
-
-		$cmb->add_field( array(
-			'name' => esc_html__( 'Race(s) Length', 'src' ),
-			'id'         => 'race_length',
-			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(
@@ -141,12 +122,41 @@ class SRC_Events extends SRC_Core {
 		foreach ( $this->event_types() as $name => $desc ) {
 
 			$cmb->add_field( array(
+				'name' => esc_html( $name ) . ' date',
+				'desc' => esc_html( $desc ) . ' date',
+				'id'   => $slug . '_' . sanitize_title( $name ) . '_date',
+				'type' => 'text_date_timestamp',
+			) );
+
+			$cmb->add_field( array(
 				'name' => esc_html( $name ) . ' time',
 				'desc' => esc_html( $desc ) . ' time',
 				'id'   => $slug . '_' . sanitize_title( $name ) . '_timestamp',
 				'type' => 'text_time',
 				'time_format' => 'H:i', // Set to 24hr format
 			) );
+
+			$cmb->add_field( array(
+				'name' => esc_html( $name ) . ' length',
+				'desc' => esc_html( $desc ) . ' length',
+				'id'   => $slug . '_' . sanitize_title( $name ) . '_length',
+				'type' => 'text',
+			) );
+
+			if ( 
+				'Race 1' === $name
+				||
+				'Race 2' === $name
+				||
+				'Race 3' === $name
+			) {
+				$cmb->add_field( array(
+					'name' => esc_html__( 'Grid', 'src' ),
+					'id'         => $slug . '_' . sanitize_title( $name ) . '_grid',
+					'type'       => 'select',
+					'options_cb' => array( $this, 'qualifying_grid' ),
+				) );
+			}
 
 		}
 
@@ -214,7 +224,6 @@ class SRC_Events extends SRC_Core {
 					$driver = get_userdata( $driver_id );
 					if ( isset( $driver->data->display_name ) && '' !== $driver->data->display_name ) {
 						$driver_name = $driver->data->display_name;
-						//$driver_slug = sanitize_title( $driver->data->display_name );
 						$drivers_array[$driver_name] = $driver_name;
 					}
 				}
@@ -403,7 +412,12 @@ class SRC_Events extends SRC_Core {
 			return $content;
 		}
 
-		$date = date( get_option( 'date_format' ), $this->event['current_round']['date'] );
+		$legacy_date = date( get_option( 'date_format' ), $this->event['current_round']['date'] );
+		if ( '' !== $legacy_date ) {
+			update_post_meta( get_the_ID(), 'event_race-1_date', $legacy_date );
+		}
+
+		$date = get_post_meta( get_the_ID(), 'event_race-1_date', true );
 
 		$track_logo = $this->event['current_round']['track_logo'];
 		$track_logo_image = wp_get_attachment_image_src( $track_logo, 'src-three' );
@@ -435,6 +449,16 @@ class SRC_Events extends SRC_Core {
 			$time = get_post_meta( get_the_ID(), $meta_key, true );
 			if ( '' !== $time ) {
 
+				$slug = strtolower( sanitize_title( $name ) );
+
+				// Legacy support for older lengths - can be deleted later on as it'll have updated everything by then
+				if ( '' !== get_post_meta( get_the_ID(), 'practise_length', true ) ) {
+					$old_length = get_post_meta( get_the_ID(), 'practise_length', true );
+					update_post_meta( get_the_ID(), 'fp1_length', $old_length );
+					update_post_meta( get_the_ID(), 'fp2_length', $old_length );
+					delete_post_meta( get_the_ID(), 'practise_length' );
+				}
+
 				$extra_session_info = '';
 				$length = '';
 				if ( 'Qualifying' === $name ) {
@@ -442,20 +466,42 @@ class SRC_Events extends SRC_Core {
 					if ( '' !== $qualf ) {
 						$length = $this->qualifying_formats()[$qualf];
 					}
-				} else if ( 'Practice' === $name ) {
-					$length = get_post_meta( get_the_ID(), 'practise_length', true );
+				} else if ( 'FP1' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'fp1_length', true );
+				} else if ( 'FP2' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'fp2_length', true );
+				} else if ( 'FP1' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'fp2_length', true );
 				} else {
 					$length = get_post_meta( get_the_ID(), 'race_length', true  );
-
-					if ( 'Race 2' === $name ) {
-						if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
-							$extra_session_info .= 'Reversed grid';
-						}
-					}
-
 				}
 
+
+				if ( 'Race 2' === $name ) {
+
+//$sidebar_html .= '<textarea>' . print_r( get_post_meta( get_the_ID() ), true ) . '</textarea>';
+
+					// Supporting legacy meta key - can be removed later as auto converts to new system
+					if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
+						$grid = get_post_meta( get_the_ID(), 'qualifying_grid', true );
+						update_post_meta( get_the_ID(), 'event_race-2_grid', $grid );
+						delete_post_meta( get_the_ID(), 'qualifying_grid' );
+					}
+
+					
+					if ( 'reversed' === get_post_meta( get_the_ID(), 'event_' . $slug . '_grid', true ) ) {
+						$extra_session_info .= 'Reversed grid';
+					}
+				}
+
+
 				$sidebar_html .= '<strong>' . esc_html( $desc ) . '</strong><br />Start time: ' . esc_html( $time ) . ' GMT';
+
+				$session_date = get_post_meta( get_the_ID(), 'event_' . $slug . '_date', true );
+				if ( '' !== $session_date ) {
+					$sidebar_html .= '<br />Date: ' . esc_html( date( 'Y-m-d', $session_date ) );
+				}
+
 				if ( '' !== $length ) {
 					$sidebar_html .= '<br />Length: ' . esc_html( $length );
 				}
