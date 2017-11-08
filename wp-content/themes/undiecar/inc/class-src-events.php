@@ -476,10 +476,7 @@ class SRC_Events extends SRC_Core {
 					$length = get_post_meta( get_the_ID(), 'race_length', true  );
 				}
 
-
 				if ( 'Race 2' === $name ) {
-
-//$sidebar_html .= '<textarea>' . print_r( get_post_meta( get_the_ID() ), true ) . '</textarea>';
 
 					// Supporting legacy meta key - can be removed later as auto converts to new system
 					if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
@@ -498,8 +495,7 @@ class SRC_Events extends SRC_Core {
 				$sidebar_html .= '<strong>' . esc_html( $desc ) . '</strong><br />Start time: ' . esc_html( $time ) . ' GMT';
 
 				$session_date = get_post_meta( get_the_ID(), 'event_' . $slug . '_date', true );
-				echo $name . ': ' . $session_date.'<br>';
-				if ( '' !== $session_date ) {
+				if ( '' !== $session_date && is_numeric( $session_date ) ) {
 					$sidebar_html .= '<br />Date: ' . esc_html( date( 'Y-m-d', $session_date ) );
 				}
 
@@ -607,6 +603,7 @@ class SRC_Events extends SRC_Core {
 		$nav_html .= '</div>';
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
+		$least_incidents_text = '';
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
 
@@ -712,6 +709,7 @@ class SRC_Events extends SRC_Core {
 
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
+		$least_incidents_text = '';
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
 
