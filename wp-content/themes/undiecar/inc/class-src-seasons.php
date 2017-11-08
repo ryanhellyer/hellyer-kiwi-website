@@ -27,7 +27,7 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
 
 		// Add shortcode
-		add_shortcode( 'src-schedule',   array( $this, 'schedule' ) );
+		add_shortcode( 'src-schedule',   array( $this, 'schedule_shortcode' ) );
 
 		// Add filters
 		add_filter( 'the_content', array( $this, 'add_points_info_to_content' ) );
@@ -51,19 +51,32 @@ class SRC_Seasons extends SRC_Core {
 
 	}
 
+	public function schedule_shortcode( $content ) {
+		return $this->schedule( $content, 'shortcode' );
+	}
+
 	/**
 	 * Output the schedule as a table.
 	 *
 	 * @param  string  $content    The post content
 	 * @return string  The modified post content
 	 */
-	public function schedule( $content ) {
+	public function schedule( $content, $opt = null ) {
 
+		$args = array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		);
+
+		// If on a season, then only use that seasons schedule
 		if ( 'season' === get_post_type() ) {
-			$season_id = get_the_ID();
-		} else if ( 'a' === 'b' ) {
-			return $content;
-			//
+			$args['meta_key']    = 'season';
+			$args['meta_value'] = get_the_ID();
+		} else if ( 'shortcode' === $opt ) {
+			// In shortcode, so show all events
 		} else {
 			return $content;
 		}
@@ -80,17 +93,7 @@ class SRC_Seasons extends SRC_Core {
 		);
 
 		// Get all events from that season
-		$query = new WP_Query( array(
-			'posts_per_page'         => 100,
-			'post_type'              => 'event',
-
-			'meta_key'               => 'season',
-			'meta_value'             => $season_id,
-
-			'no_found_rows'          => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		) );
+		$query = new WP_Query( $args );
 		$events = array();
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {

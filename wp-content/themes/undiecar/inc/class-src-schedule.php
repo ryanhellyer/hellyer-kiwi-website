@@ -18,7 +18,7 @@ class SRC_Schedule extends SRC_Core {
 	public function __construct() {
 
 		// Add action hooks
-		add_shortcode( 'src-schedule', array( $this, 'schedule' ) );
+//		add_shortcode( 'src-schedule', array( $this, 'schedule' ) );
 
 	}
 

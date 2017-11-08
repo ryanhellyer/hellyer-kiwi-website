@@ -27,7 +27,7 @@ class SRC_Core {
 
 		$types = array(
 			'FP1'        => 'Free Practice 1',
-			'FP2'        => 'Free Practice 1',
+			'FP2'        => 'Free Practice 2',
 			'Qualifying' => 'Qualifying',
 			'Race 1'     => 'Race 1',
 			'Race 2'     => 'Race 2',

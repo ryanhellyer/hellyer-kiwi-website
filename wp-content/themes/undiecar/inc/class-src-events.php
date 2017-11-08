@@ -498,6 +498,7 @@ class SRC_Events extends SRC_Core {
 				$sidebar_html .= '<strong>' . esc_html( $desc ) . '</strong><br />Start time: ' . esc_html( $time ) . ' GMT';
 
 				$session_date = get_post_meta( get_the_ID(), 'event_' . $slug . '_date', true );
+				echo $name . ': ' . $session_date.'<br>';
 				if ( '' !== $session_date ) {
 					$sidebar_html .= '<br />Date: ' . esc_html( date( 'Y-m-d', $session_date ) );
 				}
