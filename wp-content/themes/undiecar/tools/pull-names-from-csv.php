@@ -13,7 +13,7 @@ define( 'ALLOW_B_LICENSES', true );
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
 define( 'MIN_OVAL_IRATING', 400 );
-define( 'MIN_ROAD_IRATING', 1500 );
+define( 'MIN_ROAD_IRATING', 1000 );
 
 
 
