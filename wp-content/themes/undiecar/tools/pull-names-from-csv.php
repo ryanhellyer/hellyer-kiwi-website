@@ -74,6 +74,7 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
+/*
 	'formula-renault-2' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -98,7 +99,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-/*
 	'indycar' => array(
 		'incident_ratio_1' => 0.1,
 		'incident_ratio_2' => 0.2,
