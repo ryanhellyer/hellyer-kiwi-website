@@ -3,7 +3,7 @@ Contributors: sdenike
 Donate link: https://paypal.me/sdenike
 Tags: admin, admin bar, hidden
 Requires at least: 3.1
-Tested up to: 4.8
+Tested up to: 4.9
 Stable tag: trunk
 
 Hide the Admin Bar in WordPress 3.1+
@@ -19,6 +19,9 @@ Hides the Admin Bar in WordPress 3.1+, credits to <a href="http://yoast.com/disa
 3. Enjoy!, there are no settings for this.
 
 == Changelog ==
+
+= 0.3.9 - Nov 21st, 2017 =
+* Confirmed working with 4.9
 
 = 0.3.8.1 - Jun 8th, 2017 =
 * Fixed minor spelling error in 0.3.8 release
