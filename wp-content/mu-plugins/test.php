@@ -9,3 +9,4 @@ function dequeue_postmatic() {
 	wp_dequeue_script( 'prompt-comment-form' );
 
 }
+

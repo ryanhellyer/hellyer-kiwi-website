@@ -139,6 +139,10 @@ class SRC_Members extends SRC_Core {
 
 			// Don't let regular users set their season
 			if ( is_super_admin() ) {
+				$user_meta['team'] = array(
+					'meta_key' => 'team',
+					'sanitize' => 'wp_kses_limited',
+				);
 				$user_meta['season'] = array(
 					'meta_key' => 'season',
 					'sanitize' => 'wp_kses_limited',

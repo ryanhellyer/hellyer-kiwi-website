@@ -615,21 +615,41 @@ class SRC_Events extends SRC_Core {
 
 				$least_incidents_text .= $driver;
 			}
+		}
+
+		$bonus_points = '';
+		if (
+			'' !== $least_incidents_text
+			||
+			'' !== get_post_meta( get_the_ID(), '_pole_position', true )
+			||
+			'' !== get_post_meta( get_the_ID(), '_fastest_lap', true )
+		) {
 
 			$bonus_points = '
 			<h3>Bonus points</h3>
-			<p>
+			<p>';
+
+			if ( '' !== $least_incidents_text ) {
+				$bonus_points .= '
 				Least incidents: ' . esc_html( $least_incidents_text ) . '
-				<br />
+				<br />';
+			}
+
+			if ( '' !== get_post_meta( get_the_ID(), '_pole_position', true ) ) {
+				$bonus_points .= '
 				Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
-				<br />
-				Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) . '
+				<br />';
+			}
+
+			if ( '' !== get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
+				$bonus_points .= '
+				Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) );
+			}
+
+			$bonus_points .= '
 			</p>';
-		} else {
-			$bonus_points = '';
 		}
-
-
 
 		$content = '<div id="base-content">' . $content . $html . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 

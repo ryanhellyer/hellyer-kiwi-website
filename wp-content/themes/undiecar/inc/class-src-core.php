@@ -98,9 +98,9 @@ class SRC_Core {
 				while ( $query->have_posts() ) {
 					$query->the_post();
 
+					$fastest_laps = array();
 					$incident_results = array();
 					foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
-
 						$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 						$results = json_decode( $results, true );
 						$points_positions = get_post_meta( $season_id, 'points_positions', true );
@@ -171,7 +171,7 @@ class SRC_Core {
 							$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
 							if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
 								$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
-							} else {
+							} else if ( '' !== $most_spectacular_crash_name ) {
 								$stored_results[$most_spectacular_crash_name] = 1;
 							}
 
@@ -201,8 +201,10 @@ class SRC_Core {
 
 					}
 					asort( $incident_results );
-					foreach ( $incident_results as $driver_name => $incidents ) {
 
+					$least_incident_drivers = array();
+					unset( $least_incidents );
+					foreach ( $incident_results as $driver_name => $incidents ) {
 						// Grab definite least incidents value
 						if ( ! ( isset( $least_incidents ) ) ) {
 							$least_incidents = $incidents;
@@ -213,8 +215,15 @@ class SRC_Core {
 						}
 
 					}
-					if ( empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
-						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
+
+					if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
+
+						if ( is_array( $least_incident_drivers ) ) {
+							update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
+						} else {
+							delete_post_meta( get_the_ID(), '_least_incidents' );
+						}
+
 					}
 
 					// Add bonus point for pole
@@ -227,7 +236,7 @@ class SRC_Core {
 							$stored_results[$name] = $stored_results[$name] + 1;
 
 							// Record who won pole
-							if ( '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
+							if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
 								update_post_meta( get_the_ID(), '_pole_position', $name );
 							}
 
@@ -236,12 +245,18 @@ class SRC_Core {
 
 					// Add bonus points for fastest lap in each event
 					asort( $fastest_laps );
+
+					// Fixing buggy fastest laps
+					if ( 'update' === get_option( 'undiecar-cache' ) ) {
+						delete_post_meta( get_the_ID(), '_fastest_lap' );
+					}
+
 					foreach ( $fastest_laps as $name => $fastest_lap_time ) {
 
 						if ( isset( $stored_results[$name] ) ) {
 
 							// Record who won bonus point
-							if ( '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
+							if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
 								update_post_meta( get_the_ID(), '_fastest_lap', $name );
 							}
 
@@ -252,6 +267,7 @@ class SRC_Core {
 					}
 
 				}
+
 			}
 
 			arsort( $stored_results );
@@ -282,7 +298,7 @@ class SRC_Core {
 				<th class="col-pos">Pos</th>
 				<th class="col-name">Name</th>
 				<th class="col-number">Num</th>
-				<th class="col-nationality">Nationality</th>
+				<th class="col-nationality">Country</th>
 				<th class="col-inc">Inc</th>
 				<th class="col-pts">Pts</th>';
 			$content .= '</tr></thead>';
@@ -484,6 +500,263 @@ class SRC_Core {
 		}
 
 		return $drivers;
+	}
+
+	/**
+	 * Get every country.
+	 *
+	 * @return array
+	 */
+	public function get_countries() {
+
+		$countries = array(
+			"AF" => "Afghanistan",
+			"AX" => "Åland Islands",
+			"AL" => "Albania",
+			"DZ" => "Algeria",
+			"AS" => "American Samoa",
+			"AD" => "Andorra",
+			"AO" => "Angola",
+			"AI" => "Anguilla",
+			"AQ" => "Antarctica",
+			"AG" => "Antigua and Barbuda",
+			"AR" => "Argentina",
+			"AM" => "Armenia",
+			"AW" => "Aruba",
+			"AU" => "Australia",
+			"AT" => "Austria",
+			"AZ" => "Azerbaijan",
+			"BS" => "Bahamas",
+			"BH" => "Bahrain",
+			"BD" => "Bangladesh",
+			"BB" => "Barbados",
+			"BY" => "Belarus",
+			"BE" => "Belgium",
+			"BZ" => "Belize",
+			"BJ" => "Benin",
+			"BM" => "Bermuda",
+			"BT" => "Bhutan",
+			"BO" => "Bolivia",
+			"BA" => "Bosnia and Herzegovina",
+			"BW" => "Botswana",
+			"BV" => "Bouvet Island",
+			"BR" => "Brazil",
+			"IO" => "British Indian Ocean Territory",
+			"BN" => "Brunei Darussalam",
+			"BG" => "Bulgaria",
+			"BF" => "Burkina Faso",
+			"BI" => "Burundi",
+			"KH" => "Cambodia",
+			"CM" => "Cameroon",
+			"CA" => "Canada",
+			"CV" => "Cape Verde",
+			"KY" => "Cayman Islands",
+			"CF" => "Central African Republic",
+			"TD" => "Chad",
+			"CL" => "Chile",
+			"CN" => "China",
+			"CX" => "Christmas Island",
+			"CC" => "Cocos (Keeling) Islands",
+			"CO" => "Colombia",
+			"KM" => "Comoros",
+			"CG" => "Congo",
+			"CD" => "Congo, The Democratic Republic of The",
+			"CK" => "Cook Islands",
+			"CR" => "Costa Rica",
+			"CI" => "Cote D'ivoire",
+			"HR" => "Croatia",
+			"CU" => "Cuba",
+			"CY" => "Cyprus",
+			"CZ" => "Czech Republic",
+			"DK" => "Denmark",
+			"DJ" => "Djibouti",
+			"DM" => "Dominica",
+			"DO" => "Dominican Republic",
+			"EC" => "Ecuador",
+			"EG" => "Egypt",
+			"SV" => "El Salvador",
+			"GQ" => "Equatorial Guinea",
+			"ER" => "Eritrea",
+			"EE" => "Estonia",
+			"ET" => "Ethiopia",
+			"FK" => "Falkland Islands (Malvinas)",
+			"FO" => "Faroe Islands",
+			"FJ" => "Fiji",
+			"FI" => "Finland",
+			"FR" => "France",
+			"GF" => "French Guiana",
+			"PF" => "French Polynesia",
+			"TF" => "French Southern Territories",
+			"GA" => "Gabon",
+			"GM" => "Gambia",
+			"GE" => "Georgia",
+			"DE" => "Germany",
+			"GH" => "Ghana",
+			"GI" => "Gibraltar",
+			"GR" => "Greece",
+			"GL" => "Greenland",
+			"GD" => "Grenada",
+			"GP" => "Guadeloupe",
+			"GU" => "Guam",
+			"GT" => "Guatemala",
+			"GG" => "Guernsey",
+			"GN" => "Guinea",
+			"GW" => "Guinea-bissau",
+			"GY" => "Guyana",
+			"HT" => "Haiti",
+			"HM" => "Heard Island and Mcdonald Islands",
+			"VA" => "Holy See (Vatican City State)",
+			"HN" => "Honduras",
+			"HK" => "Hong Kong",
+			"HU" => "Hungary",
+			"IS" => "Iceland",
+			"IN" => "India",
+			"ID" => "Indonesia",
+			"IR" => "Iran, Islamic Republic of",
+			"IQ" => "Iraq",
+			"IE" => "Ireland",
+			"IM" => "Isle of Man",
+			"IL" => "Israel",
+			"IT" => "Italy",
+			"JM" => "Jamaica",
+			"JP" => "Japan",
+			"JE" => "Jersey",
+			"JO" => "Jordan",
+			"KZ" => "Kazakhstan",
+			"KE" => "Kenya",
+			"KI" => "Kiribati",
+			"KP" => "Korea, Democratic People's Republic of",
+			"KR" => "Korea, Republic of",
+			"KW" => "Kuwait",
+			"KG" => "Kyrgyzstan",
+			"LA" => "Lao People's Democratic Republic",
+			"LV" => "Latvia",
+			"LB" => "Lebanon",
+			"LS" => "Lesotho",
+			"LR" => "Liberia",
+			"LY" => "Libyan Arab Jamahiriya",
+			"LI" => "Liechtenstein",
+			"LT" => "Lithuania",
+			"LU" => "Luxembourg",
+			"MO" => "Macao",
+			"MK" => "Macedonia, The Former Yugoslav Republic of",
+			"MG" => "Madagascar",
+			"MW" => "Malawi",
+			"MY" => "Malaysia",
+			"MV" => "Maldives",
+			"ML" => "Mali",
+			"MT" => "Malta",
+			"MH" => "Marshall Islands",
+			"MQ" => "Martinique",
+			"MR" => "Mauritania",
+			"MU" => "Mauritius",
+			"YT" => "Mayotte",
+			"MX" => "Mexico",
+			"FM" => "Micronesia, Federated States of",
+			"MD" => "Moldova, Republic of",
+			"MC" => "Monaco",
+			"MN" => "Mongolia",
+			"ME" => "Montenegro",
+			"MS" => "Montserrat",
+			"MA" => "Morocco",
+			"MZ" => "Mozambique",
+			"MM" => "Myanmar",
+			"NA" => "Namibia",
+			"NR" => "Nauru",
+			"NP" => "Nepal",
+			"NL" => "Netherlands",
+			"AN" => "Netherlands Antilles",
+			"NC" => "New Caledonia",
+			"NZ" => "New Zealand",
+			"NI" => "Nicaragua",
+			"NE" => "Niger",
+			"NG" => "Nigeria",
+			"NU" => "Niue",
+			"NF" => "Norfolk Island",
+			"MP" => "Northern Mariana Islands",
+			"NO" => "Norway",
+			"OM" => "Oman",
+			"PK" => "Pakistan",
+			"PW" => "Palau",
+			"PS" => "Palestinian Territory, Occupied",
+			"PA" => "Panama",
+			"PG" => "Papua New Guinea",
+			"PY" => "Paraguay",
+			"PE" => "Peru",
+			"PH" => "Philippines",
+			"PN" => "Pitcairn",
+			"PL" => "Poland",
+			"PT" => "Portugal",
+			"PR" => "Puerto Rico",
+			"QA" => "Qatar",
+			"RE" => "Reunion",
+			"RO" => "Romania",
+			"RU" => "Russian Federation",
+			"RW" => "Rwanda",
+			"SH" => "Saint Helena",
+			"KN" => "Saint Kitts and Nevis",
+			"LC" => "Saint Lucia",
+			"PM" => "Saint Pierre and Miquelon",
+			"VC" => "Saint Vincent and The Grenadines",
+			"WS" => "Samoa",
+			"SM" => "San Marino",
+			"ST" => "Sao Tome and Principe",
+			"SA" => "Saudi Arabia",
+			"SN" => "Senegal",
+			"RS" => "Serbia",
+			"SC" => "Seychelles",
+			"SL" => "Sierra Leone",
+			"SG" => "Singapore",
+			"SK" => "Slovakia",
+			"SI" => "Slovenia",
+			"SB" => "Solomon Islands",
+			"SO" => "Somalia",
+			"ZA" => "South Africa",
+			"GS" => "South Georgia and The South Sandwich Islands",
+			"ES" => "Spain",
+			"LK" => "Sri Lanka",
+			"SD" => "Sudan",
+			"SR" => "Suriname",
+			"SJ" => "Svalbard and Jan Mayen",
+			"SZ" => "Swaziland",
+			"SE" => "Sweden",
+			"CH" => "Switzerland",
+			"SY" => "Syrian Arab Republic",
+			"TW" => "Taiwan, Province of China",
+			"TJ" => "Tajikistan",
+			"TZ" => "Tanzania, United Republic of",
+			"TH" => "Thailand",
+			"TL" => "Timor-leste",
+			"TG" => "Togo",
+			"TK" => "Tokelau",
+			"TO" => "Tonga",
+			"TT" => "Trinidad and Tobago",
+			"TN" => "Tunisia",
+			"TR" => "Turkey",
+			"TM" => "Turkmenistan",
+			"TC" => "Turks and Caicos Islands",
+			"TV" => "Tuvalu",
+			"UG" => "Uganda",
+			"UA" => "Ukraine",
+			"AE" => "United Arab Emirates",
+			"GB" => "United Kingdom",
+			"US" => "United States",
+			"UM" => "United States Minor Outlying Islands",
+			"UY" => "Uruguay",
+			"UZ" => "Uzbekistan",
+			"VU" => "Vanuatu",
+			"VE" => "Venezuela",
+			"VN" => "Viet Nam",
+			"VG" => "Virgin Islands, British",
+			"VI" => "Virgin Islands, U.S.",
+			"WF" => "Wallis and Futuna",
+			"EH" => "Western Sahara",
+			"YE" => "Yemen",
+			"ZM" => "Zambia",
+			"ZW" => "Zimbabwe"
+		);
+
+		return $countries;
 	}
 
 }

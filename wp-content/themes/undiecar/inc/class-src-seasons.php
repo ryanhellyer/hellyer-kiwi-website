@@ -23,6 +23,7 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'the_content',     array( $this, 'drivers' ) );
 		add_action( 'the_content',     array( $this, 'championship' ), 8 );
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
+		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
 		add_action( 'add_meta_boxes',  array( $this, 'permanently_store_results_metabox' ) );
 		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
 
@@ -252,6 +253,38 @@ class SRC_Seasons extends SRC_Core {
 		return $content;
 	}
 
+	public function cars_metaboxes() {
+		$slug = 'season-car';
+
+		$cmb = new_cmb2_box( array(
+			'id'           => $slug,
+			'title'        => esc_html__( 'Cars', 'src' ),
+			'object_types' => array( 'season', ),
+		) );
+
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+
+		$seasons = array();
+		$count = 0;
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$count++;
+
+				$cmb->add_field( array(
+					'name' => esc_html( get_the_title( get_the_ID() ) ),
+					'id'         => 'car-' . $count,
+					'type'       => 'checkbox',
+				) );
+
+			}
+		}
+
+	}
+
 	public function seasons_metaboxes() {
 		$slug = 'season';
 
@@ -259,14 +292,6 @@ class SRC_Seasons extends SRC_Core {
 			'id'           => $slug,
 			'title'        => esc_html__( 'Points', 'src' ),
 			'object_types' => array( 'season', ),
-		) );
-//delete_post_meta( 32, 'cars' );
-		$cmb->add_field( array(
-			'name' => esc_html__( 'Cars', 'src' ),
-			'id'         => 'cars',
-			'type'       => 'select',
-			'repeatable' => true,
-			'options_cb' => array( $this, 'get_cars' ),
 		) );
 
 		$cmb->add_field( array(
@@ -377,27 +402,6 @@ class SRC_Seasons extends SRC_Core {
 
 	}
 
-	public function get_cars() {
-
-		$cars = array();
-
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-
-		$seasons = array();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$cars[get_the_ID()] = get_the_title();
-			}
-		}
-
-		return $cars;
-	}
-
 	/**
 	 * Add points information to the post content.
 	 *
@@ -414,7 +418,7 @@ class SRC_Seasons extends SRC_Core {
 		$points_positions = get_post_meta( get_the_ID(), 'points_positions', true );
 		if ( '' !== $points_positions ) {
 			$html .= '<h3>' . esc_html( 'Points system', 'src' ) . '</h3>';
-			$html .= '<p>' . esc_html__( 'At the conclusion of each race, the top ten finishers will score points towards the drivers championship, according to the following scale:', 'src' ) . '</p>';
+			$html .= '<p>' . esc_html__( 'At the conclusion of each race, the top finishers will score points towards the drivers championship, according to the following scale:', 'src' ) . '</p>';
 
 			/**
 			 * Load number formatters.
