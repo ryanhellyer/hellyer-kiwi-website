@@ -101,8 +101,11 @@ class SRC_Seasons extends SRC_Core {
 				$query->the_post();
 
 				$date = get_post_meta( get_the_ID(), 'date', true );
+				$formatted_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true );
+				$date_formatted = date( 'Y-m-d', $date ) . ' ' . $formatted_time;
+				$time_stamp = strtotime( $date_formatted );
 
-				if ( $date < time() ) {
+				if ( $time_stamp < time() ) {
 					$events[$date]['past'] = true;
 				}
 
