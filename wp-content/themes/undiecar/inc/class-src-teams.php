@@ -145,15 +145,6 @@ class SRC_Teams extends SRC_Core {
 		}
 */
 
-		// Fixed setups?
-		$content .= '<p>';
-		if ( 'on' === get_post_meta( get_the_ID(), 'fixed_setup', true ) ) {
-			$content .= __( 'All races will be held with a fixed setup.', 'src' );
-		} else {
-			$content .= __( 'All races will be held with open setups. You are free to make any car setup changes you feel are appropriate.', 'src' );
-		}
-		$content .= '</p>';
-
 		return $content;
 	}
 

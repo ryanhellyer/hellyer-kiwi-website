@@ -151,6 +151,15 @@ class SRC_Cars extends SRC_Core {
 
 			$content .= wpautop( $car['content'] );
 
+			// Fixed setups?
+			$content .= '<p>';
+			if ( 'on' === get_post_meta( get_the_ID(), 'fixed_setup', true ) ) {
+				$content .= __( 'A fixed setup will be used.', 'src' );
+			} else {
+				$content .= __( 'Open setups are allowed. You are free to make any car setup changes you feel are appropriate.', 'src' );
+			}
+			$content .= '</p>';
+
 			// Add gallery
 			$count = 0;
 			$image_ids = '';
