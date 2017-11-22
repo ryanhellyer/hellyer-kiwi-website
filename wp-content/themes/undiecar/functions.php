@@ -24,6 +24,7 @@ require( 'inc/class-src-members.php' );
 require( 'inc/class-src-settings.php' );
 require( 'inc/class-src-cars.php' );
 require( 'inc/class-src-schedule.php' );
+require( 'inc/class-src-teams.php' );
 
 require( 'inc/functions.php' );
 
@@ -31,12 +32,13 @@ require( 'tools/user-processing.php' );
 
 new SRC_Admin;
 new SRC_Gallery;
-new SRC_Cron();
-new SRC_Tracks();
-new SRC_Seasons();
-new SRC_Events();
-new SRC_Register();
-new SRC_Members();
-new SRC_Settings();
-new SRC_Cars();
-new SRC_Schedule();
+new SRC_Cron;
+new SRC_Tracks;
+new SRC_Seasons;
+new SRC_Events;
+new SRC_Register;
+new SRC_Members;
+new SRC_Settings;
+new SRC_Cars;
+new SRC_Schedule;
+new SRC_Teams;

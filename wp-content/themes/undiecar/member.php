@@ -28,6 +28,7 @@ $youtube            = get_user_meta( $member_id, 'youtube', true );
 $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
+$team               = get_user_meta( $member_id, 'team', true );
 $note               = get_user_meta( $member_id, 'note', true );
 $custid             = get_user_meta( $member_id, 'custid', true );
 
@@ -65,7 +66,7 @@ if ( '' !== $location ) {
 }
 
 if ( '' !== $nationality ) {
-	echo '<strong>Nationality:</strong> ' . esc_html( $nationality ) . '<br />';
+	echo '<strong>Country:</strong> ' . esc_html( $nationality ) . '<br />';
 } else {
 	$missing_data_count++;
 }
@@ -183,13 +184,52 @@ if (
 	<form action="" method="POST" enctype="multipart/form-data">';
 
 	if ( is_super_admin() ) {
+
+		// Shove seasons into an array
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'season',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+		$seasons[] = 'reserve';
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$season_slug = get_post_field( 'post_name', get_post( get_the_ID() ) );
+				$seasons[ get_the_ID() ] = $season_slug;
+
+				if ( $season_slug === $season ) {
+					$current_season_id = get_the_ID();
+				}
+
+			}
+		}
+
 		echo '
 		<label>Season?</label>
-		<input name="season" type="text" value="' . esc_attr( $season ) . '" />';
+		<select name="season">';
+		foreach ( $seasons as $key => $season_slug ) {
+			echo '<option ' . selected( $season, $season_slug ) . ' value="' . esc_attr( $season_slug ) . '">' . esc_html( $season_slug ) .  '</option>';
+		}
+		echo '</select>';
 
 		echo '
 		<label>Note</label>
 		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
+
+		$teams = get_post_meta( $current_season_id, 'team_names', true );
+
+		echo '
+		<label>Team</label>
+		<select name="team">
+			<option value="">None</option>';
+		foreach ( $teams as $key => $team_name ) {
+			echo '<option ' . selected( $team, $team_name ) . ' value="' . esc_attr( $team_name ) . '">' . esc_html( $team_name ) .  '</option>';
+		}
+		echo '
+		</select>';
 
 	}
 
@@ -212,18 +252,23 @@ if (
 		<input name="receive-extra-communication" type="checkbox" style="font-size:40px;" ';
 
 		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
-		 echo checked( $checked, 1, false );
+		echo checked( $checked, 1, false );
 
-		 echo ' value="1" />
+		echo ' value="1" />
 		<br />
 		<span>Includes upcoming race information and various updates via iRacing PM or email</span>
 		<br /><br />
 
-		<label>Location</label>
+		<label>Current location</label>
 		<input name="location" type="text" value="' . esc_attr( $location ) . '" />
 
-		<label>Nationality</label>
-		<input name="nationality" type="text" value="' . esc_attr( $nationality ) . '" />
+		<label>Country</label>
+		<select name="nationality">';
+		foreach ( SRC_Core::get_countries() as $country_code => $country ) {
+			echo '<option ' . selected( $nationality, $country_code ) . ' value="' . esc_attr( $country_code ) . '">' . esc_html( $country ) .  '</option>';
+		}
+		echo '
+		</select>
 
 		<label>Car number</label>
 		<input name="car-number" type="text" value="' . esc_attr( $car_number ) . '" />
