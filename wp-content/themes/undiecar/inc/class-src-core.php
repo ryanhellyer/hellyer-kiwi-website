@@ -216,8 +216,20 @@ class SRC_Core {
 
 					}
 
+					// Add least incident points
+					foreach ( $least_incident_drivers as $lkey => $name ) {
+
+						if ( isset( $stored_results[$name] ) ) {
+							$stored_results[$name] = $stored_results[$name] + 1;
+						} else {
+							$stored_results[$name] = 1;
+						}
+
+					}
+
 					if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
 
+						// Store least incident info in events
 						if ( is_array( $least_incident_drivers ) ) {
 							update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
 						} else {
@@ -330,7 +342,6 @@ class SRC_Core {
 					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
 						$country_code = get_user_meta( $member_id, 'nationality', true );
 						$country = self::get_countries( $country_code );
-//						$country = array();
 						if ( ! is_array( $country ) ) {
 							$nationality = $country;
 						} else {
@@ -515,7 +526,7 @@ class SRC_Core {
 	 *
 	 * @return array
 	 */
-	public function get_countries( $country_code = null ) {
+	static function get_countries( $country_code = null ) {
 
 		$countries = array(
 			"AF" => "Afghanistan",
