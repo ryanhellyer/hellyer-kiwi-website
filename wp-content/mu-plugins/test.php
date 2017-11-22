@@ -9,4 +9,3 @@ function dequeue_postmatic() {
 	wp_dequeue_script( 'prompt-comment-form' );
 
 }
-add_option( 'undiecar-cache', 'update' );
