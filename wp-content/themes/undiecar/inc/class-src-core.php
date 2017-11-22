@@ -329,8 +329,8 @@ class SRC_Core {
 					$nationality = '';
 					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
 						$country_code = get_user_meta( $member_id, 'nationality', true );
-						$country = $this->get_countries( $country_code );
-						$country = array();
+						$country = self::get_countries( $country_code );
+//						$country = array();
 						if ( ! is_array( $country ) ) {
 							$nationality = $country;
 						} else {
