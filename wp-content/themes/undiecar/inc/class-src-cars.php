@@ -122,25 +122,22 @@ class SRC_Cars extends SRC_Core {
 				}
 
 			}
+			wp_reset_postdata();
 		}
 
 		if ( ! isset( $cars ) ) {
 			return $content;
 		}
 
-		// Fixed setups?
-		$content .= '<p>';
-		if ( 'on' === get_post_meta( get_the_ID(), 'fixed_setup', true ) ) {
-			$content .= __( 'All races will be held with a fixed setup.', 'src' );
-		} else {
-			$content .= __( 'All races will be held with open setups. You are free to make any car setup changes you feel are appropriate.', 'src' );
-		}
-		$content .= '</p>';
-
 		// Add text
 		if ( 1 === count( $cars ) ) {
 			$single_car = true;
-			$content .= '<h3>' . esc_html( get_the_title( get_the_ID() ) ) . '</h3>';			
+
+			foreach ( $cars as $key => $car ) {
+				break;
+			}
+
+			$content .= '<h3>' . esc_html( $car['title'] ) . '</h3>';			
 		} else {
 			$content .= '<h3>' . esc_html__( 'Allowed cars', 'src' ) . '</h3>';
 		}
