@@ -328,7 +328,14 @@ class SRC_Core {
 
 					$nationality = '';
 					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
-						$nationality = get_user_meta( $member_id, 'nationality', true );
+						$country_code = get_user_meta( $member_id, 'nationality', true );
+						$country = $this->get_countries( $country_code );
+						if ( ! is_array( $country ) ) {
+							$nationality = $country;
+						} else {
+							$nationality = $country_code; // Supporting legacy values for nationality
+						}
+
 					}
 
 					$linked_name = '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
@@ -507,7 +514,7 @@ class SRC_Core {
 	 *
 	 * @return array
 	 */
-	public function get_countries() {
+	public function get_countries( $country_code = null ) {
 
 		$countries = array(
 			"AF" => "Afghanistan",
@@ -756,7 +763,11 @@ class SRC_Core {
 			"ZW" => "Zimbabwe"
 		);
 
-		return $countries;
+		if ( null !== $country_code && isset( $countries[$country_code] ) ) {
+			return $countries[$country_code];
+		} else {
+			return $countries;
+		}
 	}
 
 }
