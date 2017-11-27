@@ -806,7 +806,7 @@ class SRC_Core {
 
 		$drivers_list = '
 		<p style="max-width: 600px">
-			<img class="size-thumbnail wp-image-205 alignright" src="' . esc_url( get_avatar( $driver_id, 150, 'monsterid' ) ) . '" alt="" width="150" height="150" />
+			<img class="alignright" src="' . get_avatar_url( $driver_id, array( 'size' => 150, 'default' => 'monsterid' ) ) . '" alt="" width="150" height="150" />
 			<strong>
 				<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '">' . esc_html( $driver_name ) . '</a>';
 
