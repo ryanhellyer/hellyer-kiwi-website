@@ -180,6 +180,7 @@ foreach ( $events as $event => $vars ) {
 	// Get iRacing stats
 	$dir = wp_upload_dir();
 	$stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
+echo $dir['basedir'] . '/iracing-members.json';die;
 	$stats = json_decode( $stats, true );
 
 	$csv_files = scandir( $directory, 1 );
