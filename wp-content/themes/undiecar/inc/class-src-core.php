@@ -777,6 +777,8 @@ class SRC_Core {
 
 		if ( null !== $country_code && isset( $countries[$country_code] ) ) {
 			return $countries[$country_code];
+		} else if ( null !== $country_code && ! isset( $countries[$country_code] ) ) {
+			return $country_code; // Legacy - catering for when country codes were loaded as a user submitted text string of their nationality
 		} else {
 			return $countries;
 		}
@@ -822,7 +824,7 @@ class SRC_Core {
 
 		if ( '' !== $nationality ) {
 			$drivers_list .= '
-			Country: ' . esc_html( $nationality ) . '
+			Country: ' . esc_html( $this->get_countries( $nationality ) ) . '
 			<br />';
 		}
 
