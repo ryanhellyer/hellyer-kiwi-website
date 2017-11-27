@@ -221,7 +221,7 @@ class SRC_Teams extends SRC_Core {
 		}
 
 		$drivers_list = '';
-		$count = 1;
+		$count = 0;
 		while ( $count < 3 ) {
 			$count++;
 
