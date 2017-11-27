@@ -25,7 +25,6 @@ class SRC_Seasons extends SRC_Core {
 
 		if ( isset( $_GET['test'] ) ) {
 			add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
-			add_filter( 'the_content',     array( $this, 'teams' ) );
 		}
 
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
@@ -254,56 +253,13 @@ class SRC_Seasons extends SRC_Core {
 		$current_season_slug = get_post_field( 'post_name', get_the_ID() );
 
 		if ( $current_season_slug === $season_slug ) {
-//			$content .= '<h3>Drivers</h3>';
+			if ( isset( $_GET['test'] ) ) {
+				$content .= '<h3>Drivers</h3>';
 //			$content .= '<p><a href="https://undiecar.com/confirmed-signups/"></a></p>';
 
-//			$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
-		}
-
-		return $content;
-	}
-
-	public function teams( $content ) {
-
-		if ( 'season' !== get_post_type() ) {
-			return $content;
-		}
-
-		$season_id = get_the_ID();
-
-		$teams_query = new WP_Query( array(
-			'post_type'      => 'team',
-			'post_status'    => 'publish',
-			'posts_per_page' => 100,
-			'no_found_rows'  => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		) );
-
-		$teams_list = '';
-		if ( $teams_query->have_posts() ) {
-
-			$teams_list .= '<ul>';
-
-			while ( $teams_query->have_posts() ) {
-				$teams_query->the_post();
-
-				if ( 'on' === get_post_meta( $season_id, 'team-' . get_the_ID(), true ) ) {
-					$teams_list .= '<li><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . get_the_title( get_the_ID() ) . '</a></li>';
-				}
-
+				$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
 			}
-
-			$teams_list .= '<ul>';
-
-			wp_reset_postdata();
 		}
-
-		if ( '' !== $teams_list ) {
-			$content .= '<h3>' . esc_html( 'Teams', 'src' ) . '</h3>';
-			$content .= $teams_list;
-		}
-
 
 		return $content;
 	}
