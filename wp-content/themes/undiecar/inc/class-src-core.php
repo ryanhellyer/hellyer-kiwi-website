@@ -805,7 +805,7 @@ class SRC_Core {
 		$youtube            = get_user_meta( $driver_id, 'youtube', true );
 
 		$drivers_list = '
-		<p style="max-width: 600px">
+		<p class="driver-block">
 			<img class="alignright" src="' . get_avatar_url( $driver_id, array( 'size' => 150, 'default' => 'monsterid' ) ) . '" alt="" width="150" height="150" />
 			<strong>
 				<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '">' . esc_html( $driver_name ) . '</a>';
