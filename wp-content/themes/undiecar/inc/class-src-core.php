@@ -62,7 +62,7 @@ class SRC_Core {
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
-			$stored_results = $this->get_driver_points_from_season( $season_id );
+			$stored_results = self::get_driver_points_from_season( $season_id );
 		} // End of championship positions calculation
 		else {
 			$content .= "<!-- Using permanently stored results -->";
@@ -238,7 +238,7 @@ class SRC_Core {
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			$stored_results = $this->get_driver_points_from_season( $season_id );
+			$stored_results = self::get_driver_points_from_season( $season_id );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -808,7 +808,7 @@ class SRC_Core {
 	/**
 	 * Get all driver points from a season.
 	 */
-	public function get_driver_points_from_season( $season_id ) {
+	static function get_driver_points_from_season( $season_id ) {
 
 		// Get all events from that season
 		$query = new WP_Query( array(
