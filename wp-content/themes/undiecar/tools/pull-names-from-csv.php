@@ -7,13 +7,13 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 
 define( 'ALLOW_ROOKIES', true );
 define( 'ALLOW_B_LICENSES', true );
-define( 'ALLOW_C_LICENSES', true );
-define( 'ALLOW_D_LICENSES', true );
+//define( 'ALLOW_C_LICENSES', true );
+//define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
 define( 'MIN_OVAL_IRATING', 400 );
-define( 'MIN_ROAD_IRATING', 400 );
+define( 'MIN_ROAD_IRATING', 1500 );
 
 
 
@@ -65,6 +65,14 @@ foreach ( array_merge(
 
 
 $events = array(
+	'indycar-s4-2017' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 /*
 	'indycar2' => array(
 		'incident_ratio_1' => 1,
@@ -74,7 +82,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-*/
 	'formula-renault-2' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -99,7 +106,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-/*
 	'indycar' => array(
 		'incident_ratio_1' => 0.1,
 		'incident_ratio_2' => 0.2,
