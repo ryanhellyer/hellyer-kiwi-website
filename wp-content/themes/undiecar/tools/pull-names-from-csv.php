@@ -294,6 +294,7 @@ foreach ( $events as $event => $vars ) {
 				&&
 				$stats[$driver_name]['road_irating'] < MIN_ROAD_IRATING
 			) {
+echo $driver_name . "\n";
 				continue;
 			}
 
