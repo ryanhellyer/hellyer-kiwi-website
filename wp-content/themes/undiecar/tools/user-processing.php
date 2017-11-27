@@ -18,7 +18,9 @@ if ( ! isset( $_GET['user_processing'] ) ) {
 
 
 
-
+/**
+ * Update information from iRacing, including iRating.
+ */
 class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 	public function __construct() {
