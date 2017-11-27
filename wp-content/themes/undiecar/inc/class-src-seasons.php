@@ -19,11 +19,13 @@ class SRC_Seasons extends SRC_Core {
 
 		// Add action hooks
 		add_action( 'init',            array( $this, 'init' ) );
-		add_action( 'the_content',     array( $this, 'schedule' ) );
-		add_action( 'the_content',     array( $this, 'drivers' ) );
-		add_action( 'the_content',     array( $this, 'championship' ), 8 );
+		add_filter( 'the_content',     array( $this, 'schedule' ) );
+		add_filter( 'the_content',     array( $this, 'drivers' ) );
+		add_filter( 'the_content',     array( $this, 'championship' ), 8 );
+		add_filter( 'the_content',     array( $this, 'teams' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
+		add_action( 'cmb2_admin_init', array( $this, 'teams_metaboxes' ) );
 		add_action( 'add_meta_boxes',  array( $this, 'permanently_store_results_metabox' ) );
 		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
 
@@ -256,6 +258,51 @@ class SRC_Seasons extends SRC_Core {
 		return $content;
 	}
 
+	public function teams( $content ) {
+
+		if ( 'season' !== get_post_type() ) {
+			return $content;
+		}
+
+		$season_id = get_the_ID();
+
+		$teams_query = new WP_Query( array(
+			'post_type'      => 'team',
+			'post_status'    => 'publish',
+			'posts_per_page' => 100,
+			'no_found_rows'  => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+
+		$teams_list = '';
+		if ( $teams_query->have_posts() ) {
+
+			$teams_list .= '<ul>';
+
+			while ( $teams_query->have_posts() ) {
+				$teams_query->the_post();
+
+				if ( 'on' === get_post_meta( $season_id, 'team-' . get_the_ID(), true ) ) {
+					$teams_list .= '<li><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . get_the_title( get_the_ID() ) . '</a></li>';
+				}
+
+			}
+
+			$teams_list .= '<ul>';
+
+			wp_reset_postdata();
+		}
+
+		if ( '' !== $teams_list ) {
+			$content .= '<h3>' . esc_html( 'Teams', 'src' ) . '</h3>';
+			$content .= $teams_list;
+		}
+
+
+		return $content;
+	}
+
 	public function cars_metaboxes() {
 		$slug = 'season-car';
 
@@ -339,6 +386,40 @@ class SRC_Seasons extends SRC_Core {
 			),
 
 		) );
+
+	}
+
+	public function teams_metaboxes() {
+		$slug = 'teams';
+
+		$cmb = new_cmb2_box( array(
+			'id'           => $slug,
+			'title'        => esc_html__( 'Teams', 'src' ),
+			'object_types' => array( 'season', ),
+		) );
+
+		$teams_query = new WP_Query( array(
+			'post_type'      => 'team',
+			'post_status'    => 'publish',
+			'posts_per_page' => 100,
+			'no_found_rows'  => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+
+		if ( $teams_query->have_posts() ) {
+
+			while ( $teams_query->have_posts() ) {
+				$teams_query->the_post();
+
+				$cmb->add_field( array(
+					'name'       => esc_html( get_the_title( get_the_ID() ) ),
+					'id'         => 'team-' . get_the_ID(),
+					'type'       => 'checkbox',
+				) );
+
+			}
+		}
 
 	}
 

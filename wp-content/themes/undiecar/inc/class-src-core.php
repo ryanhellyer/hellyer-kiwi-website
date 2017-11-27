@@ -782,4 +782,71 @@ class SRC_Core {
 		}
 	}
 
+	/**
+	 * Get informational block about a driver.
+	 *
+	 * @param  int  $driver_id   The drivers ID
+	 * @return string  the block of HTML
+	 */
+	public function get_driver_block( $driver_id ) {
+
+		if ( ! is_numeric( $driver_id ) ) {
+			return;
+		}
+
+		$driver = get_userdata( $driver_id );
+		$driver_name = $driver->data->display_name;
+		$driver_slug = sanitize_title( $driver_name );
+
+		$nationality        = get_user_meta( $driver_id, 'nationality', true );
+		$car_number         = get_user_meta( $driver_id, 'car_number', true );
+		$twitter            = get_user_meta( $driver_id, 'twitter', true );
+		$facebook           = get_user_meta( $driver_id, 'facebook', true );
+		$youtube            = get_user_meta( $driver_id, 'youtube', true );
+
+		$drivers_list = '
+		<p style="max-width: 600px">
+			<img class="size-thumbnail wp-image-205 alignright" src="' . esc_url( get_avatar( $driver_id, 150, 'monsterid' ) ) . '" alt="" width="150" height="150" />
+			<strong>
+				<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '">' . esc_html( $driver_name ) . '</a>';
+
+
+		if ( '' !== $car_number ) {
+			$drivers_list .= '
+				#' . esc_html( $car_number );
+		}
+
+		$drivers_list .= '
+			</strong>
+			<br />';
+
+		if ( '' !== $nationality ) {
+			$drivers_list .= '
+			Country: ' . esc_html( $nationality ) . '
+			<br />';
+		}
+
+		if ( '' !== $twitter ) {
+			$drivers_list .= '		
+			Twitter: <a href="' . esc_url( 'https://twitter.com/' . $twitter . '/' ) . '">@' . esc_html( $twitter ) . '</a>
+			<br />';
+		}
+
+		if ( '' !== $facebook ) {
+			$drivers_list .= '
+			Facebook: <a href="' . esc_url( 'https://facebook.com/' . $facebook . '/' ) . '">facebook.com/ryanhellyer</a>
+			<br />';
+		}
+
+		if ( '' !== $youtube ) {
+			$drivers_list .= '
+			YouTube: <a href="' . esc_url( 'https://youtube.com/' . $youtube . '/' )  . '">youtube.com/' . esc_html( $youtube ) . '</a>';
+		}
+
+		$drivers_list .= '
+		</p>';
+
+		return $drivers_list;
+	}
+
 }

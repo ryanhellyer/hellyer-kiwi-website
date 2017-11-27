@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Seasons.
+ * Tracks.
  *
  * @copyright Copyright (c), Ryan Hellyer
  * @license http://www.gnu.org/licenses/gpl.html GPL

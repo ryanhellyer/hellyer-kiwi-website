@@ -9,7 +9,7 @@
  * @package Undycar
  * @since Undycar 1.0
  */
-class SRC_Theme_Setup {
+class SRC_Theme_Setup extends SRC_Core {
 
 	/**
 	 * Theme version number.
@@ -23,7 +23,7 @@ class SRC_Theme_Setup {
 	 * 
 	 * @var string
 	 */
-	const THEME_NAME = 'undycar';
+	const THEME_NAME = 'undiecar';
 
 	/**
 	 * Constructor.
@@ -41,6 +41,7 @@ class SRC_Theme_Setup {
 
 		// Add shortcodes
 		add_shortcode( 'src-news',        'src_news' );
+		add_shortcode( 'src-driver',      array( $this, 'driver_block_shortcode' ) );
 
 		// Add filters
 		add_filter( 'private_title_format', array( $this, 'remove_private_title_format' ) );
@@ -136,7 +137,25 @@ class SRC_Theme_Setup {
 			nocache_headers();
 			include( get_query_template( '404' ) );
 		die();
+		}
 	}
-}
+
+	/**
+	 * 
+	 */
+	public function driver_block_shortcode( $args, $content ) {
+
+		if ( ! isset( $args['username'] ) ) {
+			return $content;
+		}
+
+		$driver = get_user_by( 'login', $args['username'] );
+		$driver_id = absint( $driver->ID );
+
+		$content .= $this->get_driver_block( $driver_id );
+
+		return $content;
+	}
+
 }
 new SRC_Theme_Setup;
