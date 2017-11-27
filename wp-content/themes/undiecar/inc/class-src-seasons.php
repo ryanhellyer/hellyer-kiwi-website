@@ -22,7 +22,12 @@ class SRC_Seasons extends SRC_Core {
 		add_filter( 'the_content',     array( $this, 'schedule' ) );
 		add_filter( 'the_content',     array( $this, 'drivers' ) );
 		add_filter( 'the_content',     array( $this, 'championship' ), 8 );
-		add_filter( 'the_content',     array( $this, 'teams' ) );
+
+		if ( isset( $_GET['test'] ) ) {
+			add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
+			add_filter( 'the_content',     array( $this, 'teams' ) );
+		}
+
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'teams_metaboxes' ) );

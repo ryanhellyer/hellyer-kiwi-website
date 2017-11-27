@@ -37,6 +37,164 @@ class SRC_Core {
 		return $types;
 	}
 
+
+	/**
+	 * The teams championship table.
+	 *
+	 * @param  string  $content   The post content
+	 * @param  bool    $bypass    true if bypassing post-type check
+	 * @param  int     $limit     the max number of drivers to show
+	 * @param  string  $title     title to use
+	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
+	 * @param  int     $season_id the ID of the season of the championsing permanship table
+	 */
+	static function teams_championship( $content, $title = false, $season_id = null ) {
+
+		if ( null === $season_id ) {
+			$season_id = get_the_ID();
+		}
+
+		/*
+		 * Use stored results if available and set to use them.
+		 *  Otherwise recalculate the results (normal mid-season)
+		 */
+		$stored_results = get_post_meta( $season_id, '_stored_results', true );
+		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
+
+		if ( '' === $stored_results || '1' !== $use_stored_results ) {
+			$stored_results = $this->get_driver_points_from_season( $season_id );
+		} // End of championship positions calculation
+		else {
+			$content .= "<!-- Using permanently stored results -->";
+		}
+
+		if ( false === $title ) {
+			$title = __( 'Teams championship', 'src' );
+		}
+
+		// Loop through each team
+		$teams_query = new WP_Query( array(
+			'post_type'      => 'team',
+			'post_status'    => 'publish',
+			'posts_per_page' => 100,
+			'no_found_rows'  => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+		$teams_list = array();
+		if ( $teams_query->have_posts() ) {
+			while ( $teams_query->have_posts() ) {
+				$teams_query->the_post();
+
+				// Check this team is competing in this season
+				if ( 'on' === get_post_meta( $season_id, 'team-' . get_the_ID(), true ) ) {
+
+					// Add team to list
+					if ( ! isset( $teams_list[get_the_ID()] ) ) {
+						$teams_list[get_the_ID()]['points'] = 0;
+					}
+
+					// Add up driver results
+					$count = 1;
+					while ( $count < 4 ) {
+
+						// Get driver name
+						$driver_name = '';
+						$user_id = get_post_meta( get_the_ID(), '_driver_' . $count, true );
+						if ( is_numeric( $user_id ) ) {
+							$user = get_userdata( $user_id );
+							$driver_name = $user->data->display_name;
+						} else if ( 'error' === $user_id ) {
+							$driver_name = $user_id;
+						}
+
+						// Add driver names
+						if ( 'error' !== $driver_name ) {
+							$teams_list[get_the_ID()]['drivers'][] = $driver_name;
+						}
+
+						// Add drivers points to the tally
+						if ( isset( $stored_results[$driver_name] ) ) {
+							$teams_list[get_the_ID()]['points'] = $teams_list[get_the_ID()]['points'] + $stored_results[$driver_name];
+						}
+
+						$count++;
+					}
+
+				}
+
+			}
+			wp_reset_postdata();
+		}
+
+		if ( array() !== $teams_list ) {
+			$content .= '<h3>' . esc_html( $title ) . '</h3>';
+			$content .= '<table id="src-teams-championship">';
+
+			$content .= '<thead><tr>';
+
+			$content .= '
+				<th class="col-pos">Pos</th>
+				<th class="col-name">Team name</th>
+				<th class="col-name">Drivers</th>
+				<th class="col-inc">Inc</th>
+				<th class="col-pts">Pts</th>';
+			$content .= '</tr></thead>';
+
+			$content .= '<tbody>';
+
+			$position = 0;
+			$car_number = '';
+			$nationality = '';
+			foreach ( $teams_list as $team_id => $data ) {
+				$position++;
+
+				$team_name = get_the_title( $team_id );
+				$linked_name = '<a href="' . esc_url( get_permalink( $team_id ) ) . '">' . esc_html( $team_name ) . '</a>';
+
+				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
+				$whole = floor( $data['points'] );
+				$inc = ( 1 - ( $data['points'] - $whole ) ) / self::FRACTION;
+				$inc = ( 0 + ( $data['points'] - $whole ) );
+				if ( 0 == $inc ) {
+					$inc = 1;
+				}
+				$inc = 1 - $inc;
+				$inc = $inc / self::FRACTION;
+
+				// Creat driver names list
+				if ( is_array( $data['drivers'] ) ) {
+					$driver_list = '';
+					foreach ( $data['drivers'] as $driver_name ) {
+						$driver_list .= '
+						<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $driver_name ) . '/' ) . '">' . esc_html( $driver_name ) . '</a>
+						<br />';
+					}
+				}
+
+				// Don't bother showing drivers who haven't scored any points yet
+				$points = absint( round( $data['points'] ) );
+
+				$content .= '<tr>';
+
+				$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
+				$content .= '<td class="col-name">' . $linked_name . '</td>';
+				$content .= '<td class="col-inc">' . $driver_list /* escaped earlier */ . '</td>';
+				$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
+				$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+
+				$content .= '</tr>';
+
+			}
+			$content .= '</tbody>';
+
+			$content .= '</table>';
+		}
+
+		return $content;
+	}
+
+
 	/**
 	 * The championship table.
 	 *
@@ -80,211 +238,7 @@ class SRC_Core {
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			// Get all events from that season
-			$query = new WP_Query( array(
-				'posts_per_page'         => 100,
-				'post_type'              => 'event',
-
-				'meta_key'               => 'season',
-				'meta_value'             => $season_id,
-
-				'no_found_rows'          => true,
-				'update_post_meta_cache' => false,
-				'update_post_term_cache' => false,
-			) );
-
-			$stored_results = $fastest_laps = array();
-			if ( $query->have_posts() ) {
-				while ( $query->have_posts() ) {
-					$query->the_post();
-
-					$fastest_laps = array();
-					$incident_results = array();
-					foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
-						$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
-						$results = json_decode( $results, true );
-						$points_positions = get_post_meta( $season_id, 'points_positions', true );
-
-						if ( is_array( $results ) ) {
-
-							// Add points for finishing position and calc incidents
-							foreach ( $results as $pos => $result ) {
-
-								$name = $result['name'];
-								if ( isset( $points_positions[$pos - 1] ) ) {
-
-									if ( isset( $stored_results[$name] ) ) {
-										$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
-									} else {
-										$stored_results[$name] = $points_positions[$pos - 1];
-									}
-
-								}
-
-								// Store fastest laps
-								if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
-
-									$time_exploded = explode( ':', $result['fastest_lap_time'] );
-
-									if ( isset( $time_exploded[1] ) ) {
-										$time = $time_exploded[0] * 60 + $time_exploded[1];
-									} else {
-										$time = $time_exploded[0];
-									}
-
-									if (
-										! isset( $fastest_laps[$name] )
-										||
-										(
-											isset( $fastest_laps[$name] )
-											&&
-											$fastest_laps[$name] > $time
-										)
-									) {
-										$fastest_laps[$name] = $time;
-									}
-
-								}
-
-								// Get least incident info (we ignore anyone who isn't within one lap of the lead)
-								if (
-									$results[1]['laps-completed'] === $result['laps-completed']
-									||
-									( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
-								) {
-									$name = $result['name'];
-									$incident_results[$name][$key] = $result['incidents'];
-								} else {
-									$incident_results[$name][$key] = 100000;
-								}
-
-								// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
-								if ( isset( $stored_results[$name] ) ) {
-									$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
-								} else {
-									$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
-								}
-
-							}
-
-							// Give bonus points for most spectacular crash in each race
-							$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
-							if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
-								$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
-							} else if ( '' !== $most_spectacular_crash_name ) {
-								$stored_results[$most_spectacular_crash_name] = 1;
-							}
-
-						}
-
-					}
-
-					// Work out who gets points for the least incidents
-					// Work out how many races there were - only want to count drivers who completed both races
-					foreach ( $incident_results as $x => $driver_incidents ) {
-
-						if ( isset( $max ) && $max < count( $driver_incidents ) ) {
-							$max = count( $driver_incidents );
-						} else if ( ! isset( $max ) ) {
-							$max = count( $driver_incidents );
-						}
-
-					}
-					// Remove drivers who weren't in both races
-					foreach ( $incident_results as $x => $driver_incidents ) {
-
-						if ( $max !== count( $driver_incidents ) ) {
-							unset( $incident_results[$x] );
-						} else {
-							$incident_results[$x] = array_sum( $driver_incidents );
-						}
-
-					}
-					asort( $incident_results );
-
-					$least_incident_drivers = array();
-					unset( $least_incidents );
-					foreach ( $incident_results as $driver_name => $incidents ) {
-						// Grab definite least incidents value
-						if ( ! ( isset( $least_incidents ) ) ) {
-							$least_incidents = $incidents;
-						}
-
-						if ( $least_incidents === $incidents ) {
-							$least_incident_drivers[] = $driver_name;
-						}
-
-					}
-
-					// Add least incident points
-					foreach ( $least_incident_drivers as $lkey => $name ) {
-
-						if ( isset( $stored_results[$name] ) ) {
-							$stored_results[$name] = $stored_results[$name] + 1;
-						} else {
-							$stored_results[$name] = 1;
-						}
-
-					}
-
-					if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
-
-						// Store least incident info in events
-						if ( is_array( $least_incident_drivers ) ) {
-							update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
-						} else {
-							delete_post_meta( get_the_ID(), '_least_incidents' );
-						}
-
-					}
-
-					// Add bonus point for pole
-					$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
-					$qual_results = json_decode( $qual_results, true );
-					if ( isset( $qual_results[1] ) ) {
-						$pole_position = $qual_results[1];
-						$name = $pole_position['name'];
-						if ( isset( $stored_results[$name] ) ) {
-							$stored_results[$name] = $stored_results[$name] + 1;
-
-							// Record who won pole
-							if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
-								update_post_meta( get_the_ID(), '_pole_position', $name );
-							}
-
-						}
-					}
-
-					// Add bonus points for fastest lap in each event
-					asort( $fastest_laps );
-
-					// Fixing buggy fastest laps
-					if ( 'update' === get_option( 'undiecar-cache' ) ) {
-						delete_post_meta( get_the_ID(), '_fastest_lap' );
-					}
-
-					foreach ( $fastest_laps as $name => $fastest_lap_time ) {
-
-						if ( isset( $stored_results[$name] ) ) {
-
-							// Record who won bonus point
-							if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
-								update_post_meta( get_the_ID(), '_fastest_lap', $name );
-							}
-
-							$stored_results[$name] = $stored_results[$name] + 1;
-							break;
-						}
-
-					}
-
-				}
-
-			}
-
-			arsort( $stored_results );
-
-			wp_reset_query();
+			$stored_results = $this->get_driver_points_from_season( $season_id );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -297,7 +251,7 @@ class SRC_Core {
 		}
 
 		if ( false === $title ) {
-			$title = __( 'Championship', 'src' );
+			$title = __( 'Drivers championship', 'src' );
 		}
 
 		if ( array() !== $stored_results ) {
@@ -849,6 +803,219 @@ class SRC_Core {
 		</p>';
 
 		return $drivers_list;
+	}
+
+	/**
+	 * Get all driver points from a season.
+	 */
+	public function get_driver_points_from_season( $season_id ) {
+
+		// Get all events from that season
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
+
+			'meta_key'               => 'season',
+			'meta_value'             => $season_id,
+
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+
+		$stored_results = $fastest_laps = array();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$fastest_laps = array();
+				$incident_results = array();
+				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+					$results = json_decode( $results, true );
+					$points_positions = get_post_meta( $season_id, 'points_positions', true );
+
+					if ( is_array( $results ) ) {
+
+						// Add points for finishing position and calc incidents
+						foreach ( $results as $pos => $result ) {
+
+							$name = $result['name'];
+							if ( isset( $points_positions[$pos - 1] ) ) {
+
+								if ( isset( $stored_results[$name] ) ) {
+									$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
+								} else {
+									$stored_results[$name] = $points_positions[$pos - 1];
+								}
+
+							}
+
+							// Store fastest laps
+							if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
+
+								$time_exploded = explode( ':', $result['fastest_lap_time'] );
+
+								if ( isset( $time_exploded[1] ) ) {
+									$time = $time_exploded[0] * 60 + $time_exploded[1];
+								} else {
+									$time = $time_exploded[0];
+								}
+
+								if (
+									! isset( $fastest_laps[$name] )
+									||
+									(
+										isset( $fastest_laps[$name] )
+										&&
+										$fastest_laps[$name] > $time
+									)
+								) {
+									$fastest_laps[$name] = $time;
+								}
+
+							}
+
+							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
+							if (
+								$results[1]['laps-completed'] === $result['laps-completed']
+								||
+								( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
+							) {
+								$name = $result['name'];
+								$incident_results[$name][$key] = $result['incidents'];
+							} else {
+								$incident_results[$name][$key] = 100000;
+							}
+
+							// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
+							if ( isset( $stored_results[$name] ) ) {
+								$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
+							} else {
+								$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
+							}
+
+						}
+
+						// Give bonus points for most spectacular crash in each race
+						$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
+						if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
+							$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
+						} else if ( '' !== $most_spectacular_crash_name ) {
+							$stored_results[$most_spectacular_crash_name] = 1;
+						}
+
+					}
+
+				}
+
+				// Work out who gets points for the least incidents
+				// Work out how many races there were - only want to count drivers who completed both races
+				foreach ( $incident_results as $x => $driver_incidents ) {
+
+					if ( isset( $max ) && $max < count( $driver_incidents ) ) {
+						$max = count( $driver_incidents );
+					} else if ( ! isset( $max ) ) {
+						$max = count( $driver_incidents );
+					}
+
+				}
+				// Remove drivers who weren't in both races
+				foreach ( $incident_results as $x => $driver_incidents ) {
+
+					if ( $max !== count( $driver_incidents ) ) {
+						unset( $incident_results[$x] );
+					} else {
+						$incident_results[$x] = array_sum( $driver_incidents );
+					}
+
+				}
+				asort( $incident_results );
+
+				$least_incident_drivers = array();
+				unset( $least_incidents );
+				foreach ( $incident_results as $driver_name => $incidents ) {
+					// Grab definite least incidents value
+					if ( ! ( isset( $least_incidents ) ) ) {
+						$least_incidents = $incidents;
+					}
+
+					if ( $least_incidents === $incidents ) {
+						$least_incident_drivers[] = $driver_name;
+					}
+
+				}
+
+				// Add least incident points
+				foreach ( $least_incident_drivers as $lkey => $name ) {
+
+					if ( isset( $stored_results[$name] ) ) {
+						$stored_results[$name] = $stored_results[$name] + 1;
+					} else {
+						$stored_results[$name] = 1;
+					}
+
+				}
+
+				if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
+
+					// Store least incident info in events
+					if ( is_array( $least_incident_drivers ) ) {
+						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
+					} else {
+						delete_post_meta( get_the_ID(), '_least_incidents' );
+					}
+
+				}
+
+				// Add bonus point for pole
+				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
+				$qual_results = json_decode( $qual_results, true );
+				if ( isset( $qual_results[1] ) ) {
+					$pole_position = $qual_results[1];
+					$name = $pole_position['name'];
+					if ( isset( $stored_results[$name] ) ) {
+						$stored_results[$name] = $stored_results[$name] + 1;
+
+						// Record who won pole
+						if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
+							update_post_meta( get_the_ID(), '_pole_position', $name );
+						}
+
+					}
+				}
+
+				// Add bonus points for fastest lap in each event
+				asort( $fastest_laps );
+
+				// Fixing buggy fastest laps
+				if ( 'update' === get_option( 'undiecar-cache' ) ) {
+					delete_post_meta( get_the_ID(), '_fastest_lap' );
+				}
+
+				foreach ( $fastest_laps as $name => $fastest_lap_time ) {
+
+					if ( isset( $stored_results[$name] ) ) {
+
+						// Record who won bonus point
+						if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
+							update_post_meta( get_the_ID(), '_fastest_lap', $name );
+						}
+
+						$stored_results[$name] = $stored_results[$name] + 1;
+						break;
+					}
+
+				}
+
+			}
+
+		}
+		wp_reset_query();
+
+		arsort( $stored_results );
+
+		return $stored_results;
 	}
 
 }
