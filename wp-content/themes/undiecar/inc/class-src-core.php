@@ -828,19 +828,19 @@ class SRC_Core {
 
 		if ( '' !== $twitter ) {
 			$drivers_list .= '		
-			Twitter: <a href="' . esc_url( 'https://twitter.com/' . $twitter . '/' ) . '">@' . esc_html( $twitter ) . '</a>
+			Twitter: <a href="' . esc_url( $twitter ) . '">@' . esc_html( $twitter ) . '</a>
 			<br />';
 		}
 
 		if ( '' !== $facebook ) {
 			$drivers_list .= '
-			Facebook: <a href="' . esc_url( 'https://facebook.com/' . $facebook . '/' ) . '">facebook.com/ryanhellyer</a>
+			Facebook: <a href="' . esc_url( $facebook ) . '">' . esc_html( $facebook ) . '</a>
 			<br />';
 		}
 
 		if ( '' !== $youtube ) {
 			$drivers_list .= '
-			YouTube: <a href="' . esc_url( 'https://youtube.com/' . $youtube . '/' )  . '">youtube.com/' . esc_html( $youtube ) . '</a>';
+			YouTube: <a href="' . esc_url( $youtube )  . '">youtube.com/' . esc_html( $youtube ) . '</a>';
 		}
 
 		$drivers_list .= '
