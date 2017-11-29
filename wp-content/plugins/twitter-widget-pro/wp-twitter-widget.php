@@ -3,7 +3,7 @@
  * Plugin Name: Twitter Widget Pro
  * Plugin URI: https://aarondcampbell.com/wordpress-plugin/twitter-widget-pro/
  * Description: A widget that properly handles twitter feeds, including @username, #hashtag, and link parsing.  It can even display profile images for the users.  Requires PHP5.
- * Version: 2.8.0
+ * Version: 2.9.0
  * Author: Aaron D. Campbell
  * Author URI: https://aarondcampbell.com/
  * License: GPLv2 or later
@@ -114,8 +114,6 @@ class wpTwitterWidget {
 	 * @return void
 	 */
 	protected function __construct() {
-		require_once( 'lib/wp-twitter.php' );
-
 		$this->_file = plugin_basename( __FILE__ );
 		$this->_pageTitle = __( 'Twitter Widget Pro', 'twitter-widget-pro' );
 		$this->_menuTitle = __( 'Twitter Widget', 'twitter-widget-pro' );
@@ -159,6 +157,9 @@ class wpTwitterWidget {
 			'consumer-key'    => $this->_settings['twp']['consumer-key'],
 			'consumer-secret' => $this->_settings['twp']['consumer-secret'],
 		);
+		if ( ! class_exists( 'wpTwitter' ) ) {
+			require_once( 'lib/wp-twitter.php' );
+		}
 		$this->_wp_twitter_oauth = new wpTwitter( $oauth_settings );
 
 		// We want to fill 'twp-authed-users' but not overwrite them when saving
@@ -206,7 +207,7 @@ class wpTwitterWidget {
 		if ( 'authorize' == $_GET['action'] ) {
 			check_admin_referer( 'authorize' );
 			$auth_redirect = add_query_arg( array( 'action' => 'authorized' ), $this->get_options_url() );
-			$token = $this->_wp_twitter_oauth->getRequestToken( $auth_redirect );
+			$token = $this->_wp_twitter_oauth->get_request_token( $auth_redirect );
 			if ( is_wp_error( $token ) ) {
 				$this->_error = $token;
 				return;
@@ -1319,7 +1320,6 @@ class wpTwitterWidget {
 		$main_width = empty( $sidebarBoxes )? '100%' : '75%';
 		?>
 			<div class="wrap">
-				<?php $this->screen_icon_link(); ?>
 				<h2><?php echo esc_html($this->_pageTitle); ?></h2>
 				<div class="metabox-holder">
 					<div class="postbox-container" style="width:<?php echo $main_width; ?>;">
@@ -1457,19 +1457,6 @@ class wpTwitterWidget {
 		echo '<div class="rss-widget">';
 		wp_widget_rss_output( $args );
 		echo "</div>";
-	}
-
-	public function screen_icon_link($name = 'aaron') {
-		$link = '<a href="http://aarondcampbell.com">';
-		if ( function_exists( 'get_screen_icon' ) ) {
-			$link .= get_screen_icon( $name );
-		} else {
-			ob_start();
-			screen_icon($name);
-			$link .= ob_get_clean();
-		}
-		$link .= '</a>';
-		echo apply_filters('rpf-screen_icon_link', $link, $name );
 	}
 
 	public function admin_print_scripts() {
