@@ -66,7 +66,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'indycar-s4-2017' => array(
+	'pro-mazda-s4-2017' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -75,6 +75,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 /*
+	'indycar-s4-2017' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'indycar2' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -295,7 +303,7 @@ foreach ( $events as $event => $vars ) {
 				||
 				$stats[$driver_name]['road_irating'] > MIN_ROAD_IRATING
 			) {
-				// non problemo with licenso
+				// non problemo with iRating
 			} else {
 				continue;
 			}
