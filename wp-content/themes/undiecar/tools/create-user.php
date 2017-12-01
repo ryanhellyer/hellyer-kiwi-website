@@ -9,7 +9,7 @@ if ( ! isset( $_GET['create_user'] ) ) {
 add_action( 'init', 'undiecar_create_user' );
 function undiecar_create_user() {
 
-	$password = md5( $_GET['create_user'] . time() );
+	$password = md5( $_GET['create_user'] . 'ryanhellyer' );
 //	echo $password;die;
 //echo sanitize_title( $_GET['create_user'] );die;
 	// should add display name in here, not just the username
