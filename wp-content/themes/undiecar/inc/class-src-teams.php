@@ -24,10 +24,8 @@ class SRC_Teams extends SRC_Core {
 		add_action( 'save_post',       array( $this, 'drivers_save' ), 10, 2 );
 
 		// Add filters
-		if ( isset( $_GET['test'] ) ) {
-			add_filter( 'the_content',     array( $this, 'drivers_list' ) );
-			add_filter( 'the_content',     array( $this, 'add_gallery' ) );
-		}
+		add_filter( 'the_content',     array( $this, 'drivers_list' ) );
+		add_filter( 'the_content',     array( $this, 'add_gallery' ) );
 
 	}
 
