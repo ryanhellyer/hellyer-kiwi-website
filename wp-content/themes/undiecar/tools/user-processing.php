@@ -160,7 +160,7 @@ if ( 'special' === $_GET['user_processing'] ) {
 		}
 
 if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
-echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
+echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . ' - ' . get_user_meta( $driver_id, 'receive_extra_communication', true ) . "\n";
 }
 
 		if (
@@ -173,8 +173,8 @@ echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display
 
 			if (
 				'banned' !== get_user_meta( $driver_id, 'season', true )
-//				&&
-//				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+				&&
+				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 			) {
 //				echo $driver->data->display_name . ',';
 				$count++;
