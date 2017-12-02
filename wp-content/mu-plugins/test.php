@@ -1,10 +1,8 @@
 <?php
 
 
-/**
- * Setting a new cache time for feeds in WordPress
- */
-function prefix_set_feed_cache_time( $seconds ) {
-	return 1;
-}
-add_filter( 'wp_feed_cache_transient_lifetime' , 'prefix_set_feed_cache_time' );
+function do_not_cache_feeds(&$feed) {
+   $feed->enable_cache(false);
+ }
+
+ add_action( 'wp_feed_options', 'do_not_cache_feeds' );
