@@ -158,7 +158,10 @@ if ( 'special' === $_GET['user_processing'] ) {
 		if ( isset( $_GET['include_season'] ) ) {
 			$include_season = $_GET['include_season'];
 		}
+
+if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
 echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
+}
 
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
@@ -170,8 +173,8 @@ echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display
 
 			if (
 				'banned' !== get_user_meta( $driver_id, 'season', true )
-				&&
-				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+//				&&
+//				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 			) {
 //				echo $driver->data->display_name . ',';
 				$count++;
