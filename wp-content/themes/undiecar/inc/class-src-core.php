@@ -783,6 +783,11 @@ class SRC_Core {
 		}
 
 		if ( '' !== $twitter ) {
+
+			if ( strpos( $twitter, 'twitter.com' ) === false ) {
+				$twitter = 'https://twitter.com/' . $twitter . '/';
+			}
+
 			$drivers_list .= '		
 			Twitter: <a href="' . esc_url( $twitter ) . '">@' . esc_html( $twitter ) . '</a>
 			<br />';
