@@ -159,10 +159,6 @@ if ( 'special' === $_GET['user_processing'] ) {
 			$include_season = $_GET['include_season'];
 		}
 
-if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
-echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . ' - ' . get_user_meta( $driver_id, 'receive_extra_communication', true ) . "\n";
-}
-
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
@@ -176,7 +172,7 @@ echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display
 				&&
 				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 			) {
-//				echo $driver->data->display_name . ',';
+				echo $driver->data->display_name . ',';
 				$count++;
 			}
 		}
