@@ -158,7 +158,7 @@ if ( 'special' === $_GET['user_processing'] ) {
 		if ( isset( $_GET['include_season'] ) ) {
 			$include_season = $_GET['include_season'];
 		}
-
+echo get_user_meta( $driver_id, 'season', true ) . "\n";
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
