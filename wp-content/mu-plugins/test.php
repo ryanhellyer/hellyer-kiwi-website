@@ -1,12 +1,10 @@
 <?php
 
-//Prompt_Comment_Form_Handling::enqueue_assets();
 
-add_action( 'comment_form', 'dequeue_postmatic', 20 );
-function dequeue_postmatic() {
-	wp_dequeue_style( 'prompt-comment-form' );
-
-	wp_dequeue_script( 'prompt-comment-form' );
-
+/**
+ * Setting a new cache time for feeds in WordPress
+ */
+function prefix_set_feed_cache_time( $seconds ) {
+	return 1;
 }
-
+add_filter( 'wp_feed_cache_transient_lifetime' , 'prefix_set_feed_cache_time' );
