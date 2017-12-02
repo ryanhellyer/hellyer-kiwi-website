@@ -172,7 +172,7 @@ echo get_user_meta( $driver_id, 'season', true ) . "\n";
 				&&
 				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 			) {
-				echo $driver->data->display_name . ',';
+//				echo $driver->data->display_name . ',';
 				$count++;
 			}
 		}
