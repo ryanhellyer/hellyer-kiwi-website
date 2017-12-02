@@ -784,24 +784,39 @@ class SRC_Core {
 
 		if ( '' !== $twitter ) {
 
+			$twitter_text = $twitter;
 			if ( strpos( $twitter, 'twitter.com' ) === false ) {
 				$twitter = 'https://twitter.com/' . $twitter . '/';
 			}
 
 			$drivers_list .= '		
-			Twitter: <a href="' . esc_url( $twitter ) . '">@' . esc_html( $twitter ) . '</a>
+			Twitter: <a href="' . esc_url( $twitter ) . '">@' . esc_html( $twitter_text ) . '</a>
 			<br />';
 		}
 
 		if ( '' !== $facebook ) {
+
+			$facebook_text = $facebook;
+			if ( strpos( $facebook, 'facebook.com' ) === false ) {
+				$facebook = 'https://facebook.com/' . $facebook . '/';
+			}
+
 			$drivers_list .= '
-			Facebook: <a href="' . esc_url( $facebook ) . '">' . esc_html( $facebook ) . '</a>
+			Facebook: <a href="' . esc_url( $facebook ) . '">' . esc_html( $facebook_text ) . '</a>
 			<br />';
 		}
 
 		if ( '' !== $youtube ) {
+
+			$youtube_text = $youtube;
+			if ( strpos( $youtube, 'youtube.com' ) === false ) {
+				$youtube = 'https://youtube.com/' . $youtube . '/';
+			} else {
+				$youtube_text = 'youtube.com/' . $youtube . '/';
+			}
+
 			$drivers_list .= '
-			YouTube: <a href="' . esc_url( $youtube )  . '">youtube.com/' . esc_html( $youtube ) . '</a>';
+			YouTube: <a href="' . esc_url( $youtube )  . '">' . esc_html( $youtube ) . '</a>';
 		}
 
 		$drivers_list .= '
