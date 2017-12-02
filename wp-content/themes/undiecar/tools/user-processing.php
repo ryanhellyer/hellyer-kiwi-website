@@ -158,12 +158,8 @@ if ( 'special' === $_GET['user_processing'] ) {
 		if ( isset( $_GET['include_season'] ) ) {
 			$include_season = $_GET['include_season'];
 		}
-if ( '2' === get_user_meta( $driver_id, 'season', true ) ) {
-	update_user_meta( $driver_id, 'season', 'special' );
-	echo 'special' . "\n";
-} else {	
-//	echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
-}
+echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
+
 		if (
 			'special' === get_user_meta( $driver_id, 'season', true )
 			||
