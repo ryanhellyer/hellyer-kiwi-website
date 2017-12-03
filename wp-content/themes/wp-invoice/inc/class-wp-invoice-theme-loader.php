@@ -209,7 +209,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			),
 			'client_description' => array(
 				'escape' => 'wp_kses_post',
-				'string' => wpautop( $client_data['description'] ),
+				'string' => $this->line_breaks( $client_data['description'] ),
 			),
 			'client_website' => array(
 				'escape' => 'esc_url',
@@ -308,6 +308,13 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		}
 
 		return $amount;
+	}
+
+	private function line_breaks( $content ) {
+
+		$content = str_replace( "\n", '<br />', $content );
+
+		return $content;
 	}
 
 }
