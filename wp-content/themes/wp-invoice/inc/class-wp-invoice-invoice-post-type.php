@@ -568,4 +568,423 @@ $data[$count]['project'] = '';
 			update_post_meta( $post_id, '_invoice_number', $invoice_number );
 
 			// Set post slug as invoice number (note, needs to be changed each time, as for some bizarre reason WordPress keeps resetting it to whatever it thinks is best)
-			$author_id = get_post_field ( 'post_author'
+			$author_id = get_post_field ( 'post_author', $post_id );
+			$user_login = get_the_author_meta( 'login' , $author_id );
+			$post_name = sanitize_title( $user_login . '-' . $invoice_number );
+
+			remove_action( 'save_post', array( $this, 'meta_invoice_from_boxes_save' ) );
+			$args = array(
+				'ID'        => $post_id,
+				'post_name' => $post_name,
+			);
+			$result = wp_update_post( $args );
+			add_action( 'save_post', array( $this, 'meta_invoice_from_boxes_save' ), 10, 2 );
+
+		}
+
+		if ( isset( $_POST['_invoice_details'] ) ) {
+			$invoice_details = wp_kses_post( $_POST['_invoice_details'] );
+			update_post_meta( $post_id, '_invoice_details', $invoice_details );
+		}
+		if ( isset( $_POST['_invoice_currency'] ) ) {
+			$invoice_currency = wp_kses_post( $_POST['_invoice_currency'] );
+			update_post_meta( $post_id, '_invoice_currency', $invoice_currency );
+		}
+
+		if ( isset( $_POST['_invoice_due_date'] ) ) {
+			$invoice_due_date = date( self::DATE_FORMAT, absint( strtotime( $_POST['_invoice_due_date'] ) ) ) . ' 00:00:00';
+			update_post_meta( $post_id, '_invoice_due_date', $invoice_due_date );
+		}
+
+		if ( isset( $_POST['_invoice_hourly_rate'] ) ) {
+			$invoice_hourly_rate = wp_kses_post( $_POST['_invoice_hourly_rate'] );
+			update_post_meta( $post_id, '_invoice_hourly_rate', $invoice_hourly_rate );
+		}
+
+		if ( isset( $_POST['_invoice_note'] ) ) {
+			$invoice_note = wp_kses_post( $_POST['_invoice_note'] );
+			update_post_meta( $post_id, '_invoice_note', $invoice_note );
+		}
+
+		if ( isset( $_POST['_invoice_paid'] ) ) {
+			$invoice_paid = wp_kses_post( $_POST['_invoice_paid'] );
+			update_post_meta( $post_id, '_invoice_paid', $invoice_paid );
+		} else {
+			delete_post_meta( $post_id, '_invoice_paid' );
+		}
+
+		if ( isset( $_POST['_invoice_bank_details'] ) ) {
+			$invoice_bank_details = wp_kses_post( $_POST['_invoice_bank_details'] );
+			update_post_meta( $post_id, '_invoice_bank_details', $invoice_bank_details );
+		}
+
+	}
+
+	/**
+	 * Add admin metaboxes. 
+	 */
+	public function add_entries_metaboxes() {
+
+		add_meta_box(
+			'entries', // ID
+			__( 'Entries', 'wp-invoice' ), // Title
+			array(
+				$this,
+				'entries_meta_box', // Callback to method to display HTML
+			),
+			'invoice', // Post type
+			'normal', // Context, choose between 'normal', 'advanced', or 'side'
+			'low'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
+	}
+
+	/**
+	 * Save opening times meta box data.
+	 *
+	 * @param  int     $invoice_id The post ID
+	 * @param  object  $post       The post object
+	 */
+	public function meta_entries_boxes_save( $invoice_id, $post ) {
+
+		if ( 'invoice' !== get_post_type() ) {
+			return;
+		}
+
+		// Don't save anything if we're meant to be removing them all anyway
+		if (
+			isset( $_POST['removal-all-entries'] )
+			||
+			isset( $_POST['combine-identical-entries'] )
+			||
+			isset( $_POST['import-entries'] )
+			||
+			! isset( $_POST['buttons-nonce'] )
+		) {
+			return $invoice_id;
+		}
+
+		// Do nonce security check
+		if ( ! wp_verify_nonce( $_POST['buttons-nonce'], __FILE__ ) ) {
+			return $invoice_id;
+		}
+
+		// Loop through each entry and sanitize it
+		$count = 0;
+		foreach ( $_POST['_wp_invoice_entries']['title'] as $key => $x ) {
+
+			$entry_ids = wp_kses_post( $_POST['_wp_invoice_entries']['entry_ids'][$key] );
+			$entry_ids_array = explode( ',', $entry_ids );
+			$entry_ids = array();
+			foreach( $entry_ids_array as $key2 => $entry_id ) {
+				$data[$count]['entry_ids'][] = absint( $entry_id );
+			}
+			$data[$count]['title']      = wp_kses_post( $_POST['_wp_invoice_entries']['title'][$key] );
+			$data[$count]['project']    = wp_kses_post( $_POST['_wp_invoice_entries']['project'][$key] );
+			$data[$count]['start-date'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-date'][$key] );
+			$data[$count]['start-time'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-time'][$key] );
+			$data[$count]['end-date']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-date'][$key] );
+			$data[$count]['end-time']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-time'][$key] );
+			$data[$count]['hours']      = wp_kses_post( $_POST['_wp_invoice_entries']['hours'][$key] );
+
+			$count++;
+		}
+
+		// Save the entries
+		update_post_meta( $invoice_id, '_wp_invoice_entries', $data );
+	}
+
+	/**
+	 * Output the admin page.
+	 */
+	public function entries_meta_box() {
+
+		if ( isset( $_GET['post'] ) ) {
+			$invoice_id = $_GET['post'];
+		} else {
+			$invoice_id = 0;
+		}
+
+		?>
+
+			<table class="wp-list-table widefat plugins">
+				<thead>
+					<tr>
+						<th class='column-author'>
+							<?php _e( 'Edit', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+							<?php _e( 'Title', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+							<?php _e( 'Project', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+							<?php _e( 'Start', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+							<?php _e( 'End', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+							<?php _e( 'Hours', 'wp-invoice' ); ?>
+						</th>
+						<th class='column-author'>
+						</th>
+					</tr>
+				</thead>
+
+				<tbody id="add-rows"><?php
+
+				// Grab options array and output a new row for each setting
+				$entries = get_post_meta( $invoice_id, '_wp_invoice_entries', true );
+
+				if ( is_array( $entries ) ) {
+					foreach( $entries as $key => $value ) {
+						echo $this->get_row( $value );
+					}
+				}
+
+				// Add a new row by default
+				echo $this->get_row();
+				?>
+				</tbody>
+			</table>
+
+			<input type="button" id="add-new-row" value="<?php _e( 'Add new row', 'plugin-slug' ); ?>" /><?php
+	}
+
+	/**
+	 * Get a single table row.
+	 * 
+	 * @param  string  $value  Option value
+	 * @return string  The table row HTML
+	 */
+	public function get_row( $value = '' ) {
+
+		if ( ! is_array( $value ) ) {
+			$value = array();
+		}
+
+		if ( ! isset( $value['entry_ids'] ) ) {
+			$value['entry_ids'] = array();
+		}
+
+		if ( ! isset( $value['title'] ) ) {
+			$value['title'] = '';
+		}
+
+		if ( ! isset( $value['project'] ) ) {
+			$value['project'] = '';
+		}
+
+		if ( ! isset( $value['start-date'] ) ) {
+			$value['start-date'] = '';
+		}
+
+		if ( ! isset( $value['start-time'] ) ) {
+			$value['start-time'] = '';
+		}
+
+		if ( ! isset( $value['end-date'] ) ) {
+			$value['end-date'] = '';
+		}
+
+		if ( ! isset( $value['end-time'] ) ) {
+			$value['end-time'] = '';
+		}
+
+		if ( ! isset( $value['hours'] ) ) {
+			$value['hours'] = '';
+		}
+
+		// Get ID lists in strings
+		$id_list = '';
+		$entry_links = '';
+		$count = 1;
+		foreach ( $value['entry_ids'] as $key => $entry_id ) {
+
+			$id_list .= $entry_id;
+
+			$entry_links .= '<a href="'. esc_url( get_edit_post_link( $entry_id ) ) . '">' . esc_html( $entry_id ) . '</a>';
+
+			if ( $count !== count( $value['entry_ids'] ) ) {
+				$id_list .= ', ';
+				$entry_links .= ', ';
+			}
+
+			$count++;
+		}
+
+		// Create the required HTML
+		$row_html = '
+
+					<tr class="sortable inactive">
+						<td>
+							<input type="hidden" name="_wp_invoice_entries[entry_ids][]" value="' . esc_attr( $id_list ) . '" />
+							' . $entry_links . '
+						</td>
+						<td>
+							<input type="text" name="_wp_invoice_entries[title][]" value="' . esc_attr( $value['title'] ) . '" />
+						</td>
+						<td>
+							<input type="text" name="_wp_invoice_entries[project][]" value="' . esc_attr( $value['project'] ) . '" />
+						</td>
+						<td>
+							<input type="date" name="_wp_invoice_entries[start-date][]" value="' . esc_attr( $value['start-date'] ) . '" />
+							<input type="time" name="_wp_invoice_entries[start-time][]" value="' . esc_attr( $value['start-time'] ) . '" />
+						</td>
+						<td>
+							<input type="date" name="_wp_invoice_entries[end-date][]" value="' . esc_attr( $value['end-date'] ) . '" />
+							<input type="time" name="_wp_invoice_entries[end-time][]" value="' . esc_attr( $value['end-time'] ) . '" />
+						</td>
+						<td>
+							<input type="number" min="0" step="any" name="_wp_invoice_entries[hours][]" value="' . esc_attr( $value['hours'] ) . '" />
+						</td>
+					</tr>';
+
+		// Strip out white space (need on line line to keep JS happy)
+		$row_html = str_replace( '	', '', $row_html );
+		$row_html = str_replace( "\n", '', $row_html );
+
+		// Return the final HTML
+		return $row_html;
+	}
+
+	/**
+	 * Output scripts into the footer.
+	 * This is not best practice, but is implemented like this here to ensure that it can fit into a single file.
+	 */
+	public function scripts() {
+
+		if (
+			'invoice' !== get_post_type()
+			||
+			strpos( $_SERVER['REQUEST_URI'], 'post.php') === false
+		) {
+			return;
+		}
+
+		?>
+		<style>
+		.read-more-text {
+			display: none;
+		}
+		.sortable .toggle {
+			display: inline !important;
+		}
+		</style>
+		<script>
+
+			jQuery(function($){ 
+
+				/**
+				 * Adding some buttons
+				 */
+				function add_buttons() {
+
+					// Loop through each row
+					$( ".sortable" ).each(function() {
+
+						// If no input field found with class .remove-setting, then add buttons to the row
+						if(!$(this).find('input').hasClass('remove-setting')) {
+
+							// Add a remove button
+							$(this).append('<td><input type="button" class="remove-setting" value="X" /></td>');
+
+							// Remove button functionality
+							$('.remove-setting').click(function () {
+								$(this).parent().parent().remove();
+							});
+
+						}
+
+					});
+
+				}
+
+				// Create the required HTML (this should be added inline via wp_localize_script() once JS is abstracted into external file)
+				var html = '<?php echo $this->get_row( '' ); ?>';
+
+				// Add the buttons
+				add_buttons();
+
+				// Add a fresh row on clicking the add row button
+				$( "#add-new-row" ).click(function() {
+					$( "#add-rows" ).append( html ); // Add the new row
+					add_buttons(); // Add buttons tot he new row
+				});
+
+				// Allow for resorting rows
+				$('#add-rows').sortable({
+					axis: "y", // Limit to only moving on the Y-axis
+				});
+
+ 			});
+
+		</script><?php
+	}
+
+	/**
+ 	* Combine entries.
+ 	*
+ 	* @param  array   $entries   The entries
+ 	* @return array   The combined entries
+ 	*/
+	public function combine_entries( $entries ) {
+
+		// Crudely combining the entries
+		foreach ( $entries as $key => $entry ) {
+			$array_key = $entry['title'] . $entry['project'];
+
+			$combined_entries[$array_key]['title']   = $entry['title'];
+			$combined_entries[$array_key]['project'] = $entry['project'];
+
+			$id_list = '';
+			if ( isset( $entry['entry_ids'] ) ) {
+				foreach ( $entry['entry_ids'] as $x => $entry_id ) {
+					if ( 0 !== $entry_id ) {
+						if ( '' !== $id_list ) {
+							$id_list .= ',' . $entry_id;
+						} else {
+							$id_list = $entry_id;
+						}
+					}
+				}
+			}
+			$combined_entries[$array_key]['entry_ids'][ $id_list ] = $entry['hours'];
+
+			$combined_entries[$array_key]['start'][] = strtotime( $entry['start-date'] . ' ' . $entry['start-time'] );
+			$combined_entries[$array_key]['end'][]   = strtotime( $entry['end-date'] . ' ' . $entry['end-time'] );
+		}
+
+		// Setting start and end times and hours
+		foreach ( $combined_entries as $key => $entry ) {
+			$combined_entries[$key]['start'] = min( $entry['start'] );
+			$combined_entries[$key]['end']   = max( $entry['end'] );
+
+			$combined_entries[$key]['hours'] = 0;
+			$count = 0;
+			foreach ( $entry['entry_ids'] as $entry_id => $hours ) {
+				$combined_entries[$key]['hours'] = $hours + $combined_entries[$key]['hours'];
+				$combined_entries[$key]['entry_ids'][$count] = $entry_id;
+				unset( $combined_entries[$key]['entry_ids'][$entry_id] );
+				$count++;
+			}
+
+		}
+
+		// Adding formatted start and end dates/times
+		foreach ( $combined_entries as $key => $entry ) {
+			$combined_entries[$key]['start-date'] = date( 'Y-m-d', $entry['start'] );
+			$combined_entries[$key]['start-time'] = date( 'H:i:s', $entry['start'] );
+			$combined_entries[$key]['end-date'] = date( 'Y-m-d', $entry['end'] );
+			$combined_entries[$key]['end-time'] = date( 'H:i:s', $entry['end'] );
+
+			unset( $combined_entries[$key]['start'] );
+			unset( $combined_entries[$key]['end'] );
+		}
+
+		return $combined_entries;
+	}
+
+}
