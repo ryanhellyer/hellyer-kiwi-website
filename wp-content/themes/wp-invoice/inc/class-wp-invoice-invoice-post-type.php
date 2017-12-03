@@ -673,14 +673,15 @@ $data[$count]['project'] = '';
 		$count = 0;
 		foreach ( $_POST['_wp_invoice_entries']['title'] as $key => $x ) {
 
-			$entry_ids = wp_kses_post( $_POST['_wp_invoice_entries']['entry_ids'][$key] );
-			$entry_ids_array = explode( ',', $entry_ids );
-			$entry_ids = array();
-			foreach( $entry_ids_array as $key2 => $entry_id ) {
-				$data[$count]['entry_ids'][] = absint( $entry_id );
-			}
-
 			if ( isset( $_POST['_wp_invoice_entries']['title'][$key] ) && '' !== $_POST['_wp_invoice_entries']['title'][$key] ) {
+
+				$entry_ids = wp_kses_post( $_POST['_wp_invoice_entries']['entry_ids'][$key] );
+				$entry_ids_array = explode( ',', $entry_ids );
+				$entry_ids = array();
+				foreach( $entry_ids_array as $key2 => $entry_id ) {
+					$data[$count]['entry_ids'][] = absint( $entry_id );
+				}
+
 				$data[$count]['title']      = wp_kses_post( $_POST['_wp_invoice_entries']['title'][$key] );
 				$data[$count]['project']    = wp_kses_post( $_POST['_wp_invoice_entries']['project'][$key] );
 				$data[$count]['start-date'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-date'][$key] );
@@ -688,9 +689,10 @@ $data[$count]['project'] = '';
 				$data[$count]['end-date']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-date'][$key] );
 				$data[$count]['end-time']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-time'][$key] );
 				$data[$count]['hours']      = wp_kses_post( $_POST['_wp_invoice_entries']['hours'][$key] );
+
+				$count++;
 			}
 
-			$count++;
 		}
 
 		// Save the entries
