@@ -116,7 +116,7 @@ class WP_Invoice_Client_Post_Type extends WP_Invoice_Core {
 		<p>
 			<label for="_client_description"><?php _e( 'Client description', 'wp-invoice' ); ?></label>
 			<br />
-			<input type="text" name="_client_description" id="_client_description" value="<?php echo esc_attr( $client_description ); ?>" />
+			<textarea name="_client_description" id="_client_description"><?php echo esc_textarea( $client_description ); ?></textarea>
 		</p>
 
 		<p>
