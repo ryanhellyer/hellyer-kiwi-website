@@ -232,8 +232,8 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'string' => $this->get_amount( $invoice_id, $this->get_total_amount( $invoice_id ) ),
 			),
 			'bank_details' => array(
-				'escape' => 'esc_html',
-				'string' => get_post_meta( $invoice_id, '_invoice_bank_details', true ),
+				'escape' => 'wp_kses_post',
+				'string' => $this->line_breaks( get_post_meta( $invoice_id, '_invoice_bank_details', true ) ),
 			),
 			'footer_comment_1' => array(
 				'escape' => 'wp_kses_post',
