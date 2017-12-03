@@ -23,9 +23,7 @@ class SRC_Seasons extends SRC_Core {
 		add_filter( 'the_content',     array( $this, 'drivers' ) );
 		add_filter( 'the_content',     array( $this, 'championship' ), 8 );
 
-		if ( isset( $_GET['test'] ) ) {
-			add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
-		}
+		add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
 
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
@@ -245,20 +243,16 @@ class SRC_Seasons extends SRC_Core {
 
 	public function drivers( $content ) {
 
-		$season_slug = get_post_field( 'post_name', get_post( get_option( 'next-season' ) ) );
-		if ( '' === $season_slug ) {
-			$season_slug = get_post_field( 'post_name', get_post( get_option( 'current-season' ) ) );
+		if ( 'season' !== get_post_type() ) {
+			return $content;
 		}
 
-		$current_season_slug = get_post_field( 'post_name', get_the_ID() );
-
-		if ( $current_season_slug === $season_slug ) {
-			if ( isset( $_GET['test'] ) ) {
-				$content .= '<h3>Drivers</h3>';
+		if ( isset( $_GET['test'] ) ) {
+			$content .= '<h3>Drivers</h3>';
 //			$content .= '<p><a href="https://undiecar.com/confirmed-signups/"></a></p>';
 
-				$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
-			}
+			$season_slug = get_post_field( 'post_name', get_the_ID() );
+			$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
 		}
 
 		return $content;
