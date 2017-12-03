@@ -37,6 +37,7 @@
 	<p class="box invoice-from">
 		{invoice_from}
 		<br />
+		<br />
 		<em>Total Due:</em>
 		<strong class="total-amount">{total_amount}</strong>
 	</p>
