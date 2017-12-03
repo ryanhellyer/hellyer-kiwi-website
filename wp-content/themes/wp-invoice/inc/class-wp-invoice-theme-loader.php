@@ -244,8 +244,8 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'string' => 'ryanhellyer@gmail.com | geek.hellyer.kiwi',
 			),
 			'note' => array(
-				'escape' => 'esc_html',
-				'string' => get_post_meta( $invoice_id, '_invoice_note', true ),
+				'escape' => 'wp_kses_post',
+				'string' => $this->line_breaks( get_post_meta( $invoice_id, '_invoice_note', true ) ),
 			),
 		);
 
