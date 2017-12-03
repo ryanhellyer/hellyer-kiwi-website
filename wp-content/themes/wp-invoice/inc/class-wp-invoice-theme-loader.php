@@ -209,7 +209,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			),
 			'client_description' => array(
 				'escape' => 'esc_html',
-				'string' => $client_data['description'],
+				'string' => wpautop( $client_data['description'] ),
 			),
 			'client_website' => array(
 				'escape' => 'esc_url',
