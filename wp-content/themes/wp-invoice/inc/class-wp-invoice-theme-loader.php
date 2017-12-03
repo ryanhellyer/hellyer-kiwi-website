@@ -208,7 +208,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'string' => $client_data['name'],
 			),
 			'client_description' => array(
-				'escape' => 'esc_html',
+				'escape' => 'wp_kses_post',
 				'string' => wpautop( $client_data['description'] ),
 			),
 			'client_website' => array(
