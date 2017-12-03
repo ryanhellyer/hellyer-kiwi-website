@@ -679,13 +679,16 @@ $data[$count]['project'] = '';
 			foreach( $entry_ids_array as $key2 => $entry_id ) {
 				$data[$count]['entry_ids'][] = absint( $entry_id );
 			}
-			$data[$count]['title']      = wp_kses_post( $_POST['_wp_invoice_entries']['title'][$key] );
-			$data[$count]['project']    = wp_kses_post( $_POST['_wp_invoice_entries']['project'][$key] );
-			$data[$count]['start-date'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-date'][$key] );
-			$data[$count]['start-time'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-time'][$key] );
-			$data[$count]['end-date']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-date'][$key] );
-			$data[$count]['end-time']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-time'][$key] );
-			$data[$count]['hours']      = wp_kses_post( $_POST['_wp_invoice_entries']['hours'][$key] );
+
+			if ( isset( $_POST['_wp_invoice_entries']['title'][$key] ) && '' !== $_POST['_wp_invoice_entries']['title'][$key] ) {
+				$data[$count]['title']      = wp_kses_post( $_POST['_wp_invoice_entries']['title'][$key] );
+				$data[$count]['project']    = wp_kses_post( $_POST['_wp_invoice_entries']['project'][$key] );
+				$data[$count]['start-date'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-date'][$key] );
+				$data[$count]['start-time'] = wp_kses_post( $_POST['_wp_invoice_entries']['start-time'][$key] );
+				$data[$count]['end-date']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-date'][$key] );
+				$data[$count]['end-time']   = wp_kses_post( $_POST['_wp_invoice_entries']['end-time'][$key] );
+				$data[$count]['hours']      = wp_kses_post( $_POST['_wp_invoice_entries']['hours'][$key] );
+			}
 
 			$count++;
 		}
