@@ -220,8 +220,8 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'string' => $client_data['domain'],
 			),
 			'invoice_from' => array(
-				'escape' => 'esc_html',
-				'string' => get_post_meta( $invoice_id, '_invoice_from', true ),
+				'escape' => 'wp_kses_post',
+				'string' => $this->line_breaks( get_post_meta( $invoice_id, '_invoice_from', true ) ),
 			),
 			'currency' => array(
 				'escape' => 'esc_html',
