@@ -13,17 +13,27 @@
 	window.addEventListener(
 		'click',
 		function (e){
-
-			if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id) {
-				var menu = e.target.children[0];
-				menu.classList.toggle('menu-open');
-			} else if ( 'A' !== e.target.tagName ) {
-				var menu = document.getElementById( 'main-menu' );
-				menu.classList.remove('menu-open');
-			}
-
+			handle_clicks(e);
 		}
 	);
+	window.addEventListener(
+		'touchstart', /* handling iOS devices */
+		function (e){
+			handle_clicks(e);
+		}
+	);
+
+	function handle_clicks(e) {
+
+		if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id) {
+			var menu = e.target.children[0];
+			menu.classList.toggle('menu-open');
+		} else if ( 'A' !== e.target.tagName ) {
+			var menu = document.getElementById( 'main-menu' );
+			menu.classList.remove('menu-open');
+		}
+
+	}
 
 	window.addEventListener("scroll", function() {
 		var featured_news = document.getElementById("featured-news");
