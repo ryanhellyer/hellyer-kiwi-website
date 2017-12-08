@@ -24,7 +24,7 @@ class SRC_Gallery extends SRC_Core {
 		add_action( 'src_after_content', array( $this, 'attachment_footer' ) );
 
 		// Add shortcodes
-		add_shortcode( 'src-gallery-uploader', array( $this, 'uploader' ) );
+		add_shortcode( 'undiecar_gallery_uploader', array( $this, 'uploader' ) );
 
 	}
 
@@ -156,7 +156,7 @@ class SRC_Gallery extends SRC_Core {
 					$seasons->the_post();
 
 					// Event is stored as sanitized data from option field, so need to work out actual event name
-					$events = src_get_events( src_get_the_slug() );
+//					$events = src_get_events( src_get_the_slug() );
 					foreach ( $events as $key => $event_data ) {
 						if ( sanitize_title( $event_data['name'] ) == $event['event'] ) {
 							$event_name = $event_data['name'];
@@ -270,7 +270,7 @@ class SRC_Gallery extends SRC_Core {
 
 
 	public function form_fields() {
-
+return 'THE FORM FIELDS';
 		$content = wp_nonce_field( 'src-gallery-nonce', 'src-gallery-nonce', true, false );
 
 		$content .= '
@@ -297,7 +297,7 @@ class SRC_Gallery extends SRC_Core {
 			while ( $seasons->have_posts() ) {
 				$seasons->the_post();
 
-				$season_slug = src_get_the_slug();
+//				$season_slug = src_get_the_slug();
 
 				// Loop through each event in that season
 				foreach ( src_get_events( $season_slug ) as $key => $event ) {

@@ -63,9 +63,9 @@ class SRC_Admin {
 		}
 
 		// Redirect from dashboard to edit pages - Thanks to WP Engineer for this code snippet ... http://wpengineer.com/redirects-to-another-page-in-wordpress-backend/
-		if ( preg_match( '#wp-admin/?(index.php)?$#', esc_url( $_SERVER['REQUEST_URI'] ) ) ) {
-			wp_redirect( admin_url( 'edit.php?post_type=page' ) );
-		}
+//		if ( preg_match( '#wp-admin/?(index.php)?$#', esc_url( $_SERVER['REQUEST_URI'] ) ) ) {
+//			wp_redirect( admin_url( 'edit.php?post_type=page' ) );
+//		}
 	
 	}
 	
