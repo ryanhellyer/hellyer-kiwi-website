@@ -21,7 +21,7 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'init',            array( $this, 'init' ) );
 		add_filter( 'the_content',     array( $this, 'schedule' ) );
 		add_filter( 'the_content',     array( $this, 'drivers' ) );
-		add_filter( 'the_content',     array( $this, 'championship' ), 8 );
+		add_filter( 'the_content',     array( $this, 'championships' ), 8 );
 
 		add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
 
@@ -37,6 +37,15 @@ class SRC_Seasons extends SRC_Core {
 		// Add filters
 		add_filter( 'the_content', array( $this, 'add_points_info_to_content' ) );
 
+	}
+
+	public function championships( $content ) {
+		$content = $this->championship( $content );
+		if ( isset( $_GET['test'] ) ) {
+			$content = $this->championship( $content, false, 100, 'Road Championship', false, null, 'road' );
+			$content = $this->championship( $content, false, 100, 'Oval Championship', false, null, 'oval' );
+		}
+		return $content;
 	}
 
 	/**

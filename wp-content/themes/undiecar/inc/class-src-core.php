@@ -200,12 +200,13 @@ class SRC_Core {
 	 *
 	 * @param  string  $content   The post content
 	 * @param  bool    $bypass    true if bypassing post-type check
-	 * @param  int     $limit     the max number of drivers to show
-	 * @param  string  $title     title to use
+	 * @param  int     $limit     The max number of drivers to show
+	 * @param  string  $title     Title to use
 	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
+	 * @param  string  $track_types Type of tracks to include
 	 * @param  int     $season_id the ID of the season of the championsing permanship table
 	 */
-	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null ) {
+	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null, $track_types = 'all' ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -238,7 +239,7 @@ class SRC_Core {
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			$stored_results = self::get_driver_points_from_season( $season_id );
+			$stored_results = self::get_driver_points_from_season( $season_id, $track_types );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -828,7 +829,7 @@ class SRC_Core {
 	/**
 	 * Get all driver points from a season.
 	 */
-	static function get_driver_points_from_season( $season_id ) {
+	static function get_driver_points_from_season( $season_id, $track_types = 'all' ) {
 
 		// Get all events from that season
 		$query = new WP_Query( array(
@@ -847,6 +848,15 @@ class SRC_Core {
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
+
+				// Handle championship for a specific track type
+				$track_id = get_post_meta( get_the_ID(), 'track', true );
+				$track_type = get_post_meta( $track_id, 'track_type', true );
+				if ( 'road' === $track_types && 'oval' === $track_type ) {
+					continue;
+				} else if ( 'oval' === $track_types && 'oval' !== $track_type ) {
+					continue;
+				}
 
 				$fastest_laps = array();
 				$incident_results = array();
