@@ -863,10 +863,18 @@ class SRC_Core {
 							$name = $result['name'];
 							if ( isset( $points_positions[$pos - 1] ) ) {
 
+								// Get points multiplier (for races worth more than normal points)
+								$points_multiplier = get_post_meta( get_the_ID(), 'event_race-' . $race_number . '_points_multiplier', true );
+								if ( ! is_numeric( $points_multiplier ) ) {
+									$points_multiplier = 1;
+								}
+
+								// Add drivers points
+								$points = $points_positions[$pos - 1] * $points_multiplier;
 								if ( isset( $stored_results[$name] ) ) {
-									$stored_results[$name] = $stored_results[$name] + $points_positions[$pos - 1];
+									$stored_results[$name] = $stored_results[$name] + $points;
 								} else {
-									$stored_results[$name] = $points_positions[$pos - 1];
+									$stored_results[$name] = $points;
 								}
 
 							}

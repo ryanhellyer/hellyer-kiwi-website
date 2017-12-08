@@ -151,10 +151,17 @@ class SRC_Events extends SRC_Core {
 				'Race 3' === $name
 			) {
 				$cmb->add_field( array(
-					'name' => esc_html__( 'Grid', 'src' ),
+					'name' => esc_html__( $name . ' grid', 'src' ),
 					'id'         => $slug . '_' . sanitize_title( $name ) . '_grid',
 					'type'       => 'select',
 					'options_cb' => array( $this, 'qualifying_grid' ),
+				) );
+
+				$cmb->add_field( array(
+					'name' => esc_html__( $name . ' points multiplier', 'src' ),
+					'id'         => $slug . '_' . sanitize_title( $name ) . '_points_multiplier',
+					'type'       => 'text',
+					'default' => '1.0',
 				) );
 			}
 
