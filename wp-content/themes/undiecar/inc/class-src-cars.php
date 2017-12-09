@@ -22,7 +22,7 @@ class SRC_Cars extends SRC_Core {
 		add_action( 'cmb2_admin_init',   array( $this, 'cars_metaboxes' ) );
 
 		// Add filter
-		add_action( 'the_content', array( $this, 'add_content_season_posts' ) );
+		add_filter( 'the_content', array( $this, 'add_content_season_posts' ) );
 
 	}
 
@@ -92,6 +92,11 @@ class SRC_Cars extends SRC_Core {
 
 		// Only show on the season post-type
 		if ( 'season' !== get_post_type() ) {
+			return $content;
+		}
+
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
 			return $content;
 		}
 

@@ -54,6 +54,11 @@ class SRC_Core {
 			$season_id = get_the_ID();
 		}
 
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
+			return $content;
+		}
+
 		/*
 		 * Use stored results if available and set to use them.
 		 *  Otherwise recalculate the results (normal mid-season)
@@ -166,9 +171,7 @@ class SRC_Core {
 				if ( is_array( $data['drivers'] ) ) {
 					$driver_list = '';
 					foreach ( $data['drivers'] as $driver_name ) {
-						$driver_list .= '
-						<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $driver_name ) . '/' ) . '">' . esc_html( $driver_name ) . '</a>
-						<br />';
+						$driver_list .= '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $driver_name ) . '/' ) . '">' . esc_html( $driver_name ) . '</a>';
 					}
 				}
 
@@ -179,7 +182,7 @@ class SRC_Core {
 
 				$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
 				$content .= '<td class="col-name">' . $linked_name . '</td>';
-				$content .= '<td class="col-inc">' . $driver_list /* escaped earlier */ . '</td>';
+				$content .= '<td class="col-inc drivers-list">' . $driver_list /* escaped earlier */ . '</td>';
 				$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
 				$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 

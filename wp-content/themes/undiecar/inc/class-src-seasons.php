@@ -24,6 +24,7 @@ class SRC_Seasons extends SRC_Core {
 		add_filter( 'the_content',     array( $this, 'championships' ), 8 );
 
 		add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
+		add_filter( 'the_content',     array( $this, 'permanently_store_results' ), 100 );
 
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
@@ -39,7 +40,39 @@ class SRC_Seasons extends SRC_Core {
 
 	}
 
+	public function permanently_store_results( $content ) {
+
+		if (
+			1 !== get_the_ID()
+			&&
+			'store' === get_post_meta( get_the_ID(), '_permanently_store_results', true )
+		) {
+
+			if ( ! defined( 'UNDIECAR_PERMANENTLY_STORE_RESULTS' ) ) {
+
+				define( 'UNDIECAR_PERMANENTLY_STORE_RESULTS', true );
+				wp_update_post(
+					array(
+						'ID'           => get_the_ID(),
+						'post_content' => $content,
+					)
+				);
+
+			}
+
+			update_post_meta( get_the_ID(), '_permanently_store_results', 'stored' );
+		}
+
+		return $content;
+	}
+
 	public function championships( $content ) {
+
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
+			return $content;
+		}
+
 		$content = $this->championship( $content );
 		if ( isset( $_GET['test'] ) ) {
 			$content = $this->championship( $content, false, 100, 'Road Championship', false, null, 'road' );
@@ -76,6 +109,11 @@ class SRC_Seasons extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function schedule( $content, $opt = null ) {
+
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
+			return $content;
+		}
 
 		$args = array(
 			'posts_per_page'         => 100,
@@ -256,6 +294,11 @@ class SRC_Seasons extends SRC_Core {
 			return $content;
 		}
 
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
+			return $content;
+		}
+
 		if ( isset( $_GET['test'] ) ) {
 			$content .= '<h3>Drivers</h3>';
 //			$content .= '<p><a href="https://undiecar.com/confirmed-signups/"></a></p>';
@@ -410,11 +453,25 @@ class SRC_Seasons extends SRC_Core {
 			return;
 		}
 
-		$checked = get_post_meta( get_the_ID(), '_permanently_store_results', true );
+		$selected = get_post_meta( get_the_ID(), '_permanently_store_results', true );
+		echo $selected;
 		echo '
 		<p>
 			<label for="permanently-store-results">' . esc_html__( 'Use permanently stored results? Intended for stashing results for historical purposes after season has ended.', 'src' ) . '</label>
-			<input type="checkbox" ' . checked( true, $checked, false ) . 'id="permanently-store-results" name="permanently-store-results" />
+			<select type="checkbox" id="permanently-store-results" name="permanently-store-results">';
+
+		$options = array(
+			'fresh' => 'Fresh',
+			'store' => 'Store permanently next page load',
+			'stored' => 'Results already stored permanently',
+		);
+		foreach ( $options as $value => $label ) {
+			echo '<option ' . selected( $selected, $value, true ) . ' value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
+		}
+
+
+		echo ';
+			</select>
 		</p>
 		<input type="hidden" id="permanently-store-results-nonce" name="permanently-store-results-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">';
 
@@ -441,9 +498,11 @@ class SRC_Seasons extends SRC_Core {
 		 * This is a bit of a hack, as we're loading the championship table and 
 		 * just triggering it to stash the results mid-table then bailing out.
 		 */
-		if ( 'on' === $_POST['permanently-store-results'] ) {
-			update_post_meta( $post_id, '_permanently_store_results', true );
-			$x = SRC_Core::championship( '', true, 100, false, true, $post_id );
+
+		if ( 'store' === $_POST['permanently-store-results'] ) {
+			update_post_meta( $post_id, '_permanently_store_results', 'store' );
+		} else if ( 'stored' === $_POST['permanently-store-results'] ) {
+			update_post_meta( $post_id, '_permanently_store_results', 'stored' );
 		} else {
 			delete_post_meta( $post_id, '_permanently_store_results' );
 		}
@@ -458,6 +517,11 @@ class SRC_Seasons extends SRC_Core {
 	 */
 	public function add_points_info_to_content( $content ) {
 		$html = '';
+
+		// Bail out now if meant to be using stored results
+		if ( 'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true ) ) {
+			return $content;
+		}
 
 		if ( 'season' !== get_post_type() ) {
 			return $content;
