@@ -506,8 +506,12 @@ class SRC_Events extends SRC_Core {
 					$length = get_post_meta( get_the_ID(), 'fp2_length', true );
 				} else if ( 'FP1' === $name ) {
 					$length = get_post_meta( get_the_ID(), 'fp2_length', true );
-				} else {
-					$length = get_post_meta( get_the_ID(), 'race_length', true  );
+				} else if ( 'Race 1' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'event_race-1_length', true  );
+				} else if ( 'Race 2' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'event_race-2_length', true  );
+				} else if ( 'Race 3' === $name ) {
+					$length = get_post_meta( get_the_ID(), 'event_race-3_length', true  );
 				}
 
 				if ( 'Race 2' === $name ) {
