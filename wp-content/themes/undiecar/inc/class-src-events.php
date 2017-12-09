@@ -499,7 +499,7 @@ class SRC_Events extends SRC_Core {
 				$extra_session_info = '';
 				$length = '';
 				if ( 'Qualifying' === $name ) {
-					$qualf = get_post_meta( get_the_ID(), 'qualifying_format', true );
+					$length = get_post_meta( get_the_ID(), 'qualifying_format', true );
 				} else if ( 'FP1' === $name ) {
 					$length = get_post_meta( get_the_ID(), 'fp1_length', true );
 				} else if ( 'FP2' === $name ) {
