@@ -48,7 +48,7 @@ class SRC_Seasons extends SRC_Core {
 			'store' === get_post_meta( get_the_ID(), '_permanently_store_results', true )
 		) {
 
-			if ( ! defined( 'UNDIECAR_PERMANENTLY_STORE_RESULTS' ) ) {
+			if ( ! defined( 'UNDIECAR_PERMANENTLY_STORE_RESULTS' ) ) { // Avoids wp_update_post looping
 
 				define( 'UNDIECAR_PERMANENTLY_STORE_RESULTS', true );
 				wp_update_post(

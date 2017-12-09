@@ -12,6 +12,8 @@
 class SRC_Events extends SRC_Core {
 
 	public $event;
+	public $stored = false;
+	public $store_now = false;
 
 	/**
 	 * Constructor.
@@ -24,6 +26,9 @@ class SRC_Events extends SRC_Core {
 		add_action( 'cmb2_admin_init',   array( $this, 'events_metaboxes' ) );
 		add_action( 'template_redirect', array( $this, 'set_event_data' ) );
 
+		add_filter( 'the_content',            array( $this, 'store_or_not_store' ), 1 );
+		add_filter( 'the_content',            array( $this, 'store_result_permanently' ), 100 );
+
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
 		add_filter( 'upload_mimes',           array( $this, 'allow_setup_uploads' ) );
@@ -33,6 +38,48 @@ class SRC_Events extends SRC_Core {
 		add_action( 'save_post',          array( $this, 'results_upload_save' ), 10, 2 );
 		add_action( 'post_edit_form_tag', array( $this, 'update_form_enctype' ) );
 
+	}
+
+	public function store_or_not_store( $content ) {
+
+		if ( 'event' !== get_post_type() ) {
+			return $content;
+		}
+
+		$season_id = get_post_meta( get_the_ID(), 'season', true );
+		if ( 'stored' === get_post_meta( $season_id, '_permanently_store_results', true ) ) {
+
+			if ( '1' === get_post_meta( get_the_ID(), '_permanently_stored_results', true ) ) {
+				$this->stored = true;
+			} else {
+				$this->store_now = true;
+			}
+
+		}
+
+		return $content;
+	}
+
+	public function store_result_permanently( $content ) {
+
+		if (
+			true === $this->store_now
+			&&
+			! defined( 'UNDIECAR_PERMANENTLY_STORE_RESULTS' ) // Avoids wp_update_post looping
+		) {
+
+			define( 'UNDIECAR_PERMANENTLY_STORE_RESULTS', true );
+			wp_update_post(
+				array(
+					'ID'           => get_the_ID(),
+					'post_content' => $content,
+				)
+			);
+
+			update_post_meta( get_the_ID(), '_permanently_stored_results', true );
+		}
+
+		return $content;
 	}
 
 	/**
@@ -414,6 +461,11 @@ class SRC_Events extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function add_extra_content( $content ) {
+
+		// Bail out now if result already stored
+		if ( true === $this->stored ) {
+			return $content;
+		}
 
 		if ( 'event' !== get_post_type() ) {
 			return $content;
