@@ -156,8 +156,7 @@ class SRC_Events extends SRC_Core {
 		$cmb->add_field( array(
 			'name' => esc_html__( 'Qualifying Format', 'src' ),
 			'id'         => 'qualifying_format',
-			'type'       => 'select',
-			'options_cb' => array( $this, 'qualifying_formats' ),
+			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(
@@ -235,19 +234,6 @@ class SRC_Events extends SRC_Core {
 			'type' => 'file',
 		) );
 
-	}
-
-	public function qualifying_formats() {
-		return array(
-			'5min' => esc_html__( '5 min shared track', 'src' ),
-			'10min' => esc_html__( '10 min shared track', 'src' ),
-			'15min' => esc_html__( '15 min shared track', 'src' ),
-			'30min' => esc_html__( '30 min shared track', 'src' ),
-			'60min' => esc_html__( '60 min shared track', 'src' ),
-			'1lap' => esc_html__( 'One lap solo', 'src' ),
-			'2lap' => esc_html__( 'Two lap solo', 'src' ),
-			'4lap' => esc_html__( 'Four lap solo', 'src' ),
-		);
 	}
 
 	public function get_events_drivers_array( $event_id ) {
@@ -510,21 +496,10 @@ class SRC_Events extends SRC_Core {
 
 				$slug = strtolower( sanitize_title( $name ) );
 
-				// Legacy support for older lengths - can be deleted later on as it'll have updated everything by then
-				if ( '' !== get_post_meta( get_the_ID(), 'practise_length', true ) ) {
-					$old_length = get_post_meta( get_the_ID(), 'practise_length', true );
-					update_post_meta( get_the_ID(), 'fp1_length', $old_length );
-					update_post_meta( get_the_ID(), 'fp2_length', $old_length );
-					delete_post_meta( get_the_ID(), 'practise_length' );
-				}
-
 				$extra_session_info = '';
 				$length = '';
 				if ( 'Qualifying' === $name ) {
 					$qualf = get_post_meta( get_the_ID(), 'qualifying_format', true );
-					if ( '' !== $qualf ) {
-						$length = $this->qualifying_formats()[$qualf];
-					}
 				} else if ( 'FP1' === $name ) {
 					$length = get_post_meta( get_the_ID(), 'fp1_length', true );
 				} else if ( 'FP2' === $name ) {
