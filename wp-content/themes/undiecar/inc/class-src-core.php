@@ -487,6 +487,7 @@ class SRC_Core {
 	static function get_countries( $country_code = null ) {
 
 		$countries = array(
+			""   => "Unknown",
 			"AF" => "Afghanistan",
 			"AX" => "Åland Islands",
 			"AL" => "Albania",
