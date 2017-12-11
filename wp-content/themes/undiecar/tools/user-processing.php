@@ -120,14 +120,14 @@ if ( 'remove' === $_GET['user_processing'] ) {
 }
 
 
-if ( 'season_3' === $_GET['user_processing'] ) {
+if ( 'season_4' === $_GET['user_processing'] ) {
 
 	$drivers = get_users( array( 'number' => 1000 ) );
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
 		if (
-			'3' === get_user_meta( $driver_id, 'season', true )
+			'4' === get_user_meta( $driver_id, 'season', true )
 			&&
 			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 		) {
@@ -193,20 +193,21 @@ if ( 'list_by_irating' === $_GET['user_processing'] ) {
 		$oval_irating = get_user_meta( $driver_id, 'oval_irating', true );
 		$road_license = get_user_meta( $driver_id, 'road_license', true );
 		$oval_license = get_user_meta( $driver_id, 'oval_license', true );
+		$total_irating = $road_irating + $oval_irating;
 
 		if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
-			$stats[$road_irating]['name'] = $driver->data->display_name;
-			$stats[$road_irating]['road_irating'] = $road_irating;
-			$stats[$road_irating]['oval_irating'] = $oval_irating;
-			$stats[$road_irating]['road_license'] = $road_license;
-			$stats[$road_irating]['oval_license'] = $oval_license;
-			$stats[$road_irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
+			$stats[$total_irating]['name'] = $driver->data->display_name;
+			$stats[$total_irating]['road_irating'] = $road_irating;
+			$stats[$total_irating]['oval_irating'] = $oval_irating;
+			$stats[$total_irating]['road_license'] = $road_license;
+			$stats[$total_irating]['oval_license'] = $oval_license;
+			$stats[$total_irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
 		}
 
 	}
 
 	ksort( $stats );
-	foreach ( $stats as $road_irating => $driver_data ) {
+	foreach ( $stats as $total_irating => $driver_data ) {
 		echo $driver_data['name'] . "\n";
 		echo '	road iRating = ' . $driver_data['road_irating'] . "\n";
 		echo '	oval iRating = ' . $driver_data['oval_irating'] . "\n";
