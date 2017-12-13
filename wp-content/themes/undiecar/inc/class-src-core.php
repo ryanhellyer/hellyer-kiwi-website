@@ -102,6 +102,7 @@ class SRC_Core {
 					// Add up driver results
 					$count = 1;
 					while ( $count < 4 ) {
+						$teams_list[get_the_ID()]['team_id'] = get_the_ID();
 
 						// Get driver name
 						$driver_name = '';
@@ -131,18 +132,12 @@ class SRC_Core {
 			}
 			wp_reset_postdata();
 		}
-/*
+
 		// Put teams list into points order
-		$new_teams_list = array();
-		foreach ( $teams_list as $id => $team ) {
-			$team['id'] = $id;
-			$points = $team['points'];
-			unset( $team['points'] );
-			$new_teams_list[$points] = $team;
-		}
-		krsort( $new_teams_list );
-		$teams_list = $new_teams_list;
-*/
+usort( $teams_list, function ( $item1, $item2 ) {
+	return $item1['points'] <=> $item2['points'];
+});
+krsort( $teams_list );
 
 		// Generate HTML
 		if ( array() !== $teams_list ) {
@@ -164,11 +159,11 @@ class SRC_Core {
 			$position = 0;
 			$car_number = '';
 			$nationality = '';
-			foreach ( $teams_list as $team_id => $data ) {
+			foreach ( $teams_list as $key => $data ) {
 				$position++;
-				$points = $data['points'];
+				$team_id = $data['team_id'];
 
-//				$team_id = $data['id'];
+				$points = $data['points'];
 				$team_name = get_the_title( $team_id );
 				$linked_name = '<a href="' . esc_url( get_permalink( $team_id ) ) . '">' . esc_html( $team_name ) . '</a>';
 
