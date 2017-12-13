@@ -132,6 +132,18 @@ class SRC_Core {
 			wp_reset_postdata();
 		}
 
+		// Put teams list into points order
+		$new_teams_list = array();
+		foreach ( $teams_list as $id => $team ) {
+			$team['id'] = $id;
+			$points = $team['points'];
+			unset( $team['points'] );
+			$new_teams_list[$points] = $team;
+		}
+		krsort( $new_teams_list );
+		$teams_list = $new_teams_list;
+
+		// Generate HTML
 		if ( array() !== $teams_list ) {
 			$content .= '<h3>' . esc_html( $title ) . '</h3>';
 			$content .= '<table id="src-teams-championship">';
@@ -151,16 +163,17 @@ class SRC_Core {
 			$position = 0;
 			$car_number = '';
 			$nationality = '';
-			foreach ( $teams_list as $team_id => $data ) {
+			foreach ( $teams_list as $points => $data ) {
 				$position++;
 
+				$team_id = $data['id'];
 				$team_name = get_the_title( $team_id );
 				$linked_name = '<a href="' . esc_url( get_permalink( $team_id ) ) . '">' . esc_html( $team_name ) . '</a>';
 
 				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
-				$whole = floor( $data['points'] );
-				$inc = ( 1 - ( $data['points'] - $whole ) ) / self::FRACTION;
-				$inc = ( 0 + ( $data['points'] - $whole ) );
+				$whole = floor( $points );
+				$inc = ( 1 - ( $points - $whole ) ) / self::FRACTION;
+				$inc = ( 0 + ( $points - $whole ) );
 				if ( 0 == $inc ) {
 					$inc = 1;
 				}
@@ -176,7 +189,7 @@ class SRC_Core {
 				}
 
 				// Don't bother showing drivers who haven't scored any points yet
-				$points = absint( round( $data['points'] ) );
+				$points = absint( round( $points ) );
 
 				$content .= '<tr>';
 
