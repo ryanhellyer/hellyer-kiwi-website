@@ -164,10 +164,11 @@ class SRC_Core {
 			$position = 0;
 			$car_number = '';
 			$nationality = '';
-			foreach ( $teams_list as $points => $data ) {
+			foreach ( $teams_list as $team_id => $data ) {
 				$position++;
+				$points = $data['points'];
 
-				$team_id = $data['id'];
+//				$team_id = $data['id'];
 				$team_name = get_the_title( $team_id );
 				$linked_name = '<a href="' . esc_url( get_permalink( $team_id ) ) . '">' . esc_html( $team_name ) . '</a>';
 
