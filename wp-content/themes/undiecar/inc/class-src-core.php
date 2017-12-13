@@ -141,8 +141,8 @@ class SRC_Core {
 			$new_teams_list[$points] = $team;
 		}
 		krsort( $new_teams_list );
-*/
 		$teams_list = $new_teams_list;
+*/
 
 		// Generate HTML
 		if ( array() !== $teams_list ) {
