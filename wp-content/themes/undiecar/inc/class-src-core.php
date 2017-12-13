@@ -131,7 +131,7 @@ class SRC_Core {
 			}
 			wp_reset_postdata();
 		}
-
+/*
 		// Put teams list into points order
 		$new_teams_list = array();
 		foreach ( $teams_list as $id => $team ) {
@@ -141,6 +141,7 @@ class SRC_Core {
 			$new_teams_list[$points] = $team;
 		}
 		krsort( $new_teams_list );
+*/
 		$teams_list = $new_teams_list;
 
 		// Generate HTML
