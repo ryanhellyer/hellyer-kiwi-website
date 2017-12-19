@@ -3,7 +3,7 @@
  * Plugin Name: Lazy Load by WP Rocket
  * Plugin URI: http://wordpress.org/plugins/rocket-lazy-load/
  * Description: The tiny Lazy Load script for WordPress without jQuery or others libraries.
- * Version: 1.4.4
+ * Version: 1.4.5
  * Author: WP Media
  * Author URI: https://wp-rocket.me
  * Text Domain: rocket-lazy-load
@@ -26,12 +26,11 @@
  */
 defined( 'ABSPATH' ) || die( 'Cheatin\' uh?' );
 
-define( 'ROCKET_LL_VERSION', '1.4.4' );
+define( 'ROCKET_LL_VERSION', '1.4.5' );
 define( 'ROCKET_LL_PATH', realpath( plugin_dir_path( __FILE__ ) ) . '/' );
 define( 'ROCKET_LL_3RD_PARTY_PATH', ROCKET_LL_PATH . '3rd-party/' );
 define( 'ROCKET_LL_ASSETS_URL', plugin_dir_url( __FILE__ ) . 'assets/' );
 define( 'ROCKET_LL_FRONT_JS_URL', ROCKET_LL_ASSETS_URL . 'js/' );
-define( 'ROCKET_LL_JS_VERSION'  , '8.2' );
 
 
 /**
@@ -46,6 +45,8 @@ function rocket_lazyload_init() {
 	require ROCKET_LL_3RD_PARTY_PATH . '3rd-party.php';
 
 	if ( is_admin() ) {
+		require ROCKET_LL_PATH . 'admin/actions.php';
+		require ROCKET_LL_PATH . 'admin/notices.php';
 		require ROCKET_LL_PATH . 'admin/admin.php';
 	}
 }
@@ -104,29 +105,46 @@ function rocket_lazyload_script() {
 		return;
 	}
 
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+	/**
+	 * Filters the threshold at which lazyload is triggered
+	 *
+	 * @since 1.2
+	 * @author Remy Perona
+	 *
+	 * @param int $threshold Threshold value.
+	 */
 	$threshold = apply_filters( 'rocket_lazyload_threshold', 300 );
 
-	echo <<<HTML
-	<script>window.lazyLoadOptions = {
+	echo '<script>(function(w, d){
+	var b = d.getElementsByTagName("body")[0];
+	var s = d.createElement("script"); s.async = true;
+	var v = !("IntersectionObserver" in w) ? "8.5.2" : "10.3.5";
+	s.src = "' . ROCKET_LL_FRONT_JS_URL . 'lazyload-v' . $suffix . '.js";
+	s.src = s.src.replace( "-v", "-" + v );
+	w.lazyLoadOptions = {
 		elements_selector: "img, iframe",
 		data_src: "lazy-src",
 		data_srcset: "lazy-srcset",
+		skip_invisible: false,
 		class_loading: "lazyloading",
 		class_loaded: "lazyloaded",
-		threshold: $threshold,
+		threshold: ' . $threshold . ',
 		callback_load: function(element) {
 			if ( element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible" ) {
 				if (element.classList.contains("lazyloaded") ) {
-					if (typeof window.jQuery != 'undefined') {
+					if (typeof window.jQuery != "undefined") {
 						if (jQuery.fn.fitVids) {
 							jQuery(element).parent().fitVids();
 						}
 					}
 				}
 			}
-		}	
-	};</script>
-HTML;
+		}
+	};
+	b.appendChild(s);
+}(window, document));</script>';
 
 	if ( rocket_lazyload_get_option( 'youtube' ) ) {
 		echo <<<HTML
@@ -134,7 +152,7 @@ HTML;
 HTML;
 	}
 }
-add_action( 'wp_footer', 'rocket_lazyload_script', 9 );
+add_action( 'wp_footer', 'rocket_lazyload_script', PHP_INT_MAX );
 
 /**
  * Enqueue the lazyload script
@@ -147,11 +165,6 @@ function rocket_lazyload_enqueue() {
 		return;
 	}
 
-	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	$ll_url = ROCKET_LL_FRONT_JS_URL . 'lazyload-' . ROCKET_LL_JS_VERSION . $suffix . '.js';
-
-	wp_enqueue_script( 'rocket-lazyload', $ll_url, null, null, true );
-
 	if ( rocket_lazyload_get_option( 'youtube' ) ) {
 		$css = '.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;background:#000;margin:5px}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;cursor:pointer;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:72px;width:72px;left:50%;top:50%;margin-left:-36px;margin-top:-36px;position:absolute;background:url(' . ROCKET_LL_ASSETS_URL . 'img/play.png) no-repeat;cursor:pointer}';
 
@@ -161,26 +174,6 @@ function rocket_lazyload_enqueue() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'rocket_lazyload_enqueue', PHP_INT_MAX );
-
-/**
- * Add tags to the lazyload script to async and prevent concatenation
- *
- * @since 1.2
- * @author Remy Perona
- *
- * @param string $tag HTML for the script.
- * @param string $handle Handle for the script.
- *
- * @return string Updated HTML
- */
-function rocket_lazyload_async_script( $tag, $handle ) {
-	if ( 'rocket-lazyload' === $handle ) {
-		return str_replace( '<script', '<script async data-minify="1"', $tag );
-	}
-
-	return $tag;
-}
-add_filter( 'script_loader_tag', 'rocket_lazyload_async_script', 10, 2 );
 
 /**
  * Replace Gravatar, thumbnails, images in post content and in widget text by LazyLoad
@@ -503,7 +496,7 @@ function rocket_lazyload_iframes( $html ) {
 			 *
 			 * @param array $html Output that will be printed.
 			 */
-			$iframe_lazyload = apply_filters( 'rocket_lazyload_iframe_html', str_replace( $iframe[1], $placeholder . '" data-fitvidscompatible="1" data-lazy-src="' . $iframe[1], $iframe[0] ) );
+			$iframe_lazyload = apply_filters( 'rocket_lazyload_iframe_html', str_replace( $iframe[1], $placeholder . '" data-rocket-lazyload="fitvidscompatible" data-lazy-src="' . $iframe[1], $iframe[0] ) );
 			$iframe_lazyload .= $iframe_noscript;
 			
 			$html = str_replace( $iframe[0], $iframe_lazyload, $html );
