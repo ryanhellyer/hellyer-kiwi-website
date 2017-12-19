@@ -28,7 +28,6 @@ $youtube            = get_user_meta( $member_id, 'youtube', true );
 $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
-$team               = get_user_meta( $member_id, 'team', true );
 $note               = get_user_meta( $member_id, 'note', true );
 $custid             = get_user_meta( $member_id, 'custid', true );
 
@@ -132,9 +131,25 @@ echo '</p>';
 if (
 	$member_id === get_current_user_id()
 	&&
-	'3' !== $season
+	(
+
+		// This is a crude hack until we check the actual current and next seasons
+		'4' !== $season
+		||
+		'5' !== $season
+		||
+		'6' !== $season
+		||
+		'7' !== $season
+		||
+		'8' !== $season
+		||
+		'9' !== $season
+		||
+		'10' !== $season
+	)
 ) {
-	echo '<p><strong><u>Unfortunately all positions are now filled for season 3</u></strong>, but you have been placed on the reserve list and will be notified if any spots become available or of any special events we may hold. If you only want to compete in the special events, please contact <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a> via either <a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">iRacing private message</a> or via our <a href="https://discord.gg/csjKs6z">Discord channel</a>.</p>';
+	echo '<p><strong><u>All positions are filled at the moment</u></strong>. If you received an invite to join from <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a>, please contact him regarding this directly (via iRacing private message or <a href="https://undiecar.com/discord/">Discord</a>). You have been placed on the reserve list and will be notified if any spots become available or of any special events we may hold. If you only want to compete in the special events, please contact <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a> via either <a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">iRacing private message</a> or via our <a href="https://undiecar.com/discord/">Discord channel</a>.</p>';
 }
 
 
@@ -218,18 +233,6 @@ if (
 		echo '
 		<label>Note</label>
 		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
-
-		$teams = get_post_meta( $current_season_id, 'team_names', true );
-
-		echo '
-		<label>Team</label>
-		<select name="team">
-			<option value="">None</option>';
-		foreach ( $teams as $key => $team_name ) {
-			echo '<option ' . selected( $team, $team_name ) . ' value="' . esc_attr( $team_name ) . '">' . esc_html( $team_name ) .  '</option>';
-		}
-		echo '
-		</select>';
 
 	}
 
