@@ -135,17 +135,17 @@ if (
 
 		// This is a crude hack until we check the actual current and next seasons
 		'4' !== $season
-		||
+		&&
 		'5' !== $season
-		||
+		&&
 		'6' !== $season
-		||
+		&&
 		'7' !== $season
-		||
+		&&
 		'8' !== $season
-		||
+		&&
 		'9' !== $season
-		||
+		&&
 		'10' !== $season
 	)
 ) {
