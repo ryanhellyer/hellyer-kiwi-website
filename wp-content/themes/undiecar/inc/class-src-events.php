@@ -1031,6 +1031,10 @@ class SRC_Events extends SRC_Core {
 	 */
 	public function image_gallery( $content ) {
 
+		if ( 'event' !== get_post_type() ) {
+			return $content;
+		}
+
 		// Show image gallery
 		$images = get_attached_media( 'image', get_the_ID() );
 
