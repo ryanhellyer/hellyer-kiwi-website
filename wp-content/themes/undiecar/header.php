@@ -146,7 +146,7 @@ $image_url = apply_filters( 'src_featured_image_url', $image_url );
 $title     = apply_filters( 'src_featured_title', $title );
 $style = '';
 if ( ! is_attachment() ) {
-	$style = ' style="background-image: url(<?php echo esc_url( $image_url ); ?>)"';
+	$style = ' style="background-image: url(' . esc_url( $image_url ) . ')"';
 }
 
 ?>
