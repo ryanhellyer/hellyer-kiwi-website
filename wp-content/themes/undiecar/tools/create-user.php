@@ -6,29 +6,41 @@ if ( ! isset( $_GET['create_user'] ) ) {
 }
 
 
+
 add_action( 'init', 'undiecar_create_user' );
 function undiecar_create_user() {
 
-	$password = md5( $_GET['create_user'] . 'ryanhellyer' );
-//	echo $password;die;
-//echo sanitize_title( $_GET['create_user'] );die;
-	// should add display name in here, not just the username
-	$user_id = wp_insert_user(
-		array(
-			'user_login'   => sanitize_title( $_GET['create_user'] ),
-			'display_name' => esc_html( $_GET['create_user'] ),
-			'user_pass'    => $password,
-		)
-	) ;
+	$drivers = explode( ',', $_GET['create_user'] );
 
-	//On success
-	if ( ! is_wp_error( $user_id ) ) {
-		echo 'User ID: ' . $user_id;
-		echo "\n<br />\n";
-		echo 'Password: ' . $password;
-	} else {
-		echo 'Something went wrong';
-		print_r( $user_id );
+	foreach ( $drivers as $key => $driver_name ) {
+
+		$password = md5( $driver_name  . 'ryanhellyer' );
+
+		// should add display name in here, not just the username
+		$user_id = wp_insert_user(
+			array(
+				'user_login'   => sanitize_title( $driver_name  ),
+				'display_name' => esc_html( $driver_name  ),
+				'user_pass'    => $password,
+			)
+		) ;
+
+		//On success
+		if ( ! is_wp_error( $user_id ) ) {
+			$new_drivers[] = $driver_name;
+		} else {
+			$existing_drivers[] = $driver_name;
+		}
+
+	}
+
+	echo "New drivers:\n";
+	foreach ( $new_drivers as $key => $driver_name ) {
+		echo $driver_name . ',';
+	}
+	echo "\n\n\nExisting drivers:\n";
+	foreach ( $existing_drivers as $key => $driver_name ) {
+		echo $driver_name . ',';
 	}
 
 	die;
