@@ -29,10 +29,14 @@ class SRC_Events extends SRC_Core {
 		add_filter( 'the_content',            array( $this, 'store_or_not_store' ), 1 );
 		add_filter( 'the_content',            array( $this, 'store_result_permanently' ), 100 );
 
-		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
-		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
-		add_filter( 'upload_mimes',           array( $this, 'allow_setup_uploads' ) );
-		add_filter( 'the_content',            array( $this, 'image_gallery' ) );
+		if ( ! isset( $_GET['qualifying'] ) ) {
+			add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
+			add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
+			add_filter( 'upload_mimes',           array( $this, 'allow_setup_uploads' ) );
+			add_filter( 'the_content',            array( $this, 'image_gallery' ) );
+		} else {
+			add_filter( 'the_content',            array( $this, 'reverse_grid' ) );
+		}
 
 		// iRacing results uploader
 		add_action( 'add_meta_boxes',     array( $this, 'results_upload_metabox' ) );
@@ -1046,6 +1050,136 @@ class SRC_Events extends SRC_Core {
 			}
 			$content .= do_shortcode( '[gallery size="medium" ids="' . esc_attr( $image_ids ) . '"]' );
 		}
+
+		return $content;
+	}
+
+	/**
+	 * Reversing the grid.
+	 *
+	 * @param  string   $content   The normal post content
+	 * @return string  The modified post content
+	 */
+	public function reverse_grid( $content ) {
+
+		// Get results
+		$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
+		if ( '' === $qual_results ) {
+			return $content;
+		}
+		$qual_results = json_decode( $qual_results, true );
+		if ( empty( $qual_results ) ) {
+			return $content;
+		}
+		$count = 0;
+		$zero_time = 60 * 60 * 1000; // Default time is an hour in seconds
+		foreach ( $qual_results as $key => $result ) {
+			if ( isset( $result['qual_time'] ) && '' !== $result['qual_time'] ) {
+				$minutes = explode( ':', $result['qual_time'] );
+				$seconds = explode( '.', $minutes[1] );
+				$time = ( $minutes[0] * 60 * 1000 ) + ( $seconds[0] * 1000 ) + ( $seconds[1] );
+			} else {
+				$time = $zero_time;
+				$zero_time++;
+			}
+
+			$result['qual_milliseconds'] = $time;
+			$qual_results[$key] = $result;
+			$count++;
+		}
+
+		// Reverse all results
+		if ( 'reverse' === $_GET['qualifying'] ) {
+			usort( $qual_results, function ($b, $a) {
+				return ( $a['qual_milliseconds'] - $b['qual_milliseconds'] );
+			} );
+		}
+
+		// Reverse top X results
+		if ( 'reverse_top_10' === $_GET['qualifying'] ) {
+			$number = 10;
+		} else if ( 'reverse_top_8' === $_GET['qualifying'] ) {
+			$number = 8;
+		} else if ( 'reverse_top_6' === $_GET['qualifying'] ) {
+			$number = 6;
+		} else if ( 'reverse_top_4' === $_GET['qualifying'] ) {
+			$number = 4;
+		}
+		if (
+			'reverse_top_10' === $_GET['qualifying']
+			||
+			'reverse_top_8' === $_GET['qualifying']
+			||
+			'reverse_top_6' === $_GET['qualifying']
+			||
+			'reverse_top_4' === $_GET['qualifying']
+		) {
+
+			$to_be_reversed = array();
+			$count = 0;
+			foreach ( $qual_results as $key => $result ) {
+				$count++;
+
+				if ( $count > $number ) {
+					continue;
+				}
+
+				$to_be_reversed[] = $result;
+				unset( $qual_results[$key] );
+			}
+			usort( $to_be_reversed, function ($b, $a) {
+				return ( $a['qual_milliseconds'] - $b['qual_milliseconds'] );
+			} );
+
+			$qual_results = array_merge( $to_be_reversed, $qual_results );
+		}
+
+		// Output table of qualifying times
+		$content = '
+		<table>
+			<thead>
+				<tr>
+					<th>Row</th>
+					<th>Driver inside<br />(qual time)</th>
+					<th>Driver outside<br />(qual time)</th>
+				</tr>
+			</thead>
+			<tbody>';
+
+		$count = $row_number = 0;
+		foreach ( $qual_results as $key => $result ) {
+			$count++;
+
+			// Only do odd results
+			if ( $count % 2 == 0 ) {
+			} else {
+				$row_number++;
+
+				$driver_name1 = $qual_results[ $key ]['name'];
+				$time1 = $qual_results[ $key ]['qual_time'];
+				if ( '' === $time1 ) {
+					$time1 = 'No time set';
+				}
+
+				$driver_name2 = $qual_results[ $key + 1 ]['name'];
+				$time2 = $qual_results[ $key + 1 ]['qual_time'];
+				if ( '' === $time2 ) {
+					$time2 = 'No time set';
+				}
+
+				$content .= '
+					<tr>
+						<td>' . esc_html( $row_number ) . '</td>
+						<td>' . esc_html( $driver_name1 ) . '<br />(' . esc_html( $time1 ) . ')</td>
+						<td>' . esc_html( $driver_name2 ) . '<br />(' . esc_html( $time2 ) . ')</td>
+					</tr>';
+			}
+
+		}
+
+		$content .= '
+			</tbody>
+		</table>';
 
 		return $content;
 	}
