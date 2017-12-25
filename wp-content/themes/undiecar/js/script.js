@@ -4,8 +4,73 @@
 		'load',
 		function (){
 			set_standings_sidebars();
+			gallery_fields();
 		}
 	);
+
+
+	/**
+	 * Removes all option elements in select box.
+	 */
+	function remove_all_options(sel) {
+		var len, groups, par;
+
+		len = sel.options.length;
+		for (var i=len; i; i--) {
+			par = sel.options[i-1].parentNode;
+			par.removeChild( sel.options[i-1] );
+		}
+	}
+
+	/**
+	 * Modify the gallery fields.
+	 */
+	function gallery_fields() {
+
+		var undiecar_season_field = document.getElementById('undiecar-season');
+		undiecar_season_field.addEventListener(
+			"change",
+			function(e) {
+				var xhttp = new XMLHttpRequest();
+
+				xhttp.onreadystatechange = function() {
+
+					if ( "" !== this.response ) {
+						var undiecar_events = JSON.parse( this.response );
+
+						var undiecar_events_field = document.getElementById('undiecar-event');
+
+						// Remove all existing options
+						remove_all_options(undiecar_events_field, true);
+
+						var opt = document.createElement('option');
+						opt.value = '';
+						opt.innerHTML = 'Uknown';
+						undiecar_events_field.appendChild(opt);
+
+						// Add some options
+						var number_of_events = undiecar_events.length;
+						for (var i = 0; i < number_of_events; i++) {
+							var opt = document.createElement('option');
+							opt.value = undiecar_events[i].ID;
+							opt.innerHTML = undiecar_events[i].post_title;
+							undiecar_events_field.appendChild(opt);
+						}
+
+					}
+				}
+
+				var selected_index = e.target.selectedIndex;
+				var season_id = e.target[selected_index].value;
+
+				xhttp.open('GET', 'http://dev-undiecar.com/wp-json/undiecar/v1/events_in_season?season_id=' + season_id, true);
+				xhttp.send();
+			}
+		);
+
+	}
+
+
 
 	/**
 	 * Handle clicks.
@@ -25,12 +90,26 @@
 
 	function handle_clicks(e) {
 
-		if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id) {
+		if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id ) {
 			var menu = e.target.children[0];
 			menu.classList.toggle('menu-open');
 		} else if ( 'A' !== e.target.tagName ) {
 			var menu = document.getElementById( 'main-menu' );
 			menu.classList.remove('menu-open');
+		}
+
+		// If 'Another Driver' button is clicked
+		if ( 'another-driver' === e.target.id ) {
+
+			var undiecar_driver_field = document.createElement('input');
+			undiecar_driver_field.type = 'text';
+			undiecar_driver_field.name = 'undiecar-driver[]';
+			var element = document.getElementById('undiercar-driver-form-input-fields');
+			element.appendChild(undiecar_driver_field);
+
+			e.preventDefault();
+			//e.stopPropagation();
+			//return false;
 		}
 
 	}

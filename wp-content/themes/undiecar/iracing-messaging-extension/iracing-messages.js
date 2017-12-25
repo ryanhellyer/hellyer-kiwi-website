@@ -327,6 +327,7 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 			message = message.replace( '[NAME]', shortened_name );
 			message = message.replace( '[NAME_SLUG]', slug_name );
 			message = message.replace( '[PASSWORD]', md5(member_name+'ryanhellyer') );
+			message = message.replace( '[FULL_NAME]', member_name );
 
 			document.getElementsByName('toUsername' )[0].value = member_name;
 			document.getElementsByName('subject')[0].value = items.subject;
@@ -349,7 +350,7 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 	setInterval( function () {
 
 		if ( '' != document.getElementsByName('toUsername' )[0].value ) {
-//			var submit_button = document.getElementById('btnSubmit').click();
+			var submit_button = document.getElementById('btnSubmit').click();
 		}
 
 	}, 1000);

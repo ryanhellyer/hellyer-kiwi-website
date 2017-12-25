@@ -19,19 +19,87 @@ class SRC_Gallery extends SRC_Core {
 	 */
 	public function __construct() {
 
+		// Add filters
+		add_filter( 'the_content', array( $this, 'attachment_info' ) );
+		add_filter( 'prepend_attachment', array( $this, 'attachment_content' ) );
+
 		// Add action hooks
 		add_action( 'template_redirect', array( $this, 'init' ) );
-		add_action( 'src_after_content', array( $this, 'attachment_footer' ) );
+		add_action( 'undiecar_after_content', array( $this, 'attachment_footer' ) );
 
 		// Add shortcodes
 		add_shortcode( 'undiecar_gallery_uploader', array( $this, 'uploader' ) );
 
+		// Add API routes
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'undiecar/v1', '/events_in_season', array(
+				'methods'  => 'GET',
+				'callback' => array( $this, 'events_in_season' ),
+			) );
+		} );
+
+	}
+
+	/**
+	 * Add the attachment info.
+	 *
+	 * @param  string  $content  The content
+	 * @return string  The modified content
+	 */
+	public function attachment_info( $content ) {
+
+		$attachment_id = get_the_ID();
+		$event_id = wp_get_post_parent_id( $attachment_id );
+		$season_id = get_post_meta( $event_id, 'season', true );
+
+		$content .= '<p>';
+
+		$content .= esc_html__( 'Season', 'src' ) . ': <a href="' . esc_url( get_permalink( $season_id ) ) . '">' . get_the_title( $season_id ) . '</a>';
+		$content .= '<br />';
+		$content .= esc_html__( 'Event', 'src' ) . ': <a href="' . esc_url( get_permalink( $season_id ) ) . '">' . get_the_title( $event_id ) . '</a>';
+		$content .= '<br />';
+		$content .= esc_html__( 'Drivers', 'src' ) . ': ';
+
+		$drivers = get_post_meta( $attachment_id, 'drivers', true );
+		if ( is_array( $drivers ) ) {
+			$drivers = array_unique( $drivers );
+			$count = 0;
+			foreach ( $drivers as $key => $driver_name ) {
+				$count++;
+
+				$driver_slug = sanitize_title( $driver_name );
+				$content .= '<a href="' . esc_url( home_url() . '/member/' . $driver_slug . '/' ) . '">' . esc_html( $driver_name ) . '</a>';
+				if ( $count !== count( $drivers ) ) {
+					$content .= ', ';
+				}
+
+			}
+		}
+
+		$content .= '</p>';
+
+		return $content;
+	}
+
+	/**
+	 * The attachment content.
+	 * Allows for setting a larger attachment page image size.
+	 */
+	public function attachment_content( $content ) {
+		return '<p>' . wp_get_attachment_link( 0, 'large', false ) . '</p>';
 	}
 
 	/**
 	 * Init.
 	 */
 	public function init() {
+
+		// Get attachment author ID
+		global $wp_query;
+		if ( ! isset( $wp_query->post->post_author ) ) {
+			return;
+		}
+		$attachment_author_id = $wp_query->post->post_author;
 
 		// Quick security check
 		if (
@@ -40,11 +108,16 @@ class SRC_Gallery extends SRC_Core {
 			(
 				isset( $_POST['src-gallery-nonce'] )
 				&&
-				false === wp_verify_nonce( $_POST['src-gallery-nonce'], 'src-gallery-nonce' )
+				! wp_verify_nonce( $_POST['src-gallery-nonce'], 'src-gallery-nonce' )
 			)
+			||
+			! isset( $_POST['src-gallery-nonce'] )			
 		) {
 			return;
 		}
+
+		$event_id = absint( $_POST['undiecar-event'] );
+		$description = wp_kses_post( $_POST['undiecar-description'] );
 
 		// Upload all the thingz!!!
 		if ( isset( $_FILES['gallery-file']['tmp_name'] ) ) {
@@ -56,18 +129,17 @@ class SRC_Gallery extends SRC_Core {
 			$result = wp_handle_upload( $file, $overrides );
 			$file_name = $result['file'];
 
-			$post_title = $_POST['post_title'];
-
 			$filetype = wp_check_filetype( basename( $result['file'] ), null );
 			$wp_upload_dir = wp_upload_dir();
 			$attachment = array(
 				'guid'           => $wp_upload_dir['url'] . '/' . basename( $file_name ), 
 				'post_mime_type' => $filetype['type'],
-				'post_title'     => wp_kses_post( $post_title ),
+				'post_title'     => $description,
 				'post_content'   => '',
-				'post_status'    => 'inherit'
+				'post_status'    => 'inherit',
+				'post_author'    => get_current_user_id(),
 			);
-			$attachment_id = wp_insert_attachment( $attachment, $file_name, get_the_ID() );
+			$attachment_id = wp_insert_attachment( $attachment, $file_name, $event_id );
 
 			// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
 			require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -76,13 +148,23 @@ class SRC_Gallery extends SRC_Core {
 			$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
 			wp_update_attachment_metadata( $attachment_id, $attachment_data );
 
-			set_post_thumbnail( get_the_ID(), $attachment_id );
 		}
 
 		if (
 			isset( $_FILES['gallery-file']['tmp_name'] )
 			||
-			isset( $_POST['src-gallery-edit'] )
+			(
+				is_attachment()
+				&&
+				isset( $_POST['src-gallery-edit'] )
+				&&
+				(
+					// Check the person has permission to edit the attachment
+					$attachment_author_id === get_current_user_id()
+					||
+					is_super_admin()
+				)
+			)
 		) {
 
 			// Get attachment ID
@@ -90,38 +172,32 @@ class SRC_Gallery extends SRC_Core {
 				$attachment_id = get_the_ID();
 
 				// Update attachment title
-				$post_title = $_POST['post_title'];
 				$args = array(
-					'ID'           => $attachment_id,
-					'post_title'   => wp_kses_post( $post_title ),
+					'ID'          => $attachment_id,
+					'post_title'  => wp_kses_post( $description ),
+					'post_parent' => $event_id
 				);
 				wp_update_post( $args );
 
 			}
 
-			$event_exploded = explode( $this->spacer, $_POST['event'] );
-			if ( isset( $event_exploded[0] ) && isset( $event_exploded[1] ) ) {
-				$event = array(
-					'season' => wp_kses_post( $event_exploded[0] ),
-					'event'  => wp_kses_post( $event_exploded[1] ),
-				);
-				update_post_meta( $attachment_id, 'src_event', $event );
-			}
-
+			// Add drivers meta
 			$drivers = array();
-			if ( isset( $_POST['drivers'] ) && is_array( $_POST['drivers'] ) ) {
-				delete_user_meta( $driver_id, 'gallery_image' ); // Delete user meta to avoid repeated duplicates on update
-				foreach ( $_POST['drivers'] as $key => $driver_id ) {
-					$driver_id = absint( $driver_id );
-					$drivers[] = $driver_id;
-
-					// Stash in users meta here
-					add_user_meta( $driver_id, 'gallery_image', $attachment_id );
-
+			foreach ( $_POST['undiecar-driver'] as $key => $driver_name ) {
+				if ( ''	!== $driver_name ) {
+					$drivers[] = wp_kses_post( $driver_name );
 				}
 
-				update_post_meta( $attachment_id, 'src_drivers', $drivers );
+				// Add image ID to user meta
+				$driver_slug = sanitize_title( $driver_name );
+				$driver = get_user_by( 'login', $driver_slug );
+				if ( isset( $driver->ID ) ) {
+					$driver_id = absint( $driver->ID );
+					add_user_meta( $driver_id, 'image', $attachment_id, true );
+				}
+
 			}
+			update_post_meta( $attachment_id, 'drivers', $drivers );
 
 		}
 
@@ -134,106 +210,18 @@ class SRC_Gallery extends SRC_Core {
 			return;
 		}
 
-		echo '<p>';
-
-		// The event
-		$event = get_post_meta( get_the_ID(), 'src_event', true );
-		if ( is_array( $event ) ) {
-
-			$args = array(
-				'name'                   => $event['season'],
-				'post_type'              => 'season',
-				'posts_per_page'         => 100,
-				'no_found_rows'          => true,  // useful when pagination is not needed.
-				'update_post_meta_cache' => false, // useful when post meta will not be utilized.
-				'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
-				'fields'                 => 'ids',
-			);
-
-			$seasons = new WP_Query( $args );
-			if ( $seasons->have_posts() ) {
-				while ( $seasons->have_posts() ) {
-					$seasons->the_post();
-
-					// Event is stored as sanitized data from option field, so need to work out actual event name
-//					$events = src_get_events( src_get_the_slug() );
-					foreach ( $events as $key => $event_data ) {
-						if ( sanitize_title( $event_data['name'] ) == $event['event'] ) {
-							$event_name = $event_data['name'];
-						}
-					}
-
-					esc_html_e( 'Event', 'src' );
-					echo ': ';
-					the_title();
-					echo ' &ndash; ';
-					echo esc_html( $event_name );
-					echo '. ';
-
-				}
-			}
-
-			wp_reset_postdata(); // Prevents get_the_ID() from screwing up for drivers
-
-		}
-
-		// The drivers
-		$drivers = get_post_meta( get_the_ID(), 'src_drivers', true );
-		if ( is_array( $drivers ) ) {
-
-			$string = '';
-			foreach ( $drivers as $key => $driver_id ) {
-
-				$user = get_user_by( 'ID', $driver_id );
-
-				if ( isset( $user->data->user_login ) ) {
-
-					// Set the name displayed
-					$user_id = $user->data->ID;
-					$name = $user->data->user_login;
-					if ( isset( $user->data->display_name ) ) {
-						$name = $user->data->display_name;
-					}
-
-					if ( 0 !== $key ) {
-						$string .= ', ';
-					}
-
-					$url = bbp_get_user_profile_url( $user_id );
-					if ( '' !== $url ) {
-						$string .= '<a href="' . esc_url( $url ) . '">' . esc_html( $name ) . '</a>';
-					} else {
-						$string .= $name;
-					}
-
-				}
-
-
-			}
-
-			echo esc_html__( 'Drivers', 'src' ) . ': ' . $string /* Already escaped */;
-
-		}
-
-
-		if ( is_user_logged_in() ) {
-			echo ' &nbsp; <a style="display:inline;float:none;" id="add-a-photo" href="#">(' . esc_html__( 'edit image meta', 'src' ) . ')</a>';
-		}
-
-		echo '<p>';
-
 		previous_image_link( false, '<p class="alignleft button">&laquo; ' . __( 'Previous Image', 'src' ) . '</p>' );
 		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
 
-		if ( is_user_logged_in() ) {
-			echo '<div id="gallery-uploader">
-
-
-<h1>NEED TO ENSURE THAT ONLY POST AUTHOR AND EDITORS CAN EDIT ATTACHMENTS</h1>
-
-
-
-' . $this->form_edit() . '</div>';
+		global $wp_query;
+		if (
+			is_user_logged_in()
+			&&
+			isset( $wp_query->post->post_author )
+			&&
+			absint( $wp_query->post->post_author ) === get_current_user_id() // Need absint here coz wp_query isn't integer for some reason
+		) {
+			echo $this->form_edit();
 		}
 
 	}
@@ -242,11 +230,14 @@ class SRC_Gallery extends SRC_Core {
 
 		$content = '
 		<form method="POST" action="" enctype="multipart/form-data">
-			' . $this->form_fields() . '
 			<p>
 				<input name="gallery-file" type="file" />
 			</p>
+
+			' . $this->form_fields() . '
+
 			<p>
+				<br /><br />
 				<input type="submit" value="' . esc_html__( 'Submit', 'src' ) . '" />
 			</p>
 		</form>';
@@ -258,11 +249,14 @@ class SRC_Gallery extends SRC_Core {
 
 		$content = '
 		<form method="POST" action="">
+
 			' . $this->form_fields() . '
-			<input name="src-gallery-edit" value="' . esc_attr( get_the_ID() ) . '" type="hidden" />
+
 			<p>
 				<input type="submit" value="' . esc_html__( 'Submit', 'src' ) . '" />
 			</p>
+
+			<input name="src-gallery-edit" value="' . esc_attr( get_the_ID() ) . '" type="hidden" />
 		</form>';
 
 		return $content;
@@ -270,17 +264,28 @@ class SRC_Gallery extends SRC_Core {
 
 
 	public function form_fields() {
-return 'THE FORM FIELDS';
+
 		$content = wp_nonce_field( 'src-gallery-nonce', 'src-gallery-nonce', true, false );
+
+		if ( is_attachment() ) {
+			$description = get_the_title( get_the_ID() );
+			$attachment_id = get_the_ID();
+			$event_id = wp_get_post_parent_id( $attachment_id );
+			$season_id = get_post_meta( $event_id, 'season', true );
+		} else {
+			$description = '';
+			$event_id = '';
+			$season_id = '';
+		}
 
 		$content .= '
 			<p>
-				<label>' . esc_html__( 'Title', 'src' ) . '</label>
-				<input name="post_title" type="text" />
+				<label>' . esc_html__( 'Description', 'src' ) . '</label>
+				<input name="undiecar-description" type="text" value="' . esc_attr( $description ) . '" />
 			</p>
 			<p>
-				<label>' . esc_html__( 'Race', 'src' ) . '</label>
-				<select name="event">
+				<label>' . esc_html__( 'Season', 'src' ) . '</label>
+				<select id="undiecar-season" name="undiecar-season">
 					<option value="">None</option>';
 
 		$args = array(
@@ -291,41 +296,107 @@ return 'THE FORM FIELDS';
 			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
 			'fields'                 => 'ids'
 		);
-
 		$seasons = new WP_Query( $args );
 		if ( $seasons->have_posts() ) {
 			while ( $seasons->have_posts() ) {
 				$seasons->the_post();
-
-//				$season_slug = src_get_the_slug();
-
-				// Loop through each event in that season
-				foreach ( src_get_events( $season_slug ) as $key => $event ) {
-					$name = $event['name'];
-
-					$content .= '<option value="' . sanitize_title( $season_slug . $this->spacer . $name ) . '">' . esc_html( get_the_title() . ': ' . $name ) . '</option>';
-
-				}
-
+				$the_season_id = get_the_ID();
+				$season_title = get_the_title( get_the_ID() );
+				$content .= '
+						<option ' . selected( $the_season_id, $season_id, false ) . ' value="' . esc_attr( $the_season_id ) . '">' . esc_html( $season_title ) . '</option>';
 			}
 		}
 
 		$content .= '
 				</select>
 			</p>
-			<p>
-				<label>' . esc_html__( 'Drivers', 'src' ) . '</label>
-				<select name="drivers[]" multiple="multiple">';
 
-		foreach ( src_get_drivers_from_all_seasons() as $id => $name ) {
-			$content .= '<option value="' . esc_attr( $id ) . '">' . esc_html( $name ) . '</option>';
+			<p id="undiecar-event-form-fields">
+				<label>' . esc_html__( 'Event', 'src' ) . '</label>
+				<select id="undiecar-event" name="undiecar-event">
+					<option value="">None</option>';
+
+		if ( '' !== $season_id ) {
+			$args = array(
+				'post_type'              => 'event',
+				'posts_per_page'         => 100,
+				'meta_key'               => 'season',
+				'meta_value'             => $season_id,
+				'no_found_rows'          => true,  // useful when pagination is not needed.
+				'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+				'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+				'fields'                 => 'ids'
+			);
+			$events = new WP_Query( $args );
+			if ( $events->have_posts() ) {
+				while ( $events->have_posts() ) {
+					$events->the_post();
+					$the_event_id = get_the_ID();
+					$event_title = get_the_title( get_the_ID() );
+					$content .= "\n\t\t\t\t\t<option " . selected( $the_event_id, $event_id, false ) . ' value="' . esc_attr( $the_season_id ) . '">' . esc_html( $event_title ) . '</option>';
+				}
+			}
 		}
 
 		$content .= '
 				</select>
+			</p>
+
+			<p id="undiecar-driver-form-fields">
+				<label>' . esc_html__( 'Drivers', 'src' ) . '</label>
+				<span id="undiercar-driver-form-input-fields">';
+
+		if ( isset( $attachment_id ) ) {
+			$drivers = get_post_meta( $attachment_id, 'drivers', true );
+			$drivers = array_unique( $drivers );
+			foreach ( $drivers as $key => $driver_name ) {
+				if ( '' !== $driver_name ) {
+					$content .= '
+						<input name="undiecar-driver[]" type="text" value="' . esc_attr( $driver_name ) . '" />';
+				}
+			}
+		}
+
+		$content .= '
+					<input name="undiecar-driver[]" type="text" />
+				</span>
+
+				<button id="another-driver">' . esc_html__( 'Another driver', 'src' ) . '</button>
 			</p>';
 
 		return $content;
 	}
 
+	/**
+	 * WP-JSON feed of events in a specific season.
+	 *
+	 * eg: https://undiecar.com/wp-json/undiecar/v1/events_in_season?season_id=666
+	 *
+	 * @param  array  $request  The request parameters
+	 * @return array  The events data
+	 */
+	public function events_in_season( $request ) {
+
+		$request_params = $request->get_query_params();
+		if ( isset( $request_params['season_id'] ) ) {
+			$season_id = $request_params['season_id'];
+		} else {
+			return;
+		}
+
+		$events = get_posts(
+			array(
+				'post_type'      => 'event',
+				'post_status'    => 'publish',
+				'posts_per_page' => 100,
+				'no_found_rows'  => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'meta_key'               => 'season',
+				'meta_value'             => $season_id,
+			)
+		);
+
+		return $events;
+	}
 }
