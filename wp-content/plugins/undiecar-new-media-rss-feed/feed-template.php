@@ -31,26 +31,41 @@ header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_
 	$media_query = new WP_Query( array(
 		'post_type'      => 'attachment',
 		'post_status'    => 'any',
-		'posts_per_page' => 100,
+		'posts_per_page' => 30,
 		'no_found_rows'  => true,
 		'update_post_meta_cache' => false,
 		'update_post_term_cache' => false,
 	) );
 	if ( $media_query->have_posts() ) {
+		$count = 0;
 		while ( $media_query->have_posts() ) {
 			$media_query->the_post();
+			$mime_type = get_post_mime_type( get_the_ID() );
 
 			$parent_id = wp_get_post_parent_id( get_the_ID() );
-			if ( 'event' === get_post_type( $parent_id ) ) {
-				?>
+			if (
+				'event' === get_post_type( $parent_id )
+				&&
+				strpos( $mime_type, 'image') !== false
+			) {
+				$count++;
+				if ( 10 > $count ) {
+					?>
 		<item>
-			<title><?php the_title(); ?></title>
+			<title><?php 
+			if ( '' !== get_the_title() ) {
+				the_title();
+			} else {
+				echo esc_html__( 'New image', 'src' );
+			}
+			?></title>
 			<link><?php the_permalink(); ?></link>
 			<pubDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_the_date( 'U' ), false ); ?></pubDate>
 			<description><![CDATA[<?php the_excerpt(); ?>]]></description>
 			<content:encoded><![CDATA[<?php the_content(); ?>]]></content:encoded>
 			<?php do_action( 'rss2_item' ); ?>
 		</item><?php
+				}
 			}
 
 		}
