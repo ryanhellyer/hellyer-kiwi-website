@@ -161,7 +161,7 @@ if ( $member_id === get_current_user_id() ) {
 
 
 // Show image gallery
-$images = get_user_meta( $member_id, 'image' );
+$images = get_user_meta( $member_id, 'images', true );
 if ( is_array( $images ) ) {
 	$image_ids = '';
 	foreach ( $images as $key => $image_id ) {

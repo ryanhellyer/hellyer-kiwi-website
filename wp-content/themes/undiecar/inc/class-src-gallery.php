@@ -152,6 +152,7 @@ class SRC_Gallery extends SRC_Core {
 			$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
 			wp_update_attachment_metadata( $attachment_id, $attachment_data );
 
+			$redirect_url = get_permalink( $attachment_id );
 		}
 
 		if (
@@ -197,12 +198,22 @@ class SRC_Gallery extends SRC_Core {
 				$driver = get_user_by( 'login', $driver_slug );
 				if ( isset( $driver->ID ) ) {
 					$driver_id = absint( $driver->ID );
-					add_user_meta( $driver_id, 'image', $attachment_id, true );
 				}
+				$images = get_user_meta( $driver_id, 'images', true );
+				if ( ! is_array( $images ) ) {
+					$images = array();
+				}
+				$images[] = $attachment_id;
+				update_user_meta( $driver_id, 'images', $images );
 
 			}
 			update_post_meta( $attachment_id, 'drivers', $drivers );
 
+		}
+
+		// Redirect to attachment page
+		if ( isset( $redirect_url ) ) {
+			wp_redirect( $redirect_url, 302 );
 		}
 
 	}
