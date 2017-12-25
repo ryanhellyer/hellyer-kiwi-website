@@ -243,6 +243,11 @@ class SRC_Gallery extends SRC_Core {
 
 	public function uploader() {
 
+		if ( ! is_user_logged_in() ) {
+			return '<p>' . esc_html__( 'Need to be logged in to upload gallery images', 'src' ) . '</p>';
+		}
+
+
 		$content = '
 		<form method="POST" action="" enctype="multipart/form-data">
 			<p>
