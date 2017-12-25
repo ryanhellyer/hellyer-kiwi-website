@@ -300,7 +300,7 @@ class SRC_Members extends SRC_Core {
 		$images = get_user_meta( $member_id, 'images', true );
 		foreach( $images as $key => $image_id ) {
 //			return 'https://undiecar.com/files/summit-point-1-1-1024x383.jpg';
-			return print_r( wp_get_attachment_image_src( $image_id ), true );
+			return wp_get_attachment_image_src( $image_id, 'large' )[0];
 		}
 
 		return $image_url;
