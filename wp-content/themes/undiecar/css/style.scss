@@ -200,6 +200,7 @@ address {
 }
 
 .gallery {
+	float: left;
 	width: 100%;
 	clear: both;
 	margin: 60px 0;
@@ -440,6 +441,15 @@ a img.aligncenter {
 		h1 {
 			font-size: 4rem;
 			line-height: 4.5rem;
+		}
+
+	}
+
+	body.attachment & {
+
+		h1 {
+			color: #000;
+			text-shadow: none;
 		}
 
 	}
@@ -1132,6 +1142,7 @@ a {
 
 /* =Buttons
 -------------------------------------------------------------- */
+button,
 input[type=submit],
 .button {
 	display: inline-block;
@@ -1226,6 +1237,26 @@ input[type=submit],
 		font-weight: 400;
 		margin-right: 20px;
 	}
+
+	.discord-social-link a {
+		display: block;
+		margin: 0 5px;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		&:before {
+			display: block;
+			font-size: 1.4rem;
+			padding: 10px;
+			margin-top: -10px;
+
+			content: "\e908";
+		}
+
+	}
+
 
 	a {
 		color: #777;

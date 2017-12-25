@@ -40,6 +40,10 @@ if ( have_posts() ) {
 	get_template_part( 'template-parts/no-results' );
 }
 
+if ( is_attachment() ) {
+	do_action( 'undiecar_after_content' );
+}
+
 echo '</article>';
 
 get_footer();

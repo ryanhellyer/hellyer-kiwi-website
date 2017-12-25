@@ -144,10 +144,14 @@ wp_reset_query();
 
 $image_url = apply_filters( 'src_featured_image_url', $image_url );
 $title     = apply_filters( 'src_featured_title', $title );
+$style = '';
+if ( ! is_attachment() ) {
+	$style = ' style="background-image: url(<?php echo esc_url( $image_url ); ?>)"';
+}
 
 ?>
 
-<section id="featured-news" style="background-image: url(<?php echo esc_url( $image_url ); ?>)">
+<section id="featured-news"<?php echo $style; ?>>
 	<div class="text">
 		<h1><?php
 			echo esc_html( $title );

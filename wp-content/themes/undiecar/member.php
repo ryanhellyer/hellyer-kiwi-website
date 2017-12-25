@@ -160,6 +160,19 @@ if ( $member_id === get_current_user_id() ) {
 }
 
 
+// Show image gallery
+$images = get_user_meta( $member_id, 'image' );
+if ( is_array( $images ) ) {
+	$image_ids = '';
+	foreach ( $images as $key => $image_id ) {
+		$image_ids .= $image_id . ',';
+	}
+	echo do_shortcode( '[gallery size="medium" ids="' . esc_attr( $image_ids ) . '"]' );
+}
+
+
+
+
 /**
  * Form for editing the members details.
  */

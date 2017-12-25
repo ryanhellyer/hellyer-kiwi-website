@@ -139,6 +139,7 @@ address {
   transition: visibility 0s, opacity 0.3s; }
 
 .gallery {
+  float: left;
   width: 100%;
   clear: both;
   margin: 60px 0; }
@@ -304,6 +305,9 @@ a img.aligncenter {
     body.error404 #featured-news h1, body.single #featured-news h1, body.search #featured-news h1, body.archive #featured-news h1, body.blog #featured-news h1, body.page #featured-news h1 {
       font-size: 4rem;
       line-height: 4.5rem; }
+  body.attachment #featured-news h1 {
+    color: #000;
+    text-shadow: none; }
   #featured-news .text {
     position: absolute;
     bottom: 50px;
@@ -779,6 +783,7 @@ a {
 
 /* =Buttons
 -------------------------------------------------------------- */
+button,
 input[type=submit],
 .button {
   display: inline-block;
@@ -792,10 +797,13 @@ input[type=submit],
   border: none;
   outline: none;
   text-decoration: none; }
+  button a,
   input[type=submit] a,
   .button a {
     color: #fff; }
-  input[type=submit] a:hover, input[type=submit]:hover,
+  button a:hover, button:hover,
+  input[type=submit] a:hover,
+  input[type=submit]:hover,
   .button a:hover,
   .button:hover {
     cursor: pointer;
