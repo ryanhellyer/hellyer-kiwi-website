@@ -32,6 +32,7 @@ class SRC_Events extends SRC_Core {
 		add_filter( 'the_content',            array( $this, 'add_extra_content' ) );
 		add_filter( 'src_featured_image_url', array( $this, 'filter_featured_image_url' ) );
 		add_filter( 'upload_mimes',           array( $this, 'allow_setup_uploads' ) );
+		add_filter( 'the_content',            array( $this, 'image_gallery' ) );
 
 		// iRacing results uploader
 		add_action( 'add_meta_boxes',     array( $this, 'results_upload_metabox' ) );
@@ -1020,6 +1021,29 @@ class SRC_Events extends SRC_Core {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Add an image gallery.
+	 *
+	 * @param  string  $content  The page content
+	 * @return string  The modified page content
+	 */
+	public function image_gallery( $content ) {
+
+		// Show image gallery
+		$images = get_attached_media( 'image', get_the_ID() );
+
+		if ( is_array( $images ) ) {
+			$image_ids = '';
+			foreach ( $images as $key => $image ) {
+				$image_id = $image->ID;
+				$image_ids .= absint( $image_id ) . ',';
+			}
+			$content .= do_shortcode( '[gallery size="medium" ids="' . esc_attr( $image_ids ) . '"]' );
+		}
+
+		return $content;
 	}
 
 }
