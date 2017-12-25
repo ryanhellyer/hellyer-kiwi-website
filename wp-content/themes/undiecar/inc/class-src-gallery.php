@@ -48,6 +48,10 @@ class SRC_Gallery extends SRC_Core {
 	 */
 	public function attachment_info( $content ) {
 
+		if ( ! is_attachment() ) {
+			return $content;
+		}
+
 		$attachment_id = get_the_ID();
 		$event_id = wp_get_post_parent_id( $attachment_id );
 		$season_id = get_post_meta( $event_id, 'season', true );
