@@ -63,7 +63,7 @@
 				var selected_index = e.target.selectedIndex;
 				var season_id = e.target[selected_index].value;
 
-				xhttp.open('GET', 'http://dev-undiecar.com/wp-json/undiecar/v1/events_in_season?season_id=' + season_id, true);
+				xhttp.open('GET', undiecar_home_url + '/wp-json/undiecar/v1/events_in_season?season_id=' + season_id, true);
 				xhttp.send();
 			}
 		);
