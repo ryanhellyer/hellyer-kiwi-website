@@ -297,6 +297,7 @@ class SRC_Members extends SRC_Core {
 
 		// Try to fall back to gallery image
 		$images = get_user_meta( $member_id, 'images', true );
+		return 'https://undiecar.com/files/summit-point-1-1-1024x383.jpg';
 		if ( isset( $images[0] ) ) {
 			return wp_get_attachment_image_src( $images[0] );
 		}
