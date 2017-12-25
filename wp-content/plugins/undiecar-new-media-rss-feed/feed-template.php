@@ -16,7 +16,7 @@ header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
 	<?php do_action( 'rss2_ns' ); ?>>
 <channel>
-	<title><?php bloginfo_rss( 'name' ); ?> - Feed</title>
+	<title><?php bloginfo_rss( 'name' ); ?> - New media feed</title>
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 	<link><?php bloginfo_rss( 'url' ) ?></link>
 	<description><?php bloginfo_rss( 'description' ) ?></description>
