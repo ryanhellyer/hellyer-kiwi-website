@@ -288,10 +288,17 @@ class SRC_Members extends SRC_Core {
 	public function filter_featured_image_url( $image_url ) {
 		global $src_member;
 
+		// Look for user submitted URL
 		$header_image_id = get_user_meta( $src_member->ID, 'header_image', true );
 		$header_image = wp_get_attachment_image_src( $header_image_id, 'full' );
 		if ( isset( $header_image[0] ) && '' !== $header_image[0] ) {
 			return $header_image[0];
+		}
+
+		// Try to fall back to gallery image
+		$images = get_user_meta( $member_id, 'images', true );
+		if ( isset( $images[0] ) ) {
+			return wp_get_attachment_image_src( $images[0] );
 		}
 
 		return $image_url;
