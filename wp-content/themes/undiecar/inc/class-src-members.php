@@ -15,9 +15,10 @@ class SRC_Members extends SRC_Core {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		add_action( 'init',       array( $this, 'save' ) );
-		add_filter( 'init',       array( $this, 'member_template' ), 99 );
-		add_filter( 'get_avatar', array( $this, 'avatar_filter' ) , 1 , 5 );
+		add_action( 'init',                array( $this, 'save' ) );
+		add_filter( 'init',                array( $this, 'member_template' ), 99 );
+		add_filter( 'get_avatar',          array( $this, 'avatar_filter' ) , 1 , 5 );
+		add_filter( 'get_avatar_url',      array( $this, 'custom_avatar' ), 1 , 5 );
 		add_shortcode( 'undiecar_drivers', array( $this, 'display_driver_table' ) );
 	}
 
@@ -353,6 +354,17 @@ class SRC_Members extends SRC_Core {
 		';
 
 		return $content;
+	}
+
+	function custom_avatar( $avatar_url, $member_id ) {
+
+		if ( '' !== get_user_meta( $member_id, 'avatar', true ) ) {
+			$attachment_id = get_user_meta( $member_id, 'avatar', true );
+			$image = wp_get_attachment_image_src( $attachment_id, 'thumb' );
+			return $image[0];
+		}
+
+		return $avatar_url;
 	}
 
 }
