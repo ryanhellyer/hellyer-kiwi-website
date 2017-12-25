@@ -287,9 +287,10 @@ class SRC_Members extends SRC_Core {
 	 */
 	public function filter_featured_image_url( $image_url ) {
 		global $src_member;
+		$member_id = $src_member->ID;
 
 		// Look for user submitted URL
-		$header_image_id = get_user_meta( $src_member->ID, 'header_image', true );
+		$header_image_id = get_user_meta( $member_id, 'header_image', true );
 		$header_image = wp_get_attachment_image_src( $header_image_id, 'full' );
 		if ( isset( $header_image[0] ) && '' !== $header_image[0] ) {
 			return $header_image[0];
@@ -298,8 +299,8 @@ class SRC_Members extends SRC_Core {
 		// Try to fall back to gallery image
 		$images = get_user_meta( $member_id, 'images', true );
 		foreach( $images as $key => $image_id ) {
-			return 'https://undiecar.com/files/summit-point-1-1-1024x383.jpg';
-			return wp_get_attachment_image_src( $image_id );
+//			return 'https://undiecar.com/files/summit-point-1-1-1024x383.jpg';
+			return print_r( wp_get_attachment_image_src( $image_id ), true );
 		}
 
 		return $image_url;
