@@ -1031,13 +1031,7 @@ class SRC_Events extends SRC_Core {
 	 */
 	public function image_gallery( $content ) {
 
-		if ( 'event' !== get_post_type() 
-
-
-&& ! is_super_admin()
-
-
-			) {
+		if ( 'event' !== get_post_type() ) {
 			return $content;
 		}
 
