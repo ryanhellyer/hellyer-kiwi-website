@@ -222,6 +222,7 @@ if (
 			'update_post_term_cache' => false,
 		) );
 		$seasons[] = 'reserve';
+		$seasons[] = 'banned';
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
