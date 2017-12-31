@@ -54,7 +54,6 @@ class SRC_Gallery extends SRC_Core {
 
 		$attachment_id = get_the_ID();
 		$event_id = wp_get_post_parent_id( $attachment_id );
-
 		if ( 'event' !== get_post_type( $event_id ) ) {
 			return $content;
 		}
@@ -252,7 +251,6 @@ class SRC_Gallery extends SRC_Core {
 			return '<p>' . esc_html__( 'Need to be logged in to upload gallery images', 'src' ) . '</p>';
 		}
 
-
 		$content = '
 		<form method="POST" action="" enctype="multipart/form-data">
 			<p>
@@ -271,6 +269,12 @@ class SRC_Gallery extends SRC_Core {
 	}
 
 	public function form_edit() {
+
+		$attachment_id = get_the_ID();
+		$event_id = wp_get_post_parent_id( $attachment_id );
+		if ( 'event' !== get_post_type( $event_id ) ) {
+			return $content;
+		}
 
 		$content = '
 		<form method="POST" action="">
