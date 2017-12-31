@@ -55,7 +55,7 @@ class SRC_Gallery extends SRC_Core {
 		$attachment_id = get_the_ID();
 		$event_id = wp_get_post_parent_id( $attachment_id );
 
-		if ( 'event' === get_post_type( $event_id ) ) {
+		if ( 'event' !== get_post_type( $event_id ) ) {
 			return $content;
 		}
 
