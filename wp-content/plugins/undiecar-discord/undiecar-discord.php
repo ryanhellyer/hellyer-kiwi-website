@@ -57,6 +57,7 @@ add_action( 'admin_init', array( $this, 'import_from_discord' ) );
 
 		$messages = $discord->channel->getChannelMessages(['channel.id' => DISCORD_PHOTO_CHANNEL_ID,'before'=> 0,'after'=> 0,'around'=> (int) $last_message_id,'limit'=> 5]);
 if ( isset( $_GET['test_discord'] ) ) {
+	echo 'xxx';
 	print_r( $messages );
 	die;
 }
