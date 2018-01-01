@@ -450,6 +450,7 @@ class SRC_Gallery extends SRC_Core {
 				$query->the_post();
 				$shortcode .= get_the_ID() . ',';
 			}
+			wp_reset_query();
 		}
 
 		$shortcode .= '"]';
