@@ -210,6 +210,7 @@ class SRC_Gallery extends SRC_Core {
 					$images = array();
 				}
 				$images[] = $attachment_id;
+print_r( $images );die;
 				update_user_meta( $driver_id, 'images', $images );
 
 			}
