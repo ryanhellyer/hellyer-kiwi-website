@@ -29,6 +29,7 @@ class SRC_Gallery extends SRC_Core {
 
 		// Add shortcodes
 		add_shortcode( 'undiecar_gallery_uploader', array( $this, 'uploader' ) );
+		add_shortcode( 'undiecar_gallery', array( $this, 'the_main_gallery' ) );
 
 		// Add API routes
 		add_action( 'rest_api_init', function () {
@@ -132,7 +133,6 @@ class SRC_Gallery extends SRC_Core {
 
 			require_once ( ABSPATH . 'wp-admin/includes/file.php' );
 			$file = $_FILES['gallery-file'];
-
 			$overrides = array( 'test_form' => false);
 			$result = wp_handle_upload( $file, $overrides );
 			$file_name = $result['file'];
@@ -148,6 +148,7 @@ class SRC_Gallery extends SRC_Core {
 				'post_author'    => get_current_user_id(),
 			);
 			$attachment_id = wp_insert_attachment( $attachment, $file_name, $event_id );
+			update_post_meta( $attachment_id, 'gallery', true );
 
 			// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
 			require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -428,4 +429,34 @@ class SRC_Gallery extends SRC_Core {
 
 		return $events;
 	}
+
+	public function the_main_gallery() {
+
+		$args = array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'attachment',
+			'post_status'            => 'inherit',
+			'post_mime_type'         => 'image',
+			'meta_key'               => 'gallery',
+			'no_found_rows'          => true,  // useful when pagination is not needed.
+			'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+			'fields'                 => 'ids'
+		);
+		$query = new WP_Query( $args );
+		$shortcode = '[gallery columns="8" size="thumbnail" ids="';
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$shortcode .= get_the_ID() . ',';
+			}
+		}
+
+		$shortcode .= '"]';
+
+		return do_shortcode( $shortcode );
+	}
+
 }
+
+

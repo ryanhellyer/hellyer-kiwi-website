@@ -320,7 +320,7 @@ class SRC_Members extends SRC_Core {
 		$drivers = $this->get_seasons_drivers( $season );
 
 		$content .= '
-		<table id="src-schedule">
+		<table class="some-list" id="src-schedule">
 			<thead>
 				<tr>
 					<th class="col">#</th>

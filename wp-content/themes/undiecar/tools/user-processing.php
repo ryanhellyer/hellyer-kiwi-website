@@ -239,3 +239,41 @@ if ( 'list_by_irating' === $_GET['user_processing'] ) {
 	die( "\n\n".'Done :)' );
 }
 
+
+
+
+
+
+
+
+
+
+
+if ( 'gallery' === $_GET['user_processing'] ) {
+
+	$args = array(
+		'posts_per_page'         => 1000,
+		'post_type'              => 'attachment',
+		'post_status'            => 'inherit',
+		'post_mime_type'         => 'image',
+//		'meta_key'               => 'gallery',
+		'no_found_rows'          => true,  // useful when pagination is not needed.
+		'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+		'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+		'fields'                 => 'ids'
+	);
+	$query = new WP_Query( $args );
+	$shortcode = '[gallery columns="8" size="thumbnail" ids="';
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+
+			$parent_id = wp_get_post_parent_id( get_the_ID() );
+			if ( 'event' === get_post_type( $parent_id ) ) {
+				update_post_meta( get_the_ID(), 'gallery', true );
+			}
+
+		}
+	}
+
+}
