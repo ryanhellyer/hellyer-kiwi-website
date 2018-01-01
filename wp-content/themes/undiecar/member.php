@@ -167,7 +167,19 @@ if ( is_array( $images ) ) {
 	foreach ( $images as $key => $image_id ) {
 		$image_ids .= $image_id . ',';
 	}
-	echo do_shortcode( '[gallery size="medium" ids="' . esc_attr( $image_ids ) . '"]' );
+
+	if ( 15 < count( $images ) ) {
+		$size = 'thumbnail';
+		$columns = 8;
+	} else if ( 11 < count( $images ) ) {
+		$size = 'thumbnail';
+		$columns = 6;
+	} else {
+		$size = 'medium';
+		$columns = 3;
+	}
+
+	echo do_shortcode( '[gallery link="attachment" columns="' . esc_attr( $columns ) . '" size="' . esc_attr( $size ) . '" ids="' . esc_attr( $image_ids ) . '"]' );
 }
 
 
