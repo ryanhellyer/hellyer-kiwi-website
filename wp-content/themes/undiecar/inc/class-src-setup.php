@@ -16,7 +16,7 @@ class SRC_Theme_Setup extends SRC_Core {
 	 * 
 	 * @var string
 	 */
-	const VERSION_NUMBER = '1.0';
+	const VERSION_NUMBER = '1.1';
 
 	/**
 	 * Theme name.
