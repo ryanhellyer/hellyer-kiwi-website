@@ -581,7 +581,7 @@ class SRC_Events extends SRC_Core {
 			$race_count++;
 		}
 		$suffix = '';
-		if ( 0 < $race_count ) {
+		if ( 1 < $race_count ) {
 			$suffix = 's';
 
 			// Add text for reversed grid races.
