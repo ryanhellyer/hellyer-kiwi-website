@@ -35,7 +35,6 @@ class Undiecar_Discord {
 	 * Class constructor
 	 */
 	public function __construct() {
-		add_filter( 'cron_schedules', array( $this, 'cron_schedules' ) );
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
 
@@ -106,7 +105,7 @@ class Undiecar_Discord {
 
 		// Schedule the Cron task
 		$first_run_time = current_time ( 'timestamp' ) + 60;
-		wp_schedule_event( $first_run_time, 'everyminute', 'cron_discord_task' );
+		wp_schedule_event( $first_run_time, 'hourly', 'cron_discord_task' );
 	}
 
 	/**
@@ -114,22 +113,6 @@ class Undiecar_Discord {
 	 */
 	public function deactivation() {
 		wp_clear_scheduled_hook( 'cron_discord_task' );
-	}
-
-	/**
-	 * Adds new cron schedule option(s).
-	 *
-	 * @param array   $schedules Cron schedule array
-	 * @return array $schedules Amended cron schedule array
-	 */
-	public function cron_schedules( $schedules ) {
-
-		$schedules['everyminute'] = array(
-			'interval' => 60,
-			'display'  => __( 'Every minute' )
-		);
-
-		return $schedules;
 	}
 
 }
