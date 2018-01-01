@@ -581,11 +581,11 @@ class SRC_Events extends SRC_Core {
 			$race_count++;
 		}
 		$suffix = '';
+		$qualifying_grid = '';
 		if ( 1 < $race_count ) {
 			$suffix = 's';
 
 			// Add text for reversed grid races.
-			$qualifying_grid = '';
 			if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
 				$qualifying_grid = ' ' . esc_html__( 'The grid for race two will be reversed.', 'src' );
 			}
@@ -698,7 +698,7 @@ class SRC_Events extends SRC_Core {
 			</p>';
 		}
 
-		$content = '<div id="base-content">' . $content . $html . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
+		$content = '<div id="base-content">' . $html . $content . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 
 		return $content;
 
