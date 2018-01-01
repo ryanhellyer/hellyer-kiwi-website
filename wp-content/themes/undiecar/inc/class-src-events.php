@@ -1239,10 +1239,10 @@ class SRC_Events extends SRC_Core {
 		}
 		krsort( $events );
 
-		return $this->get_events_table( $events );
+		return $this->get_events_table( $events, true );
 	}
 
-	private function get_events_table( $events ) {
+	private function get_events_table( $events, $reverse_numbers = false ) {
 
 		$content = '
 		<table class="some-list">
@@ -1255,9 +1255,13 @@ class SRC_Events extends SRC_Core {
 			</thead>
 			<tbody>';
 
-		$count = 0;
+		if ( true === $reverse_numbers ) {
+			$count = count( $events );
+		} else {
+			$count = 1;
+		}
 		foreach ( $events as $data => $event_id ) {
-			$count++;
+
 			$date  = get_post_meta( $event_id, 'date', true );
 
 			$content .= '
@@ -1267,6 +1271,11 @@ class SRC_Events extends SRC_Core {
 					<td><a href="' . esc_url( get_permalink( $event_id ) ) . '">' . esc_html( get_the_title( $event_id ) ) . '</a></td>
 				</tr>';
 
+			if ( true === $reverse_numbers ) {
+				$count = $count - 1;
+			} else {
+				$count++;
+			}
 		}
 
 		$content .= '
