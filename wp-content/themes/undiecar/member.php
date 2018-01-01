@@ -167,7 +167,8 @@ if ( is_array( $images ) ) {
 	foreach ( $images as $key => $image_id ) {
 		$image_ids .= $image_id . ',';
 	}
-echo count( $images );
+echo '___'.count( $images );
+echo $image_ids;
 
 	if ( 1 === count( $images ) ) {
 		echo wp_get_attachment_image( $image_id, 'full' );
