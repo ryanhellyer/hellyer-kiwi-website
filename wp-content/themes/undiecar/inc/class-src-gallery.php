@@ -437,30 +437,35 @@ class SRC_Gallery extends SRC_Core {
 
 	public function the_main_gallery() {
 
-		$args = array(
-			'posts_per_page'         => 100,
-			'post_type'              => 'attachment',
-			'post_status'            => 'inherit',
-			'post_mime_type'         => 'image',
-			'meta_key'               => 'gallery',
-			'no_found_rows'          => true,  // useful when pagination is not needed.
-			'update_post_meta_cache' => false, // useful when post meta will not be utilized.
-			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
-			'fields'                 => 'ids'
-		);
-		$query = new WP_Query( $args );
-		$shortcode = '[gallery columns="8" size="thumbnail" ids="';
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$shortcode .= get_the_ID() . ',';
+		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery' ) ) ) {
+
+			$args = array(
+				'posts_per_page'         => 100,
+				'post_type'              => 'attachment',
+				'post_status'            => 'inherit',
+				'post_mime_type'         => 'image',
+				'meta_key'               => 'gallery',
+				'no_found_rows'          => true,  // useful when pagination is not needed.
+				'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+				'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+				'fields'                 => 'ids'
+			);
+			$query = new WP_Query( $args );
+			$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
+			if ( $query->have_posts() ) {
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					$undiecar_gallery .= get_the_ID() . ',';
+				}
+				wp_reset_query();
 			}
-			wp_reset_query();
+
+			$undiecar_gallery .= '"]';
+
+			set_transient( 'undiecar_gallery', $undiecar_gallery, HOUR_IN_SECONDS );
 		}
 
-		$shortcode .= '"]';
-
-		return do_shortcode( $shortcode );
+		return do_shortcode( $undiecar_gallery );
 	}
 
 }
