@@ -1189,14 +1189,6 @@ class SRC_Events extends SRC_Core {
 	}
 
 	public function future_events() {
-		return $this->get_events_table( true );
-	}
-
-	public function previous_events() {
-		return $this->get_events_table( false );
-	}
-
-	private function get_events_table( $future ) {
 
 		$query = new WP_Query( array(
 			'posts_per_page'         => 100,
@@ -1205,6 +1197,52 @@ class SRC_Events extends SRC_Core {
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
 		) );
+		$events = array();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$date  = get_post_meta( get_the_ID(), 'date', true );
+
+				if ( time() < $date ) {
+					$events[$date] = get_the_ID();
+				}
+
+			}
+		}
+		ksort( $events );
+
+		return $this->get_events_table( $events );
+	}
+
+	public function previous_events() {
+
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+		$events = array();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$date  = get_post_meta( get_the_ID(), 'date', true );
+
+				if ( time() > $date ) {
+					$events[$date] = get_the_ID();
+				}
+
+			}
+		}
+		krsort( $events );
+
+		return $this->get_events_table( $events );
+	}
+
+	private function get_events_table( $events ) {
 
 		$content = '
 		<table class="some-list">
@@ -1217,33 +1255,18 @@ class SRC_Events extends SRC_Core {
 			</thead>
 			<tbody>';
 
-		$events = array();
 		$count = 0;
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
+		foreach ( $events as $data => $event_id ) {
+			$count++;
+			$date  = get_post_meta( $event_id, 'date', true );
 
-				$date  = get_post_meta( get_the_ID(), 'date', true );
-				$track = get_post_meta( get_the_ID(), 'track', true );
+			$content .= '
+				<tr>
+					<td>' . esc_html( $count ) . '</td>
+					<td>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</td>
+					<td><a href="' . esc_url( get_permalink( $event_id ) ) . '">' . esc_html( get_the_title( $event_id ) ) . '</a></td>
+				</tr>';
 
-				if (
-					false === $future && time() > $date
-					||
-					true  === $future && time() < $date
-				) {
-
-					$count++;
-
-					$content .= '
-					<tr>
-						<td>' . esc_html( $count ) . '</td>
-						<td>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</td>
-						<td><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . esc_html( get_the_title() ) . '</a></td>
-					</tr>';
-
-				}
-
-			}
 		}
 
 		$content .= '
