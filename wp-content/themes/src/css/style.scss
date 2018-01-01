@@ -1,14 +1,13 @@
 $button_font: 'Open Sans', sans-serif;
 $heading_font: 'Open Sans', sans-serif;
 $paragraph_font: 'Open Sans', sans-serif;
-$red: #cd0203;
-$hover_red: #de1314;
+$red: #e43146;
+$hover_red: #e34b5d;
 $dark_background_colour: #202020;
 $light_background_colour: #ebebeb;
 $forum_odd_background: #f9f9f9;
-$hover_red: #de1314;
 $header_height: 70px;
-$header_height_mobile: 53px;
+$header_height_mobile: 40px;
 $wrap_width: 92%;
 $wrap_padding: 4%;
 
@@ -28,6 +27,7 @@ body.home {
 
 	#main {
 		margin-top: 0;
+		width: 100%;
 	}
 
 }
@@ -90,113 +90,90 @@ address {
 
 	h1 {
 		float: left;
-		margin: 5px 0 0 30px;
-		width: 215px;
-		height: 64px;
-		background: url(../images/logo.png);
-		text-indent: -999em;
-		padding: 0;
+		margin: 0;
 		border: none;
+		border-left: 30px solid $red;
+		width: auto;
+		height: $header_height;
+		background: url(../images/logo-small.png) no-repeat;
+		text-indent: 140px;
+		font-family: arial, serif;
+		font-size: 55px;
+		color: #fff;
+		letter-spacing: -3px;
+		text-transform: lowercase;
+		padding: 0;
 
 		a {
+			color: #fff;
 			display: block;
 		}
 
 	}
 
 	nav {
-		float: left;
-	}
+		float: right;
 
-	ul {
-		float: left;
-		width: 100%;
-	}
-
-	li {
-		float: left;
-		font-family: $button_font;
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		font-weight: 800;
-
-		&:first-child {
-			margin-left: 40px;
+		&:hover {
+			cursor: pointer;
 		}
 
-		a {
+		&:before {
+			margin: 10px 15px 0 0;
 			display: block;
 			color: #fff;
-			height: $header_height;
-			line-height: $header_height;
-			padding: 0 22px;
-			text-decoration: none;
-
-			&:hover {
-				background: #222;
-			}
-
+			font-family: src;
+			font-size: 50px;
+			content: "\e906";
 		}
 
 	}
 
 }
 
-/* =Sign up
--------------------------------------------------------------- */
+#main-menu {
+	min-width: 300px;
+	max-width: 300px;
+	width: 90%;
+	position: absolute;
+	right: -300px;
+	top: $header_height;
+	background: #202020;
+	height: calc(100vh - 70px);
+	transition: 0.3s;
 
-.sign-up {
-	float: right;
-	font-family: $button_font;
-	position: relative;
-	background: $red;
-	height: 55px;
-	color: #fff;
-	padding: 15px 20px 0 10px;
-	font-size: 0.8rem;
-	line-height: 1.1rem;
-	font-weight: 400;
-	text-transform: uppercase;
+	&.menu-open {
+		display: block;
+		right: 0;
+	}
 
-	&:hover {
-		background: $hover_red;
-		color: #fff;
-		text-decoration: none;
+	li {
+		display: block;
+		width: 100%;
+		font-family: "Open Sans", sans-serif;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		font-weight: 800;
+		border-top: 1px solid #333;
+		border-bottom: 1px solid #111;
 
-		&:before {
-			background: $hover_red;
+		&:last-child {
+			border-bottom: none;
 		}
 
 	}
 
-	&:before {
-		display: block;
-		content: "";
-		position: absolute;
-		top: 0;
-		left: -20px;
-		width: 20px;
-		height: $header_height;
-		background: $red;
-		-webkit-clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
-		clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%, 0 0);
-	}
-
-	span {
-		color: #fff;
-		font-weight: 700;
-		display: block;
-		font-size: 1.3rem;
-		margin-bottom: 0px;
-	}
-
 	a {
-		display: inline;
-		font-weight: 700;
-		height: auto;
-		line-height: 1;
-		padding: 0;
-		margin: 0;
+		color: #fff;
+		display: block;
+		width: 100%;
+		padding: 25px 30px;
+
+		&:hover {
+			text-decoration: none;
+			background: #333;
+		}
+
 	}
 
 }
@@ -223,6 +200,7 @@ address {
 }
 
 .gallery {
+	float: left;
 	width: 100%;
 	clear: both;
 	margin: 60px 0;
@@ -337,7 +315,7 @@ address {
 
 	.gallery-item {
 		float: left;
-		margin: 1%;
+		margin: 0.5%;
 	}
 
 	img {
@@ -401,9 +379,9 @@ a img.aligncenter {
 #main {
 	float: left;
 	width: 100%;
-	margin: 100px 0 0 0;
+	margin: 60px 0 0 0;
 	padding: 0;
-	min-height: calc(100vh - 177px);
+//	min-height: calc(100vh - 177px);
 
 	ul li {
 		list-style: disc;
@@ -413,21 +391,23 @@ a img.aligncenter {
 
 	ol li {
 		list-style: decimal;
+		margin-bottom: 20px;
 		margin-left: 30px;
 		padding-left: 10px;
 	}
 
-	#bbpress-forums {
+}
 
-		ol li,
-		ul li {
-			list-style: none;
-			margin-left: 0;
-			padding-left: 0;
-		}
+#main-content {
+	width: 90%;
+	max-width: 1080px;
+	margin: 0 auto;
+}
 
-	}
-
+.driver-block {
+	width: 100%;
+	max-width: 600px;
+	clear: both;
 }
 
 /* =Featured news
@@ -436,10 +416,44 @@ a img.aligncenter {
 #featured-news {
 	position: relative;
 	width: 100%;
-	height: 550px;
+	margin-top: $header_height;
 	background-position: center 0;
 	background-size: cover;
 	text-align: center;
+
+	body.home.page & {
+		height: 550px;
+
+		h1 {
+			font-size: 3rem;
+			line-height: 1;
+		}
+
+	}
+
+	body.error404 &,
+	body.single &,
+	body.search &,
+	body.archive &,
+	body.blog &,
+	body.page & {
+		height: 300px;
+
+		h1 {
+			font-size: 4rem;
+			line-height: 4.5rem;
+		}
+
+	}
+
+	body.attachment & {
+
+		h1 {
+			color: #000;
+			text-shadow: none;
+		}
+
+	}
 
 	.text {
 		position: absolute;
@@ -449,15 +463,28 @@ a img.aligncenter {
 
 	h1 {
 		width: 60%;
-		margin: 0 0 30px 0;
+		margin: 0 0 10px 0;
 		padding: 0 20%;
 		color: #fff;
 		text-align: center;
 		font-family: $heading_font;
-		font-size: 3rem;
-		text-shadow: 0 0 2px #000;
 		font-weight: 700;
 		border: none;
+		text-shadow: 0 0 15px rgba(0,0,0,0.6);
+	}
+
+	form {
+		display: inline-block;
+
+		input {
+			display: inline-block;
+			height: 50px;
+			margin: 0 10px;
+			padding: 0 20px;
+			border: none;
+			outline: none;
+		}
+
 	}
 
 }
@@ -470,84 +497,84 @@ a img.aligncenter {
 	padding: 0 $wrap_padding 40px $wrap_padding;
 
 	header h2 {
+		text-align: center;
 		margin: 40px 0 20px 0;
 	}
 
-	a.slide {
+	img {
+		width: 100%;
+	}
+
+	article {
 		float: left;
-		width: 32%;
-		padding-bottom: 10px;
+		width: 23%;
 		background: #fff;
-		margin: 0 20px;
-		position: relative;
-		left: -20px;
+		margin: 0 2% 0 0;
 
-		&:hover {
-			text-decoration: none;
+		&:last-child {
+			margin-right: 1%;
+		}
 
-			.image {
-				opacity: 0.7;
+		a {
+			display: block;
+
+			&:hover {
+				text-decoration: none;
+
+				img {
+					opacity: 0.7;
+				}
+
 			}
 
 		}
 
-		.image {
-			background-size: cover;
-			background-position: center;
-			width: 100%;
-			height: 200px;
-		}
-
-		.box-text {
-			background: #fff;
-		}
-
-		date,
-		p {
-			display: block;
-			padding-right: 30px;
-			padding-left: 30px;
-			color: #000;
-		}
-
-		date {
-			margin: 20px 0;
-			font-family: $paragraph_font;
-			font-weight: 600;
-			font-size: 0.8rem;
-		}
-
-		p {
-			font-family: $paragraph_font;
-			font-weight: 400;
-			font-size: 1.1rem;
-		}
-
 	}
+
+	date,
+	p {
+		display: block;
+		padding-right: 30px;
+		padding-left: 30px;
+		color: #000;
+	}
+
+	date {
+		margin: 20px 0 0 0;
+		font-family: $paragraph_font;
+		font-weight: 600;
+		font-size: 0.8rem;
+	}
+
+	p {
+		font-family: $paragraph_font;
+		font-weight: 400;
+		font-size: 1.1rem;
+		padding: 10px 30px 30px 30px;
+		margin: 0;
+	}
+
+	.highlighted-link {
+		float: left;
+		width: 100%;
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom: 30px;
+	}
+
 }
 
-/* =Simple Registration plugin
+/* =Avatar
 -------------------------------------------------------------- */
-.error {
-	padding: 5px 20px;
-	background: #ffcccc;
-	border: 1px solid #ff9999;
+.avatar {
+	float: right;
+	width: 33%;
+	height: auto;
+	margin: 0 0 60px 60px;
 }
 
-input[type=submit].simple-registration-no {
-	background: none;
-	border: none;
-	font-weight: 600;
-	text-transform: none;
-	color: #000;
-	display: block;
-	padding: 0;
-
-	&:hover {
-		background: none;
-		text-decoration: underline;
-	}
-
+#comments .avatar {
+	width: auto;
 }
 
 /* =Schedule
@@ -555,17 +582,28 @@ input[type=submit].simple-registration-no {
 #schedule {
 	background: $dark_background_colour;
 	float: left;
-	width: 100%;
-	padding: 60px 0;
+	width: 92%;
+	padding: 60px 4% 40px 4%;
 
 	img {
 		display: block;
-		margin: 0 auto 20px auto;
+		width: 75%;
+		margin: 0 auto;
+	}
+
+	ul li {
+		list-style: none;
+		margin: 0;
+	}
+
+	ul {
+			margin: 0;
+			padding: 0;
 	}
 
 	li {
 		float: left;
-		width: 16.6666%;
+		width: 19%;
 		font-family: $button_font;
 		text-transform: uppercase;
 		font-weight: 700;
@@ -573,38 +611,27 @@ input[type=submit].simple-registration-no {
 		text-align: center;
 		color: #bbb;
 
-		div {
+		a {
+			display: block;
 			padding: 20px 0;
 			border-left: 1px solid #333;
+			color: #fff;
+			opacity: 0.9;
+
+			&:hover {
+				text-decoration: none;
+				opacity: 1;
+			}
 
 		}
 
-		&.post-1 div {
+		&.post-1 a {
 			border-left: none;
 		}
 
-		&.double-slide {
-			width: 33.3333%;
-
-			h2 {
-				color: #fff;
-				font-weight: 600;
-				font-size: 1.5rem;
-				margin: 20px 0 20px 0;
-			}
-
-			span {
-				color: #bbb;
-				display: block;
-				margin-bottom: 10px;
-				font-size: 0.9em;
-			}
-
-			date {
-				display: inline;
-				font-size: 0.9em;
-			}
-
+		small {
+			display: block;
+			font-size: 0.7rem;
 		}
 
 		span,
@@ -618,9 +645,10 @@ input[type=submit].simple-registration-no {
 
 		date {
 			font-size: 0.9rem;
+			margin-top: 60px;
 
 			span {
-				margin-top: 60px;
+				margin: 0 0 3px 0;
 				font-weight: 400;
 				font-size: 2rem;
 			}
@@ -638,14 +666,35 @@ table {
 //	width: 100%;
 	border-spacing: 0;
 	border-collapse: collapse;
+
+	&.some-list {
+		th,
+		td {
+			vertical-align: top;
+			text-align: left;
+			padding: 1.3rem 1rem;
+			line-height: 0.8rem;
+		}
+
+	}
+
+	td.drivers-list a {
+		display: block;
+
+		&:first-child {
+			margin-bottom: 8px;
+		}
+
+	}
+
 }
 
 td,
 th {
-	text-align: left;
+	text-align: center;
 	font-family: $paragraph_font;
 	font-size: 0.9rem;
-	padding: 0.8rem 1rem;
+	padding: 0.8rem 0.1rem;
 }
 
 th {
@@ -663,6 +712,16 @@ td {
 		display: block;
 		font-weight: 300;
 		font-size: 0.8rem;
+	}
+
+	&.past-event {
+		color: #bbb;
+		text-decoration: line-through;
+
+		a {
+			color: #bbb;
+			text-decoration: line-through;
+		}
 	}
 
 }
@@ -687,8 +746,9 @@ td span.tick-mark:before {
 	a.other-race {
 		float: left;
 		position: relative;
-		width: 20%;
+		width: 25%;
 		background-size: cover;
+		background-position: center;
 
 		&:hover {
 			opacity: 0.9;
@@ -710,6 +770,7 @@ td span.tick-mark:before {
 			padding: 40px 30px 0 30px;
 			text-transform: uppercase;
 			font-size: 1.4rem;
+			line-height: 1.6rem;
 			font-weight: 600;
 			color: #fff;		
 		}
@@ -718,7 +779,7 @@ td span.tick-mark:before {
 
 	#standings {
 		float: left;
-		width: 60%;
+		width: 50%;
 		background: #fff;
 		padding-bottom: 60px;
 
@@ -750,8 +811,8 @@ td span.tick-mark:before {
 			}
 		}
 
-		.highlighted-link {
-			margin-top: 40px;
+		img {
+//			width: 50%;
 		}
 
 		table {
@@ -762,7 +823,12 @@ td span.tick-mark:before {
 		tr {
 		}
 
-		td {
+		th {
+			padding: 0;
+		}
+
+		td,
+		th {
 
 			&:first-child {
 				padding-left: 40px;
@@ -773,12 +839,16 @@ td span.tick-mark:before {
 				padding-right: 40px;
 			}
 
+		}
+
+		td {
+
 			padding: 15px 0;
 			font-family: $paragraph_font;
 			text-transform: uppercase;
 			font-size: 0.9rem;
 			font-weight: 600;
-			color: #333;		
+			color: #333;
 
 			span {
 				display: block;
@@ -801,27 +871,6 @@ td span.tick-mark:before {
 				transform: skewX(-20deg);
 			}
 
-			img {
-				width: 80px;
-				display: block;
-			}
-
-			&.pink span {
-				border-bottom: 8px solid #ff88ff;
-			}
-
-			&.green span {
-				border-bottom: 8px solid #44ff44;
-			}
-
-			&.red span {
-				border-bottom: 8px solid #ff4444;
-			}
-
-			&.yellow span {
-				border-bottom: 8px solid #eeee22;
-			}
-
 		}
 
 	}
@@ -831,13 +880,18 @@ td span.tick-mark:before {
 /* =Sidebar
 -------------------------------------------------------------- */
 
+#base-content {
+	float: left;
+	width: 70%;
+}
+
 #sidebar {
 	float: right;
-	width: 25%;
+	width: 17%;
 	background: #efefef;
 	border-left: 6px solid #aaa;
-	padding: 40px;
-	margin: 0 0 60px 0;
+	padding: 4%;
+	margin: 0 0 60px 40px;
 
 	h3 {
 		color: #000;
@@ -860,302 +914,9 @@ td span.tick-mark:before {
 		font-size: 1rem;
 	}
 
-}
-
-/* =bbPress layout
--------------------------------------------------------------- */
-
-#bbpress-wrapper {
-	width: 92%;
-	max-width: 1280px;
-	margin: 0 auto;
-}
-
-#bbpress-forums {
-	float: left;
-	width: 63%;
-	padding: 0 0 0 0;
-
-	.bbp-breadcrumb {
-		display: none;
-	}
-
-}
-
-.bbp-topic-form br,
-.bbp-admin-links a.bbp-topic-super-sticky-link,
-.bbp-author-role,
-.bbp-footer,
-.bbp-form legend,
-.bbp-topic-meta,
-.bbp-topics img,
-.bbp-topic-voice-count,
-#subscription-toggle,
-.bbp-forum-description,
-.bbp-template-notice,
-.bbp-topic-description,
-.bbp-pagination-count {
-	display: none;
-}
-
-/* Forums */
-
-.bbp-header li {
-	font-weight: 600;
-}
-
-.bbp-body li {
-	min-height: 3rem;
-}
-
-.type-topic li {
-	min-height: 2rem;
-}
-
-.bbp-author-ip,
-.bbp-header li,
-.bbp-body .bbp-forum-freshness,
-.bbp-forum-content {
-	font-size: 0.9rem;
-}
-
-.bbp-forum-info {
-	width: 41%;	
-}
-
-.bbp-forum-topic-count {
-	width: 11%;
-	text-align: center;
-}
-
-.bbp-forum-reply-count {
-	width: 11%;	
-	text-align: center;
-}
-
-.bbp-forum-freshness {
-	width: 21%;	
-}
-
-.bbp-body ul {
-	float: left;
-	width:100%;
-}
-
-/* Topics */
-.forum-titles {
-	float: left;
-	width: 100%;
-}
-
-#main #bbpress-forums {
-
-	.bbp-header,
-	.bbp-body,
-	.bbp-footer {
-		width: 100%;
-
-		.odd li {
-			background: #fff;
-		}
-
-		ul li {
-			float: left;
-			padding: 1.4rem 2%;
-			background: $forum_odd_background;
-		}
-
-	}
-
-	.bbp-header {
-
-		ul li {
-			padding: 10px 2%;
-		}
-
-	}
-
-}
-
-.bbp-topic-title {
-	width: 56%;
-}
-
-.bbp-topic-reply-count {
-	width: 11%;
-}
-
-.bbp-topic-freshness {
-	width: 21%;
-	font-size: 0.9rem;
-}
-
-.bbp-submit-wrapper {
-	margin-top: 40px;
-}
-
-.bbp-topic-form p {
-	margin: 1px 0;
-}
-
-/* Posts */
-.bbp-pagination-links {
-	float: left;
-	width: 100%;
-	font-family: $paragraph_font;
-	font-size: 1em;
-	margin: 40px 0;
-
-	a {
-		display: inline-block;
-		padding: 0 5px;
-	}
-
-}
-
-.bbp-replies {
-	.bbp-header {
-		display: none;
-	}
-}
-
-.bbp-reply-header {
-	text-align: center;
-	font-size: 0.8rem;
-	margin-top: 40px;
-}
-
-.type-topic,
-.type-reply {
-	float: left;
-	width: 100%;
-	padding: 0;
-
-	body.single-topic & {
-		border-bottom: 1px solid #ccc;		
-	}
-
-}
-
-.bbp-reply-permalink,
-.bbp-reply-post-date {
-	display: inline-block;
-	color: #666;
-}
-
-/* Icons */
-.bbp-admin-links {
-	display: block;
-	text-indent: -999em;
-
-	a {
-		margin-left: 4px;
-		float: right;
-		width: 14px;
-		height: 14px;
-		background-color: rgba(255,0,0,0.2);
-		background-size: 100%;
-	}
-
-}
-
-.bbp-reply-edit-link,
-.bbp-topic-edit-link {
-	background-image: url(../images/icon-edit.png);
-}
-
-.bbp-reply-move-link,
-.bbp-topic-move-link {
-	background-image: url(../images/icon-move.png);
-}
-
-.bbp-reply-split-link,
-.bbp-topic-split-link {
-	background-image: url(../images/icon-split.png);
-}
-
-.bbp-reply-close-link,
-.bbp-topic-close-link {
-	background-image: url(../images/icon-close.png);
-}
-
-.bbp-reply-sticky-link,
-.bbp-topic-sticky-link {
-	background-image: url(../images/icon-sticky.png);
-}
-
-.bbp-reply-super-sticky-link,
-.bbp-topic-super-sticky-link {
-	background-image: url(../images/icon-sticky.png);
-}
-
-.bbp-reply-merge-link,
-.bbp-topic-merge-link {
-	background-image: url(../images/icon-merge.png);
-}
-
-.bbp-reply-trash-link,
-.bbp-topic-trash-link {
-	background-image: url(../images/icon-trash.png);
-}
-
-.bbp-reply-spam-link,
-.bbp-topic-spam-link {
-	background-image: url(../images/icon-spam.png);
-}
-
-.bbp-reply-to-link,
-.bbp-topic-reply-link {
-	background-image: url(../images/icon-reply.png);
-}
-
-.bbp-meta {
-	float: right;
-}
-
-.bbp-reply-header,
-#bbpress-forums .reply {
-	float: left;
-	width: 100%;
-}
-
-.bbp-reply-author {
-	float: left;
-	width: 25%;
-}
-
-.bbp-reply-content {
-	float: right;
-	width: 75%;
-}
-
-.bbp-reply-signature p {
-	font-size: 1rem;
-	color: #666;
-	margin: 10px 0;
-}
-
-#main ul#src-members-social-links {
-	margin-top: 40px;
-	list-style: none;
-	text-align: left;
-
-	li {
-		list-style: none;
-		display: inline-block;
-		border-right: 1px solid #000;
-		margin: 0;
-		padding: 0 10px;
-		font-size: 16px;
-
-		&:last-child {
-			border-right: none;
-		}
-
-		a {
-			padding: 0;
-		}
-
+	p {
+		font-size: 1rem;
+		line-height: 1.5rem;
 	}
 
 }
@@ -1197,7 +958,7 @@ h4 {
 	text-decoration: underline;
 }
 
-
+form span,
 textarea,
 label,
 input,
@@ -1209,11 +970,17 @@ li {
 }
 
 p {
+	line-height: 2.4rem;
 	margin: 10px 0 30px 0;
 }
 
-input {
-	padding: 10px 20px;
+form p {
+	font-weight: bold;
+	margin: 0 0 60px 0;
+}
+
+form span {
+	font-size: 0.8rem;
 }
 
 textarea {
@@ -1225,16 +992,24 @@ textarea {
 label {
 	display: inline-block;
 	margin: 20px 0 0 0;
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 
 input {
 	display: block;
 	margin: 5px 0 20px 0;	
+	padding: 10px 20px;
 }
 
-input#bbp_topic_subscription {
+.highlighted-field {
+	border: 5px solid #dd0000;
+}
+
+input[type=checkbox] {
 	display: inline-block;
+	margin: 5px 10px 5px 20px;
+    width: 25px;
+    height: 25px;
 }
 
 select {
@@ -1246,6 +1021,110 @@ select {
 
 img {
 	max-width: 100%;
+	height: auto;
+}
+
+/* =Comments
+-------------------------------------------------------------- */
+
+#comments {
+	float: left;
+	width: 100%;
+	margin-top: 60px;
+	border-top: 1px solid #ddd;
+
+	.comment-notes {
+		font-style: italic;
+	}
+
+	form p {
+		margin: 0;
+		font-weight: normal;
+	}
+
+}
+
+ol.commentlist {
+
+	#main & {
+		li {
+			list-style: none;
+			margin-left: 0;
+		}
+	}
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li.trackback,
+	li.pingback,
+	li.comment {
+		list-style: none;
+		background: #fafafa;
+		border: 1px solid #eee;
+		margin: 0 0 1.5em 0;
+		padding: 0;
+		font-size: 1rem;
+		color: #999;
+	}
+
+	li.trackback ul,
+	li.pingback ul,
+	li.comment ul {
+		margin: 0 1.5em 1.5em 1.5em;
+		padding: 0;
+	}
+
+	li.trackback .comment-body,
+	li.pingback .comment-body,
+	li.comment .comment-body {
+		padding: 1.5em;
+	}
+
+	li.comment li.comment {
+		font-size: 1.2rem;
+		background: #f6f6f6;
+		margin: 1.5em 0 0 0;
+	}
+
+	li.comment li.comment li.comment {
+		background: #f3f3f3;
+	}
+
+	cite {
+		font-style: normal;
+	}
+
+	img.avatar {
+		float: right;
+		border: 1px solid #eee;
+		margin: 0 0 1.5em 1.5em;
+	}
+
+	.comment-reply-link {
+		background: #eee;
+		border: 1px solid #eee;
+		font-size: 1rem;
+		padding: 0.4em 0.8em;
+		color: #333;
+	}
+
+	.comment-reply-link:hover {
+		background: $red;
+		color: #fff;
+		text-decoration: none;
+	}
+
+}
+
+.comment-author,
+.comment-meta {
+	line-height: 1.5em;
+}
+
+.comment-meta {
+	font-size: 1rem;
 }
 
 /* =Links
@@ -1263,13 +1142,14 @@ a {
 
 /* =Buttons
 -------------------------------------------------------------- */
+button,
 input[type=submit],
 .button {
 	display: inline-block;
 	background: $red;
 	font-family: $button_font;
 	font-size: 1rem;
-	padding: 20px 40px;
+	padding: 13px 40px;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 800;
@@ -1296,7 +1176,7 @@ input[type=submit],
 	font-family: $paragraph_font;
 	font-size: 1rem;
 	font-weight: 700;
-	margin: 0 auto;
+	margin: 40px auto 0 auto;
 	text-align: center;
 	text-decoration: none;
 
@@ -1306,22 +1186,12 @@ input[type=submit],
 
 }
 
-
-/* =Sliders
--------------------------------------------------------------- */
-.slider {
+#next-prev-buttons {
+	margin-top: 60px;
+	float: left;
 	width: 100%;
-	overflow-x: hidden;
+	clear: both;
 }
-
-.slider-inner {
-	width: 100%;
-}
-
-.slide {
-	display: block;
-}
-
 
 /* =Site footer
 -------------------------------------------------------------- */
@@ -1341,6 +1211,7 @@ input[type=submit],
 		color: #777;
 		font-family: $paragraph_font;
 		font-size: 0.8rem;
+		line-height: 1rem;
 		margin: 20px 0;
 	}
 
@@ -1367,6 +1238,26 @@ input[type=submit],
 		margin-right: 20px;
 	}
 
+	.discord-social-link a {
+		display: block;
+		margin: 0 5px;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		&:before {
+			display: block;
+			font-size: 1.4rem;
+			padding: 10px;
+			margin-top: -10px;
+
+			content: "\e908";
+		}
+
+	}
+
+
 	a {
 		color: #777;
 		text-decoration: none;
@@ -1379,6 +1270,7 @@ input[type=submit],
 			display: none;
 		}
 
+		&[href*="discord.gg"],
 		&[href*="twitter.com"],
 		&[href*="youtube.com"],
 		&[href*="facebook.com"] {
@@ -1391,6 +1283,7 @@ input[type=submit],
 
 		}
 
+		&[href*="discord.gg"]:before,
 		&[href*="twitter.com"]:before,
 		&[href*="youtube.com"]:before,
 		&[href*="facebook.com"]:before {
@@ -1398,6 +1291,10 @@ input[type=submit],
 			font-size: 1.4rem;
 			padding: 10px;
 			margin-top: -10px;
+		}
+
+		&[href*="discord.gg"]:before {
+			content: "\e908";
 		}
 
 		&[href*="twitter.com"]:before {
@@ -1438,141 +1335,42 @@ input[type=submit],
 
 /* =Smaller devices
 -------------------------------------------------------------- */
-@media only screen and (max-width: 1024px) {
-
-	// Header
-	#site-header {
-		text-align: center;
-		height: $header_height_mobile;
-
-		ul {
-			position: absolute;
-			left: 0px;
-			top: $header_height_mobile;
-			background: $dark_background_colour;
-			width: 300px;
-		}
-
-		li {
-			display: block;
-			width: 300px;
-			text-align: left;
-			border-top: 1px solid #333;
-			border-bottom: 1px solid #111;
-
-			&:first-child {
-				margin-left: 0;
-			}
-		}
-
-		h1 {
-			float: none;
-			display: inline-block;
-			margin: 8px 0 0 30px;
-			width: 134px;
-			height: 40px;
-			background-size: 100%;
-		}
-
-
-		nav {
-			float: left;
-			position: relative;
-
-			ul {
-				transition: 0.3s;
-				left: -300px;
-				height: calc(100vh - 50px); /* Make menu display to the bottom of the screen */
-			}
-
-			&.open {
-
-				ul {
-					left: 0;
-					display: block;
-				}
-
-			}
-
-			&:before {
-				position: absolute;
-				left: 10px;
-				top: 10px;
-				display: block;
-				width: 60px;
-				height: 70px;
-				color: #fff;
-				font-family: src;
-				font-size: 2rem;
-				content: "\e906";
-			}
-
-			&:hover {
-				cursor: pointer;
-			}
-
-			&.open {
-				&:before {
-					content: "\e905";
-				}
-			}
-
-		}
-
-		.sign-up {
-			height: 49px;
-			color: #fff;
-			padding: 4px 20px 0 10px;
-			font-size: 0.8rem;
-			line-height: 1.2rem;
-
-			&:before {
-				height: $header_height_mobile;
-			}
-		}
-
-	}
-
-	// Sidebar setup
-	#bbpress-forums {
-		width: 100%;
-	}
-	#sidebar {
-		display: none;
-	}
-
-	// Main
-	#main {
-		margin: 60px 0 0 0;
-	}
-
-	// Schedule
-	#schedule {
-		width: 100%;
-		padding-right: 0;
-		padding-left: 0;
-	}
-
-	.slider {
-		overflow-x: scroll;
-	}
-
-}
 
 @media only screen and (max-width: 768px) {
 
-	#main {
+	#site-header h1 span {
+		display: none;
+	}
 
-		article {
-			width: 80%;
-		}
 
+	#base-content {
+		width: 68%;
+		overflow: scroll;
+	}
+
+	#latest-news article {
+		width: 48%;
+	}
+
+	#schedule li {
+		width: 18%;
 	}
 
 	#results {
 
-		.other-race {
-			display: none;
+		a.other-race {
+			width: 100%;
+			height: auto !important;
+
+			h2 {
+				padding: 10px 30px 0 30px
+			}
+
+			p {
+				position: static;
+				padding: 0 30px 30px 30px;
+			}
+
 		}
 
 		#standings {
@@ -1587,37 +1385,6 @@ input[type=submit],
 			//display: none;
 		}
 
-	}
-
-	/* Forum */
-	.bbp-meta,
-	.bbp-reply-author,
-	.bbp-reply-content {
-		float: none;
-		width: 100%;
-		text-align: left;
-
-		br {
-			display: none;
-		}
-
-	}
-
-	.bbp-reply-header {
-		margin-top: 20px;
-	}
-
-	.bbp-reply-author img,
-	.bbp-reply-signature {
-		display: none;
-	}
-
-	.bbp-admin-links {
-		float: right;
-	}
-
-	#bbpress-wrapper h1 {
-		margin-bottom: 0;
 	}
 
 	/* Site footer */
@@ -1639,5 +1406,170 @@ input[type=submit],
 
 	}
 
+	#social-icons {
+		clear: both;
+	}
+
+}
+
+@media only screen and (max-width: 481px) {
+
+	#site-header {
+		height: $header_height_mobile;
+
+		h1 {
+			border-left: 5px solid #e43146;
+			font-size: 38px;
+			background-size: 31%;
+			text-indent: 78px;
+			height: $header_height_mobile;
+		}
+
+		nav {
+
+			&:before {
+				font-size: 34px;
+				margin: 2px 7px 0 0;
+			}
+
+		}
+
+
+		#main-menu {
+
+			a {
+				padding: 15px 30px;
+			}
+
+		}
+
+	}
+
+	#main-menu {
+		top: $header_height_mobile;
+		height: calc(100vh - 40px);
+	}
+
+	#featured-news {
+		margin-top: $header_height_mobile;
+
+		h1 {
+			width: 90%;
+			padding: 5%;
+		}
+
+		form {
+
+			input {
+				margin-bottom: 10px;
+			}
+
+			input[type=submit],
+			.button {
+				min-width: 50%;
+			}
+		}
+
+		body.error404 &,
+		body.single &,
+		body.archive &,
+		body.blog &,
+		body.page & {
+			height: 300px;
+
+			h1 {
+				font-size: 2.5rem;
+				line-height: 2.5rem;
+			}
+
+		}
+
+	}
+
+	#latest-news article {
+		width: 100%;
+		margin-left: 0;
+		margin-bottom: 20px;
+	}
+
+	#schedule li {
+		width: 46%;
+
+		&.post-3,
+		&.post-4,
+		&.post-5 {
+			display: none;
+		}
+
+	}
+
+	#base-content {
+		width: 100%;
+		overflow: scroll;
+	}
+
+	#sidebar {
+		border-left: 0;
+		width: 80%;
+		padding: 0 10%;
+	}
+
+	#next-prev-buttons {
+		text-align: center;
+		margin-bottom: 60px;
+
+		.alignright,
+		.alignleft {
+			float: none;
+			margin: 5px 0;
+		}
+
+	}
+
+	.gallery.gallery-columns-4 .gallery-item {
+		width: 100%;
+	}
+
+	.gallery .gallery-item {
+		margin: 3% 0;
+	}
+
+	// Hide some table columns
+	.col-fp1,
+	.col-fp2,
+	.col-number,
+	.col-nationality {
+		display: none;
+	}
+
+	td,
+	th {
+		padding: 0.8rem 0.2rem;
+	}
+
+	#site-footer {
+
+		a {
+
+			&[href*="twitter.com"],
+			&[href*="youtube.com"],
+			&[href*="facebook.com"] {
+				margin: 0;
+			}
+
+			&[href*="twitter.com"]:before,
+			&[href*="youtube.com"]:before,
+			&[href*="facebook.com"]:before {
+				padding: 3px;
+				margin-top: -10px;
+			}
+
+		}
+
+		ul#footer-menu li {
+			margin-left: 10px;
+		}
+
+	}
 
 }
