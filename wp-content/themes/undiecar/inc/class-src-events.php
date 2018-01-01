@@ -43,6 +43,10 @@ class SRC_Events extends SRC_Core {
 		add_action( 'save_post',          array( $this, 'results_upload_save' ), 10, 2 );
 		add_action( 'post_edit_form_tag', array( $this, 'update_form_enctype' ) );
 
+
+		// Shortcodes
+		add_shortcode( 'undiecar_future_events', array( $this, 'future_events' ) );
+		add_shortcode( 'undiecar_previous_events', array( $this, 'previous_events' ) );
 	}
 
 	public function store_or_not_store( $content ) {
@@ -1180,6 +1184,72 @@ class SRC_Events extends SRC_Core {
 		$content .= '
 			</tbody>
 		</table>';
+
+		return $content;
+	}
+
+	public function future_events() {
+		return $this->get_events_table( true );
+	}
+
+	public function previous_events() {
+		return $this->get_events_table( false );
+	}
+
+	private function get_events_table( $future ) {
+
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+
+		$content = '
+		<table class="some-list">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>' . esc_html__( 'Date', 'undiecar' ) . '</th>
+					<th>' . esc_html__( 'Event', 'undiecar' ) . '</th>
+				</tr>
+			</thead>
+			<tbody>';
+
+		$events = array();
+		$count = 0;
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$date  = get_post_meta( get_the_ID(), 'date', true );
+				$track = get_post_meta( get_the_ID(), 'track', true );
+
+				if (
+					false === $future && time() > $date
+					||
+					true  === $future && time() < $date
+				) {
+
+					$count++;
+
+					$content .= '
+					<tr>
+						<td>' . esc_html( $count ) . '</td>
+						<td>' . esc_html( date( 'l', $date ) ) . '<br />' . esc_html( date( get_option( 'date_format' ), $date ) ) . '</td>
+						<td><a href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . esc_html( get_the_title() ) . '</a></td>
+					</tr>';
+
+				}
+
+			}
+		}
+
+		$content .= '
+			</tbody>
+		</table>
+		';
 
 		return $content;
 	}
