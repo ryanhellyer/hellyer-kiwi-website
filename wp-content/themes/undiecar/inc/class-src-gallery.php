@@ -188,6 +188,7 @@ class SRC_Gallery extends SRC_Core {
 					'post_parent' => $event_id
 				);
 				wp_update_post( $args );
+				update_post_meta( $event_id, 'gallery', true );
 
 			}
 
