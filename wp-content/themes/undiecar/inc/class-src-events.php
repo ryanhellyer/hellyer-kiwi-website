@@ -615,7 +615,7 @@ class SRC_Events extends SRC_Core {
 				esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
 				esc_url( $track_url ),
 				esc_html( $this->event['current_round']['track_name'] ),
-				esc_html( $this->event['current_round']['track_type'] ),
+				'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 				esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
 				esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
 				$number->format( $race_count ),
