@@ -195,7 +195,7 @@ class SRC_Seasons extends SRC_Core {
 		ksort( $events );
 
 		$html = '<h3>' . esc_html__( 'Schedule', 'src' ) . '</h3>';
-		$html .= '<table id="src-schedule">';
+		$html .= '<table class="some-list" id="src-schedule">';
 
 		// Create the THEAD
 		$html .= '<thead><tr>';
@@ -244,7 +244,7 @@ class SRC_Seasons extends SRC_Core {
 						}
 					} else if ( 'Event' == $label ) {
 						if ( isset( $event['track'] ) ) {
-							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['track'] ) ) . '</a>';
+							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['id'] ) ) . '</a>';
 						}
 					} else if ( 'FP2' == $label ) {
 						if ( isset( $event['fp2_timestamp'] ) ) {
