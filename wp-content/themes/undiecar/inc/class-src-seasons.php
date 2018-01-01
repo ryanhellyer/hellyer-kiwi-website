@@ -74,8 +74,8 @@ class SRC_Seasons extends SRC_Core {
 		}
 
 		$content = $this->championship( $content );
-		$content = $this->championship( $content, false, 100, 'Road Championship', false, null, 'road' );
-		$content = $this->championship( $content, false, 100, 'Oval Championship', false, null, 'oval' );
+		$content = $this->championship( $content, false, 5, 'Road Championship', false, null, 'road' );
+		$content = $this->championship( $content, false, 5, 'Oval Championship', false, null, 'oval' );
 
 		return $content;
 	}
