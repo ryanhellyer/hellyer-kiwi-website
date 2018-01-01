@@ -168,7 +168,10 @@ if ( is_array( $images ) ) {
 		$image_ids .= $image_id . ',';
 	}
 
-	if ( 15 < count( $images ) ) {
+	if ( 1 === count( $images ) ) {
+		$size = 'full';
+		$columns = 1;
+	} else if ( 15 < count( $images ) ) {
 		$size = 'thumbnail';
 		$columns = 8;
 	} else if ( 11 < count( $images ) ) {
