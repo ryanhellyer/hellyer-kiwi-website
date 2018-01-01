@@ -438,6 +438,10 @@ class SRC_Gallery extends SRC_Core {
 
 	public function the_main_gallery() {
 
+if ( isset( $_GET['delete_cache'] ) ) {
+delete_transient( 'undiecar_gallery' );
+}
+
 		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery' ) ) ) {
 
 			$args = array(
