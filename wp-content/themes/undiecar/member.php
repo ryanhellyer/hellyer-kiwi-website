@@ -167,10 +167,11 @@ if ( is_array( $images ) ) {
 	foreach ( $images as $key => $image_id ) {
 		$image_ids .= $image_id . ',';
 	}
+echo count( $images );
 
 	if ( 1 === count( $images ) ) {
-		$size = 'full';
-		$columns = 1;
+		echo wp_get_attachment_image( $image_id, 'full' );
+		return;
 	} else if ( 15 < count( $images ) ) {
 		$size = 'thumbnail';
 		$columns = 8;
