@@ -42,11 +42,9 @@ class SRC_Core {
 	 * The teams championship table.
 	 *
 	 * @param  string  $content   The post content
-	 * @param  bool    $bypass    true if bypassing post-type check
-	 * @param  int     $limit     the max number of drivers to show
-	 * @param  string  $title     title to use
-	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
-	 * @param  int     $season_id the ID of the season of the championsing permanship table
+	 * @param  string  $title     Title to use
+	 * @param  int     $season_id The ID of the season of the championsing permanship table
+	 * @param  int     $number    The number of driver results to return
 	 */
 	static function teams_championship( $content, $title = false, $season_id = null ) {
 
@@ -134,15 +132,15 @@ class SRC_Core {
 		}
 
 		// Put teams list into points order
-usort( $teams_list, function ( $item1, $item2 ) {
-	return $item1['points'] <=> $item2['points'];
-});
-krsort( $teams_list );
+		usort( $teams_list, function ( $item1, $item2 ) {
+			return $item1['points'] <=> $item2['points'];
+		});
+		krsort( $teams_list );
 
 		// Generate HTML
 		if ( array() !== $teams_list ) {
 			$content .= '<h3>' . esc_html( $title ) . '</h3>';
-			$content .= '<table id="src-teams-championship">';
+			$content .= '<table class="some-list" id="src-teams-championship">';
 
 			$content .= '<thead><tr>';
 
@@ -270,7 +268,7 @@ krsort( $teams_list );
 
 		if ( array() !== $stored_results ) {
 			$content .= '<h3>' . esc_html( $title ) . '</h3>';
-			$content .= '<table id="src-championship">';
+			$content .= '<table class="some-list" id="src-championship">';
 
 			$content .= '<thead><tr>';
 
