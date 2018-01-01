@@ -247,6 +247,7 @@ class SRC_Members extends SRC_Core {
 
 		$member_slug = str_replace( $member_path, '', $_SERVER['REQUEST_URI'] );
 		$member_slug = str_replace( '/', '', $member_slug );
+		$member_slug = str_replace( '%20', '-', $member_slug );
 
 		// Redirect if name not quite correct
 		if (
@@ -299,10 +300,12 @@ class SRC_Members extends SRC_Core {
 
 		// Try to fall back to gallery image
 		$images = get_user_meta( $member_id, 'images', true );
-		foreach( $images as $key => $image_id ) {
-			$image = wp_get_attachment_image_src( $image_id, 'large' );
-			if ( isset( $image[0] ) ) {
-				return $image[0];
+		if ( is_array( $images ) ) {
+			foreach( $images as $key => $image_id ) {
+				$image = wp_get_attachment_image_src( $image_id, 'large' );
+				if ( isset( $image[0] ) ) {
+					return $image[0];
+				}
 			}
 		}
 
