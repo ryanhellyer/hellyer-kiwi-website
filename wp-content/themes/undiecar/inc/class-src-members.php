@@ -293,7 +293,7 @@ class SRC_Members extends SRC_Core {
 
 		// Look for user submitted URL
 		$header_image_id = get_user_meta( $member_id, 'header_image', true );
-		$header_image = wp_get_attachment_image_src( $header_image_id, 'full' );
+		$header_image = wp_get_attachment_image_src( $header_image_id, 'src-featured' );
 		if ( isset( $header_image[0] ) && '' !== $header_image[0] ) {
 			return $header_image[0];
 		}
