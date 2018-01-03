@@ -65,7 +65,7 @@ class SRC_Gallery extends SRC_Core {
 
 		$content .= esc_html__( 'Season', 'src' ) . ': <a href="' . esc_url( get_permalink( $season_id ) ) . '">' . get_the_title( $season_id ) . '</a>';
 		$content .= '<br />';
-		$content .= esc_html__( 'Event', 'src' ) . ': <a href="' . esc_url( get_permalink( $season_id ) ) . '">' . get_the_title( $event_id ) . '</a>';
+		$content .= esc_html__( 'Event', 'src' ) . ': <a href="' . esc_url( get_permalink( $event_id ) ) . '">' . get_the_title( $event_id ) . '</a>';
 		$content .= '<br />';
 		$content .= esc_html__( 'Drivers', 'src' ) . ': ';
 
