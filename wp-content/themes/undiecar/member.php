@@ -170,8 +170,11 @@ if ( is_array( $images ) ) {
 	}
 
 	if ( 1 === count( $images ) ) {
-		echo wp_get_attachment_image( $image_id, 'full' );
-		return;
+		$size = 'large';
+		$columns = 1;
+	} else if ( 2 === count( $images ) ) {
+		$size = 'large';
+		$columns = 2;
 	} else if ( 15 < count( $images ) ) {
 		$size = 'thumbnail';
 		$columns = 8;
