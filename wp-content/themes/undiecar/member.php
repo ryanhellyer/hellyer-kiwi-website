@@ -164,6 +164,7 @@ if ( $member_id === get_current_user_id() ) {
 $images = get_user_meta( $member_id, 'images', true );
 if ( is_array( $images ) ) {
 	$image_ids = '';
+	krsort( $images );
 	foreach ( $images as $key => $image_id ) {
 		$image_ids .= $image_id . ',';
 	}
