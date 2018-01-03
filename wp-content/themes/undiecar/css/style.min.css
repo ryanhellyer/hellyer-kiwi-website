@@ -333,52 +333,55 @@ a img.aligncenter {
       border: none;
       outline: none; }
 
-/* =Latest news
+/* =Latest news and media
 -------------------------------------------------------------- */
-#latest-news {
+.latest-items {
   width: 92%;
   padding: 0 4% 40px 4%; }
-  #latest-news header h2 {
+  .latest-items header h2 {
     text-align: center;
     margin: 40px 0 20px 0; }
-  #latest-news img {
+  .latest-items img {
     width: 100%; }
-  #latest-news article {
+  .latest-items article {
     float: left;
     width: 23%;
     background: #fff;
     margin: 0 2% 0 0; }
-    #latest-news article:last-child {
+    .latest-items article:last-child {
       margin-right: 1%; }
-    #latest-news article a {
+    .latest-items article a {
       display: block; }
-      #latest-news article a:hover {
+      .latest-items article a:hover {
         text-decoration: none; }
-        #latest-news article a:hover img {
+        .latest-items article a:hover img {
           opacity: 0.7; }
-  #latest-news date,
-  #latest-news p {
+  .latest-items date,
+  .latest-items p {
     display: block;
     padding-right: 30px;
     padding-left: 30px;
     color: #000; }
-  #latest-news date {
+  .latest-items date {
     margin: 20px 0 0 0;
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 0.8rem; }
-  #latest-news p {
+  .latest-items p {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
     font-size: 1.1rem;
     padding: 10px 30px 30px 30px;
     margin: 0; }
-  #latest-news .highlighted-link {
+  .latest-items .highlighted-link {
     float: left;
     width: 100%;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px; }
+
+#latest-media {
+  float: left; }
 
 /* =Avatar
 -------------------------------------------------------------- */
@@ -917,7 +920,7 @@ input[type=submit],
     width: 68%;
     overflow: scroll; }
 
-  #latest-news article {
+  .latest-items article {
     width: 48%; }
 
   #schedule li {
@@ -983,7 +986,7 @@ input[type=submit],
         font-size: 2.5rem;
         line-height: 2.5rem; }
 
-  #latest-news article {
+  .latest-items article {
     width: 100%;
     margin-left: 0;
     margin-bottom: 20px; }

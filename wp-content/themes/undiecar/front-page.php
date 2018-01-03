@@ -10,7 +10,7 @@ get_header();
 
 ?>
 
-<section id="latest-news">
+<section class="latest-items" id="latest-news">
 	<header>
 		<h2>Latest News</h2>
 	</header><?php
@@ -46,9 +46,9 @@ get_header();
 
 	?>
 
-	<a href="<?php echo esc_url( home_url() . '/news/' ); ?>" class="highlighted-link">See more news</a>
+	<a href="<?php echo esc_url( home_url() . '/news/' ); ?>" class="highlighted-link"><?php esc_html_e( 'See more news', 'undiecar' ); ?></a>
 
-</section><!-- #latest-news -->
+</section><!-- #latest-item -->
 
 <section id="schedule">
 	<ul><?php
@@ -212,6 +212,49 @@ get_header();
 	</a>
 
 </section><!-- #results -->
+
+<section class="latest-items" id="latest-media">
+	<header>
+		<h2>Latest Photos</h2>
+	</header><?php
+
+	// Load main loop
+	$args = array(
+		'posts_per_page'         => 4,
+		'post_type'              => 'attachment',
+		'post_status'            => 'inherit',
+		'post_mime_type'         => 'image',
+		'meta_key'               => 'gallery',
+		'no_found_rows'          => true,  // useful when pagination is not needed.
+		'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+		'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+		'fields'                 => 'ids'
+	);
+	$query = new WP_Query( $args );
+	$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+
+			echo '
+
+			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
+				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
+					<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-logo' ) ) . '" />
+					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
+					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
+				</a>
+			</article>';
+
+		}
+		wp_reset_query();
+	}
+
+	?>
+
+	<a href="<?php echo esc_url( home_url() . '/gallery/' ); ?>" class="highlighted-link">See more photos</a>
+
+</section><!-- #latest-media -->
 
 <?php
 
