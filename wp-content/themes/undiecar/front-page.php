@@ -240,7 +240,7 @@ get_header();
 
 			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
 				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
-					' . wp_get_attachment_image( get_the_ID(), 'medium' ) . '
+					' . wp_get_attachment_image( get_the_ID(), 'src-logo' ) . '
 					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
 					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
 				</a>
