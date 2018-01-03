@@ -302,7 +302,7 @@ class SRC_Members extends SRC_Core {
 		$images = get_user_meta( $member_id, 'images', true );
 		if ( is_array( $images ) ) {
 			foreach( $images as $key => $image_id ) {
-				$image = wp_get_attachment_image_src( $image_id, 'large' );
+				$image = wp_get_attachment_image_src( $image_id, 'src-featured' );
 				if ( isset( $image[0] ) ) {
 					return $image[0];
 				}
