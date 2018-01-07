@@ -29,6 +29,7 @@ $avatar             = get_user_meta( $member_id, 'avatar', true );
 $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
 $note               = get_user_meta( $member_id, 'note', true );
+$invited            = get_user_meta( $member_id, 'invited', true );
 $custid             = get_user_meta( $member_id, 'custid', true );
 
 get_header();
@@ -267,6 +268,9 @@ if (
 		<label>Note</label>
 		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
 
+		echo '
+		<label>Invited? (yes|null)</label>
+		<input name="invited" type="text" value="' . esc_attr( $invited ) . '" />';
 	}
 
 	echo '
