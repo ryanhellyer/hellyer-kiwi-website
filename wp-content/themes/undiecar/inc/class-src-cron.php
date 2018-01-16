@@ -61,49 +61,38 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 		$oval_file_path = $dir['basedir'] . '/Oval_driver_stats.csv';
 		$road_file_path = $dir['basedir'] . '/Road_driver_stats.csv';
 
+		// Get file contents as chunks - chunking code from https://stackoverflow.com/questions/6914912/streaming-a-large-file-using-php
+		define( 'CHUNK_SIZE', 1024 ); // Size (in bytes) of tiles chunk
+		function readfile_chunked( $filename, $retbytes = TRUE ) {
+			$buffer = '';
+			$cnt    = 0;
+			$handle = fopen($filename, 'rb');
 
+			if ($handle === false) {
+				return false;
+			}
 
+			while (!feof($handle)) {
+				$buffer = fread($handle, CHUNK_SIZE);
+				echo $buffer;
+				ob_flush();
+				flush();
 
-$filename = $road_file_path;
-define('CHUNK_SIZE', 1024); // Size (in bytes) of tiles chunk
-// Read a file and display its content chunk by chunk
-function readfile_chunked($filename, $retbytes = TRUE) {
-    $buffer = '';
-    $cnt    = 0;
-    $handle = fopen($filename, 'rb');
+				if ($retbytes) {
+					$cnt += strlen($buffer);
+				}
+			}
 
-    if ($handle === false) {
-        return false;
-    }
+			$status = fclose($handle);
 
-    while (!feof($handle)) {
-        $buffer = fread($handle, CHUNK_SIZE);
-        echo $buffer;
-        ob_flush();
-        flush();
+			if ($retbytes && $status) {
+				return $cnt; // return num. bytes delivered like readfile() does.
+			}
 
-        if ($retbytes) {
-            $cnt += strlen($buffer);
-        }
-    }
-
-    $status = fclose($handle);
-
-    if ($retbytes && $status) {
-        return $cnt; // return num. bytes delivered like readfile() does.
-    }
-
-    return $status;
-}
-echo readfile_chunked( $filename );
-die;
-
-
-
-
-		// Get file contents
-		$stats['oval'] = file_get_contents( $oval_file_path );
-		$stats['road'] = file_get_contents( $road_file_path );
+			return $status;
+		}
+		$stats['oval'] = readfile_chunked( $oval_file_path );
+		$stats['road'] = readfile_chunked( $road_file_path );
 
 		// Loop through each type of racing individually
 		$new_stats = array();
