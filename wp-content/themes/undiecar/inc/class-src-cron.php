@@ -92,6 +92,7 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 			return $status;
 		}
 		$stats['oval'] = readfile_chunked( $oval_file_path );
+print_r( $stats );die;
 		$stats['road'] = readfile_chunked( $road_file_path );
 //print_r( $stats );die;
 
@@ -152,7 +153,7 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 			unset( $stats[$type] );
 
 		}
-
+print_r( $new_stats );die;
 		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
