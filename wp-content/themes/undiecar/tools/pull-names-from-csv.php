@@ -460,11 +460,21 @@ if ( 'csv' === $_GET['pull_names'] ) {
 } else if ( 'details' === $_GET['pull_names'] ) {
 
 	foreach ( $listed_drivers as $driver_name => $track ) {
+
 		echo $driver_name . ":\n";
-		echo "\troad iRating: " . $stats[$driver_name]['road_irating'] . "\n";
-		echo "\toval iRating: " . $stats[$driver_name]['oval_irating'] . "\n";
-		echo "\troad license: " . $stats[$driver_name]['road_license'] . "\n";
-		echo "\toval license: " . $stats[$driver_name]['oval_license'] . "\n";
+
+		if ( isset( $stats[$driver_name]['road_irating'] ) ) {
+			echo "\troad iRating: " . $stats[$driver_name]['road_irating'] . "\n";
+		}
+		if ( isset( $stats[$driver_name]['oval_irating'] ) ) {
+			echo "\toval iRating: " . $stats[$driver_name]['oval_irating'] . "\n";
+		}
+		if ( isset( $stats[$driver_name]['road_license'] ) ) {
+			echo "\troad license: " . $stats[$driver_name]['road_license'] . "\n";
+		}
+		if ( isset( $stats[$driver_name]['oval_license'] ) ) {
+			echo "\toval license: " . $stats[$driver_name]['oval_license'] . "\n";
+		}
 
 		$listed_drivers2++;
 	}
