@@ -135,11 +135,11 @@ echo "TEST - read oval\n";
 					continue;
 				}
 
-				// Create array with alphabetical key
-				$new_stats[$type][$drivers_name] = $data;
-
 				// Clear memory
 				unset( $stats[$type] );
+
+				// Create array with alphabetical key
+				$new_stats[$type][$drivers_name] = $data;
 
 			}
 
