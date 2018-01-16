@@ -435,6 +435,14 @@ foreach ( $users as $key => $data ) {
 
 }
 
+// Strip out personal ones
+foreach ( $listed_drivers as $driver_name => $track ) {
+
+	if ( 'personal' === $track ) {
+		unset( $listed_drivers[$driver_name] );
+	}
+}
+
 /**
  * Finally, output names.
  */
@@ -442,23 +450,29 @@ $listed_drivers2 = 0;
 if ( 'csv' === $_GET['pull_names'] ) {
 
 	foreach ( $listed_drivers as $driver_name => $track ) {
-		if ( 'personal' !== $track ) {
-			echo $driver_name . ',';
-			$listed_drivers2++;
-		}
+		echo $driver_name . ',';
+		$listed_drivers2++;
+	}
+
+	echo "\n\ncount: " . $listed_drivers2;
+
+
+} else if ( 'details' === $_GET['pull_names'] ) {
+
+	foreach ( $listed_drivers as $driver_name => $track ) {
+		echo $driver_name . ":\n";
+		echo "\troad iRating: " . $stats[$driver_name]['road_irating'] . "\n";
+		echo "\toval iRating: " . $stats[$driver_name]['oval_irating'] . "\n";
+		echo "\troad license: " . $stats[$driver_name]['road_license'] . "\n";
+		echo "\toval license: " . $stats[$driver_name]['oval_license'] . "\n";
+
+		$listed_drivers2++;
 	}
 
 	echo "\n\ncount: " . $listed_drivers2;
 
 } else {
 
-	// Strip out personal ones
-	foreach ( $listed_drivers as $driver_name => $track ) {
-
-		if ( 'personal' === $track ) {
-			unset( $listed_drivers[$driver_name] );
-		}
-	}
 	print_r( $listed_drivers );
 	echo "\n\ncount: " . count( $listed_drivers );
 
