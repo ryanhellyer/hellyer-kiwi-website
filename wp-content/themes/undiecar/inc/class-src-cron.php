@@ -62,8 +62,8 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 		$road_file_path = $dir['basedir'] . '/Road_driver_stats.csv';
 
 		// Get file contents as chunks - chunking code from https://stackoverflow.com/questions/6914912/streaming-a-large-file-using-php
-		define( 'CHUNK_SIZE', 1024 ); // Size (in bytes) of tiles chunk
-		function readfile_chunked( $filename, $retbytes = TRUE ) {
+		define( 'CHUNK_SIZE', 1024 * 1024 ); // Size (in bytes) of tiles chunk
+		function readfile_chunked( $filename ) {
 			$buffer = '';
 			$cnt    = 0;
 			$handle = fopen($filename, 'rb');
@@ -73,29 +73,16 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 			}
 
 			while (!feof($handle)) {
-				$buffer = fread($handle, CHUNK_SIZE);
-				echo $buffer;
-				ob_flush();
-				flush();
-
-				if ($retbytes) {
-					$cnt += strlen($buffer);
-				}
+				$buffer .= fread($handle, CHUNK_SIZE);
+				//echo strlen( $buffer )."\n";
 			}
 
 			$status = fclose($handle);
 
-			if ($retbytes && $status) {
-				return $cnt; // return num. bytes delivered like readfile() does.
-			}
-
-			return $status;
+			return $buffer;
 		}
-		$stats['oval'] = readfile_chunked( $oval_file_path );
-die('completed');
-print_r( $stats );die;
 		$stats['road'] = readfile_chunked( $road_file_path );
-//print_r( $stats );die;
+		$stats['oval'] = readfile_chunked( $oval_file_path );
 
 		// Loop through each type of racing individually
 		$new_stats = array();
@@ -149,18 +136,22 @@ print_r( $stats );die;
 				// Create array with alphabetical key
 				$new_stats[$type][$drivers_name] = $data;
 
+				// Clear memory
+				unset( $stats[$type] );
+
 			}
 
 			unset( $stats[$type] );
 
 		}
-print_r( $new_stats );die;
+
 		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
 
 		die('done');
+
 	}
 
 }
