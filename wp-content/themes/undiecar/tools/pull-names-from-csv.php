@@ -448,20 +448,21 @@ if ( 'csv' === $_GET['pull_names'] ) {
 		}
 	}
 
-} if ( 'dump' === $_GET['pull_names'] ) {
+	echo "\n\ncount: " . $listed_drivers2;
+
+} else {
 
 	// Strip out personal ones
 	foreach ( $listed_drivers as $driver_name => $track ) {
+
 		if ( 'personal' === $track ) {
 			unset( $listed_drivers[$driver_name] );
 		}
 	}
 	print_r( $listed_drivers );
+	echo "\n\ncount: " . count( $listed_drivers );
 
-} else {
-	print_r( $listed_drivers );
 }
 
-echo "\n\ncount: " . $listed_drivers2;
 
 die;
