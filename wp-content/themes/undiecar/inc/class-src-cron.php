@@ -93,6 +93,7 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 		}
 		$stats['oval'] = readfile_chunked( $oval_file_path );
 		$stats['road'] = readfile_chunked( $road_file_path );
+//print_r( $stats );die;
 
 		// Loop through each type of racing individually
 		$new_stats = array();
