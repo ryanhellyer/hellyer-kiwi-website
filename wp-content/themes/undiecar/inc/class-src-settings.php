@@ -47,6 +47,11 @@ class SRC_Settings {
 			'last-season',             // The option name
 			array( $this, 'sanitize' ) // The sanitization callback
 		);
+		register_setting(
+			self::GROUP,               // The settings group name
+			'non-championship-user-message', // The option name
+			array( $this, 'sanitize' ) // The sanitization callback
+		);
 
 	}
 
@@ -181,6 +186,16 @@ class SRC_Settings {
 
 							?>
 
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="non-championship-user-message"><?php _e( 'Message to show non-championship registered users', 'undiecar' ); ?></label>
+						</th>
+						<td>
+							<textarea style="width:100%;" id="non-championship-user-message" name="non-championship-user-message"><?php
+							echo esc_textarea( get_option( 'non-championship-user-message' ) );
+							?></textarea>
 						</td>
 					</tr>
 				</table>
