@@ -188,32 +188,49 @@ if ( 'season_5' === $_GET['user_processing'] ) {
 if ( 'special' === $_GET['user_processing'] ) {
 
 	$count = 0;
-	$drivers = get_users( array( 'number' => 1000 ) );
+	$drivers = get_users(
+		array(
+			'number' => 1000,
+/*
+			'meta_query' => array(
+					'relation' => 'OR',
+					array(
+					'key'     => 'season',
+					'value'   => 'special',
+					'compare' => '=',
+				),
+				array(
+					array(
+						'key' => 'season',
+						'value' => 'reserve',
+						'compare' => '=',
+					),
+					array(
+						'key' => 'receive_extra_communication',
+						'value' => '1',
+						'compare' => '=',
+					),
+				),
+			)
+*/
+		)
+	);
+//print_r( $drivers );die;
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-		$include_season = 'randomstring';
-		if ( isset( $_GET['include_season'] ) ) {
-			$include_season = $_GET['include_season'];
-		}
+echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
 
+/*
 		if (
-			'special' === get_user_meta( $driver_id, 'season', true )
-			||
-			'reserve' === get_user_meta( $driver_id, 'season', true )
-			||
-			$include_season === get_user_meta( $driver_id, 'season', true )
+			'banned' !== get_user_meta( $driver_id, 'season', true )
+			&&
+			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
 		) {
-
-			if (
-				'banned' !== get_user_meta( $driver_id, 'season', true )
-				&&
-				'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
-			) {
-				echo $driver->data->display_name . ',';
-				$count++;
-			}
+			echo $driver->data->display_name . ',';
+			$count++;
 		}
+*/
 
 	}
 
