@@ -357,7 +357,7 @@ if (
 		<label>Profile picture</label>
 		<input name="avatar" type="file" />';
 
-		$avatar = wp_get_attachment_image_src( $avatar, 'thumbnail' );
+		$avatar = wp_get_attachment_image_src( $avatar, 'medium' );
 		if ( isset( $avatar[0] ) && '' !== $avatar[0] ) {
 			echo '<img src="' . esc_url( $avatar[0] ) . '" style="max-width:200px;max-height:100px;" />';
 		}
