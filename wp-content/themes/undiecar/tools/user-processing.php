@@ -223,43 +223,42 @@ if ( 'special' === $_GET['user_processing'] ) {
 }
 
 
-if ( 'list_by_irating' === $_GET['user_processing'] ) {
+if (
+	'list_by_irating' === $_GET['user_processing']
+	||
+	'list_by_irating_reserves' === $_GET['user_processing']
+) {
 
 	$args['number'] = 1000;
-	$args['meta_query'] = array(
-		'relation' => 'OR',
-		array(
-			'key'     => 'season',
-			'value'   => 'special',
-			'compare' => '=',
-		),
-		array(
-			array(
-				'key' => 'season',
-				'value' => 'reserve',
-				'compare' => '=',
-			),
-		),
-	);
+
+	// Only show reserves
+	if ( 'list_by_irating_reserves' === $_GET['user_processing'] ) {
+		$args['meta_key'] = 'season';
+		$args['meta_value'] = 'reserve';
+	}
 
 	$drivers = get_users( $args );
 
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
+
+if ( '4' !== get_user_meta( $driver_id, 'road_irating', true ) ) {
+
 		$road_irating = get_user_meta( $driver_id, 'road_irating', true );
 		$oval_irating = get_user_meta( $driver_id, 'oval_irating', true );
 		$road_license = get_user_meta( $driver_id, 'road_license', true );
 		$oval_license = get_user_meta( $driver_id, 'oval_license', true );
 		$total_irating = $road_irating + $oval_irating;
 
-		if ( '1' !== get_user_meta( $driver_id, 'season', true ) ) {
-			$stats[$total_irating]['name'] = $driver->data->display_name;
-			$stats[$total_irating]['road_irating'] = $road_irating;
-			$stats[$total_irating]['oval_irating'] = $oval_irating;
-			$stats[$total_irating]['road_license'] = $road_license;
-			$stats[$total_irating]['oval_license'] = $oval_license;
-			$stats[$total_irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
-		}
+		$stats[$total_irating]['id'] = $driver_id;
+		$stats[$total_irating]['name'] = $driver->data->display_name;
+		$stats[$total_irating]['road_irating'] = $road_irating;
+		$stats[$total_irating]['oval_irating'] = $oval_irating;
+		$stats[$total_irating]['road_license'] = $road_license;
+		$stats[$total_irating]['oval_license'] = $oval_license;
+		$stats[$total_irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
+
+}
 
 	}
 
@@ -270,7 +269,7 @@ if ( 'list_by_irating' === $_GET['user_processing'] ) {
 		echo '	oval iRating = ' . $driver_data['oval_irating'] . "\n";
 		echo '	road license = ' . $driver_data['road_license'] . "\n";
 		echo '	oval license = ' . $driver_data['road_license'] . "\n";
-		echo '	registration = ' . $driver_data['registered_date'];
+		echo '	registration = ' . $driver_data['registered_date'] . "\n";
 		echo "\n\n";
 	}
 
