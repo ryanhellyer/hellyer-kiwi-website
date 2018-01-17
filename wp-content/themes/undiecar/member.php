@@ -42,6 +42,47 @@ echo '<h2>' . esc_html( $display_name )  . '</h2>';
 
 
 
+// Notice
+if (
+	'' != get_option( 'non-championship-user-message' )
+	&&
+	$member_id === get_current_user_id()// || is_super_admin()
+	&&
+	(
+		// This is a crude hack until we check the actual current and next seasons
+		'5' !== $season
+		&&
+		'6' !== $season
+		&&
+		'7' !== $season
+		&&
+		'8' !== $season
+		&&
+		'9' !== $season
+		&&
+		'10' !== $season
+	)
+) {
+	echo '
+<style>
+.important-information {
+	border: 1px solid rgba(255,0,0,0.8);
+	border-radius: 40px;
+	background: rgba(255,0,0,0.1);
+	padding: 20px 40px;
+	margin: 60px 0;
+}
+</style>
+<div class="important-information">
+' . get_option( 'non-championship-user-message' ) . '
+</div>';
+
+}
+
+
+
+
+
 echo '<p>' . $description . '</p>';
 
 echo '<p>';
@@ -128,30 +169,6 @@ if ( 0 < $social_network_counter ) {
 }
 
 echo '</p>';
-
-if (
-	$member_id === get_current_user_id()
-	&&
-	(
-
-		// This is a crude hack until we check the actual current and next seasons
-		'4' !== $season
-		&&
-		'5' !== $season
-		&&
-		'6' !== $season
-		&&
-		'7' !== $season
-		&&
-		'8' !== $season
-		&&
-		'9' !== $season
-		&&
-		'10' !== $season
-	)
-) {
-	echo '<p><strong><u>All positions are filled at the moment</u></strong>. If you received an invite to join from <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a>, please contact him regarding this directly (via iRacing private message or <a href="https://undiecar.com/discord/">Discord</a>). You have been placed on the reserve list and will be notified if any spots become available or of any special events we may hold. If you only want to compete in the special events, please contact <a href="https://undiecar.com/member/ryan-hellyer/">Ryan Hellyer</a> via either <a href="http://members.iracing.com/membersite/member/CareerStats.do?custid=279455">iRacing private message</a> or via our <a href="https://undiecar.com/discord/">Discord channel</a>.</p>';
-}
 
 
 if ( $member_id === get_current_user_id() ) {
