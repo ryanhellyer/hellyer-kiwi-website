@@ -17,7 +17,6 @@ if ( ! isset( $_GET['user_processing'] ) ) {
 
 
 
-
 /**
  * Update information from iRacing, including iRating.
  */
