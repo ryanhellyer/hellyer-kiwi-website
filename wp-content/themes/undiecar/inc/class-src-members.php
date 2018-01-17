@@ -31,7 +31,7 @@ class SRC_Members extends SRC_Core {
 
 		$avatar_id = get_user_meta( $member_id, 'avatar', true );
 		if ( '' !== $avatar_id ) {
-			$avatar_data = wp_get_attachment_image_src( $avatar_id, 'thumbnail' );
+			$avatar_data = wp_get_attachment_image_src( $avatar_id, 'medium' );
 
 			if ( isset( $avatar_data[0] ) && '' !== $avatar_data[0] ) {
 				$avatar_url = $avatar_data[0];
