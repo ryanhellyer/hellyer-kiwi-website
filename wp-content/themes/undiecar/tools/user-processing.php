@@ -159,7 +159,7 @@ if ( 'season_5' === $_GET['user_processing'] ) {
 
 	$drivers = get_users(
 		array(
-			'number'     => 1000
+			'number'     => 1000,
 			'meta_key'   => 'season',
 			'meta_value' => '5',
 		)
