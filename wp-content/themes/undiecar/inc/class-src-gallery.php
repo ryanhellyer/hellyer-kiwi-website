@@ -30,6 +30,7 @@ class SRC_Gallery extends SRC_Core {
 		// Add shortcodes
 		add_shortcode( 'undiecar_gallery_uploader', array( $this, 'uploader' ) );
 		add_shortcode( 'undiecar_gallery', array( $this, 'the_main_gallery' ) );
+		add_shortcode( 'undiecar_season_gallery', array( $this, 'season_gallery' ) );
 
 		// Add API routes
 		add_action( 'rest_api_init', function () {
@@ -438,7 +439,7 @@ class SRC_Gallery extends SRC_Core {
 		return $events;
 	}
 
-	public function the_main_gallery() {
+	public function the_main_gallery( $args = array() ) {
 
 if ( isset( $_GET['delete_cache'] ) ) {
 delete_transient( 'undiecar_gallery' );
@@ -457,6 +458,7 @@ delete_transient( 'undiecar_gallery' );
 				'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
 				'fields'                 => 'ids'
 			);
+
 			$query = new WP_Query( $args );
 			$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
 			if ( $query->have_posts() ) {
@@ -470,6 +472,70 @@ delete_transient( 'undiecar_gallery' );
 			$undiecar_gallery .= '"]';
 
 			set_transient( 'undiecar_gallery', $undiecar_gallery, HOUR_IN_SECONDS );
+		}
+
+		return do_shortcode( $undiecar_gallery );
+	}
+
+	public function season_gallery( $args = array() ) {
+
+		if ( ! isset( $args['season'] ) ) {
+			return;
+		}
+		$season = $args['season'];
+
+if ( isset( $_GET['delete_cache'] ) ) {
+delete_transient( 'undiecar_gallery_' . $season );
+}
+
+		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery_' . $season ) ) ) {
+			$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
+
+			// Get the season ID from the slug
+			$args = [
+				'post_type'      => 'season',
+				'posts_per_page' => 1,
+				'post_name__in'  => array( $season ),
+				'fields'         => 'ids' 
+			];
+			$season_object = get_posts( $args );
+			if ( ! isset( $season_object[0] ) ) {
+				return;
+			}
+			$season_id = $season_object[0];
+
+			// Loop through the events
+			$events = src_get_races( $season_id );
+			foreach ( $events as $event_id => $event_name ) {
+
+				$args = array(
+					'post_parent'            => $event_id,
+					'posts_per_page'         => 500,
+					'post_type'              => 'attachment',
+					'post_status'            => 'inherit',
+					'post_mime_type'         => 'image',
+					'meta_key'               => 'gallery',
+					'no_found_rows'          => true,  // useful when pagination is not needed.
+					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+					'fields'                 => 'ids'
+				);
+
+
+				$query = new WP_Query( $args );
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+
+						$undiecar_gallery .= get_the_ID() . ',';
+					}
+					wp_reset_query();
+				}
+			}
+
+			$undiecar_gallery .= '"]';
+
+			set_transient( 'undiecar_gallery', 'undiecar_gallery_' . $season, HOUR_IN_SECONDS );
 		}
 
 		return do_shortcode( $undiecar_gallery );
