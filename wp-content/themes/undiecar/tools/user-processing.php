@@ -191,7 +191,6 @@ if ( 'special' === $_GET['user_processing'] ) {
 	$drivers = get_users(
 		array(
 			'number' => 1000,
-/*
 			'meta_query' => array(
 					'relation' => 'OR',
 					array(
@@ -212,26 +211,11 @@ if ( 'special' === $_GET['user_processing'] ) {
 					),
 				),
 			)
-*/
 		)
 	);
-//print_r( $drivers );die;
 	foreach ( $drivers as $driver ) {
-		$driver_id = $driver->ID;
-
-echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
-
-/*
-		if (
-			'banned' !== get_user_meta( $driver_id, 'season', true )
-			&&
-			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
-		) {
-			echo $driver->data->display_name . ',';
-			$count++;
-		}
-*/
-
+		echo $driver->data->display_name . ',';
+		$count++;
 	}
 
 	echo "\nTotal count: " . $count;
