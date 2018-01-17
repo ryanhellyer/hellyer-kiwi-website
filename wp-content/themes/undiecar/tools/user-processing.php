@@ -219,7 +219,10 @@ if ( 'special' === $_GET['user_processing'] ) {
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
+if ( '' === get_user_meta( $driver_id, 'season', true ) ) {
+	update_user_meta( $driver_id, 'season', 'reserve' );
+	echo get_user_meta( $driver_id, 'season', true ) . ': ' . $driver->data->display_name . "\n";
+}
 
 /*
 		if (
