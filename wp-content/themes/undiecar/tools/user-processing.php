@@ -1,7 +1,5 @@
 <?php
 
-// ******** update_user_meta( $member_id, 'receive_extra_communication', $receive_extra_communication ); HANDLE EMAIL COMMUNICATION CHECK
-
 // ******** SHOULD PROCESS STUFF HERE WITH $this->get_seasons_drivers()
 
 
@@ -79,28 +77,16 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 new Undiecar_Update_iRacing_Info;
 
 
-
-
+/*
 
 if ( 'remove' === $_GET['user_processing'] ) {
 	add_action( 'init', 'undiecar_remove_drivers' );
 	function undiecar_remove_drivers() {
 		require_once( ABSPATH . 'wp-admin/includes/user.php' );
 		require_once( ABSPATH . 'wp-admin/includes/ms.php' );
-		$drivers = array(/*
-			'Henry Bennett',
-			'Austin Espitee',
-			'Richard Tam',
-			'Andrey Efimenko',
-			'Martin Kober',
-			'Sergio Morresi',
-			'Pebst Augusta',
-			'Bill Gallacher Jr',
-			'Carlos López',
-			'Jeffrey Oakley',
-			'Carl Barrick',
-			'Vinicius Marega',
-			'Daniel Wright4',*/
+		$drivers = array(
+			'zzz',
+			'xxx',
 		);
 		$all_drivers = get_users( array( 'number' => 1000 ) );
 
@@ -117,7 +103,7 @@ if ( 'remove' === $_GET['user_processing'] ) {
 		}
 	}
 }
-/*
+
 if ( 'season_1' === $_GET['user_processing'] ) {
 	require_once( ABSPATH . 'wp-admin/includes/user.php' );
 	require_once( ABSPATH . 'wp-admin/includes/ms.php' );
@@ -145,7 +131,7 @@ if ( 'season_4' === $_GET['user_processing'] ) {
 		if (
 			'4' === get_user_meta( $driver_id, 'season', true )
 			&&
-			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
 		) {
 			echo $driver->data->display_name . ',';
 		}
@@ -168,7 +154,7 @@ if ( 'season_5' === $_GET['user_processing'] ) {
 		$driver_id = $driver->ID;
 
 		if (
-			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
 		) {
 			echo $driver->data->display_name . ',';
 		}
@@ -191,6 +177,7 @@ if ( 'special' === $_GET['user_processing'] ) {
 	$drivers = get_users(
 		array(
 			'number' => 1000,
+/*
 			'meta_query' => array(
 				'relation' => 'OR',
 				array(
@@ -199,23 +186,37 @@ if ( 'special' === $_GET['user_processing'] ) {
 					'compare' => '=',
 				),
 				array(
-					array(
+		'relation' => 'AND',
+							array(
 						'key' => 'season',
 						'value' => 'reserve',
 						'compare' => '=',
 					),
 					array(
-						'key' => 'receive_extra_communication',
-						'value' => '1',
+						'key'     => 'receive_notifications',
+						'value'   => 'yes',
 						'compare' => '=',
 					),
 				),
 			)
+*/
 		)
 	);
 	foreach ( $drivers as $driver ) {
-		echo $driver->data->display_name . ',';
-		$count++;
+		$driver_id = $driver->data->ID;
+
+		if (
+			(
+				'special' === get_user_meta( $driver_id, 'season', true )
+				||
+				'reserve' === get_user_meta( $driver_id, 'season', true )
+			)
+			&&
+			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
+		) {
+			echo $driver->data->display_name . ',';
+			$count++;
+		}
 	}
 
 	echo "\nTotal count: " . $count;
@@ -242,8 +243,6 @@ if (
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
-if ( '4' !== get_user_meta( $driver_id, 'road_irating', true ) ) {
-
 		$road_irating = get_user_meta( $driver_id, 'road_irating', true );
 		$oval_irating = get_user_meta( $driver_id, 'oval_irating', true );
 		$road_license = get_user_meta( $driver_id, 'road_license', true );
@@ -257,8 +256,6 @@ if ( '4' !== get_user_meta( $driver_id, 'road_irating', true ) ) {
 		$stats[$total_irating]['road_license'] = $road_license;
 		$stats[$total_irating]['oval_license'] = $oval_license;
 		$stats[$total_irating]['registered_date'] = get_userdata( $driver_id )->user_registered;
-
-}
 
 	}
 
@@ -276,3 +273,5 @@ if ( '4' !== get_user_meta( $driver_id, 'road_irating', true ) ) {
 	die( "\n\n".'Done :)' );
 }
 
+
+//		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
