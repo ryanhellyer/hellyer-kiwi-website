@@ -117,7 +117,7 @@ if ( 'remove' === $_GET['user_processing'] ) {
 		}
 	}
 }
-
+/*
 if ( 'season_1' === $_GET['user_processing'] ) {
 	require_once( ABSPATH . 'wp-admin/includes/user.php' );
 	require_once( ABSPATH . 'wp-admin/includes/ms.php' );
@@ -134,9 +134,7 @@ if ( 'season_1' === $_GET['user_processing'] ) {
 	}
 	die('done');
 }
-
-
-
+*/
 
 if ( 'season_4' === $_GET['user_processing'] ) {
 
@@ -157,6 +155,28 @@ if ( 'season_4' === $_GET['user_processing'] ) {
 	die;
 }
 
+if ( 'season_5' === $_GET['user_processing'] ) {
+
+	$drivers = get_users(
+		array(
+			'number'     => 1000
+			'meta_key'   => 'season',
+			'meta_value' => '5',
+		)
+	);
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->ID;
+
+		if (
+			'1' === get_user_meta( $driver_id, 'receive_extra_communication', true )
+		) {
+			echo $driver->data->display_name . ',';
+		}
+
+	}
+
+	die;
+}
 
 /**
  * Get all drivers eligible for special races.
