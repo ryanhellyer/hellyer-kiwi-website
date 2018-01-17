@@ -301,14 +301,17 @@ if (
 		if ( '1' !== get_user_meta( $member_id, 'password_set', true ) ) {
 			echo 'class="highlighted-field" ';
 		}
-
 		echo 'type="text" value="" placeholder="Enter a password here" />
 
 		<br />
-		<label>Receive extra Undiecar Championship communication?</label>
-		<input name="receive-extra-communication" type="checkbox" style="font-size:40px;" ';
+		<label>Receive notifications?</label>
+		<input name="receive-notifications" type="checkbox" style="font-size:40px;" ';
 
-		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
+		$receive_notifications = get_user_meta( $member_id, 'receive_notifications', true );
+		$checked = '';
+		if ( 'no' !== $receive_notifications ) {
+			$checked = 1;
+		}
 		echo checked( $checked, 1, false );
 
 		echo ' value="1" />
@@ -357,7 +360,7 @@ if (
 		<label>Profile picture</label>
 		<input name="avatar" type="file" />';
 
-		$avatar = wp_get_attachment_image_src( $avatar, 'medium' );
+		$avatar = wp_get_attachment_image_src( $avatar, 'thumbnail' );
 		if ( isset( $avatar[0] ) && '' !== $avatar[0] ) {
 			echo '<img src="' . esc_url( $avatar[0] ) . '" style="max-width:200px;max-height:100px;" />';
 		}

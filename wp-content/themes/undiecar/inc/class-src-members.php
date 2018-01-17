@@ -193,12 +193,12 @@ class SRC_Members extends SRC_Core {
 			}
 
 			// Process checkbox
-			if ( isset( $_POST['receive-extra-communication'] ) ) {
-				$receive_extra_communication = 1;
+			if ( isset( $_POST['receive-notifications'] ) ) {
+				$receive_notifications = 'yes';
 			} else {
-				$receive_extra_communication = '';
+				$receive_notifications = 'no';
 			}
-			update_user_meta( $member_id, 'receive_extra_communication', $receive_extra_communication );
+			update_user_meta( $member_id, 'receive_notifications', $receive_notifications );
 
 			// Set the password
 			if ( isset( $_POST['password'] ) && '' !== $_POST['password'] ) {
