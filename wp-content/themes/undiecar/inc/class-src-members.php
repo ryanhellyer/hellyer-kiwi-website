@@ -114,7 +114,7 @@ class SRC_Members extends SRC_Core {
 				),
 				'car-number'         => array(
 					'meta_key' => 'car_number',
-					'sanitize' => 'number',
+					'sanitize' => 'digits',
 				),
 				'racing-experience'  => array(
 					'meta_key' => 'racing_experience',
@@ -170,6 +170,14 @@ class SRC_Members extends SRC_Core {
 					} else if ( 'wp_kses_post' === $x['sanitize'] ) {
 						$value = wp_kses_post( $_POST[$field_key] );
 						$value = substr( $value, 0, 3000 );
+					} else if ( 'digits' === $x['sanitize'] ) {
+
+						if ( ctype_digit( $_POST[$field_key] ) ) {
+							$value = esc_html( $_POST[$field_key] );
+						} else {
+							$value = absint( $_POST[$field_key] );
+						}
+
 					} else if ( 'number' === $x['sanitize'] ) {
 						$value = absint( $_POST[$field_key] );
 					} else if ( 'esc_url' === $x['sanitize'] ) {
