@@ -13,7 +13,7 @@ define( 'ALLOW_B_LICENSES', true );
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
 define( 'MIN_OVAL_IRATING', 2000 );
-define( 'MIN_ROAD_IRATING', 1000 );
+define( 'MIN_ROAD_IRATING', 900 );
 
 
 
@@ -260,66 +260,6 @@ foreach ( $events as $event => $vars ) {
 				continue;
 			}
 
-			// Get qual time
-			$qual_time = explode( ':', $cells[14] );
-			if ( isset( $qual_time[1] ) ) {
-				$qual_time = ( $qual_time[0] * 60 ) + $qual_time[1];
-			} else {
-				$qual_time = 0;
-			}
-
-			// Get qual time
-			$fastest_lap_time = explode( ':', $cells[16] );
-			if ( isset( $fastest_lap_time[1] ) ) {
-				$fastest_lap_time = ( $fastest_lap_time[0] * 60 ) + $fastest_lap_time[1];
-			} else {
-
-				// Deal with times less than 1 minute
-				if ( 0 == $fastest_lap_time[0] ) {
-					$fastest_lap_time = 0;
-				} else {
-					$fastest_lap_time = $fastest_lap_time[0];
-				}
-
-			}
-
-			// Grab fastest time between qual and fastest lap time
-			$time = $fastest_lap_time;
-			if ( $qual_time > $fastest_lap_time && 0 != $qual_time ) {
-				$time = $qual_time;
-			}
-
-			$time = (float) $time;
-//echo $time . ': ' . $fastest_lap_time . "\n";
-
-			// If incidents too high, then kick them out
-			$incident_ratio = 0;
-			if ( isset( $cells[19] ) ) {
-				$incidents = $cells[19];
-
-				if ( isset( $cells[18] ) ) {
-					$laps = $cells[18];
-
-					// Bail out if they didn't even manage a lap
-					if ( $laps == 0 ) {
-						continue;
-					}
-
-					$incident_ratio = $incidents / $laps;
-
-				}
-
-			}
-
-			// Kick out anyone slow unless they have few incidents
-			if ( $time > $time_3 && $incident_ratio > $incident_ratio_1 ) {
-				continue;
-			}
-
-			if ( $time > $time_1 && $incident_ratio > $incident_ratio_2 ) {
-				continue;
-			}
-
 			// If no iRating, then set it to 0
 			if ( ! isset( $stats[$driver_name]['oval_irating'] ) ) {
 				$stats[$driver_name]['oval_irating'] = 0;
@@ -339,59 +279,6 @@ foreach ( $events as $event => $vars ) {
 				continue;
 			}
 
-/*
-			// Warn about unfound drivers
-			if ( ( ! isset( $stats[$driver_name]['road_license'] ) && ! isset( $stats[$driver_name]['oval_license'] ) ) ) {
-
-				// No license so do strict time check
-				if ( $time > $time_2 || 0 == $time ) {
-					// too slow or no time set, so bail out
-					continue;
-				} else {
-
-					if ( $incident_ratio < $incident_ratio_2 ) {
-
-						// Not licensed, but fast enough and little incidents, so lets allow them anyway
-						if ( defined( 'ALLOW_ROOKIES' ) ) {
-							$drivers[$driver_name] = $event;
-						}
-					}
-
-					continue;
-
-				}
-
-			}
-*/
-
-			/*
-			SEEMS TO BE ONLY ALLOWING THOSE WITH HIGH OVAL LICENSES
-			// Only allow highly rated oval licenses
-			if ( isset( $stats[$driver_name]['oval_license'] ) ) {
-
-				if (
-					'A' === $stats[$driver_name]['oval_license']
-					||
-					'B' === $stats[$driver_name]['oval_license']
-				) {
-					$drivers[$driver_name] = $event;
-					continue;
-				}
-
-				// Only allow safe D drivers
-				if (
-					'D' === $stats[$driver_name]['oval_license']
-					&&
-					$incident_ratio < $incident_ratio_3
-					&&
-					defined( 'ALLOW_D_LICENSES' )
-				) {
-					$drivers[$driver_name] = $event;
-					continue;
-				}
-
-			}
-			*/
 			if ( isset( $stats[$driver_name]['road_license'] ) ) {
 
 				// Allow A B C drivers
@@ -413,18 +300,6 @@ foreach ( $events as $event => $vars ) {
 					continue;
 				}
 
-				// Only allow safe D drivers
-				if (
-					'D' === $stats[$driver_name]['road_license']
-					&&
-					$incident_ratio < $incident_ratio_3
-					&&
-					defined( 'ALLOW_D_LICENSES' )
-				) {
-					$drivers[$driver_name] = $event;
-					continue;
-				}
-
 			}
 
 
@@ -435,21 +310,7 @@ foreach ( $events as $event => $vars ) {
 }
 
 
-// Specify which to keep
-$count = 0;
 $listed_drivers = $drivers;
-foreach ( $drivers as $driver_name => $track ) {
-/*
-	ONLY INCLUDES FR DRIVERS, WHIC
-
-	if (
-		'formula-renault-last-2' !== $track
-	) {
-//		echo $driver_name . ': ' . $track . "\n";
-		unset( $listed_drivers[$driver_name] );
-	}
-*/
-}
 
 /**
  * Remove existing members.
