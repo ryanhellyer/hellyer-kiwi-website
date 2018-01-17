@@ -73,7 +73,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'formula-renault-s1-2018-r1' => array(
+	'formula-renault-s1-2018-r2' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -82,6 +82,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 /*
+	'formula-renault-s1-2018-r1' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'indy-road-s1-2018' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
