@@ -52,6 +52,8 @@ $promazda_2017_12 = 'Alessandro Maresta,Takeo Goda,Antti Viisas,Scott Dick,Ferna
 $promazda_2017_12_2 = 'Rob Crouch,Tommie Aalto,Sergio Quero,Takashi Aoki,Markku Laakkonen,Javier Oyarbide Apalategui,Wilhelm Öhman,Sascha Kuss,Ian Sweeney,Michael A. Overbay,Keith Bridgman,Andre Van Bijsterveld,Tomás Agustín Lanús,Tom Paine,Jim Day,austin Snyder,Estruch Frederic,Pontus Nilsson,James Mcritchie,Sergio Garcia6,Scott Kukas,Jorge Vaquero,Warren Wilcock,Karun Nadarajah,Paulo Lopes De Amorim,Jacob Honekamp,Pierre-Benoit Lemire,Bruno Caldas,Jose Martinez8,Leandro Craveiro,Scott Spidle,Greg Coldwell,Mark Clavell,Ad Tiegelaar2,Sean Hottois,Matthew Freeman2,Richard Allen5,Tamas szene,Ronald Overbay,Peter Barcsa,Brian Blackburn,Marco Ricci,Serg Surovikin,Amin Guindi,Randy Freeman,Matt Fisher,Ismael Hernández,Wayne Whiting,Patrick McKenzie2,Luigi Monticelli,David Alexis Jordan,Jeremy Richey,Andrea Borri,Hrvoje Mihajlic,Stephen Crawford,Gregory Brown,Christian Iglesias,Alexandre Baril Lagace,Mitchel West,Istvan Fodor,Zachary Leman,Dane Knezic,Dwight Sontag,Matthew R Mills,Victor Mayorga,Bruno Vitorino,Felipe Calderon,Charly Fruehwirth,Adrià Povedano,Ismael Martin Garcia,Thomas Tlusty,John Hamblin,';
 $indy_road_s1_2018 = 'David Soranzo,Andrew Z Wood,Matteo Ugolotti,Thomas Ellison,Alex Albert,Juan Gines Gonzalez Rodriguez,Matthew Burroughs,Jackson Robillard,Fernando Núñez Correas,Svetlana Dorokhova,Toni Crevin,Martijn Vosseberg,Adrian Rodriguez5,Scott Bolster,Dominik Lukomski,Travis Handleson,Michele Ricci,Djawad Karoni,Michael Derby,Kyle Smith10,Brian Gavin,Andrew Fawcett,James Coulibaly,Santiago J Rodriguez,Andrés Mora,Matt Roseland,Thomas Axsom,Justin Hatin,Ian Quass,Juan Ignacio Jodurcha,Gregor Verstraelen,Mike Lemon,Jorge Garrido,Ailton Andrade,David Osolin,Joshua Gardiner,Thiago Peres,Antony Woodward,Charles Boyd,Justin Hall,Travis Floyd,Jeff Tyler,Jack Godden,Michael R Weber,Oscar Hjelm,Jagger Jones,Ryan Hoffman2,';
 
+$formula_renault_s1_2018_r1 = '';
+
 // ********** NOT SENT YET ***********
 // Women to add - need to hunt through for male names before sending
 //Laura Lawson,Lauri Salo,Angel Ledesma,Christine Marie Tillmann,Avery McDonald,Ellis Teal,Angel Fernandez Cobo,Leila Wilson,Lauri Happonen,Emily Jones,Erin Nagy,Sasha Todorovic,Lauri Linna,Sarah Laprevotte,Ariel Acastello,Sasha Milosavljevic,Skyler Grissom,Lauri Ketola,Daniela Azunaga,Laura Bond,Jennifer King,Jocelyn  St-Martin,Julie Redmon,Sandra Castrogiovanni,Sarah Souders,Lauri Hiljanen,Laura Perry,Sasha Anis,Vivian Santiago,Molly Steinberg,Ingrid Marti,Klaudia Monica,Amber Laybourne,Julia Pros Albert,Ariel Hartung,Hannah Lewis,Gillian Woods,Kimber Jansen,Skylar Dunning,Stefanie Fleper,Lauri Haverinen,Cherie Mollohan,Conny Naslund,Sara Dove,Denise Hallion2,Ellen VanNest2,Anne Struijk,Angel Lozano,Sian Walters,Alyssa Ferrie,Gwen Kolsteren,Carmen Comeau,Nelli Pietro,Jennifer Grifhorst,Sabrina Gramß,Laura Zampa,Michelle Smeers,Susi Badia,Jocelyn Lauzière,Lauri Mattila,Ally Sinclair,Agnes B Kaiser,Leila Hammadouche,Sofia Stella,Joyce Martin,Holly Crilly,Jessica Dube2,Susan Blackledge,Mary Ford,Jenny Balzer,Laura Perez Garcia,Lauryn Brown,Jasmin Dizdarević,Wendy Crozier,Jocelyn Prévost2,Skyler Rivera2,Jennifer Denis,Daniela Taubert,Heidi Ammari,Alison Hine,Skyler Sisson,Alison Marshall,Mary Goins,Ellinor Ström,Lauri Kongas,Vivien Caplat,Wendy Sarrett,Ana Laforgue,Svetlana Dorokhova,Patricia Pasciolla,Julie Robertson,Alicia Avendaño Marín,Jennifer Barroso Ledo,Lynette Markham,Kayleen Hoy,Sandra Palm,Whitney Strickland,Kristen Barra,Valery Vodchits,Shawna Shade,Leanne Cordon,Katja Wolf,Camilla Deri,Sara Savage,Anne Medema,Jocelyn Mouton,Lauri Mäntyvaara2,Jennifer McDonald,Sara Black,Abby Harris,Maria Hollweck,Chelsea Angelo,Barreda Calvo,Lauri Koskinen,Angel Roglan Beltri,Angela R Coleman,Nadine Sander,Lana Opačak,Erin Miller,Rathana Danh Sang2,Maja Ljunggren,Georgi Raychev,Lauri Perlström,Elodie Hannequin,Saskia Schmidt,Chrystle Jones,Adria Serratosa,Remy Ammour,Gila Dezso,Vesna Paternoster,Kristina Matagić,Lucia Esposito,Kendall Baumann,Alin Albulescu,Emily Coates,Angel L. Lahoz,Christine Valencia,Celia Sousa,Jocelyn Pellé,Jennifer Heintzschel,Ruba Oliva,Vanesa Beatriz Martinez,Jessie Eduardo Hemink2,Miki Voj,Flo Kremser,Sarah Toplis,Oakley Peterson,Angel Bajo,Camille Caytan,Angel L Rodriguez Alcalde,Indra Feryanto,Rosa Maria Iglesias Diaz,Sabrina Enting,Ariel Varro,Lauri Lään,Anne de Vries,Remy Thendrup,Emili Mulet,Addy Wood,Camille Spillman,Fiona Binney,Maria Bako,Jannis van der Eyck,Jessie Lan,Kendall Davis,Maria Stuart2,Jocelyn Brassaud,Galina Bruksh,Conny Lundell,Inge Hansesætre,Paw Schou,Andi Sentkowski,Estefania Rubio Santiago,Jannis Mueller,Anne Schwendiman,Jennifer Parks2,Janis Balodis,Linde Johnson,Dian Dechev,Yanick Aubin,Jocelyn Bellemare,Jojo Ak,Janis Braslins,Leen Melissant,Edwina Van der haegen3,Angel Huerta Gomez,366
@@ -72,7 +74,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'indy-road-s1-2018' => array(
+	'formula-renault-s1-2018-r1' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -81,6 +83,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 /*
+	'indy-road-s1-2018' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'pro-mazda-s4-2017' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
