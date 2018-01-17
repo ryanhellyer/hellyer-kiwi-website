@@ -192,8 +192,8 @@ if ( 'special' === $_GET['user_processing'] ) {
 		array(
 			'number' => 1000,
 			'meta_query' => array(
-					'relation' => 'OR',
-					array(
+				'relation' => 'OR',
+				array(
 					'key'     => 'season',
 					'value'   => 'special',
 					'compare' => '=',
@@ -225,7 +225,25 @@ if ( 'special' === $_GET['user_processing'] ) {
 
 if ( 'list_by_irating' === $_GET['user_processing'] ) {
 
-	$drivers = get_users( array( 'number' => 1000 ) );
+	$args['number'] = 1000;
+	$args['meta_query'] = array(
+		'relation' => 'OR',
+		array(
+			'key'     => 'season',
+			'value'   => 'special',
+			'compare' => '=',
+		),
+		array(
+			array(
+				'key' => 'season',
+				'value' => 'reserve',
+				'compare' => '=',
+			),
+		),
+	);
+
+	$drivers = get_users( $args );
+
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 		$road_irating = get_user_meta( $driver_id, 'road_irating', true );
