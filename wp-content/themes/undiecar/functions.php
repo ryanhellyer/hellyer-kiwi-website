@@ -6,6 +6,7 @@ if ( is_super_admin() ) {
 	require( 'tools/convert-json.php' );
 	require( 'tools/girls.php' );
 	require( 'tools/create-user.php' );
+	require( 'tools/TEST-auto-news.php' );
 }
 
 add_option( 'src_featured_page', '' );
