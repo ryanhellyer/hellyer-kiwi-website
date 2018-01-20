@@ -12,8 +12,8 @@ define( 'ALLOW_ROOKIES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
-define( 'MIN_OVAL_IRATING', 1300 );
-define( 'MIN_ROAD_IRATING', 600 );
+define( 'MIN_OVAL_IRATING', 2000 );
+define( 'MIN_ROAD_IRATING', 700 );
 
 
 
