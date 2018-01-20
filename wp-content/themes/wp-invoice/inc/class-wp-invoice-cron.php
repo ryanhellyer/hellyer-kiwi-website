@@ -162,7 +162,7 @@ echo 'xxx';
 					)
 				);
 
-				$entry_already_exists = false;
+				unset( $entry_already_exists );
 				if ( isset( $identical_entries->posts[0] ) ) {
 					foreach ( $identical_entries->posts as $key3 => $entry_check ) {
 						$entry_id = $entry_check->ID;
