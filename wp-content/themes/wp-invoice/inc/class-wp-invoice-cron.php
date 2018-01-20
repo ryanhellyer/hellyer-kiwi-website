@@ -161,11 +161,8 @@ echo 'xxx';
 						'post_status'            => 'publish',
 					)
 				);
-if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $entry_title ) {
-	echo "\nXXXXXXXXXXXXXX\n";
-	print_r( $identical_entries->posts );
-	die;
-}
+
+				$entry_already_exists = false;
 				if ( isset( $identical_entries->posts[0] ) ) {
 					foreach ( $identical_entries->posts as $key3 => $entry_check ) {
 						$entry_id = $entry_check->ID;
@@ -176,13 +173,16 @@ if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $entry_title ) {
 							&&
 							$publish_date == $entry_check->post_date_gmt
 						) {
-echo "\n\n\n\n\n\n\n\n\n\n".$entry_title;
-echo "\n\nZZZZZZZZZZZZ\n\n";
 							$entry_already_exists = true;
 						}
 
 					}
 				}
+if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $entry_title ) {
+//	echo "\nXXXXXXXXXXXXXX\n";
+//	print_r( $identical_entries->posts );
+//	die;
+}
 
 				// Add entry if it doesn't exist
 				if ( ! isset( $entry_already_exists ) ) {
