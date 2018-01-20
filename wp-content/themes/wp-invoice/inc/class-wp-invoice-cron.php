@@ -174,7 +174,8 @@ if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $task['descripti
 							&&
 							$publish_date == $entry_check->post_date_gmt
 						) {
-echo "\n\nZZZZZZZZZZZZ\n\n";die;
+echo "\n\n\n\n\n\n\n\n\n\n".$entry_title;
+echo "\n\nZZZZZZZZZZZZ\n\n";
 							$entry_already_exists = true;
 						}
 
