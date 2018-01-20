@@ -61,6 +61,9 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
 
+print_r( $syncd_data );
+die;
+
 echo date('Y-m-d', time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) . " xxxx\n";
 
 echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . "\n";
