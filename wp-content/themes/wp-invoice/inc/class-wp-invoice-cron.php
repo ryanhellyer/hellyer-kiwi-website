@@ -67,6 +67,8 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 					||
 					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
 				) {
+$start = strtotime( '2017-11-01' );
+$end = strtotime( '2017-11-31' );
 //echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . " worked\n";
 					$this->pull_entries( $user_id, $start, $end );
 				}
