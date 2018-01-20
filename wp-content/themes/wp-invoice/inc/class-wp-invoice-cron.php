@@ -5,7 +5,7 @@
  */
 class WP_Invoice_Cron extends WP_Invoice_Core {
 
-	const TIME_BEFORE_UPDATING_TOGGL_DATA = MONTH_IN_SECONDS * 3;//WEEK_IN_SECONDS;
+	const TIME_BEFORE_UPDATING_TOGGL_DATA = 60;//WEEK_IN_SECONDS;
 
 	/**
 	 * Class constructor.
@@ -60,6 +60,7 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$syncd_data = get_user_meta( $user_id, 'syncd-data', true );
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
+echo $start_date . ': ' . $end_date;die;
 				if (
 					! isset( $syncd_data[$start_date . '|' . $end_date] )
 					||
