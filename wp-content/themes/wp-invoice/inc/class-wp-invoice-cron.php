@@ -61,23 +61,14 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
 
-foreach ( $syncd_data as $key => $date ) {
-	echo $key . ' => ' . date( 'Y-m-d', $date ) . "\n";
-}
-//print_r( $syncd_data );
-die;
-
-echo date('Y-m-d', time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) . " xxxx\n";
-
-echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . "\n";
-				if (
-					! isset( $syncd_data[$start_date . '|' . $end_date] )
-					||
-					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
-				) {
-echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . " worked\n";
+//				if (
+//					! isset( $syncd_data[$start_date . '|' . $end_date] )
+//					||
+//					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
+//				) {
+//echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . " worked\n";
 					$this->pull_entries( $user_id, $start, $end );
-				}
+//				}
 
 			}
 
