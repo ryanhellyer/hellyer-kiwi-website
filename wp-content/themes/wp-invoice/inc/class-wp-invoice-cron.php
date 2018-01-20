@@ -38,8 +38,7 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 	 */
 	public function process_another_user() {
 
-$this->pull_entries( get_current_user_id(), '2017-11-01', '2017-11-31' );
-die;
+//$this->pull_entries( get_current_user_id(), '2017-11-01', '2017-11-31' );die;
 		// Only do one user at a time - avoids overloading system
 		if ( false === ( $users = get_option( 'wp-freelance-users' ) ) ) {
 
