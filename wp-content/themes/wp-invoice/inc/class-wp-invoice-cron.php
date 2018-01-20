@@ -55,16 +55,18 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 			foreach ( $this->get_dates_to_check() as $key2 => $dates ) {
 				$start = strtotime( $dates['start'] );
 				$end = strtotime( $dates['end'] );
-echo $start . ': ' . $end . "\n";
+
 				// Only pull entries if not checked recently
 				$syncd_data = get_user_meta( $user_id, 'syncd-data', true );
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
+echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . "\n";
 				if (
 					! isset( $syncd_data[$start_date . '|' . $end_date] )
 					||
 					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
 				) {
+echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . " worked\n";
 					$this->pull_entries( $user_id, $start, $end );
 				}
 
