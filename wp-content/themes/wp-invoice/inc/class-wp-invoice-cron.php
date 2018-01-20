@@ -50,12 +50,12 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 		}
 
 		foreach ( $users as $key => $user_id ) {
-print_r( $this->get_dates_to_check() );die;
+
 			// Check all possible dates
 			foreach ( $this->get_dates_to_check() as $key2 => $dates ) {
 				$start = strtotime( $dates['start'] );
 				$end = strtotime( $dates['end'] );
-
+echo $start . ': ' . $end . "\n";
 				// Only pull entries if not checked recently
 				$syncd_data = get_user_meta( $user_id, 'syncd-data', true );
 				$start_date = date( 'Y-m-d', $start );
