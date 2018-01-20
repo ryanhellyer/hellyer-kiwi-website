@@ -38,6 +38,8 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 	 */
 	public function process_another_user() {
 
+$this->pull_entries( get_current_user_id(), '2017-11-01', '2017-11-31' );
+
 		// Only do one user at a time - avoids overloading system
 		if ( false === ( $users = get_option( 'wp-freelance-users' ) ) ) {
 
@@ -61,14 +63,14 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
 
-//				if (
-//					! isset( $syncd_data[$start_date . '|' . $end_date] )
-//					||
-//					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
-//				) {
+				if (
+					! isset( $syncd_data[$start_date . '|' . $end_date] )
+					||
+					( time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) > $syncd_data[$start_date . '|' . $end_date]
+				) {
 //echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . " worked\n";
 					$this->pull_entries( $user_id, $start, $end );
-//				}
+				}
 
 			}
 
@@ -81,7 +83,7 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 
 			// Stop now coz only want to do one user
 			break;
-
+echo 'xxx';
 		}
 
 		die( 'FINISHED IMPORTING ENTRIES' );
