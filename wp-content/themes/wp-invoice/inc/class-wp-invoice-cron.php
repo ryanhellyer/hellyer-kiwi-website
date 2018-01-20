@@ -98,7 +98,7 @@ echo 'xxx';
 		// Loop through each task
 		$toggl = new WP_Invoice_Toggl;
 		$tasks = $toggl->get_entry_data( $user_id, $start, $end );
-
+print_r( $tasks );die;
 		if ( is_array( $tasks ) ) {
 			foreach ( $tasks as $key2 => $task ) {
 
