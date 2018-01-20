@@ -111,10 +111,7 @@ echo 'xxx';
 					$client = $task['client'];
 				}
 
-echo "\n" . $task['description'] . " .....\n";
-if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $task['description'] ) {
-	echo "\nXXXXXXXXXXXXXX\n";
-}
+//echo "\n" . $task['description'] . " .....\n";
 
 				// If client does not exist, then add it
 				$clients = new WP_Query(
@@ -164,6 +161,11 @@ if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $task['descripti
 						'post_status'            => 'publish',
 					)
 				);
+if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $entry_title ) {
+	echo "\nXXXXXXXXXXXXXX\n";
+	print_r( $identical_entries->posts );
+	die;
+}
 				if ( isset( $identical_entries->posts[0] ) ) {
 					foreach ( $identical_entries->posts as $key3 => $entry_check ) {
 						$entry_id = $entry_check->ID;
