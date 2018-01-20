@@ -60,6 +60,9 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$syncd_data = get_user_meta( $user_id, 'syncd-data', true );
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
+
+echo date('Y-m-d', time() - self::TIME_BEFORE_UPDATING_TOGGL_DATA ) . " xxxx\n";
+
 echo date( 'Y-m-d', $start ) . ': ' . date( 'Y-m-d', $end ) . "\n";
 				if (
 					! isset( $syncd_data[$start_date . '|' . $end_date] )
