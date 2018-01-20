@@ -50,7 +50,7 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 		}
 
 		foreach ( $users as $key => $user_id ) {
-
+print_r( $this->get_dates_to_check() );die;
 			// Check all possible dates
 			foreach ( $this->get_dates_to_check() as $key2 => $dates ) {
 				$start = strtotime( $dates['start'] );
@@ -60,7 +60,6 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 				$syncd_data = get_user_meta( $user_id, 'syncd-data', true );
 				$start_date = date( 'Y-m-d', $start );
 				$end_date   = date( 'Y-m-d', $end );
-echo $start_date . ': ' . $end_date;die;
 				if (
 					! isset( $syncd_data[$start_date . '|' . $end_date] )
 					||
