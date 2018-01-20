@@ -39,7 +39,7 @@ if ( isset( $_GET['cron'] ) && 'init'       === $_GET['cron'] ) {add_action( 'in
 	public function process_another_user() {
 
 $this->pull_entries( get_current_user_id(), '2017-11-01', '2017-11-31' );
-
+die;
 		// Only do one user at a time - avoids overloading system
 		if ( false === ( $users = get_option( 'wp-freelance-users' ) ) ) {
 
@@ -98,7 +98,7 @@ echo 'xxx';
 		// Loop through each task
 		$toggl = new WP_Invoice_Toggl;
 		$tasks = $toggl->get_entry_data( $user_id, $start, $end );
-print_r( $tasks );echo "\n\n\n\n..............\n\n\n\ns";
+
 		if ( is_array( $tasks ) ) {
 			foreach ( $tasks as $key2 => $task ) {
 
@@ -108,6 +108,11 @@ print_r( $tasks );echo "\n\n\n\n..............\n\n\n\ns";
 				} else {
 					$client = $task['client'];
 				}
+
+echo "\n" . $task['description'] . " .....\n";
+if ( 'Implementing HubSpot Tracking via Google Tag Manager' === $task['description'] ) {
+	echo "\nXXXXXXXXXXXXXX\n";
+}
 
 				// If client does not exist, then add it
 				$clients = new WP_Query(
