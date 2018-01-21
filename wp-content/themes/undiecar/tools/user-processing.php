@@ -210,6 +210,8 @@ if ( 'special' === $_GET['user_processing'] ) {
 				'special' === get_user_meta( $driver_id, 'season', true )
 				||
 				'reserve' === get_user_meta( $driver_id, 'season', true )
+				||
+				'' == get_user_meta( $driver_id, 'season', true )
 			)
 			&&
 			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
