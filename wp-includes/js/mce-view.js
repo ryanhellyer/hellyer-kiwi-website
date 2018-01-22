@@ -863,7 +863,7 @@
 
 			// Obtain the target width for the embed.
 			if ( self.editor ) {
-				maxwidth = self.editor.getBody().clientWidth;
+				maxwidth = self.editor.iframeElement.clientWidth - 20; // Minus the sum of horizontal margins and borders.
 			}
 
 			wp.ajax.post( this.action, {
