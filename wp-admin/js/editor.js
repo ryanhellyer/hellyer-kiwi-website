@@ -695,10 +695,10 @@ window.wp = window.wp || {};
 		 */
 		function findBookmarkedPosition( editor ) {
 			// Get the TinyMCE `window` reference, since we need to access the raw selection.
-			var TinyMCEWindow = editor.getWin(),
-				selection = TinyMCEWindow.getSelection();
+			var TinyMCEWIndow = editor.getWin(),
+				selection = TinyMCEWIndow.getSelection();
 
-			if ( ! selection || selection.rangeCount < 1 ) {
+			if ( selection.rangeCount <= 0 ) {
 				// no selection, no need to continue.
 				return;
 			}
