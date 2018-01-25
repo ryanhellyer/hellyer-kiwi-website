@@ -513,10 +513,9 @@ wpWidgets = {
 	save : function( widget, del, animate, order ) {
 		var self = this, data, a,
 			sidebarId = widget.closest( 'div.widgets-sortables' ).attr( 'id' ),
-			form = widget.find( 'form' ),
-			isAdd = widget.find( 'input.add_new' ).val();
+			form = widget.find( 'form' );
 
-		if ( ! del && ! isAdd && form.prop( 'checkValidity' ) && ! form[0].checkValidity() ) {
+		if ( ! del && form.prop( 'checkValidity' ) && ! form[0].checkValidity() ) {
 			return;
 		}
 

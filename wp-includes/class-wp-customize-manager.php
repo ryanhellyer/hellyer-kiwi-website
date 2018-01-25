@@ -607,11 +607,8 @@ final class WP_Customize_Manager {
 	 * enabled, then a new UUID will be generated.
 	 *
 	 * @since 4.9.0
-	 * @global string $pagenow
 	 */
 	public function establish_loaded_changeset() {
-		global $pagenow;
-
 		if ( empty( $this->_changeset_uuid ) ) {
 			$changeset_uuid = null;
 
@@ -638,9 +635,7 @@ final class WP_Customize_Manager {
 			$this->_changeset_uuid = $changeset_uuid;
 		}
 
-		if ( is_admin() && 'customize.php' === $pagenow ) {
-			$this->set_changeset_lock( $this->changeset_post_id() );
-		}
+		$this->set_changeset_lock( $this->changeset_post_id() );
 	}
 
 	/**
@@ -3944,22 +3939,6 @@ final class WP_Customize_Manager {
 	 * @since 4.1.0
 	 */
 	public function render_control_templates() {
-		if ( $this->branching() ) {
-			$l10n = array(
-				/* translators: %s: User who is customizing the changeset in customizer. */
-				'locked' => __( '%s is already customizing this changeset. Please wait until they are done to try customizing. Your latest changes have been autosaved.' ),
-				/* translators: %s: User who is customizing the changeset in customizer. */
-				'locked_allow_override' => __( '%s is already customizing this changeset. Do you want to take over?' ),
-			);
-		} else {
-			$l10n = array(
-				/* translators: %s: User who is customizing the changeset in customizer. */
-				'locked' => __( '%s is already customizing this site. Please wait until they are done to try customizing. Your latest changes have been autosaved.' ),
-				/* translators: %s: User who is customizing the changeset in customizer. */
-				'locked_allow_override' => __( '%s is already customizing this site. Do you want to take over?' ),
-			);
-		}
-
 		foreach ( $this->registered_control_types as $control_type ) {
 			$control = new $control_type( $this, 'temp', array(
 				'settings' => array(),
@@ -4122,11 +4101,13 @@ final class WP_Customize_Manager {
 							{{{ data.message }}}
 						<# } else if ( data.allowOverride ) { #>
 							<?php
-							echo esc_html( sprintf( $l10n['locked_allow_override'], '{{ data.lockUser.name }}' ) );
+							/* translators: %s: User who is customizing the changeset in customizer. */
+							printf( __( '%s is already customizing this site. Do you want to take over?' ), '{{ data.lockUser.name }}' );
 							?>
 						<# } else { #>
 							<?php
-							echo esc_html( sprintf( $l10n['locked'], '{{ data.lockUser.name }}' ) );
+							/* translators: %s: User who is customizing the changeset in customizer. */
+							printf( __( '%s is already customizing this site. Please wait until they are done to try customizing. Your latest changes have been autosaved.' ), '{{ data.lockUser.name }}' );
 							?>
 						<# } #>
 					</p>
@@ -4655,9 +4636,8 @@ final class WP_Customize_Manager {
 				'previewFrameSensitivity' => 2000,
 			),
 			'theme'    => array(
-				'stylesheet'  => $this->get_stylesheet(),
-				'active'      => $this->is_theme_active(),
-				'_canInstall' => current_user_can( 'install_themes' ),
+				'stylesheet' => $this->get_stylesheet(),
+				'active'     => $this->is_theme_active(),
 			),
 			'url'      => array(
 				'preview'       => esc_url_raw( $this->get_preview_url() ),
