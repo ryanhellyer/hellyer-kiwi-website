@@ -60,6 +60,10 @@ class SRC_Gallery extends SRC_Core {
 			return $content;
 		}
 
+
+		echo '___'.get_post_meta( $attachment_id, 'gallery', true ) . '___';
+
+
 		$season_id = get_post_meta( $event_id, 'season', true );
 
 		$content .= '<p>';
@@ -542,7 +546,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 					'post_type'              => 'attachment',
 					'post_status'            => 'inherit',
 					'post_mime_type'         => 'image',
-//					'meta_key'               => 'gallery',
+					'meta_key'               => 'gallery',
 					'no_found_rows'          => true,  // useful when pagination is not needed.
 					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
 					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
