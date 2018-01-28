@@ -290,7 +290,7 @@ class SRC_Gallery extends SRC_Core {
 		}
 
 		$content = '
-		<form method="POST" action="">
+		<form class="gallery-image-form" method="POST" action="">
 
 			' . $this->form_fields() . '
 
