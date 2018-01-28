@@ -205,15 +205,16 @@ class SRC_Gallery extends SRC_Core {
 				$driver = get_user_by( 'login', $driver_slug );
 				if ( isset( $driver->ID ) ) {
 					$driver_id = absint( $driver->ID );
-				}
-				$images = get_user_meta( $driver_id, 'images', true );
-				if ( ! is_array( $images ) ) {
-					$images = array();
-				}
-				$images[] = $attachment_id;
-				$images =  array_unique( $images );
 
-				update_user_meta( $driver_id, 'images', $images );
+					$images = get_user_meta( $driver_id, 'images', true );
+					if ( ! is_array( $images ) ) {
+						$images = array();
+					}
+					$images[] = $attachment_id;
+					$images =  array_unique( $images );
+
+					update_user_meta( $driver_id, 'images', $images );
+				}
 
 			}
 			update_post_meta( $attachment_id, 'drivers', $drivers );
@@ -367,7 +368,7 @@ class SRC_Gallery extends SRC_Core {
 					$events->the_post();
 					$the_event_id = get_the_ID();
 					$event_title = get_the_title( get_the_ID() );
-					$content .= "\n\t\t\t\t\t<option " . selected( $the_event_id, $event_id, false ) . ' value="' . esc_attr( $the_season_id ) . '">' . esc_html( $event_title ) . '</option>';
+					$content .= "\n\t\t\t\t\t<option " . selected( $the_event_id, $event_id, false ) . ' value="' . esc_attr( $the_event_id ) . '">' . esc_html( $event_title ) . '</option>';
 				}
 			}
 		}

@@ -606,9 +606,13 @@ a img.aligncenter {
 			padding: 0;
 	}
 
+	#main & ul li {
+		padding-left: 0;
+	}
+
 	li {
 		float: left;
-		width: 19%;
+		width: 20%;
 		font-family: $button_font;
 		text-transform: uppercase;
 		font-weight: 700;
@@ -963,6 +967,7 @@ h4 {
 	text-decoration: underline;
 }
 
+.wp-caption,
 form span,
 textarea,
 label,
@@ -977,6 +982,11 @@ li {
 p {
 	line-height: 2.4rem;
 	margin: 10px 0 30px 0;
+}
+
+.wp-caption {
+	font-size: 1rem;
+	color: #666;
 }
 
 form p {
@@ -1358,7 +1368,7 @@ input[type=submit],
 	}
 
 	#schedule li {
-		width: 18%;
+		width: 17%;
 	}
 
 	#results {

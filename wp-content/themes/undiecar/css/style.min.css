@@ -412,9 +412,11 @@ a img.aligncenter {
   #schedule ul {
     margin: 0;
     padding: 0; }
+  #main #schedule ul li {
+    padding-left: 0; }
   #schedule li {
     float: left;
-    width: 19%;
+    width: 20%;
     font-family: "Open Sans", sans-serif;
     text-transform: uppercase;
     font-weight: 700;
@@ -652,6 +654,7 @@ h4 {
   margin: 3rem 0 0.7rem 0;
   text-decoration: underline; }
 
+.wp-caption,
 form span,
 textarea,
 label,
@@ -665,6 +668,10 @@ li {
 p {
   line-height: 2.4rem;
   margin: 10px 0 30px 0; }
+
+.wp-caption {
+  font-size: 1rem;
+  color: #666; }
 
 form p {
   font-weight: bold;
@@ -925,7 +932,7 @@ input[type=submit],
     width: 48%; }
 
   #schedule li {
-    width: 18%; }
+    width: 17%; }
 
   #results a.other-race {
     width: 100%;
