@@ -60,13 +60,6 @@ class SRC_Gallery extends SRC_Core {
 			return $content;
 		}
 
-
-		// Bail out if not isn't a gallery image
-		if ( '' === get_post_meta( $attachment_id, 'gallery', true ) ) {
-			return $content;
-		}
-
-
 		$season_id = get_post_meta( $event_id, 'season', true );
 
 		$content .= '<p>';
@@ -288,6 +281,13 @@ class SRC_Gallery extends SRC_Core {
 	public function form_edit() {
 
 		$attachment_id = get_the_ID();
+
+		// Don't allow editing if not on gallery image
+		$attachment_id = get_the_ID();
+		$event_id = wp_get_post_parent_id( $attachment_id );
+		if ( 'event' !== get_post_type( $event_id ) ) {
+			return;
+		}
 
 		$content = '
 		<form method="POST" action="">
