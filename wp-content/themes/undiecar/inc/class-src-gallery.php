@@ -504,7 +504,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 				return;
 			}
 			$season_id = $season_object[0];
-
+echo $season_id .'_';
 			// Loop through the events
 			$events = src_get_races( $season_id );
 			foreach ( $events as $event_id => $event_name ) {
