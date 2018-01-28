@@ -62,7 +62,7 @@ class SRC_Gallery extends SRC_Core {
 
 
 		// Bail out if not isn't a gallery image
-		if ( '' !== get_post_meta( $attachment_id, 'gallery', true ) ) {
+		if ( '' === get_post_meta( $attachment_id, 'gallery', true ) ) {
 			return $content;
 		}
 
