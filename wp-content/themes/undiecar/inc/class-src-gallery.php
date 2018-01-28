@@ -490,7 +490,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 }
 
 		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery_' . $season ) ) ) {
-			$undiecar_gallery = '[gallery orderby="post_date" order="ASC" columns="8" size="thumbnail" ids="';
+			$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="thumbnail" ids="';
 
 			// Get the season ID from the slug
 			$args = [
@@ -516,14 +516,11 @@ delete_transient( 'undiecar_gallery_' . $season );
 					'post_status'            => 'inherit',
 					'post_mime_type'         => 'image',
 					'meta_key'               => 'gallery',
-'order'                  => 'ASC',
-'orderby'                => 'post_date',
-//					'no_found_rows'          => true,  // useful when pagination is not needed.
-//					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
-//					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
-//					'fields'                 => 'ids'
+					'no_found_rows'          => true,  // useful when pagination is not needed.
+					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+					'fields'                 => 'ids'
 				);
-echo 'x';
 
 				$query = new WP_Query( $args );
 				if ( $query->have_posts() ) {
@@ -531,7 +528,6 @@ echo 'x';
 						$query->the_post();
 
 						$undiecar_gallery .= get_the_ID() . ',';
-$undiecar_gallery .= '497,';
 					}
 					wp_reset_query();
 				}
