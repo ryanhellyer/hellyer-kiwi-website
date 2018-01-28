@@ -516,6 +516,8 @@ delete_transient( 'undiecar_gallery_' . $season );
 					'post_status'            => 'inherit',
 					'post_mime_type'         => 'image',
 					'meta_key'               => 'gallery',
+					'order'                  => 'ASC',
+					'orderby'                => 'date',
 					'no_found_rows'          => true,  // useful when pagination is not needed.
 					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
 					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
