@@ -530,7 +530,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 					while ( $query->have_posts() ) {
 						$query->the_post();
 
-						$undiecar_gallery .= get_the_ID() . ',';
+//						$undiecar_gallery .= get_the_ID() . ',';
 					}
 					wp_reset_query();
 				}
