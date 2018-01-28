@@ -490,7 +490,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 }
 
 		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery_' . $season ) ) ) {
-			$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
+			$undiecar_gallery = '[gallery orderby="post_date" order="ASC" columns="8" size="thumbnail" ids="';
 
 			// Get the season ID from the slug
 			$args = [
