@@ -523,8 +523,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 //					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
 //					'fields'                 => 'ids'
 				);
-$undiecar_gallery .= 0;
-echo 'xxxxxxxxx';
+echo 'x';
 
 				$query = new WP_Query( $args );
 				if ( $query->have_posts() ) {
@@ -532,6 +531,7 @@ echo 'xxxxxxxxx';
 						$query->the_post();
 
 						$undiecar_gallery .= get_the_ID() . ',';
+$undiecar_gallery .= '497,';
 					}
 					wp_reset_query();
 				}
