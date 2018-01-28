@@ -518,12 +518,13 @@ delete_transient( 'undiecar_gallery_' . $season );
 					'meta_key'               => 'gallery',
 'order'                  => 'ASC',
 'orderby'                => 'post_date',
-					'no_found_rows'          => true,  // useful when pagination is not needed.
-					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
-					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
-					'fields'                 => 'ids'
+//					'no_found_rows'          => true,  // useful when pagination is not needed.
+//					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+//					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+//					'fields'                 => 'ids'
 				);
-
+$undiecar_gallery .= 0;
+echo 'xxxxxxxxx';
 
 				$query = new WP_Query( $args );
 				if ( $query->have_posts() ) {
