@@ -493,29 +493,56 @@ delete_transient( 'undiecar_gallery_' . $season );
 			$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="thumbnail" ids="';
 
 			// Get the season ID from the slug
-			$args = [
-				'post_type'      => 'season',
-				'posts_per_page' => 1,
-				'post_name__in'  => array( $season ),
-				'fields'         => 'ids' 
-			];
-			$season_object = get_posts( $args );
-			if ( ! isset( $season_object[0] ) ) {
-				return;
-			}
-			$season_id = $season_object[0];
-echo $season_id .'_';
-			// Loop through the events
-			$events = src_get_races( $season_id );
-			foreach ( $events as $event_id => $event_name ) {
+			if ( $season !== '' ) {
+				$args = [
+					'post_type'      => 'season',
+					'posts_per_page' => 1,
+					'post_name__in'  => array( $season ),
+					'fields'         => 'ids' 
+				];
+				$season_object = get_posts( $args );
+				if ( ! isset( $season_object[0] ) ) {
+					return;
+				}
+				$season_id = $season_object[0];
 
+				// Loop through the events
+				$events = src_get_races( $season_id );
+				foreach ( $events as $event_id => $event_name ) {
+
+					$args = array(
+						'post_parent'            => $event_id,
+						'posts_per_page'         => 500,
+						'post_type'              => 'attachment',
+						'post_status'            => 'inherit',
+						'post_mime_type'         => 'image',
+						'meta_key'               => 'gallery',
+						'no_found_rows'          => true,  // useful when pagination is not needed.
+						'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+						'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+						'fields'                 => 'ids'
+					);
+
+					$query = new WP_Query( $args );
+					if ( $query->have_posts() ) {
+						while ( $query->have_posts() ) {
+							$query->the_post();
+
+							$undiecar_gallery .= get_the_ID() . ',';
+						}
+						wp_reset_query();
+					}
+				}
+			} else {
+
+				// If no season set, then grab all images without a parent event
 				$args = array(
-					'post_parent'            => $event_id,
+					'post_parent'            => 0,
 					'posts_per_page'         => 500,
 					'post_type'              => 'attachment',
 					'post_status'            => 'inherit',
 					'post_mime_type'         => 'image',
-					'meta_key'               => 'gallery',
+//					'meta_key'               => 'gallery',
 					'no_found_rows'          => true,  // useful when pagination is not needed.
 					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
 					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
@@ -531,6 +558,7 @@ echo $season_id .'_';
 					}
 					wp_reset_query();
 				}
+
 			}
 
 			$undiecar_gallery .= '"]';
