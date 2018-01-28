@@ -61,7 +61,10 @@ class SRC_Gallery extends SRC_Core {
 		}
 
 
-		echo '___'.get_post_meta( $attachment_id, 'gallery', true ) . '___';
+		// Bail out if not isn't a gallery image
+		if ( '' !== get_post_meta( $attachment_id, 'gallery', true ) ) {
+			return $content;
+		}
 
 
 		$season_id = get_post_meta( $event_id, 'season', true );
