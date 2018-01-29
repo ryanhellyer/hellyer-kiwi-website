@@ -192,6 +192,18 @@ class SRC_Members extends SRC_Core {
 
 			}
 
+			// Save driver to each season
+			$multi_season = $_POST['multi-season'];
+			foreach ( $multi_season as $season_id => $x ) {
+
+				$drivers = get_post_meta( $season_id, 'drivers', true );
+				if ( ! is_array( $drivers ) || ! in_array( $member_id, $drivers ) ) {
+					$drivers[] = $member_id;
+					update_post_meta( $season_id, 'drivers', $drivers );
+				}
+
+			}
+
 			// Process checkbox
 			if ( isset( $_POST['receive-notifications'] ) ) {
 				$receive_notifications = 'yes';

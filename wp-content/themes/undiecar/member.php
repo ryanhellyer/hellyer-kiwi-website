@@ -282,6 +282,41 @@ if (
 		echo '</select>';
 
 		echo '
+		<label>Season? (test multi-season)</label>';
+		$season_membership[] = $season;
+
+		if ( $query->have_posts() ) {
+			$count = 0;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$selected_season = '';
+				if ( in_array( $season_slug, $season_membership ) ) {
+					$selected_season = $season_slug;
+				}
+
+				$drivers = get_post_meta( get_the_ID(), 'drivers', true );
+				$selected_season = '';
+				if ( is_array( $drivers ) && in_array( $member_id, $drivers ) ) {
+					$selected_season = 1;
+				}
+
+				if ( 0 === $count ) {
+					echo '<br />';
+				} else {
+					echo ' | &nbsp ';
+				}
+
+				echo '<label>' . esc_html( get_the_title( get_the_id() ) ) . '</label>';
+				echo '<input name="' . esc_attr( 'multi-season[' . get_the_ID() . ']' ) . '"type="checkbox" ' . checked( $selected_season, 1, false ) . ' value="1">';
+
+				$count++;
+			}
+			echo '<br />';
+
+		}
+
+		echo '
 		<label>Note</label>
 		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
 
