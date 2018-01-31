@@ -284,8 +284,7 @@ class SRC_Gallery extends SRC_Core {
 
 		// Don't allow editing if not on gallery image
 		$attachment_id = get_the_ID();
-		$event_id = wp_get_post_parent_id( $attachment_id );
-		if ( 'event' !== get_post_type( $event_id ) ) {
+		if ( '1' !== get_post_meta( $attachment_id, 'gallery', true ) ) {
 			return;
 		}
 
