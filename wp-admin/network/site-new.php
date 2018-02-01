@@ -68,7 +68,7 @@ if ( isset($_REQUEST['action']) && 'add-site' == $_REQUEST['action'] ) {
 			$meta['WPLANG'] = ''; // en_US
 		} elseif ( in_array( $_POST['WPLANG'], get_available_languages() ) ) {
 			$meta['WPLANG'] = $_POST['WPLANG'];
-		} elseif ( current_user_can( 'install_languages' ) && wp_can_install_language_pack() ) {
+		} elseif ( current_user_can( 'install_languages' ) ) {
 			$language = wp_download_language_pack( wp_unslash( $_POST['WPLANG'] ) );
 			if ( $language ) {
 				$meta['WPLANG'] = $language;
@@ -230,16 +230,14 @@ if ( ! empty( $messages ) ) {
 						$lang = '';
 					}
 
-					wp_dropdown_languages(
-						array(
-							'name'                        => 'WPLANG',
-							'id'                          => 'site-language',
-							'selected'                    => $lang,
-							'languages'                   => $languages,
-							'translations'                => $translations,
-							'show_available_translations' => current_user_can( 'install_languages' ) && wp_can_install_language_pack(),
-						)
-					);
+					wp_dropdown_languages( array(
+						'name'                        => 'WPLANG',
+						'id'                          => 'site-language',
+						'selected'                    => $lang,
+						'languages'                   => $languages,
+						'translations'                => $translations,
+						'show_available_translations' => current_user_can( 'install_languages' ),
+					) );
 					?>
 				</td>
 			</tr>

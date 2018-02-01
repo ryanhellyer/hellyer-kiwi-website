@@ -168,8 +168,7 @@ function wp_version_check( $extra_stats = array(), $force_check = false ) {
 		return;
 	}
 
-	$offers          = $body['offers'];
-	$has_auto_update = false;
+	$offers = $body['offers'];
 
 	foreach ( $offers as &$offer ) {
 		foreach ( $offer as $offer_key => $value ) {
@@ -183,10 +182,6 @@ function wp_version_check( $extra_stats = array(), $force_check = false ) {
 		}
 		$offer = (object) array_intersect_key( $offer, array_fill_keys( array( 'response', 'download', 'locale',
 			'packages', 'current', 'version', 'php_version', 'mysql_version', 'new_bundled', 'partial_version', 'notify_email', 'support_email', 'new_files' ), '' ) );
-
-		if ( 'autoupdate' == $offer->response ) {
-			$has_auto_update = true;
-		}
 	}
 
 	$updates = new stdClass();
@@ -208,13 +203,8 @@ function wp_version_check( $extra_stats = array(), $force_check = false ) {
 	}
 
 	// Trigger background updates if running non-interactively, and we weren't called from the update handler.
-	if ( $doing_cron && $has_auto_update && ! doing_action( 'wp_maybe_auto_update' ) ) {
-		include_once( ABSPATH . '/wp-admin/includes/update.php' );
-
-		// Only trigger background updates if an acceptable autoupdate is on offer, avoids needless extra API calls.
-		if ( find_core_auto_update() ) {
-			do_action( 'wp_maybe_auto_update' );
-		}
+	if ( $doing_cron && ! doing_action( 'wp_maybe_auto_update' ) ) {
+		do_action( 'wp_maybe_auto_update' );
 	}
 }
 
@@ -269,7 +259,7 @@ function wp_update_plugins( $extra_stats = array() ) {
 			break;
 		default :
 			if ( $doing_cron ) {
-				$timeout = 2 * HOUR_IN_SECONDS;
+				$timeout = 0;
 			} else {
 				$timeout = 12 * HOUR_IN_SECONDS;
 			}
@@ -453,11 +443,7 @@ function wp_update_themes( $extra_stats = array() ) {
 			$timeout = HOUR_IN_SECONDS;
 			break;
 		default :
-			if ( $doing_cron ) {
-				$timeout = 2 * HOUR_IN_SECONDS;
-			} else {
-				$timeout = 12 * HOUR_IN_SECONDS;
-			}
+			$timeout = $doing_cron ? 0 : 12 * HOUR_IN_SECONDS;
 	}
 
 	$time_not_changed = isset( $last_update->last_checked ) && $timeout > ( time() - $last_update->last_checked );
