@@ -20,7 +20,7 @@ function get_category_link( $category ) {
 	if ( ! is_object( $category ) )
 		$category = (int) $category;
 
-	$category = get_term_link( $category );
+	$category = get_term_link( $category, 'category' );
 
 	if ( is_wp_error( $category ) )
 		return '';
@@ -104,7 +104,7 @@ function get_the_category( $id = false ) {
  */
 function get_the_category_by_ID( $cat_ID ) {
 	$cat_ID = (int) $cat_ID;
-	$category = get_term( $cat_ID );
+	$category = get_term( $cat_ID, 'category' );
 
 	if ( is_wp_error( $category ) )
 		return $category;
@@ -1065,7 +1065,15 @@ function walk_category_dropdown_tree() {
  * @return string Link on success, empty string if tag does not exist.
  */
 function get_tag_link( $tag ) {
-	return get_category_link( $tag );
+	if ( ! is_object( $tag ) )
+		$tag = (int) $tag;
+
+	$tag = get_term_link( $tag, 'post_tag' );
+
+	if ( is_wp_error( $tag ) )
+		return '';
+
+	return $tag;
 }
 
 /**
@@ -1153,20 +1161,20 @@ function tag_description( $tag = 0 ) {
  * Retrieve term description.
  *
  * @since 2.8.0
- * @since 4.9.2 The `$taxonomy` parameter was deprecated.
  *
- * @param int  $term       Optional. Term ID. Will use global term ID by default.
- * @param null $deprecated Deprecated argument.
+ * @param int $term Optional. Term ID. Will use global term ID by default.
+ * @param string $taxonomy Optional taxonomy name. Defaults to 'post_tag'.
  * @return string Term description, available.
  */
-function term_description( $term = 0, $deprecated = null ) {
+function term_description( $term = 0, $taxonomy = 'post_tag' ) {
 	if ( ! $term && ( is_tax() || is_tag() || is_category() ) ) {
 		$term = get_queried_object();
 		if ( $term ) {
+			$taxonomy = $term->taxonomy;
 			$term = $term->term_id;
 		}
 	}
-	$description = get_term_field( 'description', $term );
+	$description = get_term_field( 'description', $term, $taxonomy );
 	return is_wp_error( $description ) ? '' : $description;
 }
 
