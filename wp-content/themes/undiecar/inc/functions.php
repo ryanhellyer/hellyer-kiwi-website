@@ -305,6 +305,7 @@ function src_get_seasons() {
 
 			$seasons[get_the_ID()] = get_the_title();
 		}
+		wp_reset_postdata();
 	}
 
 	return $seasons;

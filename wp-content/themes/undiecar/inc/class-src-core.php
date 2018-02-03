@@ -38,47 +38,6 @@ class SRC_Core {
 	}
 
 	/**
-	 * Adds cars meta boxes for seasons and events post-types.
-	 */
-	public function cars_metaboxes() {
-		$slug = get_post_type() . '-car';
-
-		if (
-			'season' !== get_post_type()
-			&&
-			'event' !== get_post_type()
-		) {
-			return;
-		}
-
-		$cmb = new_cmb2_box( array(
-			'id'           => $slug,
-			'title'        => esc_html__( 'Cars', 'src' ),
-			'object_types' => array( get_post_type() ),
-		) );
-
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-
-		$seasons = array();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$cmb->add_field( array(
-					'name' => esc_html( get_the_title( get_the_ID() ) ),
-					'id'         => 'car-' . get_the_ID(),
-					'type'       => 'checkbox',
-				) );
-
-			}
-		}
-
-	}
-
-	/**
 	 * The teams championship table.
 	 *
 	 * @param  string  $content   The post content

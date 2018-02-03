@@ -24,7 +24,7 @@ class SRC_Events extends SRC_Core {
 		// Add action hooks
 		add_action( 'init',              array( $this, 'init' ) );
 		add_action( 'cmb2_admin_init',   array( $this, 'events_metaboxes' ) );
-		add_action( 'cmb2_admin_init',   array( $this, 'cars_metaboxes' ) );
+
 		add_action( 'template_redirect', array( $this, 'set_event_data' ) );
 
 		add_filter( 'the_content',            array( $this, 'store_or_not_store' ), 1 );
@@ -686,6 +686,27 @@ class SRC_Events extends SRC_Core {
 			}
 		}
 
+		// If cars specified, then share information about them
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+
+		$event_id = get_the_ID();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				if ( '' !== get_post_meta( $event_id, 'car-' . get_the_ID(), true ) ) {
+					$bla[] = get_the_ID();
+				}
+
+			}
+			wp_reset_postdata();
+		}
+
+
+
 		$bonus_points = '';
 		if (
 			'' !== $least_incidents_text
@@ -720,10 +741,62 @@ class SRC_Events extends SRC_Core {
 			</p>';
 		}
 
-		$content = '<div id="base-content">' . $html . $content . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
+		$content = '<div id="base-content">' . $html . $content . $this->get_car_list() . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 
 		return $content;
 
+	}
+
+	/**
+	 * Create list of allowed cars.
+	 */
+	private function get_car_list() {
+
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+
+		$event_id = get_the_ID();
+		if ( $query->have_posts() ) {
+
+			$cars = array();
+			$count = 0;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				if ( 'on' === get_post_meta( $event_id, 'car-' . get_the_ID(), true ) ) {
+					$count++;
+
+					$cars[] = get_the_ID();
+
+				}
+
+			}
+
+
+			wp_reset_postdata();
+		}
+
+		$content = '';
+		if ( 0 === $count ) {
+			$content .= '<h3>' . esc_html__( 'Allowed car', 'src' ) . '</h3>';
+			$car_id = $cars[0];
+			$content .= '<strong><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a></strong>';
+		} else {
+			$content .= '<h3>' . esc_html__( 'Allowed cars', 'src' ) . '</h3>';
+			$content .= '<p>' . esc_html__( 'This is a multi-class event. Drivers may choose one of the following cars.', 'src' ) . '</p>';
+			$content .= '<ol>';
+
+			foreach ( $cars as $car_id ) {
+				$content .= '<li><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a></li>';
+			}
+
+			$content .= '</ol>';
+		}
+
+
+		return $content;
 	}
 
 	/**

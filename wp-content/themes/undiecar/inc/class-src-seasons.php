@@ -27,7 +27,6 @@ class SRC_Seasons extends SRC_Core {
 		add_filter( 'the_content',     array( $this, 'permanently_store_results' ), 100 );
 
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
-		add_action( 'cmb2_admin_init', array( $this, 'cars_metaboxes' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'teams_metaboxes' ) );
 		add_action( 'add_meta_boxes',  array( $this, 'permanently_store_results_metabox' ) );
 		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
