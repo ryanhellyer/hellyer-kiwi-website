@@ -309,36 +309,6 @@ class SRC_Seasons extends SRC_Core {
 		return $content;
 	}
 
-	public function cars_metaboxes() {
-		$slug = 'season-car';
-
-		$cmb = new_cmb2_box( array(
-			'id'           => $slug,
-			'title'        => esc_html__( 'Cars', 'src' ),
-			'object_types' => array( 'season', ),
-		) );
-
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-
-		$seasons = array();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$cmb->add_field( array(
-					'name' => esc_html( get_the_title( get_the_ID() ) ),
-					'id'         => 'car-' . get_the_ID(),
-					'type'       => 'checkbox',
-				) );
-
-			}
-		}
-
-	}
-
 	public function seasons_metaboxes() {
 		$slug = 'season';
 

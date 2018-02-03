@@ -24,6 +24,7 @@ class SRC_Events extends SRC_Core {
 		// Add action hooks
 		add_action( 'init',              array( $this, 'init' ) );
 		add_action( 'cmb2_admin_init',   array( $this, 'events_metaboxes' ) );
+		add_action( 'cmb2_admin_init',   array( $this, 'cars_metaboxes' ) );
 		add_action( 'template_redirect', array( $this, 'set_event_data' ) );
 
 		add_filter( 'the_content',            array( $this, 'store_or_not_store' ), 1 );
