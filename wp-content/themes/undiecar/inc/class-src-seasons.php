@@ -324,15 +324,13 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$seasons = array();
-		$count = 0;
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				$count++;
 
 				$cmb->add_field( array(
 					'name' => esc_html( get_the_title( get_the_ID() ) ),
-					'id'         => 'car-' . $count,
+					'id'         => 'car-' . get_the_ID(),
 					'type'       => 'checkbox',
 				) );
 
