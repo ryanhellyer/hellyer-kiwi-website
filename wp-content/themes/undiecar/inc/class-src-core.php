@@ -54,11 +54,11 @@ class SRC_Core {
 		$cmb = new_cmb2_box( array(
 			'id'           => $slug,
 			'title'        => esc_html__( 'Cars', 'src' ),
-			'object_types' => array( 'season', ),
+			'object_types' => array( get_post_type() ),
 		) );
 
 		$query = new WP_Query( array(
-			'post_type'      => get_post_type(),
+			'post_type'      => 'car',
 			'posts_per_page' => 100
 		) );
 
