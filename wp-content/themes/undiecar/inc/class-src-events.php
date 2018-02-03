@@ -328,7 +328,7 @@ class SRC_Events extends SRC_Core {
 
 			'meta_key'               => 'season',
 			'meta_value'             => $season_id,
-
+'post_status' => 'any',
 			'no_found_rows'          => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
@@ -340,7 +340,6 @@ class SRC_Events extends SRC_Core {
 
 				$date  = get_post_meta( get_the_ID(), 'date', true );
 				$track = get_post_meta( get_the_ID(), 'track', true );
-
 				$events[$date] = array(
 					'id'          => get_the_ID(),
 					'date'        => $date,
@@ -371,6 +370,9 @@ class SRC_Events extends SRC_Core {
 		foreach ( $events as $date => $event ) {
 			$new_events[$count] = $event;
 			$count++;
+		}
+		if ( 0 === $count ) {
+			return;
 		}
 
 		$number_of_rounds_in_season = count( $new_events );
@@ -780,6 +782,9 @@ class SRC_Events extends SRC_Core {
 
 		$content = '';
 		if ( 0 === $count ) {
+			// No cars, so bail now
+			return;
+		} else if ( 1 === $count ) {
 			$content .= '<h3>' . esc_html__( 'Allowed car', 'src' ) . '</h3>';
 			$car_id = $cars[0];
 			$content .= '<strong><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a></strong>';
