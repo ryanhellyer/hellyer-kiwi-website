@@ -194,7 +194,8 @@ class SRC_Cars extends SRC_Core {
 		foreach ( $cars as $car_id => $car ) {
 
 			if ( ! isset( $single_car ) ) {
-				$content .= '<h4>' . esc_html( $car['title'] ) . '</h4>';
+				$url = get_the_permalink( get_the_ID() );
+				$content .= '<h4><a href="' . esc_url( $url ) . '">' . esc_html( $car['title'] ) . '</a></h4>';
 			}
 
 			$content .= wpautop( $car['content'] );
