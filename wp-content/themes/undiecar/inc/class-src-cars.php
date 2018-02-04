@@ -194,7 +194,7 @@ class SRC_Cars extends SRC_Core {
 		foreach ( $cars as $car_id => $car ) {
 
 			if ( ! isset( $single_car ) ) {
-				$url = get_the_permalink( get_the_ID() );
+				$url = get_the_permalink( $car_id );
 				$content .= '<h4><a href="' . esc_url( $url ) . '">' . esc_html( $car['title'] ) . '</a></h4>';
 			}
 
