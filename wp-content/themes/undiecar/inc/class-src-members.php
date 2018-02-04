@@ -67,6 +67,7 @@ class SRC_Members extends SRC_Core {
 			 * Handle file uploads.
 			 */
 			require_once ( ABSPATH . 'wp-admin/includes/file.php' );
+			require_once ( ABSPATH . 'wp-admin/includes/image.php' );
 
 			foreach ( $_FILES as $key => $file ) {
 
