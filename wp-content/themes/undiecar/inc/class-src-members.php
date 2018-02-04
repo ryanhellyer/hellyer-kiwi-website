@@ -91,6 +91,11 @@ class SRC_Members extends SRC_Core {
 				);
 
 				$attachment_id = wp_insert_attachment( $attachment, $file_name, get_the_ID() );
+
+				// Resize the attachments
+				$attach_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
+				wp_update_attachment_metadata( $attachment_id, $attach_data );
+
 				$old_attachment_id = get_user_meta( $member_id, $key, true );
 				wp_delete_attachment( $old_attachment_id );
 				update_user_meta( $member_id, $key, $attachment_id );
