@@ -133,6 +133,8 @@ class SRC_Gallery extends SRC_Core {
 		if ( isset( $_FILES['gallery-file']['tmp_name'] ) ) {
 
 			require_once ( ABSPATH . 'wp-admin/includes/file.php' );
+			require_once ( ABSPATH . 'wp-admin/includes/image.php' );
+
 			$file = $_FILES['gallery-file'];
 			$overrides = array( 'test_form' => false);
 			$result = wp_handle_upload( $file, $overrides );
@@ -149,6 +151,11 @@ class SRC_Gallery extends SRC_Core {
 				'post_author'    => get_current_user_id(),
 			);
 			$attachment_id = wp_insert_attachment( $attachment, $file_name, $event_id );
+
+			// Resize the attachments
+			$attach_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
+			wp_update_attachment_metadata( $attachment_id, $attach_data );
+
 			update_post_meta( $attachment_id, 'gallery', true );
 
 			// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
