@@ -467,7 +467,7 @@ delete_transient( 'undiecar_gallery' );
 			);
 
 			$query = new WP_Query( $args );
-			$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
+			$undiecar_gallery = '[gallery columns="8" size="src-logo" ids="';
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
 					$query->the_post();
@@ -496,7 +496,7 @@ delete_transient( 'undiecar_gallery_' . $season );
 }
 
 		if ( false === ( $undiecar_gallery = get_transient( 'undiecar_gallery_' . $season ) ) ) {
-			$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="thumbnail" ids="';
+			$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="src-logo" ids="';
 
 			// Get the season ID from the slug
 			if ( $season !== '' ) {
