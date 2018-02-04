@@ -89,6 +89,11 @@ class Undiecar_Discord {
 					require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
 					$attachment_id = media_sideload_image( $file_url, null, $file_description, 'id' );
+
+					// Generate the metadata for the attachment, and update the database record.
+					$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
+					wp_update_attachment_metadata( $attachment_id, $attachment_data );
+
 					update_post_meta( $attachment_id, 'gallery', true );
 					update_post_meta( $attachment_id, 'discord_message_id', $message_id );
 
