@@ -1037,6 +1037,16 @@ class SRC_Core {
 				// Add bonus points for fastest lap in each event
 				asort( $fastest_laps );
 
+echo '
+<!--
+
+XXXXXXXXXXXXXXXXXXXXX
+' . print_r( $fastest_laps, true  ) . '
+
+
+-->
+';
+
 				// Fixing buggy fastest laps
 				if ( 'update' === get_option( 'undiecar-cache' ) ) {
 					delete_post_meta( get_the_ID(), '_fastest_lap' );
