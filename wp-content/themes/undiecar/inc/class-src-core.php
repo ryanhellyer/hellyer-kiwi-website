@@ -920,7 +920,12 @@ class SRC_Core {
 										$fastest_laps[$name] > $time
 									)
 								) {
-									$fastest_laps[$name] = $time;
+
+									// Ignore names of 'Name' as this indicates the CSV file has an incorrect line in it (happened early 2018)
+									if ( 'Name' !== $name ) {
+										$fastest_laps[$name] = $time;
+									}
+
 								}
 
 							}
@@ -1036,16 +1041,6 @@ class SRC_Core {
 
 				// Add bonus points for fastest lap in each event
 				asort( $fastest_laps );
-
-echo '
-<!--
-
-XXXXXXXXXXXXXXXXXXXXX
-' . print_r( $fastest_laps, true  ) . '
-
-
--->
-';
 
 				// Fixing buggy fastest laps
 				if ( 'update' === get_option( 'undiecar-cache' ) ) {
