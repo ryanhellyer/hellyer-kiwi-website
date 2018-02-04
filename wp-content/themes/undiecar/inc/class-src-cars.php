@@ -219,7 +219,7 @@ class SRC_Cars extends SRC_Core {
 				}
 
 			}
-			$content .= '[gallery link="attachment" columns="' . esc_attr( $count ) . '" size="medium" ids="' . esc_attr( $image_ids ) . '"]';
+			$content .= '[gallery link="attachment" columns="' . esc_attr( $count ) . '" size="src-four" ids="' . esc_attr( $image_ids ) . '"]';
 
 		}
 
@@ -258,7 +258,7 @@ class SRC_Cars extends SRC_Core {
 			}
 		}
 
-		$content .= '[gallery link="attachment" columns="' . esc_attr( $count ) . '" size="medium" ids="' . esc_attr( $image_ids ) . '"]';
+		$content .= '[gallery link="attachment" columns="' . esc_attr( $count ) . '" size="src-four" ids="' . esc_attr( $image_ids ) . '"]';
 
 		return $content;
 	}
