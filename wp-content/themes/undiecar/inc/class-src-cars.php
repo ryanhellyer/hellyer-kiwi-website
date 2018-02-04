@@ -56,7 +56,7 @@ class SRC_Cars extends SRC_Core {
 		$cmb = new_cmb2_box( array(
 			'id'           => $slug,
 			'title'        => esc_html__( 'Cars', 'src' ),
-			'object_types' => array( 'season', 'event' ),
+			'object_types' => array( 'event', 'season' ),
 		) );
 
 		$cmb->add_field( array(
@@ -83,6 +83,7 @@ class SRC_Cars extends SRC_Core {
 				) );
 
 			}
+			wp_reset_postdata();
 		}
 
 	}

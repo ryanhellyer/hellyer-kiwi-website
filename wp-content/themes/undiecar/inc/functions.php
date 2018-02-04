@@ -264,13 +264,16 @@ function src_get_countries() {
  */
 function src_get_tracks() {
 
-	$tracks = array();
+	// Crude hack to avoid queries getting messed up in admin panel
+	global $post, $wp_query;
+	$wp_query->post = $post;
+
 
 	$query = new WP_Query( array(
 		'post_type' => 'track',
 		'posts_per_page' => 100
 	) );
-
+	$tracks = array();
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
@@ -279,6 +282,7 @@ function src_get_tracks() {
 			$tracks[get_the_ID()] = get_the_title() . ' - ' . src_get_track_types()[$track_type];
 
 		}
+		wp_reset_postdata();
 	}
 
 	return $tracks;
@@ -291,17 +295,18 @@ function src_get_tracks() {
  */
 function src_get_seasons() {
 
-	$tracks = array();
+	// Crude hack to avoid queries getting messed up in admin panel
+	global $post, $wp_query;
+	$wp_query->post = $post;
 
-	$query = new WP_Query( array(
-		'post_type' => 'season',
+	$seasons_query = new WP_Query( array(
+		'post_type'      => 'season',
 		'posts_per_page' => 100
 	) );
-
 	$seasons = array();
-	if ( $query->have_posts() ) {
-		while ( $query->have_posts() ) {
-			$query->the_post();
+	if ( $seasons_query->have_posts() ) {
+		while ( $seasons_query->have_posts() ) {
+			$seasons_query->the_post();
 
 			$seasons[get_the_ID()] = get_the_title();
 		}
