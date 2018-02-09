@@ -6,7 +6,7 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 
 
 define( 'ALLOW_ROOKIES', true );
-//define( 'ALLOW_B_LICENSES', true );
+define( 'ALLOW_B_LICENSES', true );
 //define( 'ALLOW_C_LICENSES', true );
 //define( 'ALLOW_D_LICENSES', true );
 
@@ -66,7 +66,7 @@ $contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future
 
 $contacts = '';
 foreach ( array_merge(
-	explode( ',', $contacts ),
+	explode( ',', $contacts ),\
 	explode( ',', $contacted )
 ) as $x => $driver_name ) {
 	$personal_contacts[$driver_name] = true;
