@@ -67,7 +67,7 @@ class Undiecar_Discord {
 				$file_name = $attachment['filename'];
 				$file_size = $attachment['size'];
 				$file_url = $attachment['url'];
-				$file_description = sprintf( esc_html__( 'Posted by %s: ', 'undiecar' ), $author ) . esc_html( $message['content'] );
+				$file_description = esc_html( $message['content'] );
 
 				// Check the attachment doesn't already exist
 				$args = array(
