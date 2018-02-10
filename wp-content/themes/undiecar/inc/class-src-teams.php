@@ -263,7 +263,7 @@ class SRC_Teams extends SRC_Core {
 			}
 		}
 
-		$content .= '[gallery link="file" columns="' . esc_attr( $count ) . '" size="medium" ids="' . esc_attr( $image_ids ) . '"]';
+		$content .= '[gallery link="file" columns="' . esc_attr( $count ) . '" size="src-four" ids="' . esc_attr( $image_ids ) . '"]';
 
 		return $content;
 	}

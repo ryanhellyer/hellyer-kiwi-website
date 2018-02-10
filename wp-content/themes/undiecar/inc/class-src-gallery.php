@@ -158,9 +158,6 @@ class SRC_Gallery extends SRC_Core {
 
 			update_post_meta( $attachment_id, 'gallery', true );
 
-			// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
-			require_once( ABSPATH . 'wp-admin/includes/image.php' );
-
 			// Generate the metadata for the attachment, and update the database record.
 			$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
 			wp_update_attachment_metadata( $attachment_id, $attachment_data );

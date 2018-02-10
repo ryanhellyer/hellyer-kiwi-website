@@ -1151,7 +1151,7 @@ class SRC_Events extends SRC_Core {
 				$image_id = $image->ID;
 				$image_ids .= absint( $image_id ) . ',';
 			}
-			$content .= do_shortcode( '[gallery size="medium" ids="' . esc_attr( $image_ids ) . '"]' );
+			$content .= do_shortcode( '[gallery size="src-four" ids="' . esc_attr( $image_ids ) . '"]' );
 		}
 
 		return $content;
