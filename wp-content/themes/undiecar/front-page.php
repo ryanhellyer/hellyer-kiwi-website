@@ -34,7 +34,7 @@ get_header();
 
 			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
 				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
-					<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-logo' ) ) . '" />
+					<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-four' ) ) . '" />
 					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
 					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
 				</a>
@@ -133,7 +133,7 @@ get_header();
 			continue;
 		}
 
-		$image_url = wp_get_attachment_image_src( $event['track_logo'], 'src-logo' );
+		$image_url = wp_get_attachment_image_src( $event['track_logo'], 'src-four' );
 		$image_url = $image_url[0];
 
 		?>
@@ -240,7 +240,7 @@ get_header();
 
 			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
 				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
-					' . wp_get_attachment_image( get_the_ID(), 'src-logo' ) . '
+					' . wp_get_attachment_image( get_the_ID(), 'src-four' ) . '
 					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
 					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
 				</a>
