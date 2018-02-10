@@ -62,12 +62,10 @@ $dallara_dash_s1_2018_w6 = 'Jay Plummer,Henri Zimmermann,Joseph Yeager,Jason Rog
 
 
 
-// ********** NOT SENT YET ***********
-// Women to add - need to hunt through for male names before sending
-//Laura Lawson,Lauri Salo,Angel Ledesma,Christine Marie Tillmann,Avery McDonald,Ellis Teal,Angel Fernandez Cobo,Leila Wilson,Lauri Happonen,Emily Jones,Erin Nagy,Sasha Todorovic,Lauri Linna,Sarah Laprevotte,Ariel Acastello,Sasha Milosavljevic,Skyler Grissom,Lauri Ketola,Daniela Azunaga,Laura Bond,Jennifer King,Jocelyn  St-Martin,Julie Redmon,Sandra Castrogiovanni,Sarah Souders,Lauri Hiljanen,Laura Perry,Sasha Anis,Vivian Santiago,Molly Steinberg,Ingrid Marti,Klaudia Monica,Amber Laybourne,Julia Pros Albert,Ariel Hartung,Hannah Lewis,Gillian Woods,Kimber Jansen,Skylar Dunning,Stefanie Fleper,Lauri Haverinen,Cherie Mollohan,Conny Naslund,Sara Dove,Denise Hallion2,Ellen VanNest2,Anne Struijk,Angel Lozano,Sian Walters,Alyssa Ferrie,Gwen Kolsteren,Carmen Comeau,Nelli Pietro,Jennifer Grifhorst,Sabrina Gramß,Laura Zampa,Michelle Smeers,Susi Badia,Jocelyn Lauzière,Lauri Mattila,Ally Sinclair,Agnes B Kaiser,Leila Hammadouche,Sofia Stella,Joyce Martin,Holly Crilly,Jessica Dube2,Susan Blackledge,Mary Ford,Jenny Balzer,Laura Perez Garcia,Lauryn Brown,Jasmin Dizdarević,Wendy Crozier,Jocelyn Prévost2,Skyler Rivera2,Jennifer Denis,Daniela Taubert,Heidi Ammari,Alison Hine,Skyler Sisson,Alison Marshall,Mary Goins,Ellinor Ström,Lauri Kongas,Vivien Caplat,Wendy Sarrett,Ana Laforgue,Svetlana Dorokhova,Patricia Pasciolla,Julie Robertson,Alicia Avendaño Marín,Jennifer Barroso Ledo,Lynette Markham,Kayleen Hoy,Sandra Palm,Whitney Strickland,Kristen Barra,Valery Vodchits,Shawna Shade,Leanne Cordon,Katja Wolf,Camilla Deri,Sara Savage,Anne Medema,Jocelyn Mouton,Lauri Mäntyvaara2,Jennifer McDonald,Sara Black,Abby Harris,Maria Hollweck,Chelsea Angelo,Barreda Calvo,Lauri Koskinen,Angel Roglan Beltri,Angela R Coleman,Nadine Sander,Lana Opačak,Erin Miller,Rathana Danh Sang2,Maja Ljunggren,Georgi Raychev,Lauri Perlström,Elodie Hannequin,Saskia Schmidt,Chrystle Jones,Adria Serratosa,Remy Ammour,Gila Dezso,Vesna Paternoster,Kristina Matagić,Lucia Esposito,Kendall Baumann,Alin Albulescu,Emily Coates,Angel L. Lahoz,Christine Valencia,Celia Sousa,Jocelyn Pellé,Jennifer Heintzschel,Ruba Oliva,Vanesa Beatriz Martinez,Jessie Eduardo Hemink2,Miki Voj,Flo Kremser,Sarah Toplis,Oakley Peterson,Angel Bajo,Camille Caytan,Angel L Rodriguez Alcalde,Indra Feryanto,Rosa Maria Iglesias Diaz,Sabrina Enting,Ariel Varro,Lauri Lään,Anne de Vries,Remy Thendrup,Emili Mulet,Addy Wood,Camille Spillman,Fiona Binney,Maria Bako,Jannis van der Eyck,Jessie Lan,Kendall Davis,Maria Stuart2,Jocelyn Brassaud,Galina Bruksh,Conny Lundell,Inge Hansesætre,Paw Schou,Andi Sentkowski,Estefania Rubio Santiago,Jannis Mueller,Anne Schwendiman,Jennifer Parks2,Janis Balodis,Linde Johnson,Dian Dechev,Yanick Aubin,Jocelyn Bellemare,Jojo Ak,Janis Braslins,Leen Melissant,Edwina Van der haegen3,Angel Huerta Gomez,366
+
+$contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future . $personal_contacted . $indycar_road_drivers . $laguna_seca_dallara_dash_drivers . $promazda_drivers . $phoenix_dallara_dash_drivers . $me . $formula_renault_last_2 . $random_hosted_race_girls . $spa_indycar_drivers . $girls1 . $skip_barber.$skip_barber2.$skip_barber3.$formula_renault2.$indycar2.$indycar3 . $promazda_2017_12 . $promazda_2017_12_2 . $indy_road_s1_2018 . $formula_renault_s1_2018_r1 . $formula_renault_s1_2018_r2_to_4 . $dallara_dash_s1_2018_w9 . $dallara_dash_s1_2018_w6;
 
 
-$contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future . $personal_contacted . $indycar_road_drivers . $laguna_seca_dallara_dash_drivers . $promazda_drivers . $phoenix_dallara_dash_drivers . $me . $formula_renault_last_2 . $random_hosted_race_girls . $spa_indycar_drivers . $girls1 . $skip_barber.$skip_barber2.$skip_barber3.$formula_renault2.$indycar2.$indycar3 . $promazda_2017_12 . $promazda_2017_12_2 . $indy_road_s1_2018 . $formula_renault_s1_2018_r1 . $formula_renault_s1_2018_r2_to_4 . $dallara_dash_s1_2018_w9;
 
 //echo "\n\n\n\n\n\n\n............\nTotal number of drivers sent messages:\n".count( explode( ',', $contacted ) );die;
 
@@ -82,6 +80,15 @@ foreach ( array_merge(
 
 
 $events = array(
+	'indy-fixed-s1-w1-w9' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
+	/*
 	'dallara-dash-9' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -98,7 +105,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-	/*
 	'formula-renault-s1-2018-r2' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
