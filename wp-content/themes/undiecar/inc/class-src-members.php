@@ -332,8 +332,8 @@ class SRC_Members extends SRC_Core {
 
 		// Try to fall back to gallery image
 		$images = get_user_meta( $member_id, 'images', true );
-		krsort( $images );
 		if ( is_array( $images ) ) {
+			krsort( $images );
 			foreach( $images as $key => $image_id ) {
 				$image = wp_get_attachment_image_src( $image_id, 'src-featured' );
 				if ( isset( $image[0] ) ) {
