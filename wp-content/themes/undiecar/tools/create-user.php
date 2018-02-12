@@ -9,6 +9,7 @@ if ( ! isset( $_GET['create_user'] ) ) {
 
 add_action( 'init', 'undiecar_create_user' );
 function undiecar_create_user() {
+	$new_drivers = $existing_drivers = array();
 
 	$drivers = explode( ',', $_GET['create_user'] );
 
@@ -17,16 +18,16 @@ function undiecar_create_user() {
 		$password = md5( $driver_name  . 'ryanhellyer' );
 
 		// should add display name in here, not just the username
-		$user_id = wp_insert_user(
+		$driver_id = wp_insert_user(
 			array(
 				'user_login'   => sanitize_title( $driver_name  ),
 				'display_name' => esc_html( $driver_name  ),
 				'user_pass'    => $password,
 			)
-		) ;
+		);
 
 		//On success
-		if ( ! is_wp_error( $user_id ) ) {
+		if ( ! is_wp_error( $driver_id ) ) {
 			$new_drivers[] = $driver_name;
 		} else {
 			$existing_drivers[] = $driver_name;
