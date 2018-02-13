@@ -932,12 +932,60 @@ class SRC_Events extends SRC_Core {
 
 				$column_labels = $rows[3];
 
-				unset( $rows[0] );
-				unset( $rows[1] );
-				unset( $rows[2] );
-				unset( $rows[3] );
+				// Cleaning up rows
+				foreach ( $rows as $key => $row ) {
+
+					// Clean up quote marks
+					$row = str_replace( '"', '', $row );
+					$rows[$key] = $row;
+
+					$row_array = explode( ',', $row );
+
+					// Strip rows where the race position is not a numeric number
+					if ( isset( $row_array[0] ) && ! is_numeric( $row_array[0] ) ) {
+						unset( $rows[$key] );
+					}
+
+					// Strip rows with no name set
+					if ( ! isset( $row_array[7] ) && isset( $row[$key] ) ) {
+						unset( $row[$key] );
+					}
+
+				}
+
+				// Combining multiple drivers per car
+				$rows2 = $rows;
+				foreach ( $rows as $key => $row ) {
+					$row_array = explode( ',', $row );
+
+					// If multiple drivers per car, then combine their results
+					foreach ( $rows2 as $key2 => $row2 ) {
+						$row_array2 = explode( ',', $row2 );
+
+						if (
+							$row_array[5] === $row_array2[5]
+							&&
+							$row_array[7] !== $row_array2[7]
+						) {
+
+							if ( false === strpos( $row_array[7], $row_array2[7] ) ) {
+								$row_array[7] .= '|' . $row_array2[7];
+								unset( $rows[$key2] );
+								unset( $rows2[$key] );
+								unset( $rows2[$key2] );
+
+								$rows[$key] = implode( ',', $row_array );
+							}
+
+						}
+
+					}
+
+
+				}
 
 				$columns_to_keep = array(
+					2 => 'car',
 					7 => 'name',
 					8 => 'start_pos',
 					9 => 'car_no',
@@ -954,15 +1002,11 @@ class SRC_Events extends SRC_Core {
 
 				$results = array();
 				foreach ( $rows as $key => $row ) {
-					$row = str_replace( '"', '', $row );
 					$driver_result = array();
 					$row_array = explode( ',', $row );
 
+/*
 					// Register the member if they're not in the system already
-					if ( ! isset( $row_array[7] ) ) {
-						continue;
-					}
-
 					$display_name = utf8_encode( $row_array[7] );
 					$username = sanitize_title( $display_name );
 					if ( ! username_exists( sanitize_title( $username ) ) ) {
@@ -972,12 +1016,14 @@ class SRC_Events extends SRC_Core {
 
 							// Register user
 // REMOVED BECAUSE WAS ADDING PEOPLE WITHOUT THEIR KNOWLEDGE
-//							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@mem.com', $member_info );
+							$this->register_user( $username, $display_name, md5( $display_name ), 'replace+' . md5( $display_name) . '@mem.com', $member_info );
 
 						}
 
 					}
+*/
 
+					// Only store required results
 					foreach ( $row_array as $column_number => $cell ) {
 
 						if ( isset( $columns_to_keep[$column_number] ) ) {
@@ -1056,21 +1102,54 @@ class SRC_Events extends SRC_Core {
 
 			$html .= '<thead><tr>';
 
+			// Check if we have multiple car types
+			foreach ( $results as $key => $result ) {
 
-			$columns_to_keep = array(
-				'Name',
-				'Start',
-				'Car',
-				'Out',
-				'Interval',
-				'Laps led',
-				'Qual',
-				'Avg lap',
-				'Fastest lap',
-				'fastest lap',
-				'laps compl',
-				'Inc',
-			);
+				foreach ( $results as $key2 => $result2 ) {
+					if ( isset( $result['car'] ) && $result['car'] !== $result2['car'] ) {
+						$multiple_car_types = true;
+					}
+				}
+
+			}
+
+			// Get qualifying results
+			$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
+			$qual_results = json_decode( $qual_results, true );
+
+			if ( is_array( $qual_results ) ) {
+
+				foreach ( $qual_results as $q_key => $q_value ) {
+
+					if ( $q_value['name'] === $result['name'] ) {
+						$qual_result = $q_value['qual_time'];
+					}
+
+				}
+			}
+
+
+			$columns_to_keep[] = 'Name';
+			$columns_to_keep[] = 'Start';
+			$columns_to_keep[] = 'Car #';
+
+			if ( isset( $multiple_car_types ) ) {
+				$columns_to_keep[] = 'Car';
+			}
+
+			$columns_to_keep[] = 'Out';
+			$columns_to_keep[] = 'Interval';
+			$columns_to_keep[] = 'Laps led';
+
+			if ( isset( $qual_result ) ) {
+				$columns_to_keep[] = 'Qual';
+			}
+
+			$columns_to_keep[] = 'Avg lap';
+			$columns_to_keep[] = 'Fastest lap';
+			$columns_to_keep[] = 'fastest lap';
+			$columns_to_keep[] = 'laps compl';
+			$columns_to_keep[] = 'Inc';
 
 			$html .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';			
 			foreach ( $columns_to_keep as $key => $label ) {
@@ -1085,6 +1164,56 @@ class SRC_Events extends SRC_Core {
 				$html .= '<tr>';
 				$html .= '<td>' . esc_html( $key ) . '</td>';
 
+//print_r( $result );die;
+				$driver_names = '';
+				$names = explode( '|', $result['name'] );
+				if ( is_array( $names ) ) {
+					foreach ( $names as $name ) {
+
+						$driver_slug = sanitize_title( $name );
+						$link_start = $link_end = '';
+						if ( username_exists( $driver_slug ) ) {
+							$link_start = '<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '/">';
+							$link_end = '</a>';
+						}
+
+						$driver_names .= $link_start . esc_html( $name ) . $link_end . '<br />';
+					}
+				} else {
+
+					$name = $names;
+					$driver_slug = sanitize_title( $name );
+					$link_start = $link_end = '';
+					if ( username_exists( $driver_slug ) ) {
+						$link_start = '<a href="' . esc_url( home_url() . '/member/' . $driver_slug ) . '/">';
+						$link_end = '</a>';
+					}
+
+					$driver_names .= $link_start . esc_html( $name ) . $link_end;
+				}
+
+				$html .= '<td>' . $driver_names . '</td>';
+				$html .= '<td>' . esc_html( $result['start_pos'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['car_no'] ) . '</td>';
+
+				if ( isset( $multiple_car_types ) ) {
+					$html .= '<td>' . esc_html( $result['car'] ) . '</td>';
+				}
+
+				$html .= '<td>' . esc_html( $result['out'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['interval'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['laps_led'] ) . '</td>';
+
+				if ( isset( $qual_result ) ) {
+					$html .= '<td>' . esc_html( $qual_result ) . '</td>';
+				}
+
+				$html .= '<td>' . esc_html( $result['avg_lap_time'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['fastest_lap_time'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['fastest_lap'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['laps-completed'] ) . '</td>';
+				$html .= '<td>' . esc_html( $result['incidents'] ) . '</td>';
+/*
 				foreach ( $result as $k => $cell ) {
 
 					// Shove qualifying result into main results
@@ -1118,8 +1247,8 @@ class SRC_Events extends SRC_Core {
 
 					$html .= '<td>' . $link_start . esc_html( $cell ) . $link_end . '</td>';
 				}
-
-				$html .= '</tr>';
+*/
+				$html .= "</tr>\n";
 			}
 
 			$html .= '</tbody>';
