@@ -112,6 +112,7 @@ class SRC_Register extends SRC_Core {
 
 			if ( defined( 'SRC_USERNAME_EXISTS' ) ) {
 				$message_text = __( 'You already have an account ;) You can login with it if you like.', 'src' );
+$message_text .= ' The form below is broken, please use the login page until then ... https://undiecar.com/login/';
 			}
 
 			// If username exists, but email does, then stick display name into form and hide the email field
@@ -119,7 +120,7 @@ class SRC_Register extends SRC_Core {
 				$user = get_user_by( 'email', $email );
 				$message_text = __( 'You already have an account ;) You can login with it if you like.', 'src' );
 
-$message_text = 'The form below is broken, please use the login page until then ... https://undiecar.com/login/';
+$message_text .= ' The form below is broken, please use the login page until then ... https://undiecar.com/login/';
 
 
 				$display_name = $user->display_name;
