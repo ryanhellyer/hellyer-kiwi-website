@@ -948,11 +948,7 @@ class SRC_Events extends SRC_Core {
 
 					// Strip rows with no name set
 					if ( ! isset( $row_array[7] ) && isset( $rows[$key] ) ) {
-//echo "\n..............\n";
-//print_r( $row );
 						unset( $rows[$key] );
-//echo "\n..............\n";
-//die;
 					}
 
 				}
@@ -1120,7 +1116,7 @@ class SRC_Events extends SRC_Core {
 			// Get qualifying results
 			$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
 			$qual_results = json_decode( $qual_results, true );
-
+echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 			if ( is_array( $qual_results ) ) {
 
 				foreach ( $qual_results as $q_key => $q_value ) {
