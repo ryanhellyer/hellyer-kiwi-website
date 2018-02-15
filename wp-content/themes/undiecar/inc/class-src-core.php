@@ -899,7 +899,6 @@ class SRC_Core {
 								}
 
 							}
-echo '<!--xxxxxxxxxxxxxxxxxxxxxxxxxxx-->';
 
 							// Store fastest laps
 							if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
@@ -986,6 +985,7 @@ echo '<!--xxxxxxxxxxxxxxxxxxxxxxxxxxx-->';
 
 				}
 				asort( $incident_results );
+echo '<!--xxxxxxxxxxxxxxxxxxxxxxxxxxx ' . print_r( $incident_results, true ) . '-->';
 
 				$least_incident_drivers = array();
 				unset( $least_incidents );
