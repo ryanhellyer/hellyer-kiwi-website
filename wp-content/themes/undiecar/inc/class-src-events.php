@@ -947,8 +947,12 @@ class SRC_Events extends SRC_Core {
 					}
 
 					// Strip rows with no name set
-					if ( ! isset( $row_array[7] ) && isset( $row[$key] ) ) {
-						unset( $row[$key] );
+					if ( ! isset( $row_array[7] ) && isset( $rows[$key] ) ) {
+//echo "\n..............\n";
+//print_r( $row );
+						unset( $rows[$key] );
+//echo "\n..............\n";
+//die;
 					}
 
 				}
