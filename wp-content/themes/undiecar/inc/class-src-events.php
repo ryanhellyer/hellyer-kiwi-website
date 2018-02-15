@@ -1111,24 +1111,23 @@ class SRC_Events extends SRC_Core {
 					}
 				}
 
-			}
+				// Get qualifying results
+				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
+				$qual_results = json_decode( $qual_results, true );
+				unset( $qual_result );
+				if ( is_array( $qual_results ) ) {
 
-			// Get qualifying results
-			$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
-			$qual_results = json_decode( $qual_results, true );
-			if ( is_array( $qual_results ) ) {
+					foreach ( $qual_results as $q_key => $q_value ) {
 
-				foreach ( $qual_results as $q_key => $q_value ) {
+						if ( $q_value['name'] === $result['name'] ) {
+							$results[$key]['qual_result'] = $q_value['qual_time'];
+							$qual_result = true;
+						}
 
-					if ( $q_value['name'] === $result['name'] ) {
-						$qual_result = $q_value['qual_time'];
 					}
-
 				}
-			}
 
-echo "\n\n<!--\n";print_r( $qual_result );echo "\n-->\n\n";
-echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
+			}
 
 			$columns_to_keep[] = 'Name';
 			$columns_to_keep[] = 'Start';
@@ -1165,7 +1164,6 @@ echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 				$html .= '<tr>';
 				$html .= '<td>' . esc_html( $key ) . '</td>';
 
-//print_r( $result );die;
 				$driver_names = '';
 				$names = explode( '|', $result['name'] );
 				if ( is_array( $names ) ) {
@@ -1206,7 +1204,14 @@ echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 				$html .= '<td>' . esc_html( $result['laps_led'] ) . '</td>';
 
 				if ( isset( $qual_result ) ) {
-					$html .= '<td>' . esc_html( $qual_result ) . '</td>';
+
+					if ( isset( $result['qual_result'] ) ) {
+						$qual = $result['qual_result'];
+					} else {
+						$qual = '';
+					}
+
+					$html .= '<td>' . esc_html( $qual ) . '</td>';
 				}
 
 				$html .= '<td>' . esc_html( $result['avg_lap_time'] ) . '</td>';
