@@ -868,7 +868,7 @@ class SRC_Core {
 				} else if ( 'oval' === $track_types && 'oval' !== $track_type ) {
 					continue;
 				}
-
+echo '<!--xxxxxxxxxxxxxxxxxxxxxxxxxxx-->';
 				$fastest_laps = array();
 				$incident_results = array();
 				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
