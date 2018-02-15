@@ -1003,9 +1003,9 @@ class SRC_Core {
 				// Add least incident points
 				foreach ( $least_incident_drivers as $lkey => $name ) {
 					if ( isset( $stored_results[$name] ) ) {
-//						$stored_results[$name] = $stored_results[$name] + 1;
+						$stored_results[$name] = $stored_results[$name] + 1;
 					} else {
-//						$stored_results[$name] = 1;
+						$stored_results[$name] = 1;
 					}
 
 				}
