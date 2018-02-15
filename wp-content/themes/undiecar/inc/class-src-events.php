@@ -677,13 +677,14 @@ class SRC_Events extends SRC_Core {
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
 
-				if ( isset( $least_incidents_text ) ) {
+				if ( '' !== $least_incidents_text ) {
 					$least_incidents_text .= ', ';
 				} else {
 					$least_incidents_text = '';
 				}
 
-				$least_incidents_text .= $driver;
+				$url = home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $driver ) . '/';
+				$least_incidents_text .= '<a href="' . esc_url( $url ) . '">' . esc_html( $driver ) . '</a>';
 			}
 		}
 
@@ -720,22 +721,23 @@ class SRC_Events extends SRC_Core {
 			$bonus_points = '
 			<h3>Bonus points</h3>
 			<p>';
-
 			if ( '' !== $least_incidents_text ) {
 				$bonus_points .= '
-				Least incidents: ' . esc_html( $least_incidents_text ) . '
+				Least incidents: ' . wp_kses_post( $least_incidents_text ) . '
 				<br />';
 			}
 
 			if ( '' !== get_post_meta( get_the_ID(), '_pole_position', true ) ) {
+				$name = get_post_meta( get_the_ID(), '_pole_position', true );
 				$bonus_points .= '
-				Pole position: ' . esc_html( get_post_meta( get_the_ID(), '_pole_position', true ) ) . '
+				Pole position: <a href="' . esc_url( home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>
 				<br />';
 			}
 
 			if ( '' !== get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
+				$name = get_post_meta( get_the_ID(), '_fastest_lap', true );
 				$bonus_points .= '
-				Fastest lap: ' . esc_html( get_post_meta( get_the_ID(), '_fastest_lap', true ) );
+				Fastest lap: <a href="' . esc_url( home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
 			}
 
 			$bonus_points .= '
@@ -878,8 +880,7 @@ class SRC_Events extends SRC_Core {
 		$least_incidents_text = '';
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
-
-				if ( isset( $least_incidents_text ) ) {
+				if ( '' !== $least_incidents_text ) {
 					$least_incidents_text .= ', ';
 				} else {
 					$least_incidents_text = '';
