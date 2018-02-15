@@ -1116,7 +1116,6 @@ class SRC_Events extends SRC_Core {
 			// Get qualifying results
 			$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );		
 			$qual_results = json_decode( $qual_results, true );
-echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 			if ( is_array( $qual_results ) ) {
 
 				foreach ( $qual_results as $q_key => $q_value ) {
@@ -1128,6 +1127,8 @@ echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 				}
 			}
 
+echo "\n\n<!--\n";print_r( $qual_result );echo "\n-->\n\n";
+echo "\n\n<!--\n";print_r( $qual_results );echo "\n-->\n\n";
 
 			$columns_to_keep[] = 'Name';
 			$columns_to_keep[] = 'Start';
