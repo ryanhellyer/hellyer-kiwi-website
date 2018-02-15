@@ -1011,7 +1011,9 @@ class SRC_Core {
 				}
 
 				if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
-
+echo "\n<!--\n";
+print_r(  $least_incident_drivers  );
+echo "\n-->\n";
 					// Store least incident info in events
 					if ( is_array( $least_incident_drivers ) ) {
 						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
