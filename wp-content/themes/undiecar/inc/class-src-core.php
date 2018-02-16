@@ -965,6 +965,9 @@ RESULTS: ' . $race_number . ' - ' . json_encode( $results ) . '
 					}
 
 				}
+echo '<!--
+LEAST INCIDENTS STORED 1: ' . print_r( $incident_results, true ) . '
+-->';
 
 				// Work out who gets points for the least incidents
 				// Work out how many races there were - only want to count drivers who completed both races
