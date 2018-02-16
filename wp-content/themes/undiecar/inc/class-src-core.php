@@ -967,7 +967,7 @@ class SRC_Core {
 				// Work out how many races there were - only want to count drivers who completed both races
 echo '<!--
 2 - ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
- ' . print_r( $incident_results, true ) . '
+' . print_r( $incident_results, true ) . '
  -->';
 				foreach ( $incident_results as $x => $driver_incidents ) {
 
@@ -988,6 +988,10 @@ echo '<!--
 					}
 
 				}
+echo '<!--
+3 ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
+ ' . print_r( $incident_results, true ) . '
+ -->';
 				asort( $incident_results );
 echo '<!--
 ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
