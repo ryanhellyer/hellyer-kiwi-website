@@ -1031,6 +1031,7 @@ echo '<!-- DELETING -->';
 					}
 
 				}
+				unset( $incident_results );
 
 				// Add bonus point for pole
 				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
