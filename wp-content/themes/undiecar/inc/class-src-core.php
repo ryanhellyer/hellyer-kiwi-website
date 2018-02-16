@@ -1022,9 +1022,10 @@ POINTS: ' . $stored_results[$name] . '
 					if ( is_array( $least_incident_drivers ) ) {
 						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
 echo '<!--
-LEAST INCIDENTS STORED: ' . print_r( $least_incident_drivers, true ) . '
+LEAST INCIDENTS STORED: ' . print_r( get_post_meta( get_the_ID(), '_least_incidents', true ), true ) . '
 -->';
 					} else {
+echo '<!-- DELETING -->';
 						delete_post_meta( get_the_ID(), '_least_incidents' );
 					}
 
