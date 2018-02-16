@@ -877,6 +877,9 @@ class SRC_Core {
 					$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
 					if ( is_array( $results ) ) {
+echo '<!--
+RESULTS: ' . $race_number . ' - ' . json_encode( $results ) . '
+-->';
 
 						// Add points for finishing position and calc incidents
 						foreach ( $results as $pos => $result ) {
