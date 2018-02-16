@@ -673,10 +673,6 @@ class SRC_Events extends SRC_Core {
 		$nav_html .= '</div>';
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
-echo '<!--
-ID: ' . get_the_ID() . '
-LEAST INCIDENTS EVENT: ' . print_r( $least_incidents, true ) . '
--->';
 		$least_incidents_text = '';
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
@@ -692,13 +688,12 @@ LEAST INCIDENTS EVENT: ' . print_r( $least_incidents, true ) . '
 			}
 		}
 
+/*
 		// If cars specified, then share information about them
 		$query = new WP_Query( array(
 			'post_type'      => 'car',
 			'posts_per_page' => 100
 		) );
-
-/*
 		$event_id = get_the_ID();
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
@@ -751,7 +746,6 @@ LEAST INCIDENTS EVENT: ' . print_r( $least_incidents, true ) . '
 		$content = '<div id="base-content">' . $html . $content . $this->get_car_list() . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
 
 		return $content;
-
 	}
 
 	/**
