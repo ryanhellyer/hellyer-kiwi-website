@@ -979,7 +979,7 @@ echo '<!--
 
 				}
 echo '<!--
-max = ' $max . '
+max = ' . $max . '
  -->';
 
 				// Remove drivers who weren't in both races
