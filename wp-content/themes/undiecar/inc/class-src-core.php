@@ -317,11 +317,11 @@ class SRC_Core {
 				}
 
 				$linked_name = $name;
+				$car_number = '';
 				$member = get_user_by( 'login', sanitize_title( $name ) );
 				if ( isset( $member->data->ID ) ) {
 					$member_id = $member->data->ID;
 
-					$car_number = '';
 					if ( '' !== get_user_meta( $member_id, 'car_number', true ) ) {
 						$car_number = get_user_meta( $member_id, 'car_number', true );
 					}
@@ -925,7 +925,7 @@ class SRC_Core {
 
 						// Add points for finishing position and calc incidents
 						foreach ( $results as $pos => $result ) {
-							
+
 							if ( isset( $result['car'] ) ) {
 								$car = $result['car'];
 							}
