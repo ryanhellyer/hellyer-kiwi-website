@@ -674,7 +674,7 @@ class SRC_Events extends SRC_Core {
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
 echo '<!--
-ID: ' get_the_ID() . '
+ID: ' . get_the_ID() . '
 LEAST INCIDENTS EVENT: ' . print_r( $least_incidents, true ) . '
 -->';
 		$least_incidents_text = '';
