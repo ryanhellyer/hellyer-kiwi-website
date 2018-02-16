@@ -265,6 +265,16 @@ class SRC_Core {
 			$title = __( 'Drivers championship', 'src' );
 		}
 
+		// Work out if multiple cars
+		foreach ( $stored_results as $name => $points ) {
+
+			$name_exploded = explode( '|', $name );
+			if ( isset( $name_exploded[1] ) ) {
+				$multiple_cars = true;
+			}
+		}
+
+
 		if ( array() !== $stored_results ) {
 			$content .= '<h3>' . esc_html( $title ) . '</h3>';
 			$content .= '<table class="some-list" id="src-championship">';
@@ -272,12 +282,19 @@ class SRC_Core {
 			$content .= '<thead><tr>';
 
 			$content .= '
-				<th class="col-pos">Pos</th>
-				<th class="col-name">Name</th>
-				<th class="col-number">Num</th>
-				<th class="col-nationality">Country</th>
-				<th class="col-inc">Inc</th>
-				<th class="col-pts">Pts</th>';
+				<th class="col-pos">' . esc_html__( 'Pos', 'src' ) . '</th>
+				<th class="col-name">' . esc_html__( 'Name', 'src' ) . '</th>
+				<th class="col-number">' . esc_html__( 'Num', 'src' ) . '</th>';
+
+			if ( isset( $multiple_cars ) ) {
+			$content .= '
+				<th class="col-car">' . esc_html__( 'Car', 'src' ) . '</th>';				
+			}
+
+			$content .= '
+				<th class="col-nationality">' . esc_html__( 'Country', 'src' ) . '</th>
+				<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
+				<th class="col-pts">' . esc_html__( 'Pts', 'src' ) . '</th>';
 			$content .= '</tr></thead>';
 
 			$content .= '<tbody>';
@@ -291,6 +308,12 @@ class SRC_Core {
 				// Limit the number of drivers shown
 				if ( $position > $limit ) {
 					continue;
+				}
+
+				$name_exploded = explode( '|', $name );
+				if ( isset( $name_exploded[1] ) ) {
+					$name = $name_exploded[0];
+					$car = $name_exploded[1];
 				}
 
 				$linked_name = $name;
@@ -338,6 +361,10 @@ class SRC_Core {
 					$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
 					$content .= '<td class="col-name">' . $linked_name . '</td>';
 					$content .= '<td class="col-number">' . esc_html( $car_number ) . '</td>';
+					if ( isset( $multiple_cars ) ) {
+					$content .= '
+						<td class="col-car">' . esc_html( $car ) . '</td>';
+					}
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
 					$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
 					$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
@@ -842,6 +869,24 @@ class SRC_Core {
 	 */
 	static function get_driver_points_from_season( $season_id, $track_types = 'all' ) {
 
+		// Get list of allowed cars
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+		$cars = array();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				if ( '' !== get_post_meta( $season_id, 'car-' . get_the_ID(), true ) ) {
+					$cars[] = get_the_ID();
+				}
+
+			}
+			wp_reset_postdata();
+		}
+
 		// Get all events from that season
 		$query = new WP_Query( array(
 			'posts_per_page'         => 100,
@@ -880,8 +925,18 @@ class SRC_Core {
 
 						// Add points for finishing position and calc incidents
 						foreach ( $results as $pos => $result ) {
+							
+							if ( isset( $result['car'] ) ) {
+								$car = $result['car'];
+							}
 
-							$name = $result['name'];
+							// If multiple cars in championship, then store which car they used (in case they switch cars mid-season)
+							if ( isset( $car ) && 1 < count( $cars ) ) {
+								$name = $result['name'] . '|' . $car;
+							} else {
+								$name = $result['name'];
+							}
+
 							if ( isset( $points_positions[$pos - 1] ) ) {
 
 								// Get points multiplier (for races worth more than normal points)
