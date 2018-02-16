@@ -970,6 +970,9 @@ echo '<!--
 ' . print_r( $incident_results, true ) . '
  -->';
 				foreach ( $incident_results as $x => $driver_incidents ) {
+echo '<!--
+' . $x . ': ' . print_r( $driver_incidents ) . '
+ -->';
 
 					if ( isset( $max ) && $max < count( $driver_incidents ) ) {
 						$max = count( $driver_incidents );
@@ -992,10 +995,6 @@ max = ' . $max . '
 					}
 
 				}
-echo '<!--
-3 ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
- ' . print_r( $incident_results, true ) . '
- -->';
 				asort( $incident_results );
 echo '<!--
 ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
