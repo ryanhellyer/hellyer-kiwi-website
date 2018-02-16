@@ -965,6 +965,10 @@ class SRC_Core {
 
 				// Work out who gets points for the least incidents
 				// Work out how many races there were - only want to count drivers who completed both races
+echo '<!--
+2 - ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
+ ' . print_r( $incident_results, true ) . '
+ -->';
 				foreach ( $incident_results as $x => $driver_incidents ) {
 
 					if ( isset( $max ) && $max < count( $driver_incidents ) ) {
@@ -985,11 +989,10 @@ class SRC_Core {
 
 				}
 				asort( $incident_results );
-echo '<!--xxxxxxxxxxxxxxxxxxxxxxxxxxx
-
+echo '<!--
 ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
-
- ' . print_r( $incident_results, true ) . '-->';
+ ' . print_r( $incident_results, true ) . '
+ -->';
 
 				$least_incident_drivers = array();
 				unset( $least_incidents );
