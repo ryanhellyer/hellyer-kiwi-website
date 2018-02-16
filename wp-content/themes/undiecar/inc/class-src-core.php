@@ -1015,16 +1015,15 @@ echo '<!--
 					}
 
 				}
-echo "\n<!--\n";
-print_r(  $least_incident_drivers  );
-echo "\n-----------------\n";
-print_r( $incident_results );
-echo "\n-->\n";
 
 				// Add least incident points
 				foreach ( $least_incident_drivers as $lkey => $name ) {
 					if ( isset( $stored_results[$name] ) ) {
 						$stored_results[$name] = $stored_results[$name] + 1;
+echo '<!--
+NAME: ' . $name . '
+RACE: ' . get_the_title( get_the_ID() ) . '
+-->';
 					} else {
 						$stored_results[$name] = 1;
 					}
