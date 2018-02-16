@@ -877,9 +877,6 @@ class SRC_Core {
 					$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
 					if ( is_array( $results ) ) {
-echo '<!--
-RESULTS: ' . $race_number . ' - ' . json_encode( $results ) . '
--->';
 
 						// Add points for finishing position and calc incidents
 						foreach ( $results as $pos => $result ) {
@@ -965,9 +962,6 @@ RESULTS: ' . $race_number . ' - ' . json_encode( $results ) . '
 					}
 
 				}
-echo '<!--
-LEAST INCIDENTS STORED 1: ' . print_r( $incident_results, true ) . '
--->';
 
 				// Work out who gets points for the least incidents
 				// Work out how many races there were - only want to count drivers who completed both races
@@ -1021,15 +1015,7 @@ LEAST INCIDENTS STORED 1: ' . print_r( $incident_results, true ) . '
 					// Store least incident info in events
 					if ( is_array( $least_incident_drivers ) ) {
 						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
-echo '<!--
-JSON: ' . json_encode( $stored_results ) . '
-KEY: ' . $key . '
-RACE NUMBER: ' . $race_number . '
-ID: ' . get_the_ID() . '
-LEAST INCIDENTS STORED: ' . print_r( get_post_meta( get_the_ID(), '_least_incidents', true ), true ) . '
--->';
 					} else {
-echo '<!-- DELETING -->';
 						delete_post_meta( get_the_ID(), '_least_incidents' );
 					}
 
