@@ -1021,6 +1021,9 @@ POINTS: ' . $stored_results[$name] . '
 					// Store least incident info in events
 					if ( is_array( $least_incident_drivers ) ) {
 						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
+echo '<!--
+LEAST INCIDENTS STORED: ' . $least_incident_drivers . '
+-->';
 					} else {
 						delete_post_meta( get_the_ID(), '_least_incidents' );
 					}
