@@ -673,6 +673,10 @@ class SRC_Events extends SRC_Core {
 		$nav_html .= '</div>';
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
+echo '<!--
+ID: ' get_the_ID() . '
+LEAST INCIDENTS EVENT: ' . print_r( $least_incidents, true ) . '
+-->';
 		$least_incidents_text = '';
 		if ( is_array( $least_incidents ) ) {
 			foreach ( $least_incidents as $key => $driver ) {
@@ -694,6 +698,7 @@ class SRC_Events extends SRC_Core {
 			'posts_per_page' => 100
 		) );
 
+/*
 		$event_id = get_the_ID();
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
@@ -706,8 +711,7 @@ class SRC_Events extends SRC_Core {
 			}
 			wp_reset_postdata();
 		}
-
-
+*/
 
 		$bonus_points = '';
 		if (
