@@ -982,7 +982,7 @@ echo '<!--
 				foreach ( $incident_results as $x => $driver_incidents ) {
 
 					if ( $max !== count( $driver_incidents ) ) {
-						unset( $incident_results[$x] );
+//						unset( $incident_results[$x] );
 					} else {
 						$incident_results[$x] = array_sum( $driver_incidents );
 					}
