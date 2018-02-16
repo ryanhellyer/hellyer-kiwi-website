@@ -669,7 +669,7 @@ class SRC_Events extends SRC_Core {
 		if ( isset( $this->event['next_round'] ) && false !== $this->event['next_round'] ) {
 			$url = get_permalink( $this->event['next_round']['id'] );
 			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'src' ) . '&raquo;</a>';
-		}-
+		}
 		$nav_html .= '</div>';
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );

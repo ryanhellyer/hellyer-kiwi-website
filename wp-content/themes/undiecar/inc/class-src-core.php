@@ -1008,7 +1008,7 @@ class SRC_Core {
 						$stored_results[$name] = $stored_results[$name] + 1;
 echo '<!--
 NAME: ' . $name . '
-RACE: ' . get_the_title( get_the_ID() ) . '
+RACE: ' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
 POINTS: ' . $stored_results[$name] . '
 -->';
 					} else {
