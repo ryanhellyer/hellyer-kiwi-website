@@ -973,16 +973,8 @@ class SRC_Core {
 					} else if ( ! isset( $max ) ) {
 						$max = count( $driver_incidents );
 					}
-//echo '<!--zzzz ' . $x . ': ' . $max . ' -->
-//';
 
 				}
-/*
-echo '<!--
-max = ' . $max . '
- -->';
- */
-
 
 				// Remove drivers who weren't in both races
 				foreach ( $incident_results as $x => $driver_incidents ) {
@@ -995,12 +987,6 @@ max = ' . $max . '
 
 				}
 				asort( $incident_results );
-echo '<!--
-' . get_the_ID() . ' - ' . get_the_title( get_the_ID() ) . '
-' . print_r( $incident_results, true ) . '
- -->';
-/*
- */
 
 				$least_incident_drivers = array();
 				unset( $least_incidents );
@@ -1023,6 +1009,7 @@ echo '<!--
 echo '<!--
 NAME: ' . $name . '
 RACE: ' . get_the_title( get_the_ID() ) . '
+POINTS: ' . $stored_results[$name] . '
 -->';
 					} else {
 						$stored_results[$name] = 1;
