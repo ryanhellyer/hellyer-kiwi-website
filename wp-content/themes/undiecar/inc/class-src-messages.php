@@ -126,8 +126,10 @@ class SRC_Messages extends SRC_Core {
 		'click',
 		function (e){
 
-			var chunk = e.target.dataset.message + \"\\n\";
-			document.getElementById( '_message' ).innerHTML += chunk;
+			if ( 'add-message-chunk' === e.target.classList[0] ) {
+				var chunk = e.target.dataset.message + \"\\n\\n\";
+				document.getElementById( '_message' ).innerHTML += chunk;
+			}
 
 		}
 	);
