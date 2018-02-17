@@ -128,7 +128,7 @@ class SRC_Events extends SRC_Core {
 			array(
 				'public'             => true,
 				'publicly_queryable' => true,
-				'label'              => __( 'Events', 'src' ),
+				'label'              => esc_html__( 'Events', 'src' ),
 				'supports'           => array( 'title', 'editor' ),
 				'menu_icon'          => 'dashicons-flag',
 			)
@@ -279,6 +279,8 @@ class SRC_Events extends SRC_Core {
 
 			}
 
+			wp_reset_postdata();
+
 		}
 
 		return $drivers_array;
@@ -318,6 +320,8 @@ class SRC_Events extends SRC_Core {
 				$season_name = get_the_title();
 
 			}
+
+			wp_reset_postdata();
 		}
 
 		// Get all events from that season
@@ -357,6 +361,7 @@ class SRC_Events extends SRC_Core {
 
 			}
 
+			wp_reset_postdata();
 		}
 		wp_reset_query();
 
@@ -445,6 +450,7 @@ class SRC_Events extends SRC_Core {
 
 			}
 
+			wp_reset_postdata();
 		}
 
 		wp_reset_query();
@@ -774,7 +780,6 @@ class SRC_Events extends SRC_Core {
 				}
 
 			}
-
 
 			wp_reset_postdata();
 		}
@@ -1442,6 +1447,8 @@ class SRC_Events extends SRC_Core {
 				}
 
 			}
+
+			wp_reset_postdata();
 		}
 		ksort( $events );
 
@@ -1469,6 +1476,8 @@ class SRC_Events extends SRC_Core {
 				}
 
 			}
+
+			wp_reset_postdata();
 		}
 		krsort( $events );
 
