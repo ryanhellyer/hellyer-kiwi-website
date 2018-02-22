@@ -97,14 +97,16 @@ echo "TEST - read oval\n";
 			$stat_count = count( $stats[$type] );
 			//$stat_count = 2;
 			foreach ( $stats[$type] as $key => $values ) {
-echo $key . ': ';print_r( $values );die;
 				$values = str_replace( '"', '', $values );
 
 				$values = explode( ',', $values );
 
 				// Get drivers name for array key
 				$drivers_name = esc_html( $values[0] );
-
+if ( 'Adam Biebel' === $drivers_name ) {
+	print_r( $values );
+	die;
+}
 				// Creating individual drivers data array
 				$data = array();
 
