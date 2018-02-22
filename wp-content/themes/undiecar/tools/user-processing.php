@@ -305,6 +305,7 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 			'number' => 1000,
 		)
 	);
+	$missed = $custids = '';
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->data->ID;
 
@@ -314,11 +315,20 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 			'' !== get_user_meta( $driver_id, 'custid', true )
 		) {
 
-			echo get_user_meta( $driver_id, 'custid', true ) . ',';
+			$custids .= get_user_meta( $driver_id, 'custid', true ) . ',';
 
 			$count++;
+		} else if (
+			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
+			&&
+			'' !== get_user_meta( $driver_id, 'custid', true )
+		) {
+			$missed .= $driver->data->display_name . "\n";
 		}
+
 	}
+
+	echo $custids . "\n\n\MISSED:\n\n" . $missed;
 
 	echo "\nTotal count: " . $count;
 	die;
