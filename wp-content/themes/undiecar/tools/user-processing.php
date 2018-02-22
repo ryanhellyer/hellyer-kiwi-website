@@ -318,6 +318,8 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 		) {
 
 			$custids .= get_user_meta( $driver_id, 'custid', true ) . ',';
+$leagues['undie_lights'] = true;
+update_user_meta( $driver_id, '_add_to_league', $leagues ) . ',';
 
 			$count++;
 		} else if (
