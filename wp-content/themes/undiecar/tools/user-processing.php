@@ -321,7 +321,7 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 		} else if (
 			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
 			&&
-			'' !== get_user_meta( $driver_id, 'custid', true )
+			'' === get_user_meta( $driver_id, 'custid', true )
 		) {
 			$missed .= $driver->data->display_name . "\n";
 		}
