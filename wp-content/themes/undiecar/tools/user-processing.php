@@ -68,7 +68,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 					home_url() . '/?user_processing=update_iracing_info&start=' . ( $end + 1 )
 				)
 			. '\'" />';
-			echo 'Redirecting';
+			echo '<br><br><strong>Redirecting</strong>';
 			die;
 
 		}
