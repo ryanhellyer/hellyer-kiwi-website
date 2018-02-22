@@ -67,7 +67,7 @@ $contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future
 
 
 
-//echo "\n\n\n\n\n\n\n............\nTotal number of drivers sent messages:\n".count( explode( ',', $contacted ) );die;
+echo "\n\n\n\n\n\n\n............\nTotal number of drivers sent messages:\n".count( explode( ',', $contacted ) );die;
 
 $contacts = '';
 foreach ( array_merge(

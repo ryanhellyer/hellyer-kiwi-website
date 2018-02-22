@@ -1,0 +1,17 @@
+<script>
+var members_list = '250452,123,';
+
+var members_list_array = members_list.split(",");
+
+console.log(members_list_array);
+
+var member_id = members_list_array[0];
+console.log(   member_id   );
+
+members_list_array.splice( 0, 1 ); // Remove the name
+
+console.log(members_list_array);
+
+members_list = members_list_array.join( ',', members_list_array );
+
+</script>

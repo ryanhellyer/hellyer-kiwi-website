@@ -4,7 +4,6 @@ if ( is_super_admin() ) {
 	require( 'tools/emails.php' );
 	require( 'tools/pull-names-from-csv.php' );
 	require( 'tools/convert-json.php' );
-	require( 'tools/girls.php' );
 	require( 'tools/create-user.php' );
 	require( 'tools/TEST-auto-news.php' );
 }

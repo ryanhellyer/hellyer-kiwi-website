@@ -277,3 +277,49 @@ if (
 
 
 //		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * List all drivers with customer ID.
+ */
+if ( 'customer_ids' === $_GET['user_processing'] ) {
+
+	$count = 0;
+	$drivers = get_users(
+		array(
+			'number' => 1000,
+		)
+	);
+	foreach ( $drivers as $driver ) {
+		$driver_id = $driver->data->ID;
+
+		if (
+			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
+			&&
+			'' !== get_user_meta( $driver_id, 'custid', true )
+		) {
+
+			echo get_user_meta( $driver_id, 'custid', true ) . ',';
+
+			$count++;
+		}
+	}
+
+	echo "\nTotal count: " . $count;
+	die;
+}

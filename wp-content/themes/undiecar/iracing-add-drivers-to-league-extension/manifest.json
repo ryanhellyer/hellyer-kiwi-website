@@ -1,8 +1,8 @@
 {
-	"name": "iRacing Messaging",
+	"name": "iRacing add driver to league",
 	"version": "0.1",
 	"manifest_version": 2,
-	"description": "Automated sending of messages via iRacing.com",
+	"description": "Automated addition of league members via iRacing.com",
 	"homepage_url": "https://geek.hellyer.kiwi/",
 /*
 	"background": {
@@ -28,10 +28,11 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"http://members.iracing.com/membersite/member/LeagueDirectory.do"
+				"http://members.iracing.com/membersite/member/LeagueView.do?league=*",
+				"http://members.iracing.com/membersite/member/SendLeagueRequest"
 			],
 			"js": [
-				"iracing-messages.js"
+				"iracing-add-drivers-to-league.js"
 			]
 		}
 	]
