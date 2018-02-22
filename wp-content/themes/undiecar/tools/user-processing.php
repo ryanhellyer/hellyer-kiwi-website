@@ -299,7 +299,7 @@ if (
  */
 if ( 'customer_ids' === $_GET['user_processing'] ) {
 
-	$count = 0;
+	$count = $count_missed = 0;
 	$drivers = get_users(
 		array(
 			'number' => 1000,
@@ -324,12 +324,15 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 			'' === get_user_meta( $driver_id, 'custid', true )
 		) {
 			$missed .= $driver->data->display_name . "\n";
+
+			$count_missed++;
 		}
 
 	}
 
 	echo $custids . "\n\n\MISSED:\n\n" . $missed;
 
-	echo "\nTotal count: " . $count;
+	echo "\nTotal count: " . $count . "\n";
+	echo "\nMiss count: " . $count_missed;
 	die;
 }
