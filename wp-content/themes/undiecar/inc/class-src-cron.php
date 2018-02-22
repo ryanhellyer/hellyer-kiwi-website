@@ -110,6 +110,9 @@ echo "TEST - read oval\n";
 				if ( isset( $values[1] ) ) {
 					$data['custid'] = $values[1];
 				}
+else {
+	echo $drivers_name;die;
+}
 				if ( isset( $values[2] ) ) {
 					$data['location'] = $values[2];
 				}
