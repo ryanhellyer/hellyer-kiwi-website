@@ -97,6 +97,7 @@ echo "TEST - read oval\n";
 			$stat_count = count( $stats[$type] );
 			//$stat_count = 2;
 			foreach ( $stats[$type] as $key => $values ) {
+echo $key . ': ';print_r( $values );die;
 				$values = str_replace( '"', '', $values );
 
 				$values = explode( ',', $values );
@@ -110,9 +111,7 @@ echo "TEST - read oval\n";
 				if ( isset( $values[1] ) ) {
 					$data['custid'] = $values[1];
 				}
-else if ( '' !== $drivers_name ) {
-	$drivers_name;die;
-}
+
 				if ( isset( $values[2] ) ) {
 					$data['location'] = $values[2];
 				}
