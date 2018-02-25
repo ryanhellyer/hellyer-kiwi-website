@@ -22,8 +22,8 @@ class SRC_Register extends SRC_Core {
 		add_action( 'init',                array( $this, 'process_login' ) );
 		add_shortcode( 'src-register',     array( $this, 'register_shortcode' ) );
 		add_shortcode( 'src-login',        array( $this, 'login_shortcode' ) );
-		add_action( 'src_register_start',  array( $this, 'register_start_fields' ) );
-		add_action( 'src_register_end',    array( $this, 'register_end_fields' ) );
+		add_filter( 'src_register_start',  array( $this, 'register_start_fields' ) );
+		add_filter( 'src_register_end',    array( $this, 'register_end_fields' ) );
 
 	}
 
@@ -137,7 +137,7 @@ $message_text .= ' The form below is broken, please use the login page until the
 <form action="' . esc_attr( $url ) . '" method="POST">
 ';
 
-		do_action( 'src_register_start' );
+		$content = apply_filters( 'src_register_start', $content );
 
 		$content .= '
 
@@ -164,7 +164,7 @@ $message_text .= ' The form below is broken, please use the login page until the
 	<input name="src-password" type="password" value="' . esc_attr( $password ) . '" placeholder="' . esc_attr( $password_placeholder ) . '" required />';
 		}
 
-		do_action( 'src_register_end' );
+		$content = apply_filters( 'src_register_end', $content );
 
 		if ( defined( 'SRC_USERNAME_EXISTS' ) || defined( 'SRC_EMAIL_EXISTS' ) ) {
 			$joinus_text = __( 'Sign in', 'src' );
@@ -238,11 +238,11 @@ $message_text .= ' The form below is broken, please use the login page until the
 	 *
 	 * @global  object  $wpdb  Accessed to allow for faster querying
 	 */
-	public function register_start_fields() {
+	public function register_start_fields( $content ) {
 		global $wpdb;
 
+/*
 		if ( is_user_logged_in() ) {
-
 			// Work out ID of special events
 			$post_title = 'Special Events';
 			$special_event_col = $wpdb->get_col( "select ID from $wpdb->posts where post_title LIKE '" . $post_title . "%' ");
@@ -282,33 +282,37 @@ $message_text .= ' The form below is broken, please use the login page until the
 				'fields'                 => 'ids',
 			);
 
-			echo '<p>' . __( 'Which events would you like to sign up for?', 'src' );
-			echo '<input type="checkbox" name="src-events[]" value="' . esc_attr( 'regular-season' ) . '"><label>' . esc_html__( 'Regular Season', 'src' ) . '</label>';
+			$content .= '<p>' . __( 'Which events would you like to sign up for?', 'src' );
+			$content .= '<input type="checkbox" name="src-events[]" value="' . esc_attr( 'regular-season' ) . '"><label>' . esc_html__( 'Regular Season', 'src' ) . '</label>';
 			$posts = new WP_Query( $query_args );
 			if ( $posts->have_posts() ) {
 				while ( $posts->have_posts() ) {
 					$posts->the_post();
 
-					echo '<input type="checkbox" name="src-events[]" value="' . esc_attr( get_the_title( get_the_ID() ) ) . '"><label>' . esc_html( get_the_title( get_the_ID() ) ) . '</label>';
+					$content .= '<input type="checkbox" name="src-events[]" value="' . esc_attr( get_the_title( get_the_ID() ) ) . '"><label>' . esc_html( get_the_title( get_the_ID() ) ) . '</label>';
 				}
 			}
-			echo '</p>';
+			$content .= '</p>';
 
 		}
-
+*/
+		return $content;
 	}
 
 	/**
 	 * Extra input fields for profile editing.
 	 */
-	public function register_end_fields() {
+	public function register_end_fields( $content ) {
 
+/*
 		if ( is_user_logged_in() ) {
-			echo '
+			$content .= '
 	<input name="src-website" type="website" placeholder="Website address" />
 	<textarea name="src-description" placeholder="Add a description about yourself here. Perhaps include previous sim or real world racing experience, favourite games etc."></textarea>';
 		}
-
+*/
+		
+		return $content;
 	}
 
 	/**

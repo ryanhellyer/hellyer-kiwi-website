@@ -19,6 +19,44 @@ class SRC_Messages extends SRC_Core {
 		add_action( 'init',           array( $this, 'init' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
 		add_action( 'save_post',      array( $this, 'meta_boxes_save' ), 10, 2 );
+
+		add_shortcode( 'b',         array( $this, 'shortcode_b' ) );
+		add_shortcode( 'url',       array( $this, 'shortcode_url' ) );
+		add_shortcode( 'img',       array( $this, 'shortcode_img' ) );
+		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
+	}
+
+	/**
+	 * Since shortcodes don't perfectly match BB Code, we fudge the syntax a little.
+	 */
+	public function shortcode_fudging( $content ) {
+
+		if ( 'message' !== get_post_type() ) {
+			return $content;
+		}
+
+		$content = get_post_meta( get_the_ID(), '_message', true );
+		$content = str_replace( '[url=', '[url temp=', $content );
+		return $content;
+	}
+
+	public function shortcode_b( $args = null, $content ) {
+		return '<strong>' . $content . '</strong>';
+	}
+
+	public function shortcode_url( $args, $content = null ) {
+
+		if ( isset( $args['temp'] ) ) {
+			$url = $args['temp'];
+		} else {
+			$url = $content;
+		}
+
+		return '<a href="' . esc_url( $url ) . '">' . $content . '</a>';
+	}
+
+	public function shortcode_img( $args = null, $url ) {
+		return '<img src="' . esc_url( $url ) . '" />';
 	}
 
 	/**
@@ -30,7 +68,8 @@ class SRC_Messages extends SRC_Core {
 			'message',
 			array(
 				'public'             => true,
-				'publicly_queryable' => false,
+//				'publicly_queryable' => false,
+'publicly_queryable' => true,
 				'label'              => esc_html__( 'Messages', 'src' ),
 				'supports'           => array( 'title', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-flag',
@@ -84,7 +123,7 @@ class SRC_Messages extends SRC_Core {
 			//
 		} else {
 
-			$buttons = '<p>';
+			$buttons = '<p style="font-size:14px;font-family:monospace">';
 
 			$query = new WP_Query( array(
 				'posts_per_page'         => 100,
@@ -98,7 +137,7 @@ class SRC_Messages extends SRC_Core {
 				while ( $query->have_posts() ) {
 					$query->the_post();
 
-					$buttons .= '<span data-message="' . esc_attr( get_post_meta( get_the_ID(), '_message', true ) ) . '" class="add-message-chunk button" id="' . esc_attr( 'chunk-' . get_the_ID() ) . '">' . esc_html( get_the_title( get_the_ID() ) ) . "</span>\n";
+					$buttons .= '[' . esc_html( sanitize_title( get_the_title( get_the_ID() ) ) ) . '] &nbsp; ';
 
 				}
 
@@ -107,36 +146,6 @@ class SRC_Messages extends SRC_Core {
 			$buttons .= '</p>';
 
 			$html = $buttons . $html;
-
-			$html .= "
-<script>
-(function () {
-
-	window.addEventListener(
-		'load',
-		function (){
-			//
-		}
-	);
-
-	/**
-	 * Handle clicks.
-	 */
-	window.addEventListener(
-		'click',
-		function (e){
-
-			if ( 'add-message-chunk' === e.target.classList[0] ) {
-				var chunk = e.target.dataset.message + \"\\n\\n\";
-				document.getElementById( '_message' ).innerHTML += chunk;
-			}
-
-		}
-	);
-
-})();
-
-</script>";
 		}
 
 		echo $html;
@@ -164,5 +173,5 @@ class SRC_Messages extends SRC_Core {
 		}
 
 	}
- 
- }
+
+}
