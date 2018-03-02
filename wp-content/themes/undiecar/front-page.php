@@ -12,7 +12,7 @@ get_header();
 
 <section class="latest-items" id="latest-news">
 	<header>
-		<h2>Latest News</h2>
+		<h2><?php esc_html_e( 'Latest News', 'undiecar' ); ?></h2>
 	</header><?php
 
 	// Load main loop
@@ -72,8 +72,10 @@ get_header();
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'date', true );
 
+			unset( $time );
 			foreach ( array( 3, 2, 1 ) as $race ) {
 				$race_time = get_post_meta( get_the_ID(), 'event_race-' . $race . '_timestamp', true );
+
 				if ( '' !== $race_time && ! isset( $time ) ) {
 					$exploded_race_time = explode( ':', $race_time );
 
@@ -84,7 +86,7 @@ get_header();
 
 			}
 			$event_time = $event_date + $time;
-
+			$event_time = $event_time + ( 2 * HOUR_IN_SECONDS ); // Show on calendar for two hours after it happened
 			$track_id = get_post_meta( $event_id, 'track', true );
 			$track_query = new WP_Query( array(
 				'p'                      => $track_id,
@@ -147,7 +149,7 @@ get_header();
 				$season_id = get_post_meta( $event['event_id'], 'season', true );
 				$season_name = get_the_title( $season_id );
 				if ( 'Special Events' === $season_name ) {
-					echo 'Special Event';
+					esc_html_e( 'Special Event', 'undiecar' );
 				} else {
 					echo esc_html( $event['track_type'] );
 				}
@@ -215,7 +217,7 @@ get_header();
 
 <section class="latest-items" id="latest-media">
 	<header>
-		<h2>Latest Photos</h2>
+		<h2><?php esc_html_e( 'Latest Photos', 'undiecar' ); ?></h2>
 	</header><?php
 
 	// Load main loop
@@ -252,7 +254,7 @@ get_header();
 
 	?>
 
-	<a href="<?php echo esc_url( home_url() . '/gallery/' ); ?>" class="highlighted-link">See more photos</a>
+	<a href="<?php echo esc_url( home_url() . '/gallery/' ); ?>" class="highlighted-link"><?php esc_html_e( 'See more photos', 'undiecar' ); ?></a>
 
 </section><!-- #latest-media -->
 

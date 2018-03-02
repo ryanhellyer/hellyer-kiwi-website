@@ -39,9 +39,7 @@ class Undiecar_Discord {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
 
 		add_action( 'cron_discord_task', array( $this, 'import_from_discord' ) );
-//if ( isset( $_GET['test_discord'] ) ) {
-//add_action( 'admin_init', array( $this, 'import_from_discord' ) );
-//}
+//if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, 'import_from_discord' ) );}
 	}
 
 	public function import_from_discord() {
@@ -90,9 +88,8 @@ class Undiecar_Discord {
 
 					$attachment_id = media_sideload_image( $file_url, null, $file_description, 'id' );
 
-					// Generate the metadata for the attachment, and update the database record.
-					$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
-					wp_update_attachment_metadata( $attachment_id, $attachment_data );
+					// Get new file name (may have changed on uploading)
+					$file_name = basename ( get_attached_file( $attachment_id ) );
 
 					update_post_meta( $attachment_id, 'gallery', true );
 					update_post_meta( $attachment_id, 'discord_message_id', $message_id );
