@@ -1,6 +1,7 @@
 
 function iracing_add_drivers_to_league_post(path, params) {
-/*
+	console.log(params);
+
 	var form = document.createElement("form");
 	form.setAttribute("method", 'post');
 	form.setAttribute("action", path);
@@ -18,7 +19,7 @@ function iracing_add_drivers_to_league_post(path, params) {
 
 	document.body.appendChild(form);
 	form.submit();
-*/
+
 }
 
 /**
@@ -67,7 +68,7 @@ chrome.storage.sync.get({
 		iracing_add_drivers_to_league_post(
 			'/membersite/member/SendLeagueRequest',
 			{
-				custid: items.member_id,
+				custid: member_id,
 				leagueid: items.league_id
 			}
 		);
