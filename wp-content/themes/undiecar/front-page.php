@@ -150,14 +150,14 @@ get_header();
 				$season_name = get_the_title( $season_id );
 				$season_label = get_post_meta( $season_id, 'label', true );
 
-				if ( '' !== $season_label ) {
-					echo '<span>' . esc_html( $season_label ) . '</span>';
-				}
-
 				if ( 'Special Events' === $season_name ) {
 					esc_html_e( 'Special Event', 'undiecar' );
 				} else {
 					echo esc_html( $event['track_type'] );
+				}
+
+				if ( '' !== $season_label ) {
+					echo '<span class="season-label">' . esc_html( $season_label ) . '</span>';
 				}
 
 				$day_of_week = date( 'D', $event['event_date'] );
