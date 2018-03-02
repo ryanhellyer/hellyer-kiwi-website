@@ -313,8 +313,15 @@ class SRC_Seasons extends SRC_Core {
 
 		$cmb = new_cmb2_box( array(
 			'id'           => $slug,
-			'title'        => esc_html__( 'Points', 'src' ),
+			'title'        => esc_html__( 'Season', 'src' ),
 			'object_types' => array( 'season', ),
+		) );
+
+		$cmb->add_field( array(
+			'name'       => esc_html__( 'Label', 'src' ),
+			'description'=> esc_html__( 'Used as a tagline or to indicater the broad title of the championship, perhaps to group a series of seasons together', 'src' ),
+			'id'         => 'label',
+			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(

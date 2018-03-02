@@ -148,6 +148,12 @@ get_header();
 
 				$season_id = get_post_meta( $event['event_id'], 'season', true );
 				$season_name = get_the_title( $season_id );
+				$season_label = get_post_meta( $season_id, 'label', true );
+
+				if ( '' !== $season_label ) {
+					echo '<span>' . esc_html( $season_label ) . '</span>';
+				}
+
 				if ( 'Special Events' === $season_name ) {
 					esc_html_e( 'Special Event', 'undiecar' );
 				} else {
