@@ -157,8 +157,9 @@ get_header();
 				}
 
 				if ( '' !== $season_label ) {
-					echo '<span class="season-label">' . esc_html( $season_label ) . '</span>';
+					$season_label = ' '; // Need to leave spacer there to ensure the blocks line up
 				}
+				echo '<span class="season-label">' . esc_html( $season_label ) . '</span>';
 
 				$day_of_week = date( 'D', $event['event_date'] );
 				$month = date( 'M', $event['event_date'] );
