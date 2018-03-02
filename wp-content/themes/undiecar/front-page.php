@@ -156,7 +156,7 @@ get_header();
 					echo esc_html( $event['track_type'] );
 				}
 
-				if ( '' !== $season_label ) {
+				if ( '' === $season_label ) {
 					$season_label = ' '; // Need to leave spacer there to ensure the blocks line up
 				}
 				echo '<span class="season-label">' . esc_html( $season_label ) . '</span>';
