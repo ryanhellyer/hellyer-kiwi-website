@@ -7,6 +7,7 @@
 	</footer>
 </div>
 
+xxx
 <esi:include src="https://stuff.hellyer.kiwi/temp/test.txt" />
 
 <?php
