@@ -8,7 +8,7 @@
 </div>
 
 xxx
-<esi:include src="https://stuff.hellyer.kiwi/temp/test.txt" />
+<esi:include src="/license.txt" />
 
 <?php
 	// Regular footer code
