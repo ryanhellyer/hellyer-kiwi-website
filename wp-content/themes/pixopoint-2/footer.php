@@ -7,10 +7,6 @@
 	</footer>
 </div>
 
-<!--
-<esi:include src="/license.txt" />
--->
-
 <?php
 	// Regular footer code
 	wp_footer();
