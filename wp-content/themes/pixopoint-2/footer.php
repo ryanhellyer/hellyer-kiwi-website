@@ -7,6 +7,8 @@
 	</footer>
 </div>
 
+<esi:include src="https://stuff.hellyer.kiwi/temp/test.txt" />
+
 <?php
 	// Regular footer code
 	wp_footer();
