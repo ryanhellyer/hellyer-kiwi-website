@@ -7,8 +7,9 @@
 	</footer>
 </div>
 
-xxx
+<!--
 <esi:include src="/license.txt" />
+-->
 
 <?php
 	// Regular footer code
