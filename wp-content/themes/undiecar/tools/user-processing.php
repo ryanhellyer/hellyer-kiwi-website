@@ -208,6 +208,7 @@ if ( 'special' === $_GET['user_processing'] ) {
 		$driver_id = $driver->data->ID;
 
 		if (
+/*
 			(
 				'special' === get_user_meta( $driver_id, 'season', true )
 				||
@@ -216,6 +217,7 @@ if ( 'special' === $_GET['user_processing'] ) {
 				'' == get_user_meta( $driver_id, 'season', true )
 			)
 			&&
+*/
 			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
 		) {
 			echo $driver->data->display_name . ',';
