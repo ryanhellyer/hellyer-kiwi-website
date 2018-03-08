@@ -39,7 +39,7 @@ class Undiecar_Discord {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
 
 		add_action( 'cron_discord_task', array( $this, 'import_from_discord' ) );
-//if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, 'import_from_discord' ) );}
+if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, 'import_from_discord' ) );}
 	}
 
 	public function import_from_discord() {
