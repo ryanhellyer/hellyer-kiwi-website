@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-03-09 07:17:47+0000\n"
+"PO-Revision-Date: 2018-03-09 08:49:50+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -83,10 +83,6 @@ msgstr "Hilfe bei der Einstellung für das Kategorie-Präfix"
 msgid " Category URLs"
 msgstr "Kategorie-URLs"
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:21
-msgid "Knowledge Graph"
-msgstr "Wissensdatenbank"
-
 #: admin/views/tabs/metas/general/homepage.php:14
 msgid "Learn more about the homepage setting"
 msgstr "Erfahre mehr über die Homepage-Einstellung"
@@ -136,6 +132,10 @@ msgstr "Archive für Autoren ohne Beiträge"
 msgid "Not showing the archives for authors without posts in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 msgstr "Technisch gesehen, resultiert das Nicht-Anzeigen der Archive von Autoren ohne Beiträge in den Suchergebnissen darin, dass diese Archive eine %1$s robots Meta-Angabe aufweisen und aus den XML Sitemaps ausgeschlossen werden. %2$sWeitere Infos zu den Einstellungen für Suchergebnisse%3$s."
 
+#: admin/views/tabs/metas/general/knowledge-graph.php:21
+msgid "Knowledge Graph"
+msgstr "Knowledge Graph"
+
 #: admin/views/tabs/dashboard/webmaster-tools.php:49
 msgid "Google verification code"
 msgstr "Google Verifizierungscode"
@@ -162,11 +162,6 @@ msgstr "Holen dir deinen Bing-Verifizierungscode in den %1$sBing Webmaster Tools
 msgid "Get your Google verification code in %1$sGoogle Search Console%2$s."
 msgstr "Holen dir deinen Google-Verifizierungscode in den %1$sGoogle Search Console%2$s."
 
-#. translators: 1: link open tag; 2: link close tag.
-#: admin/views/tabs/dashboard/webmaster-tools.php:63
-msgid "Get your Yandex verification code in %1$sYandex Webmaster Tools%2$s."
-msgstr "Holen dir deinen Yandex-Verifizierungscode in den n %1$sYandex Webmaster Tools%2$s."
-
 #: admin/views/tabs/metas/archives.php:72
 msgid "Help on the authors without posts archive search results setting"
 msgstr "Hilfe bei der Einstellung für die Suchergebnisse von Archiven der Autoren ohne Beiträge"
@@ -188,6 +183,11 @@ msgstr "Hilfe für Archiveinstellungen"
 #: admin/views/tabs/dashboard/webmaster-tools.php:19
 msgid "You can use the boxes below to verify with the different Webmaster Tools. This feature will add a verification meta tag on your home page. Follow the links to the different Webmaster Tools and look for instructions for the meta tag verification method to get the verification code. If your site is already verified, you can just forget about these."
 msgstr "Du kannst die unten stehenden Felder verwenden, um die verschiedenen Webmaster Tools zu verifizieren. Diese Einstellungsmöglichkeit fügt eine Meta-Angabe auf deiner Website hinzu. Folge den Links zu den diversen Webmaster Tools und suche nach Anweisungen für die Meta-Tag-Verifikationsmethode, um den Verifizierungscode zu erhalten. Sofern deine Site bereit verifiziert ist, kann du dies überspringen."
+
+#. translators: 1: link open tag; 2: link close tag.
+#: admin/views/tabs/dashboard/webmaster-tools.php:63
+msgid "Get your Yandex verification code in %1$sYandex Webmaster Tools%2$s."
+msgstr "Holen dir deinen Yandex-Verifizierungscode in den %1$sYandex Webmaster Tools%2$s."
 
 #: admin/views/tabs/dashboard/features.php:144
 msgid "On"
@@ -290,11 +290,6 @@ msgstr "Inhaltstypen"
 msgid "Check SEO configuration"
 msgstr "SEO-Konfiguration überprüfen"
 
-#. translators: %1$s expands to the post type name.
-#: admin/metabox/class-metabox.php:91
-msgid "Should search engines follow links on this %1$s?"
-msgstr "Sollen Suchmaschinen Links auf diese %1$s folgen?"
-
 #: admin/config-ui/fields/class-field-post-type-visibility.php:17
 msgid ""
 "Please specify what content types you would like to appear in search engines.\n"
@@ -321,16 +316,21 @@ msgstr "Möchtest du sicherstellen, dass deine %1$s-Einstellungen noch in Ordnun
 msgid "Default for %2$s, currently: %1$s"
 msgstr "Standard für %2$s, aktuell: %1$s"
 
-#. translators: %s expands to the post type name.
-#: admin/metabox/class-metabox.php:81
-#: admin/taxonomy/class-taxonomy-settings-fields.php:32
-msgid "Allow search engines to show this %s in search results?"
-msgstr "Das Anzeigen von %s in den Suchergebnissen der Suchmaschinen erlauben?"
-
 #. translators: %1$s expands to Yoast SEO.
 #: admin/class-plugin-conflict.php:152
 msgid "Toggle %1$s's XML Sitemap"
 msgstr "Ein-/Ausschalten der XML Sitemap von %1$s"
+
+#. translators: %s expands to the post type name.
+#: admin/metabox/class-metabox.php:81
+#: admin/taxonomy/class-taxonomy-settings-fields.php:32
+msgid "Allow search engines to show this %s in search results?"
+msgstr "Erlaube Suchmaschinen diesen %s in den Suchergebnissen anzuzeigen?"
+
+#. translators: %1$s expands to the post type name.
+#: admin/metabox/class-metabox.php:91
+msgid "Should search engines follow links on this %1$s?"
+msgstr "Sollen Suchmaschinen Links auf diesen %1$s folgen?"
 
 #: admin/views/tabs/social/twitterbox.php:21
 msgid "Enable this feature if you want Twitter to display a preview with images and a text excerpt when a link to your site is shared."
@@ -384,12 +384,6 @@ msgstr "Lesbarkeit: %1$sNicht verfügbar%2$s"
 #: admin/formatter/class-metabox-formatter.php:88
 msgid "Readability: %1$sOK%2$s"
 msgstr "Lesbarkeit: %1$sOK%2$s"
-
-#. translators: %1$s expands to an opening strong tag, %2$s expands to a
-#. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:82
-msgid "Readability: %1$sNeeds improvement%2$s"
-msgstr "Lesbarkeit: %1$sMuss verbessert werden%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
@@ -482,6 +476,12 @@ msgstr "Mit der Cornerstone-Funktion kannst du Cornerstone-Inhalte auf deiner We
 #: admin/views/tabs/social/facebook.php:23
 msgid "Enable this feature if you want Facebook and other social media to display a preview with images and a text excerpt when a link to your site is shared."
 msgstr "Aktiviere diese Funktion, wenn Facebook und andere soziale Medien eine Vorschau mit Bildern und einem Textauszug anzeigen sollen, wenn ein Link zu deiner Website geteilt wird."
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:82
+msgid "Readability: %1$sNeeds improvement%2$s"
+msgstr "Lesbarkeit: %1$sVerbesserung nötig%2$s"
 
 #. translators: %s expands to Yoast SEO Premium.
 #: admin/class-social-admin.php:181
@@ -701,16 +701,16 @@ msgstr "Verwalte dein Abonnement bei My Yoast"
 msgid "Enroll in the Yoast SEO for WordPress training »"
 msgstr "Zum Yoast SEO für WordPress Training anmelden »"
 
-#. translators: %1$s expands to the posttype label, %2$s expands anchor to blog
-#. post about cornerstone content, %3$s expands to </a>
-#: admin/filters/class-cornerstone-filter.php:63
-msgid "Mark the most important %1$s as 'cornerstone content' to improve your site structure. %2$sLearn more about cornerstone content%3$s."
-msgstr "Markiere die wichtigsten %1$s als 'cornerstone content', um die Struktur deiner Website zu verbessern. %2$sLerne mehr über cornerstone content%3$s."
-
 #. translators: %1$s expands to Yoast SEO.
 #: admin/pages/metas.php:55
 msgid "The search appearance settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The table below contains a list of the available variables."
 msgstr "Die \"Darstellung in der Suche\"-Einstellungen für %1$s bestehen aus Variablen, die bei der Anzeige der Seite durch bestimmte Werte von der Seite ersetzt werden. Die folgende Tabelle enthält eine Liste der verfügbaren Variablen."
+
+#. translators: %1$s expands to the posttype label, %2$s expands anchor to blog
+#. post about cornerstone content, %3$s expands to </a>
+#: admin/filters/class-cornerstone-filter.php:63
+msgid "Mark the most important %1$s as 'cornerstone content' to improve your site structure. %2$sLearn more about cornerstone content%3$s."
+msgstr "Markiere die wichtigsten %1$s als 'cornerstone content', um die Struktur deiner Website zu verbessern. %2$sLerne mehr über Cornerstone-Inhalt%3$s."
 
 #: admin/class-help-center.php:98
 msgid "Follow our Yoast SEO for WordPress training and become a certified Yoast SEO Expert!"
@@ -965,9 +965,7 @@ msgstr "Finde heraus, warum du zu %s upgraden solltest &raquo;"
 #. Premium.
 #: admin/class-social-admin.php:174
 msgid "Do you want to preview what it will look like if people share this post on %1$s? You can, with %2$s."
-msgstr ""
-"Möchtest Du sehen, wie es aussieht, wenn die Leute diesen Beitrag auf %1$s teilen?\n"
-"Kannst du, mit %2$s."
+msgstr "Möchtest du sehen, wie es aussieht, wenn die Leute diesen Beitrag auf %1$s teilen? Kannst du, mit %2$s."
 
 #. translators: %1$s: Yoast SEO. %2$s: Version number of Yoast SEO. %3$s: link
 #. to knowledge base article about solving table issue. %4$s: is anchor
@@ -1141,15 +1139,15 @@ msgstr "Diese Seite hat %1$s interne(r) Link(s), alle mit Parameter nofollow."
 msgid "Enter authorization code here..."
 msgstr "Autorisierungscode hier eingeben&hellip;"
 
-#: admin/filters/class-cornerstone-filter.php:46
-#: admin/views/tabs/dashboard/features.php:38
-msgid "Cornerstone content"
-msgstr "Cornerstone Content"
-
 #. translators: %1$s expands to Yoast SEO.
 #: admin/config-ui/fields/class-field-success-message.php:19
 msgid "%1$s will now take care of all the needed technical optimization of your site. To really improve your site's performance in the search results, it's important to start creating content that ranks well for keywords you care about. Check out this video in which we explain how to use the %1$s metabox when you edit posts or pages."
 msgstr "%1$s kümmert sich nun um die technische Optimierung deiner Seite. Um die Performance deiner Website in den Suchergebnissen wirklich zu verbessern, ist es wichtig, dass du mit der Erstellung von Inhalten beginnst, die sich gut für die Keywords eignen, die dir wichtig sind. Sehe dir dieses Video an, in dem wir dir erklären, wie du die Metabox von %1$s verwendet, wenn du Beiträge oder Seiten bearbeitest."
+
+#: admin/filters/class-cornerstone-filter.php:46
+#: admin/views/tabs/dashboard/features.php:38
+msgid "Cornerstone content"
+msgstr "Cornerstone-Inhalt"
 
 #: admin/config-ui/fields/class-field-mailchimp-signup.php:20
 msgid "Stay up-to-date"
@@ -1227,11 +1225,6 @@ msgstr "Konfiguriere %s"
 msgid "Please choose the %s configuration of your liking:"
 msgstr "Bitte wähle die gewünschte %s Konfiguration:"
 
-#. translators: 1: link open tag; 2: link close tag.
-#: admin/class-cornerstone-field.php:36
-msgid "This article is %1$scornerstone content%2$s"
-msgstr "Dieser Beitrag ist %1$sCornerstone Content%2$s"
-
 #. translators: %1$s resolves to Yoast SEO, %2$s resolves to the starting tag
 #. of the link to the wizard, %3$s resolves to the closing link tag
 #: admin/config-ui/class-configuration-page.php:227
@@ -1250,6 +1243,11 @@ msgstr "Das könnte dir gefallen"
 #: admin/config-ui/components/class-component-configuration-choices.php:41
 msgid "Welcome to the %1$s configuration wizard. In a few simple steps we'll help you configure your SEO settings to match your website's needs! %1$s will take care of all the technical optimizations your site needs."
 msgstr "Willkommen beim %1$s Konfigurations-Assistenten. In wenigen einfachen Schritten helfen wir dir, deine SEO-Einstellungen an die Bedürfnisse deiner Website anzupassen! %1$s kümmert sich um alle technischen Optimierungen, die deine Website benötigt."
+
+#. translators: 1: link open tag; 2: link close tag.
+#: admin/class-cornerstone-field.php:36
+msgid "This article is %1$scornerstone content%2$s"
+msgstr "Dieser Beitrag ist %1$sCornerstone-Inhalt%2$s"
 
 #: vendor/yoast/whip/src/messages/Whip_UpgradePhpMessage.php:49
 msgid "If you cannot upgrade your PHP version yourself, you can send an email to your host. We have %1$sexamples here%2$s. If they don't want to upgrade your PHP version, we would suggest you switch hosts. Have a look at one of our recommended %3$sWordPress hosting partners%4$s, they've all been vetted by our Yoast support team and provide all the features a modern host should provide."
