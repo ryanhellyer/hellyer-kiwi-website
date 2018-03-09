@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-03-08 16:09:25+0000\n"
+"PO-Revision-Date: 2018-03-09 07:17:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,6 +40,10 @@ msgstr "Entferne das Präfix der Kategorien"
 msgid "Help on copying the home meta description"
 msgstr "Hilfe beim Kopieren der Meta-Beschreibung der Startseite"
 
+#: admin/views/tabs/metas/media.php:19
+msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
+msgstr "Wenn du Medien (zum Beispiel ein Bild oder Video) in WordPress hochlädst, speichert es nicht nur das Medium ab, es erzeugt auch eine Anhangs-URL dafür. Diese Anhangs-Seiten sind ziemlich leer: sie enthalten das Medien-Element und, falls du einen eingegeben hast, den Titel. Wenn du diese Anhangs-Seiten nicht verwendest, ist es besser, sie zu deaktivieren und direkt zur Mediendatei zu verweisen."
+
 #: admin/views/tabs/social/accounts.php:18
 msgid "Learn more about your social profiles settings"
 msgstr "Erfahre mehr über deine Profileinstellungen für soziale Medien"
@@ -47,10 +51,6 @@ msgstr "Erfahre mehr über deine Profileinstellungen für soziale Medien"
 #: admin/views/tabs/metas/rss.php:36
 msgid "Learn more about the available variables"
 msgstr "Erfahre mehr über die verfügbaren Variablen"
-
-#: admin/views/tabs/metas/media.php:19
-msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
-msgstr "Wenn du Medien (zum Beispiel ein Bild oder Video) in WordPress hochlädst, speichert es nicht nur das Medium ab, es erzeugt auch eine Anhangs-URL dafür. Diese Anhangs-Seiten sind ziemlich leer: sie enthalten das Medien-Element und, falls du einen eingegeben hast, den Titel. Wenn du diese Anhangs-Seiten nicht verwendest, ist es besser, sie zu deaktivieren und direkt zur Mediendatei zu verweisen."
 
 #: admin/views/user-profile.php:28
 msgid "Do not allow search engines to show %s in search results."
@@ -500,11 +500,6 @@ msgstr "https://yoa.st/1uk"
 msgid "https://yoa.st/1uj"
 msgstr "https://yoa.st/1uj"
 
-#. translators: %1$s resolves to Yoast.com
-#: admin/class-yoast-dashboard-widget.php:116
-msgid "Latest blogposts on %1$s"
-msgstr "Letzte Blog Beiträge auf %1$s"
-
 #: admin/class-help-center.php:241
 msgid "Need help?"
 msgstr "Hilfe benötigt?"
@@ -521,6 +516,11 @@ msgstr "Durchsuche die Yoast Wissensdatenbank für Antworten auf deine Fragen:"
 #: admin/taxonomy/class-taxonomy-metabox.php:70
 msgid "Meta box"
 msgstr "Meta Box"
+
+#. translators: %1$s resolves to Yoast.com
+#: admin/class-yoast-dashboard-widget.php:116
+msgid "Latest blogposts on %1$s"
+msgstr "Letzte Blog-Beiträge auf %1$s"
 
 #. Translators: %1$s and $3$s expand to the admin search page for the focus
 #. keyword, %2$d expands to the number 	   of times this focus keyword has been
@@ -951,14 +951,6 @@ msgstr "Importiere von Jetpack SEO"
 msgid "Go premium!"
 msgstr "Zu Premium wechseln!"
 
-#. translators: %1$s expands to the social network's name, %2$s to Yoast SEO
-#. Premium.
-#: admin/class-social-admin.php:174
-msgid "Do you want to preview what it will look like if people share this post on %1$s? You can, with %2$s."
-msgstr ""
-"Möchtest Du sehen, wie es aussieht, wenn die Leute diesen Beitrag auf %1$s teilen?\n"
-"Kannst Du, mit %2$s."
-
 #. translators: %s expands to "Yoast SEO Premium".
 #: admin/class-premium-upsell-admin-block.php:58
 msgid "Dismiss %s upgrade motivation"
@@ -968,6 +960,14 @@ msgstr "%s Update Empfehlung ausblenden"
 #: admin/class-premium-upsell-admin-block.php:60
 msgid "Find out why you should upgrade to %s &raquo;"
 msgstr "Finde heraus, warum du zu %s upgraden solltest &raquo;"
+
+#. translators: %1$s expands to the social network's name, %2$s to Yoast SEO
+#. Premium.
+#: admin/class-social-admin.php:174
+msgid "Do you want to preview what it will look like if people share this post on %1$s? You can, with %2$s."
+msgstr ""
+"Möchtest Du sehen, wie es aussieht, wenn die Leute diesen Beitrag auf %1$s teilen?\n"
+"Kannst du, mit %2$s."
 
 #. translators: %1$s: Yoast SEO. %2$s: Version number of Yoast SEO. %3$s: link
 #. to knowledge base article about solving table issue. %4$s: is anchor
@@ -1271,13 +1271,13 @@ msgstr "Du solltest deine PHP Version entweder auf 5.6, 7.0 oder 7.1 aktualisier
 msgid "To which version should I update?"
 msgstr "Zu welcher Version sollte ich updaten?"
 
-#: vendor/yoast/whip/src/messages/Whip_UpgradePhpMessage.php:33
-msgid "Hosts have the ability to update your PHP version, but sometimes they don't dare to do that because they're afraid they'll break your site."
-msgstr "Webhoster haben die Möglichkeit deine PHP Version zu aktualisieren, aber manchmal wagen sie dies nicht, da sie befürchten deine Seite zu beschädigen."
-
 #: vendor/yoast/whip/src/messages/Whip_UpgradePhpMessage.php:32
 msgid "Hey, we've noticed that you're running an outdated version of PHP. PHP is the programming language that WordPress and Yoast SEO are built on. The version that is currently used for your site is no longer supported. Newer versions of PHP are both faster and more secure. In fact, your version of PHP no longer receives security updates, which is why we're sending you to this notice."
 msgstr "Wir haben festgestellt, dass du eine veraltete PHP Version auf deinem Server laufen hast. PHP ist die Programmiersprache in der WordPress und Yoast SEO geschrieben sind. Die Version, die aktuell für deine Seite verwendet wird, wird nicht länger unterstützt. Neuere Versionen von PHP sind sowohl schneller als auch sicherer. Da deine PHP Version keine Sicherheitsupdates mehr bekommt, zeigen wir dir diesen Hinweis an."
+
+#: vendor/yoast/whip/src/messages/Whip_UpgradePhpMessage.php:33
+msgid "Hosts have the ability to update your PHP version, but sometimes they don't dare to do that because they're afraid they'll break your site."
+msgstr "Webhoster haben die Möglichkeit deine PHP Version zu aktualisieren, aber manchmal wagen sie dies nicht, da sie befürchten deine Seite zu beschädigen."
 
 #: vendor/yoast/whip/src/messages/Whip_HostMessage.php:54
 msgid "A message from %1$s"
@@ -1445,15 +1445,6 @@ msgstr "Schritt %1$d: %2$s"
 msgid "The keyword density is %1$s, which is too low; the focus keyword was found %2$d times."
 msgstr "Die Keyword-Dichte beträgt %1$s, was ein wenig niedrig ist. Das Fokus-Keyword wurde %2$d mal gefunden."
 
-#. Translators: %1$d expands to the number of instances where 3 or more
-#. consecutive sentences start with the same word. 	   %2$d expands to the
-#. number of consecutive sentences starting with the same word.
-#: languages/yoast-seo-js.php:57
-msgid "The text contains %2$d consecutive sentences starting with the same word. Try to mix things up!"
-msgid_plural "The text contains %1$d instances where %2$d or more consecutive sentences start with the same word. Try to mix things up!"
-msgstr[0] "Dein Text enthält %2$d aufeinanderfolgende Sätze, die mit dem selben Wort beginnen. Versuche, mehr abzuwechseln."
-msgstr[1] "Dein Text enthält %1$d Instanzen, in denen %2$d oder mehr aufeinanderfolgende Sätze mit dem selben Wort beginnen. Versuche, mehr abzuwechseln."
-
 #. Translators: %1$s expands to a link on yoast.com, %2$s expands to the
 #. recommended maximum sentence length, 	   %3$s expands to the anchor end tag.
 #: languages/yoast-seo-js.php:62
@@ -1468,6 +1459,15 @@ msgid "The meta description contains %1$d sentence %2$sover %3$s words%4$s. Try 
 msgid_plural "The meta description contains %1$d sentences %2$sover %3$s words%4$s. Try to shorten these sentences."
 msgstr[0] "Die Meta Description enthält %1$d Sätze %2$süber %3$s Wörter%4$s. Versuche, diesen Satz zu kürzen."
 msgstr[1] "Die Meta Description enthält %1$d Sätze %2$süber %3$s Wörter%4$s. Versuche, diese Sätze zu kürzen."
+
+#. Translators: %1$d expands to the number of instances where 3 or more
+#. consecutive sentences start with the same word. 	   %2$d expands to the
+#. number of consecutive sentences starting with the same word.
+#: languages/yoast-seo-js.php:57
+msgid "The text contains %2$d consecutive sentences starting with the same word. Try to mix things up!"
+msgid_plural "The text contains %1$d instances where %2$d or more consecutive sentences start with the same word. Try to mix things up!"
+msgstr[0] "Dein Text enthält %2$d aufeinanderfolgende Sätze, die mit dem selben Wort beginnen. Versuche, mehr abzuwechseln."
+msgstr[1] "Dein Text enthält %1$d Instanzen, in denen %2$d oder mehr aufeinanderfolgende Sätze mit dem selben Wort beginnen. Versuche, mehr abzuwechseln."
 
 #. Translators: %1$d expands to percentage of sentences, %2$s expands to a link
 #. on yoast.com, 	   %3$s expands to the recommended maximum sentence length,
@@ -1511,6 +1511,26 @@ msgid_plural "This is more than or equal to the recommended minimum of %2$d word
 msgstr[0] "Dies ist mehr als oder exakt gleich dem empfohlenen Minimum von  %2$d Wort."
 msgstr[1] "Dies ist mehr als oder exakt gleich dem empfohlenen Minimum von  %2$d Wörtern."
 
+#. Translators: The preceding sentence is "The text contains x words.", %2$s
+#. expands to the recommended minimum of words. 	   Translators: The preceding
+#. sentence is "The text contains x words.", %2$s expands to the recommended
+#. minimum of words
+#: languages/yoast-seo-js.php:246
+msgid "This is below the recommended minimum of %2$d word. Add more content that is relevant for the topic."
+msgid_plural "This is below the recommended minimum of %2$d words. Add more content that is relevant for the topic."
+msgstr[0] "Das ist weniger als das erforderliche Minimum von %2$d Wort. Füge weitere themenrelevante Inhalte hinzu."
+msgstr[1] "Das ist weniger als das erforderliche Minimum von %2$d Wörtern. Füge weitere themenrelevante Inhalte hinzu."
+
+#. Translators: The preceding sentence is "The text contains x words.", %2$s
+#. expands to the recommended minimum of words. 	   Translators: The preceding
+#. sentence is "The text contains x words.", %2$s expands to the recommended
+#. minimum of words
+#: languages/yoast-seo-js.php:252
+msgid "This is far below the recommended minimum of %2$d word. Add more content that is relevant for the topic."
+msgid_plural "This is far below the recommended minimum of %2$d words. Add more content that is relevant for the topic."
+msgstr[0] "Das ist weit weniger als das erforderliche Minimum von %2$d Wort. Füge mehr Inhalte hinzu, die für das Thema relevant sind."
+msgstr[1] "Das ist weit weniger als das erforderliche Minimum von %2$d Wörtern. Füge mehr Inhalte hinzu, die für das Thema relevant sind."
+
 #: languages/yoast-seo-js.php:273
 msgid "The focus keyword '%1$s' does not appear in the SEO title."
 msgstr "Das Fokus-Keyword '%1$s' erscheint nicht im Seitentitel."
@@ -1544,26 +1564,6 @@ msgstr[1] "Die Titel für diese Seiten enthalten eines oder mehrere %1$s Stoppw�
 #: languages/yoast-seo-js.php:109
 msgid "%1$s of the words contain %2$sover %3$s syllables%4$s, which is less than or equal to the recommended maximum of %5$s."
 msgstr "%1$s der Wörter enthalten %2$süber %3$s Silben%4$s, was zu wenig oder gleich mit dem empfohlenen Maximum von %5$s ist."
-
-#. Translators: The preceding sentence is "The text contains x words.", %2$s
-#. expands to the recommended minimum of words. 	   Translators: The preceding
-#. sentence is "The text contains x words.", %2$s expands to the recommended
-#. minimum of words
-#: languages/yoast-seo-js.php:246
-msgid "This is below the recommended minimum of %2$d word. Add more content that is relevant for the topic."
-msgid_plural "This is below the recommended minimum of %2$d words. Add more content that is relevant for the topic."
-msgstr[0] "Das ist weniger als das erforderliche Minimum von %2$d Wort. Füge weitere themenrelevante Inhalte hinzu."
-msgstr[1] "Das ist weniger als das erforderliche Minimum von %2$d Wörtern. Füge weitere themenrelevante Inhalte hinzu."
-
-#. Translators: The preceding sentence is "The text contains x words.", %2$s
-#. expands to the recommended minimum of words. 	   Translators: The preceding
-#. sentence is "The text contains x words.", %2$s expands to the recommended
-#. minimum of words
-#: languages/yoast-seo-js.php:252
-msgid "This is far below the recommended minimum of %2$d word. Add more content that is relevant for the topic."
-msgid_plural "This is far below the recommended minimum of %2$d words. Add more content that is relevant for the topic."
-msgstr[0] "Das ist weit weniger als das erforderliche Minimum von %2$d Wort. Füge mehr Inhalte hinzu, die für das Thema relevant sind."
-msgstr[1] "Das ist weit weniger als das erforderliche Minimum von %2$d Wörtern. Füge mehr Inhalte hinzu, die für das Thema relevant sind."
 
 #. Translators: %1$s expands to the percentage of complex words, %2$s expands
 #. to a link on yoast.com, 	   %3$d expands to the recommended maximum number
@@ -1677,10 +1677,6 @@ msgstr "Umleitung auswählen"
 msgid "Take the online Site Structure Training course and learn how to structure your website!"
 msgstr "Nimm am Online-Kurs „Site Structure Training“ teil und lerne wie du deine Website strukturierst!"
 
-#: vendor/yoast/license-manager/class-license-manager.php:136
-msgid "<b>Warning!</b> Your %s license is inactive which means you're missing out on updates and support! <a href=\"%s\">Activate your license</a> or <a href=\"%s\" target=\"_blank\">get a license here</a>."
-msgstr "<b>Warnung!</b> Deine %s Lizenz ist abgelaufen und Du profitierst zur Zeit nicht mehr von den Aktualisierungen und unserem Support! <a href=\"%s\">Aktiviere Deine Lizenz</a> oder <a href=\"%s\" target=\"_blank\">hole Dir eine Lizenz</a>."
-
 #: vendor/yoast/license-manager/views/form.php:36
 msgid "INACTIVE"
 msgstr "INAKTIV"
@@ -1700,6 +1696,10 @@ msgstr "Du erhältst Aktualisierungen."
 #: vendor/yoast/license-manager/class-license-manager.php:134
 msgid "<b>Warning!</b> You didn't set your %s license key yet, which means you're missing out on updates and support! <a href=\"%s\">Enter your license key</a> or <a href=\"%s\" target=\"_blank\">get a license here</a>."
 msgstr "<b>Warnung!</b> Du hast deinen %s-Lizenzschlüssel bisher nicht eingetragen und erhältst so keine Aktualisierungen und Support! <a href=\"%s\">Gib deinen Lizenzschlüssel ein</a> oder <a href=\"%s\" target=\"_blank\">erhalte hier eine Lizenz</a>."
+
+#: vendor/yoast/license-manager/class-license-manager.php:136
+msgid "<b>Warning!</b> Your %s license is inactive which means you're missing out on updates and support! <a href=\"%s\">Activate your license</a> or <a href=\"%s\" target=\"_blank\">get a license here</a>."
+msgstr "<b>Warnung!</b> Deine %s Lizenz ist abgelaufen und du profitierst zur Zeit nicht mehr von den Aktualisierungen und unserem Support! <a href=\"%s\">Aktiviere deine Lizenz</a> oder <a href=\"%s\" target=\"_blank\">hole dir eine Lizenz</a>."
 
 #: languages/yoast-seo-js.php:398
 msgid "Please provide an SEO title by editing the snippet below."
@@ -1978,12 +1978,6 @@ msgstr "Du willst Deine SEO-Strategie selbst umsetzen und in den Griff bekommen?
 msgid "Take the %1$s course and become a certified %2$s expert!"
 msgstr "Nimm am %s-Kurs teil und werde ein zertifizierter %2$s-Experte!"
 
-#. translators: %1$s expands to Yoast SEO, %2$s is a link start tag to the
-#. plugin page on WordPress.org, %3$s is the link closing tag.
-#: admin/class-product-upsell-notice.php:135
-msgid "We've noticed you've been using %1$s for some time now; we hope you love it! We'd be thrilled if you could %2$sgive us a 5 stars rating on WordPress.org%3$s!"
-msgstr "Uns ist aufgefallen, dass Du %1$s bereits seit einiger Zeit verwendest; wir hoffen dass Du es magst! Wir würden uns sehr darüber freuen, wenn Du uns %2$sauf WordPress.org mit 5 Sternen bewerten würdest%3$s!"
-
 #. translators: %1$s is the notification dismissal link start tag, %2$s is the
 #. link closing tag.
 #: admin/class-product-upsell-notice.php:152
@@ -2002,11 +1996,11 @@ msgstr "Wenn du Schwierigkeiten hast, %1$sfülle bitte einen Bug-Report aus%2$s 
 msgid "%s &rsaquo; Configuration Wizard"
 msgstr "%s &rsaquo;-Konfigurations-Assistent"
 
-#. translators: %1$s expands to a link start tag to the Yoast Services page,
-#. %2$s to Yoast, %3$s is the link closing tag.
-#: admin/banner/class-admin-banner-sidebar.php:144
-msgid "Do you want to know how to improve your rankings? %1$sLet team %2$s help you!%3$s"
-msgstr "Willst Du wissen wie sich Dein Ranking verbessern lässt? %1$sLass Dir vom Team %2$s helfen!%3$s"
+#. translators: %1$s expands to Yoast SEO, %2$s is a link start tag to the
+#. plugin page on WordPress.org, %3$s is the link closing tag.
+#: admin/class-product-upsell-notice.php:135
+msgid "We've noticed you've been using %1$s for some time now; we hope you love it! We'd be thrilled if you could %2$sgive us a 5 stars rating on WordPress.org%3$s!"
+msgstr "Uns ist aufgefallen, dass du %1$s bereits seit einiger Zeit verwendest; wir hoffen dass du es magst! Wir würden uns sehr darüber freuen, wenn du uns %2$sauf WordPress.org mit 5 Sternen bewerten würdest%3$s!"
 
 #. translators: %1$s expands to a link start tag to the Yoast plugin page, %2$s
 #. is the link closing tag.
@@ -2023,6 +2017,12 @@ msgstr "Kaufe jetzt das %1$s Plugin und optimiere noch heute Deinen Shop durch e
 #: admin/banner/class-admin-banner-sidebar.php:159
 msgid "Let our experts set up your %1$s plugin!"
 msgstr "Lass unsere Experten dein %1$s Plugin einrichten!"
+
+#. translators: %1$s expands to a link start tag to the Yoast Services page,
+#. %2$s to Yoast, %3$s is the link closing tag.
+#: admin/banner/class-admin-banner-sidebar.php:144
+msgid "Do you want to know how to improve your rankings? %1$sLet team %2$s help you!%3$s"
+msgstr "Willst du wissen wie sich dein Ranking verbessern lässt? %1$sLass dir vom Team %2$s helfen!%3$s"
 
 #: admin/banner/class-admin-banner-sidebar.php:289
 msgid "Courses"
@@ -2578,7 +2578,7 @@ msgstr "Du versuchst nicht-minimierte Dateien zu laden. Diese sind nur im Develo
 
 #: inc/wpseo-non-ajax-functions.php:99
 msgid "You have a new issue concerning your SEO!"
-msgstr "Du hast ein neues Problem bezüglich deiner SEO !"
+msgstr "Du hast ein neues Problem bezüglich deiner SEO!"
 
 #: admin/class-admin-init.php:146
 msgid "Paging comments is enabled, this is not needed in 999 out of 1000 cases, we recommend to disable it."
