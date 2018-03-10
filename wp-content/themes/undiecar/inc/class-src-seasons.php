@@ -297,14 +297,6 @@ class SRC_Seasons extends SRC_Core {
 			return $content;
 		}
 
-		if ( isset( $_GET['test'] ) ) {
-			$content .= '<h3>Drivers</h3>';
-//			$content .= '<p><a href="https://undiecar.com/confirmed-signups/"></a></p>';
-
-			$season_slug = get_post_field( 'post_name', get_the_ID() );
-			$content .= '[undiecar_drivers season="' . esc_attr( $season_slug ) . '"]';
-		}
-
 		return $content;
 	}
 
@@ -315,6 +307,13 @@ class SRC_Seasons extends SRC_Core {
 			'id'           => $slug,
 			'title'        => esc_html__( 'Season', 'src' ),
 			'object_types' => array( 'season', ),
+		) );
+
+		$cmb->add_field( array(
+			'name'       => esc_html__( 'Drivers', 'src' ),
+			'description'=> esc_html__( 'Each new driver should be on a new line', 'src' ),
+			'id'         => 'drivers',
+			'type'       => 'textarea',
 		) );
 
 		$cmb->add_field( array(

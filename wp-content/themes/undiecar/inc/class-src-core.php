@@ -222,7 +222,9 @@ class SRC_Core {
 			return $content;
 		}
 
-		if ( is_front_page() ) {
+		if ( null !== $season_id ) {
+			// bypass
+		} else if ( is_front_page() ) {
 
 			if ( '' === get_option( 'current-season' ) ) {
 				$season_id = get_option( 'last-season' );
@@ -262,7 +264,7 @@ class SRC_Core {
 		}
 
 		if ( false === $title ) {
-			$title = __( 'Drivers championship', 'src' );
+//			$title = esc_html__( 'Drivers championship', 'src' );
 		}
 
 		// Work out if multiple cars
@@ -276,7 +278,11 @@ class SRC_Core {
 
 
 		if ( array() !== $stored_results ) {
-			$content .= '<h3>' . esc_html( $title ) . '</h3>';
+
+			if ( false !== $title ) {
+				$content .= '<h3>' . esc_html( $title ) . '</h3>';
+			}
+
 			$content .= '<table class="some-list" id="src-championship">';
 
 			$content .= '<thead><tr>';

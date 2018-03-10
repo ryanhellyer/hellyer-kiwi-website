@@ -101,6 +101,7 @@ class SRC_Theme_Setup extends SRC_Core {
 	public function script() {
 		if ( ! is_admin() ) {
 			wp_enqueue_script( self::THEME_NAME, get_template_directory_uri() . '/js/script.js', null, SELF::VERSION_NUMBER );
+			wp_enqueue_script( self::THEME_NAME . '-tabber', get_template_directory_uri() . '/js/tabber.js', null, SELF::VERSION_NUMBER );
 			wp_localize_script( self::THEME_NAME, 'undiecar_home_url', home_url()	);
 		}
 	}

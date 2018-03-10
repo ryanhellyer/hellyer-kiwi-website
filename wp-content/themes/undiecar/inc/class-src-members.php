@@ -347,13 +347,57 @@ class SRC_Members extends SRC_Core {
 
 	public function display_driver_table( $args, $content ) {
 
+		$drivers = array();
 		if ( isset( $args['season'] ) ) {
 			$season = $args['season'];
+
+			$season_post = get_page_by_path( $season, 'array', 'season' );
+
+			if ( ! isset( $season_post->ID ) ) {
+				return $content;
+			}
+
+			$season_id = $season_post->ID;
+			$driver_names = get_post_meta( $season_id, 'drivers', true  );
+			$driver_names = explode( "\n", $driver_names );
+
+			foreach ( $driver_names as $key => $driver_name ) {
+				$driver_slug = sanitize_title( $driver_name );
+				$driver_object = get_user_by( 'login', $driver_slug );
+
+				if ( isset( $driver_object->ID ) ) {
+					$driver_id = $driver_object->ID;
+
+					if ( 'no' !== get_user_meta( $driver_id, 'receive_notifications', true ) ) {
+						$drivers_to_notify[ $driver_slug ] = $driver_id;
+					}
+
+					if ( isset( $driver_id  ) ) {
+						$drivers[ $driver_slug ] = $driver_id ;
+					}
+
+				}
+
+			}
+
 		} else {
-			$season = 'all';
+
+			// No season set, so lets just dump them all out
+			$all_drivers = get_users( array( 'number' => 1000 ) );
+			foreach ( $all_drivers as $driver ) {
+				$driver_slug = $driver->data->user_login;
+				$driver_id = $driver->ID;
+
+				if ( 'no' !== get_user_meta( $driver_id, 'receive_notifications', true ) ) {
+					$drivers_to_notify[ $driver_slug ] = $driver_id;
+				}
+
+				$drivers[ $driver_slug ] = $driver_id;
+			}
+
 		}
 
-		$drivers = $this->get_seasons_drivers( $season );
+		ksort( $drivers );
 
 		$content .= '
 		<table class="some-list" id="src-schedule">
@@ -388,6 +432,26 @@ class SRC_Members extends SRC_Core {
 			</tbody>
 		</table>
 		';
+
+		if ( isset( $_GET['message'] ) ) {
+
+			$content .= '<h3>Drivers to message. Total count ' . count( $drivers_to_notify ) . '</h3>';
+			$content .= '<textarea style="font-family:monospace;font-size:12px;margin:20px 0;height:100px;">';
+
+			foreach ( $drivers_to_notify as $key => $driver_id )  {
+
+				if ( 'banned' != get_user_meta( $driver_id, 'season', true ) ) {
+
+					$driver = get_userdata( $driver_id );
+					$driver_name = $driver->display_name;
+					$content .= $driver_name . ',';
+
+				}
+
+			}
+
+			$content .= '</textarea>';
+		}
 
 		return $content;
 	}
