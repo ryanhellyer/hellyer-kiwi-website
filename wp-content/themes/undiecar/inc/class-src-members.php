@@ -376,6 +376,8 @@ class SRC_Members extends SRC_Core {
 						$drivers[ $driver_slug ] = $driver_id ;
 					}
 
+				} else {
+					$errors[] = $driver_name;
 				}
 
 			}
@@ -451,6 +453,19 @@ class SRC_Members extends SRC_Core {
 			}
 
 			$content .= '</textarea>';
+
+			if ( isset( $errors ) ) {
+
+				$content .= '<h3>The following drivers are listed as being members, but are not registered on the website</h3>';
+				$content .= '<p>';
+
+				foreach ( $errors as $key => $driver_name )  {
+					$content .= $driver_name . '<br />';
+				}
+
+				$content .= '</p>';
+			}
+
 		}
 
 		return $content;
