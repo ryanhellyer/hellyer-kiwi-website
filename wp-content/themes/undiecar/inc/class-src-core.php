@@ -382,6 +382,8 @@ class SRC_Core {
 			$content .= '</tbody>';
 
 			$content .= '</table>';
+		} else {
+			$content .= '<p>' . esc_html__( 'No results available yet', 'undiecar' ) . '</p>';
 		}
 
 		return $content;
