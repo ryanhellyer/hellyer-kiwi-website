@@ -3,8 +3,17 @@
 	window.addEventListener(
 		'load',
 		function (){
+//			var tab_2 = document.getElementById("tab-2");
+//			tab_2.style.display = 'block';
+
 			set_standings_sidebars();
 			gallery_fields();
+
+
+
+//			<script>document.write('<style>.tabberlive {display: block;}</style>');</script>
+
+
 		}
 	);
 

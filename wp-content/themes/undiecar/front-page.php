@@ -199,7 +199,10 @@ get_header();
 	</a>
 
 	<div id="standings">
+
 		<?php
+
+/****  MAKE TABBER.JS ONLY LOAD ON FRONT PAGE ****/
 
 		if ( '' === get_option( 'current-season' ) ) {
 			$season_id = get_option( 'last-season' );
@@ -207,11 +210,32 @@ get_header();
 			$season_id = get_option( 'current-season' );
 		}
 
-		$championship_title = esc_html( get_the_title( $season_id ) . ' Championship' );
-		echo SRC_Core::championship( '', true, 10, $championship_title );
-
 		?>
-		<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See full championship standings</a>
+
+		<div class="tabber">
+
+			<div class="tabbertab" id="tab-1">
+				<h2><?php echo esc_html( get_the_title( $season_id ) ); ?></h2>
+				<?php
+					$championship_title = esc_html( get_the_title( $season_id ) );
+					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+				?>
+				<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See full championship standings</a>
+			</div>
+
+			<div class="tabbertab" id="tab-2">
+
+<?php $season_id = 1613; ?>
+
+				<h2><?php echo esc_html( get_the_title( $season_id ) ); ?></h2>
+				<?php
+					$championship_title = esc_html( get_the_title( $season_id ) );
+					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+				?>
+				<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See full championship standings</a>
+			</div>
+
+		</div>
 
 	</div>
 

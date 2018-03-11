@@ -804,12 +804,23 @@ td span.tick-mark:before {
 		background: #fff;
 		padding-bottom: 60px;
 
+		h2 {
+			color: #000;
+			font-family: "Open Sans",sans-serif;
+			text-transform: uppercase;
+			font-size: 1.4rem;
+			font-weight: 600;
+			border-bottom: 4px solid #999;
+			margin: 20px 40px;
+			padding: 0;
+		}
+
 		h3 {
 			margin: 3rem 0 1.5rem 40px;
 		}
 
 		ul {
-			padding: 60px 30px 40px 30px;
+			padding: 20px 30px 40px 30px;
 		}
 
 		li {
@@ -897,6 +908,58 @@ td span.tick-mark:before {
 	}
 
 }
+
+/* =Tabber
+-------------------------------------------------------------- */
+
+#tab-2 {
+	display: none;
+}
+
+.tabberlive .tabbertab {
+	display: block !important;
+}
+
+.tabberlive .tabbertabhide {
+	display: none !important;
+}
+
+ul.tabbernav {
+	margin: 0;
+	padding: 0;
+}
+
+ul.tabbernav li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+}
+
+ul.tabbernav li a {
+	color: #666;
+	text-decoration: none;
+}
+
+ul.tabbernav li a:hover {
+	color: #000;
+}
+
+ul.tabbernav li.tabberactive a {
+	color: #000;
+}
+
+.tabberlive .tabbertab {
+	margin-top: 20px;
+}
+
+.tabberlive .tabbertab h2 {
+	display: none;
+}
+
+.tabberlive .tabbertab h3 {
+	display: none;
+}
+
 
 /* =Sidebar
 -------------------------------------------------------------- */
