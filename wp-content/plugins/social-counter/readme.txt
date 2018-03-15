@@ -1,7 +1,7 @@
 === Social Counter===
 Contributors: Prisna
 Requires at least: 3.6
-Tested up to: 4.6
+Tested up to: 4.9
 Stable tag: 2
 License: GPL2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

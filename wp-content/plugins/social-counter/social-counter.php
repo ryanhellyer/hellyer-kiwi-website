@@ -2,10 +2,10 @@
 
 /*
  * Plugin Name: Social Counter
- * Plugin URI: http://wordpress.org/extend/plugins/social-counter/
+ * Plugin URI: https://wordpress.org/plugins/social-counter/
  * Description: Get the total count of fans and followers from your social network profiles. Without the need of complicated API keys. A neat solution to encourage visitors to grow your social network.
  * Author: Prisna
- * Version: 2.0
+ * Version: 2.0.1
  * Author URI: https://www.prisna.net/
  * License: GPL2+
  * Text Domain: prisna-social-counter
@@ -13,7 +13,7 @@
  */
 
 define('PRISNA_SOCIAL_COUNTER__MINIMUM_WP_VERSION', '3.6');
-define('PRISNA_SOCIAL_COUNTER__VERSION', '2.0');
+define('PRISNA_SOCIAL_COUNTER__VERSION', '2.0.1');
 
 define('PRISNA_SOCIAL_COUNTER__PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PRISNA_SOCIAL_COUNTER__PLUGIN_URL', plugin_dir_url(__FILE__));
