@@ -35,7 +35,7 @@ if ( have_posts() ) {
 		$image = wp_get_attachment_image_src( $image_id, 'src-featured' );
 		$image_url = $image[0];
 		if ( '' !== $image_url ) {
-			echo '<img src="' . esc_url( $image_url ) . '" style="max-height:300px" />';
+			echo '<img src="' . esc_url( $image_url ) . '" style="max-height:169px" />';
 		}
 
 		echo "\n";
