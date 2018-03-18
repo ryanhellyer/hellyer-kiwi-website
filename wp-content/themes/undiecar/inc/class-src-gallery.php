@@ -238,6 +238,7 @@ class SRC_Gallery extends SRC_Core {
 		previous_image_link( false, '<p class="alignleft button">&laquo; ' . __( 'Previous Image', 'src' ) . '</p>' );
 		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
 
+echo 'xxxxxxxxxxxxxxxxxxxxxxxxx';
 		global $wp_query;
 		if (
 			(
@@ -279,7 +280,7 @@ class SRC_Gallery extends SRC_Core {
 	}
 
 	public function form_edit() {
-$content .= 'xxxx';
+
 		$attachment_id = get_the_ID();
 
 		// Don't allow editing if not on gallery image
