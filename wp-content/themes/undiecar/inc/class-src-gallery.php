@@ -279,7 +279,7 @@ class SRC_Gallery extends SRC_Core {
 	}
 
 	public function form_edit() {
-
+$content .= 'xxxx';
 		$attachment_id = get_the_ID();
 
 		// Don't allow editing if not on gallery image
