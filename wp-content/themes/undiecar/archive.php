@@ -32,18 +32,10 @@ if ( have_posts() ) {
 		echo "\n";
 
 		$image_id = get_post_thumbnail_id( get_the_ID() );
-//1920
 		$image = wp_get_attachment_image_src( $image_id, 'src-featured' );
 		$image_url = $image[0];
 		if ( '' !== $image_url ) {
-
-			$image_width = $image[1];
-			if ( $image_width < 1920 ) {
-				$width = 1920;
-			}
-
-			echo '<div style="background:url(' . esc_url( $image_url ) . ');" class="stretched-featured-image"></div>';
-//			echo '<img src="' . esc_url( $image_url ) . '" width="1920" />';
+			echo '<img src="' . esc_url( $image_url ) . '" width="1920" />';
 		}
 
 		echo "\n";
