@@ -31,7 +31,8 @@ if ( have_posts() ) {
 		echo '</a></h2>';
 		echo "\n";
 
-		$image_url = get_the_post_thumbnail_url( get_the_ID(), 'src-featured' );
+		$image_url = wp_get_attachment_image_src( get_the_ID(), 'src-featured' );
+		print_r( $image_url );
 		if ( '' !== $image_url ) {
 			echo '<img src="' . esc_url( $image_url ) . '" />';
 		}
