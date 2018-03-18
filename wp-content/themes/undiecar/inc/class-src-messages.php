@@ -24,10 +24,14 @@ class SRC_Messages extends SRC_Core {
 		add_shortcode( 'url',       array( $this, 'shortcode_url' ) );
 		add_shortcode( 'img',       array( $this, 'shortcode_img' ) );
 		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
+		add_filter( 'the_content', array( $this, 'textarea' ), 20 );
 	}
 
 	/**
 	 * Since shortcodes don't perfectly match BB Code, we fudge the syntax a little.
+	 *
+	 * @param  string  $content  The post content
+	 * @return string  The modified post content
 	 */
 	public function shortcode_fudging( $content ) {
 
@@ -37,6 +41,24 @@ class SRC_Messages extends SRC_Core {
 
 		$content = get_post_meta( get_the_ID(), '_message', true );
 		$content = str_replace( '[url=', '[url temp=', $content );
+
+		return $content;
+	}
+
+	/**
+	 * Converting messages on frontend to textarea.
+	 * Allows for easy copy/paste of code
+	 *
+	 * @param  string  $content  The post content
+	 * @return string  The modified post content
+	 */
+	public function textarea( $content ) {
+
+		if ( 'message' !== get_post_type() ) {
+			return $content;;
+		}
+
+		$content = '<textarea style="height:600px;">' . $content . '</textarea>';
 		return $content;
 	}
 
