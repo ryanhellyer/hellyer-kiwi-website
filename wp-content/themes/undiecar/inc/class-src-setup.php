@@ -40,7 +40,6 @@ class SRC_Theme_Setup extends SRC_Core {
 		add_action( 'wp',                 array( $this, 'force_404' ) );
 
 		// Add shortcodes
-		add_shortcode( 'src-news',        'src_news' );
 		add_shortcode( 'src-driver',      array( $this, 'driver_block_shortcode' ) );
 
 		// Add filters

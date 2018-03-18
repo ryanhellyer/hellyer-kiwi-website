@@ -59,7 +59,7 @@ if ( ! is_singular() ) { // do nothing
 		);
 	
 		if ( ! in_array( 2, $links ) ) {
-			echo '<li>&hellip;</li>';
+			echo '<li class="pagination-gap">&hellip;</li>';
 		}
 
 	}
@@ -79,7 +79,7 @@ if ( ! is_singular() ) { // do nothing
 	// Link to last Page, plus ellipses, if necessary
 	if ( !in_array( $max, $links ) ) {
 		if ( !in_array( $max - 1, $links ) ) {
-			echo '<li>&hellip;</li>' . "\n";
+			echo '<li class="pagination-gap">&hellip;</li>' . "\n";
 		}
 
 		$current = ( $paged == $max ) ? 'class="active"' : '';

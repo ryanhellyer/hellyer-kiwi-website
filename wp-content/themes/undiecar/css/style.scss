@@ -1114,6 +1114,50 @@ img {
 	height: auto;
 }
 
+/* =Numeric pagination
+-------------------------------------------------------------- */
+
+#numeric-pagination {
+	margin: 4em 0 0 0;
+	padding: 0 0 4em 0;
+
+	#main & li {
+		list-style: none;
+		padding: 0;
+		margin: 0 20px 0 0;
+	}
+
+	li {
+		float: left;
+		list-style: none;
+		margin: 0 0.3em;
+		padding: 0;
+		height: 1.6em;
+		line-height: 1.6em;
+		text-align: center;
+		border: 1px solid #ddd;
+	}
+
+	li.pagination-gap {
+		border: none;
+	}
+
+	a {
+		float: left;
+		height: 1.3em;
+		margin: 0;
+		padding: 0.1em 0.5em 0.2em 0.5em;
+	}
+	
+	li.active a,
+	li a:hover {
+		background: #e43146;
+		text-decoration: none;
+		color: #fff;
+	}
+
+}
+
 /* =Comments
 -------------------------------------------------------------- */
 

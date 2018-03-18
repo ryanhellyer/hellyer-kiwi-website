@@ -8,32 +8,48 @@
 
 get_header();
 
-echo '<article id="main-content">';
+
+echo '
+	<article id="main-content">';
 
 // Load main loop
 if ( have_posts() ) {
 
-	echo '<ul>';
+	echo '
+		<ul>';
 
 	// Start of the Loop
 	while ( have_posts() ) {
 		the_post();
 
-		echo '<article>';
-		echo '<h2><a href="' . esc_url( get_permalink() ) . '">';
-			the_title();
+		echo '
+			<article>
+				<h2><a href="' . esc_url( get_permalink() ) . '">';
+
+		the_title();
+
 		echo '</a></h2>';
+		echo "\n";
+
+		the_post_thumbnail( get_the_ID(), 'thumbnail' );
+
+		echo "\n";
 		the_excerpt();
-		echo '</article>';
+		echo '
+				<a href="#" class="button">' . esc_html__( 'Read more', 'undiecar' ) . "</a>\n";
+		echo '			</article>';
 
 	}
 
-	echo '</ul>';
+	echo "\n</ul>";
+
+	get_template_part( 'template-parts/numeric-pagination' );
 
 } else {
 	get_template_part( 'template-parts/no-results' );
 }
 
-echo '</article>';
+echo '
+	</article>';
 
 get_footer();
