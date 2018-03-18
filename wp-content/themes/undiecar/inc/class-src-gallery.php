@@ -284,7 +284,11 @@ class SRC_Gallery extends SRC_Core {
 
 		// Don't allow editing if not on gallery image
 		$attachment_id = get_the_ID();
-		if ( '1' !== get_post_meta( $attachment_id, 'gallery', true ) ) {
+		if (
+			'1' !== get_post_meta( $attachment_id, 'gallery', true )
+			||
+			is_super_admin()
+		) {
 			return;
 		}
 
