@@ -31,7 +31,7 @@ if ( have_posts() ) {
 		echo '</a></h2>';
 		echo "\n";
 
-		the_post_thumbnail( get_the_ID(), 'thumbnail' );
+		the_post_thumbnail( get_the_ID(), 'src-featured' );
 
 		echo "\n";
 		the_excerpt();
