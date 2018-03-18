@@ -3,8 +3,8 @@ Contributors: ryanhellyer, bjornjohansen, dimadin, brianlayman
 Donate link: https://geek.hellyer.kiwi/products/spam-destroyer/
 Tags: spam, comments, anti-spam, antispam, buddypress, bbpress, kill, destroy, eliminate, registration, register, registrate, captcha
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 2.0.7
+Tested up to: 5.0
+Stable tag: 2.1
 Text Domain: spam-destroyer
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,12 @@ The original developer of the plugin was <a href="https://geek.hellyer.kiwi/">Ry
 
 
 == Changelog ==
+
+= 2.0.7  (2018-03-18) =
+* Added prefix to cookie to provide less work for those trying to do cookie auditing
+* Blocking comments when CAPTCHA is served but GD not enabled
+* Providing notice to let the admin know that the CAPTCHA system is not working
+* Providing option to disable the admin notice about CAPTCHA system not working
 
 = 2.0.7  (2016-19-06) =
 * Added checks in file to see if WordPress is loaded.
