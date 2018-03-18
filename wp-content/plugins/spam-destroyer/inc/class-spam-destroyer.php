@@ -388,7 +388,7 @@ class Spam_Destroyer {
 		// Don't provide CAPTCHA if GD not enabled
 		$test_gd = get_extension_funcs( 'gd' );
 		if ( ! $test_gd ) {
-			wp_die( esc_html__(  'Sorry, but your comment was rejected as it was detected as spam.', 'spam-destroyer' ) );
+//			wp_die( esc_html__(  'Sorry, but your comment was rejected as it was detected as spam.', 'spam-destroyer' ) );
 		}
 
 		/*
