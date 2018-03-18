@@ -21,6 +21,7 @@ class SRC_Messages extends SRC_Core {
 		add_action( 'save_post',      array( $this, 'meta_boxes_save' ), 10, 2 );
 
 		add_shortcode( 'b',         array( $this, 'shortcode_b' ) );
+		add_shortcode( 'u',         array( $this, 'shortcode_u' ) );
 		add_shortcode( 'url',       array( $this, 'shortcode_url' ) );
 		add_shortcode( 'img',       array( $this, 'shortcode_img' ) );
 		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
@@ -64,6 +65,10 @@ class SRC_Messages extends SRC_Core {
 
 	public function shortcode_b( $args = null, $content ) {
 		return '<strong>' . $content . '</strong>';
+	}
+
+	public function shortcode_u( $args = null, $content ) {
+		return '<u>' . $content . '</u>';
 	}
 
 	public function shortcode_url( $args, $content = null ) {
