@@ -238,7 +238,6 @@ class SRC_Gallery extends SRC_Core {
 		previous_image_link( false, '<p class="alignleft button">&laquo; ' . __( 'Previous Image', 'src' ) . '</p>' );
 		next_image_link( false, '<p class="alignright button">' . __( 'Next Image', 'src' ) . ' &raquo;</p>' );
 
-echo 'xxxxxxxxxxxxxxxxxxxxxxxxx';
 		global $wp_query;
 		if (
 			(
@@ -287,8 +286,8 @@ echo 'xxxxxxxxxxxxxxxxxxxxxxxxx';
 		$attachment_id = get_the_ID();
 		if (
 			'1' !== get_post_meta( $attachment_id, 'gallery', true )
-			||
-			is_super_admin()
+			&&
+			! is_super_admin()
 		) {
 			return;
 		}
