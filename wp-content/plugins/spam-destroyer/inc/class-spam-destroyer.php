@@ -478,8 +478,13 @@ class Spam_Destroyer {
 			update_option( 'spam-destroyer-gd-notice-removed', '1' );
 		}
 
-		// Only display an error message if the notice has been previously hidden
-		if ( '1' !== get_option( 'spam-destroyer-gd-notice-removed' ) ) {
+		// Only display an error message if the notice has been previously hidden and GD not enable
+		$test_gd = get_extension_funcs( 'gd' );
+		if (
+			'1' !== get_option( 'spam-destroyer-gd-notice-removed' )
+			&&
+			! $test_gd
+		) {
 			echo '
 			<div class="notice notice-error" style="position:relative">
 				<p>
