@@ -30,7 +30,7 @@ if ( have_posts() ) {
 
 		echo '</a></h2>';
 		echo "\n";
-
+echo '<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID(), 'src-featured' ) ) . '" />';
 		the_post_thumbnail( get_the_ID(), 'src-featured' );
 
 		echo "\n";
