@@ -68,7 +68,7 @@ function pushpress_coaches_admin_menu() {
 		'pushpress',
 		__( 'PushPress Coaches', 'pushpress-coaches' ),
 		__( 'Coaches', 'pushpress-coaches' ),
-		'manage-options',
+		'manage_options',
 		'pushpress-coaches',
 		array( 'Pushpress_Coaches_Admin', 'index' )
 	);
