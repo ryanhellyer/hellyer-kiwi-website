@@ -1,6 +1,7 @@
 <?php
 
 class PushPress_Sites extends PushPress_Connect {
+//class PushPress_Sites extends Pushpress_Plugin {
 
 	/**
 	 * Class constructor.
@@ -15,11 +16,11 @@ class PushPress_Sites extends PushPress_Connect {
 	}
 
 	public function admin_pages(){
-		add_submenu_page( 'pushpress', esc_html__( 'Sites', 'pushpress-sites' ), esc_html__( 'PushPress Sites', 'pushpress-sites' ), 'manage_options', 'pushpress-sites', array( $this, 'sites_admin_page' ) );
+		add_submenu_page( 'pushpress', esc_html__( 'Sites', 'pushpress-sites' ), esc_html__( 'PushPress Sites', 'pushpress-sites' ), 'manage-options', 'pushpress-sites', array( $this, 'sites_admin_page' ) );
 	}
 
 	public function sites_admin_page() {
-		echo '<p>zzzzzz</p>';
+		echo '<p>This should display the shortcodes here, but does not. The shortcodes would not load in the original plugin, and so this page could not be completed. Updated: 2018-03-19.</p>';
 	}
 
 	/**
