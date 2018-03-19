@@ -248,7 +248,7 @@ get_header();
 
 <section class="latest-items" id="latest-media">
 	<header>
-		<h2><?php esc_html_e( 'Latest Photos', 'undiecar' ); ?></h2>
+		<h2><?php esc_html_e( 'Latest photos and videos', 'undiecar' ); ?></h2>
 	</header><?php
 
 	// Get photos
