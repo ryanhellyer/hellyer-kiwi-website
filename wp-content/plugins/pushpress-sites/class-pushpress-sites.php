@@ -1,7 +1,6 @@
 <?php
 
 class PushPress_Sites extends PushPress_Connect {
-//class PushPress_Sites extends Pushpress_Plugin {
 
 	/**
 	 * Class constructor.
@@ -16,7 +15,7 @@ class PushPress_Sites extends PushPress_Connect {
 	}
 
 	public function admin_pages(){
-		add_submenu_page( 'pushpress', esc_html__( 'Sites', 'pushpress-sites' ), esc_html__( 'PushPress Sites', 'pushpress-sites' ), 'manage-options', 'pushpress-sites', array( $this, 'sites_admin_page' ) );
+		add_submenu_page( 'pushpress', esc_html__( 'Sites', 'pushpress-sites' ), esc_html__( 'PushPress Sites', 'pushpress-sites' ), 'manage_options', 'pushpress-sites', array( $this, 'sites_admin_page' ) );
 	}
 
 	public function sites_admin_page() {
