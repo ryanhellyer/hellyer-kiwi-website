@@ -251,7 +251,7 @@ get_header();
 		<h2><?php esc_html_e( 'Latest Photos', 'undiecar' ); ?></h2>
 	</header><?php
 
-	// Load main loop
+	// Get photos
 	$args = array(
 		'posts_per_page'         => 4,
 		'post_type'              => 'attachment',
@@ -264,25 +264,80 @@ get_header();
 		'fields'                 => 'ids'
 	);
 	$query = new WP_Query( $args );
-	$undiecar_gallery = '[gallery columns="8" size="thumbnail" ids="';
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
 
-			echo '
-
-			<article id="' . esc_attr( 'post-' . get_the_ID() ) . '">
-				<a href="' . esc_attr( get_the_permalink( get_the_ID() ) ) . '">
-					' . wp_get_attachment_image( get_the_ID(), 'src-four' ) . '
-					<date>' . get_the_date( get_option( 'date_format' ) ) . '</date>
-					<p>' . esc_html( get_the_title( get_the_ID() ) ) . '</p>
-				</a>
-			</article>';
+			$time_stamp = get_the_date( 'U' );
+			$media_posts[ $time_stamp ] = array(
+				'post_id'   => get_the_ID(),
+				'post_type' => 'attachment',
+			);
 
 		}
 		wp_reset_query();
 	}
 
+	// Get videos
+	$args = array(
+		'posts_per_page'         => 4,
+		'post_type'              => 'video',
+		'post_status'            => 'publish',
+		'no_found_rows'          => true,  // useful when pagination is not needed.
+		'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+		'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+		'fields'                 => 'ids'
+	);
+	$query = new WP_Query( $args );
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+
+			$time_stamp = get_the_date( 'U' );
+			$media_posts[ $time_stamp ] = array(
+				'post_id'   => get_the_ID(),
+				'post_type' => 'video',
+			);
+
+		}
+		wp_reset_query();
+	}
+
+	ksort( $media_posts );
+
+	// Loop through each media post
+	$count = 0;
+	foreach ( $media_posts as $time_stamp => $post ) {
+		$count++;
+
+		// Limit to 4
+		if ( $count > 4 ) {
+			break;
+		}
+
+		$post_id = $post[ 'post_id' ];
+		$post_type = $post[ 'post_type' ];
+
+		echo '
+
+		<article id="' . esc_attr( 'post-' . $post_id ) . '">
+			<a href="' . esc_attr( get_the_permalink( $post_id ) ) . '">';
+
+		if ( 'video' === $post_type ) {
+			echo '
+				<img src="' . esc_url( get_the_post_thumbnail_url( $post_id	, 'src-four' ) ) . '" />';
+		} else {
+			echo '
+				' . wp_get_attachment_image( $post_id, 'src-four' );
+		}
+
+		echo '
+				<date>' . date( get_option( 'date_format' ), $time_stamp ) . '</date>
+				<p>' . esc_html( get_the_title( $post_id ) ) . '</p>
+			</a>
+		</article>';
+
+	}
 	?>
 
 	<a href="<?php echo esc_url( home_url() . '/gallery/' ); ?>" class="highlighted-link"><?php esc_html_e( 'See more photos', 'undiecar' ); ?></a>

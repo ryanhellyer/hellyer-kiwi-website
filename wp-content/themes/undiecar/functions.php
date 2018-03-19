@@ -26,6 +26,7 @@ require( 'inc/class-src-cars.php' );
 require( 'inc/class-src-schedule.php' );
 require( 'inc/class-src-teams.php' );
 require( 'inc/class-src-messages.php' );
+require( 'inc/class-src-videos.php' );
 
 require( 'inc/functions.php' );
 
@@ -44,3 +45,4 @@ new SRC_Cars;
 new SRC_Schedule;
 new SRC_Teams;
 new SRC_Messages;
+new SRC_Videos;
