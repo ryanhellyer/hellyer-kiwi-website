@@ -40,7 +40,7 @@ class SRC_Videos extends SRC_Core {
 
 	public function shortcode() {
 
-		$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="src-logo" ids="';
+		echo '<div class="gallery gallery-columns-8">';
 
 		$args = array(
 			'posts_per_page'         => 4,
@@ -56,7 +56,14 @@ class SRC_Videos extends SRC_Core {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
-				$undiecar_gallery .= get_the_ID() . ',';
+				echo '
+				<figure class="gallery-item">
+					<div class="gallery-icon landscape">
+						<a href="' . get_permalink( get_the_ID() ) . '">
+							<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID()	, 'src-four' ) ) . '" />
+						</a>
+					</div>
+				</figure>';
 
 			}
 			wp_reset_query();
