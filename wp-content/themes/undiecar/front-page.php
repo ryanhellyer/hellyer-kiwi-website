@@ -303,7 +303,7 @@ get_header();
 		wp_reset_query();
 	}
 
-	ksort( $media_posts );
+	krsort( $media_posts );
 
 	// Loop through each media post
 	$count = 0;
