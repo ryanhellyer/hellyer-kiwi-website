@@ -51,7 +51,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-pushpress-lead-form.php';
 	ADMIN MENU
 *******************/
 function pushpress_lead_form_admin_menu() {
-	add_submenu_page( 'pushpress', __( "PushPress Lead Form", 'pushpress-lead-form' ), __( "Lead Form", 'pushpress-lead-form' ), 'manage-options', 'pushpress-lead-form', array( 'Pushpress_Lead_Form_Admin', 'index' ) );
+	add_submenu_page( 'pushpress', __( "PushPress Lead Form", 'pushpress-lead-form' ), __( "Lead Form", 'pushpress-lead-form' ), 'manage_options', 'pushpress-lead-form', array( 'Pushpress_Lead_Form_Admin', 'index' ) );
 }
 
 

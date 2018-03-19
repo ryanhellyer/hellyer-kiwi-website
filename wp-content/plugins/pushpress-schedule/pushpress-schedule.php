@@ -39,7 +39,14 @@ add_action(
 
 			// Add admin menu
 			function pushpress_schedule_admin_menu() {
-				add_submenu_page( 'pushpress', esc_html__( 'PushPress Schedule', 'pushpress-schedule' ), esc_html__( 'Schedule', 'pushpress-schedule' ), 'manage-options', 'pushpress-schedule', array( 'PushPress_Schedule_Admin', 'index' ) );
+				add_submenu_page(
+					'pushpress',
+					esc_html__( 'PushPress Schedule', 'pushpress-schedule' ),
+					esc_html__( 'Schedule', 'pushpress-schedule' ),
+					'manage_options',
+					'pushpress-schedule',
+					array( 'PushPress_Schedule_Admin', 'index' )
+				);
 			}
 			add_action('admin_menu', 'pushpress_schedule_admin_menu');
 

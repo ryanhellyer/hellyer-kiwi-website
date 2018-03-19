@@ -104,7 +104,7 @@ class PushPress_Schedule_Admin {
 
 	}
 
-	public static function index() { 
+	public static function index() {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/pushpress-schedule-admin-display.php';
 		
 	}
