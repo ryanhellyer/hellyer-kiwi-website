@@ -1,7 +1,5 @@
 <?php
 
-use RestCord\DiscordClient;
-
 /**
  * Events.
  *
@@ -19,6 +17,7 @@ class SRC_Videos extends SRC_Core {
 	 */
 	public function __construct() {
 		add_action( 'init',               array( $this, 'init' ) );
+		add_shortcode( 'undiecar_videos', array( $this, 'shortcode' ) );
 	}
 
 	/**
@@ -37,6 +36,35 @@ class SRC_Videos extends SRC_Core {
 			)
 		);
 
+	}
+
+	public function shortcode() {
+
+		$undiecar_gallery = '[gallery orderby="post_date" order="DESC" columns="8" size="src-logo" ids="';
+
+		$args = array(
+			'posts_per_page'         => 4,
+			'post_type'              => 'video',
+			'post_status'            => 'publish',
+			'no_found_rows'          => true,  // useful when pagination is not needed.
+			'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+			'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+			'fields'                 => 'ids'
+		);
+		$query = new WP_Query( $args );
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$undiecar_gallery .= get_the_ID() . ',';
+
+			}
+			wp_reset_query();
+		}
+
+		$undiecar_gallery .= '"]';
+
+		return $undiecar_gallery;
 	}
 
 }
