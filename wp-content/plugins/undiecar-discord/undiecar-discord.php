@@ -59,6 +59,61 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 		$base_dir = $dir['basedir'];
 
 		foreach ( $messages as $key1 => $message ) {
+
+			// Import each embedded video as a new video post
+			foreach ( $message[ 'embeds' ] as $key3 => $embed ) {
+
+				if ( 'video' === $embed[ 'type' ] ) {
+
+					$video_url     = esc_url(  $embed[ 'url' ] );
+					$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
+					$description   = esc_html( $embed[ 'description' ] );
+					$author        = esc_html( $embed[ 'author' ][ 'name' ] );
+					$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
+					$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
+					$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
+
+					$content = wp_kses_post(
+						'<p>' .
+						sprintf(
+							esc_html__( 'The following video was kindly created by  %s.', 'undiecar' ),
+							'<a href="' . esc_url( $channel ) . '">' . esc_html( $author ) . '</a>'
+						) .
+						'</p>' . 
+						"\n\n" .$video_url . "\n\n"
+					);
+
+					// Create video post - if it doesn't already exist
+					$post_slug = sanitize_title( $post_title );
+					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
+
+					if ( empty( $existing_post ) ) {
+
+						$post_id = wp_insert_post(
+							array(
+								'post_name'    => $post_slug,
+								'post_title'   => $post_title,
+								'post_content' => $content,
+								'post_status'  => 'publish',
+								'post_type'    => 'video',
+							)
+						);
+
+						require_once( ABSPATH . 'wp-admin/includes/media.php' );
+						require_once( ABSPATH . 'wp-admin/includes/file.php' );
+						require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+						$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
+						$result = set_post_thumbnail( $post_id, $attachment_id );
+
+					}
+
+				}
+
+			}
+
+
+			// Import the attached images
 			foreach ( $message['attachments'] as $key2 => $attachment ) {
 				$message_id = $message['id'];
 				$author = $message['author']['username'];
