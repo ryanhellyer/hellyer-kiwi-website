@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-03-28 20:13:19+0000\n"
+"PO-Revision-Date: 2018-04-02 16:53:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,10 +35,6 @@ msgstr "Schritt 3: Prüfe deine Daten"
 msgid "Yoast SEO did not detect any plugin data from plugins it can import from."
 msgstr "Yoast SEO hat keine Plugin-Daten gefunden, die von Plugins importiert werden können."
 
-#: admin/views/tabs/tool/import-seo.php:56
-msgid "Please make a backup of your database before starting this process."
-msgstr "Fertige bitte ein Backup deiner Datenbank an bevor du diesen Prozess startest."
-
 #: admin/import/class-import-status.php:57
 msgid "%s data not found."
 msgstr "%s Daten nicht gefunden."
@@ -59,10 +55,6 @@ msgstr "%s Daten gefunden."
 msgid "Please check your posts and pages and see if the metadata was successfully imported."
 msgstr "Bitte prüfe deine Artikel und Seiten um festzustellen, ob die Metadaten erfolgreich importiert wurden."
 
-#: admin/views/tabs/tool/import-seo.php:87
-msgid "Step 4: Run the configuration wizard"
-msgstr "Schritt 4: Starte den Konfigurations-Wizard"
-
 #: admin/views/tabs/tool/import-seo.php:50
 msgid "We've detected data from one or more SEO plugins on your site. Please follow the following steps to import that data:"
 msgstr "Wir haben Daten von mindestens einem SEO Plugin auf deiner Seite erkannt. Bitte folge den folgenden Schritten um diese Daten zu importieren:"
@@ -74,24 +66,6 @@ msgstr "Das wird die Post-Metadaten wie beispielsweise SEO Titles und Descriptio
 #: admin/statistics/class-statistics-service.php:202
 msgid "Posts that should not show up in search results"
 msgstr "Beiträge, die nicht in Suchergebnissen erscheinen sollen"
-
-#. translators: %1$s expands to an opening strong tag, %2$s expands to a
-#. closing strong tag
-#: admin/statistics/class-statistics-service.php:199
-msgid "Posts with the SEO score: %1$sOK%2$s"
-msgstr "Beiträge mit dem SEO-Score: %1$sOK%2$s"
-
-#. translators: %1$s expands to an opening strong tag, %2$s expands to a
-#. closing strong tag
-#: admin/statistics/class-statistics-service.php:201
-msgid "Posts with the SEO score: %1$sgood%2$s"
-msgstr "Beiträge mit dem SEO-Score: %1$sGut%2$s"
-
-#. translators: %1$s expands to an opening strong tag, %2$s expands to a
-#. closing strong tag
-#: admin/statistics/class-statistics-service.php:197
-msgid "Posts with the SEO score: %1$sneeds improvement%2$s"
-msgstr "Beiträge mit dem SEO-Score: %1$sVerbesserungsbedarf%2$s"
 
 #: admin/views/tabs/tool/import-seo.php:107
 msgid "Clean"
@@ -114,6 +88,32 @@ msgstr "Sobald du sicher bist, dass deine Seite in Ordnung ist, kannst du aufrä
 #: admin/views/tabs/tool/import-seo.php:90
 msgid "You should run the configuration wizard, from the SEO &rarr; General &rarr; Dashboard page, to make sure all the settings for your site are correct."
 msgstr "Du solltest den Konfigurationsassistenten auf der Seite SEO &rarr; Allgemein &rarr; Dashboard ausführen, um sicherzustellen, dass alle Einstellungen für deine Website korrekt sind."
+
+#: admin/views/tabs/tool/import-seo.php:56
+msgid "Please make a backup of your database before starting this process."
+msgstr "Bitte lege ein Backup deiner Datenbank an bevor du den Prozess startest."
+
+#: admin/views/tabs/tool/import-seo.php:87
+msgid "Step 4: Run the configuration wizard"
+msgstr "Schritt 4: Starte den Konfigurationsassistenten"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag
+#: admin/statistics/class-statistics-service.php:199
+msgid "Posts with the SEO score: %1$sOK%2$s"
+msgstr "Beiträge mit der SEO-Wertung: %1$sOK%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag
+#: admin/statistics/class-statistics-service.php:197
+msgid "Posts with the SEO score: %1$sneeds improvement%2$s"
+msgstr "Beiträge mit der SEO-Wertung: %1$sVerbesserungsbedarf%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag
+#: admin/statistics/class-statistics-service.php:201
+msgid "Posts with the SEO score: %1$sgood%2$s"
+msgstr "Beiträge mit der SEO-Wertung: %1$sGut%2$s"
 
 #: admin/banner/class-admin-banner-sidebar.php:98
 msgid "No ads"
@@ -151,7 +151,7 @@ msgstr "24/7 E-Mail-Support"
 #. translators: %s expands to Yoast SEO Premium
 #: admin/banner/class-admin-banner-sidebar.php:101
 msgid "Get %s now"
-msgstr "Hol Dir jetzt %s"
+msgstr "Hole dir jetzt %s"
 
 #. translators: %s expands to the post type's name.
 #: admin/views/tabs/metas/post-types.php:67
@@ -472,7 +472,7 @@ msgstr "Erlaube Suchmaschinen diesen %s in den Suchergebnissen anzuzeigen?"
 #. translators: %1$s expands to the post type name.
 #: admin/metabox/class-metabox.php:91
 msgid "Should search engines follow links on this %1$s?"
-msgstr "Sollen Suchmaschinen Links auf diesen %1$s folgen?"
+msgstr "Sollen Suchmaschinen Links auf diese(n) %1$s folgen?"
 
 #: admin/views/tabs/social/twitterbox.php:21
 msgid "Enable this feature if you want Twitter to display a preview with images and a text excerpt when a link to your site is shared."
