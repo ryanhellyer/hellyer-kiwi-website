@@ -2,25 +2,22 @@
 /*
 * Coach Custom Post type
 */
-if ( ! class_exists( 'Coach_Post_Type' ) )
-{
-	class Coach_Post_Type
-	{
-		function __construct()
-		{
+if ( ! class_exists( 'Coach_Post_Type' ) ) {
+	class Coach_Post_Type {
+		function __construct() {
 			/**
 			* Create Coach CPT
 			*
 			* Function Name: coach_init
 			**/
-			add_action( 'init', array( &$this, 'coach_init' ) );
+			add_action( 'init', array( $this, 'coach_init' ) );
 
 			/**
 			* Add Meta Box to Coach CPT
 			*
 			* Function Name: coach_meta_box_add
 			**/
-			add_action( 'add_meta_boxes', array( &$this, 'coach_meta_box_add' ) );
+			add_action( 'add_meta_boxes', array( $this, 'coach_meta_box_add' ) );
 
 			/**
 			* Save data from meta box
@@ -33,7 +30,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			* @param int 	$new : New values of inputs to be updated in database
 			*
 			*/
-			add_action( 'save_post', array( &$this, 'coach_metabox_save' ) );
+			add_action( 'save_post', array( $this, 'coach_metabox_save' ) );
 
 			/**
 			* Updating messages
@@ -42,24 +39,17 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			*
 			* @param var  $message : Holds message to be displayed
 			**/
-			add_filter( 'post_updated_messages', array( &$this, 'coach_set_messages' ) );
+			add_filter( 'post_updated_messages', array( $this, 'coach_set_messages' ) );
 
 			/**
 			* Create company name & client location field in Coach post
 			*
 			* Function Name: add_thumbnail_column
 			**/
-			add_filter( 'manage_edit-coaches_columns', array( &$this, 'add_thumbnail_column'), 10, 1 );
-			add_action( 'manage_coaches_posts_custom_column', array( &$this, 'display_thumbnail' ), 10, 1 );
-			add_filter( 'enter_title_here',array( &$this, 'coach_default_title' ));
-			//add_filter( 'wp_title' , array(&$this, 'coach_archive_titles'),900);
-			add_filter('wp_title', array(&$this, 'coach_archive_title'), 10, 2);
-
-			add_filter( 'pre_get_posts' , array(&$this, 'hide_coach_template'),900);            
-			// add_filter('', array(&$this, ''));
-
-			//add_filter( 'manage_posts_columns', array(&$this, 'coach_columns_head'));
-
+			add_filter( 'manage_edit-coaches_columns', array( $this, 'add_thumbnail_column'), 10, 1 );
+			add_action( 'manage_coaches_posts_custom_column', array( $this, 'display_thumbnail' ), 10, 1 );
+			add_filter( 'enter_title_here',array( $this, 'coach_default_title' ));
+			add_filter( 'pre_get_posts' , array( $this, 'hide_coach_template'),900);            
 			
 
 			/**
@@ -67,7 +57,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			*
 			* Function Name: client_coach_change_image_box
 			**/
-			add_action( 'do_meta_boxes', array( &$this,'client_coach_change_image_box' ) );
+			add_action( 'do_meta_boxes', array( $this,'client_coach_change_image_box' ) );
 
 			global $coach_box;
 			$prefix = 'coach_';
@@ -233,47 +223,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 				'query_var'             => true,
 			);
 
-			 register_post_type( 'coaches', $argscoach );
-
-			 /*
-			 // Add new taxonomy, NOT hierarchical (like tags)
-			$labelscat_coach = array(
-				'name'                       => __( 'Coach Category', 'dts' ),
-				'singular_name'              => __( 'Coach Category',  'dts' ),
-				'search_items'               => __( 'Search Coach Category', 'dts' ),
-				'popular_items'              => __( 'Popular Coach Category', 'dts' ),
-				'all_items'                  => __( 'All Coach Category', 'dts' ),
-				'parent_item'                => null,
-				'parent_item_colon'          => null,
-				'edit_item'                  => __( 'Edit Coach Category', 'dts' ),
-				'update_item'                => __( 'Update Coach Category', 'dts' ),
-				'add_new_item'               => __( 'Add New Coach Category', 'dts' ),
-				'new_item_name'              => __( 'New Coach Category Name', 'dts' ),
-				'separate_items_with_commas' => __( 'Separate Coach Category with commas', 'dts' ),
-				'add_or_remove_items'        => __( 'Add or remove Coach Category', 'dts' ),
-				'choose_from_most_used'      => __( 'Choose from the most used Coach Category', 'dts' ),
-				'not_found'                  => __( 'No Coach Category found.', 'dts' ),
-				'menu_name'                  => __( 'Coach Category', 'dts' ),
-			);
-
-			 $args_cat_coach = array(
-				'hierarchical'          => true,
-				'labels'                => $labelscat_coach,
-				'show_ui'               => true,
-				'show_in_menu'          => true,
-				'public'          => true,
-				'publicly_queryable'          => true,
-				'show_in_nav_menus'          => true,
-				'show_in_quick_edit'          => true,
-				'show_admin_column'     => true,
-				'update_count_callback' => '_update_post_term_count',
-				'query_var'             => true,
-				'rewrite'               => array( 'slug' => 'b3m_coach_category' ),
-			);
-			*/
-
-			// register_taxonomy( 'b3m_coach_category', 'coaches', $args_cat_coach );
-			// register_taxonomy_for_object_type( 'b3m_coach_category', 'coaches' );
+			register_post_type( 'coaches', $argscoach );
 		}
 
 		/**
@@ -283,7 +233,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 		**/
 		public function coach_meta_box_add() {
 			global $coach_box;
-			add_meta_box( $coach_box['id'], $coach_box['title'], array( &$this, 'coach_meta_box_cb' ), 'coaches', 'normal','high' );
+			add_meta_box( $coach_box['id'], $coach_box['title'], array( $this, 'coach_meta_box_cb' ), 'coaches', 'normal','high' );
 		}
 
 		/**
@@ -296,15 +246,13 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 
 			echo '<input type="hidden" name="coach_meta_box_nonce" value="', wp_create_nonce( basename(__FILE__) ), '" />';
 			echo '<table class="form-table">';
-			foreach ( $coach_box['fields'] as $field )
-			{
+			foreach ( $coach_box['fields'] as $field ) {
 				// get current post meta data
 				$coach_check_value = get_post_meta( $post->ID, $field['id'], true );
 				echo '<tr class="form-field">',
 						'<th scope="row"><label for="', $field['id'], '">', _e($field['name'],'aiinfo'), '</label></th>',
 						'<td>';
-				switch ( $field['type'] )
-				{
+				switch ( $field['type'] ) {
 					case 'text':
 						echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $coach_check_value ? $coach_check_value : $field['std'], '" />', '<br />', $field['desc'];
 						break;
@@ -325,7 +273,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 						break;
 
 				}
-				echo  '</td><td>',
+				echo '</td><td>',
 					'</td></tr>';
 			}
 			echo '</table>';
@@ -392,8 +340,7 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			return $columns;
 		}
 
-		function display_thumbnail( $column )
-		{
+		function display_thumbnail( $column ) {
 			global $post;
 
 			switch ( $column ) {
@@ -406,10 +353,10 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 
 		function hide_coach_template($query) {
 			global $pagenow;
- 
+
 			if( 'edit.php' != $pagenow || !$query->is_admin )
 				return $query;
- 
+
 			$user = wp_get_current_user();
 			$roles = wp_get_current_user()->roles;
 
@@ -420,8 +367,6 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			}
 			return $query;
 		}
-
-	
 
 		/**
 		* Updating messages
@@ -472,11 +417,8 @@ if ( ! class_exists( 'Coach_Post_Type' ) )
 			return $title;
 		}
 
-		
-		
 	}
 	new Coach_Post_Type;
 
 
 }
-?>

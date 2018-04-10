@@ -141,7 +141,7 @@ class PushPress_Connect {
 	 * Frontend stylesheets.
 	 */
 	public function stylesheets() {
-//		wp_enqueue_style( 'wp_pushpress_jqueryui_css', PUSHPRESS_URL . '/css/jquery-ui.min.css', false, '1.11.2' );
+		//wp_enqueue_style( 'wp_pushpress_jqueryui_css', PUSHPRESS_URL . '/css/jquery-ui.min.css', false, '1.11.2' );
 		wp_enqueue_style( 'wp_pushpress_css', PUSHPRESS_URL . '/css/pushpress.css', false, PUSHPRESS_PLUGIN_VERSION );
 		wp_enqueue_style( 'wp_pushpress_form_css', PUSHPRESS_URL . '/css/pushpress-form.css', false, PUSHPRESS_PLUGIN_VERSION );
 		wp_enqueue_style( 'wp_pushpress_icons', PUSHPRESS_URL . '/css/icomoon.css', false, PUSHPRESS_PLUGIN_VERSION );
@@ -282,7 +282,6 @@ class PushPress_Connect {
 			wp_verify_nonce( $_POST['save_leads_info_nonce'], 'save_leads_info' )
 			&&
 			$this->check_API_key
-// RYAN: User permissions check required here?
 		) {
 			$form['billing_first_name']      = sanitize_text_field( $_POST['billing_first_name'] );
 			$form['billing_last_name']       = sanitize_text_field( $_POST['billing_last_name'] );
