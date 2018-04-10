@@ -156,7 +156,7 @@
 			<option value="">-Select one-</option>
 			<?php foreach($referral_sources as $referral) { ?>
 				<option open-staff-list="<?php echo esc_attr( $referral['show_staff_list'] ); ?>" 
-					value="<?php echo echo_attr( $referral['id'] ); ?>" 
+					value="<?php echo esc_attr( $referral['id'] ); ?>" 
 					<?php echo ($referral['id'] == $post['referred_by_id']) ? 'selected' : '';?>
 				>
 					<?php echo esc_html( $referral->name ); ?>

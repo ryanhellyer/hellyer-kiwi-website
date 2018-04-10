@@ -14,14 +14,16 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <h1><?php esc_html_e( 'PushPress Lead Form Admin', 'pushpress-lead-form' ); ?></h1>
-<p><?php esc_html_e( 'This plugin will generate and process shortcode to allow you to display your lead form on your website', 'pushpress-lead-form' ); ?>
+<p><?php esc_html_e( 'Use this shortcode on your site where you want your Lead Capture Form. Configure form fields from your PushPress Control Panel.', 'pushpress-lead-form' ); ?>
 <p>
-	[pushpress_lead_form]
+	<?php esc_html_e( 'Generated Shortcode', 'pushpress-lead-form' ); ?>
+	<br />
+	[pushpress-lead-form]
 </p>
 
 <div style="width:60%";>
 	<h2><?php esc_html_e( 'Example:', 'pushpress-lead-form' ); ?></h2>
-	<?php if (PUSHPRESS_INTEGRATED) { 
+	<?php if ( PUSHPRESS_INTEGRATED ) { 
 	 	echo pushpress_lead_form_shortcode();
 	 }
 	 else { 

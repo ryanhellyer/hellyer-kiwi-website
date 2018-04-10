@@ -30,7 +30,7 @@ class Pushpress_Lead_Form_Model {
         
     }   
 
-    public function get_staff() { 
+    static function get_staff() { 
         try {
             $staff = Pushpress_Customer::all(array("is_staff"=>1, "active"=>1));
             return $staff->data;
