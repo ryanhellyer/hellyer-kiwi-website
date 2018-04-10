@@ -134,38 +134,18 @@ $leadEnabled = get_option( 'wp-pushpress-feature-lead-enabled' );
 
 
 
-
-
-
-
-
-
-
-
-
 <div>
 	<h2>Short Codes</h2>
+	<?php
+
+	if ( ! empty( $opts ) ) {
+		?>
 	<ul class="pp-list">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php print_r( $opts ); die; ?>
 
 	<?php foreach ($opts as $key=>$value) { ?>
 		<li><?php echo  "[pushpress-shortcode name='" . $key . "'] => " . $value;?></li>
+	<?php } ?>
+
 	<?php } ?>
 </div>
 <script type="text/javascript">
