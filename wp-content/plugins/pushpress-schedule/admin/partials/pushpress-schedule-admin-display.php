@@ -14,6 +14,21 @@
 $types = Pushpress_CalendarType::all();
 $random_type = $types->data[0];
 
+$coaches = Pushpress_Customer::all(
+	array(
+		'is_staff' => 1,
+		'active'   => 1,
+		'deleted'  => 0,
+		'order_by' => 'first_name'
+	)
+);
+$possible_coaches = array();
+foreach ( $coaches->data as $key => $coach ) {
+	$first_name = $coach->first_name;
+	$last_name  = $coach->last_name;
+
+	$possible_coaches[] = $first_name . ' ' . $last_name;
+}
 
 
 if ( isset( $_POST['pushpress-class-type'] ) ) {
@@ -40,22 +55,10 @@ if ( isset( $_POST['pushpress-coach'] ) ) {
 	$coach = '';
 }
 
-if ( isset( $_POST['pushpress-day'] ) ) {
-	$day = esc_attr( $_POST['pushpress-day'] );
+if ( isset( $_POST['pushpress-length'] ) ) {
+	$length = esc_attr( $_POST['pushpress-length'] );
 } else {
-	$day = '';
-}
-
-if ( isset( $_POST['pushpress-week'] ) ) {
-	$week = esc_attr( $_POST['pushpress-week'] );
-} else {
-	$week = '';
-}
-
-if ( isset( $_POST['pushpress-month'] ) ) {
-	$month = esc_attr( $_POST['pushpress-month'] );
-} else {
-	$month = '';
+	$length = 'Month';
 }
 
 
@@ -68,31 +71,51 @@ if ( isset( $_POST['pushpress-month'] ) ) {
 	<table>
 		<tr>
 			<td><label><?php esc_html_e( 'Class type', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-class-type" id="pushpress-class-type" value="<?php echo esc_attr( $class_type ); ?>" /></td>
+			<td><select name="pushpress-class-type" id="pushpress-class-type">
+				<option <?php selected( $class_type, '' ); ?> value=""><?php esc_html_e( 'Default', 'pushpress-schedule' ); ?></option>
+				<option <?php selected( $class_type, 'Class' ); ?> value="Class"><?php esc_html_e( 'Class', 'pushpress-schedule' ); ?></option>
+				<option <?php selected( $class_type, 'Event' ); ?> value="Event"><?php esc_html_e( 'Event', 'pushpress-schedule' ); ?></option>
+			</select>
 		</tr>
 		<tr>
 			<td><label><?php esc_html_e( 'Calendar type', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-calendar-type" id="pushpress-calendar-type" value="<?php echo esc_attr( $calendar_type ); ?>" /></td>
+			<td><select type="text" name="pushpress-calendar-type" id="pushpress-calendar-type"><?php
+
+			echo '<option ' . selected( '', $calendar_type, false ) . ' value="">' . esc_html__( 'Default', 'pushpress-schedule' ) . '</option>';
+			foreach( $types->data as $x => $data ) {
+				$possible_calendar_type = $data->name;
+				echo '<option ' . selected( $possible_calendar_type, $calendar_type, false ) . ' value="' . esc_attr( $possible_calendar_type ) . '">' . esc_html( $possible_calendar_type ) . '</option>';
+			}
+
+			?>
+			</select></td>
 		</tr>
+		<!--
 		<tr>
 			<td><label><?php esc_html_e( 'Post code', 'pushpress-schedule' ); ?></label></td>
 			<td><input type="text" name="pushpress-post-code" id="pushpress-post-code" value="<?php echo esc_attr( $post_code ); ?>" /></td>
 		</tr>
+		-->
 		<tr>
 			<td><label><?php esc_html_e( 'Coach', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-coach" id="pushpress-coach" value="<?php echo esc_attr( $coach ); ?>" /></td>
+			<td><select type="text" name="pushpress-coach" id="pushpress-coach"><?php
+
+			echo '<option ' . selected( '', $coach, false ) . ' value="">' . esc_html__( 'Default', 'pushpress-schedule' ) . '</option>';
+			foreach( $possible_coaches as $x => $coach_name ) {
+				echo '<option ' . selected( $coach_name, $coach, false ) . ' value="' . esc_attr( $coach_name ) . '">' . esc_html( $coach_name ) . '</option>';
+			}
+
+			?>
+			</select>
 		</tr>
 		<tr>
-			<td><label><?php esc_html_e( 'Day', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-day" id="pushpress-day" value="<?php echo esc_attr( $day ); ?>" /></td>
-		</tr>
-		<tr>
-			<td><label><?php esc_html_e( 'Week', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-week" id="pushpress-week" value="<?php echo esc_attr( $week ); ?>" /></td>
-		</tr>
-		<tr>
-			<td><label><?php esc_html_e( 'Month', 'pushpress-schedule' ); ?></label></td>
-			<td><input type="text" name="pushpress-month" id="pushpress-month" value="<?php echo esc_attr( $month ); ?>" /></td>
+			<td><label><?php esc_html_e( 'Length', 'pushpress-schedule' ); ?></label></td>
+			<td><select name="pushpress-length" id="pushpress-length">
+				<option <?php selected( $length, '' ); ?> value=""><?php esc_html_e( 'Default', 'pushpress-schedule' ); ?></option>
+				<option <?php selected( $length, 'day' ); ?> value="day"><?php esc_html_e( 'Day', 'pushpress-schedule' ); ?></option>
+				<option <?php selected( $length, 'week' ); ?> value="week"><?php esc_html_e( 'Week', 'pushpress-schedule' ); ?></option>
+				<option <?php selected( $length, 'month' ); ?> value="month"><?php esc_html_e( 'Month', 'pushpress-schedule' ); ?></option>
+			</select></td>
 		</tr>
 	</table>
 
@@ -117,9 +140,7 @@ $args = array(
 	'calendar_type' => $calendar_type,
 	'post_code'     => $post_code,
 	'coach'         => $coach,
-	'day'           => $day,
-	'week'          => $week,
-	'month'         => $month,
+	'length'        => $length,
 );
 
 echo pushpress_schedule_shortcode( $args );

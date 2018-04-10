@@ -70,8 +70,12 @@ class PushPress_Schedule_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class. 
 		 */
-		wp_enqueue_style( $this->pushpress_schedule, plugin_dir_url( __FILE__ ) . 'css/pushpress-schedule-admin.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'fullcalendar-css', plugin_dir_url( __FILE__ ) . '.css/fullcalendar/fullcalendar.min.css', array(), $this->version, 'all' );		
+		wp_enqueue_style( $this->pushpress_schedule, plugin_dir_url( dirname( __FILE__ ) ) . 'admin/css/pushpress-schedule-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'fullcalendar-css', plugin_dir_url( dirname( __FILE__ ) ) . ' . public/css/fullcalendar/fullcalendar.min.css', array(), $this->version, 'all' );		
+
+		wp_enqueue_style( $this->pushpress_schedule, plugin_dir_url( dirname( __FILE__ ) ) . 'public/css/pushpress-schedule-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'fullcalendar', plugin_dir_url( dirname( __FILE__ ) ) . 'public/css/fullcalendar/fullcalendar.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'pushpress-jquery-ui-dialog', plugin_dir_url( dirname( __FILE__ ) ) . 'public/css/jquery-ui.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -93,14 +97,12 @@ class PushPress_Schedule_Admin {
 		 * class.
 		 */
 		
-		wp_enqueue_script( 'pushpress_schedule_admin', plugin_dir_url( __FILE__ ) . 'js/pushpress-schedule-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'pushpress_schedule_admin', plugin_dir_url( dirname( __FILE__ ) ) . 'admin/js/pushpress-schedule-admin.js', array( 'jquery' ), $this->version, false );
 
 		// this is in public
-		wp_enqueue_script( 'moment-js', plugin_dir_url( __FILE__ ) . 'js/fullcalendar/lib/moment.min.js', array(), $this->version, false );
+		wp_enqueue_script( 'moment-js', plugin_dir_url( dirname( __FILE__ ) ) . 'public/js/fullcalendar/lib/moment.min.js', array(), $this->version, false );
 
-		wp_enqueue_script( 'fullcalendar', plugin_dir_url( __FILE__ ) . 'js/fullcalendar/fullcalendar.js', array( 'jquery', 'moment-js' ), $this->version, false );
-
-
+		wp_enqueue_script( 'fullcalendar', plugin_dir_url( dirname( __FILE__ ) ) . 'public/js/fullcalendar/fullcalendar.js', array( 'jquery', 'moment-js' ), $this->version, false );
 
 	}
 

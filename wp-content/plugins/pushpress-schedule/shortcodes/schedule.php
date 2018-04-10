@@ -8,7 +8,6 @@ if ( ! isset( $atts['id'] ) ) {
 
 
 
-
 <div id="eventContent" title="Event Details" style="display:none;">
 	<p>
 		<span id="pushpress-schedule-modal-date"></span>
@@ -60,6 +59,29 @@ if ( ! isset( $atts['id'] ) ) {
 </style>
 
 <script>
+
+var browser_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+if ( browser_width > 770 ) {
+	var pushpress_default_view = '<?php 
+		$length = 'month';
+		if ( isset( $args[ 'length' ]  ) ) {
+
+			if ( 'day' === $args[ 'length' ] ) {
+				$length = 'agendaDay';
+			} else if ( 'week' === $args[ 'length' ] ) {
+				$length = 'agendaWeek';
+			} else if ( 'month' === $args[ 'length' ] ) {
+				$length = 'month';
+			}
+
+		}
+
+		echo $length;
+	 ?>';
+} else {
+	var pushpress_default_view = 'agendaDay';
+}
+
 jQuery('#<?php echo esc_attr( $atts['id'] );?>').fullCalendar({
 	// put your options and callbacks here
 	header: {
@@ -81,7 +103,7 @@ jQuery('#<?php echo esc_attr( $atts['id'] );?>').fullCalendar({
 	month: <?php echo esc_html( date( 'm' ) ) - 1;?>,
 	date: <?php echo esc_html( date( 'd' ) );?>,
 	contentHeight: 850,
-	defaultView: 'agendaWeek',
+	defaultView: pushpress_default_view,
 	slotDuration: '00:60:00',
 	slotLabelInterval: '00:60:00',
 	minTime: '4:00:00',
@@ -207,7 +229,7 @@ jQuery('#<?php echo esc_attr( $atts['id'] );?>').fullCalendar({
 		/* jQuery UI Dialog */
 		element.attr('href', 'javascript:void(0);');
 		element.click(function(element) {
-			console.log(event);
+//			console.log(event);
 
 			jQuery("#pushpress-schedule-modal-date").html(event.date+'<br />');
 			jQuery("#pushpress-schedule-modal-time").html(event.time);

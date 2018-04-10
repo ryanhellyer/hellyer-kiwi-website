@@ -110,131 +110,135 @@ class Pushpress_Schedule_Public {
 		$args['start_time'] = strtotime( 'midnight ' . $_POST['start'] );
 		$args['end_time'] = strtotime( 'midnight ' . $_POST['end'] );
 
-		//$cache_key = 'CALENDAR_' . $args['type'] . $args['calendar_type_id'] . $args['start_time'] . 
-		
-		$calendar_items = Pushpress_Calendar::all( $args );
 
-		$events = array();
+		$cache_key = "get_schedule_" . md5( print_r( $args, true ) );
+		if ( false === ( $events = get_transient( $cache_key ) ) ) {
+	
+			$calendar_items = Pushpress_Calendar::all( $args );
+			$events = array();
 
-		foreach ( $calendar_items->data as $item )  { 
+			foreach ( $calendar_items->data as $item )  { 
 
-			$calendar_item = Pushpress_Calendar::retrieve( $item['uuid'] );
+				$calendar_item = Pushpress_Calendar::retrieve( $item['uuid'] );
 
-			// If class type (eg: CrossFit) set, then ignore others
-			if (
-				isset( $_POST['class_type'] )
-				&&
-				'' !== $_POST['class_type']
-				&&
-				$_POST['class_type'] !== $calendar_item->type['name']
-			) {
-				continue;
-			}
-
-			// If session type (eg: Class) set, then ignore others
-			if (
-				isset( $_POST['calendar_type'] )
-				&&
-				'' !== $_POST['calendar_type']
-				&&
-				$_POST['calendar_type'] !== $calendar_item->session_type['type']
-			) {
-				continue;
-			}
-
-			// If post-code (eg: 90254) set, then ignore others
-			if (
-				isset( $_POST['post_code'] )
-				&&
-				'' !== $_POST['post_code']
-			) {
-
-				$postal_codes = array();
-				foreach ( $calendar_item->coach as $the_coach ) {
-					$postal_codes[] = $the_coach->postal_code;
-				}
-
-				if ( ! in_array( $_POST['post_code'], $postal_codes ) ) {
+				// If class type (eg: CrossFit) set, then ignore others
+				if (
+					isset( $_POST['class_type'] )
+					&&
+					'' !== $_POST['class_type']
+					&&
+					$_POST['class_type'] !== $calendar_item->type['name']
+				) {
 					continue;
 				}
 
-			}
-
-			// If coach (eg: McConachey) set, then ignore others
-			if ( isset( $_POST['coach'] ) && '' !== $_POST['coach'] ) {
-
-				$coaches = array();
-				foreach ( $calendar_item->coach as $the_coach ) {
-					$coaches[] = $the_coach->first_name;
-					$coaches[] = $the_coach->last_name;
-					$coaches[] = $the_coach->username;
-				}
-
-				if ( ! in_array( $_POST['coach'], $coaches ) ) {
+				// If session type (eg: Class) set, then ignore others
+				if (
+					isset( $_POST['calendar_type'] )
+					&&
+					'' !== $_POST['calendar_type']
+					&&
+					$_POST['calendar_type'] !== $calendar_item->session_type['type']
+				) {
 					continue;
 				}
 
+				// If post-code (eg: 90254) set, then ignore others
+				if (
+					isset( $_POST['post_code'] )
+					&&
+					'' !== $_POST['post_code']
+				) {
+
+					$postal_codes = array();
+					foreach ( $calendar_item->coach as $the_coach ) {
+						$postal_codes[] = $the_coach->postal_code;
+					}
+
+					if ( ! in_array( $_POST['post_code'], $postal_codes ) ) {
+						continue;
+					}
+
+				}
+
+				// If coach (eg: McConachey) set, then ignore others
+				if ( isset( $_POST['coach'] ) && '' !== $_POST['coach'] ) {
+
+					$coaches = array();
+					foreach ( $calendar_item->coach as $the_coach ) {
+						$coaches[] = $the_coach->first_name;
+						$coaches[] = $the_coach->last_name;
+						$coaches[] = $the_coach->username;
+					}
+
+					if ( ! in_array( $_POST['coach'], $coaches ) ) {
+						continue;
+					}
+
+				}
+
+				// If date (eg: month is '02') set, then ignore others
+				$start_timestamp = strtotime( $calendar_item->start_datetime );
+				$start_day = date( 'd', $start_timestamp );
+				$start_week = date( 'W', $start_timestamp );
+				$start_month = date( 'm', $start_timestamp );
+
+				if (
+					( isset( $_POST['day'] ) && '' !== $_POST['day'] && $day !== $start_day )
+					||
+					( isset( $_POST['week'] ) && '' !== $_POST['week'] && $week !== $start_week )
+					||
+					( isset( $_POST['month'] ) && '' !== $_POST['month'] && $month !== $start_month )
+				) {
+					continue;
+				}
+
+				$recur_days = array_filter(explode( ',', trim( $item['recurring_day_of_week'] ) ) );
+				$recur_0 = in_array( 0, $recur_days );
+				$recur_1 = in_array( 1, $recur_days );
+				$recur_2 = in_array( 2, $recur_days );
+				$recur_3 = in_array( 3, $recur_days );
+				$recur_4 = in_array( 4, $recur_days );
+				$recur_5 = in_array( 5, $recur_days );
+				$recur_6 = in_array( 6, $recur_days );
+
+				$x = array(
+					'uuid'               => $item['uuid'],
+					'timezone'           => date( 'e', $item['start_timestamp'] ),
+					'title'              => $item['title'],
+					'start'              => date( 'c', $item['start_timestamp'] ),
+					'end'                => date( 'c',$item['end_timestamp'] ),
+					'textColor'          => '#ffffff',
+					'backgroundColor'    => ( $item->type->color ) ?  $item->type->color : '#1a90d8',
+					'borderColor'        => ( $item->type->color ) ?  $item->type->color : '#1a90d8',
+					'source'             => $item['template_id'],
+					'date'               => date( 'l jS F', $item['start_timestamp'] ),
+					'time'               => date( 'ga', $item['start_timestamp'] ) . ' - ' . date( 'ga', $item['end_timestamp'] ), '9am - 10am',
+					'class_type'         => $calendar_item->type['name'],
+					'coach'              => $calendar_item->coach[0]->first_name . ' ' . $calendar_item->coach[0]->last_name,
+					'description'        => $item['description'],
+					'isRecurring'        => (int) $item['is_recurring'],
+					'recurring_0'        => $recur_0,
+					'recurring_1'        => $recur_1,
+					'recurring_2'        => $recur_2,
+					'recurring_3'        => $recur_3,
+					'recurring_4'        => $recur_4,
+					'recurring_5'        => $recur_5,
+					'recurring_6'        => $recur_6,
+					'allDay'             => (bool) $item['is_all_day'],
+					'CoachID'            => (int) $item->coach[0]['id'],
+					'CoachUUID'          => ( strlen( $item['coach_uuid'] ) ) ? $item['coach_uuid'] : '',
+					'AssistantCoachID'   => (int) $item->assistant_coach[0]['id'],
+					'AssistantCoachUUID' => ( strlen( $item['assistant_coach_uuid'])) ? $item['assistant_coach_uuid'] : '',
+					'LocationID'         => (int) $item['location_id'],
+					'CalendarTypeID'     => (int) $item['calendar_type_id'],
+					'Coach'              => $item->coach[0]->first_name . ' ' . $item->coach[0]->last_name,
+					'Attendees'          => array()
+				);
+				$events[] = $x;
 			}
 
-			// If date (eg: month is '02') set, then ignore others
-			$start_timestamp = strtotime( $calendar_item->start_datetime );
-			$start_day = date( 'd', $start_timestamp );
-			$start_week = date( 'W', $start_timestamp );
-			$start_month = date( 'm', $start_timestamp );
-
-			if (
-				( isset( $_POST['day'] ) && '' !== $_POST['day'] && $day !== $start_day )
-				||
-				( isset( $_POST['week'] ) && '' !== $_POST['week'] && $week !== $start_week )
-				||
-				( isset( $_POST['month'] ) && '' !== $_POST['month'] && $month !== $start_month )
-			) {
-				continue;
-			}
-
-			$recur_days = array_filter(explode( ',', trim( $item['recurring_day_of_week'] ) ) );
-			$recur_0 = in_array( 0, $recur_days );
-			$recur_1 = in_array( 1, $recur_days );
-			$recur_2 = in_array( 2, $recur_days );
-			$recur_3 = in_array( 3, $recur_days );
-			$recur_4 = in_array( 4, $recur_days );
-			$recur_5 = in_array( 5, $recur_days );
-			$recur_6 = in_array( 6, $recur_days );
-
-			$x = array(
-				'uuid'               => $item['uuid'],
-				'timezone'           => date( 'e', $item['start_timestamp'] ),
-				'title'              => $item['title'],
-				'start'              => date( 'c', $item['start_timestamp'] ),
-				'end'                => date( 'c',$item['end_timestamp'] ),
-				'textColor'          => '#ffffff',
-				'backgroundColor'    => ( $item->type->color ) ?  $item->type->color : '#1a90d8',
-				'borderColor'        => ( $item->type->color ) ?  $item->type->color : '#1a90d8',
-				'source'             => $item['template_id'],
-				'date'               => date( 'l jS F', $item['start_timestamp'] ),
-				'time'               => date( 'ga', $item['start_timestamp'] ) . ' - ' . date( 'ga', $item['end_timestamp'] ), '9am - 10am',
-				'class_type'         => $calendar_item->type['name'],
-				'coach'              => $calendar_item->coach[0]->first_name . ' ' . $calendar_item->coach[0]->last_name,
-				'description'       => $item['description'],
-				'isRecurring'        => (int) $item['is_recurring'],
-				'recurring_0'        => $recur_0,
-				'recurring_1'        => $recur_1,
-				'recurring_2'        => $recur_2,
-				'recurring_3'        => $recur_3,
-				'recurring_4'        => $recur_4,
-				'recurring_5'        => $recur_5,
-				'recurring_6'        => $recur_6,
-				'allDay'             =>(bool) $item['is_all_day'],
-				'CoachID'            =>(int) $item->coach[0]['id'],
-				'CoachUUID'          => ( strlen( $item['coach_uuid'] ) ) ? $item['coach_uuid'] : '',
-				'AssistantCoachID'   =>(int) $item->assistant_coach[0]['id'],
-				'AssistantCoachUUID' => ( strlen( $item['assistant_coach_uuid'])) ? $item['assistant_coach_uuid'] : '',
-				'LocationID'         => (int) $item['location_id'],
-				'CalendarTypeID'     => (int) $item['calendar_type_id'],
-				'Coach'              => $item->coach[0]->first_name . ' ' . $item->coach[0]->last_name,
-				'Attendees'          => array()
-			);
-			$events[] = $x;
+			set_transient( $cache_key, $events, HOUR_IN_SECONDS );
 		}
 
 		ob_start();
@@ -246,7 +250,7 @@ class Pushpress_Schedule_Public {
 		echo json_encode( $events );
 		echo ');';
 
-	  die(); // this is required to return a proper result
+		die(); // this is required to return a proper result
 	}
 	
 }
