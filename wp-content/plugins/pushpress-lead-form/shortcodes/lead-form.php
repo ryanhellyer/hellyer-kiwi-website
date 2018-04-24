@@ -1,13 +1,6 @@
 
 <?php Wp_Pushpress_Messages::get_messages();?>
 
-<h3>
-	<?php echo $integration_settings['lead_page_title'];?>
-</h3>
-<p>
-	<?php echo $integration_settings['lead_page_description'];?>
-</p>
-
 <?php if (!$_POST['form_submitted']) { ?>
 <form action="" method="post" class="pp-form pp-form-vertical">
 	<div class="pp-form-group">

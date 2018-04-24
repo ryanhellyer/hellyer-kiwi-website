@@ -60,9 +60,6 @@ $leadEnabled = get_option( 'wp-pushpress-feature-lead-enabled' );
 		<img class="pushpress-logo" src="<?php echo esc_url( PUSHPRESS_URL . '/images/img_logo.png' );?>" alt="pushpress logo">
 
 		<h1><?php esc_html_e( 'PushPress Integration', 'pushpress-connect' ); ?></h1>
-		<?php
-				if ( $client ) { ?><h3><?php echo esc_html( $client->company );?></h3><?php 
-		} ?>		
 
 	</div>
 	<div class="clear"></div>
@@ -87,7 +84,7 @@ $leadEnabled = get_option( 'wp-pushpress-feature-lead-enabled' );
 		<div style="background:green; display:inline-block; padding:20px; color:white;">
 			<strong><?php
 				printf(
-					esc_html__( 'PushPress is currently connected to %s', 'pushpress-connect' ),
+					esc_html__( 'Currently connected to %s', 'pushpress-connect' ),
 					esc_html( $client->company )
 				);
 			?></strong>
@@ -104,7 +101,7 @@ $leadEnabled = get_option( 'wp-pushpress-feature-lead-enabled' );
 			</div>					
 		</div>
 		<div class="pp-form-group">
-			<label for="pushpress_secret_code"><?php esc_html_e( 'Wordpress Secret Code', 'pushpress-connect' ); ?></label>
+			<label for="pushpress_secret_code"><?php esc_html_e( 'WordPress Secret Code', 'pushpress-connect' ); ?></label>
 			<div class="form-group">
 				<input type="text" id="pushpress_secret_code" name="pushpress_secret_code" value="<?php echo esc_attr( $pushpress_secret_code );?>" placeholder="key_aabbccddeeff11223344556677889900">
 			</div>
@@ -135,7 +132,6 @@ $leadEnabled = get_option( 'wp-pushpress-feature-lead-enabled' );
 
 
 <div>
-	<h2>Short Codes</h2>
 	<?php
 
 	if ( ! empty( $opts ) ) {

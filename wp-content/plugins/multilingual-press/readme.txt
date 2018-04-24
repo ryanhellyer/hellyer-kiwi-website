@@ -1,9 +1,9 @@
 === MultilingualPress ===
 Contributors: inpsyde, toscho, tfrommen, Bueltge, hughwillfayle, nullbyte, Biont, ChriCo, dnaber-de, paddelboot
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
-Requires at least: 4.2
-Tested up to: 4.8
-Stable tag: 2.11.0
+Requires at least: 4.7
+Tested up to: 4.9
+Stable tag: 2.11.1
 
 Create a fast translation network on WordPress multisite.
 
@@ -111,8 +111,14 @@ tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/).
 10. New user settings for the sitewide _Backend Language_ and the _Language Redirect_.
 11. New _Language Switcher_ widget.
 12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
+13. MultilingualPress is recommended by WP Engine as a solution for multilingual websites.
 
 == Changelog ==
+
+= 2.11.1 =
+- Bump minimum WP version to 4.7 in order to prevent issues, see [#301](https://github.com/inpsyde/MultilingualPress/pull/301), props @lkraav.
+- Avoid error from `STRICT_TRANS_TABLES` in `@@sqlmode`, see [#302](https://github.com/inpsyde/MultilingualPress/issues/302) and [#303](https://github.com/inpsyde/MultilingualPress/pull/303), props @rebeccahum, @nickdaugherty.
+- Use Union Jack as English flag.
 
 = 2.11.0 =
 - Post Translation: Allow for translation of scheduled posts, see [#296](https://github.com/inpsyde/MultilingualPress/pull/296).
