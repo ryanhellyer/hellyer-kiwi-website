@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-04-17 13:37:55+0000\n"
+"PO-Revision-Date: 2018-05-01 11:04:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,11 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_GB\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#. translators: %1$s expands to 'Yoast SEO Premium'.
+#: admin/config-ui/components/class-component-configuration-choices.php:67
+msgid "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you, order a %1$s configuration service and sit back while we configure your site."
+msgstr "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you, order a %1$s configuration service and sit back while we configure your site."
 
 #. translators: %1$s expands to a link start tag to the Baidu Webmaster Tools
 #. site add page, %2$s is the link closing tag.
@@ -276,6 +281,10 @@ msgstr "this author's archives"
 msgid "We recommend you set this to Yes."
 msgstr "We recommend you set this to Yes."
 
+#: admin/views/tabs/metas/media.php:21
+msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
+msgstr "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
+
 #. translators: 1: link open tag; 2: link close tag., 3: the translated label
 #. of the button
 #: admin/views/tabs/social/facebook.php:57
@@ -305,10 +314,6 @@ msgstr "Help on the category prefix setting"
 #: admin/views/tabs/metas/rss.php:38
 msgid "Learn more about the available variables"
 msgstr "Learn more about the available variables"
-
-#: admin/views/tabs/metas/media.php:21
-msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
-msgstr "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
 
 #: admin/views/tabs/metas/rss.php:20
 msgid "Learn more about the RSS feed setting"
@@ -920,7 +925,7 @@ msgstr "Go back"
 msgid "Go back to the search results"
 msgstr "Go back to the search results"
 
-#: admin/class-help-center.php:257
+#: admin/class-add-keyword-modal.php:38 admin/class-help-center.php:257
 #: admin/formatter/class-metabox-formatter.php:170
 msgid "(Opens in a new browser tab)"
 msgstr "(Opens in a new browser tab)"
@@ -1136,7 +1141,7 @@ msgstr "%1$s recommendations for you"
 msgid "Activate your site on My Yoast"
 msgstr "Activate your site on My Yoast"
 
-#: admin/class-admin.php:361 vendor/yoast/whip/src/facades/wordpress.php:29
+#: admin/class-admin.php:363 vendor/yoast/whip/src/facades/wordpress.php:29
 msgid "Remind me again in 4 weeks."
 msgstr "Remind me again in 4 weeks."
 
@@ -1302,7 +1307,6 @@ msgstr "No internal links appear in this page. Consider adding some as appropria
 #. translators: %1$s expands to a 'strong' start tag, %2$s to a 'strong' end
 #. tag.
 #: admin/class-help-center.php:208
-#: admin/metabox/class-metabox-add-keyword-tab.php:50
 msgid "%1$sSocial media preview%2$s: Facebook &amp; Twitter"
 msgstr "%1$sSocial media preview%2$s: Facebook &amp; Twitter"
 
@@ -1312,12 +1316,12 @@ msgid "Configure %s in a few steps"
 msgstr "Configure %s in a few steps"
 
 #. translators: %s expands to 'Yoast SEO'.
-#: admin/config-ui/components/class-component-configuration-choices.php:59
+#: admin/config-ui/components/class-component-configuration-choices.php:75
 msgid "Let us set up %s for you"
 msgstr "Let us set up %s for you"
 
 #. translators: %s expands to 'Yoast SEO Premium'.
-#: admin/metabox/class-metabox-add-keyword-tab.php:40
+#: admin/class-add-keyword-modal.php:30
 msgid "Other benefits of %s for you:"
 msgstr "Other benefits of %s for you:"
 
@@ -1407,13 +1411,13 @@ msgstr "Do you want to outrank your competition? %1$s gives you awesome addition
 msgid "Outrank the competition with %s"
 msgstr "Outrank the competition with %s"
 
-#: admin/config-ui/components/class-component-configuration-choices.php:69
+#: admin/config-ui/components/class-component-configuration-choices.php:80
 msgid "Configuration service"
 msgstr "Configuration service"
 
 #. translators: %1$s expands to 'Yoast SEO', %2$s expands to 'Yoast SEO
 #. Premium'.
-#: admin/config-ui/components/class-component-configuration-choices.php:63
+#: admin/config-ui/components/class-component-configuration-choices.php:59
 msgid "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you (and get a copy of %2$s in the process), order a %1$s configuration service and sit back while we configure your site."
 msgstr "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you (and get a copy of %2$s in the process), order a %1$s configuration service and sit back while we configure your site."
 
@@ -1495,9 +1499,8 @@ msgstr "A message from %1$s"
 msgid "Go Premium and our experts will be there for you to answer any questions you might have about the setup and use of the plugin."
 msgstr "Go Premium and our experts will be there for you to answer any questions you might have about the setup and use of the plugin."
 
-#: admin/class-help-center.php:210
+#: admin/class-help-center.php:210 admin/class-premium-benefits-list.php:29
 #: admin/class-premium-upsell-admin-block.php:51
-#: admin/metabox/class-metabox-add-keyword-tab.php:52
 msgid "24/7 support"
 msgstr "24/7 support"
 
@@ -1507,7 +1510,7 @@ msgstr "Superfast internal linking suggestions"
 
 #. translators: %1$s expands to a 'Yoast SEO Premium' text linked to the
 #. yoast.com website.
-#: admin/metabox/class-metabox-add-keyword-tab.php:35
+#: admin/class-add-keyword-modal.php:24
 msgid "Great news: you can, with %1$s!"
 msgstr "Great news: you can, with %1$s!"
 
@@ -1515,7 +1518,7 @@ msgstr "Great news: you can, with %1$s!"
 msgid "Save changes"
 msgstr "Save changes"
 
-#: admin/class-premium-popup.php:85
+#: admin/class-add-keyword-modal.php:37 admin/class-premium-popup.php:85
 msgid "1 year free updates and upgrades included!"
 msgstr "1 year free updates and upgrades included!"
 
@@ -1526,7 +1529,7 @@ msgstr "1 year free updates and upgrades included!"
 msgid "The plugin %2$s changes your site's output and in doing that differentiates between search engines and normal users, a process that's called cloaking. We highly recommend that you disable it."
 msgstr "The plugin %2$s changes your site's output and in doing that differentiates between search engines and normal users, a process that's called cloaking. We highly recommend that you disable it."
 
-#: admin/metabox/class-metabox-add-keyword-tab.php:33
+#: admin/class-add-keyword-modal.php:21
 msgid "Want to add more than one keyword?"
 msgstr "Want to add more than one keyword?"
 
@@ -1537,8 +1540,7 @@ msgstr "Other benefits of %1$s for you:"
 
 #. translators: %1$s expands to a 'strong' start tag, %2$s to a 'strong' end
 #. tag.
-#: admin/class-help-center.php:202
-#: admin/metabox/class-metabox-add-keyword-tab.php:45
+#: admin/class-help-center.php:202 admin/class-premium-benefits-list.php:20
 msgid "%1$sNo more dead links%2$s: easy redirect manager"
 msgstr "%1$sNo more dead links%2$s: easy redirect manager"
 
@@ -1546,14 +1548,18 @@ msgstr "%1$sNo more dead links%2$s: easy redirect manager"
 msgid "Go Premium and our experts will be there for you to answer any questions you might have about the set-up and use of the plug-in!"
 msgstr "Go Premium and our experts will be there for you to answer any questions you might have about the setup and use of the plugin!"
 
-#: admin/class-help-center.php:204
-#: admin/metabox/class-metabox-add-keyword-tab.php:47
+#: admin/class-help-center.php:204 admin/class-premium-benefits-list.php:23
 msgid "Superfast internal links suggestions"
 msgstr "Super fast internal links suggestions"
 
-#: admin/class-help-center.php:211
+#. translators: %1$s expands to a 'strong' start tag, %2$s to a 'strong' end
+#. tag.
+#: admin/class-premium-benefits-list.php:26
+msgid "%1$sSocial media preview%2$s: Facebook & Twitter"
+msgstr "%1$sSocial media preview%2$s: Facebook & Twitter"
+
+#: admin/class-help-center.php:211 admin/class-premium-benefits-list.php:30
 #: admin/class-premium-upsell-admin-block.php:52
-#: admin/metabox/class-metabox-add-keyword-tab.php:53
 msgid "No ads!"
 msgstr "No ads!"
 
@@ -1593,7 +1599,7 @@ msgstr "Variable"
 msgid "Available variables"
 msgstr "Available variables"
 
-#: admin/class-admin.php:284
+#: admin/class-admin.php:286
 msgid "Scroll to see the table content."
 msgstr "Scroll to see the table content."
 
@@ -2098,10 +2104,15 @@ msgstr "Next step"
 msgid "Export settings"
 msgstr "Export settings"
 
+#. translators: %s expands to 'Yoast SEO Premium'.
 #. translators: %s expands to Yoast SEO Premium
+#. translators: %s expands to 'Yoast SEO Premium'.
 #. translators: %s expands to Yoast SEO Premium.
 #. translators: %s expands to Yoast SEO Premium.
-#: admin/class-premium-popup.php:80 admin/metabox/class-metabox.php:477
+#: admin/class-add-keyword-modal.php:35 admin/class-premium-popup.php:80
+#: admin/metabox/class-metabox-add-keyword-tab.php:28
+#: admin/metabox/class-metabox-add-keyword-tab.php:32
+#: admin/metabox/class-metabox.php:477
 #: admin/taxonomy/class-taxonomy-metabox.php:297
 msgid "Get %s now!"
 msgstr "Get %s now!"
@@ -2642,7 +2653,7 @@ msgid_plural "%s notifications"
 msgstr[0] "%s notification"
 msgstr[1] "%s notifications"
 
-#: admin/class-admin.php:283
+#: admin/class-admin.php:285
 msgid "Yoast SEO video tutorial"
 msgstr "Yoast SEO video tutorial"
 
@@ -2742,6 +2753,10 @@ msgstr "Something went wrong. Please try again later."
 #: admin/class-help-center.php:239
 msgid "Loading..."
 msgstr "Loading..."
+
+#: admin/class-yoast-modal.php:82
+msgid "Open"
+msgstr "Open"
 
 #: admin/class-help-center.php:237
 msgid "Knowledge base"
@@ -3058,7 +3073,7 @@ msgstr "%1$s%2$s has not been able to fetch your site's indexability status%3$s 
 msgid "Add-ons"
 msgstr "Add-ons"
 
-#: admin/onpage/class-onpage.php:108
+#: admin/onpage/class-onpage.php:112
 msgid "Once Weekly"
 msgstr "Once Weekly"
 
@@ -3066,7 +3081,7 @@ msgstr "Once Weekly"
 #. the link
 #. translators: %1$s: opens a link to a related knowledge base article. %2$s:
 #. closes the link.
-#: admin/onpage/class-onpage.php:164 admin/onpage/class-ryte-service.php:64
+#: admin/onpage/class-onpage.php:168 admin/onpage/class-ryte-service.php:64
 msgid "%1$sYour homepage cannot be indexed by search engines%2$s. This is very bad for SEO and should be fixed."
 msgstr "%1$sYour homepage cannot be indexed by search engines%2$s. This is very bad for SEO and should be fixed."
 
@@ -3094,7 +3109,8 @@ msgstr "Facebook / Open Graph metadata"
 msgid "Twitter metadata"
 msgstr "Twitter metadata"
 
-#: admin/metabox/class-metabox-add-keyword-tab.php:28
+#: admin/metabox/class-metabox-add-keyword-tab.php:25
+#: admin/metabox/class-metabox-add-keyword-tab.php:54
 msgid "Add keyword"
 msgstr "Add keyword"
 
@@ -3165,7 +3181,7 @@ msgstr "<b>Warning!</b> You're blocking external requests which means you won't 
 msgid "Activate License"
 msgstr "Activate Licence"
 
-#: wp-seo-main.php:517
+#: wp-seo-main.php:520
 msgid "Activation failed:"
 msgstr "Activation failed:"
 
@@ -3310,11 +3326,11 @@ msgstr "Team Yoast"
 #. translators: %1$s expands to Yoast SEO, %2$s / %3$s: links to the
 #. installation manual in the Readme for the Yoast SEO code repository on
 #. GitHub
-#: wp-seo-main.php:483
+#: wp-seo-main.php:486
 msgid "The %1$s plugin installation is incomplete. Please refer to %2$sinstallation instructions%3$s."
 msgstr "The %1$s plugin installation is incomplete. Please refer to %2$sinstallation instructions%3$s."
 
-#: wp-seo-main.php:461
+#: wp-seo-main.php:464
 msgid "The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it."
 msgstr "The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it."
 
@@ -3323,7 +3339,7 @@ msgstr "The Standard PHP Library (SPL) extension seem to be unavailable. Please 
 msgid "The default blog setting must be the numeric blog id of the blog you want to use as default."
 msgstr "The default blog setting must be the numeric blog id of the blog you want to use as default."
 
-#: wp-seo-main.php:507
+#: wp-seo-main.php:510
 msgid "The filter extension seem to be unavailable. Please ask your web host to enable it."
 msgstr "The filter extension seem to be unavailable. Please ask your web host to enable it."
 
@@ -3352,7 +3368,7 @@ msgstr "Translation of %s"
 msgid "We couldn't create a connection to our API to verify your license key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 msgstr "We couldn't create a connection to our API to verify your licence key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.3)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.4)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:68
 msgid "Yoast SEO"
@@ -4497,6 +4513,7 @@ msgstr "Both %1$s and %2$s create OpenGraph output, which might make Facebook, T
 msgid "Breadcrumbs title"
 msgstr "Breadcrumbs title"
 
+#: admin/class-yoast-modal.php:85
 #: admin/google_search_console/views/gsc-redirect-nopremium.php:25
 #: languages/yoast-components.php:23
 msgid "Close"
@@ -4792,7 +4809,7 @@ msgstr "Advanced"
 msgid "Advanced <code>meta</code> robots settings for this page."
 msgstr "Advanced <code>meta</code> robots settings for this page."
 
-#: admin/class-admin.php:558 admin/class-admin.php:559 admin/pages/metas.php:76
+#: admin/class-admin.php:560 admin/class-admin.php:561 admin/pages/metas.php:76
 msgid "Advanced Variables"
 msgstr "Advanced Variables"
 
@@ -4800,7 +4817,7 @@ msgstr "Advanced Variables"
 msgid "Anchor text for the homepage:"
 msgstr "Anchor text for the homepage:"
 
-#: admin/class-admin.php:550 admin/class-admin.php:551 admin/pages/metas.php:70
+#: admin/class-admin.php:552 admin/class-admin.php:553 admin/pages/metas.php:70
 msgid "Basic Variables"
 msgstr "Basic Variables"
 
@@ -4854,11 +4871,11 @@ msgstr "Existing Yoast Meta Description"
 msgid "Extensions"
 msgstr "Extensions"
 
-#: admin/class-admin.php:218
+#: admin/class-admin.php:220
 msgid "FAQ"
 msgstr "FAQ"
 
-#: admin/class-admin.php:257
+#: admin/class-admin.php:259
 msgid "Facebook profile URL"
 msgstr "Facebook profile URL"
 
@@ -4866,7 +4883,7 @@ msgstr "Facebook profile URL"
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/class-admin.php:528
+#: admin/class-admin.php:530
 msgid "For more information:"
 msgstr "For more information:"
 
@@ -4875,7 +4892,7 @@ msgstr "For more information:"
 msgid "General"
 msgstr "General"
 
-#: admin/class-admin.php:253 admin/pages/social.php:22
+#: admin/class-admin.php:255 admin/pages/social.php:22
 msgid "Google+"
 msgstr "Google+"
 
@@ -4927,7 +4944,7 @@ msgstr "No taxonomy metadata found"
 msgid "None"
 msgstr "None"
 
-#: admin/class-admin.php:543 admin/pages/metas.php:65
+#: admin/class-admin.php:545 admin/pages/metas.php:65
 msgid "Note that not all variables can be used in every template."
 msgstr "Note that not all variables can be used in every template."
 
@@ -4947,7 +4964,7 @@ msgstr "Post doesn't exist."
 msgid "Post is set to noindex."
 msgstr "Post is set to noindex."
 
-#: admin/class-admin.php:164
+#: admin/class-admin.php:166
 msgid "Posts"
 msgstr "Posts"
 
@@ -4963,7 +4980,7 @@ msgstr "Prefix for breadcrumbs:"
 msgid "Prefix for search result pages:"
 msgstr "Prefix for search result pages:"
 
-#: admin/class-admin.php:214
+#: admin/class-admin.php:216
 msgid "Premium Support"
 msgstr "Premium Support"
 
@@ -4998,7 +5015,7 @@ msgstr "SEO Title"
 msgid "Search Console"
 msgstr "Search Console"
 
-#: admin/class-admin.php:200
+#: admin/class-admin.php:202
 #: admin/google_search_console/class-gsc-platform-tabs.php:42
 #: admin/taxonomy/class-taxonomy-metabox.php:163
 #: admin/taxonomy/class-taxonomy-metabox.php:171
@@ -5032,7 +5049,7 @@ msgstr "Site-wide default: %s"
 msgid "Social"
 msgstr "Social"
 
-#: admin/class-admin.php:536 admin/class-admin.php:537 admin/pages/metas.php:42
+#: admin/class-admin.php:538 admin/class-admin.php:539 admin/pages/metas.php:42
 #: admin/pages/metas.php:63
 msgid "Template explanation"
 msgstr "Template explanation"
@@ -5042,7 +5059,7 @@ msgid "The URL that this page should redirect to."
 msgstr "The URL that this page should redirect to."
 
 #. translators: %1$s expands to Yoast SEO.
-#: admin/class-admin.php:540
+#: admin/class-admin.php:542
 msgid "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 msgstr "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 
@@ -5050,7 +5067,7 @@ msgstr "The title &amp; metas settings for %1$s are made up of variables that ar
 msgid "This export includes taxonomy metadata"
 msgstr "This export includes taxonomy metadata"
 
-#: admin/class-admin.php:529
+#: admin/class-admin.php:531
 msgid "Title optimization"
 msgstr "Title optimisation"
 
@@ -5062,7 +5079,7 @@ msgstr "Title to use for this page in breadcrumb paths"
 msgid "Tools"
 msgstr "Tools"
 
-#: admin/class-admin.php:255
+#: admin/class-admin.php:257
 msgid "Twitter username (without @)"
 msgstr "Twitter username (without @)"
 
@@ -5098,7 +5115,7 @@ msgstr "WP Page Title"
 msgid "Warning: even though you can set the meta robots setting here, the entire site is set to noindex in the sitewide privacy settings, so these settings won't have an effect."
 msgstr "Warning: even though you can set the meta robots setting here, the entire site is set to noindex in the sitewide privacy settings, so these settings won't have an effect."
 
-#: admin/class-admin.php:530
+#: admin/class-admin.php:532
 msgid "Why Google won't display the right page title"
 msgstr "Why Google won't display the right page title"
 
