@@ -17,15 +17,16 @@ class SRC_Messages extends SRC_Core {
 	 */
 	public function __construct() {
 		add_action( 'init',           array( $this, 'init' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_metaboxes' ) );
 		add_action( 'save_post',      array( $this, 'meta_boxes_save' ), 10, 2 );
 
 		add_shortcode( 'b',         array( $this, 'shortcode_b' ) );
 		add_shortcode( 'u',         array( $this, 'shortcode_u' ) );
 		add_shortcode( 'url',       array( $this, 'shortcode_url' ) );
 		add_shortcode( 'img',       array( $this, 'shortcode_img' ) );
-		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
-		add_filter( 'the_content', array( $this, 'textarea' ), 20 );
+		add_shortcode( 'hide',      array( $this, 'shortcode_hide' ) );
+//		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
+//		add_filter( 'the_content', array( $this, 'textarea' ), 20 );
 	}
 
 	/**
@@ -36,10 +37,6 @@ class SRC_Messages extends SRC_Core {
 	 */
 	public function shortcode_fudging( $content ) {
 
-		if ( 'message' !== get_post_type() ) {
-			return $content;
-		}
-
 		$content = get_post_meta( get_the_ID(), '_message', true );
 		$content = str_replace( '[url=', '[url temp=', $content );
 
@@ -49,18 +46,22 @@ class SRC_Messages extends SRC_Core {
 	/**
 	 * Converting messages on frontend to textarea.
 	 * Allows for easy copy/paste of code
-	 *
-	 * @param  string  $content  The post content
-	 * @return string  The modified post content
 	 */
-	public function textarea( $content ) {
+	public function html_version() {
 
-		if ( 'message' !== get_post_type() ) {
-			return $content;;
+		if ( ! isset( $_GET[ 'post' ] ) ) {
+			return;
 		}
 
-		$content = '<textarea style="height:600px;">' . $content . '</textarea>';
-		return $content;
+		$message_id = $_GET[ 'post' ];
+		$content = get_post_meta( $message_id, '_message', true );
+//$content = $this->shortcode_fudging( $content );
+//		$html = apply_filters( 'the_content', $html );
+		$html = do_shortcode( $content );
+
+		echo '<h2>' . esc_html__( 'HTML version', 'src' ) . '</h2>';
+		echo '<textarea style="height:300px;width:100%;">' . $html . '</textarea>';
+
 	}
 
 	public function shortcode_b( $args = null, $content ) {
@@ -86,6 +87,11 @@ class SRC_Messages extends SRC_Core {
 		return '<img src="' . esc_url( $url ) . '" />';
 	}
 
+	public function shortcode_hide( $args = null, $content ) {
+		return '';
+	}
+
+
 	/**
 	 * Init.
 	 */
@@ -94,9 +100,15 @@ class SRC_Messages extends SRC_Core {
 		register_post_type(
 			'message',
 			array(
-				'public'             => true,
-//				'publicly_queryable' => false,
-'publicly_queryable' => true,
+
+				'publicly_queryable' => false,
+				'show_in_nav_menus' => false,
+				'show_in_menu' => true,
+
+				'exclude_from_search' => true,
+				'show_ui' => true,
+
+//'publicly_queryable' => true,
 				'label'              => esc_html__( 'Messages', 'src' ),
 				'supports'           => array( 'title', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-flag',
@@ -117,9 +129,10 @@ class SRC_Messages extends SRC_Core {
 	}
 
 	/**
-	 * Add admin metabox.
+	 * Add admin metaboxes.
 	 */
-	public function add_metabox() {
+	public function add_metaboxes() {
+
 		add_meta_box(
 			'message', // ID
 			__( 'Message', 'src' ), // Title
@@ -131,6 +144,19 @@ class SRC_Messages extends SRC_Core {
 			'normal', // Context, choose between 'normal', 'advanced', or 'side'
 			'core'  // Position, choose between 'high', 'core', 'default' or 'low'
 		);
+
+		add_meta_box(
+			'message_output', // ID
+			__( 'Message output', 'src' ), // Title
+			array(
+				$this,
+				'html_version', // Callback to method to display HTML
+			),
+			array( 'message', 'message-chunk' ), // Post type
+			'normal', // Context, choose between 'normal', 'advanced', or 'side'
+			'core'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
 	}
 
 	/**

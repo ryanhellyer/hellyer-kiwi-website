@@ -40,49 +40,6 @@ echo get_avatar( $member_id, 512, 'monsterid' );
 
 echo '<h2>' . esc_html( $display_name )  . '</h2>';
 
-
-
-// Notice
-if (
-	'' != get_option( 'non-championship-user-message' )
-	&&
-	$member_id === get_current_user_id()// || is_super_admin()
-	&&
-	(
-		// This is a crude hack until we check the actual current and next seasons
-		'5' !== $season
-		&&
-		'6' !== $season
-		&&
-		'7' !== $season
-		&&
-		'8' !== $season
-		&&
-		'9' !== $season
-		&&
-		'10' !== $season
-	)
-) {
-	echo '
-<style>
-.important-information {
-	border: 1px solid rgba(255,0,0,0.8);
-	border-radius: 40px;
-	background: rgba(255,0,0,0.1);
-	padding: 20px 40px;
-	margin: 60px 0;
-}
-</style>
-<div class="important-information">
-' . get_option( 'non-championship-user-message' ) . '
-</div>';
-
-}
-
-
-
-
-
 echo '<p>' . $description . '</p>';
 
 echo '<p>';
@@ -250,72 +207,6 @@ if (
 
 	if ( is_super_admin() ) {
 
-		// Shove seasons into an array
-		$query = new WP_Query( array(
-			'posts_per_page'         => 100,
-			'post_type'              => 'season',
-			'no_found_rows'          => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		) );
-		$seasons[] = 'reserve';
-		$seasons[] = 'banned';
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$season_slug = get_post_field( 'post_name', get_post( get_the_ID() ) );
-				$seasons[ get_the_ID() ] = $season_slug;
-
-				if ( $season_slug === $season ) {
-					$current_season_id = get_the_ID();
-				}
-
-			}
-		}
-
-		echo '
-		<label>Season?</label>
-		<select name="season">';
-		foreach ( $seasons as $key => $season_slug ) {
-			echo '<option ' . selected( $season, $season_slug ) . ' value="' . esc_attr( $season_slug ) . '">' . esc_html( $season_slug ) .  '</option>';
-		}
-		echo '</select>';
-
-		echo '
-		<label>Season? (test multi-season)</label>';
-		$season_membership[] = $season;
-
-		if ( $query->have_posts() ) {
-			$count = 0;
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$selected_season = '';
-				if ( in_array( $season_slug, $season_membership ) ) {
-					$selected_season = $season_slug;
-				}
-
-				$drivers = get_post_meta( get_the_ID(), 'drivers', true );
-				$selected_season = '';
-				if ( is_array( $drivers ) && in_array( $member_id, $drivers ) ) {
-					$selected_season = 1;
-				}
-
-				if ( 0 === $count ) {
-					echo '<br />';
-				} else {
-					echo ' | &nbsp ';
-				}
-
-				echo '<label>' . esc_html( get_the_title( get_the_id() ) ) . '</label>';
-				echo '<input name="' . esc_attr( 'multi-season[' . get_the_ID() . ']' ) . '"type="checkbox" ' . checked( $selected_season, 1, false ) . ' value="1">';
-
-				$count++;
-			}
-			echo '<br />';
-
-		}
-
 		echo '
 		<label>Note</label>
 		<input name="note" type="text" value="' . esc_attr( $note ) . '" />';
@@ -324,6 +215,98 @@ if (
 		<label>Invited? (yes|null)</label>
 		<input name="invited" type="text" value="' . esc_attr( $invited ) . '" />';
 	}
+
+
+	// Notice
+	if (
+		'' != get_option( 'non-championship-user-message' )
+//		&&
+//		$member_id === get_current_user_id()// || is_super_admin()
+	) {
+		echo '
+		<style>
+		.important-information {
+			border: 1px solid rgba(255,0,0,0.8);
+			border-radius: 40px;
+			background: rgba(255,0,0,0.1);
+			padding: 20px 40px;
+			margin: 60px 0;
+		}
+		</style>
+		<div class="important-information">';
+
+		/*
+		echo '
+			<h3>' . esc_html__( 'Which championship would you like to compete in?', 'undiecar' ) . '</h3>';
+
+			$season = (array) get_user_meta( $member_id, 'season', true );
+
+			if ( ! isset( $season['undiecar'] ) ) {
+				$season['undiecar'] = '';
+			}
+			if ( ! isset( $season['lights'] ) ) {
+				$season['lights'] = '';
+			}
+			if ( ! isset( $season['summer'] ) ) {
+				$season['summer'] = '';
+			}
+			if ( ! isset( $season['special'] ) ) {
+				$season['special'] = '';
+			}
+
+			echo '<p>';
+			echo '<label>' . esc_html__( 'Undiecar Championship', 'undiecar' ) . '</label>';
+			echo '<br />';
+			echo '<input name="season[undiecar]" type="checkbox" ' . checked( $season['undiecar'], 1, false ) . ' value="1">';
+			echo sprintf(
+				esc_html__( 'Features the %s', 'undiecar' ),
+				'<a href="' . esc_url( home_url() . '/car/dallara-ir-05/' ) . '">' . esc_html__( 'Dallara Indycar IR-05 circa 2011', 'undiecar' ) . '</a>'
+			);
+			echo '<br />';
+			echo esc_html__( 'This car comes free with iRacing. All tracks used in the championship are also free.' );
+			echo '</p>';
+
+			echo '<p>';
+			echo '<label>' . esc_html__( 'Undie Lights Championship', 'undiecar' ) . '</label>';
+			echo '<br />';
+			echo '<input name="season[lights]" type="checkbox" ' . checked( $season['lights'], 1, false ) . ' value="1">';
+			echo sprintf(
+				esc_html__( 'Features the %s', 'undiecar' ),
+				'<a href="' . esc_url( home_url() . '/car/skip-barber-formula-2000/' ) . '">' . esc_html__( 'Skip Barber Formula 2000', 'undiecar' ) . '</a>'
+			);
+			echo '<br />';
+			echo esc_html__( 'All tracks used in the championship are free.' );
+			echo '</p>';
+
+			echo '<p>';
+			echo '<label>' . esc_html__( 'Undiecar Summer Series', 'undiecar' ) . '</label>';
+			echo '<br />';
+			echo '<input name="season[summer]" type="checkbox" ' . checked( 'x', 1, false ) . ' value="1">';
+			echo sprintf(		esc_html__( 'Features the %s and %s', 'undiecar' ),
+				'<a href="' . esc_url( home_url() . '/car/porsche-911-gt3-cup/' ) . '">' . esc_html__( 'Porsche 911 GT3 Cup', 'undiecar' ) . '</a>',
+				'<a href="' . esc_url( home_url() . '/car/global-mazda-mx-5-cup/' ) . '">' . esc_html__( 'Global Mazda MX-5 Cup', 'undiecar' ) . '</a>'
+			);
+			echo '<br />';
+			echo esc_html__( 'All tracks used in the championship are free.' );
+			echo '</p>';
+
+			echo '<p>';
+			echo '<label>' . esc_html__( 'Special Events' ) . '</label>';
+			echo '<br />';
+			echo '<input name="season[special]" type="checkbox" ' . checked( 'x', 1, false ) . ' value="1">';
+			echo esc_html__( 'Features a variety of events with both paid and free tracks and cars' );
+			echo '</p>';
+
+
+		*/
+		echo get_option( 'non-championship-user-message' ) . '
+
+		</div>';
+
+	}
+
+
+
 
 	echo '
 		<label>Email address</label>

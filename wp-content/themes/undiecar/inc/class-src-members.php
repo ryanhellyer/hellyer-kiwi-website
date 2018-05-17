@@ -142,16 +142,16 @@ class SRC_Members extends SRC_Core {
 					'meta_key' => 'youtube',
 					'sanitize' => 'esc_url',
 				),
+				'season'             => array(
+					'meta_key' => 'season',
+					'sanitize' => 'wp_kses_limited',
+				),
 			);
 
 			// Don't let regular users set their season
 			if ( is_super_admin() ) {
 				$user_meta['team'] = array(
 					'meta_key' => 'team',
-					'sanitize' => 'wp_kses_limited',
-				);
-				$user_meta['season'] = array(
-					'meta_key' => 'season',
 					'sanitize' => 'wp_kses_limited',
 				);
 				$user_meta['note'] = array(
@@ -170,9 +170,21 @@ class SRC_Members extends SRC_Core {
 				if ( isset( $_POST[$field_key] ) ) {
 
 					if ( 'wp_kses_limited' === $x['sanitize'] ) {
-						$value = wp_kses_post( $_POST[$field_key] );
-						$value = strip_tags( $value );
-						$value = substr( $value, 0, 30 );
+
+						if ( is_array( $_POST[$field_key] ) ) {
+
+							foreach ( $_POST[$field_key] as $a => $b ) {
+								$value[$a] = wp_kses_post( $b );
+								$value[$a] = strip_tags( $value[$a] );
+								$value[$a] = substr( $value[$a], 0, 30 );
+							}
+
+						} else {
+							$value = wp_kses_post( $_POST[$field_key] );
+							$value = strip_tags( $value );
+							$value = substr( $value, 0, 30 );
+						}
+
 					} else if ( 'wp_kses_post' === $x['sanitize'] ) {
 						$value = wp_kses_post( $_POST[$field_key] );
 						$value = substr( $value, 0, 3000 );

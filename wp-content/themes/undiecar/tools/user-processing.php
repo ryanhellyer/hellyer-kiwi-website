@@ -28,7 +28,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 		if ( 'update_iracing_info' === $_GET['user_processing'] ) {
 
-			$drivers = get_users( array( 'number' => 1000 ) );
+			$drivers = get_users( array( 'number' => 2000 ) );
 			$x =  $_GET['start'];
 			$end = $_GET['start'] + 10;
 			while( $x <= $end ) {
@@ -90,7 +90,7 @@ if ( 'remove' === $_GET['user_processing'] ) {
 			'zzz',
 			'xxx',
 		);
-		$all_drivers = get_users( array( 'number' => 1000 ) );
+		$all_drivers = get_users( array( 'number' => 2000 ) );
 
 		foreach ( $drivers as $key => $display_name ) {
 
@@ -110,7 +110,7 @@ if ( 'season_1' === $_GET['user_processing'] ) {
 	require_once( ABSPATH . 'wp-admin/includes/user.php' );
 	require_once( ABSPATH . 'wp-admin/includes/ms.php' );
 
-	$drivers = get_users( array( 'number' => 1000 ) );
+	$drivers = get_users( array( 'number' => 2000 ) );
 	foreach ( $drivers as $driver ) {
 		$driver_id = $driver->ID;
 
@@ -124,111 +124,6 @@ if ( 'season_1' === $_GET['user_processing'] ) {
 }
 */
 
-if ( 'season_4' === $_GET['user_processing'] ) {
-
-	$drivers = get_users( array( 'number' => 1000 ) );
-	foreach ( $drivers as $driver ) {
-		$driver_id = $driver->ID;
-
-		if (
-			'4' === get_user_meta( $driver_id, 'season', true )
-			&&
-			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
-		) {
-			echo $driver->data->display_name . ',';
-		}
-
-	}
-
-	die;
-}
-
-if ( 'season_5' === $_GET['user_processing'] ) {
-
-	$drivers = get_users(
-		array(
-			'number'     => 1000,
-			'meta_key'   => 'season',
-			'meta_value' => '5',
-		)
-	);
-	foreach ( $drivers as $driver ) {
-		$driver_id = $driver->ID;
-
-		if (
-			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
-		) {
-			echo $driver->data->display_name . ',';
-		}
-
-	}
-
-	die;
-}
-
-/**
- * Get all drivers eligible for special races.
- *
- * Only special people ... http://dev-hellyer.kiwi/undycar/?user_processing=special
- *
- * All special eligible people ... http://dev-hellyer.kiwi/undycar/?user_processing=special&include_season=3
- */
-if ( 'special' === $_GET['user_processing'] ) {
-
-	$count = 0;
-	$drivers = get_users(
-		array(
-			'number' => 1000,
-/*
-			'meta_query' => array(
-				'relation' => 'OR',
-				array(
-					'key'     => 'season',
-					'value'   => 'special',
-					'compare' => '=',
-				),
-				array(
-		'relation' => 'AND',
-							array(
-						'key' => 'season',
-						'value' => 'reserve',
-						'compare' => '=',
-					),
-					array(
-						'key'     => 'receive_notifications',
-						'value'   => 'yes',
-						'compare' => '=',
-					),
-				),
-			)
-*/
-		)
-	);
-	foreach ( $drivers as $driver ) {
-		$driver_id = $driver->data->ID;
-
-		if (
-/*
-			(
-				'special' === get_user_meta( $driver_id, 'season', true )
-				||
-				'reserve' === get_user_meta( $driver_id, 'season', true )
-				||
-				'' == get_user_meta( $driver_id, 'season', true )
-			)
-			&&
-*/
-			'no' !== get_user_meta( $driver_id, 'receive_notifications', true )
-		) {
-			echo $driver->data->display_name . ',';
-			$count++;
-		}
-	}
-
-	echo "\nTotal count: " . $count;
-	die;
-}
-
 
 if (
 	'list_by_irating' === $_GET['user_processing']
@@ -236,7 +131,7 @@ if (
 	'list_by_irating_reserves' === $_GET['user_processing']
 ) {
 
-	$args['number'] = 1000;
+	$args['number'] = 2000;
 
 	// Only show reserves
 	if ( 'list_by_irating_reserves' === $_GET['user_processing'] ) {
@@ -280,24 +175,6 @@ if (
 }
 
 
-//		$checked = get_user_meta( $member_id, 'receive_extra_communication', true );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * List all drivers with customer ID.
  */
@@ -306,7 +183,7 @@ if ( 'customer_ids' === $_GET['user_processing'] ) {
 	$count = $count_missed = 0;
 	$drivers = get_users(
 		array(
-			'number' => 1000,
+			'number' => 2000,
 		)
 	);
 	$missed = $custids = '';
@@ -340,5 +217,58 @@ update_user_meta( $driver_id, '_add_to_league', $leagues ) . ',';
 
 	echo "\nTotal count: " . $count . "\n";
 	echo "\nMiss count: " . $count_missed;
+	die;
+}
+
+
+
+// https://undiecar.com/?user_processing=requested&season=undiecar&compare=6
+if ( 'requested' === $_GET['user_processing'] ) {
+
+	$compare = get_posts(
+		array(
+			'name' => $_GET['compare'],
+			'post_type' => 'season',
+		)
+	);
+	$id = $compare[0]->ID;
+
+	$compare_drivers = get_post_meta( $id, 'drivers', true );
+	$compare_drivers = explode( "\n", $compare_drivers );
+
+	// no idea why this is necessary, but strange extra character is present at end of names
+	foreach ( $compare_drivers as $x => $compare_driver ) {
+		$compare_drivers[$x] = substr( $compare_driver, 0, -1 );
+	}
+
+	$drivers = get_users(
+		array(
+			'number' => 2000,
+//			'meta_key'     => 'season',
+//			'meta_value'   => $_GET['season'],
+
+		)
+	);
+
+	foreach ( $drivers as $driver ) {
+		$name = $driver->display_name;
+
+		$seasons = get_user_meta( $driver->ID, 'season', true );
+		if ( is_array( $seasons ) ) {
+			foreach ( $seasons as $season => $x ) {
+
+				if ( $_GET['season'] === $season ) {
+
+					if ( ! in_array( $name, $compare_drivers ) ) {
+						echo $name . ',';
+					}
+
+				}
+
+			}
+		}
+
+	}
+
 	die;
 }

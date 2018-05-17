@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-05-01 11:04:07+0000\n"
+"PO-Revision-Date: 2018-05-15 19:35:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,36 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_GB\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#. translators: %1$s expands Yoast, %2$s expands to an opening anchor tag, %3$s
+#. expands to a closing anchor tag.
+#: admin/config-ui/fields/class-field-mailchimp-signup.php:31
+msgid "%1$s respects the GDPR. Read our %2$sprivacy policy%3$s on what happens with your personal information."
+msgstr "%1$s respects the GDPR. Read our %2$sprivacy policy%3$s on what happens with your personal information."
+
+#: admin/banner/class-admin-banner-sidebar.php:331
+msgid "Get the FREE SEO for beginners training course and learn the SEO basics to make your site rank higher."
+msgstr "Get the FREE SEO for beginners training course and learn the SEO basics to make your site rank higher."
+
+#: admin/config-ui/fields/class-field-mailchimp-signup.php:41
+msgid "Includes a free MyYoast account which gives you access to our free SEO for Beginners course!"
+msgstr "Includes a free MyYoast account which gives you access to our free SEO for Beginners course!"
+
+#. translators: %1$s expands to the requested indexable type. %2$s expands to
+#. the request id
+#: admin/services/class-indexable.php:40
+msgid "Object %1$s with id %2$s not found"
+msgstr "Object %1$s with id %2$s not found"
+
+#. translators: %1$s expands to Yoast SEO for WordPress, %2$s expands to Yoast
+#: admin/config-ui/fields/class-field-mailchimp-signup.php:24
+msgid "Sign up for our newsletter if you would like to keep up-to-date about %1$s, other cool plugins by %2$s, and interesting news and tips from the world of SEO."
+msgstr "Sign up for our newsletter if you would like to keep up-to-date about %1$s, other cool plugins by %2$s, and interesting news and tips from the world of SEO."
+
+#. translators: %1$s expands to the requested indexable type
+#: admin/services/class-indexable.php:28
+msgid "Unknown type %1$s"
+msgstr "Unknown type %1$s"
 
 #. translators: %1$s expands to 'Yoast SEO Premium'.
 #: admin/config-ui/components/class-component-configuration-choices.php:67
@@ -1086,7 +1116,7 @@ msgstr ""
 msgid "Does your site represent a person or company?"
 msgstr "Does your site represent a person or company?"
 
-#: admin/config-ui/class-configuration-page.php:131
+#: admin/config-ui/class-configuration-page.php:135
 msgid "Close wizard"
 msgstr "Close wizard"
 
@@ -1141,7 +1171,7 @@ msgstr "%1$s recommendations for you"
 msgid "Activate your site on My Yoast"
 msgstr "Activate your site on My Yoast"
 
-#: admin/class-admin.php:363 vendor/yoast/whip/src/facades/wordpress.php:29
+#: admin/class-admin.php:362 vendor/yoast/whip/src/facades/wordpress.php:29
 msgid "Remind me again in 4 weeks."
 msgstr "Remind me again in 4 weeks."
 
@@ -1345,7 +1375,7 @@ msgstr "This page has %1$s internal link(s)."
 msgid "This page has %1$s nofollowed internal link(s) and %2$s normal internal link(s)."
 msgstr "This page has %1$s nofollowed internal link(s) and %2$s normal internal link(s)."
 
-#: languages/yoast-components.php:84
+#: languages/yoast-components.php:44
 msgid "Enter authorization code here..."
 msgstr "Enter authorisation code here..."
 
@@ -1358,15 +1388,6 @@ msgstr "Cornerstone content"
 #: admin/config-ui/fields/class-field-success-message.php:21
 msgid "%1$s will now take care of all the needed technical optimization of your site. To really improve your site's performance in the search results, it's important to start creating content that ranks well for keywords you care about. Check out this video in which we explain how to use the %1$s metabox when you edit posts or pages."
 msgstr "%1$s will now take care of all the needed technical optimisations of your site. To really improve your site's performance in the search results, it's important to start creating content that ranks well for keywords you care about. Check out this video in which we explain how to use the %1$s metabox when you edit posts or pages."
-
-#. translators: %s expands to Yoast SEO.
-#: admin/config-ui/fields/class-field-mailchimp-signup.php:27
-msgid "Your %1$s plugin is now set up. SEO, however, is subject to constant change. Sign up for our newsletter if you would like to keep up-to-date regarding %1$s, other plugins by Yoast and important news in the world of SEO."
-msgstr "Your %1$s plugin is now set up. SEO, however, is subject to constant change. Sign up for our newsletter if you would like to keep up to date regarding %1$s, other plugins by Yoast and important news in the world of SEO."
-
-#: admin/config-ui/fields/class-field-mailchimp-signup.php:22
-msgid "Stay up-to-date"
-msgstr "Stay up to date"
 
 #. translators: %1$s resolves to Local SEO
 #: admin/config-ui/components/class-component-suggestions.php:76
@@ -1446,11 +1467,11 @@ msgstr "Newsletter"
 
 #. translators: %1$s resolves to Yoast SEO, %2$s resolves to the starting tag
 #. of the link to the wizard, %3$s resolves to the closing link tag
-#: admin/config-ui/class-configuration-page.php:229
+#: admin/config-ui/class-configuration-page.php:233
 msgid "We have detected that you have not finished this wizard yet, so we recommend you to %2$sstart the configuration wizard to configure %1$s%3$s."
 msgstr "We have detected that you have not finished this wizard yet, so we recommend you to %2$sstart the configuration wizard to configure %1$s%3$s."
 
-#: admin/config-ui/class-configuration-page.php:225
+#: admin/config-ui/class-configuration-page.php:229
 msgid "The configuration wizard helps you to easily configure your site to have the optimal SEO settings."
 msgstr "The configuration wizard helps you to easily configure your site to have the optimal SEO settings."
 
@@ -1988,101 +2009,61 @@ msgstr "The meta description contains the focus keyword."
 msgid "The keyphrase is over 10 words, a keyphrase should be shorter."
 msgstr "The keyphrase is over 10 words, a keyphrase should be shorter."
 
-#: languages/yoast-components.php:124
+#: languages/yoast-components.php:81
 msgid "Choose an image"
 msgstr "Choose an image"
 
-#: languages/yoast-components.php:120
+#: languages/yoast-components.php:77
 msgid "Remove the image"
 msgstr "Remove the image"
 
-#: languages/yoast-components.php:117
+#: languages/yoast-components.php:74
 msgid "company logo image preview"
 msgstr "company logo image preview"
 
-#: languages/yoast-components.php:114
+#: languages/yoast-components.php:71
 msgid "Choose image"
 msgstr "Choose image"
 
-#: languages/yoast-components.php:111
+#: languages/yoast-components.php:68
 msgid "MailChimp signup failed:"
 msgstr "MailChimp signup failed:"
 
-#: languages/yoast-components.php:108
+#: languages/yoast-components.php:65
 msgid "Sign Up!"
 msgstr "Sign Up!"
 
-#: languages/yoast-components.php:105
-msgid "Name"
-msgstr "Name"
-
-#: languages/yoast-components.php:99
+#: languages/yoast-components.php:59
 msgid "There is an error with the request."
 msgstr "There is an error with the request."
 
-#: languages/yoast-components.php:93
+#: languages/yoast-components.php:53
 msgid "Select profile"
 msgstr "Select profile"
 
-#: languages/yoast-components.php:90
+#: languages/yoast-components.php:50
 msgid "Choose a profile"
 msgstr "Choose a profile"
 
-#: languages/yoast-components.php:78
+#: languages/yoast-components.php:38
 msgid "Reauthenticate with Google"
 msgstr "Reauthenticate with Google"
 
-#: languages/yoast-components.php:75
+#: languages/yoast-components.php:35
 msgid "To allow %s to fetch your Google Search Console information, please enter your Google Authorization Code. Clicking the button below will open a new window."
 msgstr "To allow %s to fetch your Google Search Console information, please enter your Google Authorisation Code. Clicking the button below will open a new window."
 
-#: languages/yoast-components.php:69
-msgid "Search Result Preview"
-msgstr "Search Result Preview"
-
-#: languages/yoast-components.php:66
-msgid "URL preview: "
-msgstr "URL preview: "
-
-#: languages/yoast-components.php:63 languages/yoast-seo-js.php:401
+#: languages/yoast-seo-js.php:401
 msgid "Please provide a meta description by editing the snippet below."
 msgstr "Please provide a meta description by editing the snippet below."
 
-#: languages/yoast-components.php:60 languages/yoast-seo-js.php:359
+#: languages/yoast-seo-js.php:359
 msgid "Edit snippet"
 msgstr "Edit snippet"
 
-#: languages/yoast-components.php:57
-msgid "Search Result Form"
-msgstr "Search Result Form"
-
-#: languages/yoast-components.php:54 languages/yoast-seo-js.php:386
+#: languages/yoast-seo-js.php:386
 msgid "You can click on each element in the preview to jump to the Snippet Editor."
 msgstr "You can click on each element in the preview to jump to the Snippet Editor."
-
-#: languages/yoast-components.php:50
-msgid "SEO title preview: "
-msgstr "SEO title preview: "
-
-#: languages/yoast-components.php:46
-msgid "This is an example title - edit by clicking here"
-msgstr "This is an example title - edit by clicking here"
-
-#: languages/yoast-components.php:42
-msgid "Slug preview: "
-msgstr "Slug preview: "
-
-#: languages/yoast-components.php:39
-msgid "Meta description preview: "
-msgstr "Meta description preview: "
-
-#: languages/yoast-components.php:35
-msgid "Please provide a meta description by editing it here."
-msgstr "Please provide a meta description by editing it here."
-
-#: languages/yoast-components.php:32
-msgid "Close search result form"
-msgstr "Close search result form"
 
 #: languages/yoast-components.php:26
 msgid "A problem occurred when saving the current step, {{link}}please file a bug report{{/link}} describing what step you are on and which changes you want to make (if any)."
@@ -2158,7 +2139,7 @@ msgid "If you are experiencing issues, %1$splease file a bug report%2$s and we'l
 msgstr "If you are experiencing issues, %1$splease file a bug report%2$s and we'll do our best to help you out."
 
 #. translators: %s expands to Yoast SEO.
-#: admin/config-ui/class-configuration-page.php:108
+#: admin/config-ui/class-configuration-page.php:112
 msgid "%s &rsaquo; Configuration Wizard"
 msgstr "%s &rsaquo; Configuration Wizard"
 
@@ -2676,7 +2657,7 @@ msgid "To allow %1$s to fetch your %2$s information, please enter your Google Au
 msgstr "To allow %1$s to fetch your %2$s information, please enter your Google Authorisation Code. Clicking the button below will open a new window."
 
 #: admin/google_search_console/views/gsc-display.php:56
-#: languages/yoast-components.php:87
+#: languages/yoast-components.php:47
 msgid "Enter your Google Authorization Code and press the Authenticate button."
 msgstr "Enter your Google Authorisation Code and press the Authenticate button."
 
@@ -2738,7 +2719,6 @@ msgid "You can fix this on the %1$sPermalink settings page%2$s."
 msgstr "You can fix this on the %1$sPermalink settings page%2$s."
 
 #: admin/menu/class-admin-menu.php:48 admin/pages/dashboard.php:39
-#: inc/wpseo-non-ajax-functions.php:265
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -3181,7 +3161,7 @@ msgstr "<b>Warning!</b> You're blocking external requests which means you won't 
 msgid "Activate License"
 msgstr "Activate Licence"
 
-#: wp-seo-main.php:520
+#: wp-seo-main.php:524
 msgid "Activation failed:"
 msgstr "Activation failed:"
 
@@ -3326,11 +3306,11 @@ msgstr "Team Yoast"
 #. translators: %1$s expands to Yoast SEO, %2$s / %3$s: links to the
 #. installation manual in the Readme for the Yoast SEO code repository on
 #. GitHub
-#: wp-seo-main.php:486
+#: wp-seo-main.php:490
 msgid "The %1$s plugin installation is incomplete. Please refer to %2$sinstallation instructions%3$s."
 msgstr "The %1$s plugin installation is incomplete. Please refer to %2$sinstallation instructions%3$s."
 
-#: wp-seo-main.php:464
+#: wp-seo-main.php:468
 msgid "The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it."
 msgstr "The Standard PHP Library (SPL) extension seem to be unavailable. Please ask your web host to enable it."
 
@@ -3339,7 +3319,7 @@ msgstr "The Standard PHP Library (SPL) extension seem to be unavailable. Please 
 msgid "The default blog setting must be the numeric blog id of the blog you want to use as default."
 msgstr "The default blog setting must be the numeric blog id of the blog you want to use as default."
 
-#: wp-seo-main.php:510
+#: wp-seo-main.php:514
 msgid "The filter extension seem to be unavailable. Please ask your web host to enable it."
 msgstr "The filter extension seem to be unavailable. Please ask your web host to enable it."
 
@@ -3368,7 +3348,7 @@ msgstr "Translation of %s"
 msgid "We couldn't create a connection to our API to verify your license key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 msgstr "We couldn't create a connection to our API to verify your licence key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.4)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.5)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:68
 msgid "Yoast SEO"
@@ -3970,7 +3950,7 @@ msgid "Are you in Google News? Increase your traffic from Google News by optimiz
 msgstr "Are you in Google News? Increase your traffic from Google News by optimising for it!"
 
 #: admin/google_search_console/views/gsc-display.php:60
-#: languages/yoast-components.php:81
+#: languages/yoast-components.php:41
 msgid "Authenticate"
 msgstr "Authenticate"
 
@@ -4067,7 +4047,7 @@ msgid "Force rewrite titles"
 msgstr "Force rewrite titles"
 
 #: admin/google_search_console/views/gsc-display.php:54
-#: languages/yoast-components.php:72
+#: languages/yoast-components.php:32
 msgid "Get Google Authorization Code"
 msgstr "Get Google Authorisation Code"
 
@@ -4254,7 +4234,7 @@ msgid "The target URL doesn't exist, but your server is not returning a 404 (fil
 msgstr "The target URL doesn't exist, but your server is not returning a 404 (file not found) error."
 
 #: admin/google_search_console/views/gsc-display.php:91
-#: languages/yoast-components.php:96
+#: languages/yoast-components.php:56
 msgid "There were no profiles found"
 msgstr "There were no profiles found"
 
@@ -4529,7 +4509,7 @@ msgstr "Configure %1$s's OpenGraph settings"
 msgid "Deactivate %s"
 msgstr "Deactivate %s"
 
-#: languages/yoast-components.php:102
+#: languages/yoast-components.php:62
 msgid "Email"
 msgstr "Email"
 
@@ -4609,7 +4589,7 @@ msgstr "Pinterest"
 msgid "Previous"
 msgstr "Previous"
 
-#: admin/banner/class-admin-banner-sidebar.php:336
+#: admin/banner/class-admin-banner-sidebar.php:346
 msgid "Remove these ads?"
 msgstr "Remove these ads?"
 
@@ -4660,7 +4640,7 @@ msgid "URL points to a non-existent page."
 msgstr "URL points to a non-existent page."
 
 #. translators: %1$s expands to Yoast SEO Premium
-#: admin/banner/class-admin-banner-sidebar.php:342
+#: admin/banner/class-admin-banner-sidebar.php:352
 msgid "Upgrade to %1$s &raquo;"
 msgstr "Upgrade to %1$s &raquo;"
 
@@ -4809,7 +4789,7 @@ msgstr "Advanced"
 msgid "Advanced <code>meta</code> robots settings for this page."
 msgstr "Advanced <code>meta</code> robots settings for this page."
 
-#: admin/class-admin.php:560 admin/class-admin.php:561 admin/pages/metas.php:76
+#: admin/class-admin.php:559 admin/class-admin.php:560 admin/pages/metas.php:76
 msgid "Advanced Variables"
 msgstr "Advanced Variables"
 
@@ -4817,7 +4797,7 @@ msgstr "Advanced Variables"
 msgid "Anchor text for the homepage:"
 msgstr "Anchor text for the homepage:"
 
-#: admin/class-admin.php:552 admin/class-admin.php:553 admin/pages/metas.php:70
+#: admin/class-admin.php:551 admin/class-admin.php:552 admin/pages/metas.php:70
 msgid "Basic Variables"
 msgstr "Basic Variables"
 
@@ -4883,12 +4863,12 @@ msgstr "Facebook profile URL"
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/class-admin.php:530
+#: admin/class-admin.php:529
 msgid "For more information:"
 msgstr "For more information:"
 
 #: admin/menu/class-admin-menu.php:119 admin/menu/class-admin-menu.php:212
-#: admin/pages/metas.php:20
+#: admin/pages/metas.php:20 inc/wpseo-non-ajax-functions.php:265
 msgid "General"
 msgstr "General"
 
@@ -4944,7 +4924,7 @@ msgstr "No taxonomy metadata found"
 msgid "None"
 msgstr "None"
 
-#: admin/class-admin.php:545 admin/pages/metas.php:65
+#: admin/class-admin.php:544 admin/pages/metas.php:65
 msgid "Note that not all variables can be used in every template."
 msgstr "Note that not all variables can be used in every template."
 
@@ -5049,7 +5029,7 @@ msgstr "Site-wide default: %s"
 msgid "Social"
 msgstr "Social"
 
-#: admin/class-admin.php:538 admin/class-admin.php:539 admin/pages/metas.php:42
+#: admin/class-admin.php:537 admin/class-admin.php:538 admin/pages/metas.php:42
 #: admin/pages/metas.php:63
 msgid "Template explanation"
 msgstr "Template explanation"
@@ -5059,7 +5039,7 @@ msgid "The URL that this page should redirect to."
 msgstr "The URL that this page should redirect to."
 
 #. translators: %1$s expands to Yoast SEO.
-#: admin/class-admin.php:542
+#: admin/class-admin.php:541
 msgid "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 msgstr "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 
@@ -5067,7 +5047,7 @@ msgstr "The title &amp; metas settings for %1$s are made up of variables that ar
 msgid "This export includes taxonomy metadata"
 msgstr "This export includes taxonomy metadata"
 
-#: admin/class-admin.php:531
+#: admin/class-admin.php:530
 msgid "Title optimization"
 msgstr "Title optimisation"
 
@@ -5115,7 +5095,7 @@ msgstr "WP Page Title"
 msgid "Warning: even though you can set the meta robots setting here, the entire site is set to noindex in the sitewide privacy settings, so these settings won't have an effect."
 msgstr "Warning: even though you can set the meta robots setting here, the entire site is set to noindex in the sitewide privacy settings, so these settings won't have an effect."
 
-#: admin/class-admin.php:532
+#: admin/class-admin.php:531
 msgid "Why Google won't display the right page title"
 msgstr "Why Google won't display the right page title"
 

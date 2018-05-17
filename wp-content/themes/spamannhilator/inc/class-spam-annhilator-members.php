@@ -196,6 +196,19 @@ class Spam_Annhilator_Members {
 				$query->the_post();
 
 				$slug = get_post_field( 'post_name', get_post( get_the_ID() ) );
+				if (
+					is_numeric( get_post_meta( get_the_ID(), '_success', true ) )
+					&&
+					is_numeric( get_post_meta( get_the_ID(), '_loaded', true ) )
+				) {
+					$percentage_success = 100 - ( 100 * ( get_post_meta( get_the_ID(), '_success', true ) / get_post_meta( get_the_ID(), '_loaded', true ) ) );
+				} else {
+					$percentage_success = 0;
+				}
+				$loaded = get_post_meta( get_the_ID(), '_loaded', true );
+				if ( ! is_numeric( $loaded ) ) {
+					$loaded = 0;
+				}
 
 				$redirects[] = array(
 					'id'                      => get_the_ID(),
@@ -203,6 +216,8 @@ class Spam_Annhilator_Members {
 					'modified_date_formatted' => get_the_modified_date( 'Y-m-d H:m:s' ),
 					'slug'                    => esc_html( $slug ),
 					'redirect_url'            => esc_url( get_post_meta( get_the_ID(), '_redirect_url', true ) ),
+					'percentage_success'      => absint( $percentage_success ),
+					'loaded'                  => esc_html( $loaded ),
 				);
 
 			}
@@ -384,6 +399,8 @@ class Spam_Annhilator_Members {
 					<input size="10" class="slug" type="text" name="spamannhilator-slug[]" value="{{slug}}" />
 					<a href="' . esc_url( home_url() ) . '/check/{{slug}}/">/</a>
 				</div>
+
+				<p>{{loaded}} invites have been processed and {{percentage_success}}% detected as spam</p>
 			</div>
 		</td>
 		<td>

@@ -5,15 +5,15 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 }
 
 
-define( 'ALLOW_ROOKIES', true );
+//define( 'ALLOW_ROOKIES', true );
 define( 'ALLOW_B_LICENSES', true );
-//define( 'ALLOW_C_LICENSES', true );
+define( 'ALLOW_C_LICENSES', true );
 //define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
 define( 'MIN_OVAL_IRATING', 2000 );
-define( 'MIN_ROAD_IRATING', 700 );
+define( 'MIN_ROAD_IRATING', 1000 );
 
 
 
@@ -62,8 +62,9 @@ $dallara_dash_s1_2018_w6 = 'Jay Plummer,Henri Zimmermann,Joseph Yeager,Jason Rog
 $indy_fixed_s1_w1_w9 = 'Frank Oosterhuis,Jim Glennan,Daniel Avery,Jose Wilcocks,Evandro Arcega,Marcelo Zanatta,Sylvain Moraine,Edward Lack,Gerald Carrell,Gregg Trego,Nick Nichols,Loren Arden,Jean-michel SANCHEZ2,Loic Barbe,Alberto Carmona Saiz,Henry Holder,Rashad Craig,Michael Gonzales,Xavi Iborra,DV Warhurst,Jack van Hees,Rock Harris,Pepe Recio,William Kabela,Ray Griffioen,Marco Wust,Andrea Karina Ciminelli,Mark J Edmonds,Reinhard Sandtner,Roberto Pancaldi,Michel LE HAZIFF,Hunter Smith,Bono Huis,Harold Palmer,Pascal Dupas,Giovanni Coronin,Tobias Seigner,Marijn Thielen,Raphael R Sabara,Jorge De Celis,Thomas Lademann,Alain Tessier,Gabor Kaloczi,Miguel Angel3,Dustin Hickmann,Christoph Weitz,Chris Zijlstra,Stephen Lee2,Jürgen Frank,James Gerity,Emmanuel Galinier,David THOMAS8,Carl E Jansson,Alfred E Shepperd,Thomas Siclari,James Rawson,Brandon Carl,';
 $from_own_indy_fixed = 'Ed Burnett,Bryce Ring,Graham Bunyan,';
 $indy_fixed_iowa_tuesdays = 'Richie Pittenger,Kevin Bello,Luis Area,Walter Haslauer,Tony Pizzaro,Marcel Gagne,Terry Siders,Fred Phillips3,Adam Meier,Samuel Roth,Craig Fuller,Josh Stetz,James Winteringham,Jean-Marc Drevon,Jan Schwitter,Michael Thomas3,Cory Donahue,Thierry Le Gall,Vax Bourgeois,Mike Grimshaw,Andrew Hemsley,Neil Archbold,Tom Brakel,Karan Saxena,Mathew Rise,Hector Zanardo,Marco Barbanera,Dave Walsh,Mark Hesso2,Ivano Spigariol,Adam Piszczek,Tony Althoff,Matthias Willhardt,Michael Duforest,David Johnson16,Marcel Boersma,Juri Jerg,Scott Carpenter3,João Martins,Alex López,Mauro Belloli,Enzo Fazzi,John Morris7,Manuel Domingo,Patrick Quispel,Olivier Pouteau,Julien Alavoine,Thomas Stockmans,Jorge R Navarro,Matthias Riedel,Marcel Ortstadt,Emerson Nogueira,Peter Brennan2,Joffrey Laberche,Walter Macias,John Godfrey3,billy Brakel,Fernando Velayos,Jesus Martin Sanchez,Javier Cervera Rivas,Michael DallaValle,Dylan Urtubey,Márcio de França,Patrick Fleischer,Stephen Schumph,Carlos Gomis Sánchez,Yannik Danisch,Chad Osborn,David Williamson2,Rory Folsom,Thierry DEGEILH,Thomas Wigent,';
+$skippies_s1_tuesdays = 'Luis Miguel Diaz,Miguel Ángel Aranda Martínez,Chris Carvalho,Christopher Robinson,Ken Ladd,Christian Rodríguez,Alberto Ruiz Sobrino,Carlos Via Dufresne Ley,Davide Righini,Ricardo Carrillo,Jaime E. Nebot,Chema Ferrero,Larry MacLeod,Tom van der Voort2,Mark Perez,Jose Carlos Navarro Durango,Brandon Hawkin,Mathieu Lesly,Hugo Neto,Alvaro P Sanchez,Rafael Marquez,Fernando Sacacia González,Michael Owen,Michel Lambinus,Scott Bates,Erol KOROGLU,Anton Mesi,Steven Nelson Jr,Israel Alonso,Echedei Benitez,Adrián Chamorro2,Pietro Marchisella,Miguel García,Francisco Javier Sanchez Lopez,Nicholas McDevitt,Richard Fleenor,Perry Newhook,Renan Azeredo,Sebastian Scholz,Jokin Castaño Rodrigo,Romain Jaureguy,Samuel Fernandez,Beñat Taberna Telletxea,Peter Cowan,Ian Baker,Aarón González,Philip Finster,Ricky Proffer,Randy Hough,Roberto Suarez Rodriguez2,Roman Alvarez,Marcus Burkitt,Frank Ahlgrimm,Sebastian Karlsson,David Martínez3,Stefan Tscherne,Geoffrey Bachelot,Alex Zuloaga,Tomas Rajchman,Victor Ramirez Lopez,Ivan Sanchez Gutierrez2,Bastian Huber,Stuart Atkinson,Kacper Kolodziejczyk,Luiz Garcia3,Mark Bresnan,Vincent Moriere,Svein Tore Duaas,Andrew Hughson,Oskar Solé,Roel ter Maat2,Teemu Suhonen,Pedro García Alcalde,Carlos Alberto Quijano,Neftali Montesinos,Ari Collado,Maxi Jarruz,Rafa Serna,Simon Abitbol2,Fabien Vallet,Moritz Fricke,Andreas Dahlström,Tommi Kallio-Kujala,Ander Marro Allende,Alvaro Robles,Carmine Sorrentino2,Christopher Rabey,Kamil Poleszczuk2,Peder Blomkvist,Mihail Vasilescu,Dieter De Ridder,Matthew Paynter,Howard Joseph,Lewis Ward,Kevin Oonk2,Nicky Dekker,Tyla keveth,Charles Kellyman,Burke Treidler,Daniel Sharp,Bill Fraser,James Childe,Kevin Croswhite,Daniel Garrison Jr,Nicki Thiim,Till Stoecker,Emil Sjöblom2,Andreas Hammerbach,Joseph Maggio,Hubert N Dollen,Fredo Große,Derek Jones3,Jan Ole Bendiksen,Mike Girenz,Jean-Paul Lanaux,Ole-Marius Jensen,Oscar Zappaterra,Mike Bucher,Andrew Hasler,Andre Rajkovic,Florian Bauernhofer,Bastian Graber,Daniel Vaca Araujo,Robert Barnes4,Jacques Plourde3,Daniel M Bell,Yuri Gomes Soares,Fabrizio Ugolotti2,Shaun Dunbavin2,Javier Álvarez Lago,Kevin Botelho,Ryusuke Masumoto,Jamie Thomas3,Jonas Sørnes,Brian Murphy3,Paul Rowell,Zlatko Knezevic,Juan A. Escobar,William Marshall,Daniel Nadal Mayorgas,Sergio Aránega,Brady Fisher2,Michael S Engler,Paulo Mourato,Alexander Spring,Jeremy Boucher,Pablo LLoves,G J Menendez,Sonny Hansen,Michael Bittmann,Andrew Lane2,Akihiro Hagiwara,Salvador López Cascant,Pascual Blas Millan Esteller,Jonny Neilly,Vicente Herrero Vicent,Pascal Martineau2,Johnny Labay,Thomas Kauffman,Gerrard Daly,John A Sheehan,Jeromy Hessels,Fabio Berchtold,Zsolt Szaszak,João Carriço,A.J. Roper,Benjamin J Szoko,Anderson M. Ramos,Jakob Lehmann,Axel Begemann,James South,Carlos Blanco Lafuente,Diego Ortiz Diaz,Tony Jacobs,Miquel Ramos,Alex Otero,Ben Luker,Beau Dixon,Zlatko Ivankovi?,Marie-Helene Bredeaux,Josh Brain,Alexis Tapia Vico,Josemi Chaves,Huseyin Dagli,J. Javier Muñoz Dominguez,Laurie Britt,Pol Morales,Kenneth Lundkaer,Henrique Hesen,Chris Radisich,Oscar Escudero2,Jorge González,Carlos Urrea Sainz,Toni Vallejo Caballo,Alberto Gomez,Stephen Mc Caffrey,Daniel Kükenbrink,Adrian Ramirez Wrobel,Joshua Cartwright,Gregory Denys,Enrique Jose Fonfria Pardo,Roger Auerbach,Roberto Biensoba Cala2,Patrick Brunias,Lukasz Krajewski,Joel Meozzi,Don Stephenson,Samuel Dick,Fabrice Awuitoh,Tom Van de Pol,Jesus Hurtado Recio,Perry Warburton,Daniel Pezuela Garcia,Dale Pedersen,Javier Pérez Loscos,Washington Luiz,Jordy Lopez Jr,Tomas Chacon,Aurélien Djeauz,Francisco Corredera,John Izzo,Raul M Blanco,Kip Dent,Juergen Mitterlehner,Alexey Sirotkin,Gary Thompson,';
 
-$contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future . $personal_contacted . $indycar_road_drivers . $laguna_seca_dallara_dash_drivers . $promazda_drivers . $phoenix_dallara_dash_drivers . $me . $formula_renault_last_2 . $random_hosted_race_girls . $spa_indycar_drivers . $girls1 . $skip_barber.$skip_barber2.$skip_barber3.$formula_renault2.$indycar2.$indycar3 . $promazda_2017_12 . $promazda_2017_12_2 . $indy_road_s1_2018 . $formula_renault_s1_2018_r1 . $formula_renault_s1_2018_r2_to_4 . $dallara_dash_s1_2018_w9 . $dallara_dash_s1_2018_w6 . $indy_fixed_s1_w1_w9 . $from_own_indy_fixed . $indy_fixed_iowa_tuesdays;
+$contacted = $current_signups . $found_in_own_races . $to_be_contacted_in_future . $personal_contacted . $indycar_road_drivers . $laguna_seca_dallara_dash_drivers . $promazda_drivers . $phoenix_dallara_dash_drivers . $me . $formula_renault_last_2 . $random_hosted_race_girls . $spa_indycar_drivers . $girls1 . $skip_barber.$skip_barber2.$skip_barber3.$formula_renault2.$indycar2.$indycar3 . $promazda_2017_12 . $promazda_2017_12_2 . $indy_road_s1_2018 . $formula_renault_s1_2018_r1 . $formula_renault_s1_2018_r2_to_4 . $dallara_dash_s1_2018_w9 . $dallara_dash_s1_2018_w6 . $indy_fixed_s1_w1_w9 . $from_own_indy_fixed . $indy_fixed_iowa_tuesdays . $skippies_s1_tuesdays;
 
 
 
@@ -80,7 +81,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'skippies-2018-s1-tuesday-nights' => array( // might be worth inviting B-license holders too
+	'ruf-s2-wks-1-10' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -89,6 +90,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 	/*
+	'skippies-2018-s1-tuesday-nights' => array( // might be worth inviting B-license holders too
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'fixed-indy-iowa-s1' => array( // might be worth inviting B-license holders too
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,

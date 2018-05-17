@@ -310,6 +310,12 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
+			'name'       => esc_html__( 'Open for registration?', 'src' ),
+			'id'         => 'open_for_registration',
+			'type'       => 'checkbox',
+		) );
+
+		$cmb->add_field( array(
 			'name'       => esc_html__( 'Drivers', 'src' ),
 			'description'=> esc_html__( 'Each new driver should be on a new line', 'src' ),
 			'id'         => 'drivers',

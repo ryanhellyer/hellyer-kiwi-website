@@ -36,3 +36,4 @@ spl_autoload_register( 'autoload_spamannhilator' );
 new Spam_Annhilator_Checker;
 new Spam_Annhilator_Setup;
 new Spam_Annhilator_Members;
+new Spam_Annhilator_Destroyer;
