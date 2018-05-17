@@ -324,6 +324,11 @@ foreach ( $events as $event => $vars ) {
 			$driver_name = $cells[7];
 			$driver_name = utf8_encode( $driver_name );
 
+			// this removes 'Bill Eberhardt' who for some reason won't remove based on his name. appears to be an oddball character encoding problem with his name.
+			if ( '215126' === $cells[5] ) {
+				continue;
+			}
+
 			// Racist bit for Matt
 			if (
 				'Iberia' === $cells[24]
