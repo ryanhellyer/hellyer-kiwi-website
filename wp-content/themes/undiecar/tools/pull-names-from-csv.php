@@ -308,8 +308,6 @@ foreach ( $events as $event => $vars ) {
 		$csv_file_content = str_replace( '"', '', $csv_file_content );
 		$csv_file_rows = explode( "\n", $csv_file_content );
 
-//print_r( explode( ',', $csv_file_rows[3] ) );die;
-
 		// Stripping description out
 		unset( $csv_file_rows[0] );
 		unset( $csv_file_rows[1] );
@@ -325,6 +323,15 @@ foreach ( $events as $event => $vars ) {
 			}
 			$driver_name = $cells[7];
 			$driver_name = utf8_encode( $driver_name );
+
+			// Racist bit for Matt
+			if (
+				'Iberia' === $cells[24]
+				||
+				'Brazil' === $cells[24]
+			) {
+				continue;
+			}
 
 			// Ignore personal contacts
 			if ( isset( $personal_contacts[$driver_name] ) ) {
