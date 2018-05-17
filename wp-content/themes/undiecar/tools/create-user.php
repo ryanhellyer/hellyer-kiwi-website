@@ -5,6 +5,7 @@ if ( ! isset( $_GET['create_user'] ) ) {
 	return;
 }
 
+		echo $password = md5( 'Ivano Spigariol'  . 'ryanhellyer' );die;
 
 
 add_action( 'init', 'undiecar_create_user' );

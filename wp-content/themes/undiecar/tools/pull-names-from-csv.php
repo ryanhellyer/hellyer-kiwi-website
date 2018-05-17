@@ -329,7 +329,6 @@ foreach ( $events as $event => $vars ) {
 				continue;
 			}
 
-			// Racist bit for Matt
 			if (
 				'Iberia' === $cells[24]
 				||

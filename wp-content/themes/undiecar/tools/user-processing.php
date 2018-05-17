@@ -42,6 +42,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 				// Add some meta keys
 				$meta_keys = array(
+					'club',
 					'oval_avg_inc',
 					'oval_license',
 					'oval_irating',
