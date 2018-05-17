@@ -330,7 +330,7 @@ foreach ( $events as $event => $vars ) {
 				||
 				'Brazil' === $cells[24]
 			) {
-				continue;
+//				continue;
 			}
 
 			// Ignore personal contacts
