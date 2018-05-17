@@ -103,10 +103,7 @@ echo "TEST - read oval\n";
 
 				// Get drivers name for array key
 				$drivers_name = esc_html( $values[0] );
-if ( 'Andrew Parker3' == $drivers_name ) {
-	print_r( $values );
-	die;
-}
+
 				// Creating individual drivers data array
 				$data = array();
 
@@ -116,6 +113,9 @@ if ( 'Andrew Parker3' == $drivers_name ) {
 
 				if ( isset( $values[2] ) ) {
 					$data['location'] = $values[2];
+				}
+				if ( isset( $values[3] ) ) {
+					$data['club'] = $values[3];
 				}
 				if ( isset( $values[12] ) ) {
 					$data[$type . '_avg_inc'] = $values[12];
