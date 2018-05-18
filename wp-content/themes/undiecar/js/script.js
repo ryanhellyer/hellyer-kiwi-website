@@ -87,24 +87,38 @@
 	window.addEventListener(
 		'click',
 		function (e){
-			handle_clicks(e);
+//			handle_clicks(e);
+
+			e.preventDefault();
+			e.stopPropagation()
+
 		}
 	);
+
+
+if ('ontouchstart' in window) {
 	window.addEventListener(
 		'touchstart', /* handling iOS devices */
 		function (e){
 			handle_clicks(e);
+
+			e.preventDefault();
+			e.stopPropagation()
+
 		}
 	);
+}
 
 	function handle_clicks(e) {
 
 		if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id ) {
 			var menu = e.target.children[0];
 			menu.classList.toggle('menu-open');
+
 		} else if ( 'A' !== e.target.tagName ) {
 			var menu = document.getElementById( 'main-menu' );
 			menu.classList.remove('menu-open');
+
 		}
 
 		// If 'Another Driver' button is clicked
@@ -115,10 +129,6 @@
 			undiecar_driver_field.name = 'undiecar-driver[]';
 			var element = document.getElementById('undiercar-driver-form-input-fields');
 			element.appendChild(undiecar_driver_field);
-
-			e.preventDefault();
-			//e.stopPropagation();
-			//return false;
 		}
 
 	}
