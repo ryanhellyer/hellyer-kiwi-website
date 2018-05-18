@@ -184,6 +184,7 @@ if (
 			'oval_avg_inc',
 			'road_irating',
 			'road_license',
+			'club',
 			'road_avg_inc',
 			'custid',
 		);
