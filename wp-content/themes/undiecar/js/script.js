@@ -102,17 +102,9 @@
 		if ( 'NAV' === e.target.tagName && 'main-menu-wrapper' === e.target.id ) {
 			var menu = e.target.children[0];
 			menu.classList.toggle('menu-open');
-
-			e.preventDefault();
-			e.stopPropagation()
-
 		} else if ( 'A' !== e.target.tagName ) {
 			var menu = document.getElementById( 'main-menu' );
 			menu.classList.remove('menu-open');
-
-			e.preventDefault();
-			e.stopPropagation()
-
 		}
 
 		// If 'Another Driver' button is clicked
@@ -125,7 +117,8 @@
 			element.appendChild(undiecar_driver_field);
 
 			e.preventDefault();
-			e.stopPropagation()
+			//e.stopPropagation();
+			//return false;
 		}
 
 	}
