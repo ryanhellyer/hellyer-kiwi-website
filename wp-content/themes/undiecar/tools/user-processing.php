@@ -38,7 +38,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 				$name = $driver->data->display_name;
 				$driver_data = $this->iracing_member_info( $name );
-				echo $name;
+				echo $name . ', ';
 
 				// Add some meta keys
 				$meta_keys = array(
@@ -60,7 +60,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 						);
 					}
 				}
-
+print_r( $driver_data );die;
 				$x++;
 			}
 
