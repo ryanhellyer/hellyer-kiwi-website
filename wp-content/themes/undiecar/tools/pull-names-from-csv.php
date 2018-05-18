@@ -81,7 +81,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'ruf-s2-wks-1-10' => array(
+	'advanced-mx5-s2-2018' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -90,6 +90,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 	/*
+	'ruf-s2-wks-1-10-2018' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'skippies-2018-s1-tuesday-nights' => array( // might be worth inviting B-license holders too
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
