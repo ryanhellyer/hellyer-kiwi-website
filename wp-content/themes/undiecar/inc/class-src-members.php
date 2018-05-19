@@ -449,21 +449,38 @@ class SRC_Members extends SRC_Core {
 
 		if ( isset( $_GET['message'] ) ) {
 
-			$content .= '<h3>Drivers to message. Total count ' . count( $drivers_to_notify ) . '</h3>';
-			$content .= '<textarea style="font-family:monospace;font-size:12px;margin:20px 0;height:100px;">';
-
+			$drivers_list = '';
+			$number = 0;
 			foreach ( $drivers_to_notify as $key => $driver_id )  {
 
-				if ( 'banned' != get_user_meta( $driver_id, 'season', true ) ) {
+				$remove_clubs = explode( ',', $_GET['message'] );
+				foreach ( $remove_clubs as $club ) {
+					if ( $club === get_user_meta( $driver_id, 'club', true ) ) {
+						$remove = true;
+					}
+				}
+
+				if (
+					'banned' != get_user_meta( $driver_id, 'season', true )
+					&&
+					! isset( $remove )
+				) {
 
 					$driver = get_userdata( $driver_id );
 					$driver_name = $driver->display_name;
-					$content .= $driver_name . ',';
+					$drivers_list .= $driver_name . ',';
+					$number++;
 
 				}
 
+				unset( $remove );
+
 			}
 
+			$content .= '<h3>Drivers to message. Total count ' . esc_html( $number ) . '</h3>';
+
+			$content .= '<textarea style="font-family:monospace;font-size:12px;margin:20px 0;height:100px;">';
+			$content .= $drivers_list;
 			$content .= '</textarea>';
 
 			if ( isset( $errors ) ) {
