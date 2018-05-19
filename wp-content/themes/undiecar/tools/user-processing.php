@@ -60,7 +60,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 						);
 					}
 				}
-print_r( $driver_data );die;
+
 				$x++;
 			}
 
