@@ -9,10 +9,7 @@
 			set_standings_sidebars();
 			gallery_fields();
 
-
-
 //			<script>document.write('<style>.tabberlive {display: block;}</style>');</script>
-
 
 		}
 	);
@@ -96,7 +93,7 @@
 	);
 
 
-if ('ontouchstart' in window) {
+//if ('ontouchstart' in window) {
 	window.addEventListener(
 		'touchstart', /* handling iOS devices */
 		function (e){
@@ -107,7 +104,7 @@ if ('ontouchstart' in window) {
 
 		}
 	);
-}
+//}
 
 	function handle_clicks(e) {
 
