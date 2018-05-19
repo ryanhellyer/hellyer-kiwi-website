@@ -92,8 +92,8 @@
 			if ( 'yes' !== touched ) {
 				handle_clicks(e);
 
-				e.preventDefault();
-				e.stopPropagation()
+//				e.preventDefault();
+//				e.stopPropagation()
 			}
 
 		}
@@ -108,8 +108,8 @@ if ('ontouchstart' in window) {
 
 			touched = 'yes';
 
-			e.preventDefault();
-			e.stopPropagation()
+//			e.preventDefault();
+//			e.stopPropagation()
 
 		}
 	);
