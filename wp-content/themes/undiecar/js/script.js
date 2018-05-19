@@ -34,6 +34,10 @@
 	function gallery_fields() {
 
 		var undiecar_season_field = document.getElementById('undiecar-season');
+		if ( null === undiecar_season_field ) {
+			return;
+		}
+
 		undiecar_season_field.addEventListener(
 			"change",
 			function(e) {
@@ -84,7 +88,7 @@
 	window.addEventListener(
 		'click',
 		function (e){
-//			handle_clicks(e);
+			handle_clicks(e);
 
 			e.preventDefault();
 			e.stopPropagation()
@@ -93,7 +97,7 @@
 	);
 
 
-//if ('ontouchstart' in window) {
+if ('ontouchstart' in window) {
 	window.addEventListener(
 		'touchstart', /* handling iOS devices */
 		function (e){
@@ -104,7 +108,7 @@
 
 		}
 	);
-//}
+}
 
 	function handle_clicks(e) {
 
