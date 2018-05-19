@@ -80,7 +80,7 @@
 
 	}
 
-
+	var touched;
 
 	/**
 	 * Handle clicks.
@@ -88,10 +88,13 @@
 	window.addEventListener(
 		'click',
 		function (e){
-			handle_clicks(e);
 
-			e.preventDefault();
-			e.stopPropagation()
+			if ( 'yes' !== touched ) {
+				handle_clicks(e);
+
+				e.preventDefault();
+				e.stopPropagation()
+			}
 
 		}
 	);
@@ -102,6 +105,8 @@ if ('ontouchstart' in window) {
 		'touchstart', /* handling iOS devices */
 		function (e){
 			handle_clicks(e);
+
+			touched = 'yes';
 
 			e.preventDefault();
 			e.stopPropagation()
