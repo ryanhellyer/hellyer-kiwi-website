@@ -451,7 +451,7 @@ class SRC_Members extends SRC_Core {
 
 			$drivers_list = '';
 			$number = 0;
-			foreach ( $drivers_to_notify as $key => $driver_id )  {
+			foreach ( $drivers_to_notify as $driver_slug => $driver_id )  {
 
 				$remove_clubs = explode( ',', $_GET['message'] );
 				foreach ( $remove_clubs as $club ) {
@@ -461,9 +461,16 @@ class SRC_Members extends SRC_Core {
 				}
 
 				if (
-					'banned' != get_user_meta( $driver_id, 'season', true )
-					&&
-					! isset( $remove )
+					(
+						'banned' != get_user_meta( $driver_id, 'season', true )
+						&&
+						! isset( $remove )
+					)
+					||
+					'josu-solaguren' === $driver_slug
+					||
+					'kleber-bottaro-moura' === $driver_slug
+
 				) {
 
 					$driver = get_userdata( $driver_id );
