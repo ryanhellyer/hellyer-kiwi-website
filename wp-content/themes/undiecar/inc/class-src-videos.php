@@ -40,7 +40,7 @@ class SRC_Videos extends SRC_Core {
 
 	public function shortcode() {
 
-		$gallery .= '<div class="gallery gallery-columns-8">';
+		$gallery = '<div class="gallery gallery-columns-8">';
 
 		$args = array(
 			'posts_per_page'         => 4,
