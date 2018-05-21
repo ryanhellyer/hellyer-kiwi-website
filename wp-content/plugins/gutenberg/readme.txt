@@ -2,7 +2,7 @@
 Contributors: matveb, joen, karmatosed
 Requires at least: 4.9
 Tested up to: 4.9.6
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,7 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 = Latest =
 
-* Ensure the wp-editor script is also enqueued soon using the `enqueue_block_assets` hook
-* Allow clicking the block's input fields (regression fix)
-* Remove post type capabilities from the user object
+* Ensure the Title uses the same max-width as blocks
+* Center the background of the cover image block
+* Fix formatting controls regression
+* Fix classic editor visual mode regression
