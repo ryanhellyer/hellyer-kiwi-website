@@ -15,6 +15,8 @@
 				<a href="https://ryan.hellyer.kiwi/contact/">Contact</a>
 				 | 
 				<a href="<?php echo esc_url( home_url( '/legal-notice/' ) ); ?>"><?php _e( 'Legal Notice', 'free-advice-berlin' ) ?></a>
+				|
+				<a href="https://ryan.hellyer.kiwi/privacy-policy/">Privacy policy</a>
 			</span>
 		</p>
 	</footer>
