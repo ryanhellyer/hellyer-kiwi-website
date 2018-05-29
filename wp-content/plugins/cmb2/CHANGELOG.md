@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 ### Enhancements
 ### Bug Fixes
 
+## [2.4.2 - 2018-05-25](https://github.com/CMB2/CMB2/releases/tag/v2.4.2)
+
+### Bug Fixes
+
+* Do not enqueue/register WordPress code editor JS if there are no `textarea_code` fields registered on the page. Fixes [#1110](https://github.com/CMB2/CMB2/issues/1110).
+* Do not set repeated `wysiwyg` field values to string "false" when boolean false. Fixes [#1138](https://github.com/CMB2/CMB2/issues/1138) (again!).
+
 ## [2.4.1 - 2018-05-25](https://github.com/CMB2/CMB2/releases/tag/v2.4.1)
 
 ### Bug Fixes
@@ -35,7 +42,7 @@ All notable changes to this project will be documented in this file.
 	```   
 * Improve/add comment info banners at top of CMB2 CSS files.
 * Added `resetBoxes`/`resetBox` Javascript methods for resetting CMB2 box forms.
-* Improved styles for fields in the new-term form.
+* Improved styles for fiels in the new-term form.
 * New `CMB2_Boxes` methods for filtering instances of `CMB2`, `CMB2_Boxes::get_by( $property, $optional_compare )` and `CMB2_Boxes::filter_by( $property, $to_ignore = null )`.
 
 ### Bug Fixes
