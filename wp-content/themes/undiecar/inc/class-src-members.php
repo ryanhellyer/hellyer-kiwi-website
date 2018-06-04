@@ -465,6 +465,10 @@ class SRC_Members extends SRC_Core {
 						'banned' != get_user_meta( $driver_id, 'season', true )
 						&&
 						! isset( $remove )
+						&&
+						'someunwanteddriver' !== $driver_id
+						&&
+						'someunwanteddriver' !== $driver_id
 					)
 					||
 					'josu-solaguren' === $driver_slug

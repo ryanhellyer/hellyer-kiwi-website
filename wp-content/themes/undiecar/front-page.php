@@ -181,6 +181,36 @@ get_header();
 	</ul>
 </section><!-- #schedule -->
 
+<?php
+
+$args = array(
+	'name'        => 'our-events',
+	'post_type'   => 'page',
+	'post_status' => 'publish',
+	'numberposts' => 1
+);
+$our_events = get_posts( $args );
+
+if ( isset( $our_events[0] ) ) {
+	
+	?>
+
+<section class="latest-items" id="low-down">
+
+	<header>
+		<h2><?php esc_html_e( 'Our events', 'undiecar' ); ?></h2>
+	</header>
+
+	<?php
+
+	echo apply_filters( 'the_content', $our_events[0]->post_content );
+
+	?>
+
+</section><!-- #low-down -->
+
+<?php } ?>
+
 <section id="results">
 
 	<a href="<?php
