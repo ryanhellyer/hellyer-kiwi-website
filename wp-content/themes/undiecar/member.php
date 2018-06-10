@@ -320,7 +320,7 @@ if (
 		if ( '1' !== get_user_meta( $member_id, 'password_set', true ) ) {
 			echo 'class="highlighted-field" ';
 		}
-		echo 'type="text" value="" placeholder="Enter a password here" />
+		echo 'type="password" value="" placeholder="Enter a password here" />
 
 		<br />
 		<label>Receive notifications?</label>
