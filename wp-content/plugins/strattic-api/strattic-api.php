@@ -82,10 +82,11 @@ class Strattic_API {
 		);
 		$post_types = get_post_types( $args, 'names', 'and' ); 
 
+		$archives = array();
 		foreach ( $post_types  as $post_type ) {
 
 			$archive_url = get_post_type_archive_link( $post_type );
-			if ( false !== $archive_url ) {
+			if ( false != $archive_url ) {
 				$archives[] = $archive_url;
 			}
 		}
@@ -119,6 +120,7 @@ class Strattic_API {
 		// Loop through ALL post types
 		$count = 0;
 		$post_types = get_post_types( array( /*'_builtin' => true,*/ 'public' => true ), 'names', 'and' );
+		$post_type_count = 0;
 		foreach ( $post_types  as $post_type ) {
 
 			$offset = absint( $per_page * $page_number ) - $post_type_count;
