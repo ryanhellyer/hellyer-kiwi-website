@@ -36,7 +36,6 @@ class Strattic_Discover_Links {
 
 		// Get path (needs to strip home_url() so that it can handle sub-folder sites)
 		$path = str_replace( home_url(), '', $url );
-//echo '<!-- ' . $url . ' ___' . $path . ' ' . home_url() . ' -->';
 
 		// Check if it's present in a list of paths already
 		$options = array(
@@ -47,7 +46,7 @@ class Strattic_Discover_Links {
 		foreach ( $options as $option ) {
 
 			$paths = get_option( 'strattic-' . $option );
-			if ( is_array( $paths ) && in_array( $path, $paths ) ) {
+			if ( ! is_array( $paths ) || in_array( $path, $paths ) ) {
 				return; // bail out as path has been found already
 			}
 
