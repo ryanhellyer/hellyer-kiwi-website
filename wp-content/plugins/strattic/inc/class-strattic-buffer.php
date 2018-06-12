@@ -21,6 +21,27 @@ class Strattic_Buffer {
 	 * Starting page buffer.
 	 */
 	public function template_redirect() {
+
+		if (
+			! is_single()
+			&&
+			! is_post_type_archive()
+			&&
+			! is_page()
+			&&
+			! is_archive()
+			&&
+			! is_404()
+			&&
+			! is_attachment()
+			&&
+			! is_front_page()
+			&&
+			! is_search()
+		) {
+			return;
+		}
+
 		ob_start( array( $this, 'ob' ) );
 	}
 
