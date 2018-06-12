@@ -28,7 +28,7 @@ class Strattic_Discover_Links {
 		// Get current URL
 		$url = 'http';
 		if ( is_ssl() ) {
-			$url . 's';
+			$url .= 's';
 		}
 		$url .= '://';
 		$url .= $_SERVER[ 'HTTP_HOST' ];
@@ -36,7 +36,7 @@ class Strattic_Discover_Links {
 
 		// Get path (needs to strip home_url() so that it can handle sub-folder sites)
 		$path = str_replace( home_url(), '', $url );
-echo '<!-- ' . $url . ' ___' . $path . ' -->';
+//echo '<!-- ' . $url . ' ___' . $path . ' ' . home_url() . ' -->';
 
 		// Check if it's present in a list of paths already
 		$options = array(
