@@ -12,6 +12,7 @@ Copyright 2018 Strattic
 
 */
 
+
 define( 'STRATTIC_VERSION', '1.1' );
 
 /**

@@ -53,6 +53,8 @@ class Strattic_Admin {
 			<span id="status"></span>
 			<h2 id="finalMsg"></h2>
 
+			<?php Strattic_Admin::the_horizontal_menu(); ?>
+
 		</div><?php
 	}
 
@@ -118,6 +120,42 @@ class Strattic_Admin {
 			),
 		) );
 
+	}
+
+	/**
+	 * The menu displayed at the bottom of each admin page.
+	 */
+	static function the_horizontal_menu() {
+
+		echo '<br /><br /><br />';
+
+		echo '<p>';
+
+		$items = array(
+			'strattic'         => esc_html__( 'Publish', 'strattic' ),
+			'manual-links'     => esc_html__( 'Manual links', 'strattic' ),
+			'discovered-links' => esc_html__( 'Discovered links', 'strattic' ),
+		);
+
+		foreach ( $items as $slug => $title ) {
+
+			if ( $slug !== $_GET[ 'page' ] ) {
+
+				if ( isset( $done ) ) {
+					echo ' | ';
+				}
+
+				echo '
+				<a href="' . esc_url( admin_url( 'admin.php?page=' . $slug ) ) . '">
+					' . esc_html( $title ) . '
+				</a>';
+
+				$done = true;
+			}
+
+		}
+
+		echo '</p>';
 	}
 
 }

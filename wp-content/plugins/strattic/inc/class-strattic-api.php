@@ -4,16 +4,16 @@
  DONE: increase time-out, RAM etc.
  DONE: add "latest changes" for newly modified content
  DONE: add ability to manually include URLs
- TODO: find comments pagination pages
  DONE: find RSS feeds
- TODO: add attachment pages and associated file
+ DONE: add attachment pages and associated files
  DONE: hunt out users and output their profile pages
- TODO: paginatION FOR USER PAGES
  DONE: store every URL visited that is not in our list
        and spit those out separately
        requires logging
  TODO: check if actual spidering is happening - if not, then scrape pages for internal URLs
  TODO: look for pagination in archives
+ TODO: find comments pagination pages
+ TODO: paginatION FOR USER PAGES
 
 */
 

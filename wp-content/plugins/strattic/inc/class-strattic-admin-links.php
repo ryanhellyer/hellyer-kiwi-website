@@ -14,10 +14,12 @@ class Strattic_Admin_Links {
 	 */
 	public function __construct() {
 
-		// Add to hooks
+		// Add hooks
 		add_action( 'admin_init',    array( $this, 'register_settings' ) );
 		add_action( 'admin_menu',    array( $this, 'create_admin_page' ) );
-		add_action( 'admin_footer',  array( $this, 'scripts' ) );
+
+		// Add filters
+		add_filter( 'parent_file', array( $this, 'highlight_menu' ) );
 
 	}
 
@@ -46,16 +48,7 @@ class Strattic_Admin_Links {
 	public function create_admin_page() {
 
 		add_submenu_page(
-			'strattic',
-			esc_html__( 'Publish', 'strattic' ),
-			esc_html__( 'Publish', 'strattic' ),
-			'manage_options',
-			'strattic',
-			function() {}
-		);
-
-		add_submenu_page(
-			'strattic',
+			'strattic-submenu',
 			esc_html__( 'Manual links', 'strattic' ),
 			esc_html__( 'Manual links', 'strattic' ),
 			'manage_options',
@@ -64,13 +57,18 @@ class Strattic_Admin_Links {
 		);
 
 		add_submenu_page(
-			'strattic',
+			'strattic-submenu',
 			esc_html__( 'Discovered links', 'strattic' ),
 			esc_html__( 'Discovered links', 'strattic' ),
 			'manage_options',
 			'discovered-links',
 			array( $this, 'admin_page' )
 		);
+
+
+
+global $submenu;
+//unset($submenu['strattic'][0]); // Removes 'Updates'.
 
 	}
 
@@ -81,6 +79,8 @@ class Strattic_Admin_Links {
 	 */
 	public function admin_page() {
 		global $title;
+
+		add_action( 'admin_footer',  array( $this, 'scripts' ) );
 
 		?>
 
@@ -123,6 +123,8 @@ class Strattic_Admin_Links {
 
 				<input type="hidden" name="strattic-page-label" value="<?php echo esc_attr( $title ); ?>" />
 			</form>
+
+			<?php Strattic_Admin::the_horizontal_menu(); ?>
 
 		</div><?php
 	}
@@ -212,6 +214,7 @@ class Strattic_Admin_Links {
 	 * This is not best practice, but is implemented like this here to ensure that it can fit into a single file.
 	 */
 	public function scripts() {
+
 		?>
 		<style>
 		.strattic-manual-links input[type=text],
@@ -303,6 +306,25 @@ class Strattic_Admin_Links {
 			echo '<p>' . esc_html__( 'These URLs were found automatically when pages were loaded on the site.', 'strattic' ) . '</p>';
 		}
 
+	}
+
+	/**
+	 * Highlight the main menu item when on submenu.
+	 *
+	 * @global  string  $plugin_page  The plugin page slug
+	 */
+	function highlight_menu( $file ) {
+		global $plugin_page;
+
+		if (
+			'discovered-links' == $plugin_page
+			||
+			'manual-links' == $plugin_page
+		) {
+			$plugin_page = 'strattic';
+		}
+
+		return $file;
 	}
 
 }
