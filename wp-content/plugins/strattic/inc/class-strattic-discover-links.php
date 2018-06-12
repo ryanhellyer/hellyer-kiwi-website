@@ -53,7 +53,12 @@ class Strattic_Discover_Links {
 		}
 
 		// Yay! We discovered a new path!
+		if ( ! is_array( $paths ) ) {
+			$paths = array();
+		}
+
 		array_push( $paths, $path );
+
 		update_option( 'strattic-discovered-links', $paths, 'no' );
 
 	}
