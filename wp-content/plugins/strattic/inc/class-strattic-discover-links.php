@@ -46,7 +46,7 @@ class Strattic_Discover_Links {
 		foreach ( $options as $option ) {
 
 			$paths = get_option( 'strattic-' . $option );
-			if ( ! is_array( $paths ) || in_array( $path, $paths ) ) {
+			if ( is_array( $paths ) && in_array( $path, $paths ) ) {
 				return; // bail out as path has been found already
 			}
 
