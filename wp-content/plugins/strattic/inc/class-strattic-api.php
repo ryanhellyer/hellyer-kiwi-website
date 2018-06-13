@@ -157,7 +157,7 @@ delete_option( 'strattic-discovered-links' );
 
 		// Add execution time header
 		$execution_time = round( microtime( true ) - $time_start, 2 );
-		header("Execution-time: " . $execution_time . ' seconds' );
+		header( 'Execution-time: ' . $execution_time . ' seconds' );
 
 		// Stash the URLs for later use
 		if ( true === $this->important ) {
@@ -197,17 +197,21 @@ delete_option( 'strattic-discovered-links' );
 
 		foreach ( $this->post_dates as $post_id => $date ) {
 
+			$year  = $date[ 'y' ];
+			$month = $date[ 'm' ];
+			$day   = $date[ 'd' ];
+
 			// Get links
-			$links[ 'year' ]  = get_year_link( $date[ 'y' ] );
-			$links[ 'month' ] = get_month_link( $date[ 'y' ], $date[ 'm' ] );
-			$links[ 'day' ]   = get_day_link( $date[ 'y' ], $date[ 'm' ], $date[ 'd' ] );
+			$links[ 'year' ]  = get_year_link( $year );
+			$links[ 'month' ] = get_month_link( $year, $month );
+			$links[ 'day' ]   = get_day_link( $year, $month, $day );
 
 			// Get paginated versions of the links
 			foreach ( $links as $url ) {
 				$urls[] = $url;
 
-//				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
-//				$urls = array_merge( $urls, $archive_pagination_urls );
+				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+				$urls = array_merge( $urls, $archive_pagination_urls );
 			}
 
 			// Create non-permalink link
@@ -297,10 +301,14 @@ delete_option( 'strattic-discovered-links' );
 			$url = home_url( $path );
 			$urls[] = $url;
 
-//			$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+			// Include pagination URLs for non-permalink URLs
+			if ( strpos( $url, '?' ) === false ) {
+				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 //ryans_log( $url );
 //ryans_log( print_r( $archive_pagination_urls, true ) );
-//			$urls = array_merge( $urls, $archive_pagination_urls );
+				$urls = array_merge( $urls, $archive_pagination_urls );
+			}
+
 		}
 
 		return $urls;
