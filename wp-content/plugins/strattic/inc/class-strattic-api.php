@@ -297,10 +297,10 @@ delete_option( 'strattic-discovered-links' );
 			$url = home_url( $path );
 			$urls[] = $url;
 
-			$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+//			$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 //ryans_log( $url );
 //ryans_log( print_r( $archive_pagination_urls, true ) );
-			$urls = array_merge( $urls, $archive_pagination_urls );
+//			$urls = array_merge( $urls, $archive_pagination_urls );
 		}
 
 		return $urls;
