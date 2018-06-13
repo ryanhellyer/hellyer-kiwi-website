@@ -746,11 +746,7 @@ class Strattic_API {
 	 */
 	private function get_archive_pagination_urls( $url ) {
 		$urls = array();
-/****************************************************
- ****************************************************
- ****************************************************/
-delete_option( 'strattic-discovered-links' );
-
+return $urls;
 
 		$response = wp_remote_get( $url, array( 'user-agent' => 'strattic-api-max-pagination' ) );
 		if ( isset( $response[ 'body' ] ) && '' !== $response[ 'body' ] ) {
