@@ -35,6 +35,11 @@ define( 'STRATTIC_VERSION', '1.1' );
  *		Where possible, move files to /usr/local/bin
  *		Perhaps provide help link
  *		Create search index
+
+wp maintenance mode ... 
+I'll add a note to myself to disable updates until after the publish process has completed, and to block publishing if updates are currently underway.
+We should also implement a real Cron task (assuming it isn't setup up like this already) to trigger WP Cron, rather than relying on page loads, as they're not going to behave as intended when there is so little traffic on the staging site.
+
  */
 
 /**

@@ -15,6 +15,12 @@
  TODO: find comments pagination pages
  TODO: paginatION FOR USER PAGES
 
+ TODO: handle embeddable pages, eg: https://undiecar.com/contact/embed/
+
+events-manager
+bbpress
+Events Calendar (modern tribe)
+
 */
 
 /**
@@ -49,58 +55,72 @@ class Strattic_API {
 
 		add_action( 'template_redirect', array( $this, 'api_request_bailer' ) );
 
-//add_action( 'template_redirect', array( $this, 'bla1' ) );
-//add_action( 'template_redirect', array( $this, 'bla2' ) );
-//add_action( 'template_redirect', array( $this, 'get_everything' ), 1 );
+		add_action( 'template_redirect', array( $this, 'get_paginated_urls' ), 4 );
 	}
 
-/*
-function bla() {
+	/**
+	 * Getting the archive pagination URLs.
+	 * We use http requests due to not be able to determine the max number of pages without loading the pages.
+	 *
+	 * @access  private
+	 * @global  object  $wp_query  The main WP Query object
+	 * @return  array   $urls      The archive pagination URLs
+	 */
+	private function get_archive_pagination_urls( $url ) {
+		$urls = array();
+/****************************************************
+ ****************************************************
+ ****************************************************/
+delete_option( 'strattic-discovered-links' );
 
-ryans_log( print_r( $_GET, true ) );
-ryans_log( print_r( $_REQUEST, true ) );
-ryans_log( print_r( $_SERVER, true ) );
-die;
-	echo '___________';
-	echo get_post_type_archive_feed_link( 'post', 'bla' );
-	die;
-}
 
-/*
- ****** TRYING TO ACCESS THE PAGINATION FOR ARCHIVES ********
-*	 * @global  object  $wp_query  The main WP Query object
-function bla1() {
+		$response = wp_remote_get( $url, array( 'user-agent' => 'strattic-api-max-pagination' ) );
+		if ( isset( $response[ 'body' ] ) && '' !== $response[ 'body' ] ) {
 
-	if ( isset( $_GET[ 'strattic' ] ) ) {
-		return;
+			$json_urls = $response[ 'body' ];
+			$decoded_urls = json_decode( $json_urls );
+			if ( is_array( $decoded_urls ) ) {
+				$urls = $decoded_urls;
+			}
+
+		}
+
+		return $urls;
 	}
 
-	$url = home_url() . '/2012/';
-	$url = add_query_arg( 'strattic', 'api', $url );
-	$contents = file_get_contents( $url );
+	/**
+	 * Get number of pagination pages.
+	 * Halts WordPress loading and instead returns the maximum number of pages for pagination in the current archive.
+	 *
+	 * @global  object  $wp_query  The main WordPress query
+	 */
+	function get_paginated_urls() {
 
-	echo '___';
-	echo $contents;
+		if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+			global $wp_query;
+			$urls = array();
 
-	echo 'zzz';die;
-}
+			$max_num_pages = $wp_query->max_num_pages;
 
-function bla2() {
-	global $wp_query;
+			$count = 2;
+			while ( $count <= $max_num_pages ) {
+				$paginated_url = get_pagenum_link( $count );
+				$urls[] = $paginated_url;
 
-	if (
-		isset( $_GET[ 'strattic' ] )
-		&&
-		'api' === $_GET[ 'strattic' ]
-	) {
+				$count++;
+			}
 
-		//	max_num_pages
-		print_r( $wp_query->max_num_pages );
-		die;
+			echo json_encode( $urls );
+			die;
+
+		}
+
 	}
 
-}
-*/
+
+
+
+
 
 	/**
 	 * Grabs all the thingz!
@@ -169,20 +189,28 @@ function bla2() {
 	 * @return  array  URLs
 	 */
 	public function get_date_archives() {
+		$urls = array();
 
 		if ( null === $this->post_dates ) {
 			$this->get_all_posts(); // If posts weren't already accessed, then access them anyway, as that primes the $this->post_dates var
 		}
 
 		foreach ( $this->post_dates as $post_id => $date ) {
-			$year  = $date[ 'y' ];
-			$month = $date[ 'm' ];
-			$day   = $date[ 'd' ];
 
-			$urls[] = get_year_link( $year );
-			$urls[] = get_month_link( $year, $month );
-			$urls[] = get_day_link( $year, $month, $day );
+			// Get links
+			$links[ 'year' ]  = get_year_link( $date[ 'y' ] );
+			$links[ 'month' ] = get_month_link( $date[ 'y' ], $date[ 'm' ] );
+			$links[ 'day' ]   = get_day_link( $date[ 'y' ], $date[ 'm' ], $date[ 'd' ] );
 
+			// Get paginated versions of the links
+			foreach ( $links as $url ) {
+				$urls[] = $url;
+
+				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+				$urls = array_merge( $urls, $archive_pagination_urls );
+			}
+
+			// Create non-permalink link
 			if ( true === $this->important ) {
 				$urls[] = home_url( '?m=' . $year . $month . $day );
 			}
@@ -266,7 +294,13 @@ function bla2() {
 		// Generate URLs from paths
 		$urls = array();
 		foreach ( $paths as $key => $path ) {
-			$urls[] = home_url( $path );
+			$url = home_url( $path );
+			$urls[] = $url;
+
+			$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+ryans_log( $url );
+ryans_log( print_r( $archive_pagination_urls, true ) );
+			$urls = array_merge( $urls, $archive_pagination_urls );
 		}
 
 		return $urls;
