@@ -60,70 +60,6 @@ class Strattic_API {
 	}
 
 	/**
-	 * Getting the archive pagination URLs.
-	 * We use http requests due to not be able to determine the max number of pages without loading the pages.
-	 *
-	 * @access  private
-	 * @global  object  $wp_query  The main WP Query object
-	 * @return  array   $urls      The archive pagination URLs
-	 */
-	private function get_archive_pagination_urls( $url ) {
-		$urls = array();
-/****************************************************
- ****************************************************
- ****************************************************/
-delete_option( 'strattic-discovered-links' );
-
-
-		$response = wp_remote_get( $url, array( 'user-agent' => 'strattic-api-max-pagination' ) );
-		if ( isset( $response[ 'body' ] ) && '' !== $response[ 'body' ] ) {
-
-			$json_urls = $response[ 'body' ];
-			$decoded_urls = json_decode( $json_urls );
-			if ( is_array( $decoded_urls ) ) {
-				$urls = $decoded_urls;
-			}
-
-		}
-
-		return $urls;
-	}
-
-	/**
-	 * Get number of pagination pages.
-	 * Halts WordPress loading and instead returns the maximum number of pages for pagination in the current archive.
-	 *
-	 * @global  object  $wp_query  The main WordPress query
-	 */
-	function get_paginated_urls() {
-
-		if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
-			global $wp_query;
-			$urls = array();
-
-			$max_num_pages = $wp_query->max_num_pages;
-
-			$count = 2;
-			while ( $count <= $max_num_pages ) {
-				$paginated_url = get_pagenum_link( $count );
-				$urls[] = $paginated_url;
-
-				$count++;
-			}
-
-			echo json_encode( $urls );
-			die;
-
-		}
-
-	}
-
-
-
-
-
-
-	/**
 	 * Grabs all the thingz!
 	 *
 	 * @param   array  $request  The request parameters
@@ -145,10 +81,10 @@ delete_option( 'strattic-discovered-links' );
 
 		// Get all the required URLs
 		$urls = array( '/' );
-//		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
+		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
 		$urls = array_merge( $urls, $this->get_all_posts() );
-//		$urls = array_merge( $urls, $this->get_date_archives() );
-//		$urls = array_merge( $urls, $this->get_all_terms() );
+		$urls = array_merge( $urls, $this->get_date_archives() );
+		$urls = array_merge( $urls, $this->get_all_terms() );
 		$urls = array_merge( $urls, $this->get_feeds() );
 		$urls = array_merge( $urls, $this->get_user_pages() );
 
@@ -796,6 +732,65 @@ delete_option( 'strattic-discovered-links' );
 
 		if ( 'strattic-api' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
 			die( 'Strattic API request complete' );
+		}
+
+	}
+
+	/**
+	 * Getting the archive pagination URLs.
+	 * We use http requests due to not be able to determine the max number of pages without loading the pages.
+	 *
+	 * @access  private
+	 * @global  object  $wp_query  The main WP Query object
+	 * @return  array   $urls      The archive pagination URLs
+	 */
+	private function get_archive_pagination_urls( $url ) {
+		$urls = array();
+/****************************************************
+ ****************************************************
+ ****************************************************/
+delete_option( 'strattic-discovered-links' );
+
+
+		$response = wp_remote_get( $url, array( 'user-agent' => 'strattic-api-max-pagination' ) );
+		if ( isset( $response[ 'body' ] ) && '' !== $response[ 'body' ] ) {
+
+			$json_urls = $response[ 'body' ];
+			$decoded_urls = json_decode( $json_urls );
+			if ( is_array( $decoded_urls ) ) {
+				$urls = $decoded_urls;
+			}
+
+		}
+
+		return $urls;
+	}
+
+	/**
+	 * Get number of pagination pages.
+	 * Halts WordPress loading and instead returns the maximum number of pages for pagination in the current archive.
+	 *
+	 * @global  object  $wp_query  The main WordPress query
+	 */
+	function get_paginated_urls() {
+
+		if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+			global $wp_query;
+			$urls = array();
+
+			$max_num_pages = $wp_query->max_num_pages;
+
+			$count = 2;
+			while ( $count <= $max_num_pages ) {
+				$paginated_url = get_pagenum_link( $count );
+				$urls[] = $paginated_url;
+
+				$count++;
+			}
+
+			echo json_encode( $urls );
+			die;
+
 		}
 
 	}
