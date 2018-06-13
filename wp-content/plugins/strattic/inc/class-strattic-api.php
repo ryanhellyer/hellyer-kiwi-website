@@ -304,8 +304,6 @@ delete_option( 'strattic-discovered-links' );
 			// Include pagination URLs for non-permalink URLs
 			if ( strpos( $url, '?' ) === false ) {
 				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
-//ryans_log( $url );
-//ryans_log( print_r( $archive_pagination_urls, true ) );
 				$urls = array_merge( $urls, $archive_pagination_urls );
 			}
 
@@ -392,6 +390,16 @@ delete_option( 'strattic-discovered-links' );
 							}
 
 						}
+
+
+						// Include pagination URLs pages
+						if ( is_page() ) {
+							$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+//ryans_log( $url );
+//ryans_log( print_r( $archive_pagination_urls, true ) );
+							$urls = array_merge( $urls, $archive_pagination_urls );
+						}
+
 
 						// Store post dates (used later by date archives system)
 						$dates = array(
