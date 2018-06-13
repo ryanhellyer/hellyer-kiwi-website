@@ -298,8 +298,8 @@ delete_option( 'strattic-discovered-links' );
 			$urls[] = $url;
 
 			$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
-ryans_log( $url );
-ryans_log( print_r( $archive_pagination_urls, true ) );
+//ryans_log( $url );
+//ryans_log( print_r( $archive_pagination_urls, true ) );
 			$urls = array_merge( $urls, $archive_pagination_urls );
 		}
 
