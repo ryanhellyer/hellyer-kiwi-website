@@ -10,8 +10,8 @@
  DONE: store every URL visited that is not in our list
        and spit those out separately
        requires logging
+ DONE: look for pagination in archives
  TODO: check if actual spidering is happening - if not, then scrape pages for internal URLs
- TODO: look for pagination in archives
  TODO: find comments pagination pages
  TODO: paginatION FOR USER PAGES
 
@@ -40,6 +40,7 @@ class Strattic_API {
 	private $taxonomy_term_ids;
 	private $important = false;
 	private $post_dates;
+	private $authors;
 
 	/**
 	 * Class constructor.
@@ -144,10 +145,10 @@ delete_option( 'strattic-discovered-links' );
 
 		// Get all the required URLs
 		$urls = array( '/' );
-		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
+//		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
 		$urls = array_merge( $urls, $this->get_all_posts() );
-		$urls = array_merge( $urls, $this->get_date_archives() );
-		$urls = array_merge( $urls, $this->get_all_terms() );
+//		$urls = array_merge( $urls, $this->get_date_archives() );
+//		$urls = array_merge( $urls, $this->get_all_terms() );
 		$urls = array_merge( $urls, $this->get_feeds() );
 		$urls = array_merge( $urls, $this->get_user_pages() );
 
@@ -210,8 +211,11 @@ delete_option( 'strattic-discovered-links' );
 			foreach ( $links as $url ) {
 				$urls[] = $url;
 
-				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
-				$urls = array_merge( $urls, $archive_pagination_urls );
+				if ( true === $this->important ) {
+					$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+					$urls = array_merge( $urls, $archive_pagination_urls );
+				}
+
 			}
 
 			// Create non-permalink link
@@ -302,7 +306,11 @@ delete_option( 'strattic-discovered-links' );
 			$urls[] = $url;
 
 			// Include pagination URLs for non-permalink URLs
-			if ( strpos( $url, '?' ) === false ) {
+			if (
+				true === $this->important
+				&&
+				strpos( $url, '?' ) === false
+			) {
 				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 				$urls = array_merge( $urls, $archive_pagination_urls );
 			}
@@ -392,13 +400,16 @@ delete_option( 'strattic-discovered-links' );
 						}
 
 						// Include pagination URLs pages
-						if ( 'page' === $post_type ) {
+						if (
+							true === $this->important
+							&&
+							'page' === $post_type
+						) {
 							$url = get_the_permalink();
-							$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 
+							$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 							$urls = array_merge( $urls, $archive_pagination_urls );
 						}
-
 
 						// Store post dates (used later by date archives system)
 						$dates = array(
@@ -412,6 +423,9 @@ delete_option( 'strattic-discovered-links' );
 						// Store post IDs (used later by feed system)
 						$this->post_ids[] = get_the_ID();
 
+						// Store author IDs (used later by author profile system - can't use get_users() as it ignores authors who aren't currently a user on the site)
+						$this->authors[] = get_the_author_meta( 'ID' );
+						$this->authors = array_unique( $this->authors );
 					}
 
 					wp_reset_postdata();
@@ -628,29 +642,19 @@ delete_option( 'strattic-discovered-links' );
 		}
 
 		// Generate user feed paths
-		$users = get_users( $args = array() );
 		$urls = array();
-		foreach ( $users as $key => $user ) {
-			if ( isset( $user->ID ) ) {
-				$user_id = $user->ID;
+		foreach ( $this->authors as $key => $user_id ) {
 
-				$urls[] = get_author_feed_link( $user_id, '' );
+			$urls[] = get_author_feed_link( $user_id, '' );
 
-				if ( true === $this->important ) {
+			if ( true === $this->important ) {
 
-					if ( ! get_option( 'permalink_structure' ) ) {
-						$urls[] = '?author=' . $user_id;
-					}
-
-					foreach ( $this->feed_formats as $feed_format ) {
-
-						$urls[] = get_author_feed_link( $user_id, $feed_format );
-
-					}
-
+				if ( ! get_option( 'permalink_structure' ) ) {
+					$urls[] = '?author=' . $user_id;
 				}
 
 			}
+
 		}
 		$user_feed_paths = $this->strip_site_root( $urls );
 		$paths = array_merge( $paths, $user_feed_paths );
@@ -743,18 +747,24 @@ delete_option( 'strattic-discovered-links' );
 	 */
 	public function get_user_pages() {
 
-		$users = get_users( $args = array() );
-		foreach ( $users as $key => $user ) {
-			if ( isset( $user->ID ) ) {
-				$user_id = $user->ID;
+		if ( null === $this->post_dates ) {
+			$this->get_all_posts(); // If posts weren't already accessed, then access them anyway, as that primes the $this->post_dates var
+		}
 
-				$urls[] = get_author_posts_url( $user_id );
+		foreach ( $this->authors as $key => $user_id ) {
 
-				if ( true === $this->important ) {
-					$urls[] = '?author=' . $user_id;
-				}
+			$url = get_author_posts_url( $user_id );
+			$urls[] = $url;
 
+			if ( true === $this->important ) {
+				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+				$urls = array_merge( $urls, $archive_pagination_urls );
 			}
+
+			if ( true === $this->important ) {
+				$urls[] = '?author=' . $user_id;
+			}
+
 		}
 
 		return $urls;
