@@ -144,12 +144,12 @@ delete_option( 'strattic-discovered-links' );
 
 		// Get all the required URLs
 		$urls = array( '/' );
-		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
+//		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
 		$urls = array_merge( $urls, $this->get_all_posts() );
-		$urls = array_merge( $urls, $this->get_date_archives() );
-		$urls = array_merge( $urls, $this->get_all_terms() );
-		$urls = array_merge( $urls, $this->get_feeds() );
-		$urls = array_merge( $urls, $this->get_user_pages() );
+//		$urls = array_merge( $urls, $this->get_date_archives() );
+//		$urls = array_merge( $urls, $this->get_all_terms() );
+//		$urls = array_merge( $urls, $this->get_feeds() );
+//		$urls = array_merge( $urls, $this->get_user_pages() );
 
 		$paths = $this->strip_site_root( $urls );
 
@@ -349,9 +349,9 @@ delete_option( 'strattic-discovered-links' );
 					'posts_per_page'         => self::PER_PAGE, // This may sometimes query too many posts - but the code is simpler this way ;)
 					'offset'                 => $offset,
 					'post_type'              => $post_type,
-					'no_found_rows'          => true,
-					'update_post_meta_cache' => false,
-					'update_post_term_cache' => false,
+//					'no_found_rows'          => true,
+//					'update_post_meta_cache' => false,
+//					'update_post_term_cache' => false,
 					'post_status'            => $post_statuses,
 				) );
 
@@ -391,12 +391,13 @@ delete_option( 'strattic-discovered-links' );
 
 						}
 
-
 						// Include pagination URLs pages
-						if ( is_page() ) {
+						if ( 'page' === $post_type ) {
+							$url = get_the_permalink();
 							$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
 //ryans_log( $url );
 //ryans_log( print_r( $archive_pagination_urls, true ) );
+
 							$urls = array_merge( $urls, $archive_pagination_urls );
 						}
 
