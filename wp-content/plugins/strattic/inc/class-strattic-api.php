@@ -206,8 +206,8 @@ delete_option( 'strattic-discovered-links' );
 			foreach ( $links as $url ) {
 				$urls[] = $url;
 
-				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
-				$urls = array_merge( $urls, $archive_pagination_urls );
+//				$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+//				$urls = array_merge( $urls, $archive_pagination_urls );
 			}
 
 			// Create non-permalink link
