@@ -16,17 +16,18 @@
  DONE: Only scan for latest image files
  DONE: find comments pagination pages
  DONE: Strip anchors from URLs
+ DONE: handle embeddable pages
+       eg: https://undiecar.com/contact/embed/
+       eg: https://undiecar.com/contact/?embed=true
 
  TODO: check if actual spidering is happening - if not, then scrape pages for internal URLs
 
- TODO: handle embeddable pages
-       eg: https://undiecar.com/contact/embed/
-       eg: https://undiecar.com/contact/?embed=true
 
 events-manager
 bbpress
 Events Calendar (modern tribe)
-
+Google maps https://wordpress.org/plugins/wp-google-maps/
+WP Realty (if it's still around)
 */
 
 /**
@@ -53,16 +54,60 @@ class Strattic_API {
 	 */
 	public function __construct() {
 
+		if (
+			'/strattic-api/' === $this->get_current_path()
+			||
+			'/strattic-api/important/' === $this->get_current_path()
+		) {
+			add_action( 'init', array( $this, 'get_direct_api_request' ) );
+		}
+
 		add_action( 'rest_api_init', function () {
 			register_rest_route( 'strattic/v1', '/everything', array(
 				'methods'  => 'GET',
-				'callback' => array( $this, 'get_everything' ),
+				'callback' => array( $this, 'get_wp_rest_api_response' ),
 			) );
 		} );
 
 		add_action( 'template_redirect', array( $this, 'api_request_bailer' ) );
 
 		add_action( 'template_redirect', array( $this, 'get_paginated_urls' ), 4 );
+	}
+
+	/**
+	 * Handle direct API Request.
+	 *
+	 * @param   array  $request  The request parameters
+	 * @return  array  URLs
+	 */
+	public function get_direct_api_request() {
+
+		if ( '/strattic-api/important/' === $this->get_current_path() ) {
+			$this->important = true;
+		}
+
+		$paths = $this->get_everything();
+		foreach ( $paths as $path ) {
+			echo $path . "\n";
+		}
+
+		die;
+	}
+
+	/**
+	 * Handle WP Rest API Response.
+	 *
+	 * @param   array  $request  The request parameters
+	 * @return  array  URLs
+	 */
+	public function get_wp_rest_api_response( $request = '' ) {
+
+		$request_params = $request->get_query_params();
+		if ( isset( $request_params[ 'important' ] ) && 'true' === $request_params[ 'important' ] ) {
+			$this->important = true;
+		}
+
+		return $this->get_everything();
 	}
 
 	/**
@@ -74,11 +119,6 @@ class Strattic_API {
 	public function get_everything( $request = '' ) {
 
 		$time_start = microtime( true );
-
-		$request_params = $request->get_query_params();
-		if ( isset( $request_params[ 'important' ] ) && 'true' === $request_params[ 'important' ] ) {
-			$this->important = true;
-		}
 
 		// Increase maximum execution time to make sure that we can gather everything
 		ini_set( 'max_execution_time', self::TIME_LIMIT );
@@ -937,6 +977,32 @@ class Strattic_API {
 		$wp_query->comment_count         = count( $wp_query->comments );
 
 		return $comment_query->max_num_pages;
+	}
+
+	/**
+	 * Get the current page URL.
+	 */
+	private function get_current_url() {
+
+		$url = 'http';
+		if ( is_ssl() ) {
+			$url .= 's';
+		}
+		$url .= '://';
+		$url .= $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ];
+
+		return $url;
+	}
+
+	/**
+	 * Get the current page URL.
+	 */
+	private function get_current_path() {
+
+		$url = $this->get_current_url();
+		$path = str_replace( home_url(), '', $url );
+
+		return $path;
 	}
 
 }
