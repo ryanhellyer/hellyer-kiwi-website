@@ -14,10 +14,8 @@
  DONE: paginatION FOR USER PAGES
  DONE: Search for users who are authors but not users on the site
  DONE: Only scan for latest image files
- DONE: find comments pagination pages
- DONE: Strip anchors from URLs
-
  TODO: check if actual spidering is happening - if not, then scrape pages for internal URLs
+ TODO: find comments pagination pages
 
  TODO: handle embeddable pages
        eg: https://undiecar.com/contact/embed/
@@ -87,14 +85,12 @@ class Strattic_API {
 
 		// Get all the required URLs
 		$urls = array( '/' );
-		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
+//		$urls = array_merge( $urls, $this->get_taxonomy_archives() );
 		$urls = array_merge( $urls, $this->get_all_posts() );
-		$urls = array_merge( $urls, $this->get_date_archives() );
-		$urls = array_merge( $urls, $this->get_all_terms() );
-		$urls = array_merge( $urls, $this->get_feeds() );
-		$urls = array_merge( $urls, $this->get_user_pages() );
-
-		$urls = $this->strip_anchors( $urls );
+//		$urls = array_merge( $urls, $this->get_date_archives() );
+//		$urls = array_merge( $urls, $this->get_all_terms() );
+//		$urls = array_merge( $urls, $this->get_feeds() );
+//		$urls = array_merge( $urls, $this->get_user_pages() );
 
 		$paths = $this->strip_site_root( $urls );
 
@@ -326,12 +322,6 @@ class Strattic_API {
 							$urls[] = get_the_permalink();
 						}
 
-						// Get embed URLs
-						if ( true === $this->important ) {
-							$urls[] = get_post_embed_url( get_the_ID() );
-							$urls[] = add_query_arg( array( 'embed' => 'true' ), get_the_permalink() );
-						}
-
 						// Get shortlink URLs
 						if ( true === $this->important ) {
 							$urls[] = wp_get_shortlink( get_the_ID() );
@@ -358,24 +348,15 @@ class Strattic_API {
 
 						}
 
-						// Include pagination URLs for comments pages
-						if ( true === $this->important ) {
-							$url = get_the_permalink();
-
-							$max_pages = $this->get_comment_pages_count();
-
-							$count = 2;
-							while ( $count < $max_pages ) {
-								$urls[] = get_comments_pagenum_link( $count, $max_pages );
-								$count++;
-							}
-
-						}
-
 						// Include pagination URLs pages
-						if ( true === $this->important ) {
+						if (
+							true === $this->important
+							&&
+//							'page' === $post_type
+							'post' === $post_type
+						) {
 							$url = get_the_permalink();
-							$archive_pagination_urls = $this->get_archive_pagination_urls( $url );
+							$archive_pagination_urls = $this->get_comments_pagination_urls( $url );
 
 							$urls = array_merge( $urls, $archive_pagination_urls );
 						}
@@ -757,22 +738,6 @@ class Strattic_API {
 	}
 
 	/**
-	 * Anchors are not required on links, so let's remove them.
-	 *
-	 * @param  array  $urls  The URLs
-	 * @return array  $paths The paths for the URLs (without the anchors)
-	 */
-	public function strip_anchors( $urls ) {
-		$deanchored_urls = array();
-
-		foreach ( $urls as $url ) {
-			$deanchored_urls[] = strtok( $url, '#' );
-		}
-
-		return $deanchored_urls;
-	}
-
-	/**
 	 * Bail on API requests.
 	 * We have no use for the response body, so we just quit as soon as the header returns.
 	 * This saves substantial time in requesting pages.
@@ -811,22 +776,76 @@ class Strattic_API {
 	}
 
 	/**
+	 * Getting the archive pagination URLs.
+	 * We use http requests due to not be able to determine the max number of pages without loading the pages.
+	 *
+	 * @access  private
+	 * @global  object  $wp_query  The main WP Query object
+	 * @return  array   $urls      The archive pagination URLs
+	 */
+	private function get_comments_pagination_urls( $url ) {
+		$urls = array();
+
+if ( 'http://dev-hellyer.kiwi/unique-headers/template-comments/' !== $url ) {
+	return $urls;
+}
+
+		$response = wp_remote_get( $url, array( 'user-agent' => 'strattic-api-max-comments-pagination' ) );
+		if ( isset( $response[ 'body' ] ) && '' !== $response[ 'body' ] ) {
+
+			$json_urls = $response[ 'body' ];
+			$decoded_urls = json_decode( $json_urls );
+			if ( is_array( $decoded_urls ) ) {
+				$urls = $decoded_urls;
+			}
+
+echo $url;
+echo "\n";
+print_r( $json_urls );
+die;
+
+		}
+
+		return $urls;
+	}
+
+	/**
 	 * Get number of pagination pages.
 	 * Halts WordPress loading and instead returns the maximum number of pages for pagination in the current archive.
+	 * HTTP_USER_AGENT used to determine whether it's comments pages or archives and to ensure that HTML loading isn't affected on regular page loads.
 	 *
 	 * @global  object  $wp_query  The main WordPress query
 	 */
 	function get_paginated_urls() {
 
-		if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+		if (
+			'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ]
+			||
+			'strattic-api-max-comments-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ]
+		) {
 			global $wp_query;
 			$urls = array();
 
-			$max_num_pages = $wp_query->max_num_pages;
+			// Get max number of paginated pages ()
+			if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+				$max_num_pages = $wp_query->max_num_pages;
+			} else if ( 'strattic-api-max-comments-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+				$max_num_pages = $wp_query->max_num_comment_pages;
+			}
+ryans_log( print_r( $_SERVER['REQUEST_URI'], true ) );
+ryans_log( print_r( $wp_query, true ) );
+ryans_log( print_r( $max_num_pages, true ) );
 
 			$count = 2;
 			while ( $count <= $max_num_pages ) {
-				$paginated_url = get_pagenum_link( $count );
+
+				if ( 'strattic-api-max-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+					$paginated_url = get_pagenum_link( $count );
+				} else if ( 'strattic-api-max-comments-pagination' === $_SERVER[ 'HTTP_USER_AGENT' ] ) {
+					$paginated_url = get_comments_pagenum_link( $count, $max_num_pages );
+				}
+ryans_log( print_r( $paginated_url, true ) );
+
 				$urls[] = $paginated_url;
 
 				$count++;
@@ -837,106 +856,6 @@ class Strattic_API {
 
 		}
 
-	}
-
-	/**
-	 * Get the comment pages count.
-	 * WP's get_comment_pages_count() doesn't work without all this stuff being processed first.
-	 */
-	private function get_comment_pages_count() {
-		$separate_comments = false;
-		global $wp_query, $withcomments, $post, $wpdb, $id, $comment, $user_login, $user_ID, $user_identity, $overridden_cpage;
-
-		$req = get_option( 'require_name_email' );
-		$commenter = wp_get_current_commenter();
-		$comment_author = $commenter['comment_author'];
-		$comment_author_email = $commenter['comment_author_email'];
-		$comment_author_url = esc_url( $commenter['comment_author_url'] );
-
-		$comment_args = array(
-			'orderby'                   => 'comment_date_gmt',
-			'order'                     => 'ASC',
-			'status'                    => 'approve',
-			'post_id'                   => $post->ID,
-			'no_found_rows'             => false,
-			'update_comment_meta_cache' => false, // We lazy-load comment meta for performance.
-		);
-
-		if ( get_option( 'thread_comments' ) ) {
-			$comment_args['hierarchical'] = 'threaded';
-		} else {
-			$comment_args['hierarchical'] = false;
-		}
-
-		$per_page = 0;
-		if ( get_option( 'page_comments' ) ) {
-			$per_page = (int) get_query_var( 'comments_per_page' );
-			if ( 0 === $per_page ) {
-				$per_page = (int) get_option( 'comments_per_page' );
-			}
-
-			$comment_args['number'] = $per_page;
-			$page                   = (int) get_query_var( 'cpage' );
-
-			if ( $page ) {
-				$comment_args['offset'] = ( $page - 1 ) * $per_page;
-			} elseif ( 'oldest' === get_option( 'default_comments_page' ) ) {
-				$comment_args['offset'] = 0;
-			} else {
-				// If fetching the first page of 'newest', we need a top-level comment count.
-				$top_level_query = new WP_Comment_Query();
-				$top_level_args  = array(
-					'count'   => true,
-					'orderby' => false,
-					'post_id' => $post->ID,
-					'status'  => 'approve',
-				);
-
-				if ( $comment_args['hierarchical'] ) {
-					$top_level_args['parent'] = 0;
-				}
-
-				if ( isset( $comment_args['include_unapproved'] ) ) {
-					$top_level_args['include_unapproved'] = $comment_args['include_unapproved'];
-				}
-
-				$top_level_count = $top_level_query->query( $top_level_args );
-
-				$comment_args['offset'] = ( ceil( $top_level_count / $per_page ) - 1 ) * $per_page;
-			}
-		}
-
-		$comment_args  = apply_filters( 'comments_template_query_args', $comment_args );
-		$comment_query = new WP_Comment_Query( $comment_args );
-		$_comments     = $comment_query->comments;
-
-		// Trees must be flattened before they're passed to the walker.
-		if ( $comment_args['hierarchical'] ) {
-			$comments_flat = array();
-			foreach ( $_comments as $_comment ) {
-				$comments_flat[]  = $_comment;
-				$comment_children = $_comment->get_children(
-					array(
-						'format'  => 'flat',
-						'status'  => $comment_args['status'],
-						'orderby' => $comment_args['orderby'],
-					)
-				);
-
-				foreach ( $comment_children as $comment_child ) {
-					$comments_flat[] = $comment_child;
-				}
-			}
-		} else {
-			$comments_flat = $_comments;
-		}
-
-		$wp_query->comments = apply_filters( 'comments_array', $comments_flat, $post->ID );
-
-		$comments                        = &$wp_query->comments;
-		$wp_query->comment_count         = count( $wp_query->comments );
-
-		return $comment_query->max_num_pages;
 	}
 
 }
