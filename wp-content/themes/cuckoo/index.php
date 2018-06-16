@@ -35,7 +35,7 @@ if ( have_posts() ) {
 
 		echo '<h1>';
 
-		if ( is_home() ) {
+		if ( is_home() || is_search() ) {
 			echo '<a href="' . esc_url( get_permalink() ) . '">';
 		}
 
