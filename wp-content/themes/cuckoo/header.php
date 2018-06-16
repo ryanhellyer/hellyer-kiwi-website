@@ -19,23 +19,35 @@
 
 <header class="wrapper">
 
-		<h1>
-			<a id="title" href="<?php echo esc_url( home_url() . '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-				<?php bloginfo( 'name' ); ?>
-			</a>
-		</h1>
+	<?php
 
-		<?php
+	// Output language selector menu
+	wp_nav_menu(
+		array(
+			'theme_location' => 'language',
+			'container'      => 'div',
+		)
+	);
 
-		// Output header menu
-		wp_nav_menu(
-			array(
-				'theme_location' => 'header',
-				'container'      => '',
-			)
-		);
+	?>
 
-		?>
+	<h1>
+		<a id="title" href="<?php echo esc_url( home_url() . '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+			<?php bloginfo( 'name' ); ?>
+		</a>
+	</h1>
+
+	<?php
+
+	// Output main header menu
+	wp_nav_menu(
+		array(
+			'theme_location' => 'header',
+			'container'      => '',
+		)
+	);
+
+	?>
 
 </header>
 

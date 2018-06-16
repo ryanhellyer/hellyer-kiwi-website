@@ -11,8 +11,7 @@
 
 <footer id="footer" class="wrapper">
 	<p>
-		Copyright &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'name' ); ?>.
-
+		&copy; <?php printf( esc_html__( 'Copyright %s %s. All rights reserved.', 'cuckoo' ), date( 'Y' ), get_bloginfo( 'name' ) ); ?>
 		<?php the_privacy_policy_link(); ?>
 	</p>
 </footer>

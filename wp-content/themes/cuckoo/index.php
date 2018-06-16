@@ -13,7 +13,25 @@ if ( have_posts() ) {
 	// Start of the Loop
 	while ( have_posts() ) {
 		the_post();
-		echo '<article>';
+
+		$styles = '';
+		if ( is_home() ) {
+			$styles .= ' style="background:';
+
+			$image_src = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'cuckoo-archive' );
+			if ( isset( $image_src[ 0 ] ) ) {
+				$image_url = $image_src[ 0 ];
+
+				$styles .= 'url(' . esc_url( $image_url ) . ')';
+				$styles .= ';background-size: cover';
+			} else {
+				$styles .= '#000';
+			}
+			$styles .= ';"';
+
+		}
+
+		echo '<article' . $styles . '>';
 
 		echo '<h1>';
 
@@ -29,7 +47,9 @@ if ( have_posts() ) {
 
 		echo '</h1>';
 
-		the_content();
+		if ( ! is_home() ) {
+			the_content();
+		}
 
 		echo '</article>';
 
