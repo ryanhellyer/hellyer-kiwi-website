@@ -29,6 +29,7 @@ class Cuckoo_Setup {
 //		add_action( 'wp_enqueue_scripts', array( $this, 'script' ) );
 		add_action( 'init',               array( $this, 'menus' ) );
 		add_action( 'template_redirect',  array( $this, 'under_construction' ) );
+		add_action( 'wp',                 array( $this, 'force_404' ) );
 
 		add_filter( 'the_content',        array( $this, 'gallery_content' ) );
 
@@ -56,6 +57,7 @@ class Cuckoo_Setup {
 		add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption' ) );
 		add_theme_support( 'post-thumbnails' );
 		remove_post_type_support( 'post', 'trackbacks' );
+		add_image_size( 'cuckoo-archive', 640, 640, true );
 	}
 
 	/**
@@ -83,7 +85,13 @@ class Cuckoo_Setup {
 
 		register_nav_menus(
 			array(
-				'header'       => __( 'Header Menu' ),
+				'language' => esc_html__( 'Language Selector Menu', 'cuckoo' ),
+			)
+		);
+
+		register_nav_menus(
+			array(
+				'header' => esc_html__( 'Header Menu', 'cuckoo' ),
 			)
 		);
 
@@ -155,6 +163,22 @@ class Cuckoo_Setup {
 		<h1>Coming Soon!</h1>';
 
 		die;
+	}
+
+	/**
+	 * Force 404 on some paget types.
+	 */
+	public function force_404() {
+		global $wp_query;
+
+		if ( is_archive() ) {
+			status_header( 404 );
+			nocache_headers();
+			include( get_query_template( '404' ) );
+
+			die();
+		}
+
 	}
 
 }
