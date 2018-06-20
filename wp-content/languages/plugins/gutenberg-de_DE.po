@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-06-06 09:05:49+0000\n"
+"PO-Revision-Date: 2018-06-20 10:51:17+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,6 +14,14 @@ msgstr ""
 #: lib/rest-api.php:468
 msgid "Preview link for the post."
 msgstr "Vorschau-Link für diesen Beitrag."
+
+#: lib/class-wp-rest-autosaves-controller.php:312
+msgid "There is nothing to save. The autosave and the post content are the same."
+msgstr "Es gibt nichts zu speichern. Die automatische Speicherung und der aktuelle Beitragsinhalt sind identisch."
+
+#: lib/class-wp-rest-autosaves-controller.php:222
+msgid "There is no autosave revision for this post."
+msgstr "Es gibt keine automatisch gespeicherte Revision von diesem Beitrag."
 
 #: lib/class-wp-rest-autosaves-controller.php:216
 msgid "Invalid parent post ID."
@@ -39,6 +47,18 @@ msgstr "Fehler beim Hochladen der Datei %s in die Mediathek."
 #: languages/gutenberg-translations.php:1417
 msgid "%s exceeds the maximum upload size for this site."
 msgstr "%s überschreitet die maximale Upload-Größe für diese Website."
+
+#: languages/gutenberg-translations.php:1399
+msgid "View the autosave"
+msgstr "Die automatische Speicherung ansehen"
+
+#: languages/gutenberg-translations.php:1396
+msgid "There is an autosave of this post that is more recent than the version below."
+msgstr "Es gibt eine automatische Speicherung dieses Beitrags, die aktueller ist, als die unten stehende Version."
+
+#: languages/gutenberg-translations.php:1194
+msgid "Autosaving"
+msgstr "Automatische Speicherung"
 
 #: languages/gutenberg-translations.php:1046
 msgid "Drag %s, upload a new one or select a file from your library."
@@ -80,6 +100,10 @@ msgstr "Der aktuelle Benutzer kann Begriffe zuordnen."
 msgid "The current user can create terms."
 msgstr "Der aktuelle Benutzer kann Begriffe erstellen."
 
+#: lib/rest-api.php:275
+msgid "The current user can sticky this post."
+msgstr "Der aktuelle Benutzer kann diesem Beitrag oben halten."
+
 #: lib/rest-api.php:254
 msgid "The current user can publish this post."
 msgstr "Der aktuelle Benutzer kann diesen Beitrag veröffentlichen."
@@ -99,6 +123,10 @@ msgstr "Aus der Werkzeugleiste entfernen"
 #: languages/gutenberg-translations.php:713
 msgid "Embed an video file and a simple video player."
 msgstr "Füge eine Videodatei und einen einfachen Video-Player ein."
+
+#: languages/gutenberg-translations.php:693
+msgid "A block for haiku? Why not? Blocks for all the things! (See what we did here?)"
+msgstr "Ein Block für Haiku? Warum nicht? Blöcke für all die Dinge! (Siehst du, was wir hier gemacht haben?)"
 
 #: languages/gutenberg-translations.php:687
 msgid "Add text, and display it in two or more columns. Like a newspaper! This block is experimental."
@@ -136,6 +164,10 @@ msgstr "Füge eine horizontale Linie ein, um eine Unterbrechung zwischen zwei El
 msgid "Maybe someone else said it better -- add some quoted text."
 msgstr "Vielleicht hat es jemand besser gesagt -- füge einen zitierten Text hinzu."
 
+#: languages/gutenberg-translations.php:588
+msgid "Highlight a quote from your post or page by displaying it as a graphic element."
+msgstr "Hebe ein Zitat aus deinem Beitrag oder deiner Seite hervor, indem du es als grafisches Element anzeigst."
+
 #: languages/gutenberg-translations.php:574
 msgid "Add text that respects your spacing and tabs, and also allows styling."
 msgstr "Füge Text hinzu, der deine Abstände und Tabulatoren respektiert und auch das Styling erlaubt."
@@ -143,6 +175,10 @@ msgstr "Füge Text hinzu, der deine Abstände und Tabulatoren respektiert und au
 #: languages/gutenberg-translations.php:565
 msgid "Add some basic text."
 msgstr "Fügt einen einfachen Text hinzu."
+
+#: languages/gutenberg-translations.php:532
+msgid "Want to show only part of this post on your blog's home page? Insert a \"More\" block where you want the split."
+msgstr "Möchtest du nur einen Teil dieses Beitrags auf der Startseite deines Blogs anzeigen? Füge einen \"Mehr\"-Block an der gewünschten Stelle ein."
 
 #: languages/gutenberg-translations.php:514
 msgid "Numbers, bullets, up to you. Add a list of items."
@@ -168,14 +204,26 @@ msgstr "Füge eine Überschrift über dem Beitrags- oder Seiteninhalt ein."
 msgid "Display multiple images in an elegantly organized tiled layout."
 msgstr "Zeige mehrere Bilder in einem elegant gegliederten Layout an."
 
+#: languages/gutenberg-translations.php:344
+msgid "It's the classic WordPress editor and it's a block! Drop the editor right in."
+msgstr "Es ist der klassische WordPress-Editor und es ist ein Block! Füge den Editor einfach ein."
+
 #. translators: %s: Name of service (e.g. VideoPress, YouTube)
 #: languages/gutenberg-translations.php:329
 msgid "Add a block that displays content pulled from other sites, like Twitter, Instagram or YouTube."
 msgstr "Füge einen Block hinzu, der Inhalte von anderen Websites wie Twitter, Instagram oder YouTube anzeigt."
 
+#: languages/gutenberg-translations.php:280
+msgid "Add a full-width image, and layer text over it -- great for headers."
+msgstr "Füge ein Bild in voller Breite hinzu und lege Text darüber - ideal für Header."
+
 #: languages/gutenberg-translations.php:247
 msgid "Add a block that displays content in multiple columns, then add whatever content blocks you'd like."
 msgstr "Erstelle einen Block, der Inhalte in mehreren Spalten anzeigt und füge dann beliebige Inhaltsblöcke hinzu."
+
+#: languages/gutenberg-translations.php:234
+msgid "Add text that respects your spacing and tabs -- perfect for displaying code."
+msgstr "Füge Text hinzu, der deine Abstände und Tabs respektiert - perfekt für die Anzeige von Code."
 
 #: languages/gutenberg-translations.php:224
 msgid "Display a list of all your site's categories."
