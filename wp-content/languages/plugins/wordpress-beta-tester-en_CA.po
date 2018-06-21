@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WordPress Beta Tester - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-05-04 16:42:00+0000\n"
+"PO-Revision-Date: 2018-06-21 18:15:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,11 +11,15 @@ msgstr ""
 "Language: en_CA\n"
 "Project-Id-Version: Plugins - WordPress Beta Tester - Stable (latest release)\n"
 
-#: wp-beta-tester.php:248
-msgid "Why don't you %shead on over and upgrade now%s."
-msgstr "Why don't you %shead on over and upgrade now%s."
+#: wp-beta-tester.php:273
+msgid "Why don&#8217;t you <a href=\"update-core.php\">head on over and upgrade now</a>."
+msgstr "Why don&#8217;t you <a href=\"update-core.php\">head on over and upgrade now</a>."
 
-#: wp-beta-tester.php:198
+#: wp-beta-tester.php:243
+msgid "By default, your WordPress install uses the stable update stream. To return to this, please deactivate this plugin and re-install from the <a href=\"update-core.php\">WordPress Updates</a> page."
+msgstr "By default, your WordPress install uses the stable update stream. To return to this, please deactivate this plugin and re-install from the <a href=\"update-core.php\">WordPress Updates</a> page."
+
+#: wp-beta-tester.php:209
 msgid "Saved."
 msgstr "Saved."
 
@@ -39,68 +43,68 @@ msgstr "https://en-ca.wordpress.org/plugins/wordpress-beta-tester/"
 msgid "Allows you to easily upgrade to Beta releases."
 msgstr "Allows you to easily upgrade to Beta releases."
 
-#: wp-beta-tester.php:245
+#: wp-beta-tester.php:270
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: wp-beta-tester.php:238
+#: wp-beta-tester.php:263
 msgid "Bleeding edge nightlies"
 msgstr "Bleeding edge nightlies"
 
-#: wp-beta-tester.php:230
+#: wp-beta-tester.php:255
 msgid "Point release nightlies"
 msgstr "Point release nightlies"
 
-#: wp-beta-tester.php:232
-msgid "This contains the work that is occurring on a branch in preparation for a x.x.x point release.  This should also be fairly stable but will be available before the branch is ready for beta."
-msgstr "This contains the work that is occurring on a branch in preparation for a x.x.x point release.  This should also be fairly stable but will be available before the branch is ready for beta."
-
-#: wp-beta-tester.php:218
-msgid "By default, your WordPress install uses the stable update stream. To return to this, please deactivate this plugin."
-msgstr "By default, your WordPress install uses the stable update stream. To return to this, please deactivate this plugin."
-
-#: wp-beta-tester.php:214
-msgctxt "Url to beta support forum"
+#: wp-beta-tester.php:229
+msgctxt "URL to beta support forum"
 msgid "https://wordpress.org/support/forum/alphabeta"
 msgstr "https://wordpress.org/support/forum/alphabeta"
 
-#: wp-beta-tester.php:212
-msgctxt "Url to database backup instructions"
+#: wp-beta-tester.php:227
+msgctxt "URL to database backup instructions"
 msgid "https://codex.wordpress.org/Backing_Up_Your_Database"
 msgstr "https://codex.wordpress.org/Backing_Up_Your_Database"
 
-#: wp-beta-tester.php:215
-msgid "Thank you for helping by testing WordPress. Please <a href=\"%s\">report any bugs you find</a>."
-msgstr "Thank you for helping by testing WordPress. Please <a href=\"%s\">report any bugs you find</a>."
-
-#: wp-beta-tester.php:211
+#. translators: 1: link to backing up database, 2: link to make.wp.org/core, 3:
+#. link to beta support forum
+#: wp-beta-tester.php:226
 msgid "By their nature, these releases are unstable and should not be used anyplace where your data is important. So please <a href=\"%1$s\">back up your database</a> before upgrading to a test release. In order to hear about the latest beta releases, your best bet is to watch the <a href=\"%2$s\">development blog</a> and the <a href=\"%3$s\">beta forum</a>."
 msgstr "By their nature, these releases are unstable and should not be used anyplace where your data is important. So please <a href=\"%1$s\">back up your database</a> before upgrading to a test release. In order to hear about the latest beta releases, your best bet is to watch the <a href=\"%2$s\">development blog</a> and the <a href=\"%3$s\">beta forum</a>."
 
-#: wp-beta-tester.php:206
-msgid "%sPlease note:%s There are no development builds of the beta stream you have choosen available, so you will receive normal update notifications."
-msgstr "%sPlease note:%s There are no development builds of the beta stream you have chosen available, so you will receive normal update notifications."
-
-#: wp-beta-tester.php:240
-msgid "This is the bleeding edge development code from `trunk` which may be unstable at times. %sOnly use this if you really know what you are doing%s."
-msgstr "This is the bleeding edge development code from `trunk` which may be unstable at times. %sOnly use this if you really know what you are doing%s."
-
-#: wp-beta-tester.php:223
+#: wp-beta-tester.php:248
 msgid "Please select the update stream you would like this website to use:"
 msgstr "Please select the update stream you would like this website to use:"
 
-#: wp-beta-tester.php:202
-msgid "%sPlease note:%s Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade, as the database structure may be updated during the development of a major release."
-msgstr "%sPlease note:%s Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade, as the database structure may be updated during the development of a major release."
+#: wp-beta-tester.php:257
+msgid "This contains the work that is occurring on a branch in preparation for a x.x.x point release.  This should also be fairly stable but will be available before the branch is ready for release."
+msgstr "This contains the work that is occurring on a branch in preparation for a x.x.x point release.  This should also be fairly stable but will be available before the branch is ready for release."
 
-#: wp-beta-tester.php:98
+#. translators: %s: link to new trac ticket
+#: wp-beta-tester.php:237
+msgid "Thank you for helping test WordPress. Please <a href=\"%s\">report any bugs you find</a>."
+msgstr "Thank you for helping test WordPress. Please <a href=\"%s\">report any bugs you find</a>."
+
+#: wp-beta-tester.php:217
+msgid "<strong>Please note:</strong> There are no development builds of the beta stream you have chosen available, so you will receive normal update notifications."
+msgstr "<strong>Please note:</strong> There are no development builds of the beta stream you have chosen available, so you will receive normal update notifications."
+
+#: wp-beta-tester.php:265
+msgid "This is the bleeding edge development code from `trunk` which may be unstable at times. <em>Only use this if you really know what you are doing</em>."
+msgstr "This is the bleeding edge development code from `trunk` which may be unstable at times. <em>Only use this if you really know what you are doing</em>."
+
+#: wp-beta-tester.php:213
+msgid "<strong>Please note:</strong> Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade, as the database structure may be updated during the development of a major release."
+msgstr "<strong>Please note:</strong> Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade, as the database structure may be updated during the development of a major release."
+
+#: wp-beta-tester.php:107
 msgid "Beta Testing"
 msgstr "Beta Testing"
 
-#: wp-beta-tester.php:97 wp-beta-tester.php:193
+#: wp-beta-tester.php:106 wp-beta-tester.php:202
 msgid "Beta Testing WordPress"
 msgstr "Beta Testing WordPress"
 
-#: wp-beta-tester.php:76
-msgid "%1$sError:%2$s Your current <a href=\"%3$s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
-msgstr "%1$sError:%2$s Your current <a href=\"%3$s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
+#. translators: %s: link to setting page
+#: wp-beta-tester.php:83
+msgid "<strong>Error:</strong> Your current <a href=\"%s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
+msgstr "<strong>Error:</strong> Your current <a href=\"%s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
