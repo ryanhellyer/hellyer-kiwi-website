@@ -10,6 +10,9 @@ $generated_i18n_strings = array(
 	// Reference: js/src/containers/SnippetEditor.js:97
 	__( 'Snippet preview', 'wordpress-seo' ),
 
+	// Reference: js/src/values/defaultReplaceVariables.js:100
+	__( 'Current year', 'wordpress-seo' ),
+
 	// Reference: js/src/values/defaultReplaceVariables.js:15
 	__( 'Date', 'wordpress-seo' ),
 
