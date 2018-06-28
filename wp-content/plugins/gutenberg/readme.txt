@@ -2,7 +2,7 @@
 Contributors: matveb, joen, karmatosed
 Requires at least: 4.9.6
 Tested up to: 4.9.6
-Stable tag: 3.0.1
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,8 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 = Latest =
 
+* Fix permalink editor not appearing in 3.1.0.
+* Fix sibling block inserter not working in Firefox and Safari in 3.1.0.
 * Implement Tips Interface to guide a user in the new editor interface.
 * New design version of sibling inserter (the ability to insert blocks between other blocks).
 * Allow users to re-enable Tips.

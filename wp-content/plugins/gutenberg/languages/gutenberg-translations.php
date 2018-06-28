@@ -896,7 +896,7 @@ $generated_i18n_strings = array(
 	/* translators: %s: Type of block (i.e. Text, Image etc) */
 	__( 'Block: %s', 'gutenberg' ),
 
-	// Reference: editor/components/block-list/insertion-point.js:66
+	// Reference: editor/components/block-list/insertion-point.js:67
 	__( 'Insert block', 'gutenberg' ),
 
 	// Reference: editor/components/block-list/invalid-block-warning.js:25
