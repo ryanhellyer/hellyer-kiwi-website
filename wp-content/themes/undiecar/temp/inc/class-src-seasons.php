@@ -72,9 +72,36 @@ class SRC_Seasons extends SRC_Core {
 			return $content;
 		}
 
-		$content = $this->championship( $content );
-		$content = $this->championship( $content, false, 5, 'Road Championship', false, null, 'road' );
-		$content = $this->championship( $content, false, 5, 'Oval Championship', false, null, 'oval' );
+		$content = $this->championship( $content, false, 100, esc_html( 'Overal championship', 'undiecar' ) );
+
+		// Get list of car IDs
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+		$season_id = get_the_ID();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$car_ids[] = get_the_ID();
+			}
+			wp_reset_query();
+		}
+
+		foreach ( $car_ids as $car_id ) {
+
+			if ( 'on' === get_post_meta( $season_id, 'car-' . $car_id, true ) ) {
+
+				$car = get_the_title( $car_id );
+				$content = $this->championship( $content, false, 100, esc_html( 'Championship: ', 'undiecar' ) . $car, false, null, 'all', $car );
+			}
+
+		}
+
+		if ( 'on' === get_post_meta( get_the_ID(), 'seperate_road_oval_champs', true ) ) {
+			$content = $this->championship( $content, false, 5, esc_html( 'Road Championship', 'undiecar' ), false, null, 'road' );
+			$content = $this->championship( $content, false, 5, esc_html( 'Oval Championship', 'undiecar' ), false, null, 'oval' );
+		}
 
 		return $content;
 	}
@@ -356,6 +383,12 @@ class SRC_Seasons extends SRC_Core {
 		$cmb->add_field( array(
 			'name'       => esc_html__( 'Bonus point for most laps led', 'src' ),
 			'id'         => 'bonus_point_most_laps_led',
+			'type'       => 'checkbox',
+		) );
+
+		$cmb->add_field( array(
+			'name'       => esc_html__( 'Separate road and oval championships?', 'src' ),
+			'id'         => 'seperate_road_oval_champs',
 			'type'       => 'checkbox',
 		) );
 

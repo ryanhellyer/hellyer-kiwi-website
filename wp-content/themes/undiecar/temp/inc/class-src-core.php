@@ -69,7 +69,6 @@ class SRC_Core {
 		else {
 			$content .= "<!-- Using permanently stored results -->";
 		}
-
 		if ( false === $title ) {
 			$title = __( 'Teams championship', 'src' );
 		}
@@ -215,7 +214,7 @@ class SRC_Core {
 	 * @param  string  $track_types Type of tracks to include
 	 * @param  int     $season_id the ID of the season of the championsing permanship table
 	 */
-	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null, $track_types = 'all' ) {
+	static function championship( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null, $track_types = 'all', $car = null ) {
 
 		if ( 'season' !== get_post_type() && true !== $bypass ) {
 			return $content;
@@ -250,7 +249,7 @@ class SRC_Core {
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			$stored_results = self::get_driver_points_from_season( $season_id, $track_types );
+			$stored_results = self::get_driver_points_from_season( $season_id, $track_types, $car );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -874,7 +873,7 @@ class SRC_Core {
 	/**
 	 * Get all driver points from a season.
 	 */
-	static function get_driver_points_from_season( $season_id, $track_types = 'all' ) {
+	static function get_driver_points_from_season( $season_id, $track_types = 'all', $only_this_car = null ) {
 
 		// Get list of allowed cars
 		$query = new WP_Query( array(
@@ -930,8 +929,40 @@ class SRC_Core {
 
 					if ( is_array( $results ) ) {
 
+						// Ignore result if only meant to provide results for specific car
+						$pos = 1;
+						foreach ( $results as $key => $result ) {
+
+							if (
+								null !== $only_this_car
+								&&
+								isset( $result['car'] )
+								&&
+								$result['car'] !== $only_this_car
+							) {
+								unset( $results[ $key ] );
+							} else if ( null !== $only_this_car ) {
+								$results[ $key ][ 'position' ] = $pos;
+								$pos++;
+							}
+
+						}
+
+						if ( null !== $only_this_car ) {
+							usort( $results, function( $a, $b ) {
+								return $a['position'] <=> $b['position'];
+							});
+						}
+
 						// Add points for finishing position and calc incidents
-						foreach ( $results as $pos => $result ) {
+						foreach ( $results as $key => $result ) {
+
+							// Earlier versions used the key as position
+							if ( isset( $results[ 0 ] ) ) {
+								$pos = $result[ 'position' ];
+							} else {
+								$pos = $key;
+							}
 
 							if ( isset( $result['car'] ) ) {
 								$car = $result['car'];
@@ -939,6 +970,7 @@ class SRC_Core {
 
 							// If multiple cars in championship, then store which car they used (in case they switch cars mid-season)
 							if ( isset( $car ) && 1 < count( $cars ) ) {
+								$car = str_replace( 'Porsche 911 GT3 Cup (991)', 'Porsche 911 GT3 Cup', $car ); // Crude hack to fix change from CSV to JSON API - not required after summer season 1
 								$name = $result['name'] . '|' . $car;
 							} else {
 								$name = $result['name'];
@@ -993,10 +1025,16 @@ class SRC_Core {
 							}
 
 							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
+							if ( isset( $results[1]['laps-completed'] ) ) {
+								$results[1]['laps_completed'] = $results[1]['laps-completed']; // Fixing previous error
+							}
+							if ( isset( $results[1]['laps-completed'] ) ) {
+								$result['laps_completed'] = $result['laps-completed']; // Fixing previous error
+							}
 							if (
-								$results[1]['laps-completed'] === $result['laps-completed']
+								$results[1]['laps_completed'] === $result['laps_completed']
 								||
-								( $results[1]['laps-completed'] - 1 ) === $result['laps-completed']
+								( $results[1]['laps_completed'] - 1 ) === $result['laps_completed']
 							) {
 								$name = $result['name'];
 								$incident_results[$name][$key] = $result['incidents'];
@@ -1132,7 +1170,25 @@ class SRC_Core {
 
 		arsort( $stored_results );
 
-		return $stored_results;
+		// Deal with multi-car seasons (where drivers car is appended to their name)
+		$new_stored_results = array();
+		foreach ( $stored_results as $key => $pts ) {
+			$x = explode( '|', $key );
+			if ( isset( $x[ 1 ] ) ) {
+				$name = $x[ 0 ];
+			} else {
+				$name = $key;
+			}
+
+			if ( isset( $new_stored_results[ $name ] ) ) {
+				$new_stored_results[ $name ] = $new_stored_results[ $name ] + $pts;
+			} else {
+				$new_stored_results[ $name ] = $pts;
+			}
+
+		}
+
+		return $new_stored_results;
 	}
 
 }
