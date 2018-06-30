@@ -755,7 +755,7 @@ print_r( $results );die;
 			</p>';
 		}
 
-		$content = '<div id="base-content">' . $html . $content . $this->get_car_list() . $bonus_points . $this->add_results() . $map_html . $nav_html . '</div>' . $sidebar_html;
+		$content = '<div id="base-content">' . $html . $content . $this->get_car_list() . $bonus_points . '</div>' . $sidebar_html . $this->add_results() . $map_html . $nav_html;
 
 		return $content;
 	}
@@ -1106,7 +1106,7 @@ print_r( $results );die;
 				continue;
 			}
 
-			$html .= '<h3>' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
+			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
 			$html .= '<table class="some-list">';
 
 			$html .= '<thead><tr>';

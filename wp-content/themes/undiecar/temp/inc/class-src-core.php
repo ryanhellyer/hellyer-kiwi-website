@@ -1017,7 +1017,9 @@ class SRC_Core {
 
 									// Ignore names of 'Name' as this indicates the CSV file has an incorrect line in it (happened early 2018)
 									if ( 'Name' !== $name ) {
-										$fastest_laps[$name] = $time;
+										if ( '-1' !== $time ) { // ignore anything with a time of -1
+											$fastest_laps[$name] = $time;
+										}
 									}
 
 								}
@@ -1154,7 +1156,16 @@ class SRC_Core {
 
 						// Record who won bonus point
 						if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
-							update_post_meta( get_the_ID(), '_fastest_lap', $name );
+
+							// Handling multiclass driver names (where name is attached to car during processing)
+							$exploded = explode( '|', $name );
+							if ( isset( $exploded[ 1 ] ) ) {
+								$recorded_name = $exploded[ 0 ];
+							} else {
+								$recorded_name = $name;
+							}
+
+							update_post_meta( get_the_ID(), '_fastest_lap', $recorded_name );
 						}
 
 						$stored_results[$name] = $stored_results[$name] + 1;
