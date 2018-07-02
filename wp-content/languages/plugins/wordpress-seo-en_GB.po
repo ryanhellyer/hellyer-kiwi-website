@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-06-29 10:48:39+0000\n"
+"PO-Revision-Date: 2018-07-02 19:30:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,22 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_GB\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#. translators: %s expands to 'Yoast SEO'.
+#: admin/config-ui/components/class-component-configuration-choices.php:73
+msgid "Get the %s plugin training now"
+msgstr "Get the %s plugin training now"
+
+#. translators: %s expands to 'Yoast SEO'.
+#: admin/config-ui/components/class-component-configuration-choices.php:67
+msgid "Get the most out of the %s plugin"
+msgstr "Get the most out of the %s plugin"
+
+#. translators: %1$s expands to 'Yoast SEO for WordPress', %2$s to Joost de
+#. Valk.
+#: admin/config-ui/components/class-component-configuration-choices.php:59
+msgid "If you want to take full advantage of the plugin, get our %1$s training. Get insights from renowned SEO expert %2$s and the team behind the plugin. Actionable tips that'll help you configure your site to perform even better in search and for your visitors. Hours of video, sliced into bite-sized clips for you to learn from!"
+msgstr "If you want to take full advantage of the plugin, get our %1$s training. Get insights from renowned SEO expert %2$s and the team behind the plugin. Actionable tips that'll help you configure your site to perform even better in search and for your visitors. Hours of video, sliced into bite-sized clips for you to learn from!"
 
 #. translators: %1$s expands to an opening anchor tag, %2$s expands to a
 #. closing anchor tag.
@@ -41,6 +57,15 @@ msgstr "You are not using any %1$ssubheadings%2$s, but your text is short enough
 msgid "You are not using any subheadings, although your text is rather long. Try and add  some %1$ssubheadings%2$s."
 msgstr "You are not using any subheadings, although your text is rather long. Try and add  some %1$ssubheadings%2$s."
 
+#. Translators: %1$d expands to the number of subheadings, %2$d expands to the
+#. recommended number 	   of words following a subheading, %3$s expands to a
+#. link to https://yoa.st/headings, 	   %4$s expands to the link closing tag.
+#: languages/yoast-seo-js.php:94
+msgid "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgid_plural "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgstr[0] "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgstr[1] "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+
 #. Translators: %1$s expands to a link to https://yoa.st/headings, %2$s expands
 #. to the link closing tag.
 #: languages/yoast-seo-js.php:86
@@ -50,15 +75,6 @@ msgstr "Great job with using %1$ssubheadings%2$s!"
 #: languages/yoast-components.php:193
 msgid "Url preview"
 msgstr "URL preview"
-
-#. Translators: %1$d expands to the number of subheadings, %2$d expands to the
-#. recommended number 	   of words following a subheading, %3$s expands to a
-#. link to https://yoa.st/headings, 	   %4$s expands to the link closing tag.
-#: languages/yoast-seo-js.php:94
-msgid "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgid_plural "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgstr[0] "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgstr[1] "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
 
 #: languages/yoast-components.php:187
 msgid "Help on the Snippet Preview"
@@ -343,11 +359,6 @@ msgstr "Sign up for our newsletter if you would like to keep up-to-date about %1
 msgid "Unknown type %1$s"
 msgstr "Unknown type %1$s"
 
-#. translators: %1$s expands to 'Yoast SEO Premium'.
-#: admin/config-ui/components/class-component-configuration-choices.php:67
-msgid "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you, order a %1$s configuration service and sit back while we configure your site."
-msgstr "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you, order a %1$s configuration service and sit back while we configure your site."
-
 #. translators: %1$s expands to a link start tag to the Baidu Webmaster Tools
 #. site add page, %2$s is the link closing tag.
 #: admin/views/tabs/dashboard/webmaster-tools.php:44
@@ -613,10 +624,6 @@ msgstr "this author's archives"
 msgid "We recommend you set this to Yes."
 msgstr "We recommend you set this to Yes."
 
-#: admin/views/tabs/metas/media.php:21
-msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
-msgstr "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
-
 #. translators: 1: link open tag; 2: link close tag., 3: the translated label
 #. of the button
 #: admin/views/tabs/social/facebook.php:57
@@ -646,6 +653,10 @@ msgstr "Help on the category prefix setting"
 #: admin/views/tabs/metas/rss.php:38
 msgid "Learn more about the available variables"
 msgstr "Learn more about the available variables"
+
+#: admin/views/tabs/metas/media.php:21
+msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
+msgstr "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
 
 #: admin/views/tabs/metas/rss.php:20
 msgid "Learn more about the RSS feed setting"
@@ -1652,11 +1663,6 @@ msgstr "%1$sSocial media preview%2$s: Facebook &amp; Twitter"
 msgid "Configure %s in a few steps"
 msgstr "Configure %s in a few steps"
 
-#. translators: %s expands to 'Yoast SEO'.
-#: admin/config-ui/components/class-component-configuration-choices.php:75
-msgid "Let us set up %s for you"
-msgstr "Let us set up %s for you"
-
 #. translators: %s expands to 'Yoast SEO Premium'.
 #: admin/class-add-keyword-modal.php:30
 msgid "Other benefits of %s for you:"
@@ -1738,16 +1744,6 @@ msgstr "Do you want to outrank your competition? %1$s gives you awesome addition
 #: admin/config-ui/components/class-component-suggestions.php:34
 msgid "Outrank the competition with %s"
 msgstr "Outrank the competition with %s"
-
-#: admin/config-ui/components/class-component-configuration-choices.php:80
-msgid "Configuration service"
-msgstr "Configuration service"
-
-#. translators: %1$s expands to 'Yoast SEO', %2$s expands to 'Yoast SEO
-#. Premium'.
-#: admin/config-ui/components/class-component-configuration-choices.php:59
-msgid "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you (and get a copy of %2$s in the process), order a %1$s configuration service and sit back while we configure your site."
-msgstr "While we strive to make setting up %1$s as easy as possible, we understand it can still be daunting. If you would rather have us set up %1$s for you (and get a copy of %2$s in the process), order a %1$s configuration service and sit back while we configure your site."
 
 #. translators: %s expands to 'Yoast SEO'.
 #: admin/config-ui/components/class-component-configuration-choices.php:50
@@ -3646,7 +3642,7 @@ msgstr "Translation of %s"
 msgid "We couldn't create a connection to our API to verify your license key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 msgstr "We couldn't create a connection to our API to verify your licence key(s). Please ask your hosting company to allow outgoing connections from your server to %s."
 
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.7.2)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.7.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:68
 msgid "Yoast SEO"
@@ -4943,7 +4939,7 @@ msgstr "The focus keyword does not appear in the URL for this page. If you decid
 msgid "The SEO title contains the focus keyword, at the beginning which is considered to improve rankings."
 msgstr "The SEO title contains the focus keyword, at the beginning which is considered to improve rankings."
 
-#: admin/metabox/class-metabox.php:916
+#: admin/metabox/class-metabox.php:921
 msgid "SEO issue: The featured image should be at least 200 by 200 pixels to be picked up by Facebook and other social media sites."
 msgstr "SEO issue: The featured image should be at least 200 by 200 pixels to be picked up by Facebook and other social media sites."
 
@@ -5021,7 +5017,7 @@ msgstr "%1$s detected you are using version %2$s of %3$s, please update to the l
 msgid "%s Breadcrumbs"
 msgstr "%s Breadcrumbs"
 
-#: admin/metabox/class-metabox.php:257 admin/taxonomy/class-taxonomy.php:237
+#: admin/metabox/class-metabox.php:257 admin/taxonomy/class-taxonomy.php:242
 msgid "(no parent)"
 msgstr "(no parent)"
 
@@ -5321,8 +5317,8 @@ msgstr "Unzipping failed with error \"%s\"."
 msgid "Upload failed."
 msgstr "Upload failed."
 
-#: admin/class-config.php:119 admin/metabox/class-metabox.php:928
-#: admin/taxonomy/class-taxonomy.php:121
+#: admin/class-config.php:124 admin/metabox/class-metabox.php:933
+#: admin/taxonomy/class-taxonomy.php:126
 msgid "Use Image"
 msgstr "Use Image"
 
