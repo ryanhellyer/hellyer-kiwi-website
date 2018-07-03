@@ -684,6 +684,10 @@ a img.aligncenter {
 /* =Tables
 -------------------------------------------------------------- */
 
+h3.table-heading {
+	float: left;
+	clear: both;
+}
 table {
 //	width: 100%;
 	border-spacing: 0;
@@ -1472,16 +1476,36 @@ input[type=submit],
 /* =Smaller devices
 -------------------------------------------------------------- */
 
+@media only screen and (max-width: 1024px) {
+
+	#base-content {
+		width: 68%;
+		/*overflow: scroll;*/
+	}
+
+	table {
+
+		&.some-list {
+			th {
+				padding-right: 0.1rem;
+				padding-left: 0.1rem;
+			}
+
+			td {
+				padding-right: 0.4rem;
+				padding-left: 0.4rem;
+			}
+
+		}
+
+	}
+
+}
+
 @media only screen and (max-width: 768px) {
 
 	#site-header h1 span {
 		display: none;
-	}
-
-
-	#base-content {
-		width: 68%;
-		overflow: scroll;
 	}
 
 	.latest-items article {
