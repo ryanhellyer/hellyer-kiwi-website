@@ -72,9 +72,36 @@ class SRC_Seasons extends SRC_Core {
 			return $content;
 		}
 
-		$content = $this->championship( $content );
-		$content = $this->championship( $content, false, 5, 'Road Championship', false, null, 'road' );
-		$content = $this->championship( $content, false, 5, 'Oval Championship', false, null, 'oval' );
+		$content = $this->championship( $content, false, 100, esc_html( 'Overall championship', 'undiecar' ) );
+
+		// Get list of car IDs
+		$query = new WP_Query( array(
+			'post_type'      => 'car',
+			'posts_per_page' => 100
+		) );
+		$season_id = get_the_ID();
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$car_ids[] = get_the_ID();
+			}
+			wp_reset_query();
+		}
+
+		foreach ( $car_ids as $car_id ) {
+
+			if ( 'on' === get_post_meta( $season_id, 'car-' . $car_id, true ) ) {
+
+				$car = get_the_title( $car_id );
+				$content = $this->championship( $content, false, 100, esc_html( 'Championship: ', 'undiecar' ) . $car, false, null, 'all', $car );
+			}
+
+		}
+
+		if ( 'on' === get_post_meta( get_the_ID(), 'seperate_road_oval_champs', true ) ) {
+			$content = $this->championship( $content, false, 5, esc_html( 'Road Championship', 'undiecar' ), false, null, 'road' );
+			$content = $this->championship( $content, false, 5, esc_html( 'Oval Championship', 'undiecar' ), false, null, 'oval' );
+		}
 
 		return $content;
 	}
@@ -330,12 +357,6 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Fixed setup?', 'src' ),
-			'id'         => 'fixed_setup',
-			'type'       => 'checkbox',
-		) );
-
-		$cmb->add_field( array(
 			'name'       => esc_html__( 'Bonus point for pole position', 'src' ),
 			'id'         => 'bonus_point_pole',
 			'type'       => 'checkbox',
@@ -348,14 +369,14 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Points for most spectacular crash', 'src' ),
-			'id'         => 'bonus_point_best_crash',
+			'name'       => esc_html__( 'Bonus point for most laps led', 'src' ),
+			'id'         => 'bonus_point_most_laps_led',
 			'type'       => 'checkbox',
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Bonus point for most laps led', 'src' ),
-			'id'         => 'bonus_point_most_laps_led',
+			'name'       => esc_html__( 'Separate road and oval championships?', 'src' ),
+			'id'         => 'seperate_road_oval_champs',
 			'type'       => 'checkbox',
 		) );
 
@@ -539,25 +560,25 @@ class SRC_Seasons extends SRC_Core {
 
 		$bonuses = array();
 		if ( '' !== $bonus_point_pole ) {
-			$bonuses[] = __( 'pole position', 'src' );
+			$bonuses[] = esc_html__( 'pole position', 'src' );
 		}
 		if ( '' !== $bonus_point_fastest_lap ) {
-			$bonuses[] = __( 'fastest lap in each event', 'src' );
+			$bonuses[] = esc_html__( 'fastest lap in each event', 'src' );
 		}
 		if ( '' !== $bonus_point_most_laps_led ) {
-			$bonuses[] = __( 'most laps led in each race', 'src' );
+			$bonuses[] = esc_html__( 'most laps led in each race', 'src' );
 		}
 		if ( '' !== $bonus_point_best_crash ) {
-			$bonuses[] = __( 'most spectacular crash in each race', 'src' );
+			$bonuses[] = esc_html__( 'most spectacular crash in each race', 'src' );
 		}
 
-		$bonuses[] = __( 'least incidents in each event (must have completed all races and not be more than one lap down on the leader)', 'src' );
+		$bonuses[] = esc_html__( 'least incidents in each event (must have completed all races and not be more than one lap down on the leader)', 'src' );
 
 		if ( 0 < count( $bonuses ) ) {
 
-			$number = __( 'Bonus', 'src' );
+			$number = esc_html__( 'Bonus', 'src' );
 			if ( 1 === $bonuses ) {
-				$number = __( 'A', 'src' );
+				$number = esc_html__( 'A', 'src' );
 			}
 
 			$suffix = '';
@@ -569,7 +590,7 @@ class SRC_Seasons extends SRC_Core {
 			foreach ( $bonuses as $key => $thing ) {
 
 				if ( $key === ( count( $bonuses ) - 1 ) ) {
-					$text .= ' ' . __( 'and', 'src' ) . ' ';
+					$text .= ' ' . esc_html__( 'and', 'src' ) . ' ';
 				} else if ( 0 !== $key ) {
 					$text .= ', ';
 				}
@@ -577,12 +598,13 @@ class SRC_Seasons extends SRC_Core {
 			}
 
 			$text = sprintf(
-				__( '%s point%s will be awarded for %s.', 'src' ),
+				esc_html__( '%s point%s will be awarded for %s in', 'src' ),
 				$number,
 				$suffix,
 				$text
 			);
 			$html .= '<p>' . esc_html( $text ) . '</p>';
+			$html .= '<p>' . esc_html__( 'Bonus points are awarded per event, not per class.', 'undiecar' ) . '</p>';
 
 		}
 
