@@ -3,7 +3,7 @@
 if ( ! isset( $_GET['convert_json'] ) ) {
 	return;
 }
-
+/*
 $dir = wp_upload_dir();
 
 $stats = file_get_contents( $dir['basedir'] . '/iracing-members.json' );
@@ -21,3 +21,4 @@ file_put_contents( $dir['basedir'] . '/iracing-members-simple.json', $simpler_st
 
 echo $dir['basedir'] . '/iracing-members-simple.json';
 die();
+*/
