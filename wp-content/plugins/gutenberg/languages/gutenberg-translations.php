@@ -1,187 +1,86 @@
 <?php
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
 $generated_i18n_strings = array(
-	// Reference: blocks/store/reducer.js:16
-	__( 'Common Blocks', 'gutenberg' ),
-
-	// Reference: blocks/store/reducer.js:17
-	__( 'Formatting', 'gutenberg' ),
-
-	// Reference: blocks/store/reducer.js:18
-	__( 'Layout Elements', 'gutenberg' ),
-
-	// Reference: blocks/store/reducer.js:19
-	__( 'Widgets', 'gutenberg' ),
-
-	// Reference: blocks/store/reducer.js:20
-	__( 'Embeds', 'gutenberg' ),
-
-	// Reference: blocks/store/reducer.js:21
-	__( 'Shared Blocks', 'gutenberg' ),
-
-	// Reference: components/autocomplete/index.js:346
-	// Reference: components/form-token-field/index.js:213
-	// Reference: editor/components/url-input/index.js:88
-	_n_noop( '%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', 'gutenberg' ),
-
-	// Reference: components/autocomplete/index.js:352
-	// Reference: components/form-token-field/index.js:219
-	// Reference: editor/components/url-input/index.js:94
-	__( 'No results.', 'gutenberg' ),
-
 	// Reference: components/code-editor/index.js:88
-	// Reference: editor/store/effects.js:611
+	// Reference: packages/api-fetch/build-module/index.js:82
 	__( 'An unknown error occurred.', 'gutenberg' ),
 
-	// Reference: components/color-palette/index.js:25
-	__( 'Custom color picker', 'gutenberg' ),
+	// Reference: core-blocks/archives/edit.js:28
+	__( 'Archives Settings', 'gutenberg' ),
 
-	// Reference: components/color-palette/index.js:46
-	/* translators: %s: The name of the color e.g: "vivid red". */
-	__( 'Color: %s', 'gutenberg' ),
+	// Reference: core-blocks/archives/edit.js:30
+	__( 'Show Post Counts', 'gutenberg' ),
 
-	// Reference: components/color-palette/index.js:48
-	/* translators: %s: color hex code e.g: "#f00". */
-	__( 'Color code: %s', 'gutenberg' ),
+	// Reference: core-blocks/archives/edit.js:35
+	__( 'Display as Dropdown', 'gutenberg' ),
 
-	// Reference: components/color-palette/index.js:89
-	__( 'Clear', 'gutenberg' ),
+	// Reference: core-blocks/archives/index.js:14
+	__( 'Archives', 'gutenberg' ),
 
-	// Reference: components/date-time/time.js:151
-	__( 'AM', 'gutenberg' ),
-
-	// Reference: components/date-time/time.js:159
-	__( 'PM', 'gutenberg' ),
-
-	// Reference: components/drop-zone/index.js:79
-	__( 'Drop files to upload', 'gutenberg' ),
-
-	// Reference: components/external-link/index.js:32
-	/* translators: accessibility text */
-	__( '(opens in a new window)', 'gutenberg' ),
-
-	// Reference: components/font-size-picker/index.js:24
-	__( 'Font Size', 'gutenberg' ),
-
-	// Reference: components/font-size-picker/index.js:41
-	// Reference: components/range-control/index.js:63
-	// Reference: core-blocks/image/edit.js:339
-	__( 'Reset', 'gutenberg' ),
-
-	// Reference: components/font-size-picker/index.js:46
-	__( 'Custom Size', 'gutenberg' ),
-
-	// Reference: components/form-token-field/index.js:510
-	__( 'Add item.', 'gutenberg' ),
-
-	// Reference: components/form-token-field/index.js:566
-	__( 'Separate with commas', 'gutenberg' ),
-
-	// Reference: components/form-token-field/index.js:587
-	__( 'Item added.', 'gutenberg' ),
-
-	// Reference: components/form-token-field/index.js:588
-	__( 'Item removed.', 'gutenberg' ),
-
-	// Reference: components/form-token-field/index.js:589
-	__( 'Remove item', 'gutenberg' ),
-
-	// Reference: components/form-token-field/token.js:46
-	/* translators: 1: term name, 2: term position in a set of terms, 3: total term set count. */
-	__( '%1$s (%2$s of %3$s)', 'gutenberg' ),
-
-	// Reference: components/modal/header.js:13
-	__( 'Close dialog', 'gutenberg' ),
-
-	// Reference: components/notice/index.js:26
-	__( 'Dismiss this notice', 'gutenberg' ),
-
-	// Reference: components/panel/color.js:14
-	/* translators: %s: The name of the color e.g: "vivid red" or color hex code if name is not available e.g: "#f00". */
-	__( '(current color: %s)', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:32
-	__( 'Order by', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:36
-	__( 'Newest to Oldest', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:40
-	__( 'Oldest to Newest', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:45
-	/* translators: label for ordering posts by title in ascending order */
-	__( 'A → Z', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:50
-	/* translators: label for ordering posts by title in descending order */
-	__( 'Z → A', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:69
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:139
-	__( 'Category', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:70
-	__( 'All', 'gutenberg' ),
-
-	// Reference: components/query-controls/index.js:77
-	__( 'Number of items', 'gutenberg' ),
-
-	// Reference: components/server-side-render/index.js:62
-	__( 'Unknown error', 'gutenberg' ),
-
-	// Reference: components/server-side-render/index.js:82
-	/* translators: %s: error message describing the problem */
-	__( 'Error loading block: %s', 'gutenberg' ),
-
-	// Reference: components/server-side-render/index.js:88
-	__( 'No results found.', 'gutenberg' ),
+	// Reference: core-blocks/archives/index.js:16
+	__( 'Display a monthly archive of your site’s Posts.', 'gutenberg' ),
 
 	// Reference: core-blocks/audio/edit.js:105
-	__( 'Playback Controls', 'gutenberg' ),
-
-	// Reference: core-blocks/audio/edit.js:107
-	__( 'Autoplay', 'gutenberg' ),
+	__( 'Edit audio', 'gutenberg' ),
 
 	// Reference: core-blocks/audio/edit.js:112
+	__( 'Audio Settings', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:114
+	// Reference: core-blocks/video/edit.js:114
+	__( 'Autoplay', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:119
+	// Reference: core-blocks/video/edit.js:119
 	__( 'Loop', 'gutenberg' ),
 
-	// Reference: core-blocks/audio/edit.js:123
+	// Reference: core-blocks/audio/edit.js:124
+	__( 'Preload', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:129
+	__( 'Auto', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:130
+	__( 'Metadata', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:131
+	// Reference: core-blocks/gallery/edit.js:41
+	// Reference: core-blocks/image/edit.js:204
+	__( 'None', 'gutenberg' ),
+
+	// Reference: core-blocks/audio/edit.js:141
 	// Reference: core-blocks/embed/index.js:271
 	// Reference: core-blocks/gallery/gallery-image.js:129
-	// Reference: core-blocks/image/edit.js:472
-	// Reference: core-blocks/video/edit.js:94
+	// Reference: core-blocks/image/edit.js:473
+	// Reference: core-blocks/video/edit.js:140
 	__( 'Write caption…', 'gutenberg' ),
 
-	// Reference: core-blocks/audio/edit.js:76
+	// Reference: core-blocks/audio/edit.js:83
 	// Reference: core-blocks/audio/index.js:16
 	// Reference: editor/components/post-format/index.js:29
 	__( 'Audio', 'gutenberg' ),
 
-	// Reference: core-blocks/audio/edit.js:77
+	// Reference: core-blocks/audio/edit.js:84
 	__( 'an audio', 'gutenberg' ),
-
-	// Reference: core-blocks/audio/edit.js:98
-	__( 'Edit audio', 'gutenberg' ),
 
 	// Reference: core-blocks/audio/index.js:18
 	__( 'Embed an audio file and a simple audio player.', 'gutenberg' ),
 
 	// Reference: core-blocks/block/edit-panel/index.js:106
+	__( 'Save', 'gutenberg' ),
+
+	// Reference: core-blocks/block/edit-panel/index.js:114
 	__( 'Cancel', 'gutenberg' ),
 
-	// Reference: core-blocks/block/edit-panel/index.js:68
-	// Reference: editor/components/post-permalink/index.js:104
+	// Reference: core-blocks/block/edit-panel/index.js:76
+	// Reference: editor/components/post-permalink/index.js:105
 	// Reference: editor/components/rich-text/format-toolbar/index.js:265
 	__( 'Edit', 'gutenberg' ),
 
-	// Reference: core-blocks/block/edit-panel/index.js:78
+	// Reference: core-blocks/block/edit-panel/index.js:86
 	__( 'Name:', 'gutenberg' ),
 
-	// Reference: core-blocks/block/edit-panel/index.js:98
-	__( 'Save', 'gutenberg' ),
-
-	// Reference: core-blocks/block/edit.js:97
+	// Reference: core-blocks/block/edit.js:108
 	__( 'Block has been deleted or is unavailable.', 'gutenberg' ),
 
 	// Reference: core-blocks/block/index.js:14
@@ -192,11 +91,11 @@ $generated_i18n_strings = array(
 	__( 'Shared Block: %s', 'gutenberg' ),
 
 	// Reference: core-blocks/button/edit.js:111
-	// Reference: core-blocks/paragraph/index.js:238
+	// Reference: core-blocks/paragraph/index.js:241
 	__( 'Background Color', 'gutenberg' ),
 
 	// Reference: core-blocks/button/edit.js:116
-	// Reference: core-blocks/paragraph/index.js:244
+	// Reference: core-blocks/paragraph/index.js:247
 	__( 'Text Color', 'gutenberg' ),
 
 	// Reference: core-blocks/button/edit.js:136
@@ -204,7 +103,7 @@ $generated_i18n_strings = array(
 	__( 'Apply', 'gutenberg' ),
 
 	// Reference: core-blocks/button/edit.js:90
-	// Reference: core-blocks/file/edit.js:201
+	// Reference: core-blocks/file/edit.js:202
 	__( 'Add text…', 'gutenberg' ),
 
 	// Reference: core-blocks/button/index.js:69
@@ -240,7 +139,7 @@ $generated_i18n_strings = array(
 
 	// Reference: core-blocks/categories/edit.js:70
 	// Reference: core-blocks/latest-posts/edit.js:147
-	// Reference: editor/store/selectors.js:440
+	// Reference: editor/store/selectors.js:441
 	__( '(Untitled)', 'gutenberg' ),
 
 	// Reference: core-blocks/categories/index.js:17
@@ -262,24 +161,24 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/columns/column.js:22
 	__( 'A single column within a columns block.', 'gutenberg' ),
 
-	// Reference: core-blocks/columns/index.js:134
+	// Reference: core-blocks/columns/index.js:143
 	// Reference: core-blocks/gallery/edit.js:228
 	// Reference: core-blocks/latest-posts/edit.js:77
-	// Reference: core-blocks/text-columns/index.js:79
+	// Reference: core-blocks/text-columns/index.js:90
 	__( 'Columns', 'gutenberg' ),
 
-	// Reference: core-blocks/columns/index.js:44
+	// Reference: core-blocks/columns/index.js:53
 	/* translators: Block title modifier */
 	__( '%1$s (%2$s)', 'gutenberg' ),
 
-	// Reference: core-blocks/columns/index.js:46
+	// Reference: core-blocks/columns/index.js:55
 	__( 'beta', 'gutenberg' ),
 
-	// Reference: core-blocks/columns/index.js:60
+	// Reference: core-blocks/columns/index.js:69
 	__( 'Add a block that displays content in multiple columns, then add whatever content blocks you\'d like.', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:147
-	// Reference: core-blocks/image/edit.js:229
+	// Reference: core-blocks/image/edit.js:230
 	__( 'Edit image', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:157
@@ -289,13 +188,13 @@ $generated_i18n_strings = array(
 	__( 'Fixed Background', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:164
-	__( 'Background Dimness', 'gutenberg' ),
+	__( 'Background Opacity', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:187
 	__( 'Cover Image', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:197
-	// Reference: core-blocks/image/edit.js:247
+	// Reference: core-blocks/image/edit.js:248
 	__( 'an image', 'gutenberg' ),
 
 	// Reference: core-blocks/cover-image/index.js:221
@@ -358,37 +257,37 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/embed/index.js:592
 	__( 'video', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:143
-	// Reference: core-blocks/file/index.js:17
+	// Reference: core-blocks/file/edit.js:144
+	// Reference: core-blocks/file/index.js:23
 	__( 'File', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:144
+	// Reference: core-blocks/file/edit.js:145
 	__( 'a file', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:176
+	// Reference: core-blocks/file/edit.js:177
 	__( 'Edit file', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:188
+	// Reference: core-blocks/file/edit.js:189
 	__( 'Write file name…', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:217
+	// Reference: core-blocks/file/edit.js:218
 	// Reference: edit-post/hooks/more-menu/copy-content-menu-item/index.js:18
 	// Reference: editor/components/post-publish-panel/postpublish.js:83
 	__( 'Copied!', 'gutenberg' ),
 
-	// Reference: core-blocks/file/edit.js:217
+	// Reference: core-blocks/file/edit.js:218
 	__( 'Copy URL', 'gutenberg' ),
 
-	// Reference: core-blocks/file/index.js:19
+	// Reference: core-blocks/file/index.js:25
 	__( 'Add a link to a file that visitors can download.', 'gutenberg' ),
 
-	// Reference: core-blocks/file/index.js:25
+	// Reference: core-blocks/file/index.js:31
 	__( 'document', 'gutenberg' ),
 
-	// Reference: core-blocks/file/index.js:25
+	// Reference: core-blocks/file/index.js:31
 	__( 'pdf', 'gutenberg' ),
 
-	// Reference: core-blocks/file/index.js:61
+	// Reference: core-blocks/file/index.js:67
 	__( 'Download', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:14
@@ -398,24 +297,24 @@ $generated_i18n_strings = array(
 	__( 'The download button is hidden.', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:27
-	// Reference: editor/components/url-input/index.js:191
+	// Reference: editor/components/url-input/index.js:195
 	__( 'URL', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:30
 	// Reference: core-blocks/gallery/edit.js:40
-	// Reference: core-blocks/image/edit.js:204
+	// Reference: core-blocks/image/edit.js:205
 	__( 'Media File', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:31
 	// Reference: core-blocks/gallery/edit.js:39
-	// Reference: core-blocks/image/edit.js:205
+	// Reference: core-blocks/image/edit.js:206
 	__( 'Attachment Page', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:38
 	__( 'Text Link Settings', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:40
-	// Reference: core-blocks/image/edit.js:346
+	// Reference: core-blocks/image/edit.js:347
 	__( 'Link To', 'gutenberg' ),
 
 	// Reference: core-blocks/file/inspector.js:46
@@ -469,10 +368,6 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/gallery/edit.js:275
 	__( 'Upload an image', 'gutenberg' ),
 
-	// Reference: core-blocks/gallery/edit.js:41
-	// Reference: core-blocks/image/edit.js:203
-	__( 'None', 'gutenberg' ),
-
 	// Reference: core-blocks/gallery/gallery-image.js:121
 	__( 'Remove Image', 'gutenberg' ),
 
@@ -510,56 +405,58 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/heading/index.js:69
 	__( 'subtitle', 'gutenberg' ),
 
-	// Reference: core-blocks/html/index.js:18
+	// Reference: core-blocks/html/index.js:19
 	__( 'Custom HTML', 'gutenberg' ),
 
-	// Reference: core-blocks/html/index.js:20
+	// Reference: core-blocks/html/index.js:21
 	__( 'Add your own HTML (and view it right here as you edit!).', 'gutenberg' ),
 
-	// Reference: core-blocks/html/index.js:26
+	// Reference: core-blocks/html/index.js:27
 	__( 'embed', 'gutenberg' ),
 
-	// Reference: core-blocks/html/index.js:79
+	// Reference: core-blocks/html/index.js:80
 	// Reference: editor/components/block-preview/index.js:29
 	__( 'Preview', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:206
+	// Reference: core-blocks/image/edit.js:207
 	__( 'Custom URL', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:246
+	// Reference: core-blocks/image/edit.js:247
 	// Reference: core-blocks/image/index.js:94
 	// Reference: editor/components/post-format/index.js:24
 	__( 'Image', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:272
+	// Reference: core-blocks/image/edit.js:273
 	__( 'Image Settings', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:274
+	// Reference: core-blocks/image/edit.js:275
 	__( 'Textual Alternative', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:277
+	// Reference: core-blocks/image/edit.js:278
 	__( 'Describe the purpose of the image. Leave empty if the image is not a key part of the content.', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:281
-	__( 'Source Type', 'gutenberg' ),
-
-	// Reference: core-blocks/image/edit.js:292
+	// Reference: core-blocks/image/edit.js:293
 	__( 'Image Dimensions', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:298
+	// Reference: core-blocks/image/edit.js:299
 	__( 'Width', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:307
+	// Reference: core-blocks/image/edit.js:308
 	__( 'Height', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:315
+	// Reference: core-blocks/image/edit.js:316
 	__( 'Image Size', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:344
+	// Reference: core-blocks/image/edit.js:340
+	// Reference: packages/components/src/font-size-picker/index.js:40
+	// Reference: packages/components/src/range-control/index.js:62
+	__( 'Reset', 'gutenberg' ),
+
+	// Reference: core-blocks/image/edit.js:345
 	// Reference: editor/components/rich-text/format-toolbar/index.js:269
 	__( 'Link Settings', 'gutenberg' ),
 
-	// Reference: core-blocks/image/edit.js:352
+	// Reference: core-blocks/image/edit.js:353
 	__( 'Link URL', 'gutenberg' ),
 
 	// Reference: core-blocks/image/index.js:102
@@ -567,6 +464,30 @@ $generated_i18n_strings = array(
 
 	// Reference: core-blocks/image/index.js:96
 	__( 'They\'re worth 1,000 words! Insert a single image.', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/edit.js:104
+	__( 'Number of comments', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/edit.js:87
+	__( 'Latest Comments Settings', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/edit.js:89
+	__( 'Display avatar', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/edit.js:94
+	__( 'Display date', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/edit.js:99
+	__( 'Display excerpt', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/index.js:15
+	__( 'Latest Comments', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/index.js:17
+	__( 'Show a list of your site’s most recent comments.', 'gutenberg' ),
+
+	// Reference: core-blocks/latest-comments/index.js:23
+	__( 'recent comments', 'gutenberg' ),
 
 	// Reference: core-blocks/latest-posts/edit.js:114
 	__( 'List View', 'gutenberg' ),
@@ -644,28 +565,28 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/nextpage/index.js:52
 	__( 'Page break', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:109
+	// Reference: core-blocks/paragraph/index.js:112
 	__( 'Showing large initial letter.', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:109
+	// Reference: core-blocks/paragraph/index.js:112
 	__( 'Toggle to show a large initial letter.', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:221
+	// Reference: core-blocks/paragraph/index.js:224
 	__( 'Text Settings', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:229
+	// Reference: core-blocks/paragraph/index.js:232
 	__( 'Drop Cap', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:281
+	// Reference: core-blocks/paragraph/index.js:284
 	__( 'Add text or type / to add content', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:332
+	// Reference: core-blocks/paragraph/index.js:335
 	__( 'Paragraph', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:334
+	// Reference: core-blocks/paragraph/index.js:337
 	__( 'Add some basic text.', 'gutenberg' ),
 
-	// Reference: core-blocks/paragraph/index.js:340
+	// Reference: core-blocks/paragraph/index.js:343
 	__( 'text', 'gutenberg' ),
 
 	// Reference: core-blocks/preformatted/index.js:17
@@ -727,25 +648,25 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/separator/index.js:29
 	__( 'Dots', 'gutenberg' ),
 
-	// Reference: core-blocks/shortcode/index.js:19
+	// Reference: core-blocks/shortcode/index.js:20
 	__( 'Add a shortcode -- a WordPress-specific snippet of code written between square brackets.', 'gutenberg' ),
 
-	// Reference: core-blocks/shortcode/index.js:71
+	// Reference: core-blocks/shortcode/index.js:72
 	__( 'Shortcode', 'gutenberg' ),
 
-	// Reference: core-blocks/shortcode/index.js:77
+	// Reference: core-blocks/shortcode/index.js:78
 	__( 'Write shortcode here…', 'gutenberg' ),
 
-	// Reference: core-blocks/spacer/index.js:22
+	// Reference: core-blocks/spacer/index.js:23
 	__( 'Spacer', 'gutenberg' ),
 
-	// Reference: core-blocks/spacer/index.js:24
+	// Reference: core-blocks/spacer/index.js:25
 	__( 'Add an element with empty space and custom height.', 'gutenberg' ),
 
-	// Reference: core-blocks/spacer/index.js:74
+	// Reference: core-blocks/spacer/index.js:75
 	__( 'Spacer Settings', 'gutenberg' ),
 
-	// Reference: core-blocks/spacer/index.js:75
+	// Reference: core-blocks/spacer/index.js:76
 	__( 'Height in pixels', 'gutenberg' ),
 
 	// Reference: core-blocks/subhead/index.js:22
@@ -790,13 +711,13 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/table/table-block.js:68
 	__( 'Delete Column', 'gutenberg' ),
 
-	// Reference: core-blocks/text-columns/index.js:103
+	// Reference: core-blocks/text-columns/index.js:114
 	__( 'New Column', 'gutenberg' ),
 
-	// Reference: core-blocks/text-columns/index.js:28
+	// Reference: core-blocks/text-columns/index.js:34
 	__( 'Text Columns', 'gutenberg' ),
 
-	// Reference: core-blocks/text-columns/index.js:30
+	// Reference: core-blocks/text-columns/index.js:36
 	__( 'Add text, and display it in two or more columns. Like a newspaper! This block is experimental.', 'gutenberg' ),
 
 	// Reference: core-blocks/verse/index.js:21
@@ -811,16 +732,25 @@ $generated_i18n_strings = array(
 	// Reference: core-blocks/verse/index.js:83
 	__( 'Write…', 'gutenberg' ),
 
-	// Reference: core-blocks/video/edit.js:61
+	// Reference: core-blocks/video/edit.js:105
+	__( 'Edit video', 'gutenberg' ),
+
+	// Reference: core-blocks/video/edit.js:112
+	__( 'Video Settings', 'gutenberg' ),
+
+	// Reference: core-blocks/video/edit.js:124
+	__( 'Muted', 'gutenberg' ),
+
+	// Reference: core-blocks/video/edit.js:129
+	__( 'Playback Controls', 'gutenberg' ),
+
+	// Reference: core-blocks/video/edit.js:83
 	// Reference: core-blocks/video/index.js:21
 	// Reference: editor/components/post-format/index.js:28
 	__( 'Video', 'gutenberg' ),
 
-	// Reference: core-blocks/video/edit.js:62
+	// Reference: core-blocks/video/edit.js:84
 	__( 'a video', 'gutenberg' ),
-
-	// Reference: core-blocks/video/edit.js:83
-	__( 'Edit video', 'gutenberg' ),
 
 	// Reference: core-blocks/video/index.js:23
 	__( 'Embed a video file and a simple video player.', 'gutenberg' ),
@@ -828,17 +758,18 @@ $generated_i18n_strings = array(
 	// Reference: edit-post/components/header/fixed-toolbar-toggle/index.js:21
 	__( 'Fix Toolbar to Top', 'gutenberg' ),
 
-	// Reference: edit-post/components/header/header-toolbar/index.js:31
+	// Reference: edit-post/components/header/header-toolbar/index.js:30
 	__( 'Editor Toolbar', 'gutenberg' ),
 
-	// Reference: edit-post/components/header/index.js:37
-	__( 'Editor toolbar', 'gutenberg' ),
+	// Reference: edit-post/components/header/index.js:38
+	/* translators: accessibility text for the top bar landmark region. */
+	__( 'Editor top bar', 'gutenberg' ),
 
-	// Reference: edit-post/components/header/index.js:57
+	// Reference: edit-post/components/header/index.js:58
 	// Reference: edit-post/components/header/more-menu/index.js:32
 	__( 'Settings', 'gutenberg' ),
 
-	// Reference: edit-post/components/header/index.js:63
+	// Reference: edit-post/components/header/index.js:64
 	__( 'You’ll find more settings for your page and blocks in the sidebar. Click ‘Settings’ to open it.', 'gutenberg' ),
 
 	// Reference: edit-post/components/header/mode-switcher/index.js:21
@@ -859,19 +790,16 @@ $generated_i18n_strings = array(
 	// Reference: edit-post/components/header/tips-toggle/index.js:20
 	__( 'Show Tips', 'gutenberg' ),
 
-	// Reference: edit-post/components/layout/index.js:111
+	// Reference: edit-post/components/layout/index.js:119
 	__( 'Open publish panel', 'gutenberg' ),
 
-	// Reference: edit-post/components/layout/index.js:64
-	// Reference: edit-post/components/sidebar/post-schedule/index.js:17
-	// Reference: editor/components/post-publish-button/label.js:36
-	__( 'Publish', 'gutenberg' ),
+	// Reference: edit-post/components/layout/index.js:66
+	/* translators: accessibility text for the publish landmark region. */
+	__( 'Editor publish', 'gutenberg' ),
 
-	// Reference: edit-post/components/layout/index.js:79
+	// Reference: edit-post/components/layout/index.js:85
+	/* translators: accessibility text for the content landmark region. */
 	__( 'Editor content', 'gutenberg' ),
-
-	// Reference: edit-post/components/meta-boxes/meta-boxes-panel/index.js:54
-	__( 'Extended Settings', 'gutenberg' ),
 
 	// Reference: edit-post/components/sidebar/block-sidebar/index.js:20
 	// Reference: edit-post/components/sidebar/document-sidebar/index.js:26
@@ -886,22 +814,26 @@ $generated_i18n_strings = array(
 	// Reference: edit-post/components/sidebar/page-attributes/index.js:27
 	__( 'Page Attributes', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:52
+	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:53
 	__( 'Editor plugins', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:55
+	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:56
 	__( 'Close plugin', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:61
+	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:62
 	__( 'Unpin from toolbar', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:61
+	// Reference: edit-post/components/sidebar/plugin-sidebar/index.js:62
 	__( 'Pin to toolbar', 'gutenberg' ),
 
 	// Reference: edit-post/components/sidebar/post-excerpt/index.js:18
 	__( 'Excerpt', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/post-status/index.js:29
+	// Reference: edit-post/components/sidebar/post-schedule/index.js:17
+	// Reference: editor/components/post-publish-button/label.js:36
+	__( 'Publish', 'gutenberg' ),
+
+	// Reference: edit-post/components/sidebar/post-status/index.js:30
 	__( 'Status & Visibility', 'gutenberg' ),
 
 	// Reference: edit-post/components/sidebar/post-visibility/index.js:17
@@ -922,9 +854,9 @@ $generated_i18n_strings = array(
 	// Reference: edit-post/components/sidebar/settings-header/index.js:35
 	_n_noop( 'Block', '%d Blocks', 'gutenberg' ),
 
-	// Reference: edit-post/components/sidebar/sidebar-header/index.js:24
+	// Reference: edit-post/components/sidebar/sidebar-header/index.js:25
 	// Reference: editor/components/post-publish-panel/postpublish.js:64
-	// Reference: editor/components/url-input/index.js:229
+	// Reference: editor/components/url-input/index.js:233
 	__( '(no title)', 'gutenberg' ),
 
 	// Reference: edit-post/components/visual-editor/block-inspector-button.js:25
@@ -960,10 +892,10 @@ $generated_i18n_strings = array(
 	// Reference: edit-post/hooks/validate-multiple-use/index.js:99
 	__( 'This block may not be used more than once.', 'gutenberg' ),
 
-	// Reference: edit-post/store/effects.js:124
+	// Reference: edit-post/store/effects.js:123
 	__( 'Visual editor selected', 'gutenberg' ),
 
-	// Reference: edit-post/store/effects.js:124
+	// Reference: edit-post/store/effects.js:123
 	__( 'Code editor selected', 'gutenberg' ),
 
 	// Reference: editor/components/alignment-toolbar/index.js:10
@@ -999,14 +931,15 @@ $generated_i18n_strings = array(
 	// Reference: editor/components/block-list/block-crash-warning.js:13
 	__( 'This block has encountered an error and cannot be previewed.', 'gutenberg' ),
 
-	// Reference: editor/components/block-list/block.js:396
+	// Reference: editor/components/block-list/block.js:384
 	/* translators: %s: Type of block (i.e. Text, Image etc) */
 	__( 'Block: %s', 'gutenberg' ),
 
-	// Reference: editor/components/block-list/insertion-point.js:66
+	// Reference: editor/components/block-list/insertion-point.js:67
 	__( 'Insert block', 'gutenberg' ),
 
 	// Reference: editor/components/block-list/invalid-block-warning.js:25
+	// Reference: editor/components/block-settings-menu/block-convert-button.js:12
 	__( 'Convert to Blocks', 'gutenberg' ),
 
 	// Reference: editor/components/block-list/invalid-block-warning.js:29
@@ -1016,10 +949,10 @@ $generated_i18n_strings = array(
 	// Reference: editor/components/block-list/invalid-block-warning.js:34
 	__( 'This block appears to have been modified externally.', 'gutenberg' ),
 
-	// Reference: editor/components/block-mover/index.js:63
+	// Reference: editor/components/block-mover/index.js:65
 	__( 'Move up', 'gutenberg' ),
 
-	// Reference: editor/components/block-mover/index.js:73
+	// Reference: editor/components/block-mover/index.js:75
 	__( 'Move down', 'gutenberg' ),
 
 	// Reference: editor/components/block-mover/mover-description.js:104
@@ -1061,16 +994,16 @@ $generated_i18n_strings = array(
 	// Reference: editor/components/block-settings-menu/block-remove-button.js:19
 	__( 'Remove Block', 'gutenberg' ),
 
-	// Reference: editor/components/block-settings-menu/index.js:72
+	// Reference: editor/components/block-settings-menu/index.js:75
 	__( 'Hide Options', 'gutenberg' ),
 
-	// Reference: editor/components/block-settings-menu/index.js:72
+	// Reference: editor/components/block-settings-menu/index.js:75
 	__( 'More Options', 'gutenberg' ),
 
-	// Reference: editor/components/block-settings-menu/shared-block-convert-button.js:25
+	// Reference: editor/components/block-settings-menu/shared-block-convert-button.js:36
 	__( 'Convert to Shared Block', 'gutenberg' ),
 
-	// Reference: editor/components/block-settings-menu/shared-block-convert-button.js:35
+	// Reference: editor/components/block-settings-menu/shared-block-convert-button.js:46
 	__( 'Convert to Regular Block', 'gutenberg' ),
 
 	// Reference: editor/components/block-settings-menu/shared-block-delete-button.js:28
@@ -1081,20 +1014,17 @@ $generated_i18n_strings = array(
 
 It will be permanently removed from all posts and pages that use it.', 'gutenberg' ),
 
-	// Reference: editor/components/block-settings-menu/unknown-converter.js:20
-	__( 'Convert to blocks', 'gutenberg' ),
-
 	// Reference: editor/components/block-styles/index.js:115
 	__( 'Apply style variation "%s"', 'gutenberg' ),
 
-	// Reference: editor/components/block-switcher/index.js:68
-	__( 'Change block type', 'gutenberg' ),
-
-	// Reference: editor/components/block-switcher/index.js:90
-	__( 'Block Styles', 'gutenberg' ),
-
-	// Reference: editor/components/block-switcher/index.js:98
+	// Reference: editor/components/block-switcher/index.js:103
 	__( 'Transform To:', 'gutenberg' ),
+
+	// Reference: editor/components/block-switcher/index.js:69
+	_n_noop( 'Change block type', 'Change type of %d blocks', 'gutenberg' ),
+
+	// Reference: editor/components/block-switcher/index.js:91
+	__( 'Block Styles', 'gutenberg' ),
 
 	// Reference: editor/components/contrast-checker/index.js:33
 	__( 'This color combination may be hard for people to read. Try using a darker background color and/or a brighter text color.', 'gutenberg' ),
@@ -1102,15 +1032,15 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/contrast-checker/index.js:34
 	__( 'This color combination may be hard for people to read. Try using a brighter background color and/or a darker text color.', 'gutenberg' ),
 
-	// Reference: editor/components/default-block-appender/index.js:39
+	// Reference: editor/components/default-block-appender/index.js:40
 	// Reference: editor/components/post-text-editor/index.js:97
 	__( 'Write your story', 'gutenberg' ),
 
-	// Reference: editor/components/default-block-appender/index.js:50
-	// Reference: editor/components/inserter/index.js:58
+	// Reference: editor/components/default-block-appender/index.js:51
+	// Reference: editor/components/inserter/index.js:59
 	__( 'Add block', 'gutenberg' ),
 
-	// Reference: editor/components/default-block-appender/index.js:62
+	// Reference: editor/components/default-block-appender/index.js:63
 	__( 'Welcome to the wonderful world of blocks! Click the “+” (“Add block”) button to add a new block. There are blocks available for all kind of content: you can insert text, headings, images, lists, and lots more!', 'gutenberg' ),
 
 	// Reference: editor/components/document-outline/index.js:22
@@ -1150,47 +1080,47 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	/* translators: %s: block title/name to be added */
 	__( 'Add %s', 'gutenberg' ),
 
-	// Reference: editor/components/inserter/menu.js:204
+	// Reference: editor/components/inserter/menu.js:203
 	__( 'Search for a block', 'gutenberg' ),
 
-	// Reference: editor/components/inserter/menu.js:215
+	// Reference: editor/components/inserter/menu.js:214
 	__( 'Available block types', 'gutenberg' ),
 
-	// Reference: editor/components/inserter/menu.js:228
+	// Reference: editor/components/inserter/menu.js:227
 	__( 'Most Used', 'gutenberg' ),
 
-	// Reference: editor/components/inserter/menu.js:255
+	// Reference: editor/components/inserter/menu.js:254
 	__( 'Shared', 'gutenberg' ),
 
-	// Reference: editor/components/inserter/menu.js:265
+	// Reference: editor/components/inserter/menu.js:264
 	__( 'No blocks found.', 'gutenberg' ),
 
-	// Reference: editor/components/media-placeholder/index.js:109
-	__( 'Enter URL here…', 'gutenberg' ),
-
-	// Reference: editor/components/media-placeholder/index.js:115
-	__( 'Use URL', 'gutenberg' ),
-
-	// Reference: editor/components/media-placeholder/index.js:126
-	__( 'Upload', 'gutenberg' ),
-
-	// Reference: editor/components/media-placeholder/index.js:136
-	__( 'Media Library', 'gutenberg' ),
-
-	// Reference: editor/components/media-placeholder/index.js:96
+	// Reference: editor/components/media-placeholder/index.js:116
 	/* translators: %s: media name label e.g: "an audio","an image", "a video" */
 	__( 'Drag %s, upload a new one or select a file from your library.', 'gutenberg' ),
+
+	// Reference: editor/components/media-placeholder/index.js:129
+	__( 'Enter URL here…', 'gutenberg' ),
+
+	// Reference: editor/components/media-placeholder/index.js:135
+	__( 'Use URL', 'gutenberg' ),
+
+	// Reference: editor/components/media-placeholder/index.js:146
+	__( 'Upload', 'gutenberg' ),
+
+	// Reference: editor/components/media-placeholder/index.js:156
+	__( 'Media Library', 'gutenberg' ),
 
 	// Reference: editor/components/page-attributes/order.js:27
 	__( 'Order', 'gutenberg' ),
 
-	// Reference: editor/components/page-attributes/parent.js:27
+	// Reference: editor/components/page-attributes/parent.js:31
 	__( 'no title', 'gutenberg' ),
 
-	// Reference: editor/components/page-attributes/parent.js:32
+	// Reference: editor/components/page-attributes/parent.js:36
 	__( 'no parent', 'gutenberg' ),
 
-	// Reference: editor/components/page-attributes/template.js:27
+	// Reference: editor/components/page-attributes/template.js:26
 	__( 'Template:', 'gutenberg' ),
 
 	// Reference: editor/components/post-author/index.js:36
@@ -1245,28 +1175,28 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/post-pending-status/index.js:23
 	__( 'Pending Review', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/editor.js:62
+	// Reference: editor/components/post-permalink/editor.js:63
 	__( 'Edit post permalink', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/editor.js:78
+	// Reference: editor/components/post-permalink/editor.js:79
 	__( 'OK', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/index.js:116
+	// Reference: editor/components/post-permalink/index.js:117
 	__( 'Change Permalinks', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/index.js:61
+	// Reference: editor/components/post-permalink/index.js:62
 	__( 'Permalink copied', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/index.js:61
+	// Reference: editor/components/post-permalink/index.js:62
 	__( 'Copy the permalink', 'gutenberg' ),
 
-	// Reference: editor/components/post-permalink/index.js:78
+	// Reference: editor/components/post-permalink/index.js:79
 	__( 'Permalink:', 'gutenberg' ),
 
 	// Reference: editor/components/post-pingbacks/index.js:15
 	__( 'Allow Pingbacks & Trackbacks', 'gutenberg' ),
 
-	// Reference: editor/components/post-preview-button/index.js:130
+	// Reference: editor/components/post-preview-button/index.js:131
 	__( 'Click ‘Preview’ to load a preview of this page, so you can make sure you’re happy with your blocks.', 'gutenberg' ),
 
 	// Reference: editor/components/post-publish-button/label.js:21
@@ -1287,13 +1217,13 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/post-publish-button/label.js:33
 	__( 'Schedule', 'gutenberg' ),
 
-	// Reference: editor/components/post-publish-panel/index.js:77
+	// Reference: editor/components/post-publish-panel/index.js:78
 	__( 'Scheduled', 'gutenberg' ),
 
-	// Reference: editor/components/post-publish-panel/index.js:77
+	// Reference: editor/components/post-publish-panel/index.js:78
 	__( 'Published', 'gutenberg' ),
 
-	// Reference: editor/components/post-publish-panel/index.js:84
+	// Reference: editor/components/post-publish-panel/index.js:85
 	__( 'Close Publish Panel', 'gutenberg' ),
 
 	// Reference: editor/components/post-publish-panel/postpublish.js:55
@@ -1324,10 +1254,10 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	__( 'When you\'re ready, submit your work for review, and an Editor will be able to approve it for you.', 'gutenberg' ),
 
 	// Reference: editor/components/post-publish-panel/prepublish.js:33
-	__( 'Visibility: ', 'gutenberg' ),
+	__( 'Visibility:', 'gutenberg' ),
 
 	// Reference: editor/components/post-publish-panel/prepublish.js:39
-	__( 'Publish: ', 'gutenberg' ),
+	__( 'Publish:', 'gutenberg' ),
 
 	// Reference: editor/components/post-publish-panel/toggle.js:53
 	__( 'Schedule…', 'gutenberg' ),
@@ -1338,16 +1268,16 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/post-publish-panel/toggle.js:55
 	__( 'Finished writing? That’s great, let’s get this published right now. Just click ‘Publish’ and you’re good to go.', 'gutenberg' ),
 
-	// Reference: editor/components/post-saved-state/index.js:57
+	// Reference: editor/components/post-saved-state/index.js:58
 	__( 'Autosaving', 'gutenberg' ),
 
-	// Reference: editor/components/post-saved-state/index.js:57
+	// Reference: editor/components/post-saved-state/index.js:58
 	__( 'Saving', 'gutenberg' ),
 
-	// Reference: editor/components/post-saved-state/index.js:74
+	// Reference: editor/components/post-saved-state/index.js:75
 	__( 'Saved', 'gutenberg' ),
 
-	// Reference: editor/components/post-saved-state/index.js:86
+	// Reference: editor/components/post-saved-state/index.js:87
 	__( 'Save Draft', 'gutenberg' ),
 
 	// Reference: editor/components/post-schedule/label.js:12
@@ -1362,32 +1292,36 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/post-switch-to-draft-button/index.js:28
 	__( 'Switch to Draft', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:172
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:171
 	__( 'Add New Tag', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:172
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:171
 	__( 'Add New Term', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:177
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:176
 	__( 'Tag', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:177
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:139
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:176
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:143
 	__( 'Term', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:239
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:143
+	// Reference: packages/components/src/query-controls/index.js:69
+	__( 'Category', 'gutenberg' ),
+
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:243
 	__( 'Add new category', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:240
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:244
 	__( 'Add new term', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:244
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:248
 	__( 'Parent Category', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:245
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:249
 	__( 'Parent Term', 'gutenberg' ),
 
-	// Reference: editor/components/post-title/index.js:114
+	// Reference: editor/components/post-title/index.js:115
 	__( 'Add title', 'gutenberg' ),
 
 	// Reference: editor/components/post-trash/index.js:23
@@ -1486,28 +1420,38 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/components/unsaved-changes-warning/index.js:40
 	__( 'You have unsaved changes. If you proceed, they will be lost.', 'gutenberg' ),
 
-	// Reference: editor/components/url-input/button.js:41
+	// Reference: editor/components/url-input/button.js:42
 	__( 'Edit Link', 'gutenberg' ),
 
-	// Reference: editor/components/url-input/button.js:41
+	// Reference: editor/components/url-input/button.js:42
 	__( 'Insert Link', 'gutenberg' ),
 
-	// Reference: editor/components/url-input/button.js:62
+	// Reference: editor/components/url-input/button.js:63
 	__( 'Close', 'gutenberg' ),
 
-	// Reference: editor/components/url-input/button.js:68
+	// Reference: editor/components/url-input/button.js:69
 	__( 'Submit', 'gutenberg' ),
 
-	// Reference: editor/components/url-input/index.js:196
+	// Reference: editor/components/url-input/index.js:115
+	// Reference: packages/components/src/autocomplete/index.js:337
+	// Reference: packages/components/src/form-token-field/index.js:212
+	_n_noop( '%d result found, use up and down arrow keys to navigate.', '%d results found, use up and down arrow keys to navigate.', 'gutenberg' ),
+
+	// Reference: editor/components/url-input/index.js:121
+	// Reference: packages/components/src/autocomplete/index.js:343
+	// Reference: packages/components/src/form-token-field/index.js:218
+	__( 'No results.', 'gutenberg' ),
+
+	// Reference: editor/components/url-input/index.js:200
 	__( 'Paste URL or type', 'gutenberg' ),
 
-	// Reference: editor/hooks/anchor.js:69
+	// Reference: editor/hooks/anchor.js:70
 	__( 'HTML Anchor', 'gutenberg' ),
 
-	// Reference: editor/hooks/anchor.js:70
+	// Reference: editor/hooks/anchor.js:71
 	__( 'Anchors lets you link directly to a section on a page.', 'gutenberg' ),
 
-	// Reference: editor/hooks/custom-class-name.js:64
+	// Reference: editor/hooks/custom-class-name.js:65
 	__( 'Additional CSS Class', 'gutenberg' ),
 
 	// Reference: editor/store/defaults.js:23
@@ -1543,67 +1487,180 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: editor/store/defaults.js:72
 	__( 'very dark gray', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:249
+	// Reference: editor/store/effects.js:241
 	__( 'Post reverted to draft.', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:255
+	// Reference: editor/store/effects.js:247
 	__( 'Post published!', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:256
+	// Reference: editor/store/effects.js:248
 	__( 'Post published privately!', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:257
+	// Reference: editor/store/effects.js:249
 	__( 'Post scheduled!', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:261
+	// Reference: editor/store/effects.js:253
 	__( 'Post updated!', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:269
+	// Reference: editor/store/effects.js:261
 	__( 'View post', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:292
+	// Reference: editor/store/effects.js:284
 	__( 'Publishing failed', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:293
+	// Reference: editor/store/effects.js:285
 	__( 'Scheduling failed', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:297
+	// Reference: editor/store/effects.js:289
 	__( 'Updating failed', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:326
+	// Reference: editor/store/effects.js:312
 	__( 'Trashing failed', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:427
+	// Reference: editor/store/effects.js:413
 	__( 'There is an autosave of this post that is more recent than the version below.', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:432
+	// Reference: editor/store/effects.js:418
 	__( 'View the autosave', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:546
+	// Reference: editor/store/effects.js:526
 	__( 'Block created.', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:546
+	// Reference: editor/store/effects.js:526
 	__( 'Block updated.', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:602
+	// Reference: editor/store/effects.js:580
 	__( 'Block deleted.', 'gutenberg' ),
 
-	// Reference: editor/store/effects.js:634
+	// Reference: editor/store/effects.js:610
 	__( 'Untitled shared block', 'gutenberg' ),
 
-	// Reference: editor/store/selectors.js:440
+	// Reference: editor/store/selectors.js:441
 	__( 'New post', 'gutenberg' ),
 
-	// Reference: nux/components/dot-tip/index.js:52
+	// Reference: packages/api-fetch/build-module/index.js:70
+	__( 'The response is not a valid JSON response.', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:20
+	__( 'Common Blocks', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:23
+	__( 'Formatting', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:26
+	__( 'Layout Elements', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:29
+	__( 'Widgets', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:32
+	__( 'Embeds', 'gutenberg' ),
+
+	// Reference: packages/blocks/build-module/store/reducer.js:35
+	__( 'Shared Blocks', 'gutenberg' ),
+
+	// Reference: packages/components/src/color-palette/index.js:24
+	__( 'Custom color picker', 'gutenberg' ),
+
+	// Reference: packages/components/src/color-palette/index.js:45
+	/* translators: %s: The name of the color e.g: "vivid red". */
+	__( 'Color: %s', 'gutenberg' ),
+
+	// Reference: packages/components/src/color-palette/index.js:47
+	/* translators: %s: color hex code e.g: "#f00". */
+	__( 'Color code: %s', 'gutenberg' ),
+
+	// Reference: packages/components/src/color-palette/index.js:88
+	__( 'Clear', 'gutenberg' ),
+
+	// Reference: packages/components/src/date-time/time.js:151
+	__( 'AM', 'gutenberg' ),
+
+	// Reference: packages/components/src/date-time/time.js:159
+	__( 'PM', 'gutenberg' ),
+
+	// Reference: packages/components/src/drop-zone/index.js:78
+	__( 'Drop files to upload', 'gutenberg' ),
+
+	// Reference: packages/components/src/external-link/index.js:31
+	/* translators: accessibility text */
+	__( '(opens in a new window)', 'gutenberg' ),
+
+	// Reference: packages/components/src/font-size-picker/index.js:23
+	__( 'Font Size', 'gutenberg' ),
+
+	// Reference: packages/components/src/font-size-picker/index.js:45
+	__( 'Custom Size', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/index.js:509
+	__( 'Add item.', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/index.js:565
+	__( 'Separate with commas', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/index.js:586
+	__( 'Item added.', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/index.js:587
+	__( 'Item removed.', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/index.js:588
+	__( 'Remove item', 'gutenberg' ),
+
+	// Reference: packages/components/src/form-token-field/token.js:46
+	/* translators: 1: term name, 2: term position in a set of terms, 3: total term set count. */
+	__( '%1$s (%2$s of %3$s)', 'gutenberg' ),
+
+	// Reference: packages/components/src/modal/header.js:12
+	__( 'Close dialog', 'gutenberg' ),
+
+	// Reference: packages/components/src/notice/index.js:21
+	__( 'Dismiss this notice', 'gutenberg' ),
+
+	// Reference: packages/components/src/panel/color.js:13
+	/* translators: %s: The name of the color e.g: "vivid red" or color hex code if name is not available e.g: "#f00". */
+	__( '(current color: %s)', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:32
+	__( 'Order by', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:36
+	__( 'Newest to Oldest', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:40
+	__( 'Oldest to Newest', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:45
+	/* translators: label for ordering posts by title in ascending order */
+	__( 'A → Z', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:50
+	/* translators: label for ordering posts by title in descending order */
+	__( 'Z → A', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:70
+	__( 'All', 'gutenberg' ),
+
+	// Reference: packages/components/src/query-controls/index.js:77
+	__( 'Number of items', 'gutenberg' ),
+
+	// Reference: packages/components/src/server-side-render/index.js:83
+	/* translators: %s: error message describing the problem */
+	__( 'Error loading block: %s', 'gutenberg' ),
+
+	// Reference: packages/components/src/server-side-render/index.js:89
+	__( 'No results found.', 'gutenberg' ),
+
+	// Reference: packages/nux/src/components/dot-tip/index.js:27
 	__( 'Gutenberg tips', 'gutenberg' ),
 
-	// Reference: nux/components/dot-tip/index.js:58
+	// Reference: packages/nux/src/components/dot-tip/index.js:33
 	__( 'See next tip', 'gutenberg' ),
 
-	// Reference: nux/components/dot-tip/index.js:58
+	// Reference: packages/nux/src/components/dot-tip/index.js:33
 	__( 'Got it', 'gutenberg' ),
 
-	// Reference: nux/components/dot-tip/index.js:64
+	// Reference: packages/nux/src/components/dot-tip/index.js:39
 	__( 'Disable tips', 'gutenberg' ),
 
 	// Reference: utils/mediaupload.js:103
@@ -1617,17 +1674,17 @@ It will be permanently removed from all posts and pages that use it.', 'gutenber
 	// Reference: utils/mediaupload.js:91
 	__( 'Sorry, this file type is not permitted for security reasons.', 'gutenberg' ),
 
-	// Reference: editor/components/post-preview-button/index.js:128
+	// Reference: editor/components/post-preview-button/index.js:129
 	_x( 'Preview', 'imperative verb', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:179
-	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:135
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:178
+	// Reference: editor/components/post-taxonomies/hierarchical-term-selector.js:139
 	_x( '%s added', 'term', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:180
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:179
 	_x( '%s removed', 'term', 'gutenberg' ),
 
-	// Reference: editor/components/post-taxonomies/flat-term-selector.js:181
+	// Reference: editor/components/post-taxonomies/flat-term-selector.js:180
 	_x( 'Remove %s', 'term', 'gutenberg' )
 );
 /* THIS IS THE END OF THE GENERATED FILE */
