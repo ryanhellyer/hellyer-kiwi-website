@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-10 16:07:07+0000\n"
+"PO-Revision-Date: 2018-07-24 18:06:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,25 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_CA\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#: inc/class-wpseo-replace-vars.php:1319
+msgid "The site's tagline"
+msgstr "The site's tagline"
+
+#. translators: %1$s is the notification dismissal link start tag, %2$s is the
+#. link closing tag.
+#: admin/notifiers/class-post-type-archive-notification-handler.php:112
+msgid "%1$sRemove this message%2$s"
+msgstr "%1$sRemove this message%2$s"
+
+#: admin/notifiers/class-post-type-archive-notification-handler.php:92
+msgid "We've recently improved the functionality of the Search Appearance settings. Unfortunately, we've discovered that for some edge-cases, saving the settings for specific post type archives might have gone wrong."
+msgstr "We've recently improved the functionality of the Search Appearance settings. Unfortunately, we've discovered that for some edge-cases, saving the settings for specific post type archives might have gone wrong."
+
+#. translators: %1$s expands to the missing field name.
+#: admin/menu/class-replacevar-editor.php:109
+msgid "Not all required fields are given. Missing field %1$s"
+msgstr "Not all required fields are given. Missing field %1$s"
 
 #. Translators:  %1$s expands to a link on yoast.com, %2$s expands to the
 #. anchor end tag
@@ -179,11 +198,11 @@ msgstr "If you want to take full advantage of the plugin, get our %1$s training.
 
 #. translators: %1$s expands to an opening anchor tag, %2$s expands to a
 #. closing anchor tag.
-#: admin/views/tabs/metas/post-types.php:73
+#: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:16
 msgid "You can edit the SEO meta-data for this custom type on the %1$sShop page%2$s."
 msgstr "You can edit the SEO meta-data for this custom type on the %1$sShop page%2$s."
 
-#: admin/views/tabs/metas/post-types.php:68
+#: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:11
 msgid "You haven't set a Shop page in your WooCommerce settings. Please do this first."
 msgstr "You haven't set a Shop page in your WooCommerce settings. Please do this first."
 
@@ -207,6 +226,15 @@ msgstr "You are not using any %1$ssubheadings%2$s, but your text is short enough
 msgid "You are not using any subheadings, although your text is rather long. Try and add  some %1$ssubheadings%2$s."
 msgstr "You are not using any subheadings, although your text is rather long. Try and add  some %1$ssubheadings%2$s."
 
+#. Translators: %1$d expands to the number of subheadings, %2$d expands to the
+#. recommended number 	   of words following a subheading, %3$s expands to a
+#. link to https://yoa.st/headings, 	   %4$s expands to the link closing tag.
+#: languages/yoast-seo-js.php:94
+msgid "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgid_plural "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgstr[0] "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+msgstr[1] "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
+
 #. Translators: %1$s expands to a link to https://yoa.st/headings, %2$s expands
 #. to the link closing tag.
 #: languages/yoast-seo-js.php:86
@@ -225,16 +253,7 @@ msgstr "Help on the Snippet Preview"
 msgid "Please provide a meta description by editing the snippet below. If you don’t, Google will try to find a relevant part of your post to show in the search results."
 msgstr "Please provide a meta description by editing the snippet below. If you don’t, Google will try to find a relevant part of your post to show in the search results."
 
-#. Translators: %1$d expands to the number of subheadings, %2$d expands to the
-#. recommended number 	   of words following a subheading, %3$s expands to a
-#. link to https://yoa.st/headings, 	   %4$s expands to the link closing tag.
-#: languages/yoast-seo-js.php:94
-msgid "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgid_plural "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgstr[0] "%1$d section of your text is longer than %2$d words and is not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-msgstr[1] "%1$d sections of your text are longer than %2$d words and are not separated by any subheadings. Add %3$ssubheadings%4$s to improve readability."
-
-#: languages/wordpress-seojs.php:29
+#: inc/class-wpseo-replace-vars.php:1319 languages/wordpress-seojs.php:29
 msgid "Tagline"
 msgstr "Tagline"
 
@@ -242,99 +261,99 @@ msgstr "Tagline"
 msgid "Modify your meta description by editing it right here"
 msgstr "Modify your meta description by editing it right here"
 
-#: inc/class-wpseo-replace-vars.php:1361
+#: inc/class-wpseo-replace-vars.php:1362
 msgid "description (custom taxonomy)"
 msgstr "description (custom taxonomy)"
 
-#: inc/class-wpseo-replace-vars.php:1360
+#: inc/class-wpseo-replace-vars.php:1361
 msgid "(custom taxonomy)"
 msgstr "(custom taxonomy)"
 
-#: inc/class-wpseo-replace-vars.php:1359
+#: inc/class-wpseo-replace-vars.php:1360
 msgid "(custom field)"
 msgstr "(custom field)"
 
-#: inc/class-wpseo-replace-vars.php:1358
+#: inc/class-wpseo-replace-vars.php:1359
 msgid "Term404"
 msgstr "Term404"
 
-#: inc/class-wpseo-replace-vars.php:1356
+#: inc/class-wpseo-replace-vars.php:1357
 msgid "Caption"
 msgstr "Caption"
 
-#: inc/class-wpseo-replace-vars.php:1355
+#: inc/class-wpseo-replace-vars.php:1356
 msgid "Pagenumber"
 msgstr "Pagenumber"
 
-#: inc/class-wpseo-replace-vars.php:1354
+#: inc/class-wpseo-replace-vars.php:1355
 msgid "Pagetotal"
 msgstr "Pagetotal"
 
-#: inc/class-wpseo-replace-vars.php:1353
+#: inc/class-wpseo-replace-vars.php:1354
 msgid "Page number"
 msgstr "Page number"
 
-#: inc/class-wpseo-replace-vars.php:1352
+#: inc/class-wpseo-replace-vars.php:1353
 msgid "User description"
 msgstr "User description"
 
-#: inc/class-wpseo-replace-vars.php:1350 languages/wordpress-seojs.php:20
+#: inc/class-wpseo-replace-vars.php:1351 languages/wordpress-seojs.php:20
 msgid "ID"
 msgstr "ID"
 
-#: inc/class-wpseo-replace-vars.php:1349
+#: inc/class-wpseo-replace-vars.php:1350
 msgid "Modified"
 msgstr "Modified"
 
-#: inc/class-wpseo-replace-vars.php:1348
+#: inc/class-wpseo-replace-vars.php:1349
 msgid "Post type (plural)"
 msgstr "Post type (plural)"
 
-#: inc/class-wpseo-replace-vars.php:1347
+#: inc/class-wpseo-replace-vars.php:1348
 msgid "Post type (singular)"
 msgstr "Post type (singular)"
 
-#: inc/class-wpseo-replace-vars.php:1329 languages/wordpress-seojs.php:53
+#: inc/class-wpseo-replace-vars.php:1330 languages/wordpress-seojs.php:53
 msgid "Separator"
 msgstr "Separator"
 
-#: inc/class-wpseo-replace-vars.php:1328 languages/wordpress-seojs.php:26
+#: inc/class-wpseo-replace-vars.php:1329 languages/wordpress-seojs.php:26
 msgid "Search phrase"
 msgstr "Search phrase"
 
-#: inc/class-wpseo-replace-vars.php:1327
+#: inc/class-wpseo-replace-vars.php:1328
 msgid "Term title"
 msgstr "Term title"
 
-#: inc/class-wpseo-replace-vars.php:1326 languages/wordpress-seojs.php:65
+#: inc/class-wpseo-replace-vars.php:1327 languages/wordpress-seojs.php:65
 msgid "Term description"
 msgstr "Term description"
 
-#: inc/class-wpseo-replace-vars.php:1325 languages/wordpress-seojs.php:62
+#: inc/class-wpseo-replace-vars.php:1326 languages/wordpress-seojs.php:62
 msgid "Tag description"
 msgstr "Tag description"
 
-#: inc/class-wpseo-replace-vars.php:1324 languages/wordpress-seojs.php:59
+#: inc/class-wpseo-replace-vars.php:1325 languages/wordpress-seojs.php:59
 msgid "Category description"
 msgstr "Category description"
 
-#: inc/class-wpseo-replace-vars.php:1323 languages/wordpress-seojs.php:50
+#: inc/class-wpseo-replace-vars.php:1324 languages/wordpress-seojs.php:50
 msgid "Primary category"
 msgstr "Primary category"
 
-#: inc/class-wpseo-replace-vars.php:1322 languages/wordpress-seojs.php:35
+#: inc/class-wpseo-replace-vars.php:1323 languages/wordpress-seojs.php:35
 msgid "Category"
 msgstr "Category"
 
-#: inc/class-wpseo-replace-vars.php:1321
+#: inc/class-wpseo-replace-vars.php:1322
 msgid "Tag"
 msgstr "Tag"
 
-#: inc/class-wpseo-replace-vars.php:1320 languages/wordpress-seojs.php:56
+#: inc/class-wpseo-replace-vars.php:1321 languages/wordpress-seojs.php:56
 msgid "Excerpt only"
 msgstr "Excerpt only"
 
-#: inc/class-wpseo-replace-vars.php:1319 languages/wordpress-seojs.php:47
+#: inc/class-wpseo-replace-vars.php:1320 languages/wordpress-seojs.php:47
 msgid "Excerpt"
 msgstr "Excerpt"
 
@@ -358,29 +377,30 @@ msgstr "Date"
 msgid "Label"
 msgstr "Label"
 
-#: admin/watchers/class-slug-change-watcher.php:215
+#: admin/watchers/class-slug-change-watcher.php:220
 msgid "Get Yoast SEO Premium"
 msgstr "Get Yoast SEO Premium"
 
-#: admin/watchers/class-slug-change-watcher.php:213
+#: admin/watchers/class-slug-change-watcher.php:218
 msgid "With Yoast SEO Premium, you can easily create such redirects."
 msgstr "With Yoast SEO Premium, you can easily create such redirects."
 
-#: admin/watchers/class-slug-change-watcher.php:212
+#: admin/watchers/class-slug-change-watcher.php:217
 msgid "You should create a redirect to ensure your visitors do not get a 404 error when they click on the no longer working URL."
 msgstr "You should create a redirect to ensure your visitors do not get a 404 error when they click on the no longer working URL."
 
-#: admin/watchers/class-slug-change-watcher.php:211
+#: admin/watchers/class-slug-change-watcher.php:216
 msgid "Search engines and other websites can still send traffic to your deleted post."
 msgstr "Search engines and other websites can still send traffic to your deleted post."
 
-#: admin/watchers/class-slug-change-watcher.php:208
+#: admin/watchers/class-slug-change-watcher.php:213
 msgid "Make sure you don't miss out on traffic!"
 msgstr "Make sure you don't miss out on traffic!"
 
 #. translators: %1$s expands to the translated name of the post type.
+#. translators: 1: term label
 #: admin/watchers/class-slug-change-watcher.php:84
-#: admin/watchers/class-slug-change-watcher.php:102
+#: admin/watchers/class-slug-change-watcher.php:104
 msgid "You just deleted a %1$s."
 msgstr "You just deleted a %1$s."
 
@@ -390,17 +410,17 @@ msgid "You just trashed a %1$s."
 msgstr "You just trashed a %1$s."
 
 #. translators: %s is the plural version of the post type's name.
-#: admin/views/tabs/metas/post-types.php:79
-#: admin/views/tabs/metas/post-types.php:89
+#: admin/views/tabs/metas/paper-content/post-type-content.php:32
+#: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:22
 msgid "Settings for %s archive"
 msgstr "Settings for %s archive"
 
 #. translators: %s is the singular version of the post type's name.
-#: admin/views/tabs/metas/post-types.php:62
+#: admin/views/tabs/metas/paper-content/post-type-content.php:18
 msgid "Settings for single %s URLs"
 msgstr "Settings for single %s URLs"
 
-#: admin/views/tabs/metas/post-types.php:33
+#: admin/views/tabs/metas/post-types.php:31
 msgid "The settings on this page allow you to specify what the default search appearance should be for any type of content you have. You can choose which content types appear in search results and what their default description should be."
 msgstr "The settings on this page allow you to specify what the default search appearance should be for any type of content you have. You can choose which content types appear in search results and what their default description should be."
 
@@ -413,7 +433,7 @@ msgid "Page"
 msgstr "Page"
 
 #. translators: %s is the plural version of the post type's name.
-#: admin/views/tabs/metas/post-types.php:111
+#: admin/views/tabs/metas/paper-content/post-type-content.php:62
 msgid "Breadcrumb settings for %s archive"
 msgstr "Breadcrumb settings for %s archive"
 
@@ -464,19 +484,20 @@ msgstr "%1$s respects your privacy. Read our %2$sprivacy policy%3$s on how we ha
 
 #. translators: %1$s expands to the link to the article, %2$s closes the link
 #. to the article
-#: admin/views/class-view-utils.php:81
+#: admin/views/tabs/metas/paper-content/media-content.php:38
 msgid ""
 "By enabling this option, attachment URLs become visible to both your visitors and Google.\n"
-"To add value to your website, they should contain useful information, or they might have a\n"
-"negative impact on your ranking. Please carefully consider this and %1$sread this post%2$s if\n"
-"you want more information about the impact of showing media in search results."
+"\t\t\t\tTo add value to your website, they should contain useful information, or they might have a\n"
+"\t\t\t\tnegative impact on your ranking. Please carefully consider this and %1$sread this post%2$s if\n"
+"\t\t\t\tyou want more information about the impact of showing media in search results."
 msgstr ""
 "By enabling this option, attachment URLs become visible to both your visitors and Google.\n"
-"To add value to your website, they should contain useful information, or they might have a\n"
-"negative impact on your ranking. Please carefully consider this and %1$sread this post%2$s if\n"
-"you want more information about the impact of showing media in search results."
+"\t\t\t\tTo add value to your website, they should contain useful information, or they might have a\n"
+"\t\t\t\tnegative impact on your ranking. Please carefully consider this and %1$sread this post%2$s if\n"
+"\t\t\t\tyou want more information about the impact of showing media in search results."
 
-#: admin/class-admin-media-purge-notification.php:76
+#. translators: %1$s dismiss link open tag, %2$s closes the link tag.
+#: admin/class-admin-media-purge-notification.php:77
 msgid "If you know what this means and you do not want to see this message anymore, you can %1$sdismiss this message%2$s."
 msgstr "If you know what this means and you do not want to see this message anymore, you can %1$sdismiss this message%2$s."
 
@@ -554,7 +575,7 @@ msgstr "PHP update required."
 #. Yoast SEO version that is dropping support; 4: The release date of the
 #. version of Yoast SEO that is dropping support; 5: The PHP version no longer
 #. being supported;
-#: admin/class-admin-init.php:423 admin/class-unsupported-php-message.php:25
+#: admin/class-admin-init.php:450 admin/class-unsupported-php-message.php:25
 msgid "%1$sAction is needed%2$s: As of version %3$s, due to be released on %4$s, Yoast SEO will no longer work with PHP %5$s. Unfortunately, your site is running on PHP %5$s right now, so action is needed. Thankfully, you can update your PHP yourself."
 msgstr "%1$sAction is needed%2$s: As of version %3$s, due to be released on %4$s, Yoast SEO will no longer work with PHP %5$s. Unfortunately, your site is running on PHP %5$s right now, so action is needed. Thankfully, you can update your PHP yourself."
 
@@ -582,7 +603,7 @@ msgstr "Show All Content Types"
 
 #. translators: %1$s resolves to the opening tag of the link to the comment
 #. setting page, %2$s resolves to the closing tag of the link
-#: admin/class-admin-init.php:155
+#: admin/class-admin-init.php:182
 msgid "To fix this uncheck the box in front of the \"Break comments into pages...\" on the %1$sComment settings page%2$s."
 msgstr "To fix this uncheck the box in front of the \"Break comments into pages...\" on the %1$sComment settings page%2$s."
 
@@ -741,28 +762,28 @@ msgid "Do not allow search engines to show %s in search results."
 msgstr "Do not allow search engines to show %s in search results."
 
 #. translators: %s expands to <code>/category/</code>
-#: admin/views/tabs/metas/taxonomies.php:81
+#: admin/views/tabs/metas/taxonomies/category-url.php:17
 msgid "Category URLs in WordPress contain a prefix, usually %s, this feature removes that prefix, for categories only."
 msgstr "Category URLs in WordPress contain a prefix, usually %s, this feature removes that prefix, for categories only."
 
-#: admin/views/tabs/metas/taxonomies.php:72
+#: admin/views/tabs/metas/taxonomies.php:48
 msgid " Category URLs"
 msgstr " Category URLs"
 
 #. translators: %s expands to the post type's name.
-#: admin/views/tabs/metas/post-types.php:97
+#: admin/views/tabs/metas/paper-content/post-type-content.php:40
 msgid "the archive for %s"
 msgstr "the archive for %s"
 
-#: admin/views/tabs/metas/media.php:36
+#: admin/views/tabs/metas/paper-content/media-content.php:24
 msgid "Redirect attachment URLs to the attachment itself?"
 msgstr "Redirect attachment URLs to the attachment itself?"
 
-#: admin/views/tabs/metas/media.php:27
+#: admin/views/tabs/metas/paper-content/media-content.php:15
 msgid "We recommend you set this to Yes."
 msgstr "We recommend you set this to Yes."
 
-#: admin/views/tabs/metas/media.php:25
+#: admin/views/tabs/metas/media.php:15
 msgid "Media & attachment URLs"
 msgstr "Media & attachment URLs"
 
@@ -784,15 +805,15 @@ msgstr "To let search engines know which social profiles are associated to this 
 msgid "Learn more about your social profiles settings"
 msgstr "Learn more about your social profiles settings"
 
-#: admin/views/tabs/metas/taxonomies.php:88
+#: admin/views/tabs/metas/taxonomies/category-url.php:24
 msgid "Remove the categories prefix"
 msgstr "Remove the categories prefix"
 
-#: admin/views/tabs/metas/taxonomies.php:78
+#: admin/views/tabs/metas/taxonomies/category-url.php:14
 msgid "Help on the category prefix setting"
 msgstr "Help on the category prefix setting"
 
-#: admin/views/tabs/metas/rss.php:38
+#: admin/views/tabs/metas/paper-content/rss-content.php:19
 msgid "Learn more about the available variables"
 msgstr "Learn more about the available variables"
 
@@ -804,19 +825,19 @@ msgstr "Learn more about the RSS feed setting"
 msgid "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
 msgstr "When you upload media (an image or video for example) to WordPress, it doesn't just save the media, it creates an attachment URL for it. These attachment pages are quite empty: they contain the media item and maybe a title if you entered one. Because of that, if you never use these attachment URLs, it's better to disable them, and redirect them to the media item itself."
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:23
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:23
 msgid "Knowledge Graph"
 msgstr "Knowledge Graph"
 
-#: admin/views/tabs/metas/general/homepage.php:17
+#: admin/views/tabs/metas/paper-content/general/homepage.php:17
 msgid "This is what shows in the search results when people find your homepage. This means this is probably what they see when they search for your brand name."
 msgstr "This is what shows in the search results when people find your homepage. This means this is probably what they see when they search for your brand name."
 
-#: admin/views/tabs/metas/archives.php:118
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:38
 msgid "date archives"
 msgstr "date archives"
 
-#: admin/views/tabs/metas/archives.php:86
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:58
 msgid "archives for authors without posts"
 msgstr "archives for authors without posts"
 
@@ -824,58 +845,58 @@ msgstr "archives for authors without posts"
 msgid "Learn more about the Media and attachment URLs setting"
 msgstr "Learn more about the Media and attachment URLs setting"
 
-#: admin/views/tabs/metas/general/title-separator.php:12
+#: admin/views/tabs/metas/paper-content/general/title-separator.php:12
 #: admin/views/tabs/social/facebook.php:36
 msgid "Learn more about the title separator setting"
 msgstr "Learn more about the title separator setting"
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:12
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:12
 msgid "Learn more about the knowledge graph setting"
 msgstr "Learn more about the knowledge graph setting"
 
-#: admin/views/tabs/metas/general/homepage.php:16
+#: admin/views/tabs/metas/paper-content/general/homepage.php:16
 msgid "Learn more about the homepage setting"
 msgstr "Learn more about the homepage setting"
 
-#: admin/views/tabs/metas/archives.php:129
+#: admin/views/tabs/metas/paper-content/special-pages.php:12
 msgid "Learn more about the special pages setting"
 msgstr "Learn more about the special pages setting"
 
 #. translators: 1: expands to <code>noindex</code>; 2: link open tag; 3: link
 #. close tag.
-#: admin/views/tabs/metas/archives.php:109
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:29
 msgid "Not showing the date archives in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 msgstr "Not showing the date archives in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 
-#: admin/views/tabs/metas/archives.php:106
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:26
 msgid "Help on the date archives search results setting"
 msgstr "Help on the date archives search results setting"
 
 #. translators: 1: expands to <code>noindex</code>; 2: link open tag; 3: link
 #. close tag.
-#: admin/views/tabs/metas/archives.php:77
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:49
 msgid "Not showing the archives for authors without posts in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 msgstr "Not showing the archives for authors without posts in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 
-#: admin/views/tabs/metas/archives.php:74
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:46
 msgid "Help on the authors without posts archive search results setting"
 msgstr "Help on the authors without posts archive search results setting"
 
 #. translators: 1: expands to <code>noindex</code>; 2: link open tag; 3: link
 #. close tag.
-#: admin/views/tabs/metas/archives.php:59
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:31
 msgid "Not showing the archive for authors in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 msgstr "Not showing the archive for authors in the search results technically means those will have a %1$s robots meta and will be excluded from XML sitemaps. %2$sMore info on the search results settings%3$s."
 
-#: admin/views/tabs/metas/archives.php:56
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:28
 msgid "Help on the author archives search results setting"
 msgstr "Help on the author archives search results setting"
 
-#: admin/views/tabs/metas/archives.php:42
+#: admin/views/tabs/metas/archives/help.php:33
 msgid "Archives settings help"
 msgstr "Archives settings help"
 
-#: admin/views/tabs/metas/archives.php:37
+#: admin/views/tabs/metas/archives/help.php:28
 msgid "Learn more about the archives setting"
 msgstr "Learn more about the archives setting"
 
@@ -1005,7 +1026,7 @@ msgstr "Should search engines follow links on this %1$s?"
 msgid "Allow search engines to show this %s in search results?"
 msgstr "Allow search engines to show this %s in search results?"
 
-#: admin/menu/class-admin-menu.php:120 frontend/class-frontend.php:1220
+#: admin/menu/class-admin-menu.php:120 frontend/class-frontend.php:1223
 #: inc/wpseo-non-ajax-functions.php:271
 msgid "Search Appearance"
 msgstr "Search Appearance"
@@ -1086,53 +1107,53 @@ msgstr "New support request"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:80
+#: admin/formatter/class-metabox-formatter.php:81
 msgid "Readability: %1$sNot available%2$s"
 msgstr "Readability: %1$sNot available%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:86
+#: admin/formatter/class-metabox-formatter.php:87
 msgid "Readability: %1$sNeeds improvement%2$s"
 msgstr "Readability: %1$sNeeds improvement%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:92
+#: admin/formatter/class-metabox-formatter.php:93
 msgid "Readability: %1$sOK%2$s"
 msgstr "Readability: %1$sOK%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:98
+#: admin/formatter/class-metabox-formatter.php:99
 msgid "Readability: %1$sGood%2$s"
 msgstr "Readability: %1$sGood%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:106
+#: admin/formatter/class-metabox-formatter.php:107
 msgid "SEO: %1$sNot available%2$s"
 msgstr "SEO: %1$sNot available%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:112
+#: admin/formatter/class-metabox-formatter.php:113
 msgid "SEO: %1$sNeeds improvement%2$s"
 msgstr "SEO: %1$sNeeds improvement%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:118
+#: admin/formatter/class-metabox-formatter.php:119
 msgid "SEO: %1$sOK%2$s"
 msgstr "SEO: %1$sOK%2$s"
 
 #. translators: %1$s expands to an opening strong tag, %2$s expands to a
 #. closing strong tag.
-#: admin/formatter/class-metabox-formatter.php:124
+#: admin/formatter/class-metabox-formatter.php:125
 msgid "SEO: %1$sGood%2$s"
 msgstr "SEO: %1$sGood%2$s"
 
-#: admin/formatter/class-metabox-formatter.php:164
+#: admin/formatter/class-metabox-formatter.php:165
 #: languages/yoast-components.php:137
 msgid "Good results"
 msgstr "Good results"
@@ -1249,12 +1270,12 @@ msgstr "You've used this focus keyword %1$s%2$d times before%3$s. It’s probabl
 msgid "You've used this focus keyword %1$sonce before%2$s. It’s probably a good idea to read about %3$swhy you should not use your focus keyword more than once%4$s."
 msgstr "You've used this focus keyword %1$sonce before%2$s. It’s probably a good idea to read about %3$swhy you should not use your focus keyword more than once%4$s."
 
-#: admin/formatter/class-metabox-formatter.php:168
+#: admin/formatter/class-metabox-formatter.php:169
 #: languages/yoast-components.php:110
 msgid "Remove highlight from the text"
 msgstr "Remove highlight from the text"
 
-#: admin/formatter/class-metabox-formatter.php:165
+#: admin/formatter/class-metabox-formatter.php:166
 msgid "Your site language is set to {language}."
 msgstr "Your site language is set to {language}."
 
@@ -1268,22 +1289,22 @@ msgstr "Get started quickly with the %1$s %2$sconfiguration wizard%3$s!"
 msgid "First-time SEO configuration"
 msgstr "First-time SEO configuration"
 
-#: admin/formatter/class-metabox-formatter.php:167
+#: admin/formatter/class-metabox-formatter.php:168
 #: languages/yoast-components.php:113
 msgid "Highlight this result in the text"
 msgstr "Highlight this result in the text"
 
-#: admin/formatter/class-metabox-formatter.php:163
+#: admin/formatter/class-metabox-formatter.php:164
 #: languages/yoast-components.php:134
 msgid "Considerations"
 msgstr "Considerations"
 
-#: admin/formatter/class-metabox-formatter.php:160
+#: admin/formatter/class-metabox-formatter.php:161
 #: languages/yoast-components.php:125
 msgid "Errors"
 msgstr "Errors"
 
-#: admin/formatter/class-metabox-formatter.php:159
+#: admin/formatter/class-metabox-formatter.php:160
 #: languages/yoast-components.php:119
 msgid "Change language"
 msgstr "Change language"
@@ -1297,7 +1318,7 @@ msgstr "Your site language is set to %s."
 msgid "Number of results found: %s"
 msgstr "Number of results found: %s"
 
-#: admin/formatter/class-metabox-formatter.php:166
+#: admin/formatter/class-metabox-formatter.php:167
 msgid "Your site language is set to {language}. If this is not correct, contact your site administrator."
 msgstr "Your site language is set to {language}. If this is not correct, contact your site administrator."
 
@@ -1381,7 +1402,7 @@ msgstr "Seamlessly integrate %1$s into your AMP pages!"
 
 #. translators: %1$s expands to Yoast SEO, %2$s expands to the plugin version,
 #. %3$s expands to the plugin name
-#: admin/class-admin-init.php:312
+#: admin/class-admin-init.php:339
 msgid "%1$s and %2$s can work together a lot better by adding a helper plugin. Please install %3$s to make your life better."
 msgstr "%1$s and %2$s can work together a lot better by adding a helper plugin. Please install %3$s to make your life better."
 
@@ -1427,7 +1448,7 @@ msgstr "Go back to the search results"
 
 #: admin/class-add-keyword-modal.php:38 admin/class-help-center.php:263
 #: admin/class-keyword-synonyms-modal.php:38
-#: admin/formatter/class-metabox-formatter.php:170
+#: admin/formatter/class-metabox-formatter.php:171
 #: languages/yoast-components.php:211
 msgid "(Opens in a new browser tab)"
 msgstr "(Opens in a new browser tab)"
@@ -1637,7 +1658,7 @@ msgstr "Activate your site on My Yoast"
 msgid "%1$s recommendations for you"
 msgstr "%1$s recommendations for you"
 
-#: admin/class-admin.php:365 vendor/yoast/whip/src/facades/wordpress.php:29
+#: admin/class-admin.php:364 vendor/yoast/whip/src/facades/wordpress.php:29
 msgid "Remind me again in 4 weeks."
 msgstr "Remind me again in 4 weeks."
 
@@ -2053,15 +2074,16 @@ msgstr "Increase your SEO reach"
 msgid "Multiple keywords"
 msgstr "Multiple keywords"
 
-#: admin/views/tabs/metas/rss.php:49 inc/class-wpseo-replace-vars.php:1056
+#: admin/views/tabs/metas/paper-content/rss-content.php:30
+#: inc/class-wpseo-replace-vars.php:1056
 msgid "Variable"
 msgstr "Variable"
 
-#: admin/views/tabs/metas/rss.php:43
+#: admin/views/tabs/metas/paper-content/rss-content.php:24
 msgid "Available variables"
 msgstr "Available variables"
 
-#: admin/class-admin.php:289
+#: admin/class-admin.php:288
 msgid "Scroll to see the table content."
 msgstr "Scroll to see the table content."
 
@@ -2084,10 +2106,10 @@ msgstr "If you want more help creating awesome content, check out our %2$sSEO co
 #. percentage, %4$s expands to a link to a Yoast.com article 	   about keyword
 #. density, %5$s expands to the anchor end tag.
 #: languages/yoast-seo-js.php:167
-msgid "The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time."
-msgid_plural "The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times."
-msgstr[0] "The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time."
-msgstr[1] "The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times."
+msgid "The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time."
+msgid_plural "The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times."
+msgstr[0] "The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time."
+msgstr[1] "The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times."
 
 #: languages/yoast-components.php:29
 msgid "Step %1$d: %2$s"
@@ -2259,10 +2281,10 @@ msgstr "The %1$smeta description%2$s is over %3$d characters. Reducing the lengt
 #. the keyword count, 	   %3$s expands to a link to a Yoast.com article about
 #. keyword density, 	   %4$s expands to the anchor end tag.
 #: languages/yoast-seo-js.php:185
-msgid "The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time."
-msgid_plural "The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times."
-msgstr[0] "The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time."
-msgstr[1] "The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times."
+msgid "The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time."
+msgid_plural "The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times."
+msgstr[0] "The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time."
+msgstr[1] "The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times."
 
 #: admin/class-bulk-editor-list-table.php:896
 msgid "Save"
@@ -2346,7 +2368,7 @@ msgstr "Content optimization: OK SEO score"
 msgid "Content optimization: Good SEO score"
 msgstr "Content optimization: Good SEO score"
 
-#: admin/formatter/class-metabox-formatter.php:169
+#: admin/formatter/class-metabox-formatter.php:170
 #: languages/yoast-components.php:107 languages/yoast-seo-js.php:423
 msgid "Marks are disabled in current view"
 msgstr "Marks are disabled in current view"
@@ -2529,7 +2551,7 @@ msgstr "Please provide a meta description by editing the snippet below."
 msgid "Edit snippet"
 msgstr "Edit snippet"
 
-#: inc/class-wpseo-replace-vars.php:1351
+#: inc/class-wpseo-replace-vars.php:1352
 msgid "Name"
 msgstr "Name"
 
@@ -2598,11 +2620,11 @@ msgstr "We've noticed you've been using %1$s for some time now; we hope you love
 msgid "%s &rsaquo; Configuration Wizard"
 msgstr "%s &rsaquo; Configuration Wizard"
 
-#: admin/views/tabs/metas/archives.php:96
+#: admin/views/tabs/metas/archives.php:23
 msgid "Date archives settings"
 msgstr "Date archives settings"
 
-#: admin/views/tabs/metas/archives.php:46
+#: admin/views/tabs/metas/archives.php:19
 msgid "Author archives settings"
 msgstr "Author archives settings"
 
@@ -2620,7 +2642,7 @@ msgstr "%1$s by %2$s"
 
 #. translators: %s: '%%term_title%%' variable used in titles and meta's
 #. template that's not compatible with the given template
-#: admin/class-admin.php:285
+#: admin/class-admin.php:284
 msgid "Warning: the variable %s cannot be used in this template. See the help center for more info."
 msgstr "Warning: the variable %s cannot be used in this template. See the help center for more info."
 
@@ -2772,7 +2794,7 @@ msgid "Dash"
 msgstr "Dash"
 
 #: admin/config-ui/fields/class-field-separator.php:20
-#: admin/views/tabs/metas/general/title-separator.php:13
+#: admin/views/tabs/metas/paper-content/general/title-separator.php:13
 msgid "Choose the symbol to use as your title separator. This will display, for instance, between your post title and site name. Symbols are shown in the size they'll appear in the search results."
 msgstr "Choose the symbol to use as your title separator. This will display, for instance, between your post title and site name. Symbols are shown in the size they'll appear in the search results."
 
@@ -2789,7 +2811,7 @@ msgstr "The name of the person"
 #: admin/config-ui/fields/class-field-multiple-authors.php:24
 #: admin/metabox/class-metabox.php:87 admin/metabox/class-metabox.php:92
 #: admin/taxonomy/class-taxonomy-settings-fields.php:68
-#: admin/views/tabs/metas/media.php:34
+#: admin/views/tabs/metas/paper-content/media-content.php:22
 msgid "No"
 msgstr "No"
 
@@ -2798,7 +2820,7 @@ msgstr "No"
 #: admin/config-ui/fields/class-field-multiple-authors.php:23
 #: admin/metabox/class-metabox.php:86 admin/metabox/class-metabox.php:91
 #: admin/taxonomy/class-taxonomy-settings-fields.php:67
-#: admin/views/tabs/metas/media.php:33
+#: admin/views/tabs/metas/paper-content/media-content.php:21
 msgid "Yes"
 msgstr "Yes"
 
@@ -2892,7 +2914,7 @@ msgstr "Posts list navigation"
 msgid "Filter posts list"
 msgstr "Filter posts list"
 
-#: admin/views/tabs/metas/archives.php:31
+#: admin/views/tabs/metas/archives/help.php:22
 msgid "Note that links to archives might be still output by your theme and you would need to remove them separately."
 msgstr "Note that links to archives might be still output by your theme and you would need to remove them separately."
 
@@ -3058,7 +3080,7 @@ msgid_plural "%s notifications"
 msgstr[0] "%s notification"
 msgstr[1] "%s notifications"
 
-#: admin/class-admin.php:288
+#: admin/class-admin.php:287
 msgid "Yoast SEO video tutorial"
 msgstr "Yoast SEO video tutorial"
 
@@ -3095,15 +3117,15 @@ msgstr "Content optimization"
 msgid "Make primary"
 msgstr "Make primary"
 
-#: admin/views/tabs/metas/breadcrumbs.php:18
+#: admin/views/tabs/metas/breadcrumbs.php:15
 msgid "Breadcrumbs settings"
 msgstr "Breadcrumbs settings"
 
-#: admin/views/tabs/metas/rss.php:25
+#: admin/views/tabs/metas/rss.php:15
 msgid "RSS feed settings"
 msgstr "RSS feed settings"
 
-#: admin/views/tabs/metas/general/title-separator.php:21
+#: admin/views/tabs/metas/paper-content/general/title-separator.php:21
 msgid "Title separator symbol"
 msgstr "Title separator symbol"
 
@@ -3164,13 +3186,13 @@ msgstr "Filter by SEO Score"
 msgid "Not available"
 msgstr "Not available"
 
-#: admin/formatter/class-metabox-formatter.php:132
+#: admin/formatter/class-metabox-formatter.php:133
 #: admin/metabox/class-metabox.php:64
 #: admin/taxonomy/class-taxonomy-content-fields.php:36
 msgid "Analysis"
 msgstr "Analysis"
 
-#: admin/formatter/class-metabox-formatter.php:161
+#: admin/formatter/class-metabox-formatter.php:162
 #: admin/views/partial-alerts-errors.php:11 languages/yoast-components.php:128
 msgid "Problems"
 msgstr "Problems"
@@ -3192,18 +3214,18 @@ msgstr "Dismiss this item."
 msgid "Restore this item."
 msgstr "Restore this item."
 
-#: admin/formatter/class-metabox-formatter.php:162
+#: admin/formatter/class-metabox-formatter.php:163
 #: languages/yoast-components.php:131
 msgid "Improvements"
 msgstr "Improvements"
 
-#: admin/class-admin-init.php:150
+#: admin/class-admin-init.php:177
 msgid "Paging comments is enabled, this is not needed in 999 out of 1000 cases, we recommend to disable it."
 msgstr "Paging comments is enabled, this is not needed in 999 out of 1000 cases, we recommend to disable it."
 
 #. translators: %1$s resolves to the starting tag of the link to the permalink
 #. settings page, %2$s resolves to the closing tag of the link
-#: admin/class-admin-init.php:202
+#: admin/class-admin-init.php:229
 msgid "You can fix this on the %1$sPermalink settings page%2$s."
 msgstr "You can fix this on the %1$sPermalink settings page%2$s."
 
@@ -3244,7 +3266,7 @@ msgstr "Pick the main keyword or keyphrase that this post/page is about. %1$sLea
 msgid "This is the content analysis, a collection of content checks that analyze the content of your page. %1$sLearn more about the Content Analysis Tool%2$s."
 msgstr "This is the content analysis, a collection of content checks that analyze the content of your page. %1$sLearn more about the Content Analysis Tool%2$s."
 
-#: inc/class-wpseo-replace-vars.php:1323
+#: inc/class-wpseo-replace-vars.php:1324
 msgid "Replaced with the primary category of the post/page"
 msgstr "Replaced with the primary category of the post/page"
 
@@ -3252,7 +3274,7 @@ msgstr "Replaced with the primary category of the post/page"
 msgid "Pinterest confirmation"
 msgstr "Pinterest confirmation"
 
-#: admin/views/tabs/metas/taxonomies.php:31
+#: admin/views/tabs/metas/paper-content/taxonomy-content.php:17
 msgid "Format-based archives"
 msgstr "Format-based archives"
 
@@ -3325,19 +3347,19 @@ msgstr "Expected an integer as input."
 msgid "Trying to build the sitemap cache key, but the postfix and prefix combination leaves too little room to do this. You are probably requesting a page that is way out of the expected range."
 msgstr "Trying to build the sitemap cache key, but the postfix and prefix combination leaves too little room to do this. You are probably requesting a page that is way out of the expected range."
 
-#: admin/views/tabs/metas/breadcrumbs.php:42
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:31
 msgid "Regular"
 msgstr "Regular"
 
-#: admin/views/tabs/metas/taxonomies.php:74
+#: admin/views/tabs/metas/taxonomies/category-url.php:10
 msgid "Remove"
 msgstr "Remove"
 
-#: admin/views/tabs/metas/breadcrumbs.php:43
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:32
 msgid "Bold the last page"
 msgstr "Bold the last page"
 
-#: admin/views/tabs/metas/taxonomies.php:74
+#: admin/views/tabs/metas/taxonomies/category-url.php:10
 msgid "Keep"
 msgstr "Keep"
 
@@ -3345,7 +3367,7 @@ msgstr "Keep"
 msgid "Primary"
 msgstr "Primary"
 
-#: admin/views/tabs/metas/breadcrumbs.php:41
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:30
 msgid "Bold"
 msgstr "Bold"
 
@@ -3355,7 +3377,7 @@ msgstr "Bold"
 msgid "Make %1$s primary %2$s"
 msgstr "Make %1$s primary %2$s"
 
-#: admin/views/tabs/metas/breadcrumbs.php:37
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:26
 msgid "Show Blog page"
 msgstr "Show Blog page"
 
@@ -3368,7 +3390,7 @@ msgstr "Primary %s"
 msgid "Term is set to noindex."
 msgstr "Term is set to noindex."
 
-#: admin/views/tabs/metas/archives.php:50
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:18
 msgid "Author archives"
 msgstr "Author archives"
 
@@ -3376,15 +3398,17 @@ msgstr "Author archives"
 msgid "Show"
 msgstr "Show"
 
-#: admin/class-yoast-form.php:296 admin/views/tabs/metas/archives.php:48
-#: admin/views/tabs/metas/archives.php:98
-#: admin/views/tabs/metas/taxonomies.php:32
+#: admin/class-yoast-form.php:296
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:15
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:15
+#: admin/views/tabs/metas/paper-content/taxonomy-content.php:18
 msgid "Enabled"
 msgstr "Enabled"
 
-#: admin/class-yoast-form.php:296 admin/views/tabs/metas/archives.php:49
-#: admin/views/tabs/metas/archives.php:99
-#: admin/views/tabs/metas/taxonomies.php:32
+#: admin/class-yoast-form.php:296
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:16
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:16
+#: admin/views/tabs/metas/paper-content/taxonomy-content.php:18
 msgid "Disabled"
 msgstr "Disabled"
 
@@ -3430,7 +3454,7 @@ msgid "No index"
 msgstr "No index"
 
 #. translators: %s: wp_title() function.
-#: inc/class-wpseo-replace-vars.php:1331
+#: inc/class-wpseo-replace-vars.php:1332
 msgid "The separator defined in your theme's %s tag."
 msgstr "The separator defined in your theme's %s tag."
 
@@ -3492,7 +3516,7 @@ msgstr "Snippet editor"
 
 #. translators: 1: is a link to 'admin_url /
 #. admin.php?page=wpseo_tools&recalculate=1' 2: closing link tag
-#: admin/class-admin-init.php:402
+#: admin/class-admin-init.php:429
 msgid "We've updated our SEO score algorithm. %1$sRecalculate the SEO scores%2$s for all posts and pages."
 msgstr "We've updated our SEO score algorithm. %1$sRecalculate the SEO scores%2$s for all posts and pages."
 
@@ -3617,7 +3641,7 @@ msgstr "The default blog setting must be the numeric blog id of the blog you wan
 msgid "%s failed to check for updates because of the following error: <em>%s</em>"
 msgstr "%s failed to check for updates because of the following error: <em>%s</em>"
 
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.8)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 7.9)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:68
 msgid "Yoast SEO"
@@ -3824,8 +3848,9 @@ msgstr[1] "<a href=\"%s\">Your license is expiring in %d days, would you like to
 msgid "Credits"
 msgstr "Credits"
 
-#: admin/views/tabs/metas/rss.php:50 admin/views/tabs/social/facebook.php:45
-#: admin/views/tool-bulk-editor.php:79 inc/class-wpseo-replace-vars.php:1057
+#: admin/views/tabs/metas/paper-content/rss-content.php:31
+#: admin/views/tabs/social/facebook.php:45 admin/views/tool-bulk-editor.php:79
+#: inc/class-wpseo-replace-vars.php:1057
 msgid "Description"
 msgstr "Description"
 
@@ -3848,7 +3873,7 @@ msgstr "Image URL"
 msgid "Twitter Username"
 msgstr "Twitter Username"
 
-#: admin/views/tabs/metas/breadcrumbs.php:88
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:77
 msgid "Blog"
 msgstr "Blog"
 
@@ -3857,7 +3882,7 @@ msgstr "Blog"
 msgid "Google+ URL"
 msgstr "Google+ URL"
 
-#: inc/class-wpseo-replace-vars.php:1356
+#: inc/class-wpseo-replace-vars.php:1357
 msgid "Attachment caption"
 msgstr "Attachment caption"
 
@@ -3964,89 +3989,89 @@ msgstr "%1$s comes with some very powerful built-in tools:"
 msgid "&laquo; Back to Tools page"
 msgstr "&laquo; Back to Tools page"
 
-#: admin/views/tabs/metas/breadcrumbs.php:109
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:98
 msgid "How to insert breadcrumbs in your theme"
 msgstr "How to insert breadcrumbs in your theme"
 
 #. translators: %1$s / %2$s: links to the breadcrumbs implementation page on
 #. the Yoast knowledgebase
-#: admin/views/tabs/metas/breadcrumbs.php:114
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:103
 msgid "Usage of this breadcrumbs feature is explained in %1$sour knowledge-base article on breadcrumbs implementation%2$s."
 msgstr "Usage of this breadcrumbs feature is explained in %1$sour knowledge-base article on breadcrumbs implementation%2$s."
 
-#: admin/views/tabs/metas/rss.php:33
+#: admin/views/tabs/metas/paper-content/rss-content.php:14
 msgid "Content to put before each post in the feed"
 msgstr "Content to put before each post in the feed"
 
-#: admin/views/tabs/metas/rss.php:34
+#: admin/views/tabs/metas/paper-content/rss-content.php:15
 msgid "Content to put after each post in the feed"
 msgstr "Content to put after each post in the feed"
 
-#: admin/views/tabs/metas/rss.php:39
+#: admin/views/tabs/metas/paper-content/rss-content.php:20
 msgid "You can use the following variables within the content, they will be replaced by the value on the right."
 msgstr "You can use the following variables within the content, they will be replaced by the value on the right."
 
-#: admin/views/tabs/metas/rss.php:56
+#: admin/views/tabs/metas/paper-content/rss-content.php:37
 msgid "A link to the archive for the post author, with the authors name as anchor text."
 msgstr "A link to the archive for the post author, with the authors name as anchor text."
 
-#: admin/views/tabs/metas/rss.php:60
+#: admin/views/tabs/metas/paper-content/rss-content.php:41
 msgid "A link to the post, with the title as anchor text."
 msgstr "A link to the post, with the title as anchor text."
 
-#: admin/views/tabs/metas/rss.php:64
+#: admin/views/tabs/metas/paper-content/rss-content.php:45
 msgid "A link to your site, with your site's name as anchor text."
 msgstr "A link to your site, with your site's name as anchor text."
 
-#: admin/views/tabs/metas/rss.php:68
+#: admin/views/tabs/metas/paper-content/rss-content.php:49
 msgid "A link to your site, with your site's name and description as anchor text."
 msgstr "A link to your site, with your site's name and description as anchor text."
 
-#: admin/views/tabs/metas/breadcrumbs.php:21
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:11
 msgid "Enable Breadcrumbs"
 msgstr "Enable Breadcrumbs"
 
-#: admin/views/tabs/metas/breadcrumbs.php:27
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:16
 msgid "Separator between breadcrumbs"
 msgstr "Separator between breadcrumbs"
 
-#: admin/views/tabs/metas/breadcrumbs.php:28
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:17
 msgid "Anchor text for the Homepage"
 msgstr "Anchor text for the Homepage"
 
-#: admin/views/tabs/metas/breadcrumbs.php:29
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:18
 msgid "Prefix for the breadcrumb path"
 msgstr "Prefix for the breadcrumb path"
 
-#: admin/views/tabs/metas/breadcrumbs.php:30
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:19
 msgid "Prefix for Archive breadcrumbs"
 msgstr "Prefix for Archive breadcrumbs"
 
-#: admin/views/tabs/metas/breadcrumbs.php:31
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:20
 msgid "Prefix for Search Page breadcrumbs"
 msgstr "Prefix for Search Page breadcrumbs"
 
-#: admin/views/tabs/metas/breadcrumbs.php:32
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:21
 msgid "Breadcrumb for 404 Page"
 msgstr "Breadcrumb for 404 Page"
 
-#: inc/class-wpseo-replace-vars.php:1357
+#: inc/class-wpseo-replace-vars.php:1358
 msgid "Replaced with the posts focus keyword"
 msgstr "Replaced with the posts focus keyword"
 
-#: inc/class-wpseo-replace-vars.php:1358
+#: inc/class-wpseo-replace-vars.php:1359
 msgid "Replaced with the slug which caused the 404"
 msgstr "Replaced with the slug which caused the 404"
 
-#: inc/class-wpseo-replace-vars.php:1359
+#: inc/class-wpseo-replace-vars.php:1360
 msgid "Replaced with a posts custom field value"
 msgstr "Replaced with a posts custom field value"
 
-#: inc/class-wpseo-replace-vars.php:1360
+#: inc/class-wpseo-replace-vars.php:1361
 msgid "Replaced with a posts custom taxonomies, comma separated."
 msgstr "Replaced with a posts custom taxonomies, comma separated."
 
-#: inc/class-wpseo-replace-vars.php:1361
+#: inc/class-wpseo-replace-vars.php:1362
 msgid "Replaced with a custom taxonomies description"
 msgstr "Replaced with a custom taxonomies description"
 
@@ -4079,39 +4104,39 @@ msgstr "Replaced with the title of the parent page of the current page"
 msgid "The site's name"
 msgstr "The site's name"
 
-#: inc/class-wpseo-replace-vars.php:1319
+#: inc/class-wpseo-replace-vars.php:1320
 msgid "Replaced with the post/page excerpt (or auto-generated if it does not exist)"
 msgstr "Replaced with the post/page excerpt (or auto-generated if it does not exist)"
 
-#: inc/class-wpseo-replace-vars.php:1320
+#: inc/class-wpseo-replace-vars.php:1321
 msgid "Replaced with the post/page excerpt (without auto-generation)"
 msgstr "Replaced with the post/page excerpt (without auto-generation)"
 
-#: inc/class-wpseo-replace-vars.php:1321
+#: inc/class-wpseo-replace-vars.php:1322
 msgid "Replaced with the current tag/tags"
 msgstr "Replaced with the current tag/tags"
 
-#: inc/class-wpseo-replace-vars.php:1322
+#: inc/class-wpseo-replace-vars.php:1323
 msgid "Replaced with the post categories (comma separated)"
 msgstr "Replaced with the post categories (comma separated)"
 
-#: inc/class-wpseo-replace-vars.php:1324
+#: inc/class-wpseo-replace-vars.php:1325
 msgid "Replaced with the category description"
 msgstr "Replaced with the category description"
 
-#: inc/class-wpseo-replace-vars.php:1325
+#: inc/class-wpseo-replace-vars.php:1326
 msgid "Replaced with the tag description"
 msgstr "Replaced with the tag description"
 
-#: inc/class-wpseo-replace-vars.php:1326
+#: inc/class-wpseo-replace-vars.php:1327
 msgid "Replaced with the term description"
 msgstr "Replaced with the term description"
 
-#: inc/class-wpseo-replace-vars.php:1327
+#: inc/class-wpseo-replace-vars.php:1328
 msgid "Replaced with the term name"
 msgstr "Replaced with the term name"
 
-#: inc/class-wpseo-replace-vars.php:1328
+#: inc/class-wpseo-replace-vars.php:1329
 msgid "Replaced with the current search phrase"
 msgstr "Replaced with the current search phrase"
 
@@ -4119,31 +4144,31 @@ msgstr "Replaced with the current search phrase"
 msgid "A replacement variable can not start with \"%%cf_\" or \"%%ct_\" as these are reserved for the WPSEO standard variable variables for custom fields and custom taxonomies. Try making your variable name unique."
 msgstr "A replacement variable can not start with \"%%cf_\" or \"%%ct_\" as these are reserved for the WPSEO standard variable variables for custom fields and custom taxonomies. Try making your variable name unique."
 
-#: inc/class-wpseo-replace-vars.php:1349
+#: inc/class-wpseo-replace-vars.php:1350
 msgid "Replaced with the post/page modified time"
 msgstr "Replaced with the post/page modified time"
 
-#: inc/class-wpseo-replace-vars.php:1350
+#: inc/class-wpseo-replace-vars.php:1351
 msgid "Replaced with the post/page ID"
 msgstr "Replaced with the post/page ID"
 
-#: inc/class-wpseo-replace-vars.php:1351
+#: inc/class-wpseo-replace-vars.php:1352
 msgid "Replaced with the post/page author's 'nicename'"
 msgstr "Replaced with the post/page author's 'nicename'"
 
-#: inc/class-wpseo-replace-vars.php:1352
+#: inc/class-wpseo-replace-vars.php:1353
 msgid "Replaced with the post/page author's 'Biographical Info'"
 msgstr "Replaced with the post/page author's 'Biographical Info'"
 
-#: inc/class-wpseo-replace-vars.php:1353
+#: inc/class-wpseo-replace-vars.php:1354
 msgid "Replaced with the current page number with context (i.e. page 2 of 4)"
 msgstr "Replaced with the current page number with context (i.e. page 2 of 4)"
 
-#: inc/class-wpseo-replace-vars.php:1354
+#: inc/class-wpseo-replace-vars.php:1355
 msgid "Replaced with the current page total"
 msgstr "Replaced with the current page total"
 
-#: inc/class-wpseo-replace-vars.php:1355
+#: inc/class-wpseo-replace-vars.php:1356
 msgid "Replaced with the current page number"
 msgstr "Replaced with the current page number"
 
@@ -4161,20 +4186,20 @@ msgid "Meta description to use for Author page"
 msgstr "Meta description to use for Author page"
 
 #. translators: %s expands to the search phrase.
-#: frontend/class-frontend.php:488
+#: frontend/class-frontend.php:491
 msgid "Search for \"%s\""
 msgstr "Search for \"%s\""
 
 #. translators: %s expands to a time period, i.e. month name, year or specific
 #. date.
 #. translators: %s expands to the variable used for term title.
-#: frontend/class-frontend.php:529 frontend/class-frontend.php:533
-#: frontend/class-frontend.php:537
+#: frontend/class-frontend.php:532 frontend/class-frontend.php:536
+#: frontend/class-frontend.php:540
 #: inc/options/class-wpseo-option-titles.php:266
 msgid "%s Archives"
 msgstr "%s Archives"
 
-#: frontend/class-frontend.php:552
+#: frontend/class-frontend.php:555
 #: inc/options/class-wpseo-option-titles.php:201
 msgid "Page not found"
 msgstr "Page not found"
@@ -4241,25 +4266,25 @@ msgstr "You don't have a %s file, create one here:"
 msgid "Import settings by locating %1$ssettings.zip%2$s and clicking \"Import settings\""
 msgstr "Import settings by locating %1$ssettings.zip%2$s and clicking \"Import settings\""
 
-#: admin/views/tabs/metas/breadcrumbs.php:53
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:42
 msgid "Taxonomy to show in breadcrumbs for content types"
 msgstr "Taxonomy to show in breadcrumbs for content types"
 
-#: admin/views/tabs/metas/breadcrumbs.php:84
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:73
 msgid "Content type archive to show in breadcrumbs for taxonomies"
 msgstr "Content type archive to show in breadcrumbs for taxonomies"
 
-#: inc/class-wpseo-replace-vars.php:1347
+#: inc/class-wpseo-replace-vars.php:1348
 msgid "Replaced with the content type single label"
 msgstr "Replaced with the content type single label"
 
-#: inc/class-wpseo-replace-vars.php:1348
+#: inc/class-wpseo-replace-vars.php:1349
 msgid "Replaced with the content type plural label"
 msgstr "Replaced with the content type plural label"
 
 #. Translators: %1$s resolves to the SEO menu item, %2$s resolves to the Search
 #. Appearance submenu item.
-#: frontend/class-frontend.php:1218
+#: frontend/class-frontend.php:1221
 msgid "Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [%1$s - %2$s] menu and set up a template."
 msgstr "Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [%1$s - %2$s] menu and set up a template."
 
@@ -4287,12 +4312,12 @@ msgid "Search"
 msgstr "Search"
 
 #: admin/config-ui/fields/class-field-company-or-person.php:24
-#: admin/views/tabs/metas/general/knowledge-graph.php:28
-#: admin/views/tabs/metas/general/knowledge-graph.php:33
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:28
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:33
 msgid "Company"
 msgstr "Company"
 
-#: admin/views/tabs/metas/general/homepage.php:21
+#: admin/views/tabs/metas/paper-content/general/homepage.php:21
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -4320,7 +4345,7 @@ msgstr "RSS"
 msgid "Yoast plugins share some code between them to make your site faster. As a result of that, we need all Yoast plugins to be up to date. We've detected this isn't the case, so please update the Yoast plugins that aren't up to date yet."
 msgstr "Yoast plugins share some code between them to make your site faster. As a result of that, we need all Yoast plugins to be up to date. We've detected this isn't the case, so please update the Yoast plugins that aren't up to date yet."
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:41
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:41
 msgid "Your name"
 msgstr "Your name"
 
@@ -4330,8 +4355,8 @@ msgid "Desktop"
 msgstr "Desktop"
 
 #: admin/config-ui/fields/class-field-company-or-person.php:25
-#: admin/views/tabs/metas/general/knowledge-graph.php:29
-#: admin/views/tabs/metas/general/knowledge-graph.php:40
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:29
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:40
 msgid "Person"
 msgstr "Person"
 
@@ -4473,32 +4498,34 @@ msgid "Website name"
 msgstr "Website name"
 
 #: admin/config-ui/class-configuration-structure.php:26
-#: admin/views/tabs/metas/general/knowledge-graph.php:26
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:26
 msgid "Company or person"
 msgstr "Company or person"
 
 #. translators: %1$s / %2$s: links to an article about duplicate content on
 #. yoast.com
-#: admin/views/tabs/metas/archives.php:20
+#: admin/views/tabs/metas/archives/help.php:13
 msgid "If you're running a one author blog, the author archive will be exactly the same as your homepage. This is what's called a %1$sduplicate content problem%2$s."
 msgstr "If you're running a one author blog, the author archive will be exactly the same as your homepage. This is what's called a %1$sduplicate content problem%2$s."
 
 #. translators: %s expands to <code>noindex, follow</code>
-#: admin/views/tabs/metas/archives.php:27
+#: admin/views/tabs/metas/archives/help.php:19
 msgid "If this is the case on your site, you can choose to either disable it (which makes it redirect to the homepage), or to add %s to it so it doesn't show up in the search results."
 msgstr "If this is the case on your site, you can choose to either disable it (which makes it redirect to the homepage), or to add %s to it so it doesn't show up in the search results."
 
-#: admin/views/tabs/metas/archives.php:33
+#: admin/views/tabs/metas/archives/help.php:23
 msgid "Date-based archives could in some cases also be seen as duplicate content."
 msgstr "Date-based archives could in some cases also be seen as duplicate content."
 
 #. translators: %1$s expands to Yoast SEO
-#: admin/views/class-view-utils.php:108
-#: admin/views/tabs/metas/taxonomies.php:56
+#: admin/views/class-view-utils.php:92
+#: admin/views/tabs/metas/paper-content/post_type/post-type.php:32
+#: admin/views/tabs/metas/paper-content/taxonomy-content.php:51
 msgid "%1$s Meta Box"
 msgstr "%1$s Meta Box"
 
-#: admin/views/class-view-utils.php:102
+#: admin/views/class-view-utils.php:86
+#: admin/views/tabs/metas/paper-content/post_type/post-type.php:26
 msgid "Date in Snippet Preview"
 msgstr "Date in Snippet Preview"
 
@@ -4530,38 +4557,38 @@ msgstr "Seamlessly integrate WooCommerce with %1$s and get extra features!"
 msgid "%1$s Extensions"
 msgstr "%1$s Extensions"
 
-#: admin/views/tabs/metas/archives.php:139
+#: admin/views/tabs/metas/archives.php:27
 msgid "Special Pages"
 msgstr "Special Pages"
 
 #. translators: %s expands to <code>noindex, follow</code>.
-#: admin/views/tabs/metas/archives.php:132
+#: admin/views/tabs/metas/paper-content/special-pages.php:15
 msgid "These pages will be %s by default, so they will never show up in search results."
 msgstr "These pages will be %s by default, so they will never show up in search results."
 
-#: admin/views/tabs/metas/archives.php:142
+#: admin/views/tabs/metas/paper-content/special-pages.php:21
 msgid "Search pages"
 msgstr "Search pages"
 
-#: admin/views/tabs/metas/archives.php:145
+#: admin/views/tabs/metas/paper-content/special-pages.php:26
 msgid "404 pages"
 msgstr "404 pages"
 
-#: admin/views/tabs/metas/general/force-rewrite-title.php:14
+#: admin/views/tabs/metas/paper-content/general/force-rewrite-title.php:14
 msgid "Force rewrite titles"
 msgstr "Force rewrite titles"
 
 #. translators: %1$s expands to Yoast SEO
-#: admin/views/tabs/metas/general/force-rewrite-title.php:18
+#: admin/views/tabs/metas/paper-content/general/force-rewrite-title.php:18
 msgid "%1$s has auto-detected whether it needs to force rewrite the titles for your pages, if you think it's wrong and you know what you're doing, you can change the setting here."
 msgstr "%1$s has auto-detected whether it needs to force rewrite the titles for your pages, if you think it's wrong and you know what you're doing, you can change the setting here."
 
 #: admin/config-ui/fields/class-field-separator.php:19
-#: admin/views/tabs/metas/general/title-separator.php:18
+#: admin/views/tabs/metas/paper-content/general/title-separator.php:18
 msgid "Title Separator"
 msgstr "Title Separator"
 
-#: admin/views/tabs/metas/general/homepage.php:28
+#: admin/views/tabs/metas/paper-content/general/homepage.php:37
 msgid "Homepage &amp; Front page"
 msgstr "Homepage &amp; Front page"
 
@@ -4648,25 +4675,25 @@ msgstr "Site Admins (default)"
 msgid "Super Admins only"
 msgstr "Super Admins only"
 
-#: admin/views/tabs/metas/archives.php:100
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:18
 msgid "Date archives"
 msgstr "Date archives"
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:27
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:27
 msgid "Choose whether you're a company or person"
 msgstr "Choose whether you're a company or person"
 
-#: admin/class-admin-init.php:198
+#: admin/class-admin-init.php:225
 msgid "You do not have your postname in the URL of your posts and pages, it is highly recommended that you do. Consider setting your permalink structure to <strong>/%postname%/</strong>."
 msgstr "You do not have your postname in the URL of your posts and pages, it is highly recommended that you do. Consider setting your permalink structure to <strong>/%postname%/</strong>."
 
 #. translators: 1: link open tag; 2: link close tag.
-#: admin/views/tabs/metas/general/homepage.php:32
+#: admin/views/tabs/metas/paper-content/general/homepage.php:41
 msgid "You can determine the title and description for the front page by %1$sediting the front page itself &raquo;%2$s"
 msgstr "You can determine the title and description for the front page by %1$sediting the front page itself &raquo;%2$s"
 
 #. translators: 1: link open tag; 2: link close tag.
-#: admin/views/tabs/metas/general/homepage.php:41
+#: admin/views/tabs/metas/paper-content/general/homepage.php:50
 msgid "You can determine the title and description for the blog page by %1$sediting the blog page itself &raquo;%2$s"
 msgstr "You can determine the title and description for the blog page by %1$sediting the blog page itself &raquo;%2$s"
 
@@ -4675,21 +4702,21 @@ msgstr "You can determine the title and description for the blog page by %1$sedi
 msgid "Enter the %1$sSite ID%2$s for the site whose settings you want to use as default for all sites that are added to your network. Leave empty for none (i.e. the normal plugin defaults will be used)."
 msgstr "Enter the %1$sSite ID%2$s for the site whose settings you want to use as default for all sites that are added to your network. Leave empty for none (i.e. the normal plugin defaults will be used)."
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:36
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:36
 msgid "Company logo"
 msgstr "Company Logo"
 
-#: admin/views/tabs/metas/general/knowledge-graph.php:35
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:35
 msgid "Company name"
 msgstr "Company name"
 
-#: admin/views/tabs/metas/archives.php:68
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:40
 msgid "author archives"
 msgstr "author archives"
 
 #. translators: %1$s opens the link to the Yoast.com article about Google's
 #. Knowledge Graph, %2$s closes the link,
-#: admin/views/tabs/metas/general/knowledge-graph.php:15
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:15
 msgid "This data is shown as metadata in your site. It is intended to appear in %1$sGoogle's Knowledge Graph%2$s. You can be either a company, or a person."
 msgstr "This data is shown as metadata in your site. It is intended to appear in %1$sGoogle's Knowledge Graph%2$s. You can be either a company, or a person."
 
@@ -4760,7 +4787,7 @@ msgstr "Access denied"
 msgid "Blocked"
 msgstr "Blocked"
 
-#: admin/pages/metas.php:25 frontend/class-frontend.php:540
+#: admin/pages/metas.php:25 frontend/class-frontend.php:543
 msgid "Archives"
 msgstr "Archives"
 
@@ -4869,7 +4896,7 @@ msgstr "Google was unable to crawl this URL due to an undetermined issue."
 msgid "Googlebot could access your site, but certain URLs are blocked for Googlebot in your %1$s file. This block could either be for all Googlebots or even specifically for Googlebot-mobile."
 msgstr "Googlebot could access your site, but certain URLs are blocked for Googlebot in your %1$s file. This block could either be for all Googlebots or even specifically for Googlebot-mobile."
 
-#: admin/views/tabs/metas/post-types.php:112
+#: admin/views/tabs/metas/paper-content/post-type-content.php:63
 msgid "Breadcrumbs title"
 msgstr "Breadcrumbs title"
 
@@ -4974,22 +5001,6 @@ msgstr "The focus keyword appears in the %1$sfirst paragraph%2$s of the copy."
 msgid "The focus keyword doesn't appear in the %1$sfirst paragraph%2$s of the copy. Make sure the topic is clear immediately."
 msgstr "The focus keyword doesn't appear in the %1$sfirst paragraph%2$s of the copy. Make sure the topic is clear immediately."
 
-#: languages/yoast-seo-js.php:176
-msgid "The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time."
-msgid_plural "The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times."
-msgstr[0] "The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time."
-msgstr[1] "The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times."
-
-#. Translators: %1$s expands to the keyword density percentage, %2$d expands to
-#. the keyword count, 	   %3$s expands to the maximum keyword density
-#. percentage, %4$s expands to a link to a Yoast.com article 	   about keyword
-#. density, %5$s expands to the anchor end tag.
-#: languages/yoast-seo-js.php:173
-msgid "The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time."
-msgid_plural "The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times."
-msgstr[0] "The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time."
-msgstr[1] "The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times."
-
 #. Translators: %1$s expands to a link on yoast.com, %2$s expands to the anchor
 #. end tag
 #: languages/yoast-seo-js.php:217
@@ -5073,11 +5084,27 @@ msgstr "The focus keyword does not appear in the %1$sURL%2$s for this page. If y
 msgid "No %1$sfocus keyword%2$s was set for this page. If you do not set a focus keyword, no score can be calculated."
 msgstr "No %1$sfocus keyword%2$s was set for this page. If you do not set a focus keyword, no score can be calculated."
 
+#: languages/yoast-seo-js.php:176
+msgid "The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time."
+msgid_plural "The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times."
+msgstr[0] "The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time."
+msgstr[1] "The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times."
+
+#. Translators: %1$s expands to the keyword density percentage, %2$d expands to
+#. the keyword count, 	   %3$s expands to the maximum keyword density
+#. percentage, %4$s expands to a link to a Yoast.com article 	   about keyword
+#. density, %5$s expands to the anchor end tag.
+#: languages/yoast-seo-js.php:173
+msgid "The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time."
+msgid_plural "The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times."
+msgstr[0] "The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time."
+msgstr[1] "The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times."
+
 #: admin/class-bulk-editor-list-table.php:434
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/class-admin.php:203
+#: admin/class-admin.php:202
 #: admin/google_search_console/class-gsc-platform-tabs.php:42
 #: admin/taxonomy/class-taxonomy-metabox.php:163
 #: admin/taxonomy/class-taxonomy-metabox.php:171
@@ -5086,12 +5113,13 @@ msgid "Settings"
 msgstr "Settings"
 
 #: admin/metabox/class-metabox.php:98 admin/pages/network.php:59
-#: admin/views/tabs/metas/breadcrumbs.php:57
-#: admin/views/tabs/metas/breadcrumbs.php:86 inc/class-wpseo-meta.php:398
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:46
+#: admin/views/tabs/metas/paper-content/breadcrumbs-content.php:75
+#: inc/class-wpseo-meta.php:398
 msgid "None"
 msgstr "None"
 
-#: admin/class-admin.php:217
+#: admin/class-admin.php:216
 msgid "Premium Support"
 msgstr "Premium Support"
 
@@ -5144,11 +5172,11 @@ msgstr[1] "All <span class=\"count\">(%s)</span>"
 msgid "Edit"
 msgstr "Edit"
 
-#: admin/class-admin.php:532
+#: admin/class-admin.php:531
 msgid "For more information:"
 msgstr "For more information:"
 
-#: admin/class-admin.php:167
+#: admin/class-admin.php:166
 msgid "Posts"
 msgstr "Posts"
 
@@ -5160,16 +5188,16 @@ msgstr "Posts"
 msgid "Social"
 msgstr "Social"
 
-#: admin/menu/class-network-admin-menu.php:68
 #: admin/menu/class-network-admin-menu.php:69
+#: admin/menu/class-network-admin-menu.php:70
 msgid "Extensions"
 msgstr "Extensions"
 
-#: admin/class-admin.php:221
+#: admin/class-admin.php:220
 msgid "FAQ"
 msgstr "FAQ"
 
-#: admin/class-admin.php:256 admin/pages/social.php:22
+#: admin/class-admin.php:255 admin/pages/social.php:22
 msgid "Google+"
 msgstr "Google+"
 
@@ -5178,7 +5206,7 @@ msgid "Post Status"
 msgstr "Post Status"
 
 #: admin/menu/class-admin-menu.php:49
-#: admin/menu/class-network-admin-menu.php:48 frontend/class-frontend.php:1219
+#: admin/menu/class-network-admin-menu.php:48 frontend/class-frontend.php:1222
 #: inc/wpseo-non-ajax-functions.php:110
 msgid "SEO"
 msgstr "SEO"
@@ -5189,7 +5217,7 @@ msgid "Canonical URL"
 msgstr "Canonical URL"
 
 #: admin/class-config.php:124 admin/metabox/class-metabox.php:938
-#: admin/taxonomy/class-taxonomy.php:126
+#: admin/taxonomy/class-taxonomy.php:124
 msgid "Use Image"
 msgstr "Use Image"
 
@@ -5216,11 +5244,11 @@ msgid "You have used HTML in your value which is not allowed."
 msgstr "You have used HTML in your value which is not allowed."
 
 #. translators: 1: link open tag; 2: link close tag.
-#: admin/class-admin-init.php:92
+#: admin/class-admin-init.php:119
 msgid "You still have the default WordPress tagline, even an empty one is probably better. %1$sYou can fix this in the customizer%2$s."
 msgstr "You still have the default WordPress tagline, even an empty one is probably better. %1$sYou can fix this in the customizer%2$s."
 
-#: admin/class-admin-init.php:188
+#: admin/class-admin-init.php:215
 msgid "Just another WordPress site"
 msgstr "Just another WordPress site"
 
@@ -5228,7 +5256,7 @@ msgstr "Just another WordPress site"
 #. to Google Analytics by Yoast
 #. translators: %1$s expands to Yoast SEO, %2$s expands to the plugin version,
 #. %3$s expands to the plugin name
-#: admin/class-admin-init.php:259 admin/class-admin-init.php:362
+#: admin/class-admin-init.php:286 admin/class-admin-init.php:389
 msgid "%1$s detected you are using version %2$s of %3$s, please update to the latest version to prevent compatibility issues."
 msgstr "%1$s detected you are using version %2$s of %3$s, please update to the latest version to prevent compatibility issues."
 
@@ -5236,33 +5264,33 @@ msgstr "%1$s detected you are using version %2$s of %3$s, please update to the l
 msgid "Search Console"
 msgstr "Search Console"
 
-#: admin/class-admin.php:533
+#: admin/class-admin.php:532
 msgid "Title optimization"
 msgstr "Title optimization"
 
-#: admin/class-admin.php:534
+#: admin/class-admin.php:533
 msgid "Why Google won't display the right page title"
 msgstr "Why Google won't display the right page title"
 
-#: admin/class-admin.php:540 admin/class-admin.php:541
+#: admin/class-admin.php:539 admin/class-admin.php:540
 msgid "Template explanation"
 msgstr "Template explanation"
 
 #. translators: %1$s expands to Yoast SEO.
-#: admin/class-admin.php:544
+#: admin/class-admin.php:543
 msgid "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 msgstr "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 
-#: admin/class-admin.php:547
+#: admin/class-admin.php:546
 msgid "Note that not all variables can be used in every template."
 msgstr "Note that not all variables can be used in every template."
 
-#: admin/class-admin.php:554 admin/class-admin.php:555
+#: admin/class-admin.php:553 admin/class-admin.php:554
 #: admin/help_center/class-template-variables-tab.php:87
 msgid "Basic Variables"
 msgstr "Basic Variables"
 
-#: admin/class-admin.php:562 admin/class-admin.php:563
+#: admin/class-admin.php:561 admin/class-admin.php:562
 #: admin/help_center/class-template-variables-tab.php:93
 msgid "Advanced Variables"
 msgstr "Advanced Variables"
@@ -5276,15 +5304,15 @@ msgstr "MultiSite Settings"
 msgid "Edit Files"
 msgstr "Edit Files"
 
-#: admin/class-admin-init.php:119
+#: admin/class-admin-init.php:146
 msgid "Huge SEO Issue: You're blocking access to robots."
 msgstr "Huge SEO Issue: You're blocking access to robots."
 
-#: admin/class-admin.php:258
+#: admin/class-admin.php:257
 msgid "Twitter username (without @)"
 msgstr "Twitter username (without @)"
 
-#: admin/class-admin.php:260
+#: admin/class-admin.php:259
 msgid "Facebook profile URL"
 msgstr "Facebook profile URL"
 
@@ -5411,7 +5439,7 @@ msgstr "Post is set to noindex."
 msgid "No focus keyword set."
 msgstr "No focus keyword set."
 
-#: admin/metabox/class-metabox.php:257 admin/taxonomy/class-taxonomy.php:242
+#: admin/metabox/class-metabox.php:257 admin/taxonomy/class-taxonomy.php:224
 msgid "(no parent)"
 msgstr "(no parent)"
 
@@ -5465,14 +5493,14 @@ msgstr "The URL that this page should redirect to."
 
 #. translators: %1$s resolves to the opening tag of the link to the reading
 #. settings, %1$s resolves to the closing tag for the link
-#: admin/class-admin-init.php:122
+#: admin/class-admin-init.php:149
 msgid "You must %1$sgo to your Reading Settings%2$s and uncheck the box for Search Engine Visibility."
 msgstr "You must %1$sgo to your Reading Settings%2$s and uncheck the box for Search Engine Visibility."
 
 #: admin/metabox/class-metabox.php:69
 #: admin/taxonomy/class-taxonomy-content-fields.php:26
 #: admin/taxonomy/class-taxonomy-fields-presenter.php:108
-#: inc/class-wpseo-replace-vars.php:1357 languages/wordpress-seojs.php:38
+#: inc/class-wpseo-replace-vars.php:1358 languages/wordpress-seojs.php:38
 msgid "Focus keyword"
 msgstr "Focus keyword"
 
