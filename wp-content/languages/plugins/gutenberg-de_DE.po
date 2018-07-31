@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-31 20:46:21+0000\n"
+"PO-Revision-Date: 2018-07-31 20:49:52+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,6 +31,11 @@ msgstr "Öffne diesen Beitrag im Gutenberg Block-Editor."
 msgid "Because this post does not have revisions, you will not be able to revert any changes you make in the Classic Editor."
 msgstr "Da dieser Beitrag keine Revisionen enthält, können keine Änderungen rückgängig gemacht werden, welche im klassischen Editor vorgenommen wurden."
 
+#. translators: link to the post revisions page
+#: lib/compat.php:238
+msgid "You can also <a href=\"%s\">browse previous revisions</a> and restore a version of the page before it was edited in Gutenberg."
+msgstr "Du kannst auch <a href=\"%s\">vorherige Versionen anschauen</a> und eine Version wiederherstellen bevor sie in Gutenberg bearbeitet wurde."
+
 #: lib/compat.php:231
 msgid "This post was previously edited in Gutenberg. You can continue in the Classic Editor, but you may lose data and formatting."
 msgstr "Dieser Beitrag wurde zuvor in Gutenberg bearbeitet. Du kannst im klassischen Editor fortfahren, aber es können Daten und Formatierungen verloren gehen."
@@ -39,9 +44,25 @@ msgstr "Dieser Beitrag wurde zuvor in Gutenberg bearbeitet. Du kannst im klassis
 msgid "Invalid type parameter."
 msgstr "Ungültiger Typ-Parameter."
 
+#: lib/class-wp-rest-search-controller.php:303
+msgid "Limit results to items of one or more object subtypes."
+msgstr "Ergebnisse auf ein oder mehrerer Objekt-Subtypen einschränken."
+
+#: lib/class-wp-rest-search-controller.php:296
+msgid "Limit results to items of an object type."
+msgstr "Ergebnisse auf eine Objekt-Typ einschränken."
+
+#: lib/class-wp-rest-search-controller.php:260
+msgid "Object subtype."
+msgstr "Objekt-Untertyp"
+
 #: lib/class-wp-rest-search-controller.php:253
 msgid "Object type."
 msgstr "Objekt-Typ"
+
+#: lib/class-wp-rest-search-controller.php:246
+msgid "URL to the object."
+msgstr "URL des Objekts"
 
 #: lib/class-wp-rest-search-controller.php:240
 msgid "The title for the object."
@@ -54,6 +75,15 @@ msgstr "Eindeutige Kennung für den Block."
 #: lib/class-wp-rest-search-controller.php:149
 msgid "The page number requested is larger than the number of pages available."
 msgstr "Die angeforderte Seitenzahl ist größer als die Anzahl der verfügbaren Seiten."
+
+#: lib/class-wp-rest-search-controller.php:132
+msgid "Internal search handler error."
+msgstr "Interner Such-Handler-Fehler."
+
+#. translators: %s: PHP class name
+#: lib/class-wp-rest-search-controller.php:72
+msgid "REST search handlers must extend the %s class."
+msgstr "REST-Suchhandler müssen die Klasse %s erweitern."
 
 #: languages/gutenberg-translations.php:1685
 msgid "Untitled Reusable Block"
@@ -98,6 +128,10 @@ msgstr "(%s: %s)"
 #: languages/gutenberg-translations.php:1230
 msgid "Reusable"
 msgstr "Wiederverwendbar"
+
+#: languages/gutenberg-translations.php:1165
+msgid "(current %s: %s)"
+msgstr "(aktuell %s: %s)"
 
 #: languages/gutenberg-translations.php:1145
 msgid "Remove from Reusable Blocks"
