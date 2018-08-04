@@ -350,6 +350,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 					'update_post_meta_cache' => false,
 					'update_post_term_cache' => false,
 					'post_status'            => $post_statuses,
+					'has_password'           => true,
 				) );
 
 				if ( $query->have_posts() ) {
