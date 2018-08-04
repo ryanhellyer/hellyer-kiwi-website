@@ -782,10 +782,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 				'default'     => '<h2 class="entry-title" itemprop="headline">
 	<a href="{{url}}" rel="bookmark">{{title}}</a>
 </h2>
-<p>{{content}}</p>
-<p>
-	<a href="{{url}}" class="more-link">'. esc_html( 'Read more', 'strattic' ) . '</a>
-</p>',
+<p>{{excerpt}} ... <a href="{{url}}" class="more-link">'. esc_html( 'Read more', 'strattic' ) . '</a></p>',
 				'type'        => 'textarea',
 				'active'      => false,
 			),
@@ -808,8 +805,6 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 				'type'        => 'textarea',
 				'active'      => false,
 			),
-
-
 			// Fuse JS vars
 			10 => array(
 				'slug'        => 'case-sensitive',
