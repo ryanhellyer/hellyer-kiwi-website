@@ -238,7 +238,11 @@ class Strattic_Search {
 	public function search_api() {
 
 		// Bail out if not on search page
-		if ( '/strattic-search-api/' !== $this->get_current_path() ) {
+		if (
+			'/strattic-search-api/' !== $this->get_current_path()
+			&&
+			'/strattic-search-api/' !== $_SERVER[ 'REQUEST_URI' ]
+		) {
 			return;
 		}
 
@@ -696,7 +700,6 @@ class Strattic_Search {
 
 		$url = $this->get_current_url();
 		$path = str_replace( home_url(), '', $url );
-		$path = $_SERVER[ 'REQUEST_URI' ];
 
 		return $path;
 	}
