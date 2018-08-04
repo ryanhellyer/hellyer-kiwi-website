@@ -267,6 +267,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 		} else {
 			$data = $this->get_search_results();
 		}
+$data = $this->get_search_results();
 
 		$json_data = json_encode( $data );
 
@@ -362,14 +363,20 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 						if ( ! in_array( get_post_status(), $post_statuses ) ) {
 							continue;
 						}
-//echo get_the_excerpt();die;
+
+						// Get the excerpt
+						$excerpt = get_the_excerpt();
+						if ( '' === $excerpt ) {
+							$excerpt = wp_trim_excerpt( get_the_content() );
+						}
+
 						$data[ $count ][ 'path' ]                  = str_replace( home_url(), '', get_the_permalink() );
 						$data[ $count ][ 'title' ]                 = get_the_title();
 						$data[ $count ][ 'excerpt' ]               = $this->strip_html_entities(
 							$this->strip_html_comments(
 								strip_shortcodes(
 									wp_kses(
-										get_the_excerpt(),
+										$excerpt,
 										array()
 									)
 								)
