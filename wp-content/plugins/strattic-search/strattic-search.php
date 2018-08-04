@@ -11,8 +11,6 @@ Copyright 2018 Strattic
 
 */
 
-require( 'strattic-search-pro.php' );
-
 /**
  * Strattic search.
  * 
