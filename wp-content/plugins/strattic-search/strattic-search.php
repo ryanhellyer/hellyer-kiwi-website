@@ -363,22 +363,28 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 
 						$data[ $count ][ 'path' ]                  = str_replace( home_url(), '', get_the_permalink() );
 						$data[ $count ][ 'title' ]                 = get_the_title();
-						$data[ $count ][ 'excerpt' ]               = $this->strip_html_comments(
-							strip_shortcodes(
-								wp_kses(
-									get_the_excerpt(),
-									array()
+						$data[ $count ][ 'excerpt' ]               = $this->strip_html_entities(
+							$this->strip_html_comments(
+								strip_shortcodes(
+									wp_kses(
+										get_the_excerpt(),
+										array()
+									)
 								)
 							)
 						);
-						$data[ $count ][ 'content' ]               = $this->strip_html_comments(
-							strip_shortcodes(
-								wp_kses(
-									get_the_content(),
-									array()
+						$data[ $count ][ 'content' ]               = $this->strip_html_entities(
+							$this->strip_html_comments(
+								strip_shortcodes(
+									wp_kses(
+										get_the_content(),
+										array()
+									)
 								)
 							)
 						);
+echo $data[ $count ][ 'content' ];die;
+$data[ $count ][ 'content' ] = get_the_content();
 						$data[ $count ][ 'author' ][ 'firstName' ] = get_the_author_meta( 'first_name' );
 						$data[ $count ][ 'author' ][ 'lastName' ]  = get_the_author_meta( 'last_name' );
 
@@ -447,8 +453,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 			if ( 'checkbox' === $type && '' !== $this->get_option( $slug ) ) {
 				$settings[ $js_slug ] = 'true';
 			} else if ( '' !== $this->get_option( $slug ) ) {
-
-				$settings[ $js_slug ] = esc_js( esc_html( $this->get_option( $slug ) ) );
+				$settings[ $js_slug ] = esc_js( $this->get_option( $slug ) );
 			}
 
 		}
@@ -726,6 +731,18 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 	 */
 	private function strip_html_comments( $content = '' ) {
 		return preg_replace( '/<!--(.|\s)*?-->/', '', $content );
+	}
+
+	/**
+	 * Strip HTML entitites.
+	 *
+	 * @access private
+	 * @param  string  $content  The text with entities
+	 * @return string  Text without entities
+	 */
+	private function strip_html_entities( $content = '' ) {
+		$content = preg_replace( "/&#?[a-z0-9]+;/i", '', $content );
+		return $content;
 	}
 
 	/**
