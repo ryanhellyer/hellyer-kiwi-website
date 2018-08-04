@@ -346,8 +346,13 @@ class Strattic_Search {
 
 						$data[ $count ][ 'path' ]                  = str_replace( home_url(), '', get_the_permalink() );
 						$data[ $count ][ 'title' ]                 = get_the_title();
-						$data[ $count ][ 'excerpt' ]               = wp_kses( get_the_excerpt(), array() );
-						$data[ $count ][ 'content' ]               = wp_kses( get_the_content(), array() );
+						$data[ $count ][ 'excerpt' ]               = strip_html_comments( strip_shortcodes( wp_kses( get_the_excerpt(), array() ) ) );
+						$data[ $count ][ 'content' ]               = strip_html_comments(
+									strip_shortcodeswp_kses(
+										get_the_content(),
+										array()
+								)
+						);
 						$data[ $count ][ 'author' ][ 'firstName' ] = get_the_author_meta( 'first_name' );
 						$data[ $count ][ 'author' ][ 'lastName' ]  = get_the_author_meta( 'last_name' );
 
@@ -685,6 +690,17 @@ class Strattic_Search {
 		$path = $_SERVER[ 'REQUEST_URI' ];
 
 		return $path;
+	}
+
+	/**
+	 * Strip HTML comments.
+	 *
+	 * @access private
+	 * @param  string  $content  The text with HTML comments
+	 * @return string  Text without HTML comments
+	 */
+	private function strip_html_comments( $content = '' ) {
+		return preg_replace( '/<!--(.|\s)*?-->/', '', $content );
 	}
 
 	/**
