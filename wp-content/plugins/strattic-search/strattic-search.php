@@ -242,6 +242,8 @@ class Strattic_Search {
 			return;
 		}
 
+		header( 'Content-Type: application/javascript' );
+
 		if ( get_option( self::RESULTS_OPTION ) ) {
 			$data = get_option( self::RESULTS_OPTION );
 		} else {
