@@ -383,8 +383,6 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 								)
 							)
 						);
-echo $data[ $count ][ 'content' ];die;
-$data[ $count ][ 'content' ] = get_the_content();
 						$data[ $count ][ 'author' ][ 'firstName' ] = get_the_author_meta( 'first_name' );
 						$data[ $count ][ 'author' ][ 'lastName' ]  = get_the_author_meta( 'last_name' );
 
