@@ -34,16 +34,12 @@ class Strattic_Search {
 	public function __construct() {
 
 		// Add hooks
+		add_action( 'template_redirect',                  array( $this, 'init' ) );
 		add_action( 'admin_init',            array( $this, 'register_settings' ) );
 		add_action( 'admin_init',            array( $this, 'add_option' ) );
 		add_action( 'admin_menu',            array( $this, 'create_admin_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_style' ) );
 		add_action( 'init',                  array( $this, 'search_api' ) );
-
-		if ( 'on' === $this->get_option( 'search-on' ) && ! is_admin() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
-			add_action( 'wp_footer', array( $this, 'js_templates' ), 5 );
-		}
 
 		// Add filters
 		add_filter( 'get_search_form',    array( $this, 'modify_search_url' ) );
@@ -54,6 +50,21 @@ class Strattic_Search {
 		add_action( 'save_post',          array( $this, 'reset_cron' ) );
 		register_activation_hook( dirname( __FILE__ ) . '/strattic-search.php', array( $this, 'activate' ) );
 		register_deactivation_hook( dirname( __FILE__ ) . '/strattic-search.php', array( $this, 'deactivate' ) );
+
+	}
+
+	public function init() {
+
+		if (
+			is_page( 'search' )
+			&&
+			'on' === $this->get_option( 'search-on' )
+			&&
+			! is_admin()
+		) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+			add_action( 'wp_footer', array( $this, 'js_templates' ), 5 );
+		}
 
 	}
 
