@@ -48,9 +48,11 @@
 			}
 
 			if ( 'textarea' === $type ) {
-				$tag = '<textarea' . $disabled . ' name="' . esc_attr( self::SETTINGS_OPTION . '[' . $slug . ']' ) . '" id="' . esc_attr( $slug ) . '" type="' . esc_attr( $type ) . '" class="large-text code" rows="5" cols="50">' . esc_textarea( $value ) . '</textarea>';
+				$tag = '<textarea' . $disabled . ' name="' . esc_attr( self::SETTINGS_OPTION . '[' . $slug . ']' ) . '" id="' . esc_attr( $slug ) . '" type="' . esc_attr( $type ) . '" class="large-text code" rows="5" cols="50">' . $value /* No escaping due to use of HTML here */ . '</textarea>';
 			} else if ( 'checkbox' === $type ) {
 				$tag = '<input' . $disabled . '  name="' . esc_attr( self::SETTINGS_OPTION . '[' .$slug . ']' ) . '" id="' . esc_attr( $slug ) . '" type="' . esc_attr( $type ) . '" ' . checked( 'on', $value, false ) . ' value="on" class="' . esc_attr( $class_name ) . '" />';
+			} else if ( 'number' === $type ) {
+				$tag = '<input' . $disabled . '  step="0.1" name="' . esc_attr( self::SETTINGS_OPTION . '[' .$slug . ']' ) . '" id="' . esc_attr( $slug ) . '" type="' . esc_attr( $type ) . '" value="' . esc_attr( $value ) . '" class="' . esc_attr( $class_name ) . '" />';
 			} else {
 				$tag = '<input' . $disabled . '  name="' . esc_attr( self::SETTINGS_OPTION . '[' .$slug . ']' ) . '" id="' . esc_attr( $slug ) . '" type="' . esc_attr( $type ) . '" value="' . esc_attr( $value ) . '" class="' . esc_attr( $class_name ) . '" />';
 			}

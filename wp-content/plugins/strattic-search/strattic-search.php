@@ -11,7 +11,7 @@ Copyright 2018 Strattic
 
 */
 
-//require( 'strattic-search-pro.php' );
+require( 'strattic-search-pro.php' );
 
 /**
  * Strattic search.
@@ -34,6 +34,7 @@ class Strattic_Search {
 	public function __construct() {
 if ( isset( $_GET[ 'clear-cache' ] ) ) {
 	delete_option( self::RESULTS_OPTION );
+	delete_option( self::SETTINGS_OPTION );
 }
 		// Add hooks
 		add_action( 'template_redirect',                  array( $this, 'init' ) );
@@ -194,7 +195,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 			// Sanitize input data
 			$type = $field[ 'type' ];
 			if ( 'number' === $type ) {
-				$value = absint( $input[ $key ] );
+				$value = absint( 10 * $input[ $key ] ) / 10;
 			} else if ( 'textarea' === $type ) {
 				$value = $input[ $key ]; // Bypassing sanitization due to use of templates in textarea setting
 			} else if ( 'checkbox' === $type ) {
@@ -361,7 +362,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 						if ( ! in_array( get_post_status(), $post_statuses ) ) {
 							continue;
 						}
-
+//echo get_the_excerpt();die;
 						$data[ $count ][ 'path' ]                  = str_replace( home_url(), '', get_the_permalink() );
 						$data[ $count ][ 'title' ]                 = get_the_title();
 						$data[ $count ][ 'excerpt' ]               = $this->strip_html_entities(
@@ -533,21 +534,8 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 
 		$allowed_size = absint( $this->get_option( 'size' ) );
 
-		// Test without excerpt initially as no point in measuring excerpt and content at once
 		$processed_data = $data;
-		foreach( $processed_data as $key => $value ) {
-			unset( $processed_data[ $key ][ 'excerpt'] );
-		}
-		$processed_data = array_values( $processed_data );
-		if ( $allowed_size > $this->get_string_size( $processed_data ) ) {
-			return $processed_data;
-		}
 
-		// Without authors or excerpt
-		foreach( $processed_data as $key => $value ) {
-			unset( $processed_data[ $key ][ 'author'] );
-		}
-		$processed_data = array_values( $processed_data );
 		if ( $allowed_size > $this->get_string_size( $processed_data ) ) {
 			return $processed_data;
 		}
@@ -562,7 +550,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 			return $processed_data;
 		}
 
-		// Without content
+		// Without author
 		foreach( $data as $key => $value ) {
 			unset( $processed_data[ $key ][ 'author'] );
 		}
@@ -571,7 +559,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 			return $processed_data;
 		}
 
-		// Without content, authors or excerpt
+		// Without excerpt
 		foreach( $data as $key => $value ) {
 			unset( $processed_data[ $key ][ 'excerpt'] );
 		}
@@ -920,7 +908,7 @@ get_search_form( false ),
 				'slug'        => 'keys',
 				'js_slug'     => 'keys',
 				'label'       => esc_html__( 'Keys', 'strattic' ),
-				'default'     => esc_attr( '["title","author.firstName"]', 'strattic' ),
+				'default'     => esc_attr( '["title","excerpt","content","author.firstName","author.lastName"]', 'strattic' ),
 				'description' => esc_html( 'List of properties that will be searched. This supports nested properties, weighted search, searching in arrays of strings and objects', 'strattic' ),
 				'type'        => 'textarea',
 				'active'      => false,

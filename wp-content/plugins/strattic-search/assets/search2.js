@@ -6,6 +6,7 @@
 
 			var fuse = new Fuse(data, strattic_search_settings);
 			var results = fuse.search( get_search_string() );
+console.log(   results    );
 			var results_html = document.getElementById( 'strattic-search-results' );
 			if (Object.keys(results).length > 0){
 
