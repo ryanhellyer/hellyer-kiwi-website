@@ -221,7 +221,6 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 	 */
 	public function scripts() {
 
-		wp_enqueue_script( 'wp-util' );
 		wp_enqueue_script( 'fuse-js', plugin_dir_url( __FILE__ ) . 'assets/fuse.min.js', null, self::VERSION );
 		wp_enqueue_script( 'strattic-search-json', home_url() . '/strattic-search-api/', array( 'fuse-js' ), null );
 
@@ -267,7 +266,7 @@ if ( isset( $_GET[ 'clear-cache' ] ) ) {
 		} else {
 			$data = $this->get_search_results();
 		}
-$data = $this->get_search_results();
+//$data = $this->get_search_results();
 
 		$json_data = json_encode( $data );
 
@@ -437,6 +436,10 @@ $data = $this->get_search_results();
 
 <script type="text/html" id="tmpl-strattic-search-not-found-template">
 ' . $this->get_option( 'search-not-found-template' ) . '
+</script>
+
+<script type="text/html" id="tmpl-strattic-search-intro-template">
+' . $this->get_option( 'search-intro-template' ) . '
 </script>
 ';
 
@@ -786,15 +789,22 @@ $data = $this->get_search_results();
 				'type'        => 'textarea',
 				'active'      => false,
 			),
-			4 => array(
+			5 => array(
+				'slug'        => 'search-intro-template',
+				'label'       => esc_html__( 'Intro to search results template', 'strattic' ),
+				'description' => esc_html__( 'The template used for providing the intro to search results.', 'strattic' ),
+				'default'     => sprintf( esc_html__( 'Search results for: %s', 'strattic' ), '<strong>{{search_string}}</strong>' ),
+				'type'        => 'textarea',
+				'active'      => false,
+			),
+			7 => array(
 				'slug'        => 'search-not-found-template',
 				'label'       => esc_html__( 'Search not found template', 'strattic' ),
 				'description' => esc_html__( 'The template to use when search not found.', 'strattic' ),
 				'default'     => '<h2 class="entry-title" itemprop="headline">
-	' . esc_html__( 'Sorry, but no results were found for "{{search_string}}".', 'strattic' ) . '
+	' . esc_html__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'strattic' ) . '
 </h2>
-<p>' . esc_html__( 'Perhaps try searching for something else.', 'strattic' ) . '</p>' . 
-get_search_form( false ),
+' . get_search_form( false ) . "\n",
 				'type'        => 'textarea',
 				'active'      => false,
 			),
