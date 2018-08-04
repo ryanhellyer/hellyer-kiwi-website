@@ -1,43 +1,49 @@
 (function () {
 
+	/**
+	 * Do stuff on page load.
+	 */
 	window.addEventListener(
 		'load',
 		function () {
 
+			var results_html = document.getElementById( 'strattic-search-results' );
+results_html.innerHTML = '<span id="strattic-search-loading">LOADING SEARCH RESULTS</span>';
+
 			var fuse = new Fuse(data, strattic_search_settings);
 			var results = fuse.search( get_search_string() );
-			var results_html = document.getElementById( 'strattic-search-results' );
 			if (Object.keys(results).length > 0){
 
+				// Process results
 				results.sort(function(a,b){return new Date(b.rdate) - new Date(a.rdate) });
-
 				var i = -1;
 				for (i in results) {
 					if (results.hasOwnProperty(i)) {
-
 						var result = results[i];
-
 						result.number = ( parseInt( i ) + 1 );
 						result.url = strattic_home_url + result.path;
-
 						var template = document.getElementById( 'tmpl-strattic-search-results-template' ).innerHTML;
-
 						results_html.innerHTML += Mustache.render( template, result );
 					}
 				}
 
+//var results_html = document.getElementById( 'strattic-search-loading' );
+
 			} else {
+
+				// Show no results
 				var result = new Object();
 				result.search_string = get_search_text();
-
 				var template = document.getElementById( 'tmpl-strattic-search-not-found-template' ).innerHTML;
-
 				results_html.innerHTML = Mustache.render( template, result );
+
 			}
 		}
 	);
 
-
+	/**
+	 * Get the raw search string via the URL.
+	 */
 	function get_search_string() {
 		var query = window.location.search.substring(1);
 		var vars = query.split("&");
@@ -49,6 +55,9 @@
 		}
 	}
 
+	/**
+	 * Get the search string in text form, ready for output to the page.
+	 */
 	function get_search_text() {
 		 return decodeURIComponent(( get_search_string() +'').replace(/\+/g, '%20'));
 	}
