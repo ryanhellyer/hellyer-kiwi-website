@@ -236,7 +236,7 @@ class Strattic_Search {
 	 * Get search api.
 	 */
 	public function search_api() {
-echo '__________' . $this->get_current_path() . '__________';
+//echo '__________' . $this->get_current_path() . '__________';
 		// Bail out if not on search page
 		if ( '/strattic-search-api/' !== $this->get_current_path() ) {
 			return;
