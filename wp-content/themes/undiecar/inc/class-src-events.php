@@ -164,6 +164,12 @@ class SRC_Events extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
+			'name' => esc_html__( 'Fuel amount', 'src' ),
+			'id'         => 'fuel_amount',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
 			'name'       => esc_html__( 'Qualifying Format', 'src' ),
 			'id'         => 'qualifying_format',
 			'type'       => 'text',
