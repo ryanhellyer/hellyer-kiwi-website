@@ -184,13 +184,6 @@ class SRC_Events extends SRC_Core {
 		foreach ( $this->event_types() as $name => $desc ) {
 
 			$cmb->add_field( array(
-				'name' => esc_html( $name ) . ' date',
-				'desc' => esc_html( $desc ) . ' date',
-				'id'   => $slug . '_' . sanitize_title( $name ) . '_date',
-				'type' => 'text_date_timestamp',
-			) );
-
-			$cmb->add_field( array(
 				'name' => esc_html( $name ) . ' time',
 				'desc' => esc_html( $desc ) . ' time',
 				'id'   => $slug . '_' . sanitize_title( $name ) . '_timestamp',
@@ -209,15 +202,7 @@ class SRC_Events extends SRC_Core {
 				'Race 1' === $name
 				||
 				'Race 2' === $name
-				||
-				'Race 3' === $name
 			) {
-				$cmb->add_field( array(
-					'name' => esc_html__( $name . ' grid', 'src' ),
-					'id'         => $slug . '_' . sanitize_title( $name ) . '_grid',
-					'type'       => 'select',
-					'options_cb' => array( $this, 'qualifying_grid' ),
-				) );
 
 				$cmb->add_field( array(
 					'name' => esc_html__( $name . ' points multiplier', 'src' ),
@@ -229,25 +214,18 @@ class SRC_Events extends SRC_Core {
 
 		}
 
-		if ( isset( $_GET['post'] ) ) {
-			$event_id = $_GET['post'];
-		} else {
-			$event_id = null;
-		}
-
-		foreach ( array( '1', '2', '3' ) as $kx => $num ) {
-			$cmb->add_field( array(
-				'name'       => 'Race ' . $num . ' most spectacular crash',
-				'id'         => $slug . '_race_' . $num . '_most_spectacular_crash',
-				'type'       => 'select',
-				'options'    => $this->get_events_drivers_array( $event_id ),
-			) );
-		}
+		$cmb->add_field( array(
+			'name'        => esc_html__( 'Setup file', 'src' ),
+			'description' => esc_html__( 'Please note that due to a technical glitch, you may need to upload the file via the media upload section, then just select it here.', 'src' ),
+			'id'          => 'setup_file',
+			'type'        => 'file',
+		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Setup file', 'src' ),
-			'id'   => 'setup_file',
-			'type' => 'file',
+			'name'        => esc_html__( 'Setup default', 'src' ),
+			'description' => esc_html__( 'Please note that due to a technical glitch, you may need to upload the file via the media upload section, then just select it here.', 'src' ),
+			'id'          => 'setup_file',
+			'type'        => 'file',
 		) );
 
 	}
