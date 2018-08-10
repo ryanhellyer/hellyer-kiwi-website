@@ -181,6 +181,12 @@ class SRC_Events extends SRC_Core {
 			'type' => 'text_date_timestamp',
 		) );
 
+		$cmb->add_field( array(
+			'name' => esc_html__( 'Number of races', 'src' ),
+			'id'   => 'number_of_races',
+			'type' => 'number',
+		) );
+
 		foreach ( $this->event_types() as $name => $desc ) {
 
 			$cmb->add_field( array(
