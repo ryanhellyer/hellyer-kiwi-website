@@ -162,7 +162,7 @@ class SRC_Seasons extends SRC_Core {
 			'Num'        => true,
 			'Event'      => true,
 			'FP1'        => false,
-			'FP2'        => false,
+//			'FP2'        => false,
 			'Qualifying' => false,
 			'Race 1'     => false,
 			'Race 2'     => false,
@@ -196,8 +196,8 @@ class SRC_Seasons extends SRC_Core {
 
 						if ( 'FP1' === $name ) {
 							$columns['FP1'] = true;
-						} else if ( 'FP2' === $name ) {
-							$columns['FP2'] = true;
+//						} else if ( 'FP2' === $name ) {
+//							$columns['FP2'] = true;
 						} else if ( 'Qualifying' === $name ) {
 							$columns['Qualifying'] = true;
 						} else if ( 'Race 1' === $name ) {
@@ -271,10 +271,10 @@ class SRC_Seasons extends SRC_Core {
 						if ( isset( $event['track'] ) ) {
 							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['id'] ) ) . '</a>';
 						}
-					} else if ( 'FP2' == $label ) {
-						if ( isset( $event['fp2_timestamp'] ) ) {
-							$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
-						}
+//					} else if ( 'FP2' == $label ) {
+//						if ( isset( $event['fp2_timestamp'] ) ) {
+//							$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
+//						}
 					} if ( 'Qualifying' == $label ) {
 						if ( isset( $event['qualifying_timestamp'] ) ) {
 							$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date;
