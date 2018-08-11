@@ -264,9 +264,15 @@ class SRC_Seasons extends SRC_Core {
 					if ( 'Num' == $label ) {
 						$text = $count;
 					} else if ( 'FP1' == $label ) {
+
 						if ( isset( $event['fp1_timestamp'] ) ) {
 							$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date;
 						}
+
+						if ( isset( $event['fp1_time'] ) ) {
+							$text = esc_html( $event['fp1_time'] ) . $formatted_date;
+						}
+
 					} else if ( 'Event' == $label ) {
 						if ( isset( $event['track'] ) ) {
 							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['id'] ) ) . '</a>';
