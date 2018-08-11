@@ -573,7 +573,7 @@ class SRC_Seasons extends SRC_Core {
 			$bonuses[] = esc_html__( 'most spectacular crash in each race', 'src' );
 		}
 
-		$bonuses[] = esc_html__( 'least incidents in each event (must have completed all races and not be more than one lap down on the leader)', 'src' );
+		$bonuses[] = esc_html__( 'least incidents in each event (must not be more than one lap down on the leader of their class)', 'src' );
 
 		if ( 0 < count( $bonuses ) ) {
 
@@ -605,7 +605,7 @@ class SRC_Seasons extends SRC_Core {
 				$text
 			);
 			$html .= '<p>' . esc_html( $text ) . '</p>';
-			$html .= '<p>' . esc_html__( 'Bonus points are awarded per event, not per class.', 'undiecar' ) . '</p>';
+//			$html .= '<p>' . esc_html__( 'Bonus points are awarded per event, not per class.', 'undiecar' ) . '</p>';
 
 		}
 
