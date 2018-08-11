@@ -208,7 +208,12 @@ class SRC_Seasons extends SRC_Core {
 							$columns['Race 3'] = true;
 						}
 
-						$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+						if ( '' !== get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true ) ) {
+							$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+						} else {
+							$events[$date][sanitize_title( $name ) . '_time'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_time', true );
+						}
+
 					}
 
 				}
