@@ -599,7 +599,7 @@ class SRC_Seasons extends SRC_Core {
 			}
 
 			$text = sprintf(
-				esc_html__( '%s point%s will be awarded for %s in', 'src' ),
+				esc_html__( '%s point%s will be awarded for %s.', 'src' ),
 				$number,
 				$suffix,
 				$text
