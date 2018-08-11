@@ -73,10 +73,11 @@ get_header();
 			$event_date = get_post_meta( $event_id, 'date', true );
 
 			unset( $time );
+/*** THIS NEEDS UPGRADED TO WORK WITH THE NUMBER OF RACES, RATHER THAN GUESSING HOW MANY RACES THERE ARE ***/
 			foreach ( array( 3, 2, 1 ) as $race ) {
 				$race_time = get_post_meta( get_the_ID(), 'event_race-' . $race . '_timestamp', true );
 				if ( '' !== $race_time ) {
-					$race_time = get_post_meta( get_the_ID(), 'event_race-' . $race . '_time', true );
+					$race_time = get_post_meta( get_the_ID(), 'race-' . $race . '_time', true );
 				}
 
 				if ( '' !== $race_time && ! isset( $time ) ) {
