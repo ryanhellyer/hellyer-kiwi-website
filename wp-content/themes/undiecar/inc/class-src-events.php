@@ -694,6 +694,12 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
+
+			$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
+			if ( '' !== $q_time ) {
+				$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+			}
+
 			$html .= wpautop(
 				sprintf(
 					__( 'This event will be held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
@@ -704,7 +710,7 @@ class SRC_Events extends SRC_Core {
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 					esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
-					esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
+					esc_html( $q_time ),
 					$number->format( $race_count ),
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
 					$suffix,
