@@ -238,7 +238,7 @@ if ( isset( $our_events[0] ) ) {
 		<h2>Next Season</h2>
 		<p>
 			Season 7<br />
-			Only free iRacing content. Fixed setups provided for each track.
+			Race with free iRacing content. Fixed setups provided for each track.
 		</p>
 	</a>
 
