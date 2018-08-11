@@ -868,7 +868,23 @@ class SRC_Events extends SRC_Core {
 		} else if ( 1 === $count ) {
 			$content .= '<h3>' . esc_html__( 'Allowed car', 'src' ) . '</h3>';
 			$car_id = $cars[0];
+
+			$content .= '<p>';
 			$content .= '<strong><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a></strong>';
+
+			$setup = get_post_meta( $event_id, 'setup_default_' . $car_id, true );
+			$setup_file = get_post_meta( $event_id, 'setup_file_' . $car_id, true );
+			if ( '' !== $setup_file ) {
+				$content .= '<a href="' . esc_url( $setup_file ) . '">' . esc_html( 'Download fixed setup', 'undiecar' ) . '</a>';
+			}
+			$setup = '<br />'.  $setup;
+
+			$fuel_amount = get_post_meta( $event_id, 'fuel_amount_' . $car_id, true );
+			if ( '' !== $fuel_amount ) {
+				$content .= '<br />' . sprintf( esc_html( 'Fuel limited to %s' ), esc_html( $fuel_amount ) );
+			}
+			$content .= '</p>';
+
 		} else {
 			$content .= '<h3>' . esc_html__( 'Allowed cars', 'src' ) . '</h3>';
 			$content .= '<p>' . esc_html__( 'This is a multi-car event. Drivers may choose one of the following cars.', 'src' ) . '</p>';
