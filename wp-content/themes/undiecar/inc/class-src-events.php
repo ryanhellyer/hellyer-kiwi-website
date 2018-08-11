@@ -875,9 +875,9 @@ class SRC_Events extends SRC_Core {
 			$setup = get_post_meta( $event_id, 'setup_default_' . $car_id, true );
 			$setup_file = get_post_meta( $event_id, 'setup_file_' . $car_id, true );
 			if ( '' !== $setup_file ) {
-				$content .= '<a href="' . esc_url( $setup_file ) . '">' . esc_html( 'Download fixed setup', 'undiecar' ) . '</a>';
+				$setup = '<a href="' . esc_url( $setup_file ) . '">' . esc_html( 'Download fixed setup', 'undiecar' ) . '</a>';
 			}
-			$setup = '<br />'.  $setup;
+			$content .= '<br />'.  $setup;
 
 			$fuel_amount = get_post_meta( $event_id, 'fuel_amount_' . $car_id, true );
 			if ( '' !== $fuel_amount ) {
