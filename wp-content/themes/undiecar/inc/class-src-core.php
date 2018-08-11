@@ -26,12 +26,12 @@ class SRC_Core {
 	protected function event_types() {
 
 		$types = array(
-			'FP1'        => 'Free Practice 1',
-			'FP2'        => 'Free Practice 2',
+			'FP1'        => 'Free Practice',
+			//'FP2'        => 'Free Practice 2',
 			'Qualifying' => 'Qualifying',
-			'Race 1'     => 'Race 1',
-			'Race 2'     => 'Race 2',
-			'Race 3'     => 'Race 3',
+			//'Race 1'     => 'Race 1',
+			//'Race 2'     => 'Race 2',
+			//'Race 3'     => 'Race 3',
 		);
 
 		return $types;
@@ -381,7 +381,7 @@ class SRC_Core {
 
 			$content .= '</table>';
 		} else {
-			$content .= '<p>' . esc_html__( 'No results available yet', 'undiecar' ) . '</p>';
+			//$content .= '<p>' . esc_html__( 'No results available yet', 'undiecar' ) . '</p>';
 		}
 
 		return $content;
