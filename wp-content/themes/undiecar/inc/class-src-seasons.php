@@ -212,7 +212,7 @@ class SRC_Seasons extends SRC_Core {
 					}
 
 					// Get the time
-					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_time', true );
+					$time = get_post_meta( get_the_ID(), str_replace( '-', '_', sanitize_title( $name ) ) . '_time', true );
 					if ( '' !== $time ) {
 
 						if ( 'FP1' === $name ) {
@@ -229,7 +229,7 @@ class SRC_Seasons extends SRC_Core {
 							$columns['Race 3'] = true;
 						}
 
-						$events[$date][sanitize_title( $name ) . '_time'] = get_post_meta( get_the_ID(), '' . sanitize_title( $name ) . '_time', true );
+						$events[$date][sanitize_title( $name ) . '_time'] = get_post_meta( get_the_ID(), str_replace( '-', '_', sanitize_title( $name ) ) . '_time', true );
 					}
 
 				}
