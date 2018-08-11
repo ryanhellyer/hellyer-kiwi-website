@@ -74,8 +74,8 @@ class SRC_Schedule extends SRC_Core {
 
 						if ( 'FP1' === $name ) {
 							$columns['FP1'] = true;
-						} else if ( 'FP2' === $name ) {
-							$columns['FP2'] = true;
+//						} else if ( 'FP2' === $name ) {
+//							$columns['FP2'] = true;
 						} else if ( 'Qualifying' === $name ) {
 							$columns['Qualifying'] = true;
 						} else if ( 'Race 1' === $name ) {
@@ -146,10 +146,10 @@ class SRC_Schedule extends SRC_Core {
 						if ( isset( $event['season'] ) ) {
 							$text = '<a href="' . esc_url( get_permalink( $event['season'] ) ) . '">' . esc_html( get_the_title( $event['season'] ) ) . '</a>';
 						}
-					} else if ( 'FP2' == $label ) {
-						if ( isset( $event['fp2_timestamp'] ) ) {
-							$text = esc_html( $event['fp2_timestamp'] );
-						}
+//					} else if ( 'FP2' == $label ) {
+//						if ( isset( $event['fp2_timestamp'] ) ) {
+//							$text = esc_html( $event['fp2_timestamp'] );
+//						}
 					} if ( 'Qualifying' == $label ) {
 						if ( isset( $event['qualifying_timestamp'] ) ) {
 							$text = $event['qualifying_timestamp'] . '<span>' . esc_html( $formatted_date ) . '</span>';
