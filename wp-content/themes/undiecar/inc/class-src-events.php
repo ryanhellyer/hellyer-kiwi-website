@@ -171,12 +171,6 @@ class SRC_Events extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Fuel amount', 'src' ),
-			'id'         => 'fuel_amount',
-			'type'       => 'text',
-		) );
-
-		$cmb->add_field( array(
 			'name' => esc_html__( 'Date', 'src' ),
 			'id'   => 'date',
 			'type' => 'text_date_timestamp',
@@ -285,6 +279,11 @@ class SRC_Events extends SRC_Core {
 						'type'        => 'text',
 					) );
 
+					$cmb->add_field( array(
+						'name' => esc_html__( 'Fuel amount', 'src' ),
+						'id'         => 'fuel_amount_' . get_the_ID(),
+						'type'       => 'text',
+					) );
 
 				}
 
@@ -643,54 +642,6 @@ class SRC_Events extends SRC_Core {
 			$number++;
 		}
 
-
-
-
-/*
-
-		$track = get_post_meta( get_the_ID(), 'track', true );
-		if ( '' !== $track ) {
-			$sidebar_html .= '
-				<br />' . esc_html( get_the_title( $track ) );
-		}
-
-
-
-		$setup_file_id = get_post_meta( get_the_ID(), 'setup_file_id', true );
-		if ( '' !== $setup_file_id ) {
-			$setup_file = wp_get_attachment_url( $setup_file_id );
-			$sidebar_html .= '<p><a href="' . esc_url( $setup_file ) . '">Download fixed setup</a></p>';
-		}
-*/
-
-/*
-		$cmb->add_field( array(
-			'name'       => esc_html__( 'Season', 'src' ),
-			'id'         => 'season',
-			'type'       => 'select',
-			'options_cb' => 'src_get_seasons',
-		) );
-
-		$cmb->add_field( array(
-			'name'       => esc_html__( 'Track', 'src' ),
-			'id'         => 'track',
-			'type'       => 'select',
-			'options_cb' => 'src_get_tracks',
-		) );
-
-		$cmb->add_field( array(
-			'name' => esc_html__( 'Time of day', 'src' ),
-			'id'         => 'time_of_day',
-			'type'       => 'text',
-		) );
-
-		$cmb->add_field( array(
-			'name' => esc_html__( 'Fuel amount', 'src' ),
-			'id'         => 'fuel_amount',
-			'type'       => 'text',
-		) );
-*/
-
 		$sidebar_html .= '
 		</div>';
 
@@ -929,6 +880,11 @@ class SRC_Events extends SRC_Core {
 					$setup = '<a href="' . esc_url( $setup_file ) . '">' . esc_html( 'Download fixed setup', 'undiecar' ) . '</a>';
 				}
 				$setup = '<br />'.  $setup;
+
+				$fuel_amount = get_post_meta( $event_id, 'fuel_amount_' . $car_id, true );
+				if ( '' !== $fuel_amount ) {
+					$fuel_amount = '<br />' . sprintf( esc_html( 'Fuel limited to %s' ), esc_html( $fuel_amount ) );
+				}
 
 				$content .= '<li><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a> ' . $setup . '</li>';
 			}
