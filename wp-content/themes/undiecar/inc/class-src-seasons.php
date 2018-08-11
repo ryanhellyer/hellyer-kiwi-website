@@ -287,7 +287,7 @@ class SRC_Seasons extends SRC_Core {
 					} else if ( 'FP1' == $label ) {
 
 						if ( isset( $event['fp1_timestamp'] ) ) {
-							$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date;
+							$text = esc_html( $event['fp1_timestamp'] ) . $formatted_date; // legacy
 						}
 
 						if ( isset( $event['fp1_time'] ) ) {
@@ -298,25 +298,33 @@ class SRC_Seasons extends SRC_Core {
 						if ( isset( $event['track'] ) ) {
 							$text = '<a href="' . esc_url( get_permalink( $event['id'] ) ) . '">' . esc_html( get_the_title( $event['id'] ) ) . '</a>';
 						}
-//					} else if ( 'FP2' == $label ) {
-//						if ( isset( $event['fp2_timestamp'] ) ) {
-//							$text = esc_html( $event['fp2_timestamp'] ) . $formatted_date;
-//						}
 					} if ( 'Qualifying' == $label ) {
 						if ( isset( $event['qualifying_timestamp'] ) ) {
-							$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date;
+							$text = esc_html( $event['qualifying_timestamp'] ) . $formatted_date; // legacy
+						}
+						if ( isset( $event['qualifying_time'] ) ) {
+							$text = esc_html( $event['qualifying_time'] ) . $formatted_date;
 						}
 					} if ( 'Race 1' == $label ) {
 						if ( isset( $event['race-1_timestamp'] ) ) {
-							$text = esc_html( $event['race-1_timestamp'] ) . $formatted_date;
+							$text = esc_html( $event['race-1_timestamp'] ) . $formatted_date; // legacy
+						}
+						if ( isset( $event['race-1_time'] ) ) {
+							$text = esc_html( $event['race-1_time'] ) . $formatted_date;
 						}
 					} if ( 'Race 2' == $label ) {
 						if ( isset( $event['race-2_timestamp'] ) ) {
-							$text = esc_html( $event['race-2_timestamp'] ) . $formatted_date;
+							$text = esc_html( $event['race-2_timestamp'] ) . $formatted_date; // legacy
+						}
+						if ( isset( $event['race-2_time'] ) ) {
+							$text = esc_html( $event['race-2_time'] ) . $formatted_date;
 						}
 					} if ( 'Race 3' == $label ) {
 						if ( isset( $event['race-3_timestamp'] ) ) {
-							$text = esc_html( $event['race-3_timestamp'] ) . $formatted_date;
+							$text = esc_html( $event['race-3_timestamp'] ) . $formatted_date; // legacy
+						}
+						if ( isset( $event['race-3_time'] ) ) {
+							$text = esc_html( $event['race-3_time'] ) . $formatted_date;
 						}
 					}
 
