@@ -191,13 +191,13 @@ class SRC_Seasons extends SRC_Core {
 				$events[$date]['title'] = get_the_title();
 
 				foreach ( $this->event_types() as $name => $desc ) {
+
+					// Legacy time
 					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
 					if ( '' !== $time ) {
 
 						if ( 'FP1' === $name ) {
 							$columns['FP1'] = true;
-//						} else if ( 'FP2' === $name ) {
-//							$columns['FP2'] = true;
 						} else if ( 'Qualifying' === $name ) {
 							$columns['Qualifying'] = true;
 						} else if ( 'Race 1' === $name ) {
@@ -208,10 +208,28 @@ class SRC_Seasons extends SRC_Core {
 							$columns['Race 3'] = true;
 						}
 
-						$events[$date][sanitize_title( $name ) . '_time'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_time', true );
-						// Legacy time
 						$events[$date][sanitize_title( $name ) . '_timestamp'] = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+					}
 
+					// Get the time
+					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_time', true );
+					if ( '' !== $time ) {
+
+						if ( 'FP1' === $name ) {
+							$columns['FP1'] = true;
+						} else if ( 'Qualifying' === $name ) {
+							$columns['Qualifying'] = true;
+
+/*** SHOULD USE THE NEW SYSTEM WHICH ALLOWS FOR UNLIMITED RACES ****/
+						} else if ( 'Race 1' === $name ) {
+							$columns['Race 1'] = true;
+						} else if ( 'Race 2' === $name ) {
+							$columns['Race 2'] = true;
+						} else if ( 'Race 3' === $name ) {
+							$columns['Race 3'] = true;
+						}
+
+						$events[$date][sanitize_title( $name ) . '_time'] = get_post_meta( get_the_ID(), '' . sanitize_title( $name ) . '_time', true );
 					}
 
 				}
