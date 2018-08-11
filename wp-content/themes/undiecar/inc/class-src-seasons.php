@@ -426,6 +426,7 @@ class SRC_Seasons extends SRC_Core {
 
 			}
 		}
+		wp_reset_postdata();
 
 	}
 

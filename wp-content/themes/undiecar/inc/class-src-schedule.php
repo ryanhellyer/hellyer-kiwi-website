@@ -35,7 +35,7 @@ class SRC_Schedule extends SRC_Core {
 			'Event'      => true,
 			'Season'     => true,
 			'FP1'        => false,
-			'FP2'        => false,
+//			'FP2'        => false,
 			'Qualifying' => false,
 			'Race 1'     => false,
 			'Race 2'     => false,
