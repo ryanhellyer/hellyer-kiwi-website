@@ -187,6 +187,7 @@ get_header();
 
 <?php
 
+/*
 $args = array(
 	'name'        => 'our-events',
 	'post_type'   => 'page',
@@ -213,7 +214,10 @@ if ( isset( $our_events[0] ) ) {
 
 </section><!-- #low-down -->
 
-<?php } ?>
+<?php } 
+*/
+
+?>
 
 <section id="results">
 
