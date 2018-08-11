@@ -236,8 +236,10 @@ if ( isset( $our_events[0] ) ) {
 */
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/porsche-tall.jpg);">
 		<h2>Next Season</h2>
-		<p>Summer season! Porsches and MX-5s on free tracks.</p>
-<!--		<p>Free with iRacing. Fixed setups provided for each track.</p>-->
+		<p>
+			Season 7<br />
+			Only free iRacing content. Fixed setups provided for each track.
+		</p>
 	</a>
 
 	<div id="standings">
