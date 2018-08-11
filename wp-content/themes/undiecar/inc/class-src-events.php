@@ -430,6 +430,8 @@ class SRC_Events extends SRC_Core {
 
 		$number_of_rounds_in_season = count( $new_events );
 
+		$next_round = $previous_round = $current_round = false;
+
 		foreach ( $new_events as $key => $event ) {
 
 			// If on current event ... 
@@ -523,6 +525,12 @@ class SRC_Events extends SRC_Core {
 			return $content;
 		}
 
+		$date = get_post_meta( get_the_ID(), 'date', true );
+		if ( '' !== $date ) {
+			$date = date( get_option( 'date_format' ), $date );
+		}
+
+		// Add track logo
 		$track_logo = $this->event['current_round']['track_logo'];
 		$track_logo_image = wp_get_attachment_image_src( $track_logo, 'src-three' );
 		if ( isset( $track_logo_image[0] ) ) {
@@ -704,6 +712,18 @@ class SRC_Events extends SRC_Core {
 				)
 			);
 		} else {
+
+			$current_track = '';
+			$countries = src_get_countries();
+			if ( isset( $countries[ $this->event['current_round']['track'] ] ) ) {
+				$current_track = $countries[ $this->event['current_round']['track'] ];
+			}
+
+			$current_track_country = '';
+			if ( isset( $this->event['current_round']['track_country'] ) ) {
+				$current_track_country = $this->event['current_round']['track_country'];
+			}
+
 			$html .= wpautop(
 				sprintf(
 					__( 'Round %s of %s in <a href="%s">%s</a> of the Undiecar Championship will be held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
@@ -713,11 +733,11 @@ class SRC_Events extends SRC_Core {
 				 	esc_html( get_the_title( $season_id ) ),
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
-					esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
+					esc_html( get_post_meta( $current_track, 'track_length', true ) ) . ' km',
 					esc_url( $track_url ),
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
-					esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
+					esc_html( $current_track_country ),
 					esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
 					$number->format( $race_count ),
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
@@ -730,13 +750,15 @@ class SRC_Events extends SRC_Core {
 		// Add track map
 		$track_map = $this->event['current_round']['track_map'];
 		$track_map_image = wp_get_attachment_image_src( $track_map, 'large' );
+		$map_html = '';
 		if ( isset( $track_map_image[0] ) ) {
 			$track_map_image_url = $track_map_image[0];
+
+			$map_html = '
+			<p>&nbsp;</p><!-- crude spacing hack -->
+			<img class="event-image" src="' . $track_map_image_url . '" />
+			';
 		}
-		$map_html = '
-		<p>&nbsp;</p><!-- crude spacing hack -->
-		<img class="event-image" src="' . $track_map_image_url . '" />
-		';
 
 		// Next/Previous race navigation buttons
 		$nav_html = '<div id="next-prev-buttons">';
@@ -766,26 +788,6 @@ class SRC_Events extends SRC_Core {
 				$least_incidents_text .= '<a href="' . esc_url( $url ) . '">' . esc_html( $driver ) . '</a>';
 			}
 		}
-
-/*
-		// If cars specified, then share information about them
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-		$event_id = get_the_ID();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				if ( '' !== get_post_meta( $event_id, 'car-' . get_the_ID(), true ) ) {
-					$bla[] = get_the_ID();
-				}
-
-			}
-			wp_reset_postdata();
-		}
-*/
 
 		$bonus_points = '';
 		if (
@@ -886,7 +888,7 @@ class SRC_Events extends SRC_Core {
 					$fuel_amount = '<br />' . sprintf( esc_html( 'Fuel limited to %s' ), esc_html( $fuel_amount ) );
 				}
 
-				$content .= '<li><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a> ' . $setup . '</li>';
+				$content .= '<li><a href="' . esc_url( get_the_permalink( $car_id ) ) . '">' . esc_html( get_the_title( $car_id ) ) . '</a> ' . $setup . $fuel_amount . '</li>';
 			}
 
 			$content .= '</ol>';
