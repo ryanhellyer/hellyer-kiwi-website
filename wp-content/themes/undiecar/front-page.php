@@ -77,7 +77,7 @@ get_header();
 			foreach ( array( 3, 2, 1 ) as $race ) {
 				$race_time = get_post_meta( get_the_ID(), 'event_race-' . $race . '_timestamp', true );
 				if ( '' !== $race_time ) {
-					$race_time = get_post_meta( get_the_ID(), 'race-' . $race . '_time', true );
+					$race_time = get_post_meta( get_the_ID(), 'race_' . $race . '_time', true );
 				}
 
 				if ( '' !== $race_time && ! isset( $time ) ) {
