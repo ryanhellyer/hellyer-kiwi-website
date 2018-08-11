@@ -156,15 +156,17 @@ get_header();
 
 				if ( 'Special Events' === $season_name ) {
 					esc_html_e( 'Special Event', 'undiecar' );
+					echo '<span class="season-label"> </span>';
 				} else {
 					echo esc_html( $event['track_type'] );
-				}
 
-				if ( '' === $season_name ) {
-					$season_name = ' '; // Need to leave spacer there to ensure the blocks line up
-				}
+					if ( '' === $season_name ) {
+						$season_name = ' '; // Need to leave spacer there to ensure the blocks line up
+					}
 
-				echo '<span class="season-label">' . esc_html( $season_name ) . '</span>';
+					echo '<span class="season-label">' . esc_html( $season_name ) . '</span>';
+
+				}
 
 				$day_of_week = date( 'D', $event['event_date'] );
 				$month = date( 'M', $event['event_date'] );
