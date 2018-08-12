@@ -633,7 +633,7 @@ class SRC_Events extends SRC_Core {
 			if ( '' !== $time ) {
 
 				$sidebar_html .= '
-				Start time: ' . esc_html( $time ) . '
+				Start time: ' . esc_html( $time ) . ' GMT
 				<br />';
 			}
 
