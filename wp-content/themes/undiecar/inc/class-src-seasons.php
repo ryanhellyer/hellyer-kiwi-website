@@ -198,7 +198,8 @@ class SRC_Seasons extends SRC_Core {
 				foreach ( $this->event_types() as $name => $desc ) {
 
 					// Legacy time
-					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
+					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true ); //legacy
+
 					if ( '' !== $time ) {
 
 						if ( 'FP1' === $name ) {

@@ -29,9 +29,9 @@ class SRC_Core {
 			'FP1'        => 'Free Practice',
 			//'FP2'        => 'Free Practice 2',
 			'Qualifying' => 'Qualifying',
-			//'Race 1'     => 'Race 1',
-			//'Race 2'     => 'Race 2',
-			//'Race 3'     => 'Race 3',
+			'Race 1'     => 'Race 1',
+			'Race 2'     => 'Race 2',
+			'Race 3'     => 'Race 3',
 		);
 
 		return $types;
