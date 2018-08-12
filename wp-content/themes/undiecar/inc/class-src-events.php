@@ -601,11 +601,11 @@ class SRC_Events extends SRC_Core {
 				<br />
 				Start time: ' . esc_html( $time ) . ' GMT';
 
-			$length = get_post_meta( get_the_ID(), 'qualifying_length', true );
-			if ( '' !== $length ) {
+			$format = get_post_meta( get_the_ID(), 'qualifying_format', true );
+			if ( '' !== $format ) {
 				$sidebar_html .= '
 				<br />
-				Format: ' . esc_html( $length );
+				Format: ' . esc_html( $format );
 			}
 
 			$sidebar_html .= '
