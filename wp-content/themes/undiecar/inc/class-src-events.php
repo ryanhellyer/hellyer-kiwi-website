@@ -581,11 +581,11 @@ class SRC_Events extends SRC_Core {
 				<br />
 				Start time: ' . esc_html( $time ) . ' GMT';
 
-			$fp1_length = get_post_meta( get_the_ID(), 'fp1_length', true );
-			if ( '' !== $fp1_length ) {
+			$length = get_post_meta( get_the_ID(), 'fp1_length', true );
+			if ( '' !== $length ) {
 				$sidebar_html .= '
 				<br />
-				Length: ' . esc_html( $fp1_length );
+				Length: ' . esc_html( $length );
 			}
 
 			$sidebar_html .= '
@@ -601,11 +601,11 @@ class SRC_Events extends SRC_Core {
 				<br />
 				Start time: ' . esc_html( $time ) . ' GMT';
 
-			$fp1_length = get_post_meta( get_the_ID(), 'fp1_length', true );
-			if ( '' !== $fp1_length ) {
+			$length = get_post_meta( get_the_ID(), 'qualifying_length', true );
+			if ( '' !== $length ) {
 				$sidebar_html .= '
 				<br />
-				Format: ' . esc_html( $fp1_length );
+				Format: ' . esc_html( $length );
 			}
 
 			$sidebar_html .= '
