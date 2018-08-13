@@ -31,7 +31,7 @@ class SRC_Videos extends SRC_Core {
 				'public'             => true,
 				'publicly_queryable' => true,
 				'label'              => esc_html__( 'Videos', 'src' ),
-				'supports'           => array( 'title', 'editor' ),
+				'supports'           => array( 'title', 'editor', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-video-alt2',
 			)
 		);
