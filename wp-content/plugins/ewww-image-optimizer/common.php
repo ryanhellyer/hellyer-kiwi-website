@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '430.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '431.0' );
 
 // Initialize a couple globals.
 $ewww_debug = '';
@@ -836,6 +836,9 @@ function ewww_image_optimizer_ajax_compat_check() {
  * Note that this is just a suggestion, it should be customized for your site.
  */
 function ewww_image_optimizer_privacy_policy_content() {
+	if ( ! function_exists( 'wp_add_privacy_policy_content' ) ) {
+		return;
+	}
 	$content = '<p class="privacy-policy-tutorial">';
 	if ( ! defined( 'EWWW_IO_CLOUD_PLUGIN' ) || ! EWWW_IO_CLOUD_PLUGIN ) {
 		$content .= wp_kses_post( __( 'By default, the EWWW Image Optimizer does not store any personal data nor share it with anyone.', 'ewww-image-optimizer' ) ) . '</p><p>';
