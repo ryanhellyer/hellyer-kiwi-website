@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-10 16:33:23+0000\n"
+"PO-Revision-Date: 2018-08-14 16:31:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,98 +11,333 @@ msgstr ""
 "Language: en_CA\n"
 "Project-Id-Version: Plugins - EWWW Image Optimizer - Stable (latest release)\n"
 
-#: common.php:7671
+#: unique.php:2635 unique.php:2681
+msgid "insufficient memory available for installation"
+msgstr "insufficient memory available for installation"
+
+#: unique.php:2618
+msgid "zlib or phar extension missing from PHP"
+msgstr "zlib or phar extension missing from PHP"
+
+#: unique.php:142
+msgid "Then, activate it on the settings page."
+msgstr "Then, activate it on the settings page."
+
+#: unique.php:141
+msgid "Purchase a subscription."
+msgstr "Purchase a subscription."
+
+#: unique.php:140
+msgid "The EWWW Image Optimizer requires an API key or an ExactDN subscription to optimize images on WordPress.com sites."
+msgstr "The EWWW Image Optimizer requires an API key or an ExactDN subscription to optimize images on WordPress.com sites."
+
+#: ewww-image-optimizer.php:161 ewww-image-optimizer.php:169
+#: ewww-image-optimizer.php:177 ewww-image-optimizer.php:185
+msgid "Install now."
+msgstr "Install now."
+
+#: common.php:7863
+msgid "Help"
+msgstr "Help"
+
+#: common.php:7652
+msgid "Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
+msgstr "Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
+
+#: common.php:7619
+msgid "Image conversion requires one of the following PHP libraries: GD, Imagick, or GMagick."
+msgstr "Image conversion requires one of the following PHP libraries: GD, Imagick, or GMagick."
+
+#. translators: 1: JPG, GIF or PNG 2: JPG or PNG
+#: common.php:7599 common.php:7605 common.php:7613
+msgid "%1$s to %2$s Conversion"
+msgstr "%1$s to %2$s Conversion"
+
+#: common.php:7564
+msgid "Remember that each image size will affect your API credits."
+msgstr "Remember that each image size will affect your API credits."
+
+#: common.php:7554
+msgid "Resizes images uploaded to the Media Library."
+msgstr "Resizes images uploaded to the Media Library."
+
+#: common.php:7516
+msgid "Include Media Folders"
+msgstr "Include Media Folders"
+
+#: common.php:7436
+msgid "JS/CSS Minification and Compression"
+msgstr "JS/CSS Minification and Compression"
+
+#: common.php:7434
+msgid "Premium Compression"
+msgstr "Premium Compression"
+
+#: common.php:7363 common.php:7366
+msgid "Optimization API Key"
+msgstr "Optimization API Key"
+
+#: common.php:7325
+msgid "WebP"
+msgstr "WebP"
+
+#: common.php:7324
+msgid "Convert"
+msgstr "Convert"
+
+#: common.php:7322
+msgid "Advanced"
+msgstr "Advanced"
+
+#: common.php:7320
+msgid "Basic"
+msgstr "Basic"
+
+#: common.php:7285
+msgid "Scale or reduce the dimensions of your images for more savings."
+msgstr "Scale or reduce the dimensions of your images for more savings."
+
+#: common.php:7263
+msgid "Reduce the file size of your images without affecting quality."
+msgstr "Reduce the file size of your images without affecting quality."
+
+#: common.php:7253 common.php:7275
+msgid "You got the perfect score!"
+msgstr "You got the perfect score!"
+
+#: common.php:7253 common.php:7275
+msgid "How do I get to 100%?"
+msgstr "How do I get to 100%?"
+
+#: common.php:7232
+msgid "Remove metadata from JPG images."
+msgstr "Remove metadata from JPG images."
+
+#: common.php:7226
+msgid "Premium Upgrades"
+msgstr "Premium Upgrades"
+
+#: common.php:7192
+msgid "Install webp."
+msgstr "Install webp."
+
+#: common.php:7179
+msgid "Install gifsicle."
+msgstr "Install gifsicle."
+
+#: common.php:7166
+msgid "Install pngquant."
+msgstr "Install pngquant."
+
+#: common.php:7153
+msgid "Install pngout"
+msgstr "Install pngout"
+
+#: common.php:7140
+msgid "Install optipng."
+msgstr "Install optipng."
+
+#: common.php:7127
+msgid "Install jpegtran."
+msgstr "Install jpegtran."
+
+#: common.php:7114
+msgid "JPG quality level should be between 50 and 90 for optimal resizing."
+msgstr "JPG quality level should be between 50 and 90 for optimal resizing."
+
+#: common.php:7108
+msgid "Configure maximum image dimensions in Resize settings."
+msgstr "Configure maximum image dimensions in Resize settings."
+
+#: common.php:7086
+msgid "Enable ExactDN for automatic resizing."
+msgstr "Enable ExactDN for automatic resizing."
+
+#: common.php:7085
+msgid "Inactive, enable to activate automatic resizing and more"
+msgstr "Inactive, enable to activate automatic resizing and more"
+
+#: common.php:7070
+msgid "Enable premium lossy compression."
+msgstr "Enable premium lossy compression."
+
+#: common.php:7049
+msgid "Enable premium compression with an API key or ExactDN."
+msgstr "Enable premium compression with an API key or ExactDN."
+
+#: common.php:7038
+msgid "Purchase more"
+msgstr "Purchase more"
+
+#: common.php:7038
+msgid "Out of credits"
+msgstr "Out of credits"
+
+#: common.php:7034
+msgid "Enable premium lossy compression for PNG images."
+msgstr "Enable premium lossy compression for PNG images."
+
+#: common.php:7029
+msgid "Enable premium lossy compression for JPG images."
+msgstr "Enable premium lossy compression for JPG images."
+
+#: common.php:7018
+msgid "Optimization Status"
+msgstr "Optimization Status"
+
+#: common.php:6989
+msgid "Server Status"
+msgstr "Server Status"
+
+#: common.php:1327
+msgid "Change the Media Library to List mode for additional image optimization information and actions."
+msgstr "Change the Media Library to List mode for additional image optimization information and actions."
+
+#: common.php:1285
+msgid "Pngout was successfully installed."
+msgstr "Pngout was successfully installed."
+
+#: common.php:845
+msgid "User-submitted images that are displayed on this site will be transmitted and stored on a global network of third-party servers (a CDN)."
+msgstr "User-submitted images that are displayed on this site will be transmitted and stored on a global network of third-party servers (a CDN)."
+
+#: common.php:845
+msgid "Suggested ExactDN Text:"
+msgstr "Suggested ExactDN Text:"
+
+#: common.php:844
+msgid "User-submitted images may be transmitted to image compression servers in the United States and stored there for up to 30 days."
+msgstr "User-submitted images may be transmitted to image compression servers in the United States and stored there for up to 30 days."
+
+#: common.php:844
+msgid "Suggested API Text:"
+msgstr "Suggested API Text:"
+
+#: common.php:843
+msgid "If you accept user-submitted images and use the API or ExactDN, those images may be transmitted to third-party servers in foregin countries. If Backup Originals is enabled, images are stored for 30 days. Otherwise, no images are stored on the API for longer than 30 minutes."
+msgstr "If you accept user-submitted images and use the API or ExactDN, those images may be transmitted to third-party servers in foregin countries. If Backup Originals is enabled, images are stored for 30 days. Otherwise, no images are stored on the API for longer than 30 minutes."
+
+#: common.php:7432
+msgid "WebP Conversion"
+msgstr "WebP Conversion"
+
+#: common.php:841
+msgid "By default, the EWWW Image Optimizer does not store any personal data nor share it with anyone."
+msgstr "By default, the EWWW Image Optimizer does not store any personal data nor share it with anyone."
+
+#: classes/class-ewwwio-install-cloud.php:88
+msgid "A partial installation already exists. Please remove it and try again."
+msgstr "A partial installation already exists. Please remove it and try again."
+
+#: classes/class-ewwwio-install-cloud.php:83
+msgid "The plugins folder is not writable, you may install the EWWW Image Optimizer Cloud manually."
+msgstr "The plugins folder is not writable, you may install the EWWW Image Optimizer Cloud manually."
+
+#: classes/class-ewww-flag.php:696 classes/class-ewww-nextgen.php:454
+#: common.php:5838
+msgid "Show Metadata"
+msgstr "Show Metadata"
+
+#: bulk.php:1650
+msgid "Show Debug Output"
+msgstr "Show Debug Output"
+
+#: aux-optimize.php:78 common.php:7736
+msgid "Copy"
+msgstr "Copy"
+
+#: common.php:7081
 msgid "Plugins that remove query strings are unnecessary with ExactDN. You may remove them at your convenience."
 msgstr "Plugins that remove query strings are unnecessary with ExactDN. You may remove them at your convenience."
 
-#: common.php:7657
+#: common.php:7061
 msgid "If you use the File Optimization options within WP Rocket, you should also enter your ExactDN CNAME in the WP Rocket CDN settings (reserved for CSS and Javascript):"
 msgstr "If you use the File Optimization options within WP Rocket, you should also enter your ExactDN CNAME in the WP Rocket CDN settings (reserved for CSS and Javascript):"
 
-#: ewww-image-optimizer.php:183
+#: ewww-image-optimizer.php:184
 msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on WP NET sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 msgstr "The regular version of the EWWW Image Optimizer plugin is not permitted on WP NET sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 
-#: common.php:7642
+#: common.php:7043
 msgid "View Usage"
 msgstr "View Usage"
 
 #. translators: 1: Number of images 2: Number of days until renewal
-#: common.php:3787
+#: common.php:3085
 msgid "optimized %1$d images, renewal is in %2$d day."
 msgid_plural "optimized %1$d images, renewal is in %2$d days."
 msgstr[0] "optimized %1$d images, renewal is in %2$d day."
 msgstr[1] "optimized %1$d images, renewal is in %2$d days."
 
-#: aux-optimize.php:720
+#: aux-optimize.php:706
 msgid "You do not appear to have enough image credits to complete this operation."
 msgstr "You do not appear to have enough image credits to complete this operation."
 
-#: common.php:7919
+#: common.php:7326
 msgid "Overrides"
 msgstr "Overrides"
 
-#: common.php:7896
+#: common.php:7216
 msgid "Re-test"
 msgstr "Re-test"
 
-#: common.php:7663
+#: common.php:7075
 msgid "Active, not yet verified."
 msgstr "Active, not yet verified."
 
-#: common.php:7660
+#: common.php:7073
 msgid "Temporarily disabled."
 msgstr "Temporarily disabled."
 
-#: common.php:235
+#: common.php:1302
 msgid "The next major release of EWWW Image Optimizer will require PHP 5.5 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
 msgstr "The next major release of EWWW Image Optimizer will require PHP 5.5 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
 
-#: common.php:7900
+#: common.php:7220
 msgid "Background mode active, enable Parallel Optimization in Advanced Settings"
 msgstr "Background mode active, enable Parallel Optimization in Advanced Settings"
 
-#: common.php:8245
+#: common.php:7680
 msgid "Remove Rewrite Rules"
 msgstr "Remove Rewrite Rules"
 
-#: common.php:7358
+#: common.php:6743
 msgid "Removal failed"
 msgstr "Removal failed"
 
-#: common.php:7356
+#: common.php:6741
 msgid "Removal successful"
 msgstr "Removal successful"
 
-#: common.php:2002
+#: common.php:1316
 msgid "New thumbnails will be optimized by the EWWW Image Optimizer as they are generated. You may wish to disable the plugin and run a bulk optimize later to speed up the process."
 msgstr "New thumbnails will be optimized by the EWWW Image Optimizer as they are generated. You may wish to disable the plugin and run a bulk optimize later to speed up the process."
 
-#: common.php:8283
+#: common.php:7716
 msgid "Add ExactDN to increase website speeds dramatically!"
 msgstr "Add ExactDN to increase website speeds dramatically!"
 
-#: common.php:8562
+#: common.php:7997
 msgid "The Debug Log is empty."
 msgstr "The Debug Log is empty."
 
-#: common.php:8282
+#: common.php:7284 common.php:7323 common.php:7715
 msgid "Resize"
 msgstr "Resize"
 
-#: common.php:8281
+#: common.php:7262 common.php:7714
 msgid "Compress"
 msgstr "Compress"
 
-#: common.php:8280
+#: common.php:7713
 msgid "Signup for premium image optimization:"
 msgstr "Signup for premium image optimization:"
 
-#: common.php:3801
+#: common.php:3099
 msgid "no credits remaining, please purchase more."
 msgstr "no credits remaining, please purchase more."
 
-#: common.php:2592
+#: common.php:1938
 msgid "EWWW IO Debug Log"
 msgstr "EWWW IO Debug Log"
 
@@ -114,47 +349,35 @@ msgstr "Previously optimized images will be skipped by default, check this box b
 msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on Flywheel sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 msgstr "The regular version of the EWWW Image Optimizer plugin is not permitted on Flywheel sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 
-#: common.php:8141
-msgid "Resizes images uploaded indirectly to the Media Library, like theme images or front-end uploads. Also applied to existing images during Bulk Optimization if necessary."
-msgstr "Resizes images uploaded indirectly to the Media Library, like theme images or front-end uploads. Also applied to existing images during Bulk Optimization if necessary."
-
-#: common.php:8130
+#: common.php:7547
 msgid "Highlight images that need to be resized because the browser is scaling them down. Only visible for Admin users and adds a button to the admin bar to detect scaled images that have been lazy loaded."
 msgstr "Highlight images that need to be resized because the browser is scaling them down. Only visible for Admin users and adds a button to the admin bar to detect scaled images that have been lazy loaded."
 
-#: common.php:8120
-msgid "Retina Support, use WP Retina 2x for best results"
-msgstr "Retina Support, use WP Retina 2x for best results"
-
-#: common.php:8122
+#: common.php:7435
 msgid "Adjustable Quality"
 msgstr "Adjustable Quality"
 
-#: common.php:7931
+#: common.php:7338
 msgid "Configure network-wide settings in the Network Admin."
 msgstr "Configure network-wide settings in the Network Admin."
 
-#: common.php:8123
+#: common.php:7437
 msgid "Learn more about ExactDN"
 msgstr "Learn more about ExactDN"
 
-#: common.php:8118
+#: common.php:7430
 msgid "Purchase a subscription for your site."
 msgstr "Purchase a subscription for your site."
 
-#: common.php:8117
+#: common.php:7429
 msgid "Enables CDN and automatic image resizing to fit your pages."
 msgstr "Enables CDN and automatic image resizing to fit your pages."
 
-#: common.php:8114
+#: common.php:7321 common.php:7426
 msgid "ExactDN"
 msgstr "ExactDN"
 
-#: common.php:7675
-msgid "Inactive, enable automatic resizing in the Resize Settings"
-msgstr "Inactive, enable automatic resizing in the Resize Settings"
-
-#: common.php:7655
+#: common.php:7059
 msgid "Verified"
 msgstr "Verified"
 
@@ -163,51 +386,51 @@ msgstr "Verified"
 msgid "Allow EWWW Image Optimizer to track plugin usage? Opt-in to tracking and receive 500 free image credits in your admin email: %s. No sensitive data is tracked."
 msgstr "Allow EWWW Image Optimizer to track plugin usage? Opt-in to tracking and receive 500 free image credits in your admin email: %s. No sensitive data is tracked."
 
-#: common.php:8130
+#: common.php:7547
 msgid "Resize Detection"
 msgstr "Resize Detection"
 
-#: common.php:7649
+#: common.php:7054
 msgid "Inactive, please disable the Image Performance option on the Jetpack Dashboard."
 msgstr "Inactive, please disable the Image Performance option on the Jetpack Dashboard."
 
-#: bulk.php:463
+#: common.php:7433
+msgid "Retina Support, use with WP Retina 2x for best results"
+msgstr "Retina Support, use with WP Retina 2x for best results"
+
+#: bulk.php:465
 msgid "Operation timed out, you may need to increase the max_execution_time or memory_limit for PHP"
 msgstr "Operation timed out, you may need to increase the max_execution_time or memory_limit for PHP"
 
-#: ewww-image-optimizer.php:169
+#: ewww-image-optimizer.php:168
 msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on Kinsta sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 msgstr "The regular version of the EWWW Image Optimizer plugin is not permitted on Kinsta sites. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 
-#: common.php:7916
-msgid "Resize Settings"
-msgstr "Resize Settings"
-
-#: bulk.php:477
+#: bulk.php:479
 msgid "more..."
 msgstr "more..."
 
-#: bulk.php:467
+#: bulk.php:469
 msgid "Temporary failure, attempts remaining:"
 msgstr "Temporary failure, attempts remaining:"
 
-#: aux-optimize.php:99 common.php:8328
+#: aux-optimize.php:85 common.php:7743
 msgid "Debugging information will be included with your message automatically."
 msgstr "Debugging information will be included with your message automatically."
 
-#: aux-optimize.php:74 aux-optimize.php:100 common.php:8304 common.php:8329
+#: aux-optimize.php:74 aux-optimize.php:86 common.php:7733 common.php:7744
 msgid "This will allow us to assist you more quickly."
 msgstr "This will allow us to assist you more quickly."
 
-#: aux-optimize.php:73 common.php:8303
+#: aux-optimize.php:73 common.php:7732
 msgid "Enable the Debugging option and refresh this page to include debugging information with your question."
 msgstr "Enable the Debugging option and refresh this page to include debugging information with your question."
 
-#: common.php:8105
+#: common.php:7538
 msgid "Enable Embedded Help"
 msgstr "Enable Embedded Help"
 
-#: classes/class-ewwwio-hs-beacon.php:103 common.php:8106
+#: classes/class-ewwwio-hs-beacon.php:103 common.php:7539
 msgid "Enable the support beacon, which gives you access to documentation and our support team right from your WordPress dashboard. To assist you more efficiently, we may collect the current url, IP address, browser/device information, and debugging information."
 msgstr "Enable the support beacon, which gives you access to documentation and our support team right from your WordPress dashboard. To assist you more efficiently, we may collect the current url, IP address, browser/device information, and debugging information."
 
@@ -215,67 +438,67 @@ msgstr "Enable the support beacon, which gives you access to documentation and o
 msgid "Please disable Scheduled optimization before continuing."
 msgstr "Please disable Scheduled optimization before continuing."
 
-#: common.php:7968
+#: common.php:7376
 msgid "Get an API key to achieve up to 80% compression and see the quality for yourself."
 msgstr "Get an API key to achieve up to 80% compression and see the quality for yourself."
 
-#: common.php:7967
+#: common.php:7375
 msgid "Lossless compression is actually identical to the original, while lossy reduces the quality a small amount."
 msgstr "Lossless compression is actually identical to the original, while lossy reduces the quality a small amount."
 
-#: common.php:7966
+#: common.php:7374
 msgid "All methods used by the EWWW Image Optimizer are intended to produce visually identical images."
 msgstr "All methods used by the EWWW Image Optimizer are intended to produce visually identical images."
 
-#: common.php:7902
+#: common.php:7222
 msgid "Fully Enabled"
 msgstr "Fully Enabled"
 
-#: common.php:7898
+#: common.php:7218
 msgid "Disabled by Shield's Lock to Location feature"
 msgstr "Disabled by Shield's Lock to Location feature"
 
-#: common.php:7896
+#: common.php:7216
 msgid "Disabled automatically, async requests blocked"
 msgstr "Disabled automatically, async requests blocked"
 
-#: common.php:7894
+#: common.php:7214
 msgid "Disabled, sleep function missing"
 msgstr "Disabled, sleep function missing"
 
-#: common.php:7892
+#: common.php:7212
 msgid "Disabled by administrator"
 msgstr "Disabled by administrator"
 
-#: aux-optimize.php:724
+#: aux-optimize.php:710
 msgid "Why are there so many images?"
 msgstr "Why are there so many images?"
 
-#: common.php:7956
+#: common.php:7363
 msgid "Remove API key"
 msgstr "Remove API key"
 
-#: common.php:8168
+#: common.php:7585
 msgid "*Settings to disable creation and optimization of individual sizes must be configured for each individual site."
 msgstr "*Settings to disable creation and optimization of individual sizes must be configured for each individual site."
 
-#: common.php:7941 common.php:8109
+#: common.php:7348 common.php:7542
 msgid "Allow EWWW Image Optimizer to anonymously track how this plugin is used and help us make the plugin better. Opt-in to tracking and receive 500 API image credits free. No sensitive data is tracked."
 msgstr "Allow EWWW Image Optimizer to anonymously track how this plugin is used and help us make the plugin better. Opt-in to tracking and receive 500 API image credits free. No sensitive data is tracked."
 
-#: common.php:7940 common.php:8108
+#: common.php:7347 common.php:7541
 msgid "Allow Usage Tracking?"
 msgstr "Allow Usage Tracking?"
 
-#: common.php:7937
+#: common.php:7344
 msgid "Allow individual sites to configure their own settings and override all network options."
 msgstr "Allow individual sites to configure their own settings and override all network options."
 
-#: common.php:7937
+#: common.php:7344
 msgid "Allow Single-site Override"
 msgstr "Allow Single-site Override"
 
-#: common.php:7598
+#: common.php:6987
 msgid "Documentation"
 msgstr "Documentation"
 
@@ -287,45 +510,41 @@ msgstr "Do not allow"
 msgid "Allow"
 msgstr "Allow"
 
-#: classes/class-ewwwio-tracking.php:344 common.php:2003
+#: classes/class-ewwwio-tracking.php:344 common.php:1317
 msgid "Learn more."
 msgstr "Learn more."
 
-#: common.php:8003
-msgid "*PDF optimization cannot be enabled because the fileinfo extension is missing."
-msgstr "*PDF optimization cannot be enabled because the fileinfo extension is missing."
-
-#: ewww-image-optimizer.php:147
+#: ewww-image-optimizer.php:145
 msgid "Only one version of the EWWW Image Optimizer can be active at a time. Please deactivate other copies of the plugin."
 msgstr "Only one version of the EWWW Image Optimizer can be active at a time. Please deactivate other copies of the plugin."
 
-#: ewww-image-optimizer.php:140
+#: ewww-image-optimizer.php:138
 msgid "EWWW Image Optimizer requires PHP 5.4 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
 msgstr "EWWW Image Optimizer requires PHP 5.4 or greater. Newer versions of PHP, like 5.6, 7.0 and 7.1, are significantly faster and much more secure. If you are unsure how to upgrade to a supported version, ask your webhost for instructions."
 
-#: common.php:8090
+#: common.php:7523
 msgid "Provide paths containing images to be optimized using the Bulk Optimizer and Scheduled Optimization."
 msgstr "Provide paths containing images to be optimized using the Bulk Optimizer and Scheduled Optimization."
 
-#: common.php:8083
+#: common.php:7516
 msgid "Scan all images from the latest two folders of the Media Library during the Bulk Optimizer and Scheduled Optimization."
 msgstr "Scan all images from the latest two folders of the Media Library during the Bulk Optimizer and Scheduled Optimization."
 
-#: common.php:8081
+#: common.php:7514
 msgid "*Include Media Library Folders has been disabled because it will cause the scanner to ignore the disabled resizes."
 msgstr "*Include Media Library Folders has been disabled because it will cause the scanner to ignore the disabled resizes."
 
-#: common.php:8028
+#: common.php:7461
 msgid "Use this to override the default WordPress quality level of 82. Applies to image editing, resizing, PNG to JPG conversion, and JPG to WebP conversion. Does not affect the original uploaded image unless maximum dimensions are set and resizing occurs."
 msgstr "Use this to override the default WordPress quality level of 82. Applies to image editing, resizing, PNG to JPG conversion, and JPG to WebP conversion. Does not affect the original uploaded image unless maximum dimensions are set and resizing occurs."
 
 #. translators: %s: S3 Image Optimizer (link)
-#: common.php:7616
+#: common.php:7005
 msgid "Images stored in an Amazon S3 bucket can be optimized using our %s."
 msgstr "Images stored in an Amazon S3 bucket can be optimized using our %s."
 
 #. translators: %s: JPG, PNG, GIF, or PDF
-#: common.php:6552 common.php:6590
+#: common.php:5906 common.php:5944
 msgid "%s compression disabled"
 msgstr "%s compression disabled"
 
@@ -337,10 +556,10 @@ msgstr "%s compression disabled"
 #. translators: %s: number of seconds
 #. translators: %s: number of seconds
 #. translators: %s: number of seconds
-#: bulk.php:1637 bulk.php:1643 classes/class-ewww-flag.php:606
-#: classes/class-ewww-nextcellent.php:706 classes/class-ewww-nextgen.php:845
+#: bulk.php:1639 bulk.php:1645 classes/class-ewww-flag.php:606
+#: classes/class-ewww-nextcellent.php:706 classes/class-ewww-nextgen.php:939
 #: classes/class-ewwwio-cli.php:298 classes/class-ewwwio-cli.php:397
-#: classes/class-ewwwio-cli.php:477 common.php:4560
+#: classes/class-ewwwio-cli.php:477 common.php:3874
 msgid "Elapsed: %s second"
 msgid_plural "Elapsed: %s seconds"
 msgstr[0] "Elapsed: %s second"
@@ -353,94 +572,90 @@ msgid_plural "%1$d images in the Media Library have been selected."
 msgstr[0] "%1$d image in the Media Library has been selected."
 msgstr[1] "%1$d images in the Media Library have been selected."
 
-#: common.php:3357
+#: common.php:2655
 msgid "Unable to restore image."
 msgstr "Unable to restore image."
 
-#: common.php:3338
+#: common.php:2636
 msgid "No image ID was provided."
 msgstr "No image ID was provided."
 
-#: bulk.php:474
+#: bulk.php:476
 msgid "remaining"
 msgstr "remaining"
 
-#: common.php:8014
+#: common.php:7417
 msgid "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
 msgstr "Store a copy of your original images on our secure server for 30 days. *Requires an active API key."
 
-#: common.php:8013
+#: common.php:7415
 msgid "Backup Originals"
 msgstr "Backup Originals"
 
-#: bulk.php:469
+#: bulk.php:471
 msgid "Previous failure due to broken/missing metadata, skipped resizes for attachment:"
 msgstr "Previous failure due to broken/missing metadata, skipped resizes for attachment:"
 
 #. translators: 1: $table_prefix 2: wp-config.php
-#: common.php:4222
+#: common.php:3520
 msgid "<strong>ERROR</strong>: %1$s in %2$s can only contain numbers, letters, and underscores."
 msgstr "<strong>ERROR</strong>: %1$s in %2$s can only contain numbers, letters, and underscores."
 
-#: bulk.php:1198
+#: bulk.php:1200
 msgid "Increasing PHP's memory_limit setting will allow for faster scanning with fewer database queries. Please allow up to 10 minutes for changes to memory limit to be detected."
 msgstr "Increasing PHP's memory_limit setting will allow for faster scanning with fewer database queries. Please allow up to 10 minutes for changes to memory limit to be detected."
 
-#: aux-optimize.php:418
+#: aux-optimize.php:404
 msgid "Stage 2 unable to complete due to memory restrictions. Please increase the memory_limit setting for PHP and try again."
 msgstr "Stage 2 unable to complete due to memory restrictions. Please increase the memory_limit setting for PHP and try again."
 
-#: common.php:8136 common.php:8140
+#: common.php:7553
 msgid "in pixels"
 msgstr "in pixels"
 
-#: common.php:8517
+#: common.php:7952
 msgid "Detect Scaled Images"
 msgstr "Detect Scaled Images"
 
-#: common.php:8134
+#: common.php:7551
 msgid "*Imsanity settings override the EWWW resize dimensions."
 msgstr "*Imsanity settings override the EWWW resize dimensions."
 
-#: bulk.php:739
+#: bulk.php:741
 msgid "List of attachment IDs not found."
 msgstr "List of attachment IDs not found."
 
-#: common.php:6845
+#: common.php:6199 common.php:7303
 msgid "Savings"
 msgstr "Savings"
 
-#: common.php:6845
+#: common.php:6199
 msgid "Image Size"
 msgstr "Image Size"
 
-#: common.php:8097
+#: common.php:7530
 msgid "A file that matches any pattern or path provided will not be optimized."
 msgstr "A file that matches any pattern or path provided will not be optimized."
 
-#: common.php:8095
+#: common.php:7528
 msgid "One path per line, partial paths allowed, but no urls."
 msgstr "One path per line, partial paths allowed, but no urls."
 
-#: common.php:8095
-msgid "Folders to ignore"
-msgstr "Folders to ignore"
-
-#: common.php:8157
+#: common.php:7574
 msgid "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
 msgstr "Disabling creation of the full-size preview for PDF files will disable all PDF preview sizes"
 
 #. translators: %s: human-readable file size
-#: common.php:6884
+#: common.php:6238
 msgid "Total Size: %s"
 msgstr "Total Size: %s"
 
 #. translators: %d: number of images
-#: bulk.php:131 bulk.php:1203
+#: bulk.php:131 bulk.php:1205
 msgid "Stage 1, %d images left to scan."
 msgstr "Stage 1, %d images left to scan."
 
-#: bulk.php:468
+#: bulk.php:470
 msgid "Received an invalid response from your website, please check for errors in the Developer Tools console of your browser."
 msgstr "Received an invalid response from your website, please check for errors in the Developer Tools console of your browser."
 
@@ -465,26 +680,26 @@ msgstr "%1$d images in the Media Library have been selected."
 msgid "Last Batch Optimized"
 msgstr "Last Batch Optimized"
 
-#: aux-optimize.php:409 aux-optimize.php:432 bulk.php:1210
+#: aux-optimize.php:395 aux-optimize.php:418 bulk.php:1212
 msgid "Stage 2, please wait."
 msgstr "Stage 2, please wait."
 
 #. translators: %d: The number of resize/thumbnail images
-#: common.php:6658 common.php:6740
+#: common.php:6012 common.php:6094
 msgid "%d size to compress"
 msgid_plural "%d sizes to compress"
 msgstr[0] "%d size to compress"
 msgstr[1] "%d sizes to compress"
 
 #. translators: %d: number of resizes/thumbnails compressed
-#: common.php:6874
+#: common.php:6228
 msgid "%d size compressed"
 msgid_plural "%d sizes compressed"
 msgstr[0] "%d size compressed"
 msgstr[1] "%d sizes compressed"
 
 #. translators: %d: number of images
-#: aux-optimize.php:716 bulk.php:50 classes/class-ewww-nextcellent.php:450
+#: aux-optimize.php:702 bulk.php:50 classes/class-ewww-nextcellent.php:450
 #: classes/class-ewwwio-cli.php:110 classes/class-ewwwio-cli.php:120
 #: classes/class-ewwwio-cli.php:163 classes/class-ewwwio-cli.php:189
 msgid "There is %d image ready to optimize."
@@ -492,118 +707,118 @@ msgid_plural "There are %d images ready to optimize."
 msgstr[0] "There is %d image ready to optimize."
 msgstr[1] "There are %d images ready to optimize."
 
-#: common.php:3578
+#: common.php:7528
+msgid "Folders to Ignore"
+msgstr "Folders to Ignore"
+
+#: common.php:2876
 msgid "Could not validate API key, please copy and paste your key to ensure it is correct."
 msgstr "Could not validate API key, please copy and paste your key to ensure it is correct."
 
-#: common.php:3572
+#: common.php:2870
 msgid "Successfully validated API key, happy optimizing!"
 msgstr "Successfully validated API key, happy optimizing!"
 
-#: common.php:3088
+#: common.php:2386
 msgid "Could not save the JPG quality, please enter an integer between 1 and 100."
 msgstr "Could not save the JPG quality, please enter an integer between 1 and 100."
 
-#: common.php:3060
+#: common.php:2358
 msgid "Could not save the JPG background color, please enter a six-character, hexadecimal value."
 msgstr "Could not save the JPG background colour, please enter a six-character, hexadecimal value."
 
-#: common.php:3012
+#: common.php:2310
 msgid "Please enter a valid url including the domain name."
 msgstr "Please enter a valid url including the domain name."
 
 #. translators: %s: A url or domain name
-#: common.php:3011
+#: common.php:2309
 msgid "Could not save WebP URL: %s."
 msgstr "Could not save WebP URL: %s."
 
 #. translators: %s: A file system path
-#: common.php:2952
+#: common.php:2250
 msgid "Could not save Folder to Optimize: %s. Please ensure that it is a valid location on the server."
 msgstr "Could not save Folder to Optimize: %s. Please ensure that it is a valid location on the server."
 
-#: unique.php:1624
+#: unique.php:1660
 msgid "Unknown file type"
 msgstr "Unknown file type"
 
-#: bulk.php:464
+#: bulk.php:466
 msgid "Scan did not complete, will try again"
 msgstr "Scan did not complete, will try again"
 
-#: common.php:2041
+#: common.php:1366
 msgid "Reset Counters"
 msgstr "Reset Counters"
 
 #. translators: %s: A link to the Dynamic Image Debugging page
-#: common.php:2038
+#: common.php:1363
 msgid "The EWWW Image Optimizer has detected excessive re-optimization of multiple images. Please turn on the Debugging setting, wait for approximately 12 hours, and then visit the %s page."
 msgstr "The EWWW Image Optimizer has detected excessive re-optimization of multiple images. Please turn on the Debugging setting, wait for approximately 12 hours, and then visit the %s page."
 
 #. translators: 1: Size of savings in bytes, kb, mb 2: Percentage savings
-#: common.php:4440
+#: common.php:3754
 msgid "Reduced by %1$s (%2$s)"
 msgstr "Reduced by %1$s (%2$s)"
 
-#: common.php:8209
+#: common.php:7643
 msgid "WebP URLs"
 msgstr "WebP URLs"
 
-#: common.php:8209
+#: common.php:7643
 msgid "If Force WebP is enabled, enter URL patterns that should be permitted for Alternative WebP Rewriting. One pattern per line, may be partial URLs, but must include the domain name."
 msgstr "If Force WebP is enabled, enter URL patterns that should be permitted for Alternative WebP Rewriting. One pattern per line, may be partial URLs, but must include the domain name."
 
-#: common.php:8205
+#: common.php:7637
 msgid "WebP images will be generated and saved for all JPG/PNG images regardless of their size. The Alternative WebP Rewriting will not check if a file exists, only that the domain matches the home url."
 msgstr "WebP images will be generated and saved for all JPG/PNG images regardless of their size. The Alternative WebP Rewriting will not check if a file exists, only that the domain matches the home url."
 
-#: unique.php:475
+#: unique.php:510
 msgid "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
 msgstr "EWWW Image Optimizer requires exec() or an API key. Your system administrator has disabled the exec() function, ask them to enable it."
 
-#: common.php:8205
+#: common.php:7633
 msgid "Force WebP"
 msgstr "Force WebP"
 
-#: common.php:7918
-msgid "WebP Settings"
-msgstr "WebP Settings"
-
-#: bulk.php:476 classes/class-ewww-flag.php:667
-#: classes/class-ewww-nextcellent.php:765 classes/class-ewww-nextgen.php:315
-#: common.php:2800
+#: bulk.php:478 classes/class-ewww-flag.php:667
+#: classes/class-ewww-nextcellent.php:765 classes/class-ewww-nextgen.php:383
+#: common.php:2098
 msgid "Restoring"
 msgstr "Restoring"
 
-#: common.php:7963
+#: common.php:7371
 msgid "This will remove ALL metadata: EXIF, comments, color profiles, and anything else that is not pixel data."
 msgstr "This will remove ALL metadata: EXIF, comments, colour profiles, and anything else that is not pixel data."
 
-#: common.php:2710
+#: common.php:2056
 msgid "No images found"
 msgstr "No images found"
 
-#: common.php:2674
+#: common.php:2020
 msgid "No galleries found"
 msgstr "No galleries found"
 
 #. translators: %s: Cache Enabler (link)
-#: common.php:8219
+#: common.php:7654
 msgid "Sites using a CDN may also use the WebP option in the %s plugin."
 msgstr "Sites using a CDN may also use the WebP option in the %s plugin."
 
-#: common.php:8763
+#: common.php:8198
 msgid "Nothing to see here, go upload some images!"
 msgstr "Nothing to see here, go upload some images!"
 
-#: common.php:8781
+#: common.php:8216
 msgid "Clear this queue"
 msgstr "Clear this queue"
 
-#: common.php:8791
+#: common.php:8226
 msgid "Clear all queues"
 msgstr "Clear all queues"
 
-#: common.php:2590 common.php:8745
+#: common.php:1936 common.php:8180
 msgid "Image Queue Debugging"
 msgstr "Image Queue Debugging"
 
@@ -612,176 +827,164 @@ msgstr "Image Queue Debugging"
 msgid "Every %d Minutes"
 msgstr "Every %d Minutes"
 
-#: classes/class-ewww-flag.php:769 classes/class-ewww-nextcellent.php:394
-#: common.php:6620 common.php:6672
+#: classes/class-ewww-flag.php:770 classes/class-ewww-nextcellent.php:394
+#: common.php:5974 common.php:6026
 msgid "In Progress"
 msgstr "In Progress"
 
-#: common.php:8029
-msgid "Parallel optimization"
-msgstr "Parallel optimization"
-
-#: common.php:8029
+#: common.php:7462
 msgid "All resizes generated from a single upload are optimized in parallel for faster optimization. If this is causing performance issues, disable parallel optimization to reduce the load on your server."
 msgstr "All resizes generated from a single upload are optimized in parallel for faster optimization. If this is causing performance issues, disable parallel optimization to reduce the load on your server."
 
-#: common.php:8144
+#: common.php:7462
+msgid "Parallel Optimization"
+msgstr "Parallel Optimization"
+
+#: common.php:7558
 msgid "Allow resizing of existing Media Library images."
 msgstr "Allow resizing of existing Media Library images."
 
-#: common.php:8696
+#: common.php:8131
 msgid "Cannot display trace"
 msgstr "Cannot display trace"
 
-#: common.php:7972 common.php:7983 common.php:7995 common.php:8007
+#: common.php:7380 common.php:7391 common.php:7403 common.php:7409
 msgid "No Compression"
 msgstr "No Compression"
 
-#: common.php:7974 common.php:7985 common.php:7996 common.php:8008
+#: common.php:7382 common.php:7393 common.php:7404 common.php:7410
 msgid "Lossless Compression"
 msgstr "Lossless Compression"
 
-#: common.php:7976 common.php:7988 common.php:8121
+#: common.php:7384 common.php:7396
 msgid "Maximum Lossless Compression"
 msgstr "Maximum Lossless Compression"
 
-#: common.php:7977 common.php:7989 common.php:8009
+#: common.php:7385 common.php:7397 common.php:7411
 msgid "Lossy Compression"
 msgstr "Lossy Compression"
 
-#: common.php:7978 common.php:7990
+#: common.php:7386 common.php:7398
 msgid "Maximum Lossy Compression"
 msgstr "Maximum Lossy Compression"
 
-#: common.php:8136
+#: common.php:7553
 msgid "Resize Media Images"
 msgstr "Resize Media Images"
 
-#: common.php:8137
-msgid "Resizes images uploaded directly to the Media Library and those uploaded within a post or page."
-msgstr "Resizes images uploaded directly to the Media Library and those uploaded within a post or page."
-
-#: common.php:8140
-msgid "Resize Other Images"
-msgstr "Resize Other Images"
-
-#: common.php:8136 common.php:8140
+#: common.php:7553
 msgid "Max Width"
 msgstr "Max Width"
 
-#: common.php:8136 common.php:8140
+#: common.php:7553
 msgid "Max Height"
 msgstr "Max Height"
 
-#: common.php:8144
+#: common.php:7558
 msgid "Resize Existing Images"
 msgstr "Resize Existing Images"
 
-#: unique.php:1790
+#: unique.php:1830
 msgid "JPG optimization is disabled"
 msgstr "JPG optimization is disabled"
 
-#: unique.php:2059
+#: unique.php:2100
 msgid "PNG optimization is disabled"
 msgstr "PNG optimization is disabled"
 
-#: unique.php:2337
+#: unique.php:2379
 msgid "GIF optimization is disabled"
 msgstr "GIF optimization is disabled"
 
-#: common.php:7970
+#: common.php:7378
 msgid "JPG Optimization Level"
 msgstr "JPG Optimization Level"
 
-#: common.php:7981
+#: common.php:7389
 msgid "PNG Optimization Level"
 msgstr "PNG Optimization Level"
 
-#: common.php:7993
+#: common.php:7401
 msgid "GIF Optimization Level"
 msgstr "GIF Optimization Level"
 
-#: common.php:8005
+#: common.php:7407
 msgid "PDF Optimization Level"
 msgstr "PDF Optimization Level"
 
-#: bulk.php:1267 bulk.php:1273 classes/class-ewww-flag.php:500
-#: classes/class-ewww-nextcellent.php:621 classes/class-ewww-nextgen.php:743
+#: bulk.php:1269 bulk.php:1275 classes/class-ewww-flag.php:500
+#: classes/class-ewww-nextcellent.php:621 classes/class-ewww-nextgen.php:837
 msgid "Error retrieving list of images"
 msgstr "Error retrieving list of images"
 
-#: bulk.php:1532 bulk.php:1534
+#: bulk.php:1534 bulk.php:1536
 msgid "Could not find image"
 msgstr "Could not find image"
 
-#: bulk.php:28 bulk.php:1229 classes/class-ewww-flag.php:106
-#: classes/class-ewww-nextcellent.php:440 classes/class-ewww-nextgen.php:554
+#: bulk.php:28 bulk.php:1231 classes/class-ewww-flag.php:106
+#: classes/class-ewww-nextcellent.php:440 classes/class-ewww-nextgen.php:628
 msgid "Image credits available:"
 msgstr "Image credits available:"
 
-#: common.php:2039 common.php:2588 common.php:8669
+#: common.php:1364 common.php:1934 common.php:8104
 msgid "Dynamic Image Debugging"
 msgstr "Dynamic Image Debugging"
 
-#: common.php:8681
+#: common.php:8116
 msgid "File path"
 msgstr "File path"
 
-#: common.php:8683
+#: common.php:8118
 msgid "Last attempted"
 msgstr "Last attempted"
 
-#: common.php:8684
+#: common.php:8119
 msgid "PHP trace"
 msgstr "PHP trace"
 
-#: common.php:8682
+#: common.php:8117
 msgid "Number of attempted optimizations"
 msgstr "Number of attempted optimizations"
 
-#: bulk.php:473 classes/class-ewww-flag.php:132
-#: classes/class-ewww-nextcellent.php:465 classes/class-ewww-nextgen.php:580
+#: bulk.php:475 classes/class-ewww-flag.php:132
+#: classes/class-ewww-nextcellent.php:465 classes/class-ewww-nextgen.php:654
 msgid "Last Image Optimized"
 msgstr "Last Image Optimized"
 
 #: bulk.php:105 classes/class-ewww-flag.php:142
-#: classes/class-ewww-nextcellent.php:475 classes/class-ewww-nextgen.php:590
+#: classes/class-ewww-nextcellent.php:475 classes/class-ewww-nextgen.php:664
 msgid "Optimization Log"
 msgstr "Optimization Log"
 
-#: unique.php:1124 unique.php:1151 unique.php:1178 unique.php:1205
-#: unique.php:1232 unique.php:1320
+#: unique.php:1159 unique.php:1186 unique.php:1213 unique.php:1240
+#: unique.php:1267 unique.php:1355
 msgid "unknown"
 msgstr "unknown"
 
-#: common.php:6693
+#: common.php:6047
 msgid "Run WebP upgrade"
 msgstr "Run WebP upgrade"
 
-#: common.php:7601 common.php:7607
+#: common.php:6990 common.php:6996
 msgid "S3 Image Optimizer"
 msgstr "S3 Image Optimizer"
 
 #. translators: used for Bulk Optimize progress bar, like so: Optimized 32/346
-#: bulk.php:472 bulk.php:1594 bulk.php:1597 classes/class-ewww-flag.php:258
-#: classes/class-ewww-nextcellent.php:598 classes/class-ewww-nextgen.php:721
-#: common.php:4552
+#: bulk.php:474 bulk.php:1596 bulk.php:1599 classes/class-ewww-flag.php:258
+#: classes/class-ewww-nextcellent.php:598 classes/class-ewww-nextgen.php:815
+#: common.php:3866
 msgid "Optimized"
 msgstr "Optimized"
 
-#: common.php:7950 common.php:8223
+#: common.php:7357 common.php:7658
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: aux-optimize.php:92 common.php:8321
+#: aux-optimize.php:78 classes/class-ewww-nextgen.php:695 common.php:7736
 msgid "Debugging Information"
 msgstr "Debugging Information"
 
-#: aux-optimize.php:92 common.php:8321
-msgid "Select All"
-msgstr "Select All"
-
-#: unique.php:253 unique.php:274 unique.php:579
+#: unique.php:288 unique.php:309 unique.php:614
 msgid "Settings Page"
 msgstr "Settings Page"
 
@@ -790,176 +993,151 @@ msgid "Galleries"
 msgstr "Galleries"
 
 #. translators: %s: Image filename
-#: unique.php:1593
+#: unique.php:1629
 msgid "%s is not writable"
 msgstr "%s is not writable"
 
 #. translators: %s: Image filename
-#: unique.php:1583
+#: unique.php:1619
 msgid "Could not find %s"
 msgstr "Could not find %s"
 
-#: common.php:8172
+#: common.php:7589
 msgid "Conversion is only available for images in the Media Library (except WebP). By default, all images have a link available in the Media Library for one-time conversion. Turning on individual conversion operations below will enable conversion filters any time an image is uploaded or modified."
 msgstr "Conversion is only available for images in the Media Library (except WebP). By default, all images have a link available in the Media Library for one-time conversion. Turning on individual conversion operations below will enable conversion filters any time an image is uploaded or modified."
 
-#: common.php:8173
+#: common.php:7590
 msgid "NOTE:"
 msgstr "NOTE:"
 
-#: common.php:8173
+#: common.php:7590
 msgid "The plugin will attempt to update image locations for any posts that contain the images. You may still need to manually update locations/urls for converted images."
 msgstr "The plugin will attempt to update image locations for any posts that contain the images. You may still need to manually update locations/urls for converted images."
 
-#: common.php:8176
+#: common.php:7594
 msgid "Hide Conversion Links"
 msgstr "Hide Conversion Links"
 
-#: common.php:8176
+#: common.php:7594
 msgid "Site or Network admins can use this to prevent other users from using the conversion links in the Media Library which bypass the settings below."
 msgstr "Site or Network admins can use this to prevent other users from using the conversion links in the Media Library which bypass the settings below."
 
-#: common.php:8177
-msgid "Delete originals"
-msgstr "Delete originals"
-
-#: common.php:8177
+#: common.php:7595
 msgid "This will remove the original image from the server after a successful conversion."
 msgstr "This will remove the original image from the server after a successful conversion."
 
-#: common.php:8202
+#: common.php:7625
 msgid "JPG/PNG to WebP"
 msgstr "JPG/PNG to WebP"
 
-#: common.php:8202
+#: common.php:7629
 msgid "JPG to WebP conversion is lossy, but quality loss is minimal. PNG to WebP conversion is lossless."
 msgstr "JPG to WebP conversion is lossy, but quality loss is minimal. PNG to WebP conversion is lossless."
 
-#: common.php:8203
+#: common.php:7630
 msgid "Originals are never deleted, and WebP images should only be served to supported browsers."
 msgstr "Originals are never deleted, and WebP images should only be served to supported browsers."
 
-#: common.php:8203
+#: common.php:7631
 msgid "You can use the rewrite rules below to serve WebP images with Apache."
 msgstr "You can use the rewrite rules below to serve WebP images with Apache."
 
-#: common.php:8214
+#: common.php:7649
 msgid "Alternative WebP Rewriting"
 msgstr "Alternative WebP Rewriting"
 
-#: common.php:8217
-msgid "Uses output buffering and libxml functionality from PHP. Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
-msgstr "Uses output buffering and libxml functionality from PHP. Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
-
-#: common.php:8182
+#: common.php:7600
 msgid "Removes metadata and increases cpu usage dramatically."
 msgstr "Removes metadata and increases cpu usage dramatically."
 
-#: common.php:8183
+#: common.php:7601
 msgid "PNG is generally much better than JPG for logos and other images with a limited range of colors. Checking this option will slow down JPG processing significantly, and you may want to enable it only temporarily."
 msgstr "PNG is generally much better than JPG for logos and other images with a limited range of colours. Checking this option will slow down JPG processing significantly, and you may want to enable it only temporarily."
 
-#: common.php:8188
+#: common.php:7606
 msgid "This is not a lossless conversion."
 msgstr "This is not a lossless conversion."
 
-#: common.php:8189
+#: common.php:7607
 msgid "JPG is generally much better than PNG for photographic use because it compresses the image and discards data. PNGs with transparency are not converted by default."
 msgstr "JPG is generally much better than PNG for photographic use because it compresses the image and discards data. PNGs with transparency are not converted by default."
 
-#: common.php:8190
-msgid "JPG background color:"
-msgstr "JPG background colour:"
-
-#: common.php:8190
+#: common.php:7608
 msgid "HEX format (#123def)"
 msgstr "HEX format (#123def)"
 
-#: common.php:8191
+#: common.php:7609
 msgid "Background color is used only if the PNG has transparency. Leave this value blank to skip PNGs with transparency."
 msgstr "Background colour is used only if the PNG has transparency. Leave this value blank to skip PNGs with transparency."
 
-#: common.php:8028
-msgid "JPG quality level:"
-msgstr "JPG quality level:"
-
-#: common.php:8028
+#: common.php:7461
 msgid "Valid values are 1-100."
 msgstr "Valid values are 1-100."
 
-#: common.php:8196
+#: common.php:7614
 msgid "No warnings here, just do it."
 msgstr "No warnings here, just do it."
 
-#: common.php:8197
+#: common.php:7615
 msgid "PNG is generally better than GIF, but animated images cannot be converted."
 msgstr "PNG is generally better than GIF, but animated images cannot be converted."
 
 #. translators: %s: mod_rewrite or mod_headers
-#: common.php:8241
+#: common.php:7676
 msgid "There are many ways to serve WebP images to visitors with supported browsers. You may choose any you wish, but it is recommended to serve them with an .htaccess file using mod_rewrite and mod_headers. The plugin can insert the rules for you if the file is writable, or you can edit .htaccess yourself."
 msgstr "There are many ways to serve WebP images to visitors with supported browsers. You may choose any you wish, but it is recommended to serve them with an .htaccess file using mod_rewrite and mod_headers. The plugin can insert the rules for you if the file is writable, or you can edit .htaccess yourself."
 
-#: common.php:8244
+#: common.php:7679
 msgid "Rules verified successfully"
 msgstr "Rules verified successfully"
 
-#: common.php:8262
+#: common.php:7697
 msgid "The image to the right will display a WebP image with WEBP in white text, if your site is serving WebP images and your browser supports WebP."
 msgstr "The image to the right will display a WebP image with WEBP in white text, if your site is serving WebP images and your browser supports WebP."
 
-#: common.php:8263
+#: common.php:7698
 msgid "Insert Rewrite Rules"
 msgstr "Insert Rewrite Rules"
 
-#: common.php:8274
+#: common.php:7709
 msgid "Support EWWW I.O."
 msgstr "Support EWWW I.O."
 
-#: common.php:8275
+#: common.php:7710
 msgid "Would you like to help support development of this plugin?"
 msgstr "Would you like to help support development of this plugin?"
 
-#: common.php:8276
+#: common.php:7711
 msgid "Help translate EWWW I.O."
 msgstr "Help translate EWWW I.O."
 
-#: common.php:8277
+#: common.php:7712
 msgid "Write a review."
 msgstr "Write a review."
 
-#. translators: %s: Paypal (link)
-#: common.php:8279
-msgid "Contribute directly via %s."
-msgstr "Contribute directly via %s."
-
-#: common.php:8283
+#: common.php:7716
 msgctxt "abbreviation for Content Delivery Network"
 msgid "CDN:"
 msgstr "CDN:"
 
-#: unique.php:232
+#: unique.php:267
 msgid "Please adjust permissions or create the folder"
 msgstr "Please adjust permissions or create the folder"
 
 #. translators: 1: Settings Page (link) 2: Installation Instructions (link)
-#: unique.php:253 unique.php:274
+#: unique.php:288 unique.php:309
 msgid "For more details, visit the %1$s or the %2$s."
 msgstr "For more details, visit the %1$s or the %2$s."
 
-#: unique.php:2578
-msgid "tar command not found"
-msgstr "tar command not found"
-
-#: unique.php:2602 unique.php:2625 unique.php:2647
+#: unique.php:2659 unique.php:2699 unique.php:2722
 msgid "could not move pngout"
 msgstr "could not move pngout"
 
-#: unique.php:2607 unique.php:2630
+#: unique.php:2664 unique.php:2704
 msgid "could not set permissions"
 msgstr "could not set permissions"
 
-#: unique.php:2612 unique.php:2635
+#: unique.php:2669 unique.php:2709
 msgid "extraction of files failed"
 msgstr "extraction of files failed"
 
@@ -988,14 +1166,14 @@ msgstr "Bulk status has been reset, the next bulk operation will start from the 
 
 #. Translators: %s: The compression results/savings
 #. translators: %s: compression results
-#: classes/class-ewww-nextcellent.php:699 classes/class-ewww-nextgen.php:831
+#: classes/class-ewww-nextcellent.php:699 classes/class-ewww-nextgen.php:925
 #: classes/class-ewwwio-cli.php:383 classes/class-ewwwio-cli.php:466
 msgid "Full size - %s"
 msgstr "Full size - %s"
 
 #. Translators: %s: The compression results/savings
 #. translators: %s: compression results
-#: classes/class-ewww-nextcellent.php:702 classes/class-ewww-nextgen.php:835
+#: classes/class-ewww-nextcellent.php:702 classes/class-ewww-nextgen.php:929
 #: classes/class-ewwwio-cli.php:387 classes/class-ewwwio-cli.php:473
 msgid "Thumbnail - %s"
 msgstr "Thumbnail - %s"
@@ -1033,45 +1211,45 @@ msgstr "Shane Bishop"
 msgid "https://ewww.io/"
 msgstr "https://ewww.io/"
 
-#: unique.php:115
+#: unique.php:150
 msgid "EWWW Image Optimizer is supported on Linux, FreeBSD, Mac OSX, and Windows"
 msgstr "EWWW Image Optimizer is supported on Linux, FreeBSD, Mac OSX, and Windows"
 
 #. translators: %s: An operating system.
-#: unique.php:117
+#: unique.php:152
 msgid "Unfortunately, the EWWW Image Optimizer plugin does not work with %s"
 msgstr "Unfortunately, the EWWW Image Optimizer plugin does not work with %s"
 
-#: ewww-image-optimizer.php:162
+#: ewww-image-optimizer.php:160
 msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on WP Engine sites. However, the cloud version has been approved by WP Engine. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 msgstr "The regular version of the EWWW Image Optimizer plugin is not permitted on WP Engine sites. However, the cloud version has been approved by WP Engine. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
 
-#: unique.php:232
+#: unique.php:267
 msgid "EWWW Image Optimizer could not create the tool folder"
 msgstr "EWWW Image Optimizer could not create the tool folder"
 
 #. translators: %s: Folder location where executables should be installed
-#: unique.php:250 unique.php:271
+#: unique.php:285 unique.php:306
 msgid "EWWW Image Optimizer could not install tools in %s"
 msgstr "EWWW Image Optimizer could not install tools in %s"
 
 #. translators: 1-6: jpegtran, optipng, pngout, pngquant, gifsicle, and cwebp
 #. (links) 7: Settings Page (link) 8: Installation Instructions (link)
-#: unique.php:579
+#: unique.php:614
 msgid "EWWW Image Optimizer uses %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s. You are missing: %7$s. Please install via the %8$s or the %9$s."
 msgstr "EWWW Image Optimizer uses %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s. You are missing: %7$s. Please install via the %8$s or the %9$s."
 
-#: unique.php:1563 unique.php:1697 unique.php:1706
+#: unique.php:1598 unique.php:1736 unique.php:1745
 msgid "Optimization skipped"
 msgstr "Optimization skipped"
 
-#: unique.php:2560
+#: classes/class-ewwwio-install-cloud.php:76 unique.php:2603
 msgid "You do not have permission to install image optimizer utilities."
 msgstr "You do not have permission to install image optimizer utilities."
 
 #. translators: 1-4: number(s) of images
 #. translators: 1-4: number of images
-#: classes/class-ewww-flag.php:117 classes/class-ewww-nextgen.php:565
+#: classes/class-ewww-flag.php:117 classes/class-ewww-nextgen.php:639
 #: classes/class-ewwwio-cli.php:106 classes/class-ewwwio-cli.php:116
 #: classes/class-ewwwio-cli.php:182 classes/class-ewwwio-cli.php:206
 msgid "%1$d images have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
@@ -1084,7 +1262,7 @@ msgid "Optimized size – %s"
 msgstr "Optimized size – %s"
 
 #: classes/class-ewww-flag.php:641 classes/class-ewww-nextcellent.php:740
-#: classes/class-ewww-nextgen.php:878 classes/class-ewwwio-cli.php:238
+#: classes/class-ewww-nextgen.php:972 classes/class-ewwwio-cli.php:238
 #: classes/class-ewwwio-cli.php:312 classes/class-ewwwio-cli.php:411
 #: classes/class-ewwwio-cli.php:490
 msgid "Finished Optimization!"
@@ -1112,69 +1290,50 @@ msgstr "EWWW Image Optimizer"
 msgid "https://wordpress.org/plugins/ewww-image-optimizer/"
 msgstr "https://en-ca.wordpress.org/plugins/ewww-image-optimizer/"
 
-#: unique.php:251 unique.php:272
+#: unique.php:286 unique.php:307
 msgid "Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, check the option to Use System Paths."
 msgstr "Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, check the option to Use System Paths."
 
-#. translators: 1: JPG, GIF or PNG 2: JPG or PNG
-#: common.php:8181 common.php:8187 common.php:8195
-msgid "enable %1$s to %2$s conversion"
-msgstr "enable %1$s to %2$s conversion"
+#: common.php:7608
+msgid "JPG Background Color:"
+msgstr "JPG Background Colour:"
 
-#: common.php:2819 common.php:2821
+#: common.php:7595
+msgid "Delete Originals"
+msgstr "Delete Originals"
+
+#: common.php:7461
+msgid "JPG Quality Level:"
+msgstr "JPG Quality Level:"
+
+#: common.php:2117 common.php:2119
 msgid "Settings"
 msgstr "Settings"
 
-#: common.php:7789
-msgid "Enabled"
-msgstr "Enabled"
-
-#: common.php:7786
-msgid "Disabled"
-msgstr "Disabled"
-
-#: common.php:7914
-msgid "Basic Settings"
-msgstr "Basic Settings"
-
-#: common.php:7915
-msgid "Advanced Settings"
-msgstr "Advanced Settings"
-
-#: common.php:2681
+#: common.php:2027
 msgid "Title"
 msgstr "Title"
 
 #: bulk.php:92 bulk.php:102 classes/class-ewww-flag.php:129
 #: classes/class-ewww-flag.php:139 classes/class-ewww-nextcellent.php:462
-#: classes/class-ewww-nextcellent.php:472 classes/class-ewww-nextgen.php:577
-#: classes/class-ewww-nextgen.php:587
+#: classes/class-ewww-nextcellent.php:472 classes/class-ewww-nextgen.php:651
+#: classes/class-ewww-nextgen.php:661
 msgid "Click to toggle"
 msgstr "Click to toggle"
 
-#: common.php:2681
+#: common.php:2027
 msgid "Gallery"
 msgstr "Gallery"
-
-#: common.php:7735
-msgid "Install"
-msgstr "Install"
-
-#: common.php:7703 common.php:7718 common.php:7733 common.php:7748
-#: common.php:7763 common.php:7778 common.php:7802 common.php:7810
-#: common.php:7818 common.php:7840 common.php:7847 common.php:7856
-msgid "Installed"
-msgstr "Installed"
 
 #: aux-optimize.php:61
 msgid "page"
 msgstr "page"
 
-#: aux-optimize.php:756 bulk.php:1698 mwebp.php:238
+#: aux-optimize.php:742 bulk.php:1702 mwebp.php:238
 msgid "Finished"
 msgstr "Finished"
 
-#: common.php:7603
+#: common.php:6992
 msgid "Media Library"
 msgstr "Media Library"
 
@@ -1182,44 +1341,40 @@ msgstr "Media Library"
 msgid "of"
 msgstr "of"
 
-#: common.php:7599
+#: common.php:6988
 msgid "Plugin Support"
 msgstr "Plugin Support"
 
-#: common.php:2663
+#: common.php:2009
 msgid "Gallery ID"
 msgstr "Gallery ID"
 
-#: aux-optimize.php:169
+#: aux-optimize.php:155
 msgid "Filename"
 msgstr "Filename"
 
-#: common.php:7703 common.php:7718 common.php:7733 common.php:7748
-#: common.php:7763 common.php:7778
-msgid "version"
-msgstr "version"
-
-#: common.php:7735
+#: common.php:7153
 msgid "manually"
 msgstr "manually"
 
-#: aux-optimize.php:747 bulk.php:630 classes/class-ewww-flag.php:385
+#: aux-optimize.php:733 bulk.php:632 classes/class-ewww-flag.php:385
 #: classes/class-ewww-flag.php:389 classes/class-ewww-flag.php:463
 #: classes/class-ewww-flag.php:467 classes/class-ewww-flag.php:489
 #: classes/class-ewww-nextcellent.php:187
 #: classes/class-ewww-nextcellent.php:191
 #: classes/class-ewww-nextcellent.php:239
 #: classes/class-ewww-nextcellent.php:243
-#: classes/class-ewww-nextcellent.php:609 classes/class-ewww-nextgen.php:208
-#: classes/class-ewww-nextgen.php:212 classes/class-ewww-nextgen.php:271
-#: classes/class-ewww-nextgen.php:275 classes/class-ewww-nextgen.php:732
-#: common.php:1268 common.php:3194 common.php:3198 common.php:3214
-#: common.php:3218 common.php:7332 common.php:7353 common.php:8439
-#: common.php:8600 mwebp.php:110
+#: classes/class-ewww-nextcellent.php:609 classes/class-ewww-nextgen.php:276
+#: classes/class-ewww-nextgen.php:280 classes/class-ewww-nextgen.php:339
+#: classes/class-ewww-nextgen.php:343 classes/class-ewww-nextgen.php:826
+#: common.php:548 common.php:2492 common.php:2496 common.php:2512
+#: common.php:2516 common.php:6443 common.php:6711 common.php:6714
+#: common.php:6735 common.php:6738 common.php:7874 common.php:8035
+#: mwebp.php:110
 msgid "Access denied."
 msgstr "Access denied."
 
-#: common.php:7961
+#: common.php:7368
 msgid "Debugging"
 msgstr "Debugging"
 
@@ -1228,86 +1383,46 @@ msgstr "Debugging"
 #: classes/class-ewww-nextcellent.php:176
 #: classes/class-ewww-nextcellent.php:180
 #: classes/class-ewww-nextcellent.php:228
-#: classes/class-ewww-nextcellent.php:232 classes/class-ewww-nextgen.php:197
-#: classes/class-ewww-nextgen.php:201 classes/class-ewww-nextgen.php:260
-#: classes/class-ewww-nextgen.php:264 common.php:3182 common.php:3186
+#: classes/class-ewww-nextcellent.php:232 classes/class-ewww-nextgen.php:265
+#: classes/class-ewww-nextgen.php:269 classes/class-ewww-nextgen.php:328
+#: classes/class-ewww-nextgen.php:332 common.php:2480 common.php:2484
 msgid "No attachment ID was provided."
 msgstr "No attachment ID was provided."
 
-#: common.php:6743
+#: common.php:6097
 msgid "Not processed"
 msgstr "Not processed"
 
-#: common.php:1995
+#: common.php:1309
 msgid "Settings saved"
 msgstr "Settings saved"
 
-#: common.php:7735
-msgid "Pngout is free closed-source software that can produce drastically reduced filesizes for PNGs, but can be very time consuming to process images"
-msgstr "Pngout is free closed-source software that can produce drastically reduced filesizes for PNGs, but can be very time consuming to process images"
-
-#: common.php:7797
-msgid "Graphics libraries"
-msgstr "Graphics libraries"
-
-#: common.php:7835
-msgid "Only need one of these:"
-msgstr "Only need one of these:"
-
-#: common.php:7865 common.php:7871 common.php:7874
-msgid "command not found on your system"
-msgstr "command not found on your system"
-
-#: common.php:7871
-msgid "not required"
-msgstr "not required"
-
-#: common.php:7874
-msgid "required for automatic pngout installer"
-msgstr "required for automatic pngout installer"
-
-#: common.php:7917
-msgid "Conversion Settings"
-msgstr "Conversion Settings"
-
-#: common.php:7959
+#: common.php:7366
 msgid "Purchase an API key."
 msgstr "Purchase an API key."
 
-#: common.php:7959
+#: common.php:7366
 msgid "API Key will be validated when you save your settings."
 msgstr "API Key will be validated when you save your settings."
 
-#: common.php:7961
+#: common.php:7369
 msgid "Use this to provide information for support purposes, or if you feel comfortable digging around in the code to fix a problem you are experiencing."
 msgstr "Use this to provide information for support purposes, or if you feel comfortable digging around in the code to fix a problem you are experiencing."
 
-#: common.php:7962
-msgid "Remove metadata"
-msgstr "Remove metadata"
-
-#: common.php:8182 common.php:8188 common.php:8202
+#: common.php:7600 common.php:7606 common.php:7629
 msgid "WARNING:"
 msgstr "WARNING:"
 
-#: common.php:8017
-msgid "Automatic Cloudinary upload"
-msgstr "Automatic Cloudinary upload"
-
 #. translators: %s: the folder where WordPress is installed
-#: common.php:8088
+#: common.php:7521
 msgid "One path per line, must be within %s. Use full paths, not relative paths."
 msgstr "One path per line, must be within %s. Use full paths, not relative paths."
 
-#: common.php:8083
-msgid "Include Media Library Folders"
-msgstr "Include Media Library Folders"
-
-#: common.php:8147 common.php:8167
+#: common.php:7561 common.php:7584
 msgid "Disable Resizes"
 msgstr "Disable Resizes"
 
-#: common.php:8151
+#: common.php:7568
 msgid "Disable Creation"
 msgstr "Disable Creation"
 
@@ -1324,49 +1439,49 @@ msgid "Scanning, this could take a while"
 msgstr "Scanning, this could take a while"
 
 #: bulk.php:158 classes/class-ewww-flag.php:162
-#: classes/class-ewww-nextcellent.php:491 classes/class-ewww-nextgen.php:610
+#: classes/class-ewww-nextcellent.php:491 classes/class-ewww-nextgen.php:684
 msgid "If you would like to start over again, press the Reset Status button to reset the bulk operation status."
 msgstr "If you would like to start over again, press the Reset Status button to reset the bulk operation status."
 
 #: bulk.php:162 classes/class-ewww-flag.php:166
-#: classes/class-ewww-nextcellent.php:495 classes/class-ewww-nextgen.php:614
+#: classes/class-ewww-nextcellent.php:495 classes/class-ewww-nextgen.php:688
 msgid "Reset Status"
 msgstr "Reset Status"
 
-#: aux-optimize.php:155 aux-optimize.php:254 bulk.php:638 bulk.php:1225
-#: bulk.php:1244 bulk.php:1479 bulk.php:1687 classes/class-ewww-flag.php:548
+#: aux-optimize.php:141 aux-optimize.php:240 bulk.php:640 bulk.php:1227
+#: bulk.php:1246 bulk.php:1481 bulk.php:1691 classes/class-ewww-flag.php:548
 #: classes/class-ewww-flag.php:634 classes/class-ewww-nextcellent.php:668
-#: classes/class-ewww-nextcellent.php:733 classes/class-ewww-nextgen.php:792
-#: classes/class-ewww-nextgen.php:872 common.php:3344 common.php:4496
+#: classes/class-ewww-nextcellent.php:733 classes/class-ewww-nextgen.php:886
+#: classes/class-ewww-nextgen.php:966 common.php:2642 common.php:3810
 #: mwebp.php:131 mwebp.php:226
 msgid "Access token has expired, please reload the page."
 msgstr "Access token has expired, please reload the page."
 
-#: classes/class-ewww-image.php:853 common.php:4430
+#: classes/class-ewww-image.php:842 common.php:3744
 msgid "No savings"
 msgstr "No savings"
 
-#: classes/class-ewww-nextgen.php:226 common.php:3232 common.php:3236
-#: common.php:4273 unique.php:2465
+#: classes/class-ewww-nextgen.php:294 common.php:2530 common.php:2534
+#: common.php:3580 unique.php:2508
 msgid "License exceeded"
 msgstr "Licence exceeded"
 
-#: aux-optimize.php:169
+#: aux-optimize.php:155
 msgid "Image Type"
 msgstr "Image Type"
 
 #. translators: %s: human-readable filesize
 #. translators: %s: size of the image
-#: aux-optimize.php:184 aux-optimize.php:212 common.php:6748
+#: aux-optimize.php:170 aux-optimize.php:198 common.php:6102
 msgid "Image Size: %s"
 msgstr "Image Size: %s"
 
-#: aux-optimize.php:198 aux-optimize.php:226
+#: aux-optimize.php:184 aux-optimize.php:212
 msgid "Remove from table"
 msgstr "Remove from table"
 
 #: classes/class-ewww-flag.php:113 classes/class-ewww-nextcellent.php:447
-#: classes/class-ewww-nextgen.php:561
+#: classes/class-ewww-nextgen.php:635
 msgid "Resume previous bulk operation"
 msgstr "Resume previous bulk operation"
 
@@ -1375,44 +1490,44 @@ msgid "Importing"
 msgstr "Importing"
 
 #: bulk.php:114 classes/class-ewww-flag.php:149
-#: classes/class-ewww-nextgen.php:597
+#: classes/class-ewww-nextgen.php:671
 msgid "Choose how long to pause between images (in seconds, 0 = disabled)"
 msgstr "Choose how long to pause between images (in seconds, 0 = disabled)"
 
 #: bulk.php:46 classes/class-ewww-flag.php:98
-#: classes/class-ewww-nextcellent.php:431 classes/class-ewww-nextgen.php:537
+#: classes/class-ewww-nextcellent.php:431 classes/class-ewww-nextgen.php:619
 #: classes/class-ewwwio-cli.php:265 classes/class-ewwwio-cli.php:357
 msgid "You do not appear to have uploaded any images yet."
 msgstr "You do not appear to have uploaded any images yet."
 
 #. translators: %d: number of images
-#: bulk.php:462
+#: bulk.php:464
 msgid "%d images"
 msgstr "%d images"
 
 #: classes/class-ewww-flag.php:253 classes/class-ewww-nextcellent.php:593
-#: classes/class-ewww-nextgen.php:716
+#: classes/class-ewww-nextgen.php:810
 msgid "Operation timed out, you may need to increase the max_execution_time for PHP"
 msgstr "Operation timed out, you may need to increase the max_execution_time for PHP"
 
-#: bulk.php:1561 classes/class-ewww-flag.php:577
-#: classes/class-ewww-nextcellent.php:690 classes/class-ewww-nextgen.php:818
-#: common.php:4542 common.php:4546
+#: bulk.php:1563 classes/class-ewww-flag.php:577
+#: classes/class-ewww-nextcellent.php:690 classes/class-ewww-nextgen.php:912
+#: common.php:3856 common.php:3860
 msgid "License Exceeded"
 msgstr "Licence Exceeded"
 
-#: bulk.php:466 classes/class-ewww-flag.php:255
-#: classes/class-ewww-nextcellent.php:595 classes/class-ewww-nextgen.php:718
+#: bulk.php:468 classes/class-ewww-flag.php:255
+#: classes/class-ewww-nextcellent.php:595 classes/class-ewww-nextgen.php:812
 msgid "Operation Interrupted"
 msgstr "Operation Interrupted"
 
 #: classes/class-ewww-flag.php:256 classes/class-ewww-nextcellent.php:596
-#: classes/class-ewww-nextgen.php:719
+#: classes/class-ewww-nextgen.php:813
 msgid "Temporary failure, seconds left to retry:"
 msgstr "Temporary failure, seconds left to retry:"
 
-#: bulk.php:470 classes/class-ewww-flag.php:257
-#: classes/class-ewww-nextcellent.php:597 classes/class-ewww-nextgen.php:720
+#: bulk.php:472 classes/class-ewww-flag.php:257
+#: classes/class-ewww-nextcellent.php:597 classes/class-ewww-nextgen.php:814
 msgid "Could not remove image from table."
 msgstr "Could not remove image from table."
 
@@ -1422,32 +1537,32 @@ msgstr "Could not remove image from table."
 msgid "Full size – %s"
 msgstr "Full size – %s"
 
-#: bulk.php:1698
+#: bulk.php:1702
 msgid "Return to Media Library"
 msgstr "Return to Media Library"
 
-#: common.php:2562 mwebp.php:19
+#: common.php:1908 mwebp.php:19
 msgid "Migrate WebP Images"
 msgstr "Migrate WebP Images"
 
-#: common.php:2662
+#: common.php:2008
 msgid "Choose a gallery or"
 msgstr "Choose a gallery or"
 
-#: common.php:2663
+#: common.php:2009
 msgid "Gallery Name"
 msgstr "Gallery Name"
 
-#: common.php:2663
+#: common.php:2009
 msgid "Images"
 msgstr "Images"
 
-#: bulk.php:475 classes/class-ewww-image.php:908
+#: bulk.php:477 classes/class-ewww-image.php:897
 msgid "Original Restored"
 msgstr "Original Restored"
 
 #. translators: 1: Number of images
-#: common.php:3792 common.php:3798
+#: common.php:3090 common.php:3096
 msgid "%1$d image credit remaining."
 msgid_plural "%1$d image credits remaining."
 msgstr[0] "%1$d image credit remaining."
@@ -1455,151 +1570,118 @@ msgstr[1] "%1$d image credits remaining."
 
 #. translators: 1: Number of image credits used 2: Number of image credits
 #. available 3: days until subscription renewal
-#: common.php:3805
+#: common.php:3103
 msgid "used %1$d of %2$d, usage will reset in %3$d day."
 msgid_plural "used %1$d of %2$d, usage will reset in %3$d days."
 msgstr[0] "used %1$d of %2$d, usage will reset in %3$d day."
 msgstr[1] "used %1$d of %2$d, usage will reset in %3$d days."
 
-#: common.php:6490
+#: common.php:5844
 msgid "Cloudinary image"
 msgstr "Cloudinary image"
 
-#: common.php:6498
+#: common.php:5852
 msgid "Azure Storage image"
 msgstr "Azure Storage image"
 
-#: aux-optimize.php:181 common.php:6502 common.php:6506
+#: aux-optimize.php:167 common.php:5856 common.php:5860
 msgid "Amazon S3 image"
 msgstr "Amazon S3 image"
 
-#: common.php:6512
+#: common.php:5866
 msgid "Could not retrieve file path."
 msgstr "Could not retrieve file path."
 
 #. translators: %s: name of a tool like jpegtran
-#: classes/class-ewww-flag.php:725 classes/class-ewww-flag.php:731
-#: classes/class-ewww-flag.php:737 classes/class-ewww-nextcellent.php:338
+#: classes/class-ewww-flag.php:726 classes/class-ewww-flag.php:732
+#: classes/class-ewww-flag.php:738 classes/class-ewww-nextcellent.php:338
 #: classes/class-ewww-nextcellent.php:345
-#: classes/class-ewww-nextcellent.php:352 classes/class-ewww-nextgen.php:392
-#: classes/class-ewww-nextgen.php:399 classes/class-ewww-nextgen.php:406
-#: common.php:6546 common.php:6565 common.php:6578 unique.php:1794
-#: unique.php:2063 unique.php:2067 unique.php:2341
+#: classes/class-ewww-nextcellent.php:352 classes/class-ewww-nextgen.php:473
+#: classes/class-ewww-nextgen.php:480 classes/class-ewww-nextgen.php:487
+#: common.php:5900 common.php:5919 common.php:5932 unique.php:1834
+#: unique.php:2104 unique.php:2108 unique.php:2383
 msgid "%s is missing"
 msgstr "%s is missing"
 
-#: common.php:6556
+#: common.php:5910
 msgid "JPG to PNG"
 msgstr "JPG to PNG"
 
-#: common.php:6557
+#: common.php:5911
 msgid "WARNING: Removes metadata. Requires GD or ImageMagick. PNG is generally much better than JPG for logos and other images with a limited range of colors."
 msgstr "WARNING: Removes metadata. Requires GD or ImageMagick. PNG is generally much better than JPG for logos and other images with a limited range of colours."
 
-#: common.php:6569
+#: common.php:5923
 msgid "PNG to JPG"
 msgstr "PNG to JPG"
 
-#: common.php:6570
+#: common.php:5924
 msgid "WARNING: This is not a lossless conversion and requires GD or ImageMagick. JPG is much better than PNG for photographic use because it compresses the image and discards data. Transparent images will only be converted if a background color has been set."
 msgstr "WARNING: This is not a lossless conversion and requires GD or ImageMagick. JPG is much better than PNG for photographic use because it compresses the image and discards data. Transparent images will only be converted if a background colour has been set."
 
-#: common.php:6582
+#: common.php:5936
 msgid "GIF to PNG"
 msgstr "GIF to PNG"
 
-#: common.php:6583
+#: common.php:5937
 msgid "PNG is generally better than GIF, but does not support animation. Animated images will not be converted."
 msgstr "PNG is generally better than GIF, but does not support animation. Animated images will not be converted."
 
-#: classes/class-ewww-flag.php:741 classes/class-ewww-nextcellent.php:356
-#: classes/class-ewww-nextgen.php:410 common.php:6599 unique.php:1633
-#: unique.php:2454
+#: classes/class-ewww-flag.php:742 classes/class-ewww-nextcellent.php:356
+#: classes/class-ewww-nextgen.php:491 common.php:5953 unique.php:1669
+#: unique.php:2497
 msgid "Unsupported file type"
 msgstr "Unsupported file type"
 
-#: aux-optimize.php:200 aux-optimize.php:228 classes/class-ewww-flag.php:764
-#: classes/class-ewww-nextcellent.php:389 classes/class-ewww-nextgen.php:494
-#: common.php:6648 common.php:6726 common.php:6731
+#: aux-optimize.php:186 aux-optimize.php:214 classes/class-ewww-flag.php:765
+#: classes/class-ewww-nextcellent.php:389 classes/class-ewww-nextgen.php:576
+#: common.php:6002 common.php:6080 common.php:6085
 msgid "Restore original"
 msgstr "Restore original"
 
-#: common.php:7337
+#: common.php:6719
 msgid "Insertion successful"
 msgstr "Insertion successful"
 
-#: common.php:7339
+#: common.php:6721
 msgid "Insertion failed"
 msgstr "Insertion failed"
 
-#: common.php:7597
+#. translators: 1: An error message 2: The folder where pngout should be
+#. installed
+#: common.php:1292
+msgid "Pngout was not installed: %1$s. Make sure this folder is writable: %2$s"
+msgstr "Pngout was not installed: %1$s. Make sure this folder is writable: %2$s"
+
+#: common.php:6986
 msgid "Plugin Home Page"
 msgstr "Plugin Home Page"
 
-#: unique.php:253 unique.php:274 unique.php:579
+#: unique.php:288 unique.php:309 unique.php:614
 msgid "Installation Instructions"
 msgstr "Installation Instructions"
 
-#: common.php:7600
-msgid "Cloud Status"
-msgstr "Cloud Status"
-
-#: common.php:7621
-msgid "Plugin Status"
-msgstr "Plugin Status"
-
-#: common.php:7907
-msgid "All Clear"
-msgstr "All Clear"
-
-#: common.php:7909
-msgid "Requires Attention"
-msgstr "Requires Attention"
-
-#: common.php:7624
-msgid "Total Savings:"
-msgstr "Total Savings:"
-
-#: common.php:7634 common.php:7636
+#: common.php:7036
 msgid "Verified,"
 msgstr "Verified,"
 
-#: common.php:7639 common.php:7667
+#: common.php:7040 common.php:7078
 msgid "Not Verified"
 msgstr "Not Verified"
 
-#: common.php:7705 common.php:7720 common.php:7735 common.php:7750
-#: common.php:7765 common.php:7780 common.php:7805 common.php:7813
-#: common.php:7821 common.php:7844 common.php:7853 common.php:7860
-msgid "Missing"
-msgstr "Missing"
-
-#: common.php:7735
+#: common.php:7153
 msgid "automatically"
 msgstr "automatically"
 
-#. translators: %s: Graphics libraries -
-#: common.php:7796
-msgid "%s only need one, used for conversion, not optimization"
-msgstr "%s only need one, used for conversion, not optimization"
-
-#: common.php:8017
+#: common.php:7420
 msgid "When enabled, uploads to the Media Library will be transferred to Cloudinary after optimization. Cloudinary generates resizes, so only the full-size image is uploaded."
 msgstr "When enabled, uploads to the Media Library will be transferred to Cloudinary after optimization. Cloudinary generates resizes, so only the full-size image is uploaded."
 
-#: common.php:8075
-msgid "Scheduled optimization"
-msgstr "Scheduled optimization"
-
-#: common.php:8075
+#: common.php:7508
 msgid "This will enable scheduled optimization of unoptimized images for your theme, buddypress, and any additional folders you have configured below. Runs hourly: wp_cron only runs when your site is visited, so it may be even longer between optimizations."
 msgstr "This will enable scheduled optimization of unoptimized images for your theme, buddypress, and any additional folders you have configured below. Runs hourly: wp_cron only runs when your site is visited, so it may be even longer between optimizations."
 
-#: common.php:8086
-msgid "Folders to optimize"
-msgstr "Folders to optimize"
-
-#: common.php:8151
+#: common.php:7568
 msgid "Disable Optimization"
 msgstr "Disable Optimization"
 
@@ -1620,88 +1702,88 @@ msgstr "The plugin keeps track of already optimized images to prevent re-optimiz
 msgid "Show Optimized Images"
 msgstr "Show Optimized Images"
 
-#: common.php:4272 common.php:4337
+#: common.php:3579 common.php:3644
 msgid "Previously Optimized"
 msgstr "Previously Optimized"
 
-#: aux-optimize.php:169 classes/class-ewww-flag.php:679
-#: classes/class-ewww-nextcellent.php:301 classes/class-ewww-nextgen.php:341
-#: classes/class-ewww-nextgen.php:344 common.php:2663 common.php:2681
-#: common.php:6457
+#: aux-optimize.php:155 classes/class-ewww-flag.php:679
+#: classes/class-ewww-nextcellent.php:301 classes/class-ewww-nextgen.php:396
+#: classes/class-ewww-nextgen.php:422 classes/class-ewww-nextgen.php:425
+#: common.php:2009 common.php:2027 common.php:5810
 msgid "Image Optimizer"
 msgstr "Image Optimizer"
 
-#: bulk.php:1289 bulk.php:1291 bulk.php:1655 bulk.php:1657
+#: bulk.php:1291 bulk.php:1293 bulk.php:1659 bulk.php:1661
 #: classes/class-ewww-flag.php:509 classes/class-ewww-flag.php:511
 #: classes/class-ewww-flag.php:615 classes/class-ewww-flag.php:617
 #: classes/class-ewww-flag.php:666 classes/class-ewww-nextcellent.php:630
 #: classes/class-ewww-nextcellent.php:632
 #: classes/class-ewww-nextcellent.php:715
 #: classes/class-ewww-nextcellent.php:717
-#: classes/class-ewww-nextcellent.php:764 classes/class-ewww-nextgen.php:314
-#: classes/class-ewww-nextgen.php:751 classes/class-ewww-nextgen.php:753
-#: classes/class-ewww-nextgen.php:854 classes/class-ewww-nextgen.php:856
-#: common.php:2799 common.php:4569
+#: classes/class-ewww-nextcellent.php:764 classes/class-ewww-nextgen.php:382
+#: classes/class-ewww-nextgen.php:845 classes/class-ewww-nextgen.php:847
+#: classes/class-ewww-nextgen.php:948 classes/class-ewww-nextgen.php:950
+#: common.php:2097 common.php:3883
 msgid "Optimizing"
 msgstr "Optimizing"
 
 #: bulk.php:20 classes/class-ewww-flag.php:59 classes/class-ewww-flag.php:66
 #: classes/class-ewww-flag.php:73 classes/class-ewww-flag.php:102
 #: classes/class-ewww-nextcellent.php:50 classes/class-ewww-nextcellent.php:436
-#: classes/class-ewww-nextgen.php:55 classes/class-ewww-nextgen.php:550
-#: classes/class-ewww-nextgen.php:892 common.php:2559 common.php:7100
-#: common.php:7603 common.php:7605
+#: classes/class-ewww-nextgen.php:59 classes/class-ewww-nextgen.php:624
+#: classes/class-ewww-nextgen.php:986 common.php:1905 common.php:6469
+#: common.php:6992 common.php:6994
 msgid "Bulk Optimize"
 msgstr "Bulk Optimize"
 
 #: bulk.php:34 bulk.php:37 classes/class-ewww-flag.php:111
-#: classes/class-ewww-nextcellent.php:445 classes/class-ewww-nextgen.php:559
+#: classes/class-ewww-nextcellent.php:445 classes/class-ewww-nextgen.php:633
 msgid "Start optimizing"
 msgstr "Start optimizing"
 
 #: bulk.php:86 classes/class-ewww-flag.php:123
-#: classes/class-ewww-nextcellent.php:456 classes/class-ewww-nextgen.php:571
+#: classes/class-ewww-nextcellent.php:456 classes/class-ewww-nextgen.php:645
 msgid "Stop Optimizing"
 msgstr "Stop Optimizing"
 
 #: bulk.php:111 classes/class-ewww-flag.php:148
-#: classes/class-ewww-nextgen.php:596
+#: classes/class-ewww-nextgen.php:670
 msgid "Force re-optimize"
 msgstr "Force re-optimize"
 
 #: classes/class-ewww-flag.php:154 classes/class-ewww-nextcellent.php:482
-#: classes/class-ewww-nextgen.php:602
+#: classes/class-ewww-nextgen.php:676
 msgid "Previously optimized images will be skipped by default."
 msgstr "Previously optimized images will be skipped by default."
 
-#: bulk.php:465 classes/class-ewww-flag.php:254
-#: classes/class-ewww-nextcellent.php:594 classes/class-ewww-nextgen.php:717
+#: bulk.php:467 classes/class-ewww-flag.php:254
+#: classes/class-ewww-nextcellent.php:594 classes/class-ewww-nextgen.php:811
 msgid "Optimization stopped, reload page to resume."
 msgstr "Optimization stopped, reload page to resume."
 
 #: classes/class-ewww-flag.php:582 classes/class-ewww-nextcellent.php:696
-#: classes/class-ewww-nextgen.php:823 classes/class-ewwwio-cli.php:279
+#: classes/class-ewww-nextgen.php:917 classes/class-ewwwio-cli.php:279
 #: classes/class-ewwwio-cli.php:375 classes/class-ewwwio-cli.php:464
 msgid "Optimized image:"
 msgstr "Optimized image:"
 
-#: common.php:2597
+#: common.php:1943
 msgid "Image Store Optimize"
 msgstr "Image Store Optimize"
 
-#: common.php:2597
+#: common.php:1943
 msgid "Optimize"
 msgstr "Optimize"
 
-#: common.php:2657
+#: common.php:2003
 msgid "Image Store Optimization"
 msgstr "Image Store Optimization"
 
-#: common.php:2662
+#: common.php:2008
 msgid "optimize all galleries"
 msgstr "optimize all galleries"
 
-#: common.php:2670 common.php:2680
+#: common.php:2016 common.php:2026
 msgid "Optimize Gallery"
 msgstr "Optimize Gallery"
 
@@ -1710,32 +1792,48 @@ msgstr "Optimize Gallery"
 #: classes/class-ewww-nextcellent.php:166
 #: classes/class-ewww-nextcellent.php:170
 #: classes/class-ewww-nextcellent.php:218
-#: classes/class-ewww-nextcellent.php:222 classes/class-ewww-nextgen.php:187
-#: classes/class-ewww-nextgen.php:191 classes/class-ewww-nextgen.php:250
-#: classes/class-ewww-nextgen.php:254 common.php:3171 common.php:3175
-#: common.php:3330
+#: classes/class-ewww-nextcellent.php:222 classes/class-ewww-nextgen.php:255
+#: classes/class-ewww-nextgen.php:259 classes/class-ewww-nextgen.php:318
+#: classes/class-ewww-nextgen.php:322 common.php:2469 common.php:2473
+#: common.php:2628
 msgid "You do not have permission to optimize images."
 msgstr "You do not have permission to optimize images."
 
-#: classes/class-ewww-flag.php:776 classes/class-ewww-nextcellent.php:401
-#: classes/class-ewww-nextgen.php:501 common.php:6661 common.php:6753
+#: classes/class-ewww-flag.php:777 classes/class-ewww-nextcellent.php:401
+#: classes/class-ewww-nextgen.php:583 common.php:6015 common.php:6107
 msgid "Optimize now!"
 msgstr "Optimize now!"
 
-#: classes/class-ewww-flag.php:758 classes/class-ewww-nextcellent.php:383
-#: classes/class-ewww-nextgen.php:488 common.php:6642 common.php:6710
+#: classes/class-ewww-flag.php:759 classes/class-ewww-nextcellent.php:383
+#: classes/class-ewww-nextgen.php:570 common.php:5996 common.php:6064
 msgid "Re-optimize"
 msgstr "Re-optimize"
 
 #. translators: %s: Bulk Optimize (link)
-#: common.php:7611
+#: common.php:7000
 msgid "New images uploaded to the Media Library will be optimized automatically. If you have existing images you would like to optimize, you can use the %s tool."
 msgstr "New images uploaded to the Media Library will be optimized automatically. If you have existing images you would like to optimize, you can use the %s tool."
 
-#: common.php:7630 common.php:7956 common.php:7959
+#: common.php:7021
 msgid "Cloud optimization API Key"
 msgstr "Cloud optimization API Key"
 
-#: common.php:8147
+#: common.php:7563
 msgid "WordPress, your theme, and other plugins generate various image sizes. You may disable optimization for certain sizes, or completely prevent those sizes from being created."
 msgstr "WordPress, your theme, and other plugins generate various image sizes. You may disable optimization for certain sizes, or completely prevent those sizes from being created."
+
+#: common.php:7370
+msgid "Remove Metadata"
+msgstr "Remove Metadata"
+
+#: common.php:7420
+msgid "Automatic Cloudinary Upload"
+msgstr "Automatic Cloudinary Upload"
+
+#: common.php:7508
+msgid "Scheduled Optimization"
+msgstr "Scheduled Optimization"
+
+#: common.php:7519
+msgid "Folders to Optimize"
+msgstr "Folders to Optimize"
