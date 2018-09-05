@@ -660,13 +660,14 @@ class SRC_Events extends SRC_Core {
 
 		// Count up how many races there are
 		$race_count = 0;
-		if ( '' !== get_post_meta( get_the_ID(), 'event_race-1_timestamp', true ) ) {
+
+		if ( '' !== get_post_meta( get_the_ID(), 'race_1_time', true ) ) {
 			$race_count++;
 		}
-		if ( '' !== get_post_meta( get_the_ID(), 'event_race-2_timestamp', true ) ) {
+		if ( '' !== get_post_meta( get_the_ID(), 'race_2_time', true ) ) {
 			$race_count++;
 		}
-		if ( '' !== get_post_meta( get_the_ID(), 'event_race-3_timestamp', true ) ) {
+		if ( '' !== get_post_meta( get_the_ID(), 'race_3_time', true ) ) {
 			$race_count++;
 		}
 		$suffix = '';
