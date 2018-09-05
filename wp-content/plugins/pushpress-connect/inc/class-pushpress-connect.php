@@ -162,20 +162,14 @@ class PushPress_Connect {
 	 */
 	function admin_scripts() {
 
-		wp_register_style( 'pushpress_wp_admin_switchery_css', PUSHPRESS_URL . '/asset/css/switchery.min.css', false, '3.3.2' );
 		wp_register_style( 'pushpress_wp_admin_css_pushpress', PUSHPRESS_URL . '/css_admin/pushpress.css', false, '1.0.0' );
 		wp_register_style( 'pushpress_form', PUSHPRESS_URL . '/css/pushpress-form.css', false, PUSHPRESS_PLUGIN_VERSION );
-
-		wp_register_script( 'pushpress_wp_admin_switchery_js', PUSHPRESS_URL . '/asset/js/switchery.min.js', false, '3.3.2' );
-		wp_register_script( 'pushpress_wp_admin_pushpress_js', PUSHPRESS_URL . '/js_admin/pushpress.js', false, '1.5', true );
 
 		wp_enqueue_style( 'pushpress_wp_admin_switchery_css' );
 		wp_enqueue_style( 'pushpress_wp_admin_css_pushpress' );
 		wp_enqueue_style( 'pushpress_form' );
 
-		wp_enqueue_script( 'pushpress_wp_admin_switchery_js' );
 		wp_enqueue_script( 'jquery-masonry' );
-		wp_enqueue_script( 'pushpress_wp_admin_pushpress_js' );
 	}
 
 	function insert_page() {
@@ -450,7 +444,7 @@ class PushPress_Connect {
 		if ( strlen( $this->marketing_integrations['facebook-marketing']['pixel_id'] ) > 0 ) {
 			$strFbPx = "\n<!-- PushPress Facebook Pixel -->";
 			$strFbPx .= "\n<script>\n!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','//connect.facebook.net/en_US/fbevents.js');";
-			$strFbPx .= "\nfbq('init', '" . esc_html( $this->marketing_integrations['facebook-marketing']['pixel_id'] . "');" );
+			$strFbPx .= "\nfbq('init', '" . esc_html( $this->marketing_integrations['facebook-marketing']['pixel_id'] ) . "');";
 			$strFbPx .= "\nfbq('track', 'PageView');";
 			$strFbPx .= "\n</script>";
 			$strFbPx .= "\n<!-- END PushPress Facebook Pixel  -->\n";
