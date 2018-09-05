@@ -695,12 +695,11 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 
 		$formatted_number = str_replace( __( 'one', 'undiecar' ), __( 'the', 'undiecar' ), $number->format( $race_count ) );
+		$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
+		if ( '' === $q_time ) {
+			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+		}
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
-
-			$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
-			if ( '' === $q_time ) {
-				$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
-			}
 
 			$html .= wpautop(
 				sprintf(
@@ -746,7 +745,7 @@ class SRC_Events extends SRC_Core {
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 					esc_html( $current_track_country ),
-					esc_html( get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ) ),
+					esc_html( $q_time ),
 					$formatted_number,
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
 					$suffix,
