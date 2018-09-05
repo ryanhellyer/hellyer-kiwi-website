@@ -698,7 +698,7 @@ class SRC_Events extends SRC_Core {
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
 			$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
-			if ( '' !== $q_time ) {
+			if ( '' === $q_time ) {
 				$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
 			}
 
