@@ -488,7 +488,7 @@ class SRC_Core {
 	public function get_seasons_drivers( $season = 'all' ) {
 		$drivers = array();
 
-		$all_drivers = get_users( array( 'number' => 1000 ) );
+		$all_drivers = get_users( array( 'number' => 2000 ) );
 		foreach ( $all_drivers as $driver ) {
 			$driver_id = $driver->ID;
 

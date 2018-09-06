@@ -397,7 +397,7 @@ class SRC_Members extends SRC_Core {
 		} else {
 
 			// No season set, so lets just dump them all out
-			$all_drivers = get_users( array( 'number' => 1000 ) );
+			$all_drivers = get_users( array( 'number' => 2000 ) );
 			foreach ( $all_drivers as $driver ) {
 				$driver_slug = $driver->data->user_login;
 				$driver_id = $driver->ID;
