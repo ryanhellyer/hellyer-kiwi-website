@@ -1,6 +1,7 @@
 <?php
 
 if ( is_super_admin() ) {
+	require( 'tools/get-names-from-json.php' );
 	require( 'tools/emails.php' );
 	require( 'tools/pull-names-from-csv.php' );
 	require( 'tools/convert-json.php' );
