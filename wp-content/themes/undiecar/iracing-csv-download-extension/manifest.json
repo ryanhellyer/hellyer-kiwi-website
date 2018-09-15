@@ -1,0 +1,40 @@
+{
+	"name": "iRacing CSV Download",
+	"version": "0.1",
+	"manifest_version": 2,
+	"description": "Automatically download CSV files from iRacing.com",
+	"homepage_url": "https://geek.hellyer.kiwi/",
+/*
+	"background": {
+		"page": "background.html"
+	},
+*/
+	"background": {
+		"scripts": ["background.js"]
+//		"persistent": true
+	},
+ 	"browser_action": {
+			"default_icon": {
+				"16": "icons/icon16.png",
+				"48": "icons/icon48.png",
+				"128": "icons/icon128.png"
+			},
+			"default_title": "iRacing CSV download",
+			"default_popup": "options.html"
+	},
+	"permissions": [
+		"storage",
+		"downloads",
+		"background"
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"http://members.iracing.com/membersite/member/SeriesRaceResults.do?season=2052"
+			],
+			"js": [
+				"iracing-csv-download.js"
+			]
+		}
+	]
+}
