@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-09-04 07:44:46+0000\n"
+"PO-Revision-Date: 2018-09-10 07:31:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -4126,7 +4126,7 @@ msgstr "Pause"
 msgid "Play"
 msgstr "Abspielen"
 
-#: wp-includes/taxonomy.php:2055 wp-includes/taxonomy.php:2681
+#: wp-includes/taxonomy.php:2076 wp-includes/taxonomy.php:2702
 msgid "A name is required for this term."
 msgstr "Für diesen Begriff ist ein Name erforderlich."
 
@@ -4788,7 +4788,7 @@ msgstr "Verwende %s, wenn du den Wert nicht ausgeben möchtest."
 msgid "Term ID is shared between multiple taxonomies"
 msgstr "Die Begriffs-ID wird unter mehreren Taxonomien geteilt."
 
-#: wp-includes/taxonomy.php:1144 wp-includes/taxonomy.php:1226
+#: wp-includes/taxonomy.php:1165 wp-includes/taxonomy.php:1247
 msgid "Term meta cannot be added to terms that are shared between taxonomies."
 msgstr "Meta-Daten können nicht zu Begriffen hinzugefügt werden, die in Taxonomien geteilt werden."
 
@@ -6150,7 +6150,7 @@ msgstr "Installation erfolgreich abgeschlossen."
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Taxonomie-Namen müssen eine Länge zwischen 1 und 32 Zeichen haben."
 
-#: wp-includes/taxonomy.php:3595
+#: wp-includes/taxonomy.php:3616
 msgid "Could not split shared term."
 msgstr "Der gemeinsam genutzte Begriff konnte nicht aufgeteilt werden."
 
@@ -6252,7 +6252,7 @@ msgstr "Der Name eines Inhaltstyps muss aus mindestens einem und maximal 20 Zeic
 #: wp-includes/post-template.php:1709 wp-includes/post-template.php:1745
 msgctxt "revision date format"
 msgid "F j, Y @ H:i:s"
-msgstr "j. F Y \\u\\m G:i:s"
+msgstr "j. F Y, H:i:s"
 
 #: wp-includes/class-wp-customize-nav-menus.php:1115
 #: wp-includes/class-wp-editor.php:1710 wp-includes/media-template.php:820
@@ -6369,7 +6369,7 @@ msgstr "Elemente-Pfad"
 msgid "The following values do not describe a valid date: month %1$s, day %2$s."
 msgstr "Die folgenden Werte beschreiben kein gültiges Datum: Tag %2$s, Monat %1$s."
 
-#: wp-includes/taxonomy.php:2144
+#: wp-includes/taxonomy.php:2165
 msgid "A term with the name provided already exists in this taxonomy."
 msgstr "Ein Begriff mit dem angegebenen Namen existiert bereits in dieser Taxonomie."
 
@@ -6694,7 +6694,7 @@ msgstr "Mehrfachauswahl"
 
 #. translators: %s: taxonomy label, %l: list of terms formatted as per
 #. $term_template
-#: wp-includes/taxonomy.php:4099
+#: wp-includes/taxonomy.php:4120
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -8408,7 +8408,7 @@ msgctxt "Display name based on first name and last name"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: wp-includes/taxonomy.php:2389
+#: wp-includes/taxonomy.php:2410
 msgid "Could not insert term relationship into the database."
 msgstr "Die Begriffsbeziehung konnte nicht in die Datenbank eingefügt werden."
 
@@ -8648,7 +8648,7 @@ msgstr "Die Bearbeitung des Begriffs ist leider fehlgeschlagen."
 #: wp-includes/class-wp-xmlrpc-server.php:1501
 #: wp-includes/class-wp-xmlrpc-server.php:2053
 #: wp-includes/class-wp-xmlrpc-server.php:2149
-#: wp-includes/class-wp-xmlrpc-server.php:2221 wp-includes/taxonomy.php:2052
+#: wp-includes/class-wp-xmlrpc-server.php:2221 wp-includes/taxonomy.php:2073
 msgid "Invalid term ID."
 msgstr "Ungültige Begriffs-ID."
 
@@ -8660,7 +8660,7 @@ msgstr "Du bist leider nicht berechtigt, Begriffe in dieser Taxonomie zu bearbei
 #: wp-includes/class-wp-xmlrpc-server.php:2077
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:406
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:511
-#: wp-includes/taxonomy.php:2061 wp-includes/taxonomy.php:2685
+#: wp-includes/taxonomy.php:2082 wp-includes/taxonomy.php:2706
 msgid "Parent term does not exist."
 msgstr "Übergeordneter Begriff existiert nicht."
 
@@ -8681,11 +8681,11 @@ msgstr "Du bist leider nicht berechtigt, in dieser Taxonomie Begriffe zu erstell
 #: wp-includes/class-wp-xmlrpc-server.php:2270
 #: wp-includes/class-wp-xmlrpc-server.php:2365
 #: wp-includes/rest-api/endpoints/class-wp-rest-taxonomies-controller.php:163
-#: wp-includes/taxonomy.php:420 wp-includes/taxonomy.php:652
-#: wp-includes/taxonomy.php:752 wp-includes/taxonomy.php:931
-#: wp-includes/taxonomy.php:1090 wp-includes/taxonomy.php:1901
-#: wp-includes/taxonomy.php:2037 wp-includes/taxonomy.php:2300
-#: wp-includes/taxonomy.php:2443 wp-includes/taxonomy.php:2644
+#: wp-includes/taxonomy.php:420 wp-includes/taxonomy.php:673
+#: wp-includes/taxonomy.php:773 wp-includes/taxonomy.php:952
+#: wp-includes/taxonomy.php:1111 wp-includes/taxonomy.php:1922
+#: wp-includes/taxonomy.php:2058 wp-includes/taxonomy.php:2321
+#: wp-includes/taxonomy.php:2464 wp-includes/taxonomy.php:2665
 msgid "Invalid taxonomy."
 msgstr "Ungültige Taxonomie."
 
@@ -9779,7 +9779,7 @@ msgstr "Die angegebene WordPress-Adresse scheint keine gültige URL zu sein. Bit
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "Diese E-Mail-Adresse scheint keine gültige E-Mail-Adresse zu sein. Bitte gib eine gültige E-Mail-Adresse an."
 
-#: wp-includes/taxonomy.php:2141
+#: wp-includes/taxonomy.php:2162
 msgid "A term with the name provided already exists with this parent."
 msgstr "Ein Begriff mit dem angegebenen Namen existiert bereits für diese übergeordnete Taxonomie."
 
@@ -10433,21 +10433,21 @@ msgstr "Es fehlt ein Stylesheet."
 msgid "The parent theme is missing. Please install the \"%s\" parent theme."
 msgstr "Das übergeordnete Theme fehlt. Bitte installiere das übergeordnete Theme &#8222;%s&#8220;, da du Child-Themes sonst nicht nutzen kannst."
 
-#: wp-includes/taxonomy.php:4170
+#: wp-includes/taxonomy.php:4191
 msgid "Invalid object ID."
 msgstr "Ungültige Objekt-ID."
 
 #. translators: 1: Taxonomy term slug
-#: wp-includes/taxonomy.php:2743
+#: wp-includes/taxonomy.php:2764
 msgid "The slug &#8220;%s&#8221; is already in use by another term."
 msgstr "Die Titelform &#8222;%s&#8220; wird bereits von einem anderen Begriff verwendet."
 
-#: wp-includes/taxonomy.php:2165
+#: wp-includes/taxonomy.php:2186
 msgid "Could not insert term into the database."
 msgstr "Der Begriff konnte nicht in die Datenbank eingefügt werden."
 
-#: wp-includes/taxonomy.php:748 wp-includes/taxonomy.php:2657
-#: wp-includes/taxonomy.php:3958
+#: wp-includes/taxonomy.php:769 wp-includes/taxonomy.php:2678
+#: wp-includes/taxonomy.php:3979
 msgid "Empty Term."
 msgstr "Leerer Begriff."
 

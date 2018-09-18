@@ -1,8 +1,8 @@
 === Gutenberg ===
 Contributors: matveb, joen, karmatosed
-Requires at least: 4.9.6
-Tested up to: 4.9.7
-Stable tag: 3.3.0
+Requires at least: 4.9.8
+Tested up to: 4.9
+Stable tag: 3.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ Blocks are the unifying evolution of what is now covered, in different ways, by 
 
 Imagine a custom “employee” block that a client can drag to an About page to automatically display a picture, name, and bio. A whole universe of plugins that all extend WordPress in the same way. Simplified menus and widgets. Users who can instantly understand and use WordPress  -- and 90% of plugins. This will allow you to easily compose beautiful posts like <a href="http://moc.co/sandbox/example-post/">this example</a>.
 
-Check out the <a href="https://github.com/WordPress/gutenberg/blob/master/docs/faq.md">FAQ</a> for answers to the most common questions about the project.
+Check out the <a href="https://wordpress.org/gutenberg/handbook/reference/faq/">FAQ</a> for answers to the most common questions about the project.
 
 = Compatibility =
 
@@ -70,74 +70,53 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 - <a href="http://matiasventura.com/post/gutenberg-or-the-ship-of-theseus/">Gutenberg, or the Ship of Theseus</a>, with examples of what Gutenberg might do in the future
 - <a href="https://make.wordpress.org/core/2017/01/17/editor-technical-overview/">Editor Technical Overview</a>
-- <a href="http://gutenberg-devdoc.surge.sh/reference/design-principles/">Design Principles and block design best practices</a>
+- <a href="https://wordpress.org/gutenberg/handbook/reference/design-principles/">Design Principles and block design best practices</a>
 - <a href="https://github.com/Automattic/wp-post-grammar">WP Post Grammar Parser</a>
 - <a href="https://make.wordpress.org/core/tag/gutenberg/">Development updates on make.wordpress.org</a>
-- <a href="http://gutenberg-devdoc.surge.sh/">Documentation: Creating Blocks, Reference, and Guidelines</a>
-- <a href="https://github.com/WordPress/gutenberg/blob/master/docs/faq.md">Additional frequently asked questions</a>
+- <a href="https://wordpress.org/gutenberg/handbook/">Documentation: Creating Blocks, Reference, and Guidelines</a>
+- <a href="https://wordpress.org/gutenberg/handbook/reference/faq/">Additional frequently asked questions</a>
 
 
 == Changelog ==
 
 = Latest =
 
-* Add the Inline Blocks API.
-* Rename Shared Blocks to Reusable Blocks.
-* Add a Modal component.
-* Add a REST API Search controller.
-* Add a warning in the classic editor when attempting to edit a post that contains blocks.
-* Add ability for themes to configure font sizes.
-* Add RTL CSS to all packages.
-* Add an edit button to embed blocks.
-* Remove all wp.api usage from the editor package.
-* Add error handling for file block drag-and-drop.
-* Add registerBlockStyleVariation, for registering block style variations.
-* Add a border between panels in the block sidebar.
-* Add a editor.PostFeaturedImage.imageSize filter for the Featured Image.
-* Create a video block when dropping a video on an insertion point.
-* Expose a custom class name hook for mobile.
-* Add a React Native entrypoint for mobile.
-* Only disable wpautop on the main classic editor instance.
-* Retain the id attribute when converting heading tags to heading blocks.
-* Retain target="_blank" on links in converted paragraphs.
-* Improve the handling of imported shortcode blocks.
-* Replace the File block’s filename editor with a RichText.
-* Tweak the block warning style.
-* Add a max-height to the table of contents.
-* Remove the inset shadow from the table of contents.
-* Fix the tag placeholder text for long translations.
-* Fix the table of contents sometimes causing JavaScript errors.
-* Fix the link suggestion dropdown not allowing the first suggestion to be selected by keyboard.
-* Make tooltips persist when hovering them.
-* Add missing aria-labels to the audio and video block UIs.
-* Add an icon and accessibility text to links that open in a new tab.
-* Fixed shared blocks adding unnecessary rewrite rules.
-* Fix a regression in the colour picker width.
-* Fix the colour picker focus border being off-centre.
-* Combine ColorPalettes into a single panel for Button and Paragraph blocks.
-* Fix the ColorIndicator style import.
-* Fix auto-linking a URL pasted on top of another URL.
-* Add persistent store support to the data module.
-* Fix the Latest Comments block using admin imports.
-* Fix a warning when adding an image block.
-* Fix the classic block toolbar alignment.
-* Fix a warning in the block menu.
-* Change all blocks to use supports: align, instead of the align attribute.
-* Improve the ContrastChecker logic for large font sizes.
-* Update the is-shallow-equal package to use ES5 code.
-* Deprecate getMimeTypesArray, mediaUpload, and preloadImage.
-* Deprecate wideAlign in favour of alignWide.
-* Document Node version switching in the testing documentation.
-* Document examples of the registerBlockType hook.
-* Document an example of the block transforms property.
-* Document Gutenberg’s camelCase coding style.
-* Improved all of the package descriptions.
-* Update coding standards to allow double quoted strings to avoid escaping single quotes.
-* Standardise the package descriptions and titles.
-* Extract the editor package.
-* Isolate and reset e2e tests every run.
-* Improve test configuration and mocking strategy.
-* Fix test coverage configuration.
-* Fix the block icons e2e tests.
-* Bump the Puppeteer version.
-* Use simpler jest.fn() mocks for api-fetch calls in unit tests.
+* Add Full Screen mode. 📺
+* Add UI for bulk managing reusable blocks.
+* Implement a more sophisticated Editor Styles mechanism. 🖍 It allows themes to register editor styles for blocks by targeting the blocks themselves without having to fight CSS specificity, and without having to know the internal DOM structure for the editor.
+* Move the block settings menu to the block toolbar, further consolidating the UI elements.
+* Switch to a new hand-coded default block parser implementation and expand documentation.
+* - Implemented in both PHP and JS.
+* - Brings great performance improvements in both time and memory.
+* - Makes server-side parsing in PHP viable for accessing blocks as a tree.
+* Use flex-box to render the block inserter layout to address different issues with spacing.
+* Show a warning when a disallowed filetype is dropped on a MediaUpload.
+* Show "no archives to show" message on Archives Block.
+* Add AccessibleSVG component and use consistently for block icons.
+* Improve Classic editor and Cloudflare notification modals.
+* Refactor Draggable component to decouple the drag handle from the DOM node being dragged.
+* Move video caption styles to style.scss.
+* Treat Verse lines consistently on the front-end.
+* Make sure all available taxonomies are loaded in the editor.
+* Improve empty elements filters in Slot implementation.
+* Fix case with PostTextEditor where intended state value is not always reflected in the rendered textarea when empty.
+* Fix background clashing with some themes in Separator alternative styles.
+* Fix case where hasSelectedInnerBlock did not account for multi-selected innerBlocks. This caused an edge case in Spotlight mode where multiple blocks selected inside a column would appear unfocused.
+* Fix regression with margins around image captions.
+* Fix issue with author select overflowing on IE11.
+* Fix the publish panel top position in FullScreen mode.
+* Fix radio button alignment in post visibility menu.
+* Fix issues with centering of images.
+* Fix BlockIcon usage in embed placeholder when resource cannot be previewed.
+* Fix font size regression in PostTitle.
+* Fix codetabs block in extensibility documentation.
+* Fix import source of RangeControl in Readme file.
+* Fix broken link in documentation inside element/README.md.
+* Deprecate usage of RichText provider component.
+* Deprecate getI18n, dcnpgettext.
+* Remove deprecated selectors from docs.
+* Revert shortcut change in block-deletion e2e test.
+* Pin fetch polyfill to 3.0 UMD distributable to resolve an issue where it was no longer usable in IE11.
+* Ensure Gutenberg repository is clean after install.
+* Include block serialization default parser in plugin.
+* Change how required built-ins are polyfilled with Babel 7.
