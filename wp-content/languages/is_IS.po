@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.7.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-04-13 13:55:54+0000\n"
+"PO-Revision-Date: 2018-09-20 11:13:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,19 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: is\n"
 "Project-Id-Version: WordPress - 4.7.x\n"
+
+#. translators: 1: number of placeholders, 2: number of arguments passed
+#: wp-includes/wp-db.php:1364
+msgid "The query does not contain the correct number of placeholders (%1$d) for the number of arguments passed (%2$d)."
+msgstr "Fyrirspurnin inniheldur ekki réttan fjölda staðgengla (%1$d) fyrir fjölda uppgefinna viðfanga (%2$d)."
+
+#: wp-includes/wp-db.php:1353
+msgid "The query only expected one placeholder, but an array of multiple placeholders was sent."
+msgstr "Fyrirspurnin reiknaði bara með einum staðgengli, en fylki með mörgum staðgenglum var sent."
+
+#: wp-includes/wp-db.php:1316
+msgid "Unsupported value type (%s)."
+msgstr "Gildi er af óstuddri tegund (%s)."
 
 #: wp-trackback.php:125
 msgid "We already have a ping from that URL for this post."
@@ -168,7 +181,7 @@ msgstr "Stofna vef"
 
 #: wp-signup.php:328
 msgid "If you&#8217;re not going to use a great site domain, leave it for a new user. Now have at it!"
-msgstr "Ef þú ætlar þér ekki að nota þessa frábæru vefslóð, skildu hana eftir og leyfðu öðrum notanda að fá hana."
+msgstr "Ef þú ætlar þér ekki að nota þessa frábæru vefslóð, skildu hana eftir og leyfðu öðrum notanda að fá hana!"
 
 #: wp-signup.php:319
 msgid "Sites you are already a member of:"
@@ -402,7 +415,7 @@ msgstr "Möguleg ástæða: hýsingaraðilinn þinn gæti hafa gert mail() falli
 
 #: wp-login.php:373
 msgid "The email could not be sent."
-msgstr "Ekki var hægt að senda tölvupóstinn. "
+msgstr "Ekki var hægt að senda tölvupóstinn."
 
 #. translators: Password reset email subject. 1: Site name
 #: wp-login.php:345
@@ -450,7 +463,7 @@ msgstr "Útbúa stillingarskrá"
 #. translators: %s: wp-config.php
 #: wp-load.php:87
 msgid "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file."
-msgstr "Þú getur búið til %s skránna í gegnum vefviðmótið en það virkar ekki á móti öllum vefþjónum. Öruggasta leiðin er að búa skránna til handvirkt. "
+msgstr "Þú getur búið til %s skránna í gegnum vefviðmótið en það virkar ekki á móti öllum vefþjónum. Öruggasta leiðin er að búa skránna til handvirkt."
 
 #: wp-load.php:83
 msgid "https://codex.wordpress.org/Editing_wp-config.php"
@@ -473,71 +486,71 @@ msgstr "Tenglar fyrir %s"
 
 #. translators: 1: WordPress version number, 2: Minimum required MySQL version
 #. number
-#: wp-includes/wp-db.php:3232
+#: wp-includes/wp-db.php:3345
 msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>VILLA</strong>: WordPress %1$s krefst MySQL útgáfu %2$s eða nýrri"
 
-#: wp-includes/wp-db.php:1811 wp-includes/wp-db.php:1817
+#: wp-includes/wp-db.php:1866 wp-includes/wp-db.php:1872
 msgid "Unable to retrieve the error message from MySQL"
 msgstr "Tókst ekki að sækja villumeldinguna frá MySQL"
 
-#: wp-includes/wp-db.php:1709
+#: wp-includes/wp-db.php:1764
 msgid "Are you sure that the database server is not under particularly heavy load?"
 msgstr "Ertu viss um að gagnagrunnsþjónninn sé ekki undir sérstaklega miklu álagi?"
 
 #. translators: %s: database host
-#: wp-includes/wp-db.php:1703
+#: wp-includes/wp-db.php:1758
 msgid "This means that we lost contact with the database server at %s. This could mean your host&#8217;s database server is down."
 msgstr "Þetta þýðir að við misstum sambandið við gagnagrunnsþjóninn %s. Þetta gæti þýtt að gagnagrunnsþjónn hýsingaraðila liggi niðri."
 
-#: wp-includes/wp-db.php:1699
+#: wp-includes/wp-db.php:1754
 msgid "Error reconnecting to the database"
 msgstr "Villa við að endurtengjast gagnagrunni"
 
 #. translators: %s: support forums URL
-#: wp-includes/wp-db.php:1610 wp-includes/wp-db.php:1714
+#: wp-includes/wp-db.php:1665 wp-includes/wp-db.php:1769
 msgid "If you&#8217;re unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress Support Forums</a>."
 msgstr "Ef þú ert ekki viss um hvað þessi hugtök þýða ættir þú líklega að hafa samband við hýsingaraðila. Ef þig vantar áfram aðstoð gætir þú alltaf kíkt á <a href=\"%s\">WordPress spjallborðin</a>."
 
-#: wp-includes/wp-db.php:1605 wp-includes/wp-db.php:1708
+#: wp-includes/wp-db.php:1660 wp-includes/wp-db.php:1763
 msgid "Are you sure that the database server is running?"
 msgstr "Ertu viss um að gagnagrunnsþjónninn sé í gangi?"
 
-#: wp-includes/wp-db.php:1604
+#: wp-includes/wp-db.php:1659
 msgid "Are you sure that you have typed the correct hostname?"
 msgstr "Ertu viss um að þú hafir slegið inn rétt nafn netþjóns?"
 
-#: wp-includes/wp-db.php:1603
+#: wp-includes/wp-db.php:1658
 msgid "Are you sure you have the correct username and password?"
 msgstr "Ertu viss um að þú sért með rétt notandanafn og lykilorð?"
 
 #. translators: 1: wp-config.php. 2: database host
-#: wp-includes/wp-db.php:1597
+#: wp-includes/wp-db.php:1652
 msgid "This either means that the username and password information in your %1$s file is incorrect or we can&#8217;t contact the database server at %2$s. This could mean your host&#8217;s database server is down."
 msgstr "Þetta þýðir annaðhvort að að notandanafn og lykilorð í skránni %1$s séu röng eða við náum ekki sambandi við gagnagrunnsþjóninn %2$s. Það gæti þýtt að gagnagrunnshýsing liggi niðri."
 
-#: wp-includes/wp-db.php:1395 wp-includes/wp-db.php:1412
+#: wp-includes/wp-db.php:1450 wp-includes/wp-db.php:1467
 msgid "WordPress database error:"
 msgstr "WordPress gagnagrunnsvilla:"
 
 #. translators: 1: Database error message, 2: SQL query
-#: wp-includes/wp-db.php:1382
+#: wp-includes/wp-db.php:1437
 msgid "WordPress database error %1$s for query %2$s"
 msgstr "WordPress-gagnagrunnsvilla %1$s í fyrirspurninni %2$s"
 
 #. translators: 1: Database error message, 2: SQL query, 3: Name of the calling
 #. function
-#: wp-includes/wp-db.php:1379
+#: wp-includes/wp-db.php:1434
 msgid "WordPress database error %1$s for query %2$s made by %3$s"
 msgstr "WordPress-gagnagrunnsvilla %1$s í fyrirspurninni %2$s síðan %3$s"
 
-#: wp-includes/wp-db.php:1297
+#: wp-includes/wp-db.php:1300
 msgid "The query argument of %s must have a placeholder."
 msgstr "Viðfang fyrirspurnarinnar %s verður að hafa staðengilstákn."
 
 #. translators: %s: database access abstraction class, usually wpdb or a class
 #. extending wpdb
-#: wp-includes/wp-db.php:1180
+#: wp-includes/wp-db.php:1179
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s þarf að skilgreina gagnagrunnstengingu til þess að nota fyrir \"escaping\"."
 
@@ -801,7 +814,7 @@ msgstr "Allir tenglar"
 
 #: wp-includes/widgets/class-wp-widget-links.php:131
 msgid "Select Link Category:"
-msgstr "Veldu tenglaflokk"
+msgstr "Veldu tenglaflokk:"
 
 #: wp-includes/widgets/class-wp-widget-links.php:30
 msgid "Links"
@@ -1040,7 +1053,7 @@ msgstr "Stuttnefni má ekki vera lengra en 50 stafir."
 
 #: wp-includes/user.php:1446
 msgid "Cannot create a user with an empty login name."
-msgstr "Ekki er hægt að stofna notanda með auðu notandanafni. "
+msgstr "Ekki er hægt að stofna notanda með auðu notandanafni."
 
 #. translators: 1: display name, 2: user_login
 #: wp-includes/user.php:1105
@@ -1449,7 +1462,7 @@ msgstr "Efnisorð með sama nafn og fangamark er nú þegar til í þessum flokk
 
 #: wp-includes/taxonomy.php:2084
 msgid "A term with the name provided already exists with this parent."
-msgstr "Efnisorð með saman nafni finnst núþegar í yfirflokk. "
+msgstr "Efnisorð með saman nafni finnst núþegar í yfirflokk."
 
 #: wp-includes/taxonomy.php:1999 wp-includes/taxonomy.php:2623
 msgid "A name is required for this term."
@@ -2170,7 +2183,7 @@ msgstr "Staðfesta notkun á veiku lykilorði"
 
 #: wp-includes/script-loader.php:411
 msgid "Your new password has not been saved."
-msgstr "Nýja lykilorðið þitt hefur ekki verið vistað"
+msgstr "Nýja lykilorðið þitt hefur ekki verið vistað."
 
 #: wp-includes/script-loader.php:406
 msgctxt "password mismatch"
@@ -2273,7 +2286,7 @@ msgstr "Slökkva á skjáfylliham"
 
 #: wp-includes/script-loader.php:302
 msgid "&#8220;%s&#8221; has failed to upload."
-msgstr "Ekki tókst að hlaða upp &#8220;%s&#8221;"
+msgstr "Ekki tókst að hlaða upp &#8220;%s&#8221;."
 
 #: wp-includes/script-loader.php:301
 msgid "moved to the trash."
@@ -2729,7 +2742,7 @@ msgstr "Notendum er ekki hent í ruslatunnu. Skilgreindu force=true til þess a�
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:733
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:765
 msgid "The user cannot be deleted."
-msgstr "Ekki er hægt að eyða notanda"
+msgstr "Ekki er hægt að eyða notandanum."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:715
 msgid "Sorry, you are not allowed to delete this user."
@@ -2737,7 +2750,7 @@ msgstr "Því miður, þú hefur ekki heimild til þess að eyða þessum ntoand
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:613
 msgid "Invalid slug."
-msgstr "ógild stuttslóð."
+msgstr "Ógild stuttslóð."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:609
 msgid "Username isn't editable."
@@ -3272,7 +3285,7 @@ msgstr "Aðferð ‘%s’ hefur ekki verið útfærð. Verður að vera yfirskri
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-controller.php:42
 msgid "The register_routes() method must be overridden"
-msgstr "Það verður að yfirskrifa register_routes() aðferðina."
+msgstr "Það verður að yfirskrifa register_routes() aðferðina"
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1439
 msgid "Limit result set to comments assigned a specific type. Requires authorization."
@@ -3836,7 +3849,7 @@ msgstr "Nota sem einkennismynd"
 
 #: wp-includes/post.php:1389
 msgid "Remove featured image"
-msgstr "Fjarlægja einkennismynd."
+msgstr "Fjarlægja einkennismynd"
 
 #: wp-includes/post.php:1388
 msgid "Set featured image"
@@ -4375,7 +4388,7 @@ msgstr "Ný athugasemd við færsluna \"%s\" bíður samþykkis"
 
 #: wp-includes/pluggable.php:1626
 msgid "Pingback excerpt: "
-msgstr "Brot úr bakvísun:"
+msgstr "Brot úr bakvísun: "
 
 #. translators: 1: Post title
 #: wp-includes/pluggable.php:1620
@@ -4384,7 +4397,7 @@ msgstr "Ný bakvísun við færsluna \"%s\" bíður samþykkis"
 
 #: wp-includes/pluggable.php:1616
 msgid "Trackback excerpt: "
-msgstr "Brot úr bakvísun:"
+msgstr "Brot úr bakvísun: "
 
 #. translators: 1: Post title
 #: wp-includes/pluggable.php:1610
@@ -4844,7 +4857,7 @@ msgstr "Þessi vefur er frátekinn í augnablikinu en gæti verið laus innan no
 
 #: wp-includes/ms-functions.php:620
 msgid "Sorry, that site is reserved!"
-msgstr "Því miður, þessi vefur er frátekinn"
+msgstr "Því miður, þessi vefur er frátekinn!"
 
 #: wp-includes/ms-functions.php:616 wp-includes/ms-functions.php:1133
 msgid "Sorry, that site already exists!"
@@ -4856,7 +4869,7 @@ msgstr "Vinsamlegast sláðu inn nafn á vef."
 
 #: wp-includes/ms-functions.php:588
 msgid "Sorry, site names must have letters too!"
-msgstr "Því miður, nafn á vef verður líka að innihalda bókstafi! "
+msgstr "Því miður, nafn á vef verður líka að innihalda bókstafi!"
 
 #: wp-includes/ms-functions.php:584
 msgid "Sorry, you may not use that site name."
@@ -4900,7 +4913,7 @@ msgstr "Því miður, þetta netfang er ekki leyfilegt!"
 
 #: wp-includes/ms-functions.php:459
 msgid "Please enter a valid email address."
-msgstr "Vinsamlega sláðu inn gilt netfang"
+msgstr "Vinsamlega sláðu inn gilt netfang."
 
 #: wp-includes/ms-functions.php:456
 msgid "Sorry, usernames must have letters too!"
@@ -5697,7 +5710,7 @@ msgstr "Slepptu skrám til að hlaða upp"
 
 #: wp-includes/media-template.php:166
 msgid "Close media panel"
-msgstr "Loka skráarspjaldi."
+msgstr "Loka skráarspjaldi"
 
 #: wp-includes/load.php:536
 msgid "The site you have requested is not installed properly. Please contact the system administrator."
@@ -5821,51 +5834,51 @@ msgctxt "translations"
 msgid "Installed"
 msgstr "Uppsettar"
 
-#: wp-includes/general-template.php:3472
+#: wp-includes/general-template.php:3474
 msgctxt "admin color scheme"
 msgid "Coffee"
 msgstr "Kaffi"
 
-#: wp-includes/general-template.php:3466
+#: wp-includes/general-template.php:3468
 msgctxt "admin color scheme"
 msgid "Ocean"
 msgstr "Haf"
 
-#: wp-includes/general-template.php:3460
+#: wp-includes/general-template.php:3462
 msgctxt "admin color scheme"
 msgid "Ectoplasm"
 msgstr "Ektóplasmi"
 
-#: wp-includes/general-template.php:3454
+#: wp-includes/general-template.php:3456
 msgctxt "admin color scheme"
 msgid "Sunrise"
 msgstr "Sólarupprás"
 
-#: wp-includes/general-template.php:3448
+#: wp-includes/general-template.php:3450
 msgctxt "admin color scheme"
 msgid "Midnight"
 msgstr "Miðnætti"
 
-#: wp-includes/general-template.php:3442
+#: wp-includes/general-template.php:3444
 msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Blátt"
 
-#: wp-includes/general-template.php:3436
+#: wp-includes/general-template.php:3438
 msgctxt "admin color scheme"
 msgid "Light"
 msgstr "Létt"
 
-#: wp-includes/general-template.php:3425
+#: wp-includes/general-template.php:3427
 msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Sjálfgefið"
 
-#: wp-includes/general-template.php:3259
+#: wp-includes/general-template.php:3261
 msgid "Next &raquo;"
 msgstr "Næsta &raquo;"
 
-#: wp-includes/general-template.php:3258
+#: wp-includes/general-template.php:3260
 msgid "&laquo; Previous"
 msgstr "&laquo; Fyrri"
 
@@ -6149,81 +6162,81 @@ msgstr "Notið ekki %1$s tög í %2$s."
 msgid "Scripts and styles should not be registered or enqueued until the %1$s, %2$s, or %3$s hooks."
 msgstr "Það ætti ekki að skrá eða setja í biðröð þær skriftur eða stílsnið fyrr en krókar %1$s, %2$s, eða %3$s hafa lokið sér af."
 
-#: wp-includes/functions.php:5272
+#: wp-includes/functions.php:5286
 msgid "The login page will open in a new window. After logging in you can close it and return to this page."
 msgstr "Innskráningarsíðan opnast í nýjum glugga. Að innskráningu lokinni getur þú lokað glugganum og komið aftur til baka á þessa síðu."
 
-#: wp-includes/functions.php:5271 wp-includes/user.php:280
+#: wp-includes/functions.php:5285 wp-includes/user.php:280
 msgid "Please log in again."
 msgstr "Skráðu þig inn aftur."
 
-#: wp-includes/functions.php:5270 wp-includes/script-loader.php:470
+#: wp-includes/functions.php:5284 wp-includes/script-loader.php:470
 msgid "Session expired"
 msgstr "Lota útrunnin"
 
-#: wp-includes/functions.php:5259
+#: wp-includes/functions.php:5273
 msgid "Close dialog"
 msgstr "Loka glugga"
 
-#: wp-includes/functions.php:4673
+#: wp-includes/functions.php:4687
 msgid "Manual Offsets"
 msgstr "Handvirkar hliðranir"
 
-#: wp-includes/functions.php:4665 wp-includes/functions.php:4669
+#: wp-includes/functions.php:4679 wp-includes/functions.php:4683
 msgid "UTC"
 msgstr "UTC"
 
-#: wp-includes/functions.php:4620
+#: wp-includes/functions.php:4634
 msgid "Select a city"
 msgstr "Veldu borg"
 
 #. translators: Developer debugging message. 1: PHP function name, 2:
 #. Explanatory message, 3: Version information message
-#: wp-includes/functions.php:4138
+#: wp-includes/functions.php:4152
 msgid "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgstr "<strong>Ekki</strong> var kallað á %1$s með réttum hætti. %2$s %3$s"
 
-#: wp-includes/functions.php:4135
+#: wp-includes/functions.php:4149
 msgid "https://codex.wordpress.org/Debugging_in_WordPress"
 msgstr "https://codex.wordpress.org/Debugging_in_WordPress"
 
 #. translators: %s: Codex URL
-#: wp-includes/functions.php:4134
+#: wp-includes/functions.php:4148
 msgid "Please see <a href=\"%s\">Debugging in WordPress</a> for more information."
 msgstr "Vinsamlegast skoðaðu <a href=\"%s\">Aflúsun í WordPress</a> fyrir frekari upplýsingar."
 
 #. translators: %s: version number
-#: wp-includes/functions.php:4131
+#: wp-includes/functions.php:4145
 msgid "(This message was added in version %s.)"
 msgstr "(Þessum skilaboðum var bætt við í útgáfu %s.)"
 
 #. translators: 1: PHP function name, 2: version number
-#: wp-includes/functions.php:4025
+#: wp-includes/functions.php:4039
 msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available."
 msgstr "%1$s var kallað með frumgildi sem er <strong>úrelt</strong> frá útgáfu %2$s og enginn valkostur í boði."
 
 #. translators: 1: PHP function name, 2: version number, 3: optional message
 #. regarding the change
-#: wp-includes/functions.php:4022
+#: wp-includes/functions.php:4036
 msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s"
 msgstr "%1$s var kallað með viðfangi sem er <strong>úrelt</strong> frá útgáfu %2$s! %3$s"
 
 #. translators: 1: PHP class name, 2: version number, 3: __construct() method
-#: wp-includes/functions.php:3896
+#: wp-includes/functions.php:3910
 msgid "The called constructor method for %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr "Constructor fallið fyrir %1$s er <strong>úrelt</strong> frá útgáfu %2$s! Notaðu %3$s í staðinn."
 
 #. translators: 1: PHP class name, 2: PHP parent class name, 3: version number,
 #. 4: __construct() method
-#: wp-includes/functions.php:3892
+#: wp-includes/functions.php:3906
 msgid "The called constructor method for %1$s in %2$s is <strong>deprecated</strong> since version %3$s! Use %4$s instead."
 msgstr "Constructor fallið sem kallað var á fyrir %1$s í %2$s er <strong>úrelt</strong> frá útgáfu %3$s! Notaðu %4$s í staðinn."
 
 #. translators: 1: PHP function name, 2: version number
 #. translators: 1: PHP file name, 2: version number
 #. translators: 1: WordPress hook name, 2: version number
-#: wp-includes/functions.php:3833 wp-includes/functions.php:3961
-#: wp-includes/functions.php:4084
+#: wp-includes/functions.php:3847 wp-includes/functions.php:3975
+#: wp-includes/functions.php:4098
 msgid "%1$s is <strong>deprecated</strong> since version %2$s with no alternative available."
 msgstr "%1$s er <strong>úrelt</strong> frá útgáfu %2$s og enginn valkostur í boði."
 
@@ -6232,60 +6245,60 @@ msgstr "%1$s er <strong>úrelt</strong> frá útgáfu %2$s og enginn valkostur �
 #. translators: 1: PHP file name, 2: version number, 3: alternative file name
 #. translators: 1: WordPress hook name, 2: version number, 3: alternative hook
 #. name
-#: wp-includes/functions.php:3830 wp-includes/functions.php:3958
-#: wp-includes/functions.php:4081
+#: wp-includes/functions.php:3844 wp-includes/functions.php:3972
+#: wp-includes/functions.php:4095
 msgid "%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr "%1$s er <strong>úrelt</strong> frá útgáfu %2$s! Notaðu %3$s í staðinn."
 
-#: wp-includes/functions.php:3769 wp-includes/ms-load.php:462
-#: wp-includes/wp-db.php:1593
+#: wp-includes/functions.php:3783 wp-includes/ms-load.php:462
+#: wp-includes/wp-db.php:1648
 msgid "Error establishing a database connection"
 msgstr "Villa kom upp við að tengjast gagnagrunni"
 
-#: wp-includes/functions.php:3765
+#: wp-includes/functions.php:3779
 msgid "Database Error"
 msgstr "Villa í gagnagrunni"
 
-#: wp-includes/functions.php:2738 wp-load.php:92
+#: wp-includes/functions.php:2752 wp-load.php:92
 msgid "WordPress &rsaquo; Error"
 msgstr "WordPress &rsaquo; Villa"
 
-#: wp-includes/functions.php:2726
+#: wp-includes/functions.php:2740
 msgid "&laquo; Back"
 msgstr "&laquo; Til baka"
 
-#: wp-includes/functions.php:2606
+#: wp-includes/functions.php:2620
 msgid "WordPress Failure Notice"
 msgstr "WordPress bilunarviðvörun"
 
-#: wp-includes/functions.php:2601 wp-includes/ms-functions.php:1970
+#: wp-includes/functions.php:2615 wp-includes/ms-functions.php:1970
 msgid "Please try again."
 msgstr "Vinsamlegast reyndu aftur."
 
 #. translators: %s: logout URL
-#: wp-includes/functions.php:2592
+#: wp-includes/functions.php:2606
 msgid "Do you really want to <a href=\"%s\">log out</a>?"
 msgstr "Ert þú viss um að þú viljir <a href=\"%s\">skrá þig út</a>?"
 
 #. translators: %s: site name
-#: wp-includes/functions.php:2585
+#: wp-includes/functions.php:2599
 msgid "You are attempting to log out of %s"
 msgstr "Þú ert að reyna að skrá þig út úr %s"
 
-#: wp-includes/functions.php:2173
+#: wp-includes/functions.php:2186
 msgid "Could not write file %s"
 msgstr "Gat ekki ritað í skrána %s"
 
-#: wp-includes/functions.php:2131
+#: wp-includes/functions.php:2144
 msgid "Invalid file type"
 msgstr "Óheimil skráartegund"
 
-#: wp-includes/functions.php:2127
+#: wp-includes/functions.php:2140
 msgid "Empty filename"
 msgstr "Vantar skráarnafn"
 
 #. translators: %s: directory path
-#: wp-includes/functions.php:1897 wp-includes/functions.php:2165
+#: wp-includes/functions.php:1910 wp-includes/functions.php:2178
 msgid "Unable to create directory %s. Is its parent directory writable by the server?"
 msgstr "Get ekki búið til möppuna %s. Er efnisskráin sem mappan er í með rétta aðgangsheimild á vefþjóninum?"
 
@@ -6354,7 +6367,7 @@ msgctxt "Word count type. Do not translate!"
 msgid "words"
 msgstr "words"
 
-#: wp-includes/formatting.php:3344 wp-includes/general-template.php:3344
+#: wp-includes/formatting.php:3344 wp-includes/general-template.php:3346
 msgid "&hellip;"
 msgstr "&hellip;"
 
@@ -6482,7 +6495,7 @@ msgstr "Faldar athugasemdir: Sláðu inn Lykilorð þitt til þess að skoða at
 #. translators: Comments feed title. 1: Post title
 #: wp-includes/feed-rss2-comments.php:38
 msgid "Comments on: %s"
-msgstr "Athugasemdir við: &#8222;%s&#8220;"
+msgstr "Athugasemdir við: %s"
 
 #. translators: Comment author title. 1: Comment author name
 #: wp-includes/feed-atom-comments.php:84 wp-includes/feed-rss2-comments.php:83
@@ -6497,7 +6510,7 @@ msgstr "Athugasemd við &#8222;%1$s&#8220; skrifar %2$s"
 #. translators: Comments feed title. 1: Site name
 #: wp-includes/feed-atom-comments.php:39 wp-includes/feed-rss2-comments.php:44
 msgid "Comments for %s"
-msgstr "Athugasemdir við &#8222;%s&#8220;"
+msgstr "Athugasemdir fyrir %s"
 
 #. translators: Comments feed title. 1: Site name, 2: Search query
 #: wp-includes/feed-atom-comments.php:36 wp-includes/feed-rss2-comments.php:41
@@ -6507,7 +6520,7 @@ msgstr "Athugasemda við %1$s leitað á %2$s"
 #. translators: Comments feed title. 1: Post title
 #: wp-includes/feed-atom-comments.php:33
 msgid "Comments on %s"
-msgstr "Athugasemdir við &#8222;%s&#8220;"
+msgstr "Athugasemdir við %s"
 
 #: wp-includes/embed.php:1025
 msgid "Close sharing dialog"
@@ -6567,7 +6580,7 @@ msgstr "GD-myndvinnsluforritasafnið er ekki uppsett."
 msgid "File &#8220;%s&#8221; doesn&#8217;t exist?"
 msgstr "Skráin &#8222;%s&#8220; ekki til?"
 
-#: wp-includes/deprecated.php:3122 wp-includes/functions.php:2596
+#: wp-includes/deprecated.php:3122 wp-includes/functions.php:2610
 msgid "Are you sure you want to do this?"
 msgstr "Ertu viss um að þú viljir gera þetta?"
 
@@ -7596,7 +7609,7 @@ msgstr "Ógilt kenni (ID) viðhengis."
 #: wp-includes/class-wp-xmlrpc-server.php:4964
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1029
 msgid "Invalid author ID."
-msgstr "Ógilt kenni (ID) höfunds "
+msgstr "Ógilt kenni (ID) höfunds."
 
 #: wp-includes/class-wp-xmlrpc-server.php:1372
 #: wp-includes/class-wp-xmlrpc-server.php:4953
@@ -7782,7 +7795,7 @@ msgstr "Sjálfgefin stærð myndar"
 
 #: wp-includes/class-wp-xmlrpc-server.php:447
 msgid "Image default link type"
-msgstr "Sjálfgefin tenglategund myndar."
+msgstr "Sjálfgefin tenglategund myndar"
 
 #: wp-includes/class-wp-xmlrpc-server.php:442
 msgid "The URL to the admin area"
@@ -8400,7 +8413,7 @@ msgstr "Ekki tókst að spegla mynd."
 
 #: wp-includes/class-wp-image-editor-gd.php:332
 msgid "Image rotate failed."
-msgstr "Ekki tókst að snúa mynd"
+msgstr "Ekki tókst að snúa mynd."
 
 #: wp-includes/class-wp-image-editor-gd.php:305
 msgid "Image crop failed."
@@ -8486,7 +8499,7 @@ msgstr "Eftirfarandi flýtileiðir til þess að sníða efni verður skipt út 
 
 #: wp-includes/class-wp-editor.php:1079
 msgid "When starting a new paragraph with one of these formatting shortcuts followed by a space, the formatting will be applied automatically. Press Backspace or Escape to undo."
-msgstr "Þegar þú byrjar nýja málsgrein með einhverju af þessum sniðflýtileiðum og stafabili á eftir, mun sniðið verða virkjað sjálfkrafa. Ýttu á Backspace eða Escape til þess að afturkalla. "
+msgstr "Þegar þú byrjar nýja málsgrein með einhverju af þessum sniðflýtileiðum og stafabili á eftir, mun sniðið verða virkjað sjálfkrafa. Ýttu á Backspace eða Escape til þess að afturkalla."
 
 #: wp-includes/class-wp-editor.php:1077
 msgid "To move focus to other buttons use Tab or the arrow keys. To return focus to the editor press Escape or use one of the buttons."
@@ -8631,11 +8644,11 @@ msgstr "Breytingar sem þú hefur gert glatast ef þú ferð út af síðunni."
 
 #: wp-includes/class-wp-editor.php:1034
 msgid "Rich Text Area. Press Control-Option-H for help."
-msgstr "Ritþór. Ýttu á Control+Option+H fyrir hjálp"
+msgstr "Ritþór. Ýttu á Control+Option+H fyrir hjálp."
 
 #: wp-includes/class-wp-editor.php:1033
 msgid "Rich Text Area. Press Alt-Shift-H for help."
-msgstr "Ritþór. Ýttu á Alt + Shift + H fyrir hjálp"
+msgstr "Ritþór. Ýttu á Alt + Shift + H fyrir hjálp."
 
 #: wp-includes/class-wp-editor.php:1032
 msgid "If you&#8217;re looking to paste rich content from Microsoft Word, try turning this option off. The editor will clean up text pasted from Word automatically."
@@ -8878,7 +8891,7 @@ msgstr "Eiginleikar töfluraða"
 
 #: wp-includes/class-wp-editor.php:972
 msgid "Table properties"
-msgstr "Eiginleikar töflu "
+msgstr "Eiginleikar töflu"
 
 #: wp-includes/class-wp-editor.php:971
 msgid "Delete table"
@@ -9729,7 +9742,7 @@ msgstr "Endurröðunarhamur virkjaður"
 
 #: wp-includes/class-wp-customize-nav-menus.php:435
 msgid "Loading more results... please wait."
-msgstr "Hleð fleiri niðurstöður... vinsamlegast bíðið"
+msgstr "Hleð fleiri niðurstöður... vinsamlegast bíðið."
 
 #: wp-includes/class-wp-customize-nav-menus.php:434
 msgid "Additional items found: %d"
@@ -9847,7 +9860,7 @@ msgstr "Aðeins %1$s eða %2$s skrár geta verið notaðar í myndbands-haus. Vi
 
 #: wp-includes/class-wp-customize-manager.php:4319
 msgid "This video file is too large to use as a header video. Try a shorter video or optimize the compression settings and re-upload a file that is less than 8MB. Or, upload your video to YouTube and link it with the option below."
-msgstr "Þetta myndband er of stórt til þess að nota sem myndband í haus. Reyndu styttra myndband eða fínstilltu þjöppun og halaðu upp skrá sem er minni en 8MB. Eða halaðu myndbandinu upp á YouTube og tengdu það við með valkostinum hér fyrir neðan. "
+msgstr "Þetta myndband er of stórt til þess að nota sem myndband í haus. Reyndu styttra myndband eða fínstilltu þjöppun og halaðu upp skrá sem er minni en 8MB. Eða halaðu myndbandinu upp á YouTube og tengdu það við með valkostinum hér fyrir neðan."
 
 #: wp-includes/class-wp-customize-manager.php:4279
 msgid "Unrecognized background setting."
@@ -10244,11 +10257,11 @@ msgstr "Tækjaslá"
 
 #: wp-includes/class-wp-admin-bar.php:418
 msgid "Skip to toolbar"
-msgstr "Breidd ritils í rithams án truflunar:"
+msgstr "Fara í tækjastiku"
 
 #: wp-includes/class-wp-admin-bar.php:130
 msgid "The menu ID should not be empty."
-msgstr "Valmyndarkenni (e. ID) ætti ekki að vera tómt. "
+msgstr "Valmyndarkenni (e. ID) ætti ekki að vera autt."
 
 #. translators: %d: ID of a post
 #: wp-includes/class-walker-page-dropdown.php:74
@@ -10319,7 +10332,7 @@ msgstr "Gild vefslóð (URL) var ekki gefin upp."
 
 #: wp-includes/category-template.php:1107
 msgid "Tags: "
-msgstr "Efnisorð:"
+msgstr "Efnisorð: "
 
 #: wp-includes/category-template.php:801 wp-includes/category-template.php:810
 msgid "%s topic"
@@ -10401,7 +10414,7 @@ msgid "Menus"
 msgstr "Valmyndir"
 
 #: wp-includes/admin-bar.php:783 wp-includes/class-wp-customize-widgets.php:421
-#: wp-includes/functions.php:3706
+#: wp-includes/functions.php:3720
 msgid "Widgets"
 msgstr "Síðuhlutir"
 
@@ -10525,8 +10538,8 @@ msgstr "Endurgjöf"
 
 #: wp-includes/admin-bar.php:164 wp-includes/update.php:127
 #: wp-includes/update.php:317 wp-includes/update.php:497
-#: wp-includes/wp-db.php:1129 wp-includes/wp-db.php:1611
-#: wp-includes/wp-db.php:1715 wp-login.php:793
+#: wp-includes/wp-db.php:1129 wp-includes/wp-db.php:1666
+#: wp-includes/wp-db.php:1770 wp-login.php:793
 msgid "https://wordpress.org/support/"
 msgstr "https://wordpress.org/support/"
 
