@@ -99,7 +99,7 @@ class CUWS {
 	 * @param string $file
 	 * @param string $version Version number.
 	 */
-	public function __construct( $file = '', $version = '3.8.0' ) {
+	public function __construct( $file = '', $version = '3.8.1' ) {
 		$this->_version = $version;
 		$this->_token   = 'cuws';
 
@@ -132,15 +132,7 @@ class CUWS {
 			$this->admin = new CUWS_Admin_API();
 		}
 
-		$this->options = get_site_option( $this->_token . '_settings' );
-
-		// Make sure options have been populated if messed up from new settings
-		// Simpler than requiring deactivation/activation of plugin.
-		if ( ! $this->options ) {
-			$this->install();
-			$this->options = get_site_option( $this->_token . '_settings' );
-		}
-
+		$this->options = $this->_get_options();
 	} // End __construct ()
 
 	/**
@@ -366,7 +358,7 @@ class CUWS {
 	 *
 	 * @return CUWS $_instance
 	 */
-	public static function instance( $file = '', $version = '3.8.0' ) {
+	public static function instance( $file = '', $version = '3.8.1' ) {
 		if ( null === self::$_instance ) {
 			self::$_instance = new self( $file, $version );
 		}
@@ -467,5 +459,25 @@ class CUWS {
 		$defaults = $this->get_defaults();
 		update_site_option( $this->_token . '_settings', $defaults );
 	} // End _set_defaults ()
+
+	/**
+	 * Get plugin options.
+	 * Add new default options if missing from saved options.
+	 *
+	 * @return array $options Plugin options.
+	 * @since 3.8.1
+	 */
+	private function _get_options() {
+		$options  = get_site_option( $this->_token . '_settings', array() );
+		$defaults = $this->get_defaults();
+		$diff     = array_diff_key( $defaults, $options );
+
+		if ( ! empty( $diff ) ) {
+			$options = array_merge( $options, $diff );
+			update_site_option( $this->_token . '_settings', $options );
+		}
+
+		return $options;
+	}
 
 }
