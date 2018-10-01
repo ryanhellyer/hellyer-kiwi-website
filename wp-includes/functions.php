@@ -1704,17 +1704,30 @@ function path_join( $base, $path ) {
  * @since 3.9.0
  * @since 4.4.0 Ensures upper-case drive letters on Windows systems.
  * @since 4.5.0 Allows for Windows network shares.
+ * @since 4.9.7 Allows for PHP file wrappers.
  *
  * @param string $path Path to normalize.
  * @return string Normalized path.
  */
 function wp_normalize_path( $path ) {
+	$wrapper = '';
+	if ( wp_is_stream( $path ) ) {
+		list( $wrapper, $path ) = explode( '://', $path, 2 );
+		$wrapper .= '://';
+	}
+
+	// Standardise all paths to use /
 	$path = str_replace( '\\', '/', $path );
+
+	// Replace multiple slashes down to a singular, allowing for network shares having two slashes.
 	$path = preg_replace( '|(?<=.)/+|', '/', $path );
+
+	// Windows paths should uppercase the drive letter
 	if ( ':' === substr( $path, 1, 1 ) ) {
 		$path = ucfirst( $path );
 	}
-	return $path;
+
+	return $wrapper . $path;
 }
 
 /**
@@ -5214,8 +5227,14 @@ function _device_can_upload() {
  * @return bool True if the path is a stream URL.
  */
 function wp_is_stream( $path ) {
-	$wrappers = stream_get_wrappers();
-	$wrappers_re = '(' . join('|', $wrappers) . ')';
+	if ( false === strpos( $path, '://' ) ) {
+		// $path isn't a stream
+		return false;
+	}
+
+	$wrappers    = stream_get_wrappers();
+	$wrappers    = array_map( 'preg_quote', $wrappers );
+	$wrappers_re = '(' . join( '|', $wrappers ) . ')';
 
 	return preg_match( "!^$wrappers_re://!", $path ) === 1;
 }
@@ -5501,6 +5520,28 @@ function wp_delete_file( $file ) {
 	if ( ! empty( $delete ) ) {
 		@unlink( $delete );
 	}
+}
+
+/**
+ * Deletes a file if its path is within the given directory.
+ *
+ * @since 4.9.7
+ *
+ * @param string $file      Absolute path to the file to delete.
+ * @param string $directory Absolute path to a directory.
+ * @return bool True on success, false on failure.
+ */
+function wp_delete_file_from_directory( $file, $directory ) {
+	$real_file = realpath( wp_normalize_path( $file ) );
+	$real_directory = realpath( wp_normalize_path( $directory ) );
+
+	if ( false === $real_file || false === $real_directory || strpos( wp_normalize_path( $real_file ), trailingslashit( wp_normalize_path( $real_directory ) ) ) !== 0 ) {
+		return false;
+	}
+
+	wp_delete_file( $file );
+
+	return true;
 }
 
 /**
@@ -5937,6 +5978,52 @@ function wp_privacy_anonymize_data( $type, $data = '' ) {
 }
 
 /**
+ * Returns the directory used to store personal data export files.
+ *
+ * @since 4.9.6
+ *
+ * @see wp_privacy_exports_url
+ *
+ * @return string Exports directory.
+ */
+function wp_privacy_exports_dir() {
+	$upload_dir  = wp_upload_dir();
+	$exports_dir = trailingslashit( $upload_dir['basedir'] ) . 'wp-personal-data-exports/';
+
+	/**
+	 * Filters the directory used to store personal data export files.
+	 *
+	 * @since 4.9.6
+	 *
+	 * @param string $exports_dir Exports directory.
+	 */
+	return apply_filters( 'wp_privacy_exports_dir', $exports_dir );
+}
+
+/**
+ * Returns the URL of the directory used to store personal data export files.
+ *
+ * @since 4.9.6
+ *
+ * @see wp_privacy_exports_dir
+ *
+ * @return string Exports directory URL.
+ */
+function wp_privacy_exports_url() {
+	$upload_dir  = wp_upload_dir();
+	$exports_url = trailingslashit( $upload_dir['baseurl'] ) . 'wp-personal-data-exports/';
+
+	/**
+	 * Filters the URL of the directory used to store personal data export files.
+	 *
+	 * @since 4.9.6
+	 *
+	 * @param string $exports_url Exports directory URL.
+	 */
+	return apply_filters( 'wp_privacy_exports_url', $exports_url );
+}
+
+/**
  * Schedule a `WP_Cron` job to delete expired export files.
  *
  * @since 4.9.6
@@ -5965,8 +6052,7 @@ function wp_schedule_delete_old_privacy_export_files() {
 function wp_privacy_delete_old_export_files() {
 	require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
-	$upload_dir   = wp_upload_dir();
-	$exports_dir  = trailingslashit( $upload_dir['basedir'] . '/exports' );
+	$exports_dir  = wp_privacy_exports_dir();
 	$export_files = list_files( $exports_dir, 100, array( 'index.html' ) );
 
 	/**
