@@ -257,17 +257,29 @@ if ( isset( $our_events[0] ) ) {
 			$season_id = get_option( 'current-season' );
 		}
 
+
 		?>
 
+<!--
 		<div class="tabber">
 
 			<div class="tabbertab" id="tab-1">
+-->
 				<h2><?php echo esc_html( get_the_title( $season_id ) ); ?></h2>
 				<?php
-					$championship_title = esc_html( get_the_title( $season_id ) );
-					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+//					$championship_title = esc_html( get_the_title( $season_id ) );
+//					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+
+
+
+
+
+
 				?>
 				<a href="<?php echo esc_url( get_permalink( $season_id ) ); ?>" class="highlighted-link">See full championship standings</a>
+
+
+<!--
 			</div>
 
 			<div class="tabbertab" id="tab-2">
@@ -283,6 +295,7 @@ if ( isset( $our_events[0] ) ) {
 			</div>
 
 		</div>
+-->
 
 	</div>
 
