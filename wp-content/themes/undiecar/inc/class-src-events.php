@@ -560,6 +560,15 @@ class SRC_Events extends SRC_Core {
 				<strong>' . esc_html( $date ) . '</strong>
 			</p>';
 		}
+//time_of_dayXXXXXXXXXXXX
+		// Time of day
+		$time_of_day = get_option( 'time_of_day' );
+		if ( '' !== $time_of_day ) {
+			$sidebar_html .= '
+			<p>
+				<strong>' . esc_html( $time_of_day ) . '</strong>
+			</p>';
+		}
 
 		// Sidebar event info
 		$sidebar_html .= '
