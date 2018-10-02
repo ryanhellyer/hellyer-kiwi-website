@@ -272,23 +272,23 @@ if ( isset( $our_events[0] ) ) {
 				?>
 
 
-<table class="some-list">
+<table class="some-list" id="src-championship">
 <thead>
 <tr>
 <th>Pos</th>
 <th>Driver</th>
 <th>Total</th>
-<th>Round 1</th>
-<th>Round 2</th>
-<th>Round 3</th>
-<th>Round 4</th>
-<th>Round 5</th>
-<th>Round 6</th>
-<th>Round 7</th>
-<th>Round 8</th>
-<th>Round 9</th>
-<th>Round 10</th>
-<th>Round 11</th>
+<th>R1</th>
+<th>R2</th>
+<th>R3</th>
+<th>R4</th>
+<th>R5</th>
+<th>R6</th>
+<th>R7</th>
+<th>R8</th>
+<th>R9</th>
+<th>R10</th>
+<th>R11</th>
 </tr>
 </thead>
 <tbody>
