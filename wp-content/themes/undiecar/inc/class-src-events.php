@@ -572,14 +572,14 @@ class SRC_Events extends SRC_Core {
 		$sidebar_html .= '
 			</p>';
 
-//time_of_dayXXXXXXXXXXXX
 		// Time of day
 		$time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
-		$sidebar_html .= '__'. $time_of_day .'__';
 		if ( '' !== $time_of_day ) {
 			$sidebar_html .= '
 			<p>
-				<strong>' . esc_html( $time_of_day ) . '</strong>
+				<strong>' . esc_html__( 'Time of day', 'undiecar' ) . '</strong>
+				<br />
+				' . esc_html( $time_of_day ) . '
 			</p>';
 		}
 
