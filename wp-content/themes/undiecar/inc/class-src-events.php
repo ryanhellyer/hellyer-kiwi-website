@@ -560,15 +560,6 @@ class SRC_Events extends SRC_Core {
 				<strong>' . esc_html( $date ) . '</strong>
 			</p>';
 		}
-//time_of_dayXXXXXXXXXXXX
-		// Time of day
-		$time_of_day = get_option( 'time_of_day' );
-		if ( '' !== $time_of_day ) {
-			$sidebar_html .= '
-			<p>
-				<strong>' . esc_html( $time_of_day ) . '</strong>
-			</p>';
-		}
 
 		// Sidebar event info
 		$sidebar_html .= '
@@ -580,6 +571,17 @@ class SRC_Events extends SRC_Core {
 		}
 		$sidebar_html .= '
 			</p>';
+
+//time_of_dayXXXXXXXXXXXX
+		// Time of day
+		$time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
+		$sidebar_html .= '__'. $time_of_day .'__';
+		if ( '' !== $time_of_day ) {
+			$sidebar_html .= '
+			<p>
+				<strong>' . esc_html( $time_of_day ) . '</strong>
+			</p>';
+		}
 
 		// Sidebar practice times
 		$time = get_post_meta( get_the_ID(), 'fp1_time', true );
