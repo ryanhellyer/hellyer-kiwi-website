@@ -70,6 +70,7 @@ foreach ( array_merge(
 
 
 $events = array(
+/*
 	'nascar-b' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -78,15 +79,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-	/*
-
-
-
-
-
-
-
-
 	'nascar-a' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
