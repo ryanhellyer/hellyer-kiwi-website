@@ -41,12 +41,12 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 //define( 'ALLOW_ROOKIES', true );
 define( 'ALLOW_B_LICENSES', true );
 define( 'ALLOW_C_LICENSES', true );
-define( 'ALLOW_D_LICENSES', true );
+//define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
-define( 'MIN_OVAL_IRATING', 500 );
-define( 'MIN_ROAD_IRATING', 500 );
+define( 'MIN_OVAL_IRATING', 1000 );
+define( 'MIN_ROAD_IRATING', 1000 );
 
 
 
@@ -70,15 +70,6 @@ foreach ( array_merge(
 
 
 $events = array(
-	'global-mazda-s4' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	/*
 	'radicals-s3' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -87,6 +78,7 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
+	/*
 	'global-mazda-s3-w5' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
