@@ -292,166 +292,168 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 </thead>
 <tbody>
+
 <tr>
-<th>1</th>
+<td>1</td>
 <td>Olivier Dean2</td>
 <td>71</td>
 <td>20</td>
 <td>19</td>
 <td>14</td>
 <td>18</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>2</th>
-<td>Henry Bennett</td>
-<td>60</td>
-<td>14</td>
-<td>11</td>
-<td>19</td>
-<td>16</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>3</th>
+<td>2</td>
 <td>Justin Hess</td>
-<td>55</td>
+<td>64</td>
 <td>13</td>
 <td>17</td>
 <td>18</td>
 <td>7</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>9</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>4</th>
-<td>Nikolay Ladushkin</td>
-<td>48</td>
-<td></td>
-<td>8</td>
-<td>17</td>
-<td>23</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>3</td>
+<td>Henry Bennett</td>
+<td>61</td>
+<td>14</td>
+<td>11</td>
+<td>19</td>
+<td>16</td>
+<td>1</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>5</th>
-<td>Thomas Lademann<br />(div 2)</td>
-<td>42</td>
+<td>4</td>
+<td>Thomas Lademann (div 2)</td>
+<td>49</td>
 <td>17</td>
 <td>8</td>
 <td>5</td>
 <td>12</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>7</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>6</th>
+<td>5</td>
+<td>Frank Oosterhuis</td>
+<td>49</td>
+<td> </td>
+<td> </td>
+<td>9</td>
+<td>20</td>
+<td>20</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nikolay Ladushkin</td>
+<td>48</td>
+<td> </td>
+<td>8</td>
+<td>17</td>
+<td>23</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>7</td>
 <td>Steven Brumfield</td>
-<td>41</td>
-<td></td>
+<td>47</td>
+<td> </td>
 <td>15</td>
 <td>20</td>
 <td>6</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>6</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>7</th>
+<td>8</td>
 <td>Alejandro Yanes</td>
-<td>36</td>
-<td></td>
+<td>44</td>
+<td> </td>
 <td>4</td>
 <td>17</td>
 <td>15</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>8</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
-<th>8</th>
+<td>9</td>
+<td>Andreas Robertsson</td>
+<td>38</td>
+<td> </td>
+<td> </td>
+<td>8</td>
+<td>12</td>
+<td>18</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>10</td>
 <td>Stefan Binninger</td>
 <td>36</td>
-<td></td>
-<td></td>
+<td> </td>
+<td> </td>
 <td>18</td>
 <td>18</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
-<tr>
-<th>9</th>
-<td>Paul Rosanski<br />(div 2)</td>
-<td>31</td>
-<td></td>
-<td>21</td>
-<td>10</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th>10</th>
-<td>Auke Haarsma<br />(div 2)</td>
-<td>30</td>
-<td></td>
-<td>11</td>
-<td>12</td>
-<td>7</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
+
 </tbody>
 </table>
 
