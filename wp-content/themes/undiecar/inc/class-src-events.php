@@ -572,17 +572,6 @@ class SRC_Events extends SRC_Core {
 		$sidebar_html .= '
 			</p>';
 
-		// Time of day
-		$time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
-		if ( '' !== $time_of_day ) {
-			$sidebar_html .= '
-			<p>
-				<strong>' . esc_html__( 'Time of day', 'undiecar' ) . '</strong>
-				<br />
-				' . esc_html( $time_of_day ) . '
-			</p>';
-		}
-
 		// Sidebar practice times
 		$time = get_post_meta( get_the_ID(), 'fp1_time', true );
 		if ( '' !== $time ) {
@@ -1443,8 +1432,10 @@ class SRC_Events extends SRC_Core {
 				$query->the_post();
 
 				$date  = get_post_meta( get_the_ID(), 'date', true );
+				$time_of_day  = get_post_meta( get_the_ID(), 'race_1_time', true );
+				$time = strtotime( date( 'Y-m-d', $date ) . ' ' . $time_of_day ) + HOUR_IN_SECONDS * 2;
 
-				if ( time() < $date ) {
+				if ( time() < $time ) {
 					$events[$date] = get_the_ID();
 				}
 
@@ -1472,9 +1463,11 @@ class SRC_Events extends SRC_Core {
 				$query->the_post();
 
 				$date  = get_post_meta( get_the_ID(), 'date', true );
+				$time_of_day  = get_post_meta( get_the_ID(), 'race_1_time', true );
+				$time = strtotime( date( 'Y-m-d', $date ) . ' ' . $time_of_day ) + HOUR_IN_SECONDS * 2 ;
 
-				if ( time() > $date ) {
-					$events[$date] = get_the_ID();
+				if ( time() > $time ) {
+					$events[ $time ] = get_the_ID();
 				}
 
 			}
