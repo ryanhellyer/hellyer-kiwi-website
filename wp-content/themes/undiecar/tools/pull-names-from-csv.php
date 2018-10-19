@@ -70,6 +70,14 @@ foreach ( array_merge(
 
 
 $events = array(
+	'radicals-s4-2018' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 /*
 	'nascar-b' => array(
 		'incident_ratio_1' => 1,
