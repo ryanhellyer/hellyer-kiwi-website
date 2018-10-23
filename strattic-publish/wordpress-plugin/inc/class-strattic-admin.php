@@ -264,6 +264,9 @@ class Strattic_Admin extends Strattic_Core {
 
 			$site_directory = get_home_path();
 
+			if  ( ! isset( $_GET[ 'deployment_type' ] ) ) {
+				wp_die( 'Strattic error: Deployment type not set' );
+			}
 			$deployment_type = esc_html( $_GET[ 'deployment_type' ] );
 
 			$options[ 'deployment-type' ] = $deployment_type;
