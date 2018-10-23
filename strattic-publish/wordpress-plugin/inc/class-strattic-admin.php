@@ -12,7 +12,7 @@ class Strattic_Admin extends Strattic_Core {
 	 * Class constructor
 	 */
 	public function __construct() {
-add_action( 'admin_init', array( 'Strattic_Form_Processing', 'send' ) );
+//add_action( 'admin_init', array( 'Strattic_Form_Processing', 'send' ) );
 
 		add_action( 'admin_menu',            array( $this, 'add_menu_item' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_script' ) );
