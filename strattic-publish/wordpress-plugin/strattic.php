@@ -58,7 +58,7 @@ new Strattic_Discover_Links;
 //new Strattic_Strip_Double_Slashes;
 new Strattic_Fix_Hard_Coded_URLs;
 new Strattic_String_Replace;
-new Strattic_Form_Processing;
+//new Strattic_Form_Processing;
 new Strattic_404;
 new Strattic_Keep_Alive;
 
