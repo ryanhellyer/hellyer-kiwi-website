@@ -374,7 +374,7 @@ $message = STRATTIC_MESSAGE;
 				$data[ 'deploying' ] = true;
 			}
 
-			Strattic_Form_Processing::send_contact_forms();
+//			Strattic_Form_Processing::send_contact_forms();
 
 			echo json_encode( $data );
 		}
