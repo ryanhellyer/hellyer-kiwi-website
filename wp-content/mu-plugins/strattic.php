@@ -5,6 +5,8 @@
  * https://www.strattic.com/
  */
 
+echo STRATTIC_WORDPRESS_PLUGIN_DIR;die;
+
 if ( ! defined( 'STRATTIC_WORDPRESS_PLUGIN_DIR' ) ) {
 	define( 'STRATTIC_WORDPRESS_PLUGIN_DIR', '/usr/local/bin/strattic-publish/wordpress-plugin/' );
 }
