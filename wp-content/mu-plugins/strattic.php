@@ -13,3 +13,4 @@ if ( ! defined( 'STRATTIC_WORDPRESS_PLUGIN_DIR' ) ) {
 if ( file_exists( STRATTIC_WORDPRESS_PLUGIN_DIR . 'strattic.php' ) ) {
 	require( STRATTIC_WORDPRESS_PLUGIN_DIR . 'strattic.php' );
 }
+
