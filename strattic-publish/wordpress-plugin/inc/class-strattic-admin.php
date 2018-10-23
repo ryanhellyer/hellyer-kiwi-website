@@ -76,6 +76,7 @@ class Strattic_Admin extends Strattic_Core {
 			$deployment_type = $deployment_settings[ 'deployment-type' ];
 		}
 
+		$deploying = false;
 		if ( isset( $deployment_settings[ 'deploying' ] ) ) {
 			$deploying = true;
 		}
