@@ -43,7 +43,7 @@ class SRC_Videos extends SRC_Core {
 		$gallery = '<div class="gallery gallery-columns-8">';
 
 		$args = array(
-			'posts_per_page'         => 4,
+			'posts_per_page'         => 100,
 			'post_type'              => 'video',
 			'post_status'            => 'publish',
 			'no_found_rows'          => true,  // useful when pagination is not needed.
