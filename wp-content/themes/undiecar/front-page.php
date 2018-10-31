@@ -491,7 +491,7 @@ if ( isset( $our_events[0] ) ) {
 
 	</div>
 
-	<a href="<?php echo esc_url( home_url( '/rules/' ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall7.jpg);">
+	<a href="<?php echo esc_url( home_url( '/rules/' ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall.jpg);">
 		<h2>Rules</h2>
 		<p>Minimal rules maximum fun</p>
 	</a>
