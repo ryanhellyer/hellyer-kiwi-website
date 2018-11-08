@@ -1,10 +1,10 @@
 === Client-proof Visual Editor ===
-Contributors: hugobaeta
+Contributors: hugobaeta, vanillalounge
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hugo%40baeta%2eme&lc=US&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: visual editor, TinyMCE
 Requires at least: 3.0
-Tested up to: 4.4
-Stable tag: trunk
+Tested up to: 4.9
+Stable tag: 1.6
 
 Simple, option-less, plugin to make TinyMCE - the WordPress Visual Editor - easier for clients and n00bs.
 
@@ -12,7 +12,7 @@ Simple, option-less, plugin to make TinyMCE - the WordPress Visual Editor - easi
 
 Simple, option-less (yeah, that's a feature), plugin to make TinyMCE - the WordPress Visual Editor - easier for clients and n00bs. It removes a bunch of TinyMCE features that could potentially be used by inexperienced clients to screw-up the theme developers hard work! It also makes TinyMCE remove the nasty formatting when you paste content directly in it - so, there is no need to use the "paste from Word" or "paste from text" buttons!
 
-Thanks to [Jos&eacute; Fontainhas](http://ze.fontainhas.com/) for testing and SVN help and [Tiago Rodrigues](http://http://trodrigues.net/) for help with TinyMCE "paste" issues.
+Thanks to [Z&eacute; Fontainhas](https://profiles.wordpress.org/vanillalounge) for testing and SVN help and [Tiago Rodrigues](http://http://trodrigues.net/) for help with TinyMCE "paste" issues.
 
 == Frequently Asked Questions ==
 
@@ -48,6 +48,11 @@ When you paste text directly into the visual editor, all formatting gets removed
 1. screenshot-1.png
 
 == Changelog ==
+
+= 1.6 =
+* Updated WordPress version tested up to 4.9.
+* Implement WordPress Coding Standards
+* Update contributors list
 
 = 1.5 =
 * Updated WordPress version tested up to 4.2.
