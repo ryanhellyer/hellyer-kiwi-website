@@ -696,10 +696,7 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 
 		$formatted_number = str_replace( __( 'one', 'undiecar' ), __( 'the', 'undiecar' ), $number->format( $race_count ) );
-		$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
-		if ( '' === $q_time ) {
-			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
-		}
+		$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
 			$html .= wpautop(
