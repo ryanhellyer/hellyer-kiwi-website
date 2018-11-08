@@ -298,166 +298,170 @@ if ( isset( $our_events[0] ) ) {
 
 
 
+
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
-<td>91</td>
+<td>132</td>
 <td>20</td>
 <td>19</td>
 <td>14</td>
 <td>18</td>
-<td> </td>
+<td>&nbsp;</td>
 <td>20</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>21</td>
+<td>20</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>2</td>
 <td>Justin Hess</td>
-<td>85</td>
+<td>91</td>
 <td>13</td>
 <td>17</td>
 <td>18</td>
 <td>7</td>
 <td>9</td>
 <td>21</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>6</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>3</td>
 <td>Henry Bennett</td>
-<td>70</td>
+<td>89</td>
 <td>14</td>
 <td>11</td>
 <td>19</td>
 <td>16</td>
 <td>1</td>
 <td>9</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>&nbsp;</td>
+<td>19</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Thomas Lademann (div 2)</td>
-<td>56</td>
+<td>
+<div>Thomas Lademann (div 2)</div>
+</td>
+<td>84</td>
 <td>17</td>
 <td>8</td>
 <td>5</td>
 <td>12</td>
 <td>7</td>
 <td>7</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>14</td>
+<td>14</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Alejandro Yanes</td>
-<td>55</td>
-<td> </td>
-<td>4</td>
-<td>17</td>
-<td>15</td>
-<td>8</td>
-<td>11</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td>6</td>
-<td>Frank Oosterhuis</td>
-<td>49</td>
-<td> </td>
-<td> </td>
-<td>9</td>
-<td>20</td>
-<td>20</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td>7</td>
-<td>Nikolay Ladushkin</td>
-<td>48</td>
-<td> </td>
-<td>8</td>
-<td>17</td>
-<td>23</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td>8</td>
 <td>Josu Solaguren</td>
-<td>48</td>
+<td>73</td>
 <td>6</td>
 <td>2</td>
 <td>12</td>
 <td>9</td>
 <td>5</td>
 <td>14</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
+<td>16</td>
 <td>9</td>
-<td>Steven Brumfield</td>
-<td>47</td>
-<td> </td>
-<td>15</td>
-<td>20</td>
-<td>6</td>
-<td>6</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
-<td>10</td>
+<td>6</td>
+<td>Alejandro Yanes</td>
+<td>67</td>
+<td>&nbsp;</td>
+<td>4</td>
+<td>17</td>
+<td>15</td>
+<td>8</td>
+<td>11</td>
+<td>8</td>
+<td>4</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>7</td>
 <td>Andreas Robertsson</td>
-<td>45</td>
-<td> </td>
-<td> </td>
+<td>65</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 <td>8</td>
 <td>12</td>
 <td>18</td>
 <td>7</td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
+<td>19</td>
+<td>1</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
+<tr>
+<td>8</td>
+<td>Nikolay Ladushkin</td>
+<td>55</td>
+<td>&nbsp;</td>
+<td>8</td>
+<td>17</td>
+<td>23</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>7</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ryan Hellyer</td>
+<td>54</td>
+<td>&nbsp;</td>
+<td>6</td>
+<td>8</td>
+<td>8</td>
+<td>&nbsp;</td>
+<td>16</td>
+<td>4</td>
+<td>12</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Frank Oosterhuis</td>
+<td>49</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>9</td>
+<td>20</td>
+<td>20</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
 
 
 
