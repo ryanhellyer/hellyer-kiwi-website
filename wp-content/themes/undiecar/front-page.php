@@ -71,7 +71,7 @@ get_header();
 
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'date', true );
-
+echo '<!-- '; the_title();echo '-->' . "\n";
 			unset( $time );
 /*** THIS NEEDS UPGRADED TO WORK WITH THE NUMBER OF RACES, RATHER THAN GUESSING HOW MANY RACES THERE ARE ***/
 			foreach ( array( 3, 2, 1 ) as $race ) {
