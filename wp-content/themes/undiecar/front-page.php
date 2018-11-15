@@ -2,8 +2,8 @@
 /**
  * Front page template file.
  *
- * @package Undycar Theme
- * @since Undycar Theme 1.0
+ * @package Undiecar Theme
+ * @since Undiecar Theme 1.0
  */
 
 get_header();
@@ -298,10 +298,28 @@ if ( isset( $our_events[0] ) ) {
 
 
 
+<table>
+<tbody>
+<tr>
+<td>Pos</td>
+<td>Driver</td>
+<td>Total</td>
+<td>R1</td>
+<td>R2</td>
+<td>R3</td>
+<td>R4</td>
+<td>R5</td>
+<td>R6</td>
+<td>R7</td>
+<td>R8</td>
+<td>R9</td>
+<td>R10</td>
+<td>R11</td>
+</tr>
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
-<td>132</td>
+<td>150</td>
 <td>20</td>
 <td>19</td>
 <td>14</td>
@@ -310,14 +328,14 @@ if ( isset( $our_events[0] ) ) {
 <td>20</td>
 <td>21</td>
 <td>20</td>
-<td>&nbsp;</td>
+<td>18</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>2</td>
 <td>Justin Hess</td>
-<td>91</td>
+<td>111</td>
 <td>13</td>
 <td>17</td>
 <td>18</td>
@@ -326,7 +344,7 @@ if ( isset( $our_events[0] ) ) {
 <td>21</td>
 <td>6</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>20</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
@@ -351,39 +369,23 @@ if ( isset( $our_events[0] ) ) {
 <td>
 <div>Thomas Lademann (div 2)</div>
 </td>
-<td>84</td>
+<td>89</td>
 <td>17</td>
 <td>8</td>
-<td>5</td>
+<td>DROP-5</td>
 <td>12</td>
 <td>7</td>
 <td>7</td>
 <td>14</td>
 <td>14</td>
-<td>&nbsp;</td>
+<td>10</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Josu Solaguren</td>
-<td>73</td>
-<td>6</td>
-<td>2</td>
-<td>12</td>
-<td>9</td>
-<td>5</td>
-<td>14</td>
-<td>16</td>
-<td>9</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>6</td>
 <td>Alejandro Yanes</td>
-<td>67</td>
+<td>80</td>
 <td>&nbsp;</td>
 <td>4</td>
 <td>17</td>
@@ -392,14 +394,14 @@ if ( isset( $our_events[0] ) ) {
 <td>11</td>
 <td>8</td>
 <td>4</td>
-<td>&nbsp;</td>
+<td>13</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
-<td>7</td>
+<td>6</td>
 <td>Andreas Robertsson</td>
-<td>65</td>
+<td>79</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>8</td>
@@ -408,14 +410,30 @@ if ( isset( $our_events[0] ) ) {
 <td>7</td>
 <td>19</td>
 <td>1</td>
+<td>14</td>
 <td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Josu Solaguren</td>
+<td>78</td>
+<td>6</td>
+<td>DROP-2</td>
+<td>12</td>
+<td>9</td>
+<td>5</td>
+<td>14</td>
+<td>16</td>
+<td>9</td>
+<td>7</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>8</td>
 <td>Nikolay Ladushkin</td>
-<td>55</td>
+<td>60</td>
 <td>&nbsp;</td>
 <td>8</td>
 <td>17</td>
@@ -424,14 +442,30 @@ if ( isset( $our_events[0] ) ) {
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>7</td>
-<td>&nbsp;</td>
+<td>5</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>9</td>
+<td>Frank Oosterhuis</td>
+<td>58</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>9</td>
+<td>20</td>
+<td>20</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>9</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>10</td>
 <td>Ryan Hellyer</td>
-<td>54</td>
+<td>57</td>
 <td>&nbsp;</td>
 <td>6</td>
 <td>8</td>
@@ -440,26 +474,11 @@ if ( isset( $our_events[0] ) ) {
 <td>16</td>
 <td>4</td>
 <td>12</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Frank Oosterhuis</td>
-<td>49</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>9</td>
-<td>20</td>
-<td>20</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>3</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
+
 
 
 
