@@ -354,6 +354,7 @@
 			processData: false,
 			contentType: false
 		} ).done( function( data, status, xhr ) {
+console.log( data );
 			ajaxSuccess( data, status, xhr, $form );
 			$( '.ajax-loader', $form ).removeClass( 'is-active' );
 		} ).fail( function( xhr, status, error ) {
