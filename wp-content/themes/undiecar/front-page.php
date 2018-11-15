@@ -298,24 +298,7 @@ if ( isset( $our_events[0] ) ) {
 
 
 
-<table>
-<tbody>
-<tr>
-<td>Pos</td>
-<td>Driver</td>
-<td>Total</td>
-<td>R1</td>
-<td>R2</td>
-<td>R3</td>
-<td>R4</td>
-<td>R5</td>
-<td>R6</td>
-<td>R7</td>
-<td>R8</td>
-<td>R9</td>
-<td>R10</td>
-<td>R11</td>
-</tr>
+
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
@@ -372,7 +355,7 @@ if ( isset( $our_events[0] ) ) {
 <td>89</td>
 <td>17</td>
 <td>8</td>
-<td>DROP-5</td>
+<td>D5</td>
 <td>12</td>
 <td>7</td>
 <td>7</td>
@@ -419,7 +402,7 @@ if ( isset( $our_events[0] ) ) {
 <td>Josu Solaguren</td>
 <td>78</td>
 <td>6</td>
-<td>DROP-2</td>
+<td>D2</td>
 <td>12</td>
 <td>9</td>
 <td>5</td>
