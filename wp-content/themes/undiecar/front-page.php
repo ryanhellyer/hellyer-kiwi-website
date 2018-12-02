@@ -235,11 +235,12 @@ if ( isset( $our_events[0] ) ) {
 
 /*
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall6.jpg);">
-*/
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/porsche-tall.jpg);">
+*/
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall-connor-welsh.jpg);">
 		<h2>This season</h2>
 		<p>
-			Season 7<br />
+			Season 8<br />
 			Race with free iRacing content. Fixed setups provided for each track.
 		</p>
 	</a>
@@ -313,78 +314,28 @@ if ( isset( $our_events[0] ) ) {
 <td>20</td>
 <td>18</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>DROP-8</td>
 </tr>
 <tr>
 <td>2</td>
 <td>Justin Hess</td>
-<td>111</td>
+<td>127</td>
 <td>13</td>
 <td>17</td>
 <td>18</td>
 <td>7</td>
 <td>9</td>
 <td>21</td>
-<td>6</td>
+<td>Drop-6</td>
 <td>&nbsp;</td>
 <td>20</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>22</td>
 </tr>
 <tr>
 <td>3</td>
-<td>Henry Bennett</td>
-<td>89</td>
-<td>14</td>
-<td>11</td>
-<td>19</td>
-<td>16</td>
-<td>1</td>
-<td>9</td>
-<td>&nbsp;</td>
-<td>19</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>4</td>
-<td>
-<div>Thomas Lademann (div 2)</div>
-</td>
-<td>89</td>
-<td>17</td>
-<td>8</td>
-<td>D5</td>
-<td>12</td>
-<td>7</td>
-<td>7</td>
-<td>14</td>
-<td>14</td>
-<td>10</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Alejandro Yanes</td>
-<td>80</td>
-<td>&nbsp;</td>
-<td>4</td>
-<td>17</td>
-<td>15</td>
-<td>8</td>
-<td>11</td>
-<td>8</td>
-<td>4</td>
-<td>13</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>6</td>
 <td>Andreas Robertsson</td>
-<td>79</td>
+<td>110</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>8</td>
@@ -392,31 +343,49 @@ if ( isset( $our_events[0] ) ) {
 <td>18</td>
 <td>7</td>
 <td>19</td>
-<td>1</td>
+<td>Drop-1</td>
 <td>14</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>17</td>
+<td>15</td>
 </tr>
 <tr>
-<td>7</td>
-<td>Josu Solaguren</td>
-<td>78</td>
-<td>6</td>
-<td>D2</td>
-<td>12</td>
-<td>9</td>
-<td>5</td>
+<td>4</td>
+<td>Henry Bennett</td>
+<td>107</td>
 <td>14</td>
+<td>11</td>
+<td>19</td>
 <td>16</td>
+<td>1</td>
 <td>9</td>
-<td>7</td>
+<td>&nbsp;</td>
+<td>19</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
+<td>18</td>
 </tr>
 <tr>
+<td>5</td>
+<td>
+<div>Thomas Lademann (div 2)</div>
+</td>
+<td>96</td>
+<td>17</td>
 <td>8</td>
+<td>DROP-5</td>
+<td>12</td>
+<td>DROP-7</td>
+<td>7</td>
+<td>14</td>
+<td>14</td>
+<td>10</td>
+<td>14</td>
+<td>DROP-5</td>
+</tr>
+<tr>
+<td>6</td>
 <td>Nikolay Ladushkin</td>
-<td>60</td>
+<td>86</td>
 <td>&nbsp;</td>
 <td>8</td>
 <td>17</td>
@@ -426,29 +395,45 @@ if ( isset( $our_events[0] ) ) {
 <td>&nbsp;</td>
 <td>7</td>
 <td>5</td>
+<td>19</td>
+<td>7</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Alejandro Yanes</td>
+<td>85</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>DROP-4</td>
+<td>17</td>
+<td>15</td>
+<td>8</td>
+<td>11</td>
+<td>8</td>
+<td>4</td>
+<td>13</td>
+<td>DROP-4</td>
+<td>9</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Josu Solaguren</td>
+<td>85</td>
+<td>6</td>
+<td>DROP-2</td>
+<td>12</td>
+<td>9</td>
+<td>DROP-5</td>
+<td>14</td>
+<td>16</td>
+<td>9</td>
+<td>7</td>
+<td>DROP-5</td>
+<td>12</td>
 </tr>
 <tr>
 <td>9</td>
-<td>Frank Oosterhuis</td>
-<td>58</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>9</td>
-<td>20</td>
-<td>20</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>9</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>10</td>
 <td>Ryan Hellyer</td>
-<td>57</td>
+<td>76</td>
 <td>&nbsp;</td>
 <td>6</td>
 <td>8</td>
@@ -459,8 +444,25 @@ if ( isset( $our_events[0] ) ) {
 <td>12</td>
 <td>3</td>
 <td>&nbsp;</td>
+<td>19</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Stefan Binninger</td>
+<td>69</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>18</td>
+<td>18</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>3</td>
+<td>&nbsp;</td>
+<td>18</td>
+<td>12</td>
 <td>&nbsp;</td>
 </tr>
+
 
 
 
