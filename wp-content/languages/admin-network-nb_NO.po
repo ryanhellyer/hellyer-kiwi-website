@@ -1,5 +1,5 @@
-# Translation of WordPress - 4.9.x - Development - Administration - Network Admin in Norwegian (Bokmål)
-# This file is distributed under the same license as the WordPress - 4.9.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.0.x - Development - Administration - Network Admin in Norwegian (Bokmål)
+# This file is distributed under the same license as the WordPress - 5.0.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2017-11-10 13:35:27+0000\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: nb_NO\n"
-"Project-Id-Version: WordPress - 4.9.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.0.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: DO_NOT_UPGRADE_GLOBAL_TABLES
 #: wp-admin/includes/network.php:107
@@ -81,8 +81,8 @@ msgstr "Beklager, du har ikke lov til å håndtere temaer i nettverket."
 msgid "Sorry, you are not allowed to delete themes for this site."
 msgstr "Beklager, du har ikke lov til å slette temaer for dette nettstedet."
 
-#: wp-admin/network/site-info.php:14 wp-admin/network/site-settings.php:14
-#: wp-admin/network/site-users.php:14
+#: wp-admin/network/site-info.php:14 wp-admin/network/site-users.php:14
+#: wp-admin/network/site-settings.php:14
 msgid "Sorry, you are not allowed to edit this site."
 msgstr "Beklager, du har ikke lov til å redigere nettstedet."
 
@@ -108,10 +108,6 @@ msgstr "E-postadressen til den første kommentaren på det nye nettstedet."
 msgid "Add the following to your %1$s file in %2$s <strong>above</strong> the line reading %3$s:"
 msgstr "Legg til disse linjene i din %1$s-fil i %2$s <strong>over</strong> linjen som sier %3$s:"
 
-#. translators: This string should only be translated if wp-config-sample.php
-#. is localized. You can check the localized release package or
-#. https://i18n.svn.wordpress.org/<locale code>/branches/<wp
-#. version>/dist/wp-config-sample.php
 #: wp-admin/includes/network.php:436
 msgid "That&#8217;s all, stop editing! Happy blogging."
 msgstr "That&#8217;s all, stop editing! Happy blogging."
@@ -373,7 +369,7 @@ msgstr "Besøk nettsiden til %s"
 msgid "Network Disable %s"
 msgstr "Deaktiver %s i nettverket"
 
-#: wp-admin/network/site-users.php:346 wp-admin/network/user-new.php:117
+#: wp-admin/network/user-new.php:117 wp-admin/network/site-users.php:346
 msgid "A password reset link will be sent to the user via email."
 msgstr "En lenke for å skifte passord vil bli sendt til brukeren med e-post."
 
@@ -467,8 +463,8 @@ msgstr "Du er i ferd med å deaktivere nettstedet %s."
 msgid "You are about to activate the site %s."
 msgstr "Du er i ferd med å aktivere nettstedet %s."
 
-#: wp-admin/network/site-info.php:28 wp-admin/network/site-settings.php:26
-#: wp-admin/network/site-themes.php:49 wp-admin/network/site-users.php:42
+#: wp-admin/network/site-info.php:28 wp-admin/network/site-users.php:42
+#: wp-admin/network/site-themes.php:49 wp-admin/network/site-settings.php:26
 msgid "The requested site does not exist."
 msgstr "Nettstedet finnes ikke."
 
@@ -523,13 +519,13 @@ msgstr "Disse temaene kan være aktive andre steder i nettverket."
 msgid "Are you sure you wish to delete this theme?"
 msgstr "Er du sikker på at du vil slette dette temaet?"
 
-#: wp-admin/network/site-themes.php:183 wp-admin/network/themes.php:279
+#: wp-admin/network/themes.php:279 wp-admin/network/site-themes.php:183
 msgid "%s theme disabled."
 msgid_plural "%s themes disabled."
 msgstr[0] "%s tema deaktivert."
 msgstr[1] "%s temaer deaktiverte."
 
-#: wp-admin/network/site-themes.php:175 wp-admin/network/themes.php:271
+#: wp-admin/network/themes.php:271 wp-admin/network/site-themes.php:175
 msgid "%s theme enabled."
 msgid_plural "%s themes enabled."
 msgstr[0] "%s tema aktivert."
@@ -632,8 +628,8 @@ msgstr "Kjappe oppgaver"
 msgid "WordPress has been updated! Before we send you on your way, we need to individually upgrade the sites in your network."
 msgstr "WordPress har blitt oppdatert! Før vi sender deg av gårde, må vi oppgradere alle nettstedene i ditt nettverk."
 
-#: wp-admin/network/menu.php:34 wp-admin/network/upgrade.php:15
-#: wp-admin/network/upgrade.php:40 wp-admin/network/upgrade.php:131
+#: wp-admin/network/upgrade.php:15 wp-admin/network/upgrade.php:40
+#: wp-admin/network/upgrade.php:131 wp-admin/network/menu.php:34
 msgid "Upgrade Network"
 msgstr "Oppgrader nettverk"
 
@@ -671,7 +667,7 @@ msgstr "Legg til bruker vil sette opp en ny brukerkonto på nettverket og sende 
 msgid "Cannot add user."
 msgstr "Kan ikke legge til bruker"
 
-#: wp-admin/network/site-users.php:310 wp-admin/network/user-new.php:129
+#: wp-admin/network/user-new.php:129 wp-admin/network/site-users.php:310
 msgid "Add User"
 msgstr "Legg til bruker"
 
@@ -703,20 +699,20 @@ msgstr "Nei, ta meg tilbake til temalisten"
 msgid "Themes can be enabled on a site by site basis by the network admin on the Edit Site screen (which has a Themes tab); get there via the Edit action link on the All Sites screen. Only network admins are able to install or edit themes."
 msgstr "Temaer kan aktiveres på et for hvert enkelt nettsted på nettverket via Rediger nettsted-skjermen (som har en Temaer-fane); du kommer dit via Rediger-lenken på Alle nettsteder-skjermen. Bare nettverksadminer er i stand til å installere eller redigere temaer."
 
-#: wp-admin/network/menu.php:53 wp-admin/network/themes.php:253
+#: wp-admin/network/themes.php:253 wp-admin/network/menu.php:53
 msgctxt "theme"
 msgid "Add New"
 msgstr "Legg til nytt"
 
-#: wp-admin/network/site-themes.php:173 wp-admin/network/themes.php:269
+#: wp-admin/network/themes.php:269 wp-admin/network/site-themes.php:173
 msgid "Theme enabled."
 msgstr "Tema aktivert."
 
-#: wp-admin/network/site-themes.php:181 wp-admin/network/themes.php:277
+#: wp-admin/network/themes.php:277 wp-admin/network/site-themes.php:181
 msgid "Theme disabled."
 msgstr "Tema deaktivert."
 
-#: wp-admin/network/site-themes.php:187 wp-admin/network/themes.php:291
+#: wp-admin/network/themes.php:291 wp-admin/network/site-themes.php:187
 msgid "No theme selected."
 msgstr "Ikke noe tema er valgt."
 
@@ -724,14 +720,14 @@ msgstr "Ikke noe tema er valgt."
 msgid "You cannot delete a theme while it is active on the main site."
 msgstr "Du kan ikke slette et tema mens det er aktivt på hovednettstedet."
 
-#: wp-admin/network/site-info.php:23 wp-admin/network/site-settings.php:22
-#: wp-admin/network/site-themes.php:43 wp-admin/network/site-users.php:38
+#: wp-admin/network/site-info.php:23 wp-admin/network/site-users.php:38
+#: wp-admin/network/site-themes.php:43 wp-admin/network/site-settings.php:22
 msgid "Invalid site ID."
 msgstr "Ugyldig nettsteds-ID."
 
 #. translators: %s: site name
-#: wp-admin/network/site-info.php:117 wp-admin/network/site-settings.php:70
-#: wp-admin/network/site-themes.php:153 wp-admin/network/site-users.php:196
+#: wp-admin/network/site-info.php:117 wp-admin/network/site-users.php:196
+#: wp-admin/network/site-themes.php:153 wp-admin/network/site-settings.php:70
 msgid "Edit Site: %s"
 msgstr "Rediger nettsted: %s"
 
@@ -792,7 +788,7 @@ msgstr "Slette, som er en permanent handling etter bekreftelsesskjermene."
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "Ved å klikke på overskriftene kan du re-sortere denne tabellen."
 
-#: wp-admin/network/menu.php:67 wp-admin/network/settings.php:19
+#: wp-admin/network/settings.php:19 wp-admin/network/menu.php:67
 msgid "Network Settings"
 msgstr "Nettverksinnstillinger"
 

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Classic Editor - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-18 10:36:44+0000\n"
+"PO-Revision-Date: 2018-11-23 15:56:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,27 +11,31 @@ msgstr ""
 "Language: de\n"
 "Project-Id-Version: Plugins - Classic Editor - Stable (latest release)\n"
 
-#: classic-editor.php:184
-msgid "Use the Gutenberg editor by default and include optional links back to the Classic editor."
-msgstr "Den Editor Gutenberg als Standard benutzen und optionale Links zurück zu dem Klassischen Editor anbieten."
+#: classic-editor.php:311
+msgid "Edit (Block editor)"
+msgstr "Bearbeiten (Block-Editor)"
 
-#: classic-editor.php:178
-msgid "Replace the Gutenberg editor with the Classic editor."
-msgstr "Den Editor Gutenberg mit dem Klassischen Editor ersetzen."
+#: classic-editor.php:191
+msgid "Use the Block editor by default and include optional links back to the Classic editor."
+msgstr "Den Block-Editor als Standard benutzen und optionale Links zurück zu dem klassischen Editor anbieten."
+
+#: classic-editor.php:185
+msgid "Replace the Block editor with the Classic editor."
+msgstr "Den Block-Editor durch den Classic Editor ersetzen."
 
 #: classic-edit-form-advanced.php:369
 msgid "Author"
 msgstr "Autor"
 
-#: classic-editor.php:409
+#: classic-editor.php:445
 msgid "Private"
 msgstr "Privat"
 
-#: classic-editor.php:410
+#: classic-editor.php:446
 msgid "Public"
 msgstr "Öffentlich"
 
-#: classic-editor.php:395
+#: classic-editor.php:431
 msgid "OK"
 msgstr "OK"
 
@@ -51,27 +55,27 @@ msgstr "Überblick"
 msgid "Revisions"
 msgstr "Revisionen"
 
-#: classic-editor.php:414
+#: classic-editor.php:450
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: classic-editor.php:415
+#: classic-editor.php:451
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr "Beim Verlassen der Seite werden deine Änderungen verworfen."
 
-#: classic-editor.php:396
+#: classic-editor.php:432
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: classic-editor.php:405
+#: classic-editor.php:441
 msgid "Schedule"
 msgstr "Planen"
 
-#: classic-editor.php:406
+#: classic-editor.php:442
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: classic-editor.php:411
+#: classic-editor.php:447
 msgid "Public, Sticky"
 msgstr "Öffentlich, Oben gehalten"
 
@@ -79,7 +83,7 @@ msgstr "Öffentlich, Oben gehalten"
 msgid "Publish Settings"
 msgstr "Veröffentlichungs-Einstellungen"
 
-#: classic-editor.php:298
+#: classic-editor.php:329
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -102,15 +106,15 @@ msgstr "Zuletzt bearbeitet am %1$s um %2$s"
 msgid "g:i a"
 msgstr "G:i"
 
-#: classic-editor.php:398
+#: classic-editor.php:434
 msgid "Schedule for:"
 msgstr "Geplant für:"
 
-#: classic-editor.php:397
+#: classic-editor.php:433
 msgid "Publish on:"
 msgstr "Veröffentlichen am:"
 
-#: classic-editor.php:399
+#: classic-editor.php:435
 msgid "Published on:"
 msgstr "Veröffentlicht am:"
 
@@ -118,7 +122,7 @@ msgstr "Veröffentlicht am:"
 msgid "Save"
 msgstr "Speichern"
 
-#: classic-edit-form-advanced.php:297 classic-editor.php:404
+#: classic-edit-form-advanced.php:297 classic-editor.php:440
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -175,36 +179,32 @@ msgstr "Beitrag aktualisiert."
 msgid "WordPress Contributors"
 msgstr "WordPress-Mitwirkende"
 
-#: classic-editor.php:417
+#: classic-editor.php:453
 msgid "Permalink saved"
 msgstr "Permalink gespeichert"
 
-#: classic-editor.php:412
+#: classic-editor.php:448
 msgid "Password Protected"
 msgstr "Passwortgeschützt"
 
-#: classic-editor.php:413
+#: classic-editor.php:449
 msgid "Privately Published"
 msgstr "Privat veröffentlicht"
 
-#: classic-editor.php:402
+#: classic-editor.php:438
 msgid "Show more comments"
 msgstr "Mehr Kommentare anzeigen"
 
-#: classic-editor.php:403
+#: classic-editor.php:439
 msgid "No more comments found."
 msgstr "Es wurden keine weiteren Kommentare gefunden."
 
 #. translators: %s: post title
-#: classic-editor.php:335
+#: classic-editor.php:371
 msgid "Edit &#8220;%s&#8221; in the classic editor"
 msgstr "„%s“ im klassischen Editor bearbeiten"
 
-#: classic-editor.php:280
-msgid "Edit (Gutenberg)"
-msgstr "Bearbeiten (Gutenberg)"
-
-#: classic-editor.php:165
+#: classic-editor.php:172
 msgid "Classic editor settings"
 msgstr "Einstellungen für den klassischen Editor"
 
@@ -234,7 +234,7 @@ msgid "<a href=\"https://wordpress.org/support/\">Support Forums</a>"
 msgstr "<a href=\"https://de.wordpress.org/support/\">Support-Foren</a>"
 
 #. translators: 1: month, 2: day, 3: year, 4: hour, 5: minute
-#: classic-editor.php:401
+#: classic-editor.php:437
 msgid "%1$s %2$s, %3$s @ %4$s:%5$s"
 msgstr "%2$s. %1$s %3$s um %4$s:%5$s"
 
@@ -266,15 +266,15 @@ msgstr "Benutzerdefiniertes Feld gelöscht."
 msgid "Custom field updated."
 msgstr "Benutzerdefiniertes Feld aktualisiert."
 
-#: classic-editor.php:243
+#: classic-editor.php:274
 msgid "(Classic)"
 msgstr "(Klassisch)"
 
-#: classic-editor.php:408
+#: classic-editor.php:444
 msgid "Save Draft"
 msgstr "Als Entwurf speichern"
 
-#: classic-editor.php:416
+#: classic-editor.php:452
 msgid "Saving Draft&#8230;"
 msgstr "Speichere Entwurf &#8230;"
 
@@ -283,7 +283,7 @@ msgstr "Speichere Entwurf &#8230;"
 msgid "For more information:"
 msgstr "Für weitere Informationen:"
 
-#: classic-editor.php:286 classic-editor.php:338
+#: classic-editor.php:317 classic-editor.php:374
 msgid "Edit (Classic)"
 msgstr "Bearbeiten (Klassisch)"
 
@@ -400,7 +400,7 @@ msgstr "Wortanzahl: %s"
 msgid "You can enable distraction-free writing mode using the icon to the right. This feature is not available for old browsers or devices with small screens, and requires that the full-height editor be enabled in Screen Options."
 msgstr "Indem das Symbol auf der rechten Seite verwendet wird, kann der störungsfreie Schreibmodus aktiviert werden. Diese Funktion ist für alte Browser oder Geräte mit kleinen Bildschirmen nicht verfügbar und setzt voraus, dass der Editor für die gesamte Höhe in den Bildschirmoptionen aktiviert ist."
 
-#: classic-editor.php:407
+#: classic-editor.php:443
 msgid "Save as Pending"
 msgstr "Als ausstehend speichern"
 
@@ -446,13 +446,13 @@ msgstr "Seite aus der Revision vom %s wiederhergestellt."
 msgid "Post restored to revision from %s."
 msgstr "Beitrag aus der Revision vom %s wiederhergestellt."
 
-#. Description of the plugin/theme
-msgid "Enables the WordPress classic editor and the old-style Edit Post screen layout (TinyMCE, meta boxes, etc.). Supports the older plugins that extend this screen."
-msgstr "Aktiviert den klassischen WordPress-Editor und den Bildschirm mit dem „old-style“ Bearbeiten-Fenster für Beiträge bzw. Seiten (TinyMCE, Meta Boxen, etc.). Unterstützt außerdem die älteren Plugins, die diesen Bildschirm erweitern."
-
 #: classic-edit-form-advanced.php:436
 msgid "You can also create posts with the <a href=\"%s\">Press This bookmarklet</a>."
 msgstr "Du kannst Beiträge auch mit dem <a href=\"%s\">Press This Bookmarklet</a> erstellen."
+
+#: classic-edit-form-advanced.php:464
+msgid "Note that you crop the image by clicking on it (the Crop icon is already selected) and dragging the cropping frame to select the desired part. Then click Save to retain the cropping."
+msgstr "Beachte, dass du das Bild zuschneidest, indem du darauf klickst (das Zuschneiden-Icon ist bereits ausgewählt) und dann den Zuschneide-Rahmen ziehst, um den gewünschten Bildausschnitt auszuwählen. Klicke dann auf „Speichern“, um den Ausschnitt beizubehalten."
 
 #: classic-edit-form-advanced.php:413
 msgid "The title field and the big Post Editing Area are fixed in place, but you can reposition all the other boxes using drag and drop. You can also minimize or expand them by clicking the title bar of each box. Use the Screen Options tab to unhide more boxes (Excerpt, Send Trackbacks, Custom Fields, Discussion, Slug, Author) or to choose a 1- or 2-column layout for this screen."
@@ -466,22 +466,22 @@ msgstr "<strong>Format</strong> &mdash; Beitragsformate legen fest, wie das Them
 msgid "The Text mode allows you to enter HTML along with your post text. Note that &lt;p&gt; and &lt;br&gt; tags are converted to line breaks when switching to the Text editor to make it less cluttered. When you type, a single line break can be used instead of typing &lt;br&gt;, and two line breaks instead of paragraph tags. The line breaks are converted back to tags automatically."
 msgstr "Der Textmodus ermöglicht es, HTML zusammen mit dem Beitragstext einzugeben. Dabei gilt zu beachten, dass &lt;p&gt; und &lt;br&gt; Tags in Zeilenumbrüche umgewandelt werden, wenn in den Texteditor gewechselt wird, um die Übersichtlichkeit zu verbessern. Bei der Eingabe kann ein einziger Zeilenumbruch anstelle der Eingabe von &lt;br&gt; und zwei Zeilenumbrüche anstelle von Absatzmarken verwendet werden. Die Zeilenumbrüche werden automatisch wieder in Tags umgewandelt."
 
-#: classic-edit-form-advanced.php:464
-msgid "Note that you crop the image by clicking on it (the Crop icon is already selected) and dragging the cropping frame to select the desired part. Then click Save to retain the cropping."
-msgstr "Beachte, dass du das Bild zuschneidest, indem du darauf klickst (das Zuschneiden-Icon ist bereits ausgewählt) und dann den Zuschneide-Rahmen ziehst, um den gewünschten Bildausschnitt auszuwählen. Klicke dann auf „Speichern“, um den Ausschnitt beizubehalten."
-
 #: classic-edit-form-advanced.php:489
 msgid "<strong>Publish</strong> &mdash; You can set the terms of publishing your post in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a post or making it stay at the top of your blog indefinitely (sticky). The Password protected option allows you to set an arbitrary password for each post. The Private option hides the post from everyone except editors and administrators. Publish (immediately) allows you to set a future or past date and time, so you can schedule a post to be published in the future or backdate a post."
 msgstr "<strong>Veröffentlichen</strong> &mdash; Du kannst die Konditionen zur Veröffentlichung deines Beitrags in der Veröffentlichen-Box festlegen. Klicke bei Status, Sichtbarkeit und (sofort) Veröffentlichen auf den Bearbeiten-Link, um mehr Optionen einzublenden. Die Sichtbarkeit beinhaltet Optionen für den Passwortschutz eines Beitrags oder die Festlegung, dass der Beitrag dauerhaft oben gehalten werden soll (sticky). Die Einstellung zum Passwortschutz ermöglicht dir, für jeden Beitrag ein beliebiges Passwort festzulegen. Die Einstellung Privat versteckt Beiträge für jeden bis auf Administratoren und Redakteure. (Sofort) Veröffentlichen ermöglicht dir, ein künftiges oder zurückliegendes Datum und Uhrzeit festzulegen, damit du die Veröffentlichung deines Beitrags planen oder Beiträge zurückdatieren kannst."
+
+#: classic-edit-form-advanced.php:463
+msgid "For images only, you can click on Edit Image under the thumbnail to expand out an inline image editor with icons for cropping, rotating, or flipping the image as well as for undoing and redoing. The boxes on the right give you more options for scaling the image, for cropping it, and for cropping the thumbnail in a different way than you crop the original image. You can click on Help in those boxes to get more information."
+msgstr "Nur bei den Bildern kannst du auf „Original bearbeiten“ unter dem Thumbnail klicken, um einen Inline-Bildeditor mit Symbolen zum Zuschneiden, Drehen oder Spiegeln des Bildes sowie zum Rückgängigmachen und Wiederherstellen zu erweitern. Die Kästchen auf der rechten Seite bieten dir mehr Möglichkeiten, das Bild zu skalieren, es zu beschneiden und das Miniaturbild anders zu beschneiden als das Originalbild. Du kannst dort auch auf das Hilfe „?“ klicken, um weitere Informationen zu erhalten."
 
 #. translators: Publish box date format, see https://secure.php.net/date
 #: classic-edit-form-advanced.php:190
 msgid "M j, Y @ H:i"
 msgstr "j. M Y \\u\\m G:i"
 
-#: classic-edit-form-advanced.php:463
-msgid "For images only, you can click on Edit Image under the thumbnail to expand out an inline image editor with icons for cropping, rotating, or flipping the image as well as for undoing and redoing. The boxes on the right give you more options for scaling the image, for cropping it, and for cropping the thumbnail in a different way than you crop the original image. You can click on Help in those boxes to get more information."
-msgstr "Nur bei den Bildern kannst du auf „Original bearbeiten“ unter dem Thumbnail klicken, um einen Inline-Bildeditor mit Symbolen zum Zuschneiden, Drehen oder Spiegeln des Bildes sowie zum Rückgängigmachen und Wiederherstellen zu erweitern. Die Kästchen auf der rechten Seite bieten dir mehr Möglichkeiten, das Bild zu skalieren, es zu beschneiden und das Miniaturbild anders zu beschneiden als das Originalbild. Du kannst dort auch auf das Hilfe „?“ klicken, um weitere Informationen zu erhalten."
+#. Description of the plugin/theme
+msgid "Enables the WordPress classic editor and the old-style Edit Post screen layout (TinyMCE, meta boxes, etc.). Supports the older plugins that extend this screen."
+msgstr "Aktiviert den klassischen WordPress-Editor und den Bildschirm mit dem „old-style“-Bearbeiten-Fenster für Beiträge bzw. Seiten (TinyMCE, Meta Boxen etc.). Unterstützt außerdem die älteren Plugins, die diesen Bildschirm erweitern."
 
 #: classic-edit-form-advanced.php:442
 msgid "Pages are similar to posts in that they have a title, body text, and associated metadata, but they are different in that they are not part of the chronological blog stream, kind of like permanent posts. Pages are not categorized or tagged, but can have a hierarchy. You can nest pages under other pages by making one the &#8220;Parent&#8221; of the other, creating a group of pages."

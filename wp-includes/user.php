@@ -1314,7 +1314,11 @@ function clean_user_cache( $user ) {
 }
 
 /**
- * Checks whether the given username exists.
+ * Determines whether the given username exists.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
  *
@@ -1340,7 +1344,11 @@ function username_exists( $username ) {
 }
 
 /**
- * Checks whether the given email exists.
+ * Determines whether the given email exists.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.1.0
  *
@@ -3279,24 +3287,15 @@ function wp_user_request_action_description( $action_name ) {
  * @since 4.9.6
  *
  * @param string $request_id ID of the request created via wp_create_user_request().
- * @return bool|WP_Error True on success, `WP_Error` on failure.
+ * @return WP_Error|bool Will return true/false based on the success of sending the email, or a WP_Error object.
  */
 function wp_send_user_request( $request_id ) {
 	$request_id = absint( $request_id );
 	$request    = wp_get_user_request_data( $request_id );
 
 	if ( ! $request ) {
-		return new WP_Error( 'invalid_request', __( 'Invalid user request.' ) );
+		return new WP_Error( 'user_request_error', __( 'Invalid request.' ) );
 	}
-
-	// Localize message content for user; fallback to site default for visitors.
-	if ( ! empty( $request->user_id ) ) {
-		$locale = get_user_locale( $request->user_id );
-	} else {
-		$locale = get_locale();
-	}
-
-	$switched_locale = switch_to_locale( $locale );
 
 	$email_data = array(
 		'request'     => $request,
@@ -3385,17 +3384,7 @@ All at ###SITENAME###
 	 */
 	$subject = apply_filters( 'user_request_action_email_subject', $subject, $email_data['sitename'], $email_data );
 
-	$email_sent = wp_mail( $email_data['email'], $subject, $content );
-
-	if ( $switched_locale ) {
-		restore_previous_locale();
-	}
-
-	if ( ! $email_sent ) {
-		return new WP_Error( 'privacy_email_error', __( 'Unable to send personal data export confirmation email.' ) );
-	}
-
-	return true;
+	return wp_mail( $email_data['email'], $subject, $content );
 }
 
 /**
@@ -3445,11 +3434,11 @@ function wp_validate_user_request_key( $request_id, $key ) {
 	$request    = wp_get_user_request_data( $request_id );
 
 	if ( ! $request ) {
-		return new WP_Error( 'invalid_request', __( 'Invalid request.' ) );
+		return new WP_Error( 'user_request_error', __( 'Invalid request.' ) );
 	}
 
 	if ( ! in_array( $request->status, array( 'request-pending', 'request-failed' ), true ) ) {
-		return new WP_Error( 'expired_link', __( 'This link has expired.' ) );
+		return __( 'This link has expired.' );
 	}
 
 	if ( empty( $key ) ) {
@@ -3532,6 +3521,7 @@ final class WP_User_Request {
 	 *
 	 * @var int
 	 */
+
 	public $user_id = 0;
 
 	/**
