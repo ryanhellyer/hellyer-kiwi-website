@@ -70,6 +70,15 @@ foreach ( array_merge(
 
 
 $events = array(
+	'roval-s1-2019' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
+/*
 	'porsche-gt3-cup-2018-s4' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
@@ -78,8 +87,6 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-
-/*
 	'radicals-s4-2018' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
