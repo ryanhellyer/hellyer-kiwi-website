@@ -5,7 +5,7 @@
  * Plugin Name: Classic Editor
  * Plugin URI:  https://wordpress.org/plugins/classic-editor/
  * Description: Enables the WordPress classic editor and the old-style Edit Post screen with TinyMCE, Meta Boxes, etc. Supports the older plugins that extend this screen.
- * Version:     1.2
+ * Version:     1.3
  * Author:      WordPress Contributors
  * Author URI:  https://github.com/WordPress/classic-editor/
  * License:     GPLv2 or later
@@ -59,6 +59,9 @@ class Classic_Editor {
 				add_action( 'profile_personal_options', array( __CLASS__, 'user_settings' ) );
 			}
 		}
+
+		// Always remove the "Try Gutenberg" dashboard widget. See https://core.trac.wordpress.org/ticket/44635.
+		remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
 
 		if ( ! $block_editor && ! $gutenberg  ) {
 			return;
@@ -117,8 +120,6 @@ class Classic_Editor {
 			add_action( 'admin_init', array( __CLASS__, 'on_admin_init' ) );
 		}
 		if ( $gutenberg ) {
-			// Always remove the "Try Gutenberg" dashboard widget. See https://core.trac.wordpress.org/ticket/44635.
-			remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
 			// These are handled by this plugin.
 			remove_action( 'admin_init', 'gutenberg_add_edit_link_filters' );
 			remove_action( 'admin_print_scripts-edit.php', 'gutenberg_replace_default_add_new_button' );
@@ -468,16 +469,22 @@ class Classic_Editor {
 		global $pagenow;
 		$settings = self::get_settings();
 
-		if ( $pagenow !== 'about.php' || $settings['hide-settings-ui'] || $settings['editor'] !== 'classic' ) {
-			// No need to show when the settings are preset from another plugin or when not replacing the Block Editor.
+		if (
+			$pagenow !== 'about.php' ||
+			$settings['hide-settings-ui'] ||
+			$settings['editor'] === 'block' || 
+			$settings['allow-users'] ||
+			! current_user_can( 'edit_posts' )
+		) {
+			// No need to show when the user cannot edit posts,
+			// the settings are preset from another plugin,
+			// or when not replacing the Block Editor.
 			return;
 		}
 
 		$message = __( 'The Classic Editor plugin prevents use of the new Block Editor.', 'classic-editor' );
 
-		if ( $settings['allow-users'] && current_user_can( 'edit_posts' ) ) {
-			$message .= ' ' . sprintf( __( 'Change the %1$sClassic Editor settings%2$s on your User Profile page.', 'classic-editor' ), '<a href="profile.php#classic-editor-options">', '</a>' );
-		} elseif ( current_user_can( 'manage_options' ) ) {
+		if ( current_user_can( 'manage_options' ) ) {
 			$message .= ' ' . sprintf( __( 'Change the %1$sClassic Editor settings%2$s.', 'classic-editor' ), '<a href="options-writing.php#classic-editor-options">', '</a>' );
 		}
 
