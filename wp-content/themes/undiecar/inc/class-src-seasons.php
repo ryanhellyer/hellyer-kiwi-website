@@ -179,22 +179,11 @@ class SRC_Seasons extends SRC_Core {
 				$date = get_post_meta( get_the_ID(), 'date', true );
 
 				$formatted_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
-				if ( '' !== $formatted_time ) {
-					$formatted_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
-				}
 
 				$date_formatted = date( 'Y-m-d', $date ) . ' ' . $formatted_time;
 				$time_stamp = strtotime( $date_formatted );
 
 				if ( $time_stamp < time() ) {
-
-echo '<!--';
-echo "\n\n\n\nRYANS TEST:\n";
-echo '$formatted_time: ' . $formatted_time;
-echo "\n";
-echo get_post_meta( get_the_ID(), 'qualifying_time', true );
-echo "\n\n\n\n";
-echo '-->';
 					$events[$date]['past'] = true;
 				}
 
