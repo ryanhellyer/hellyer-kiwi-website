@@ -304,60 +304,150 @@ if ( isset( $our_events[0] ) ) {
 <td>Ryan Hellyer</td>
 <td>60</td>
 <td dir="ltr">60</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>2</td>
 <td dir="ltr">Vincent Bluthenthal</td>
 <td>55</td>
 <td dir="ltr">55</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>3</td>
 <td dir="ltr">Aron Kertesz (div 2)</td>
 <td>48</td>
 <td dir="ltr">48</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>4</td>
 <td dir="ltr">James Chesters</td>
 <td>42</td>
 <td dir="ltr">42</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>5</td>
 <td dir="ltr">Tomas Koreny</td>
 <td>36</td>
 <td dir="ltr">36</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>6</td>
 <td dir="ltr">Bruno Le Doare</td>
 <td>30</td>
 <td dir="ltr">30</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>7</td>
 <td>Olivier Dean2</td>
 <td>28</td>
 <td dir="ltr">28</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>8</td>
 <td dir="ltr">Rick Hundorfean (div 2)</td>
 <td>25</td>
 <td dir="ltr">25</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>9</td>
 <td dir="ltr">Giovanni Coronin</td>
 <td>21</td>
 <td dir="ltr">21</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>10</td>
 <td dir="ltr">Matt Tempest (div 2)</td>
 <td>18</td>
 <td dir="ltr">18</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 
 
