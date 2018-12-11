@@ -187,11 +187,13 @@ class SRC_Seasons extends SRC_Core {
 				$time_stamp = strtotime( $date_formatted );
 
 				if ( $time_stamp < time() ) {
-echo "\n\n\n\nRYANS TEST: ";
+/*
+echo "\n\n\n\nRYANS TEST:\n";
 echo '$formatted_time: ' . $formatted_time;
 echo "\n";
 echo get_post_meta( get_the_ID(), 'qualifying_time', true );
 echo "\n\n\n\n";
+*/
 					$events[$date]['past'] = true;
 				}
 
