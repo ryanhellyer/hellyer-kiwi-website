@@ -189,6 +189,8 @@ class SRC_Seasons extends SRC_Core {
 				if ( $time_stamp < time() ) {
 echo "\n\n\n\nRYANS TEST: " . $formatted_time;
 echo "\n";
+echo 'ID: ' . get_the_ID();
+echo "\n";
 print_r(
 	 get_post_meta( get_the_ID() ),
 	 true
