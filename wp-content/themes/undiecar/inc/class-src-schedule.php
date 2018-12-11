@@ -103,7 +103,7 @@ class SRC_Schedule extends SRC_Core {
 			$title = __( 'Upcoming Events Schedule', 'src' );
 		}
 
-		$html = '<h3>XXXX' . esc_html( $title ) . '</h3>';
+		$html = '<h3>' . esc_html( $title ) . '</h3>';
 		$html .= '<table>';
 
 		// Create the THEAD
