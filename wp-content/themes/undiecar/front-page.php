@@ -288,7 +288,6 @@ if ( isset( $our_events[0] ) ) {
 <th>R8</th>
 <th>R9</th>
 <th>R10</th>
-<th>R11</th>
 </tr>
 </thead>
 <tbody>
@@ -301,167 +300,67 @@ if ( isset( $our_events[0] ) ) {
 
 
 <tr>
-<td>1</td>
-<td>Olivier Dean2</td>
-<td>150</td>
-<td>20</td>
-<td>19</td>
-<td>14</td>
-<td>18</td>
-<td>&nbsp;</td>
-<td>20</td>
-<td>21</td>
-<td>20</td>
-<td>18</td>
-<td>&nbsp;</td>
-<td>D</td>
+<td dir="ltr">1</td>
+<td>Ryan Hellyer</td>
+<td>60</td>
+<td dir="ltr">60</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Justin Hess</td>
-<td>127</td>
-<td>13</td>
-<td>17</td>
-<td>18</td>
+<td dir="ltr">Vincent Bluthenthal</td>
+<td>55</td>
+<td dir="ltr">55</td>
+</tr>
+<tr>
+<td>3</td>
+<td dir="ltr">Aron Kertesz (div 2)</td>
+<td>48</td>
+<td dir="ltr">48</td>
+</tr>
+<tr>
+<td>4</td>
+<td dir="ltr">James Chesters</td>
+<td>42</td>
+<td dir="ltr">42</td>
+</tr>
+<tr>
+<td>5</td>
+<td dir="ltr">Tomas Koreny</td>
+<td>36</td>
+<td dir="ltr">36</td>
+</tr>
+<tr>
+<td>6</td>
+<td dir="ltr">Bruno Le Doare</td>
+<td>30</td>
+<td dir="ltr">30</td>
+</tr>
+<tr>
 <td>7</td>
+<td>Olivier Dean2</td>
+<td>28</td>
+<td dir="ltr">28</td>
+</tr>
+<tr>
+<td>8</td>
+<td dir="ltr">Rick Hundorfean (div 2)</td>
+<td>25</td>
+<td dir="ltr">25</td>
+</tr>
+<tr>
 <td>9</td>
+<td dir="ltr">Giovanni Coronin</td>
 <td>21</td>
-<td>D</td>
-<td>&nbsp;</td>
-<td>20</td>
-<td>&nbsp;</td>
-<td>22</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Andreas Robertsson</td>
-<td>110</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>8</td>
-<td>12</td>
-<td>18</td>
-<td>7</td>
-<td>19</td>
-<td>D</td>
-<td>14</td>
-<td>17</td>
-<td>15</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Henry Bennett</td>
-<td>107</td>
-<td>14</td>
-<td>11</td>
-<td>19</td>
-<td>16</td>
-<td>1</td>
-<td>9</td>
-<td>&nbsp;</td>
-<td>19</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>18</td>
-</tr>
-<tr>
-<td>5</td>
-<td>
-<div>Thomas Lademann (div 2)</div>
-</td>
-<td>96</td>
-<td>17</td>
-<td>8</td>
-<td>D</td>
-<td>12</td>
-<td>D</td>
-<td>7</td>
-<td>14</td>
-<td>14</td>
-<td>10</td>
-<td>14</td>
-<td>D</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Nikolay Ladushkin</td>
-<td>86</td>
-<td>&nbsp;</td>
-<td>8</td>
-<td>17</td>
-<td>23</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>7</td>
-<td>5</td>
-<td>19</td>
-<td>7</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Alejandro Yanes</td>
-<td>85</td>
-<td>&nbsp;</td>
-<td>D</td>
-<td>17</td>
-<td>15</td>
-<td>8</td>
-<td>11</td>
-<td>8</td>
-<td>4</td>
-<td>13</td>
-<td>D</td>
-<td>9</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Josu Solaguren</td>
-<td>85</td>
-<td>6</td>
-<td>D</td>
-<td>12</td>
-<td>9</td>
-<td>D</td>
-<td>14</td>
-<td>16</td>
-<td>9</td>
-<td>7</td>
-<td>D</td>
-<td>12</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Ryan Hellyer</td>
-<td>76</td>
-<td>&nbsp;</td>
-<td>6</td>
-<td>8</td>
-<td>8</td>
-<td>&nbsp;</td>
-<td>16</td>
-<td>4</td>
-<td>12</td>
-<td>3</td>
-<td>&nbsp;</td>
-<td>19</td>
+<td dir="ltr">21</td>
 </tr>
 <tr>
 <td>10</td>
-<td>Stefan Binninger</td>
-<td>69</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td dir="ltr">Matt Tempest (div 2)</td>
 <td>18</td>
-<td>18</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>3</td>
-<td>&nbsp;</td>
-<td>18</td>
-<td>12</td>
-<td>&nbsp;</td>
+<td dir="ltr">18</td>
 </tr>
+
+
 
 
 
