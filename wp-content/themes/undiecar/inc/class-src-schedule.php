@@ -29,7 +29,7 @@ class SRC_Schedule extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function schedule( $content ) {
-
+return 'RYAN IS TESTING';
 		$columns = array(
 			'Num'        => true,
 			'Event'      => true,
