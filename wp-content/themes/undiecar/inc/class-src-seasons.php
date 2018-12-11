@@ -192,8 +192,7 @@ echo "\n";
 echo 'ID: ' . get_the_ID();
 echo "\n";
 print_r(
-	 get_post_meta( get_the_ID() ),
-	 true
+	 get_post_meta( get_the_ID() )
 );
 echo "\n\n\n\n";
 					$events[$date]['past'] = true;
