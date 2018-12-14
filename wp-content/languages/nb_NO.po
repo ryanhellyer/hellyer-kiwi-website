@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.0.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-06 18:28:06+0000\n"
+"PO-Revision-Date: 2018-12-13 13:24:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,6 +35,15 @@ msgstr "&nbsp;"
 #: wp-includes/class-wp-locale.php:220
 msgid "number_format_decimal_point"
 msgstr ","
+
+#: wp-includes/class-wp.php:293 wp-includes/ms-deprecated.php:275
+#: wp-includes/ms-deprecated.php:294
+msgid "A variable mismatch has been detected."
+msgstr "En uoverensstemmelse mellom variabler er oppdaget."
+
+#: wp-activate.php:30
+msgid "A key value mismatch has been detected. Please follow the link provided in your activation email."
+msgstr "En uoverensstemmelse mellom nøkkelverdier er oppdaget. Vennligst følg lenken som ble levert med din e-post om aktivering."
 
 #. translators: ARIA label for the Block sidebar tab, selected.
 #: wp-includes/js/dist/edit-post.js:4256
@@ -3226,12 +3235,12 @@ msgid "User Requests"
 msgstr "Brukerforespørsler"
 
 #. translators: deleted long text
-#: wp-includes/functions.php:5970
+#: wp-includes/functions.php:6005
 msgid "This content was deleted by the author."
 msgstr "Dette innholdet ble slettet av forfatteren."
 
 #. translators: deleted text
-#: wp-includes/functions.php:5966
+#: wp-includes/functions.php:6001
 msgid "[deleted]"
 msgstr "[slettet]"
 
@@ -3392,7 +3401,7 @@ msgstr "Mine"
 msgid "Whether or not the post type can be viewed."
 msgstr "Hvorvidt innleggstypen kan vises."
 
-#: wp-includes/functions.php:2629
+#: wp-includes/functions.php:2664
 msgid "The link you followed has expired."
 msgstr "Lenken du fulgte er utgått."
 
@@ -3403,7 +3412,7 @@ msgstr "Du trenger et høyere tilgangsnivå."
 
 #: wp-includes/script-loader.php:870 wp-includes/script-loader.php:1302
 #: wp-includes/script-loader.php:1382 wp-includes/script-loader.php:1587
-#: wp-includes/class-wp-xmlrpc-server.php:3695 wp-includes/functions.php:2639
+#: wp-includes/class-wp-xmlrpc-server.php:3695 wp-includes/functions.php:2674
 #: wp-includes/class-wp-customize-manager.php:450
 msgid "Something went wrong."
 msgstr "Noe gikk galt."
@@ -4179,13 +4188,13 @@ msgstr "Scrape nonce-sjekk feilet. Prøv igjen."
 
 #. translators: Site admin email change notification email subject. %s: Site
 #. title
-#: wp-includes/functions.php:5829
+#: wp-includes/functions.php:5864
 msgid "[%s] Notice of Admin Email Change"
 msgstr "[%s] Varsel om endring av e-post for administrator"
 
 #. translators: Do not translate OLD_EMAIL, NEW_EMAIL, SITENAME, SITEURL: those
 #. are placeholders.
-#: wp-includes/functions.php:5814
+#: wp-includes/functions.php:5849
 msgid ""
 "Hi,\n"
 "\n"
@@ -4211,7 +4220,7 @@ msgstr ""
 "Alle hos ###SITENAME###\n"
 "###SITEURL###"
 
-#: wp-includes/functions.php:5750
+#: wp-includes/functions.php:5785
 msgid "Only UUID V4 is supported at this time."
 msgstr "Bare UUID V4 er støttet på dette tidspunktet."
 
@@ -7573,13 +7582,13 @@ msgstr "<strong>FEIL</strong>: Ugyldig brukernavn, e-post eller feil passord."
 msgid "%1$s %2$s %3$s %4$s Feed"
 msgstr "%1$s %2$s %3$s %4$s Strøm"
 
-#: wp-includes/functions.php:5341 wp-includes/js/dist/components.js:32629
+#: wp-includes/functions.php:5376 wp-includes/js/dist/components.js:32629
 msgid "Close dialog"
 msgstr "Lukk dialog"
 
 #. translators: 1: PHP class name, 2: PHP parent class name, 3: version number,
 #. 4: __construct() method
-#: wp-includes/functions.php:3923
+#: wp-includes/functions.php:3958
 msgid "The called constructor method for %1$s in %2$s is <strong>deprecated</strong> since version %3$s! Use %4$s instead."
 msgstr "Den oppkalte constructor-metoden for %1$s i %2$s er <strong>utgått</strong> siden versjon %3$s! Bruk %4$s isteden."
 
@@ -7717,12 +7726,12 @@ msgstr "https://codex.wordpress.org/Debugging_a_WordPress_Network"
 msgid "Read the <a href=\"%s\" target=\"_blank\">bug report</a> page. Some of the guidelines there may help you figure out what went wrong."
 msgstr "Les <a href=\"%s\" target=\"_blank\">feilrapportsiden</a>. Noen av retningslinjene der kan kanskje hjelpe deg å finne ut hva som skjedde."
 
-#: wp-includes/functions.php:4166
+#: wp-includes/functions.php:4201
 msgid "https://codex.wordpress.org/Debugging_in_WordPress"
 msgstr "https://codex.wordpress.org/Debugging_in_WordPress"
 
 #. translators: %s: Codex URL
-#: wp-includes/functions.php:4165
+#: wp-includes/functions.php:4200
 msgid "Please see <a href=\"%s\">Debugging in WordPress</a> for more information."
 msgstr "Vennligst se <a href=\"%s\">Feilsøking i WordPress</a> for mer informasjon."
 
@@ -8534,7 +8543,7 @@ msgid "The %s directory of the develop repository must be used for RTL."
 msgstr "Mappen %s i utvikler-repoet må brukes for RTL."
 
 #. translators: 1: PHP class name, 2: version number, 3: __construct() method
-#: wp-includes/functions.php:3927
+#: wp-includes/functions.php:3962
 msgid "The called constructor method for %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr "Den kalte constructor-metoden for %1$s er <strong>foreldet</strong> siden versjon %2$s! Bruk %3$s isteden."
 
@@ -10756,22 +10765,22 @@ msgstr "Kunne ikke finne det oppgitte søkeuttrykket."
 msgid "Table"
 msgstr "Tabell"
 
-#: wp-includes/general-template.php:3957
+#: wp-includes/general-template.php:3975
 msgctxt "admin color scheme"
 msgid "Coffee"
 msgstr "Kaffe"
 
-#: wp-includes/general-template.php:3951
+#: wp-includes/general-template.php:3969
 msgctxt "admin color scheme"
 msgid "Ocean"
 msgstr "Hav"
 
-#: wp-includes/general-template.php:3945
+#: wp-includes/general-template.php:3963
 msgctxt "admin color scheme"
 msgid "Ectoplasm"
 msgstr "Ektoplasma"
 
-#: wp-includes/general-template.php:3939
+#: wp-includes/general-template.php:3957
 msgctxt "admin color scheme"
 msgid "Sunrise"
 msgstr "Soloppgang"
@@ -10846,17 +10855,17 @@ msgstr "no-subset"
 msgid "Use commas instead of %s to separate excluded terms."
 msgstr "Bruk kommaer istedenfor %s for å skille utelatte oppføringer."
 
-#: wp-includes/general-template.php:3933
+#: wp-includes/general-template.php:3951
 msgctxt "admin color scheme"
 msgid "Midnight"
 msgstr "Mørk"
 
-#: wp-includes/general-template.php:3921
+#: wp-includes/general-template.php:3939
 msgctxt "admin color scheme"
 msgid "Light"
 msgstr "Lys"
 
-#: wp-includes/general-template.php:3910
+#: wp-includes/general-template.php:3928
 msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Standard"
@@ -11053,7 +11062,7 @@ msgstr "%2$s. %1$s %3$s kl. %4$s:%5$s"
 msgid "Your session has expired. You can log in again from this page or go to the login page."
 msgstr "Din innlogging har utløpt. Du kan logge inn igjen fra denne siden eller gå til innloggingssiden."
 
-#: wp-includes/functions.php:5358
+#: wp-includes/functions.php:5393
 msgid "The login page will open in a new window. After logging in you can close it and return to this page."
 msgstr "Innloggingssiden vil åpnes i et nytt vindu. Etter at du har logget inn kan du lukke det vinduet og gå tilbake til denne siden."
 
@@ -11078,7 +11087,7 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Søk &hellip;"
 
-#: wp-includes/script-loader.php:1306 wp-includes/functions.php:5356
+#: wp-includes/script-loader.php:1306 wp-includes/functions.php:5391
 msgid "Session expired"
 msgstr "Sesjon utløpt"
 
@@ -11888,6 +11897,11 @@ msgctxt "tag delimiter"
 msgid ","
 msgstr ","
 
+#: wp-includes/class-wp.php:293 wp-includes/ms-deprecated.php:275
+#: wp-includes/ms-deprecated.php:294
+msgid "Sorry, you are not allowed to view this item."
+msgstr "Beklager, du har ikke lov til å vise dette elementet."
+
 #: wp-includes/class-wp-xmlrpc-server.php:1490
 #: wp-includes/class-wp-xmlrpc-server.php:1514
 msgid "Sorry, one of the given taxonomies is not supported by the post type."
@@ -12019,7 +12033,7 @@ msgid "https://codex.wordpress.org/CSS"
 msgstr "https://codex.wordpress.org/CSS"
 
 #. translators: 1: login URL, 2: username, 3: user email, 4: lost password URL
-#: wp-activate.php:105
+#: wp-activate.php:146
 msgid "Your account has been activated. You may now <a href=\"%1$s\">log in</a> to the site using your chosen username of &#8220;%2$s&#8221;. Please check your email inbox at %3$s for your password and login instructions. If you do not receive an email, please check your junk or spam folder. If you still do not receive an email within an hour, you can <a href=\"%4$s\">reset your password</a>."
 msgstr "Din konto har blitt aktivert. Du kan nå <a href=\"%1$s\">logge inn</a> på nettstedet med ditt brukernavn &laquo;%2$s&raquo;. Vennligst sjekk din e-post, %3$s, for å finne ditt passord og innloggingsinstruksjoner. Hvis du ikke mottar noen e-post, vennligst sjekk din spam-mappe. Hvis du fortsatt ikke mottar noen e-post innen en time, kan du <a href=\"%4$s\">nullstille ditt passord</a>."
 
@@ -12029,7 +12043,7 @@ msgid "%1$s is your new site. <a href=\"%2$s\">Log in</a> as &#8220;%3$s&#8221; 
 msgstr "%1$s er ditt nye nettsted. <a href=\"%2$s\">Logg inn</a> som &laquo;%3$s&raquo; med ditt eksisterende passord."
 
 #. translators: 1: site URL, 2: username, 3: user email, 4: lost password URL
-#: wp-activate.php:114
+#: wp-activate.php:155
 msgid "Your site at %1$s is active. You may now log in to your site using your chosen username of &#8220;%2$s&#8221;. Please check your email inbox at %3$s for your password and login instructions. If you do not receive an email, please check your junk or spam folder. If you still do not receive an email within an hour, you can <a href=\"%4$s\">reset your password</a>."
 msgstr "Ditt nettsted på %1$s har blitt aktivert. Du kan nå logge inn på nettstedet med ditt brukernavn &laquo;%2$s&raquo;. Vennligst sjekk din e-post, %3$s for ditt passord og innloggingsinformasjon. Hvis du ikke mottar noen e-post, vennligst sjekk din spam-mappe. Hvis du fortsatt ikke har mottatt noen e-post innen en time, kan du <a href=\"%4$s\">nullstille ditt passord</a>."
 
@@ -12116,11 +12130,11 @@ msgstr "<strong>FEIL</strong>: vennligst skriv en kommentar."
 msgid "Could not load the preview image. Please reload the page and try again."
 msgstr "Kunne ikke laste forhåndsvisningen. Vennligst oppdater siden og prøv igjen."
 
-#: wp-includes/ms-deprecated.php:406
+#: wp-includes/ms-deprecated.php:411
 msgid "<strong>ERROR</strong>: problem creating site entry."
 msgstr "<strong>FEIL</strong>: Problem med å lage nettstedsoppføring."
 
-#: wp-includes/ms-deprecated.php:399
+#: wp-includes/ms-deprecated.php:404
 msgid "<strong>ERROR</strong>: Site URL already taken."
 msgstr "<strong>FEIL</strong>: Nettsteds-URL allerede tatt."
 
@@ -12132,16 +12146,16 @@ msgstr "Supportforum"
 msgid "Documentation"
 msgstr "Dokumentasjon"
 
-#: wp-includes/general-template.php:3829 wp-includes/formatting.php:3362
+#: wp-includes/general-template.php:3847 wp-includes/formatting.php:3362
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: wp-includes/wp-db.php:1577 wp-includes/functions.php:3800
+#: wp-includes/wp-db.php:1577 wp-includes/functions.php:3835
 #: wp-includes/ms-load.php:455
 msgid "Error establishing a database connection"
 msgstr "Feil: klarte ikke å etablere databasetilkobling"
 
-#: wp-includes/functions.php:3796
+#: wp-includes/functions.php:3831
 msgid "Database Error"
 msgstr "Database Error"
 
@@ -12193,7 +12207,7 @@ msgstr "Denne filen er ikke et bilde. Vennligst prøv med en annen."
 msgid "This is larger than the maximum size. Please try another."
 msgstr "Dette er mer enn maksimal størrelse. Vennligst prøv med en annen."
 
-#: wp-includes/general-template.php:3927
+#: wp-includes/general-template.php:3945
 msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Blå"
@@ -12225,12 +12239,12 @@ msgid "You should specify a nonce action to be verified by using the first param
 msgstr "Du bør spesifisere et nonce-tiltak som skal bekreftes ved hjelp av første parameter."
 
 #. translators: 1: site URL, 2: login URL
-#: wp-activate.php:146
+#: wp-activate.php:188
 msgid "Your account is now activated. <a href=\"%1$s\">View your site</a> or <a href=\"%2$s\">Log in</a>"
 msgstr "Din konto er nå aktivert. <a href=\"%1$s\">Vis nettstedet</a> eller <a href=\"%2$s\">Logg inn</a>"
 
 #. translators: 1: login URL, 2: network home URL
-#: wp-activate.php:151
+#: wp-activate.php:193
 msgid "Your account is now activated. <a href=\"%1$s\">Log in</a> or go back to the <a href=\"%2$s\">homepage</a>."
 msgstr "Din konto er nå aktivert. <a href=\"%1$s\">Logg inn</a> eller gå tilbake til <a href=\"%2$s\">forsiden</a>."
 
@@ -12330,13 +12344,13 @@ msgid "The user is already active."
 msgstr "Brukeren er allerede aktiv."
 
 #. translators: %s: version number
-#: wp-includes/functions.php:4162
+#: wp-includes/functions.php:4197
 msgid "(This message was added in version %s.)"
 msgstr "(Denne meldingen ble lagt i versjon %s.)"
 
 #. translators: Developer debugging message. 1: PHP function name, 2:
 #. Explanatory message, 3: Version information message
-#: wp-includes/functions.php:4169
+#: wp-includes/functions.php:4204
 msgid "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgstr "%1$s ble kalt <strong>feil</strong>. %2$s %3$s"
 
@@ -13529,7 +13543,7 @@ msgstr "<strong>FEIL</strong>: WordPress %1$s krever MySQL %2$s eller høyere"
 msgid "Sidebar %d"
 msgstr "Sidekolonne %d"
 
-#: wp-includes/user.php:285 wp-includes/functions.php:5357
+#: wp-includes/user.php:285 wp-includes/functions.php:5392
 msgid "Please log in again."
 msgstr "Vennligst logg inn igjen."
 
@@ -14547,11 +14561,11 @@ msgstr "Bruker har blokkert for forespørseler igjennom HTTP."
 msgid "Gray"
 msgstr "Grå"
 
-#: wp-includes/general-template.php:3744
+#: wp-includes/general-template.php:3762
 msgid "Next &raquo;"
 msgstr "Neste &raquo;"
 
-#: wp-includes/general-template.php:3743
+#: wp-includes/general-template.php:3761
 msgid "&laquo; Previous"
 msgstr "&laquo; Forrige"
 
@@ -14638,34 +14652,34 @@ msgstr "Logg ut"
 msgid "Log in"
 msgstr "Logg inn"
 
-#: wp-includes/functions.php:4745
+#: wp-includes/functions.php:4780
 msgid "Manual Offsets"
 msgstr "Manuelle offset"
 
-#: wp-includes/functions.php:4737 wp-includes/functions.php:4741
+#: wp-includes/functions.php:4772 wp-includes/functions.php:4776
 msgid "UTC"
 msgstr "UTC"
 
-#: wp-includes/functions.php:4692
+#: wp-includes/functions.php:4727
 msgid "Select a city"
 msgstr "Velg en by"
 
 #. translators: 1: PHP function name, 2: version number
-#: wp-includes/functions.php:4056
+#: wp-includes/functions.php:4091
 msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available."
 msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelige."
 
 #. translators: 1: PHP function name, 2: version number, 3: optional message
 #. regarding the change
-#: wp-includes/functions.php:4053
+#: wp-includes/functions.php:4088
 msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s"
 msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s! %3$s"
 
 #. translators: 1: PHP function name, 2: version number
 #. translators: 1: PHP file name, 2: version number
 #. translators: 1: WordPress hook name, 2: version number
-#: wp-includes/functions.php:3864 wp-includes/functions.php:3992
-#: wp-includes/functions.php:4115
+#: wp-includes/functions.php:3899 wp-includes/functions.php:4027
+#: wp-includes/functions.php:4150
 msgid "%1$s is <strong>deprecated</strong> since version %2$s with no alternative available."
 msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelig."
 
@@ -14674,30 +14688,30 @@ msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s med ingen alternati
 #. translators: 1: PHP file name, 2: version number, 3: alternative file name
 #. translators: 1: WordPress hook name, 2: version number, 3: alternative hook
 #. name
-#: wp-includes/functions.php:3861 wp-includes/functions.php:3989
-#: wp-includes/functions.php:4112
+#: wp-includes/functions.php:3896 wp-includes/functions.php:4024
+#: wp-includes/functions.php:4147
 msgid "%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s! Bruk %3$s isteden."
 
-#: wp-load.php:92 wp-includes/functions.php:2771
+#: wp-load.php:92 wp-includes/functions.php:2806
 msgid "WordPress &rsaquo; Error"
 msgstr "WordPress &rsaquo; Feil"
 
-#: wp-includes/functions.php:2759
+#: wp-includes/functions.php:2794
 msgid "&laquo; Back"
 msgstr "&laquo; Tilbake"
 
-#: wp-includes/functions.php:2634 wp-includes/ms-functions.php:2047
+#: wp-includes/functions.php:2669 wp-includes/ms-functions.php:2047
 msgid "Please try again."
 msgstr "Vennligst prøv igjen."
 
 #. translators: %s: logout URL
-#: wp-includes/functions.php:2625
+#: wp-includes/functions.php:2660
 msgid "Do you really want to <a href=\"%s\">log out</a>?"
 msgstr "Vil du virkelig <a href=\"%s\">logge ut</a>?"
 
 #. translators: %s: site name
-#: wp-includes/functions.php:2618
+#: wp-includes/functions.php:2653
 msgid "You are attempting to log out of %s"
 msgstr "Du forsøker å logge ut av %s"
 
@@ -15113,7 +15127,7 @@ msgid "For some strange yet very annoying reason, this post could not be edited.
 msgstr "Av en merkelig og plagsom grunn kunne ikke innlegget redigeres."
 
 #: wp-includes/admin-bar.php:830 wp-includes/class-wp-customize-widgets.php:412
-#: wp-includes/functions.php:3737 wp-includes/js/dist/blocks.js:5502
+#: wp-includes/functions.php:3772 wp-includes/js/dist/blocks.js:5502
 msgid "Widgets"
 msgstr "Widgeter"
 
@@ -15840,31 +15854,31 @@ msgstr "Tittel"
 msgid "No posts found."
 msgstr "Fant ikke noen innlegg."
 
-#: wp-activate.php:136 wp-includes/post-template.php:1619
+#: wp-activate.php:178 wp-includes/post-template.php:1619
 msgid "Password:"
 msgstr "Passord:"
 
-#: wp-activate.php:135 wp-signup.php:230
+#: wp-activate.php:177 wp-signup.php:230
 msgid "Username:"
 msgstr "Brukernavn:"
 
-#: wp-activate.php:124
+#: wp-activate.php:30 wp-activate.php:165
 msgid "An error occurred during the activation"
 msgstr "En feil oppstod under aktivering"
 
-#: wp-activate.php:99 wp-activate.php:132
+#: wp-activate.php:140 wp-activate.php:174
 msgid "Your account is now active!"
 msgstr "Kontoen din er nå aktiv!"
 
-#: wp-activate.php:87 wp-includes/script-loader.php:1578
+#: wp-activate.php:132 wp-includes/script-loader.php:1578
 #: wp-includes/script-loader.php:1579
 msgid "Activate"
 msgstr "Aktiver"
 
-#: wp-activate.php:83
+#: wp-activate.php:128
 msgid "Activation Key:"
 msgstr "Aktiveringsnøkkel:"
 
-#: wp-activate.php:80
+#: wp-activate.php:125
 msgid "Activation Key Required"
 msgstr "Aktiveringsnøkkel påkrevet"
