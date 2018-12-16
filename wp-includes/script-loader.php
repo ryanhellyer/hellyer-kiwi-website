@@ -60,7 +60,7 @@ function wp_register_tinymce_scripts( &$scripts, $force_uncompressed = false ) {
 		$scripts->add( 'wp-tinymce', includes_url( 'js/tinymce/' ) . "plugins/compat3x/plugin$dev_suffix.js", array( 'wp-tinymce-root' ), $tinymce_version );
 	}
 
-	$scripts->add( 'wp-tinymce-lists', includes_url( "js/tinymce/plugins/lists/plugin$suffix.js", array( 'wp-tinymce' ), $tinymce_version ) );
+	$scripts->add( 'wp-tinymce-lists', includes_url( "js/tinymce/plugins/lists/plugin$suffix.js" ), array( 'wp-tinymce' ), $tinymce_version );
 }
 
 /**
@@ -124,8 +124,7 @@ function wp_default_packages_vendor( &$scripts ) {
 				'document.contains'   => 'wp-polyfill-node-contains',
 				'window.FormData && window.FormData.prototype.keys' => 'wp-polyfill-formdata',
 				'Element.prototype.matches && Element.prototype.closest' => 'wp-polyfill-element-closest',
-			),
-			'after'
+			)
 		)
 	);
 
@@ -225,42 +224,42 @@ function wp_default_packages_scripts( &$scripts ) {
 	$suffix = wp_scripts_get_suffix();
 
 	$packages_versions = array(
-		'api-fetch' => '2.2.5',
+		'api-fetch' => '2.2.6',
 		'a11y' => '2.0.2',
-		'annotations' => '1.0.3',
+		'annotations' => '1.0.4',
 		'autop' => '2.0.2',
 		'blob' => '2.1.0',
-		'block-library' => '2.2.9',
-		'block-serialization-default-parser' => '2.0.1',
-		'blocks' => '6.0.3',
-		'components' => '7.0.3',
+		'block-library' => '2.2.10',
+		'block-serialization-default-parser' => '2.0.2',
+		'blocks' => '6.0.4',
+		'components' => '7.0.4',
 		'compose' => '3.0.0',
-		'core-data' => '2.0.14',
-		'data' => '4.0.1',
-		'date' => '3.0.0',
+		'core-data' => '2.0.15',
+		'data' => '4.1.0',
+		'date' => '3.0.1',
 		'deprecated' => '2.0.3',
 		'dom' => '2.0.7',
 		'dom-ready' => '2.0.2',
-		'edit-post' => '3.1.4',
-		'editor' => '9.0.4',
+		'edit-post' => '3.1.5',
+		'editor' => '9.0.5',
 		'element' => '2.1.8',
 		'escape-html' => '1.0.1',
-		'format-library' => '1.2.7',
+		'format-library' => '1.2.8',
 		'hooks' => '2.0.3',
-		'html-entities' => '2.0.3',
+		'html-entities' => '2.0.4',
 		'i18n' => '3.1.0',
 		'is-shallow-equal' => '1.1.4',
 		'keycodes' => '2.0.5',
-		'list-reusable-blocks' => '1.1.16',
-		'notices' => '1.1.0',
-		'nux' => '3.0.4',
+		'list-reusable-blocks' => '1.1.17',
+		'notices' => '1.1.1',
+		'nux' => '3.0.5',
 		'plugins' => '2.0.9',
 		'redux-routine' => '3.0.3',
-		'rich-text' => '3.0.2',
+		'rich-text' => '3.0.3',
 		'shortcode' => '2.0.2',
 		'token-list' => '1.1.0',
-		'url' => '2.3.1',
-		'viewport' => '2.0.12',
+		'url' => '2.3.2',
+		'viewport' => '2.0.13',
 		'wordcount' => '2.0.3',
 	);
 
@@ -1807,6 +1806,7 @@ function wp_default_styles( &$styles ) {
 		array(
 			'wp-components',
 			'wp-editor',
+			'wp-block-library',
 			// Always include visual styles so the editor never appears broken.
 			'wp-block-library-theme',
 		)
