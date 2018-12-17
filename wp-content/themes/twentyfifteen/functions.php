@@ -362,7 +362,7 @@ function twentyfifteen_scripts() {
 add_action( 'wp_enqueue_scripts', 'twentyfifteen_scripts' );
 
 /**
- * Enqueue styles for the block-based editor.
+ * Enqueue editor styles for Gutenberg
  *
  * @since Twenty Fifteen 2.1
  */

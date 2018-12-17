@@ -287,7 +287,7 @@ function twentyeleven_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'twentyeleven_scripts_styles' );
 
 /**
- * Enqueue styles for the block-based editor.
+ * Enqueue editor styles for Gutenberg
  *
  * @since Twenty Eleven 2.9
  */

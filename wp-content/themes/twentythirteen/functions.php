@@ -290,7 +290,7 @@ function twentythirteen_resource_hints( $urls, $relation_type ) {
 add_filter( 'wp_resource_hints', 'twentythirteen_resource_hints', 10, 2 );
 
 /**
- * Enqueue styles for the block-based editor.
+ * Enqueue editor styles for Gutenberg
  *
  * @since Twenty Thirteen 2.5
  */
