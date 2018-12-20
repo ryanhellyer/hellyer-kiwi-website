@@ -3,27 +3,27 @@
 Contributors: kasparsd   
 Tags: code, pre, highlighting, highlight, highlighter, syntax, syntax highlighting, prettify   
 Requires at least: 3.0   
-Tested up to: 4.5.2   
+Tested up to: 5.0   
 Stable tag: trunk   
 
-100% automatic code highlighting using the Prettify library. No shortcodes, no classnames, pure awesome.
+100% automatic code highlighting using the Prettify library. No shortcodes, no classnames, fully automatic and pure awesome.
 
 
 == Description ==
 
-Uses the [Google Code Prettify library](https://github.com/google/code-prettify)
-that is minified and properly enqueued. Plugin applies code highlighting
-automatically to all `<pre>` and `<code>` tags on the page.
+Uses a customized version of the [Code Prettify library](https://github.com/kasparsd/code-prettify-lib/pull/1) to support local styles and scripts. Plugin applies code highlighting automatically to all `<pre>` tags on the page.
+
+**Compatible with Gutenberg and doesn't lock you in with specific markup requirements.**
 
 = Development =
 
-Plugin development on GitHub: [github.com/kasparsd/code-prettify](https://github.com/kasparsd/code-prettify)
+Plugin development [on GitHub](https://github.com/kasparsd/code-prettify).
 
 = Credits =
 
-Created and maintained by [Kaspars Dambis](http://kaspars.net). All of my open source work is available [on GitHub](https://github.com/kasparsd).
+Created and maintained by [Kaspars Dambis](https://kaspars.net). All of my open source work is available [on GitHub](https://github.com/kasparsd).
 
-Use Contact Form 7? [Storage for Contact Form 7](http://codecanyon.net/item/storage-for-contact-form-7-/7806229) is my commercial plugin (GPL license) for storing all form submissions in your WordPress database.
+Use Contact Form 7? [Storage for Contact Form 7](http://preseto.com/go/cf7-storage) is my commercial plugin (GPL license) for storing all form submissions in your WordPress database.
 
 Cover photo by [Yuri Samoilov](https://www.flickr.com/photos/110751683@N02/13334080323/)
 
@@ -44,6 +44,12 @@ None, yet.
 
 
 == Changelog ==
+
+= 1.4.0 (December 20, 2018) =
+
+- Update the Prettify library.
+- Don't highlight standalone `<code>` blocks without the `<pre>` wrapper.
+- Mark as tested with WordPress 5.0.
 
 = 1.3.4 =
 
