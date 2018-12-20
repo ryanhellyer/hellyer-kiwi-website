@@ -267,10 +267,6 @@ msgstr "Hei der! Jeg er et sykkelbud om dagen, fremadstormende skuespiller om na
 msgid "This is an example page. It's different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:"
 msgstr "Dette er en eksempelside. Den er forskjellig fra ert innlegg fordi det vil forbli på samme plass og vil vises i navigasjonsmenyen (i de fleste tema). De fleste starter med en Om-side som introduserer dem for mulige besøkende. Den kan si noe omtrent som følger:"
 
-#: wp-admin/includes/post.php:2227
-msgid "This action is still supported in the classic editor, but is deprecated in the block editor."
-msgstr "Denne handlingen støttes fortsatt i det klassiske redigeringsverktøyet, men er avviklet i det blokk-baserte redigeringsverktøyet."
-
 #: wp-admin/includes/class-wp-posts-list-table.php:1309
 msgid "Export as JSON"
 msgstr "Eksporter som JSON"
@@ -1228,7 +1224,7 @@ msgstr "Tving sletting av personopplysninger"
 msgid "An email will be sent to the user at this email address asking them to verify the request."
 msgstr "En epost som ber om bekreftelse av forespørselen vil bli sendt til brukeren på denne epost-adressen."
 
-#: wp-admin/includes/plugin-install.php:595
+#: wp-admin/includes/plugin-install.php:596
 msgid "Requires PHP Version:"
 msgstr "Krever PHP-versjon:"
 
@@ -1513,12 +1509,12 @@ msgid "%s (The year of the post, four digits, for example 2004.)"
 msgstr "%s (Året denne posten ble postet, fire tall, for eksempel 2004.)"
 
 #. translators: %s: user's display name
-#: wp-admin/includes/post.php:1628
+#: wp-admin/includes/post.php:1634
 msgid "%s is already editing this post."
 msgstr "%s redigerer allerede denne posten."
 
 #. translators: %s: user's display name
-#: wp-admin/includes/post.php:1625
+#: wp-admin/includes/post.php:1631
 msgid "%s is already editing this post. Do you want to take over?"
 msgstr "%s redigerer allerede denne posten. Vil du ta over? "
 
@@ -1526,11 +1522,11 @@ msgstr "%s redigerer allerede denne posten. Vil du ta over? "
 msgid "Theme Installation"
 msgstr "Temainstallasjon"
 
-#: wp-admin/includes/plugin-install.php:522 wp-admin/update.php:123
+#: wp-admin/includes/plugin-install.php:523 wp-admin/update.php:123
 msgid "Plugin Installation"
 msgstr "Plugininstallasjon"
 
-#: wp-admin/includes/plugin-install.php:602
+#: wp-admin/includes/plugin-install.php:603
 msgid "Active Installations:"
 msgstr "Aktive installasjoner:"
 
@@ -1784,7 +1780,7 @@ msgid "(%s ratings)"
 msgstr "(%s vurderinger)"
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:608
-#: wp-admin/includes/plugin-install.php:606
+#: wp-admin/includes/plugin-install.php:607
 msgctxt "Active plugin installations"
 msgid "Less Than 10"
 msgstr "Færre enn 10"
@@ -1794,7 +1790,7 @@ msgid "Sorry, you are not allowed to attach files to this post."
 msgstr "Beklager, du har ikke lov til å legge ved filer til dette innlegget."
 
 #: wp-admin/includes/plugin-install.php:239
-#: wp-admin/includes/plugin-install.php:612 wp-admin/freedoms.php:84
+#: wp-admin/includes/plugin-install.php:613 wp-admin/freedoms.php:84
 #: wp-admin/plugins.php:418 wp-admin/plugin-install.php:82
 msgid "https://wordpress.org/plugins/"
 msgstr "https://nb.wordpress.org/plugins/"
@@ -2456,23 +2452,23 @@ msgstr "Konstanten %s kan ikke være definert når WordPress installeres."
 msgid "WordPress has been installed. Thank you, and enjoy!"
 msgstr "WordPress har blitt installert. Takk, og lykke til!"
 
-#: wp-admin/includes/plugin-install.php:626
+#: wp-admin/includes/plugin-install.php:627
 msgid "Reviews"
 msgstr "Vurderinger"
 
-#: wp-admin/includes/plugin-install.php:627
+#: wp-admin/includes/plugin-install.php:628
 msgid "Read all reviews on WordPress.org or write your own!"
 msgstr "Les alle vurderinger på WordPress.org eller skriv dine egne!"
 
 #. translators: 1: number of stars (used to determine singular/plural), 2:
 #. number of reviews
-#: wp-admin/includes/plugin-install.php:633
+#: wp-admin/includes/plugin-install.php:634
 msgid "Reviews with %1$d star: %2$s. Opens in a new window."
 msgid_plural "Reviews with %1$d stars: %2$s. Opens in a new window."
 msgstr[0] "Vurderinger med %1$d stjerne: %2$s. Åpnes i et nytt vindu."
 msgstr[1] "Vurderinger med %1$d stjerner: %2$s. Åpnes i et nytt vindu."
 
-#: wp-admin/includes/post.php:1451
+#: wp-admin/includes/post.php:1457
 msgid "Click the image to edit or update"
 msgstr "Klikk bildet for å redigere eller oppdatere"
 
@@ -3021,7 +3017,7 @@ msgstr "Hent versjon %s"
 msgid "Toggle panel: %s"
 msgstr "Veksle panel: %s"
 
-#: wp-admin/includes/post.php:1377
+#: wp-admin/includes/post.php:1383
 msgid "Edit permalink"
 msgstr "Rediger permalenke"
 
@@ -3030,7 +3026,7 @@ msgstr "Rediger permalenke"
 msgid "The %1$s plugin header is deprecated. Use %2$s instead."
 msgstr "Utvidelsestoppen %1$s er utgått. Bruk %2$s isteden."
 
-#: wp-admin/includes/post.php:1666
+#: wp-admin/includes/post.php:1672
 msgid "Saving revision&hellip;"
 msgstr "Lagrer revisjon…"
 
@@ -3773,7 +3769,7 @@ msgid "Plugins updated successfully."
 msgstr "Utvidelser oppdatert."
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:606
-#: wp-admin/includes/plugin-install.php:604
+#: wp-admin/includes/plugin-install.php:605
 msgctxt "Active plugin installations"
 msgid "1+ Million"
 msgstr "1+ million"
@@ -4243,7 +4239,7 @@ msgstr "<strong>Ikke kompatibel</strong> med din versjon av WordPress"
 msgid "<strong>Compatible</strong> with your version of WordPress"
 msgstr "<strong>Kompatibel</strong> med din versjon av WordPress"
 
-#: wp-admin/includes/plugin-install.php:640
+#: wp-admin/includes/plugin-install.php:641
 msgid "%d star"
 msgid_plural "%d stars"
 msgstr[0] "%d stjerne"
@@ -4294,17 +4290,17 @@ msgctxt "themes"
 msgid "Recently Updated"
 msgstr "Nylig oppdaterte"
 
-#: wp-admin/includes/plugin-install.php:499
+#: wp-admin/includes/plugin-install.php:500
 msgctxt "Plugin installer section title"
 msgid "Reviews"
 msgstr "Omtaler"
 
-#: wp-admin/includes/plugin-install.php:616
-#: wp-admin/includes/plugin-install.php:670
+#: wp-admin/includes/plugin-install.php:617
+#: wp-admin/includes/plugin-install.php:671
 msgid "Donate to this plugin &#187;"
 msgstr "Doner til denne utvidelsen &#187;"
 
-#: wp-admin/includes/plugin-install.php:650
+#: wp-admin/includes/plugin-install.php:651
 msgid "Contributors"
 msgstr "Bidragsytere"
 
@@ -5320,7 +5316,7 @@ msgctxt "menu"
 msgid "Use new menu"
 msgstr "Bruk ny meny"
 
-#: wp-admin/includes/post.php:1667
+#: wp-admin/includes/post.php:1673
 msgid "Your latest changes were saved as a revision."
 msgstr "Dine siste endringer ble lagret som en revisjon."
 
@@ -6080,7 +6076,7 @@ msgstr "Skriv tittel her"
 
 #: wp-admin/includes/class-wp-themes-list-table.php:230
 #: wp-admin/includes/class-wp-theme-install-list-table.php:419
-#: wp-admin/includes/plugin-install.php:573
+#: wp-admin/includes/plugin-install.php:574
 msgid "Version:"
 msgstr "Versjon:"
 
@@ -6408,32 +6404,32 @@ msgstr "For å gi denne siden muligheten til å automatisk reparere databaseprob
 msgid "No comments awaiting moderation."
 msgstr "Ingen kommentarer venter på gjennomgang."
 
-#: wp-admin/includes/plugin-install.php:498
+#: wp-admin/includes/plugin-install.php:499
 msgctxt "Plugin installer section title"
 msgid "Changelog"
 msgstr "Endringslogg"
 
-#: wp-admin/includes/plugin-install.php:500
+#: wp-admin/includes/plugin-install.php:501
 msgctxt "Plugin installer section title"
 msgid "Other Notes"
 msgstr "Andre bemerkninger"
 
-#: wp-admin/includes/plugin-install.php:496
+#: wp-admin/includes/plugin-install.php:497
 msgctxt "Plugin installer section title"
 msgid "FAQ"
 msgstr "Vanlige spørsmål"
 
-#: wp-admin/includes/plugin-install.php:495
+#: wp-admin/includes/plugin-install.php:496
 msgctxt "Plugin installer section title"
 msgid "Installation"
 msgstr "Installasjon"
 
-#: wp-admin/includes/plugin-install.php:494
+#: wp-admin/includes/plugin-install.php:495
 msgctxt "Plugin installer section title"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: wp-admin/includes/plugin-install.php:497
+#: wp-admin/includes/plugin-install.php:498
 msgctxt "Plugin installer section title"
 msgid "Screenshots"
 msgstr "Skjermdumper"
@@ -6442,7 +6438,7 @@ msgstr "Skjermdumper"
 msgid "You should update your web.config now."
 msgstr "Du bør oppdatere din web.config nå."
 
-#: wp-admin/includes/plugin-install.php:614
+#: wp-admin/includes/plugin-install.php:615
 msgid "Plugin Homepage &#187;"
 msgstr "Utvidelser &rarr;"
 
@@ -9703,7 +9699,7 @@ msgstr "Velg både sidekolonnen for denne widgeten og posisjonen til widgeten i 
 msgid "Save Widget"
 msgstr "Lagre widget"
 
-#: wp-admin/includes/misc.php:1084 wp-admin/includes/post.php:1827
+#: wp-admin/includes/misc.php:1084 wp-admin/includes/post.php:1833
 #: wp-admin/widgets.php:342
 msgid "Error while saving."
 msgstr "Feil under lagring."
@@ -9953,7 +9949,7 @@ msgstr "Hold en kommentar i køen hvis den inneholder %s lenker eller flere. (et
 msgid "Sorry, you are not allowed to edit this attachment."
 msgstr "Beklager, du har ikke lov til å redigere dette vedlegget."
 
-#: wp-admin/edit-tags.php:156 wp-admin/includes/post.php:1833
+#: wp-admin/edit-tags.php:156 wp-admin/includes/post.php:1839
 #: wp-admin/includes/class-wp-screen.php:282 wp-admin/async-upload.php:47
 #: wp-admin/post.php:20 wp-admin/post.php:44 wp-admin/post.php:123
 #: wp-admin/term.php:38 wp-admin/media-upload.php:46
@@ -11161,41 +11157,41 @@ msgstr "(Velg 0 for ingen vurdering.)"
 msgid "Popular tags"
 msgstr "Populære stikkord"
 
-#: wp-admin/includes/plugin-install.php:622
+#: wp-admin/includes/plugin-install.php:623
 msgid "(based on %s rating)"
 msgid_plural "(based on %s ratings)"
 msgstr[0] "(basert på %s vurdering)"
 msgstr[1] "(basert på %s vurderinger)"
 
-#: wp-admin/includes/plugin-install.php:710
+#: wp-admin/includes/plugin-install.php:711
 msgid "Install Update Now"
 msgstr "Installer oppdatering nå"
 
 #. translators: %s: Plugin version
-#: wp-admin/includes/plugin-install.php:715
+#: wp-admin/includes/plugin-install.php:716
 msgid "Newer Version (%s) Installed"
 msgstr "Nyere versjon (%s) installert"
 
-#: wp-admin/includes/plugin-install.php:718
+#: wp-admin/includes/plugin-install.php:719
 msgid "Latest Version Installed"
 msgstr "Siste versjon installert"
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:601
-#: wp-admin/includes/plugin-install.php:577
+#: wp-admin/includes/plugin-install.php:578
 msgid "Last Updated:"
 msgstr "Sist oppdatert:"
 
 #. translators: %s: version number
-#: wp-admin/includes/plugin-install.php:588
-#: wp-admin/includes/plugin-install.php:598
+#: wp-admin/includes/plugin-install.php:589
+#: wp-admin/includes/plugin-install.php:599
 msgid "%s or higher"
 msgstr "%s eller høyere"
 
-#: wp-admin/includes/plugin-install.php:592
+#: wp-admin/includes/plugin-install.php:593
 msgid "Compatible up to:"
 msgstr "Kompatibel opp til:"
 
-#: wp-admin/includes/plugin-install.php:620
+#: wp-admin/includes/plugin-install.php:621
 msgid "Average Rating"
 msgstr "Gjennomsnittlig vurdering"
 
@@ -11527,15 +11523,15 @@ msgstr "Prøv igjen"
 msgid "Custom Header"
 msgstr "Egendefinert sidetopp"
 
-#: wp-admin/includes/plugin-install.php:612
+#: wp-admin/includes/plugin-install.php:613
 msgid "WordPress.org Plugin Page &#187;"
 msgstr "WordPress.org utvidelsesside &#187;"
 
-#: wp-admin/includes/plugin-install.php:679
+#: wp-admin/includes/plugin-install.php:680
 msgid "<strong>Warning:</strong> This plugin has <strong>not been tested</strong> with your current version of WordPress."
 msgstr "<strong>Advarsel:</strong> Denne utvidelsen har <strong>ikke blitt testet</strong> med din versjon av WordPress."
 
-#: wp-admin/includes/plugin-install.php:681
+#: wp-admin/includes/plugin-install.php:682
 msgid "<strong>Warning:</strong> This plugin has <strong>not been marked as compatible</strong> with your version of WordPress."
 msgstr "<strong>Advarsel:</strong> Denne utvidelsen er <strong>ikke merket som kompatibel</strong> med din versjon av WordPress."
 
@@ -11567,7 +11563,7 @@ msgstr "Hvis du har en utvidelse i .zip-format kan du installere den ved å last
 msgid "Plugin zip file"
 msgstr "Zip-fil med utvidelse"
 
-#: wp-admin/includes/plugin-install.php:585
+#: wp-admin/includes/plugin-install.php:586
 msgid "Requires WordPress Version:"
 msgstr "Krever WordPress versjon"
 
