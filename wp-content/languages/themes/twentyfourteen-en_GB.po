@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Fourteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-04-28 18:40:27+0000\n"
+"PO-Revision-Date: 2018-12-20 21:40:18+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,9 +11,38 @@ msgstr ""
 "Language: en_GB\n"
 "Project-Id-Version: Themes - Twenty Fourteen\n"
 
-#. Description of the plugin/theme
+#. Description of the theme
 msgid "In 2014, our default theme lets you create a responsive magazine website with a sleek, modern design. Feature your favorite homepage content in either a grid or a slider. Use the three widget areas to customize your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. Creating a magazine website with WordPress has never been easier."
 msgstr "In 2014, our default theme lets you create a responsive magazine website with a sleek, modern design. Feature your favourite homepage content in either a grid or a slider. Use the three widget areas to customise your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. Creating a magazine website with WordPress has never been easier."
+
+#. Theme Name of the theme
+#: inc/customizer.php:142
+msgid "Twenty Fourteen"
+msgstr "Twenty Fourteen"
+
+#: functions.php:110
+msgid "White"
+msgstr "White"
+
+#: functions.php:105
+msgid "Light Gray"
+msgstr "Light Grey"
+
+#: functions.php:100
+msgid "Medium Gray"
+msgstr "Medium Grey"
+
+#: functions.php:95
+msgid "Dark Gray"
+msgstr "Dark Grey"
+
+#: functions.php:90
+msgid "Black"
+msgstr "Black"
+
+#: functions.php:85
+msgid "Green"
+msgstr "Green"
 
 #. translators: 1: number of comments, 2: post title
 #: comments.php:34
@@ -29,11 +58,11 @@ msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
 msgstr "One thought on &ldquo;%s&rdquo;"
 
-#. Template Name of the plugin/theme
+#. Template Name of the theme
 msgid "Full Width Page"
 msgstr "Full Width Page"
 
-#. Template Name of the plugin/theme
+#. Template Name of the theme
 msgid "Contributor Page"
 msgstr "Contributor Page"
 
@@ -76,7 +105,7 @@ msgstr "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgid "More asides"
 msgstr "More asides"
 
-#: inc/widgets.php:101 taxonomy-post_format.php:30
+#: taxonomy-post_format.php:30 inc/widgets.php:101
 msgid "Asides"
 msgstr "Asides"
 
@@ -84,7 +113,7 @@ msgstr "Asides"
 msgid "More galleries"
 msgstr "More galleries"
 
-#: inc/widgets.php:96 taxonomy-post_format.php:48
+#: taxonomy-post_format.php:48 inc/widgets.php:96
 msgid "Galleries"
 msgstr "Galleries"
 
@@ -92,7 +121,7 @@ msgstr "Galleries"
 msgid "More links"
 msgstr "More links"
 
-#: inc/widgets.php:92 taxonomy-post_format.php:45
+#: taxonomy-post_format.php:45 inc/widgets.php:92
 msgid "Links"
 msgstr "Links"
 
@@ -100,7 +129,7 @@ msgstr "Links"
 msgid "More quotes"
 msgstr "More quotes"
 
-#: inc/widgets.php:88 taxonomy-post_format.php:42
+#: taxonomy-post_format.php:42 inc/widgets.php:88
 msgid "Quotes"
 msgstr "Quotes"
 
@@ -108,7 +137,7 @@ msgstr "Quotes"
 msgid "More audio"
 msgstr "More audio"
 
-#: inc/widgets.php:84 taxonomy-post_format.php:39
+#: taxonomy-post_format.php:39 inc/widgets.php:84
 msgid "Audio"
 msgstr "Audio"
 
@@ -116,7 +145,7 @@ msgstr "Audio"
 msgid "More videos"
 msgstr "More videos"
 
-#: inc/widgets.php:80 taxonomy-post_format.php:36
+#: taxonomy-post_format.php:36 inc/widgets.php:80
 msgid "Videos"
 msgstr "Videos"
 
@@ -124,7 +153,7 @@ msgstr "Videos"
 msgid "More images"
 msgstr "More images"
 
-#: inc/widgets.php:76 taxonomy-post_format.php:33
+#: taxonomy-post_format.php:33 inc/widgets.php:76
 msgid "Images"
 msgstr "Images"
 
@@ -187,12 +216,6 @@ msgstr "Enhance your site design by using <a href=\"%s\">Featured Images</a> for
 #: inc/customizer.php:145
 msgid "The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by a <a href=\"%1$s\">tag</a>; you can change the tag and layout in <a href=\"%2$s\">Appearance &rarr; Customize</a>. If no posts match the tag, <a href=\"%3$s\">sticky posts</a> will be displayed instead."
 msgstr "The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by a <a href=\"%1$s\">tag</a>; you can change the tag and layout in <a href=\"%2$s\">Appearance &rarr; Customise</a>. If no posts match the tag, <a href=\"%3$s\">sticky posts</a> will be displayed instead."
-
-#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 2.1)  #-#-#-#-#
-#. Theme Name of the plugin/theme
-#: inc/customizer.php:142
-msgid "Twenty Fourteen"
-msgstr "Twenty Fourteen"
 
 #: inc/customizer.php:74
 msgid "Slider"
@@ -260,64 +283,62 @@ msgstr "Primary Menu"
 msgid "Search"
 msgstr "Search"
 
-#: functions.php:523
+#: functions.php:582
 msgid "Page %s"
 msgstr "Page %s"
 
-#: functions.php:404
+#: functions.php:463
 msgid "%d Article"
 msgid_plural "%d Articles"
 msgstr[0] "%d Article"
 msgstr[1] "%d Articles"
 
-#: functions.php:262
+#: functions.php:308
 msgid "Next"
 msgstr "Next"
 
-#: functions.php:261
+#: functions.php:307
 msgid "Previous"
 msgstr "Previous"
 
-#. Translators: If there are characters in your language that are not supported
-#. by Lato, translate this to 'off'. Do not translate into your own language.
-#: functions.php:216
+#: functions.php:259
 msgctxt "Lato font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:194
+#: functions.php:237
 msgid "Appears in the footer section of the site."
 msgstr "Appears in the footer section of the site."
 
-#: functions.php:192
+#: functions.php:235
 msgid "Footer Widget Area"
 msgstr "Footer Widget Area"
 
-#: functions.php:185
+#: functions.php:228
 msgid "Additional sidebar that appears on the right."
 msgstr "Additional sidebar that appears on the right."
 
-#: functions.php:183
+#: functions.php:226
 msgid "Content Sidebar"
 msgstr "Content Sidebar"
 
-#: functions.php:176
+#: functions.php:219
 msgid "Main sidebar that appears on the left."
 msgstr "Main sidebar that appears on the left."
 
-#: functions.php:174
+#: functions.php:217
 msgid "Primary Sidebar"
 msgstr "Primary Sidebar"
 
-#: functions.php:84
+#: functions.php:127
 msgid "Secondary menu in left sidebar"
 msgstr "Secondary menu in left sidebar"
 
-#: functions.php:83
+#: functions.php:126
 msgid "Top primary menu"
 msgstr "Top primary menu"
 
-#: footer.php:21
+#: footer.php:27
 msgid "Proudly powered by %s"
 msgstr "Proudly powered by %s"
 
@@ -337,47 +358,47 @@ msgstr "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>.
 msgid "Nothing Found"
 msgstr "Nothing Found"
 
-#: content-aside.php:53 content-audio.php:53 content-gallery.php:53
-#: content-image.php:53 content-link.php:53 content-page.php:22
-#: content-quote.php:53 content-video.php:53 content.php:61 image.php:54
+#: content-gallery.php:53 content-aside.php:53 content-video.php:53
+#: content-image.php:53 content-link.php:53 content-audio.php:53
+#: content-page.php:22 content-quote.php:53 image.php:54 content.php:61
 msgid "Pages:"
 msgstr "Pages:"
 
 #. translators: %s: Name of current post
-#: content-aside.php:48 content-audio.php:48 content-gallery.php:48
-#: content-image.php:48 content-link.php:48 content-quote.php:48
-#: content-video.php:48 content.php:56 inc/template-tags.php:222
+#: content-gallery.php:48 content-aside.php:48 content-video.php:48
+#: inc/template-tags.php:222 content-image.php:48 content-link.php:48
+#: content-audio.php:48 content-quote.php:48 content.php:56
 msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: content-aside.php:40 content-audio.php:40 content-gallery.php:40
-#: content-image.php:40 content-link.php:40 content-page.php:28
-#: content-quote.php:40 content-video.php:40 content.php:42 image.php:34
-#: page-templates/contributors.php:35
+#: content-gallery.php:40 content-aside.php:40 content-video.php:40
+#: content-image.php:40 content-link.php:40 content-audio.php:40
+#: page-templates/contributors.php:35 content-page.php:28 content-quote.php:40
+#: image.php:34 content.php:42
 msgid "Edit"
 msgstr "Edit"
 
-#: content-aside.php:37 content-audio.php:37 content-gallery.php:37
-#: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:216
+#: content-gallery.php:37 content-aside.php:37 content-video.php:37
+#: inc/widgets.php:216 content-image.php:37 content-link.php:37
+#: content-audio.php:37 content-quote.php:37 content.php:38
 msgid "% Comments"
 msgstr "% Comments"
 
-#: content-aside.php:37 content-audio.php:37 content-gallery.php:37
-#: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:216
+#: content-gallery.php:37 content-aside.php:37 content-video.php:37
+#: inc/widgets.php:216 content-image.php:37 content-link.php:37
+#: content-audio.php:37 content-quote.php:37 content.php:38
 msgid "1 Comment"
 msgstr "1 Comment"
 
-#: content-aside.php:37 content-audio.php:37 content-gallery.php:37
-#: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:216
+#: content-gallery.php:37 content-aside.php:37 content-video.php:37
+#: inc/widgets.php:216 content-image.php:37 content-link.php:37
+#: content-audio.php:37 content-quote.php:37 content.php:38
 msgid "Leave a comment"
 msgstr "Leave a comment"
 
-#: content-aside.php:17 content-audio.php:17 content-featured-post.php:28
-#: content-gallery.php:17 content-image.php:17 content-link.php:17
-#: content-quote.php:17 content-video.php:17 content.php:19
+#: content-gallery.php:17 content-aside.php:17 content-video.php:17
+#: content-image.php:17 content-link.php:17 content-audio.php:17
+#: content-quote.php:17 content-featured-post.php:28 content.php:19
 msgctxt "Used between list items, there is a space after the comma."
 msgid ", "
 msgstr ", "
@@ -440,16 +461,15 @@ msgstr "It looks like nothing was found at this location. Maybe try a search?"
 msgid "Not Found"
 msgstr "Not Found"
 
-#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 2.1)  #-#-#-#-#
-#. Author URI of the plugin/theme
-#: footer.php:21
+#. Author URI of the theme
+#: footer.php:26
 msgid "https://wordpress.org/"
 msgstr "https://wordpress.org/"
 
-#. Author of the plugin/theme
+#. Author of the theme
 msgid "the WordPress team"
 msgstr "the WordPress team"
 
-#. Theme URI of the plugin/theme
+#. Theme URI of the theme
 msgid "https://wordpress.org/themes/twentyfourteen/"
 msgstr "https://wordpress.org/themes/twentyfourteen/"
