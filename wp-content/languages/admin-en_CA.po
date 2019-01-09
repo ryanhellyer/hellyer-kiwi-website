@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.0.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-29 20:53:24+0000\n"
+"PO-Revision-Date: 2019-01-08 07:41:03+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,6 +25,11 @@ msgstr "America/Toronto"
 msgctxt "start of week"
 msgid "1"
 msgstr "1"
+
+#. translators: %s: https://wordpress.org/plugins/classic-editor
+#: wp-admin/edit-form-blocks.php:412
+msgid "The block editor requires JavaScript. Please enable JavaScript in your browser settings, or try the <a href=\"%s\">Classic Editor plugin</a>."
+msgstr "The Block Editor requires JavaScript. Please enable JavaScript in your browser settings, or try the <a href=\"%s\">Classic Editor</a> plugin."
 
 #: wp-admin/post.php:44
 msgid "A post type mismatch has been detected."
@@ -92,7 +97,7 @@ msgid "The Gutenberg plugin has been deactivated, as the features are now includ
 msgstr "The Gutenberg plugin has been deactivated, as the features are now included in WordPress %1$s by default. If you&#8217;d like to continue to test the upcoming changes in the WordPress editing experience, please %2$sreactivate the Gutenberg plugin%3$s."
 
 #. Translators: Use this to specify the CSS font family for the default font
-#: wp-admin/edit-form-blocks.php:182
+#: wp-admin/edit-form-blocks.php:178
 msgctxt "CSS Font Family for Editor Font"
 msgid "Noto Serif"
 msgstr "Noto Serif"
@@ -308,7 +313,7 @@ msgstr[1] "%s block updated."
 msgid "<strong>ERROR</strong>: \"Table Prefix\" must not be empty."
 msgstr "<strong>ERROR</strong>: \"Table Prefix\" must not be empty."
 
-#: wp-admin/edit-form-blocks.php:161
+#: wp-admin/edit-form-blocks.php:157
 msgid "Default template"
 msgstr "Default template"
 
@@ -328,6 +333,10 @@ msgstr "About"
 msgctxt "personal data group label"
 msgid "About"
 msgstr "About"
+
+#: wp-admin/edit-form-blocks.php:413
+msgid "https://wordpress.org/plugins/classic-editor/"
+msgstr "https://en-ca.wordpress.org/plugins/classic-editor/"
 
 #: wp-admin/includes/upgrade.php:303
 #: wp-admin/includes/class-wp-internal-pointers.php:167 wp-admin/privacy.php:63
@@ -5250,15 +5259,15 @@ msgstr "To navigate between revisions, <strong>drag the slider handle left or ri
 msgid "Loading&hellip;"
 msgstr "Loading&hellip;"
 
-#: wp-admin/post.php:220
+#: wp-admin/post.php:221
 msgid "The item you are trying to move to the Trash no longer exists."
 msgstr "The item you are trying to move to the Trash no longer exists."
 
-#: wp-admin/post.php:243
+#: wp-admin/post.php:244
 msgid "The item you are trying to restore from the Trash no longer exists."
 msgstr "The item you are trying to restore from the Trash no longer exists."
 
-#: wp-admin/post.php:261
+#: wp-admin/post.php:262
 msgid "This item has already been deleted."
 msgstr "This item has already been deleted."
 
@@ -5499,7 +5508,7 @@ msgstr "Draft created on %1$s at %2$s"
 msgid "%s has taken over and is currently editing."
 msgstr "%s has taken over and is currently editing."
 
-#: wp-admin/post.php:230
+#: wp-admin/post.php:231
 msgid "You cannot move this item to the Trash. %s is currently editing."
 msgstr "You cannot move this item to the Trash. %s is currently editing."
 
@@ -8420,16 +8429,16 @@ msgstr "Your chosen password."
 msgid "No thanks, do not remind me again"
 msgstr "No thanks, do not remind me again"
 
-#: wp-admin/post.php:272 wp-admin/post.php:275 wp-admin/upload.php:164
+#: wp-admin/post.php:273 wp-admin/post.php:276 wp-admin/upload.php:164
 #: wp-admin/edit.php:144 wp-admin/edit.php:147
 msgid "Error in deleting."
 msgstr "Error in deleting."
 
-#: wp-admin/post.php:252 wp-admin/upload.php:152 wp-admin/edit.php:128
+#: wp-admin/post.php:253 wp-admin/upload.php:152 wp-admin/edit.php:128
 msgid "Error in restoring from Trash."
 msgstr "Error in restoring from Trash."
 
-#: wp-admin/post.php:234 wp-admin/upload.php:140 wp-admin/edit.php:114
+#: wp-admin/post.php:235 wp-admin/upload.php:140 wp-admin/edit.php:114
 msgid "Error in moving to Trash."
 msgstr "Error in moving to Trash."
 
@@ -8447,11 +8456,11 @@ msgid_plural "%s comments moved to the Trash."
 msgstr[0] "%s comment moved to the Trash."
 msgstr[1] "%s comments moved to the Trash."
 
-#: wp-admin/post.php:249 wp-admin/upload.php:149 wp-admin/edit.php:125
+#: wp-admin/post.php:250 wp-admin/upload.php:149 wp-admin/edit.php:125
 msgid "Sorry, you are not allowed to restore this item from the Trash."
 msgstr "Sorry, you are not allowed to restore this item from the Trash."
 
-#: wp-admin/post.php:226 wp-admin/upload.php:137 wp-admin/edit.php:106
+#: wp-admin/post.php:227 wp-admin/upload.php:137 wp-admin/edit.php:106
 msgid "Sorry, you are not allowed to move this item to the Trash."
 msgstr "Sorry, you are not allowed to move this item to the Trash."
 
@@ -11716,7 +11725,7 @@ msgstr "Sorry, you are not allowed to edit pages as this user."
 msgid "Sorry, you are not allowed to edit posts as this user."
 msgstr "Sorry, you are not allowed to edit posts as this user."
 
-#: wp-admin/edit-tags.php:100 wp-admin/post.php:267 wp-admin/themes.php:43
+#: wp-admin/edit-tags.php:100 wp-admin/post.php:268 wp-admin/themes.php:43
 #: wp-admin/upload.php:161 wp-admin/edit.php:140
 msgid "Sorry, you are not allowed to delete this item."
 msgstr "Sorry, you are not allowed to delete this item."
