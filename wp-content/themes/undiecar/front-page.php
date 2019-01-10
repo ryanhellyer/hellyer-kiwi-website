@@ -300,154 +300,154 @@ if ( isset( $our_events[0] ) ) {
 
 
 <tr>
-<td dir="ltr">1</td>
-<td>Ryan Hellyer</td>
-<td>60</td>
-<td dir="ltr">60</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>1</td>
+<td>Olivier Dean2</td>
+<td>123</td>
+<td>28</td>
+<td>54</td>
+<td>41</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>2</td>
-<td dir="ltr">Vincent Bluthenthal</td>
-<td>55</td>
-<td dir="ltr">55</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Nikolay Ladushkin</td>
+<td>101</td>
+<td>&nbsp;</td>
+<td>37</td>
+<td>64</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>3</td>
-<td dir="ltr">Aron Kertesz (div 2)</td>
-<td>48</td>
-<td dir="ltr">48</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Bruno Le Doare</td>
+<td>93</td>
+<td>30</td>
+<td>22</td>
+<td>41</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>4</td>
-<td dir="ltr">James Chesters</td>
-<td>42</td>
-<td dir="ltr">42</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Aron Kertesz (div 2)</td>
+<td>90</td>
+<td>48</td>
+<td>12</td>
+<td>30</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>5</td>
-<td dir="ltr">Tomas Koreny</td>
-<td>36</td>
-<td dir="ltr">36</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Ryan Hellyer</td>
+<td>86</td>
+<td>60</td>
+<td>&nbsp;</td>
+<td>26</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>6</td>
-<td dir="ltr">Bruno Le Doare</td>
-<td>30</td>
-<td dir="ltr">30</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Alejandro Yanes</td>
+<td>80</td>
+<td>6</td>
+<td>19</td>
+<td>55</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>7</td>
-<td>Olivier Dean2</td>
-<td>28</td>
-<td dir="ltr">28</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Maximilian Prodohl (div 2 )</td>
+<td>78</td>
+<td>&nbsp;</td>
+<td>42</td>
+<td>36</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>8</td>
-<td dir="ltr">Rick Hundorfean (div 2)</td>
-<td>25</td>
-<td dir="ltr">25</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Vincent Bluthenthal</td>
+<td>73</td>
+<td>55</td>
+<td>&nbsp;</td>
+<td>18</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>9</td>
-<td dir="ltr">Giovanni Coronin</td>
-<td>21</td>
-<td dir="ltr">21</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>James Chesters</td>
+<td>71</td>
+<td>42</td>
+<td>&nbsp;</td>
+<td>29</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td>10</td>
-<td dir="ltr">Matt Tempest (div 2)</td>
+<td>Matt Tempest (div 2)</td>
+<td>66</td>
 <td>18</td>
-<td dir="ltr">18</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>6</td>
+<td>42</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 
 
