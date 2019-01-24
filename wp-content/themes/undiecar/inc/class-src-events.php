@@ -1131,9 +1131,6 @@ class SRC_Events extends SRC_Core {
 		}
 
 		ksort( $results );
-print_r( $results );
-echo 'DONE';
-die;
 		$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 		update_post_meta( $post_id, '_results_1', $results );
 
@@ -1160,6 +1157,7 @@ die;
 		}
 		$event_info = json_encode( $event_info, JSON_UNESCAPED_UNICODE );
 		update_post_meta( $post_id, '_event_info', $event_info );
+print_r( $results );echo 'DONE';die;
 	}
 
 	/**
