@@ -1060,6 +1060,11 @@ class SRC_Events extends SRC_Core {
 		$results = stripslashes( $_POST[ 'result-1' ] );
 		$results = json_decode( $results );
 
+		// Bail out if no results sent
+		if ( ! isset( $results->rows ) ) {
+			return $post_id;
+		}
+
 		foreach ( $results->rows as $key => $row ) {
 			$driver_name = urldecode( $row->displayname );
 			$driver_name = str_replace( '+', ' ', $driver_name );
@@ -1157,7 +1162,7 @@ class SRC_Events extends SRC_Core {
 		}
 		$event_info = json_encode( $event_info, JSON_UNESCAPED_UNICODE );
 		update_post_meta( $post_id, '_event_info', $event_info );
-print_r( $results );echo 'DONE';die;
+//print_r( $results );echo 'DONE';die;
 	}
 
 	/**
