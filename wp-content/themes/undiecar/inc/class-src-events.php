@@ -1211,7 +1211,8 @@ class SRC_Events extends SRC_Core {
 				continue;
 			}
 
-			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
+//			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
+						$html .= '<h3 class="table-heading">' . esc_html__( 'Results table', 'src' ) . '</h3>';
 			$html .= '<table class="some-list">';
 
 			$html .= '<thead><tr>';
