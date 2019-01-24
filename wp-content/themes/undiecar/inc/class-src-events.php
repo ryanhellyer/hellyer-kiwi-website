@@ -1200,8 +1200,8 @@ class SRC_Events extends SRC_Core {
 
 		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
-
+			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+//print_r( $results );
 			if ( '' === $results ) {
 				continue;
 			}
