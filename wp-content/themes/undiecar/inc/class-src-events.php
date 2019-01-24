@@ -1207,7 +1207,7 @@ class SRC_Events extends SRC_Core {
 			}
 
 			$results = json_decode( $results, true );
-print_r( $results );
+
 			if ( empty( $results ) ) {
 				continue;
 			}
