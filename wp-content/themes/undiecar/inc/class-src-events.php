@@ -1243,6 +1243,7 @@ class SRC_Events extends SRC_Core {
 
 			}
 
+			$columns_to_keep = array();
 			$columns_to_keep[] = 'Name';
 			$columns_to_keep[] = 'Start';
 			$columns_to_keep[] = 'Car #';
