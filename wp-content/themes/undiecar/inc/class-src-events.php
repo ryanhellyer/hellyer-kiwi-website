@@ -630,7 +630,6 @@ class SRC_Events extends SRC_Core {
 					<br />';
 
 			$time = get_post_meta( get_the_ID(), 'race_' . $number . '_time', true );
-//sidebar_html .= $timestamp;
 			if ( '' !== $time ) {
 
 				$sidebar_html .= '
@@ -700,11 +699,24 @@ class SRC_Events extends SRC_Core {
 		if ( '' === $q_time ) {
 			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
 		}
+
+		// Work out past/future strings
+		$date_timestamp = get_post_meta( get_the_ID(), 'date', true );
+		$time = $date_timestamp + strtotime( $q_time ) + HOUR_IN_SECONDS * 2;
+		if ( time() < $time ) {
+			$will_be = esc_html__( 'was', 'undiecar' );
+			$begins = esc_html__( 'began', 'undiecar' );
+		} else {
+			$will_be = esc_html__( 'will be', 'undiecar' );
+			$begins = esc_html__( 'begins', 'undiecar' );
+		}
+
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
 			$html .= wpautop(
 				sprintf(
-					__( 'This event will be held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
+					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
+					$will_be,
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
 					esc_html( get_post_meta( $this->event['current_round']['track'], 'track_length', true ) ) . ' km',
@@ -712,6 +724,7 @@ class SRC_Events extends SRC_Core {
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 					esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
+					$begins,
 					esc_html( $q_time ),
 					$formatted_number,
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
@@ -734,11 +747,12 @@ class SRC_Events extends SRC_Core {
 
 			$html .= wpautop(
 				sprintf(
-					__( 'Round %s of %s in <a href="%s">%s</a> of the Undiecar Championship will be held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
+					__( 'Round %s of %s in <a href="%s">%s</a> of the Undiecar Championship %s held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying %s at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
 					esc_html( $this->event['round_number'] ),
 					esc_html( $this->event['number_of_rounds_in_season'] ),
 					esc_url( get_permalink( $this->event['season_id'] ) ),
 				 	esc_html( get_the_title( $season_id ) ),
+				 	$will_be,
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
 					esc_html( get_post_meta( $current_track, 'track_length', true ) ) . ' km',
@@ -746,6 +760,7 @@ class SRC_Events extends SRC_Core {
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 					esc_html( $current_track_country ),
+					$begins,
 					esc_html( $q_time ),
 					$formatted_number,
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
@@ -1063,109 +1078,99 @@ class SRC_Events extends SRC_Core {
 			return $post_id;
 		}
 
+		$number_of_races = get_post_meta( $post_id, 'number_of_races', true );
+		$number_of_races = absint( $number_of_races );
+		$race_number = 0;
+		while ( $race_number <= $number_of_races ) {
+			$race_number++;
 
-		// Get data from results
-		$results = stripslashes( $_POST[ 'result-1' ] );
-		$results = json_decode( $results );
-
-		foreach ( $results->rows as $key => $row ) {
-			$driver_name = urldecode( $row->displayname );
-			$driver_name = str_replace( '+', ' ', $driver_name );
-
-			if ( 'QUALIFY' === $row->simsesname ) {
-
-				$car_name = str_replace( '+', ' ', $row->ccName );
-				$start_pos = absint( $row->finishpos ) + 1;
-				$qual_time = $this->get_formatted_time_from_iracing( $row->bestquallaptime );
-
-				$drivers[ $driver_name ] = array(
-					'name'          => esc_html( $driver_name ),
-					'car'           => esc_html( $car_name ),
-					'start_pos'     => absint( $start_pos ),
-					'qual_time'     => esc_html( $qual_time ),
-				);
-
+			// Bail out if no result found
+			if ( ! isset( $_POST[ 'result-' . $race_number ] ) ) {
+				return $post_id;
 			}
 
-			if ( 'RACE' === $row->simsesname ) {
+			// Get data from results
+			$results = stripslashes( $_POST[ 'result-' . $race_number ] );
+			$results = json_decode( $results );
 
-				$finish_position  = absint( $row->pos ) + 1;
-				$car_no           = $row->carnum;
-				$avg_lap_time     = $this->get_formatted_time_from_iracing( $row->avglap );
-				$fastest_lap_time = $this->get_formatted_time_from_iracing( $row->bestlaptime );
-				$fastest_lap      = $row->bestlapnum;
-				$interval         = $this->get_formatted_time_from_iracing( $row->interval );
-				$reason_out       = $row->reasonout;
-				$laps_led         = $row->lapslead;
-				$laps_completed   = $row->lapscomplete;
-				$incidents        = $row->incidents;
+			foreach ( $results->rows as $key => $row ) {
+				$driver_name = urldecode( $row->displayname );
+				$driver_name = str_replace( '+', ' ', $driver_name );
 
-				// Check if the user has a number, and if not, give them the one they used in this race
-				$args= array(
-					'search' => $driver_name,
-					'search_fields' => array( 'display_name' )
-				);
-				$user = new WP_User_Query( $args );
-				if ( isset( $user->results[0]->ID ) ) {
-					$user_id = absint( $user->results[0]->ID );
-					$current_number = get_user_meta( $user_id, 'car_number', true );
-					if ( '' === $current_number || '0' === $current_number ) {
-						update_user_meta( $user_id, 'car_number', $car_no );
-					}
+				if ( 'QUALIFY' === $row->simsesname ) {
+
+					$car_name = str_replace( '+', ' ', $row->ccName );
+					$start_pos = absint( $row->finishpos ) + 1;
+					$qual_time = $this->get_formatted_time_from_iracing( $row->bestquallaptime );
+
+					$drivers[ $driver_name ] = array(
+						'name'          => esc_html( $driver_name ),
+						'car'           => esc_html( $car_name ),
+						'start_pos'     => absint( $start_pos ),
+						'qual_time'     => esc_html( $qual_time ),
+					);
+
 				}
 
+				if ( 'RACE' === $row->simsesname ) {
 
-				$x = array(
-					'car_no'           => absint( $car_no ),
-					'position'         => absint( $finish_position ),
-					'avg_lap_time'     => esc_html( $avg_lap_time ),
-					'fastest_lap_time' => esc_html( $fastest_lap_time ),
-					'fastest_lap'      => esc_html( $fastest_lap ),
-					'interval'         => esc_html( $interval ),
-					'reason_out'       => esc_html( $reason_out ),
-					'laps_led'         => absint( $laps_led ),
-					'laps_completed'   => absint( $laps_completed ),
-					'incidents'        => absint( $incidents ),
-				);
-				$drivers[ $driver_name ] = array_merge( $x, $drivers[ $driver_name ] );
+					$finish_position  = absint( $row->pos ) + 1;
+					$car_no           = $row->carnum;
+					$avg_lap_time     = $this->get_formatted_time_from_iracing( $row->avglap );
+					$fastest_lap_time = $this->get_formatted_time_from_iracing( $row->bestlaptime );
+					$fastest_lap      = $row->bestlapnum;
+					$interval         = $this->get_formatted_time_from_iracing( $row->interval );
+					$reason_out       = $row->reasonout;
+					$laps_led         = $row->lapslead;
+					$laps_completed   = $row->lapscomplete;
+					$incidents        = $row->incidents;
+
+					// Check if the user has a number, and if not, give them the one they used in this race
+					$args= array(
+						'search' => $driver_name,
+						'search_fields' => array( 'display_name' )
+					);
+					$user = new WP_User_Query( $args );
+					if ( isset( $user->results[0]->ID ) ) {
+						$user_id = absint( $user->results[0]->ID );
+						$current_number = get_user_meta( $user_id, 'car_number', true );
+						if ( '' === $current_number || '0' === $current_number ) {
+							update_user_meta( $user_id, 'car_number', $car_no );
+						}
+					}
+
+
+					$x = array(
+						'car_no'           => absint( $car_no ),
+						'position'         => absint( $finish_position ),
+						'avg_lap_time'     => esc_html( $avg_lap_time ),
+						'fastest_lap_time' => esc_html( $fastest_lap_time ),
+						'fastest_lap'      => esc_html( $fastest_lap ),
+						'interval'         => esc_html( $interval ),
+						'reason_out'       => esc_html( $reason_out ),
+						'laps_led'         => absint( $laps_led ),
+						'laps_completed'   => absint( $laps_completed ),
+						'incidents'        => absint( $incidents ),
+					);
+					$drivers[ $driver_name ] = array_merge( $x, $drivers[ $driver_name ] );
+
+				}
 
 			}
+			$results = array();
+			foreach ( $drivers as $key => $driver ) {
+				$new_key = $driver[ 'position' ] - 1;
+				$results[ $new_key ] = $driver;
+			}
+
+			ksort( $results );
+
+			$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
+			update_post_meta( $post_id, '_results_' . $race_number, $results );
+echo $race_number;
 
 		}
-		$results = array();
-		foreach ( $drivers as $key => $driver ) {
-			$new_key = $driver[ 'position' ] - 1;
-			$results[ $new_key ] = $driver;
-		}
-
-		ksort( $results );
-
-		$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
-		update_post_meta( $post_id, '_results_1', $results );
-
-		// Store event info
-		$event_info = array(
-			'session_id' => $results->sessionid,
-			'number_of_lead_changes' => $results->nleadchanges,
-			'weather_wind_dir' => $results->weather_wind_dir,
-			'weather_fog_density' => $results->weather_fog_density,
-			'ncautions' => $results->ncautions,
-			'eventlapscomplete' => $results->eventlapscomplete,
-			'weather_type' => $results->weather_type,
-			'rubber_level_race' => $results->rubberlevel_practice,
-			'leave_marbles' => $results->leavemarbles,
-			'weather_rh' => $results->weather_rh,
-			'weather_wind_speed_value' => $results->weather_wind_speed_value,
-			'weather_temperature_value' => $results->weather_temp_value,
-			'time_of_day' => $results->timeofday,
-			'event_strength_of_field' => $results->eventstrengthoffield,
-			'weather_skies' => $results->weather_skies,
-		);
-		foreach ( $event_info as $key => $x ) {
-			$event_info[ $key ] = esc_html( $x );
-		}
-		$event_info = json_encode( $event_info, JSON_UNESCAPED_UNICODE );
-		update_post_meta( $post_id, '_event_info', $event_info );
+die;
 	}
 
 	/**
@@ -1206,8 +1211,13 @@ class SRC_Events extends SRC_Core {
 	public function add_results() {
 		$html = '';
 
-		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+		$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
+		$number_of_races = absint( $number_of_races );
+		$race_number = 0;
+		while ( $race_number <= $number_of_races ) {
+			$race_number++;
 
+//delete_post_meta( get_the_ID(), '_results_3' );
 			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
 
 			if ( '' === $results ) {
