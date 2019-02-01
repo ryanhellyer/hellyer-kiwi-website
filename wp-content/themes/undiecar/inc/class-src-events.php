@@ -1085,8 +1085,8 @@ class SRC_Events extends SRC_Core {
 			$race_number++;
 
 			// Bail out if no result found
-			if ( ! isset( $_POST[ 'result-' . $race_number ] ) ) {
-				return $post_id;
+			if ( ! isset( $_POST[ 'result-' . $race_number ] ) || '' === $_POST[ 'result-' . $race_number ] ) {
+				continue;
 			}
 
 			// Get data from results
@@ -1167,10 +1167,9 @@ class SRC_Events extends SRC_Core {
 
 			$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 			update_post_meta( $post_id, '_results_' . $race_number, $results );
-echo $race_number;
 
 		}
-die;
+
 	}
 
 	/**
@@ -1217,7 +1216,6 @@ die;
 		while ( $race_number <= $number_of_races ) {
 			$race_number++;
 
-//delete_post_meta( get_the_ID(), '_results_3' );
 			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
 
 			if ( '' === $results ) {
