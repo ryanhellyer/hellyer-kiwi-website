@@ -106,7 +106,7 @@ class SRC_Events extends SRC_Core {
 	 */
 	public function filter_featured_image_url( $image_url ) {
 
-		if ( 'event' === get_post_type() ) {
+		if ( 'event' === get_post_type() && ! has_post_thumbnail() ) {
 			$image_url = get_the_post_thumbnail_url( $this->event['current_round']['track'], 'src-featured' );
 		}
 
@@ -124,7 +124,7 @@ class SRC_Events extends SRC_Core {
 				'public'             => true,
 				'publicly_queryable' => true,
 				'label'              => esc_html__( 'Events', 'src' ),
-				'supports'           => array( 'title', 'editor' ),
+				'supports'           => array( 'title', 'editor', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-flag',
 			)
 		);
@@ -696,7 +696,10 @@ class SRC_Events extends SRC_Core {
 		$html = '';
 
 		$formatted_number = str_replace( __( 'one', 'undiecar' ), __( 'the', 'undiecar' ), $number->format( $race_count ) );
-		$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+		$q_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
+		if ( '' === $q_time ) {
+			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+		}
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
 			$html .= wpautop(
@@ -968,47 +971,52 @@ class SRC_Events extends SRC_Core {
 		<p>';
 */
 
-		echo '
-		<p>
-			http://members.iracing.com/membersite/member/GetSubsessionResults?subsessionID=XXX
-		</p>';
+		echo '<style>.undiecar-info {color:#999;font-family:monospace;font-size:9px;line-height:9px;width:100%;height:100px;}</style>';
 
-		echo '
-		<p>
-			<label for="result-1">' . esc_html__( 'Race 1 results', 'src' ) . '</label>
-			<textarea id="result-1" name="result-1"></textarea>
-		</p>
-		<p>
-			<label for="result-2-file">' . esc_html__( 'Race 2 results', 'src' ) . '</label>
-			<input type="file" id="result-2-file" name="result-2-file" />
-		</p>
-		<p>
-			<label for="result-3-file">' . esc_html__( 'Race 3 results', 'src' ) . '</label>
-			<input type="file" id="result-3-file" name="result-3-file" />
-		</p>
-		<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
-		<p>';
 
-		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+		$event_id = null;
+		if ( isset( $_GET[ 'post' ] ) ) {
+			$event_id = $_GET[ 'post' ];
+		} else if ( isset( $_POST[ 'post_ID' ] ) ) {
+			$event_id = $_POST[ 'post_ID' ];
+		}
+		$number_of_races = get_post_meta( $event_id, 'number_of_races', true );
+		$number_of_races = absint( $number_of_races );
+		$number = 1;
+		while ( $number <= $number_of_races ) {
+
+			if ( 1 === $number ) {
+				echo '<p style="word-wrap: break-word;">' . sprintf( esc_html( 'Copy/paste the contents of the page at %s to upload event results.', 'undiecar' ), '<a href="http://members.iracing.com/membersite/member/GetSubsessionResults?subsessionID=XXX">http://members.iracing.com/membersite/member/GetSubsessionResults?subsessionID=XXX</a>' ) . '</p>';
+			}
+
 			echo '
-			<textarea style="font-family:monospace;font-size:9px;line-height:9px;width:100%;height:100px;">' . 
-				print_r(
-					json_decode( get_post_meta( get_the_ID(), '_results_' . $race_number, true ), true ),
-					true
-				) . 
-			'</textarea>';
+			<p>
+				<label for="' . esc_attr( 'result-' . $number ) . '">' . sprintf( esc_html__( 'Race %s results', 'src' ), absint( $number ) ) . '</label>
+				<textarea id="' . esc_attr( 'result-' . $number ) . '" name="' . esc_attr( 'result-' . $number ) . '"></textarea>
+			</p>';
+
+			$number++;
 		}
 
+		echo '
+		<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
+
+		<p>';
+		$number_of_races = get_post_meta( $event_id, 'number_of_races', true );
+		$number_of_races = absint( $number_of_races );
+		$number = 1;
+		while ( $number <= $number_of_races ) {
 			echo '
-			<textarea style="font-family:monospace;font-size:9px;line-height:9px;width:100%;height:100px;">' . 
+			<textarea class="undiecar-info">' . 
 				print_r(
-					json_decode( get_post_meta( get_the_ID(), '_event_info', true ), true ),
+					json_decode( get_post_meta( get_the_ID(), '_results_' . $number, true ), true ),
 					true
 				) . 
 			'</textarea>';
-		echo '
 
-		</p>';
+			$number++;
+		}
+		echo '</p>';
 
 
 		$least_incidents = get_post_meta( get_the_ID(), '_least_incidents', true );
@@ -1059,11 +1067,6 @@ class SRC_Events extends SRC_Core {
 		// Get data from results
 		$results = stripslashes( $_POST[ 'result-1' ] );
 		$results = json_decode( $results );
-
-		// Bail out if no results sent
-		if ( ! isset( $results->rows ) ) {
-			return $post_id;
-		}
 
 		foreach ( $results->rows as $key => $row ) {
 			$driver_name = urldecode( $row->displayname );
@@ -1136,6 +1139,7 @@ class SRC_Events extends SRC_Core {
 		}
 
 		ksort( $results );
+
 		$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 		update_post_meta( $post_id, '_results_1', $results );
 
@@ -1162,7 +1166,6 @@ class SRC_Events extends SRC_Core {
 		}
 		$event_info = json_encode( $event_info, JSON_UNESCAPED_UNICODE );
 		update_post_meta( $post_id, '_event_info', $event_info );
-//print_r( $results );echo 'DONE';die;
 	}
 
 	/**
@@ -1205,21 +1208,18 @@ class SRC_Events extends SRC_Core {
 
 		foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
 
-			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
 
-//delete_post_meta( 3052, '_results_' . $race_number );
 			if ( '' === $results ) {
 				continue;
 			}
 
 			$results = json_decode( $results, true );
-
 			if ( empty( $results ) ) {
 				continue;
 			}
 
-//			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
-						$html .= '<h3 class="table-heading">' . esc_html__( 'Results table', 'src' ) . '</h3>';
+			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
 			$html .= '<table class="some-list">';
 
 			$html .= '<thead><tr>';
