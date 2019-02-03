@@ -298,16 +298,15 @@ if ( isset( $our_events[0] ) ) {
 
 
 
-
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
-<td>123</td>
+<td>224</td>
 <td>28</td>
 <td>54</td>
 <td>41</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>55</td>
+<td>46</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -317,13 +316,13 @@ if ( isset( $our_events[0] ) ) {
 <tr>
 <td>2</td>
 <td>Nikolay Ladushkin</td>
-<td>101</td>
+<td>185</td>
 <td>&nbsp;</td>
 <td>37</td>
 <td>64</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>49</td>
+<td>25</td>
+<td>10</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -331,14 +330,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>3</td>
-<td>Bruno Le Doare</td>
-<td>93</td>
-<td>30</td>
-<td>22</td>
-<td>41</td>
+<td>James Chesters</td>
+<td>146</td>
+<td>42</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>29</td>
+<td>18</td>
+<td>47</td>
+<td>10</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -346,13 +345,13 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>4</td>
-<td>Aron Kertesz (div 2)</td>
-<td>90</td>
-<td>48</td>
-<td>12</td>
+<td>Bruno Le Doare</td>
+<td>144</td>
 <td>30</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>22</td>
+<td>41</td>
+<td>30</td>
+<td>21</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -361,14 +360,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>5</td>
-<td>Ryan Hellyer</td>
-<td>86</td>
-<td>60</td>
+<td>Vincent Bluthenthal</td>
+<td>120</td>
+<td>55</td>
 <td>&nbsp;</td>
-<td>26</td>
+<td>18</td>
+<td>42</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>5</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -376,14 +375,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>6</td>
-<td>Alejandro Yanes</td>
-<td>80</td>
-<td>6</td>
-<td>19</td>
-<td>55</td>
+<td>Josu Solaguren</td>
+<td>120</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>30</td>
+<td>30</td>
+<td>21</td>
+<td>30</td>
+<td>9</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -391,14 +390,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>7</td>
-<td>Maximilian Prodohl (div 2 )</td>
-<td>78</td>
-<td>&nbsp;</td>
-<td>42</td>
-<td>36</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>Alejandro Yanes</td>
+<td>105</td>
+<td>6</td>
+<td>19</td>
+<td>55</td>
+<td>15</td>
+<td>7</td>
+<td>3</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -406,14 +405,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>8</td>
-<td>Vincent Bluthenthal</td>
-<td>73</td>
-<td>55</td>
+<td>Ryan Hellyer</td>
+<td>98</td>
+<td>60</td>
 <td>&nbsp;</td>
-<td>18</td>
+<td>26</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>12</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -421,13 +420,13 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>9</td>
-<td>James Chesters</td>
-<td>71</td>
-<td>42</td>
+<td>Giovanni Coronin</td>
+<td>97</td>
+<td>21</td>
 <td>&nbsp;</td>
-<td>29</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>44</td>
+<td>27</td>
+<td>5</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -436,14 +435,14 @@ if ( isset( $our_events[0] ) ) {
 </tr>
 <tr>
 <td>10</td>
-<td>Matt Tempest (div 2)</td>
-<td>66</td>
-<td>18</td>
+<td>Aron Kertesz (div 2)</td>
+<td>96</td>
+<td>48</td>
+<td>12</td>
+<td>30</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
 <td>6</td>
-<td>42</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
