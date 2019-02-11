@@ -68,7 +68,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					$video_url     = esc_url(  $embed[ 'url' ] );
 
 					$post_title = '';
-					if ( isset( $embed[ 'title' ] ) {
+					if ( isset( $embed[ 'title' ] ) ) {
 						$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
 					}
 
