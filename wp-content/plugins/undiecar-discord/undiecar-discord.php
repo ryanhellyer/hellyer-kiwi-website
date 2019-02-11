@@ -66,13 +66,37 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 				if ( 'video' === $embed[ 'type' ] ) {
 
 					$video_url     = esc_url(  $embed[ 'url' ] );
-					$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
-					$description   = esc_html( $embed[ 'description' ] );
-					$author        = esc_html( $embed[ 'author' ][ 'name' ] );
-					$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
-					$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
-					$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
-print_r( $embed );echo "\n\n\n";
+
+					$post_title = '';
+					if ( isset( $embed[ 'title' ] ) {
+						$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
+					}
+
+					$description = '';
+					if ( isset( $embed[ 'description' ] ) ) {
+						$description   = esc_html( $embed[ 'description' ] );
+					}
+
+					$author = '';
+					if ( isset( $embed[ 'author' ][ 'name' ]) ) {
+						$author        = esc_html( $embed[ 'author' ][ 'name' ] );
+					}
+
+					$channel = '';
+					if ( isset( $embed[ 'author' ][ 'url' ] ) ) {
+						$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
+					}
+
+					$thumbnail_url = '';
+					if ( isset( $embed[ 'thumbnail' ][ 'url' ] ) ) {
+						$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
+					}
+
+					$provider = '';
+					if ( isset( $embed[ 'provider' ][ 'name' ] ) ) {
+						$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
+					}
+//print_r( $embed );echo "\n\n\n";
 
 					$content = wp_kses_post(
 						'<p>' .
