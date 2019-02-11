@@ -56,11 +56,17 @@ class SRC_Videos extends SRC_Core {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
+				$url = get_the_post_thumbnail_url( get_the_ID()	, 'src-four' );
+
+				if ( '' == $url ) {
+					$url = 'https://undiecar.com/files/video.png';
+				}
+
 				$gallery .= '
 				<figure class="gallery-item">
 					<div class="gallery-icon landscape">
 						<a href="' . get_permalink( get_the_ID() ) . '">
-							<img src="' . esc_url( get_the_post_thumbnail_url( get_the_ID()	, 'src-four' ) ) . '" />
+							<img src="' . esc_url( $url ) . '" />
 						</a>
 					</div>
 				</figure>';
