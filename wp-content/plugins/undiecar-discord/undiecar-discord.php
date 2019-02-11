@@ -64,7 +64,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 			foreach ( $message[ 'embeds' ] as $key3 => $embed ) {
 
 				if ( 'video' === $embed[ 'type' ] ) {
-
+//print_r( $embed );die;
 					$video_url     = esc_url(  $embed[ 'url' ] );
 					$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
 					$description   = esc_html( $embed[ 'description' ] );
