@@ -64,7 +64,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 			foreach ( $message[ 'embeds' ] as $key3 => $embed ) {
 
 				if ( 'video' === $embed[ 'type' ] ) {
-//print_r( $embed );die;
+
 					$video_url     = esc_url(  $embed[ 'url' ] );
 					$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
 					$description   = esc_html( $embed[ 'description' ] );
@@ -72,6 +72,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
 					$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
 					$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
+print_r( $embed );echo "\n\n\n";
 
 					$content = wp_kses_post(
 						'<p>' .
