@@ -66,7 +66,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 				if ( 'video' === $embed[ 'type' ] ) {
 
 					$video_url     = esc_url(  $embed[ 'url' ] );
-//print_r( $message );die;
+
 					$post_title = '';
 					if ( isset( $embed[ 'title' ] ) ) {
 						$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
@@ -96,7 +96,6 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					if ( isset( $embed[ 'provider' ][ 'name' ] ) ) {
 						$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
 					}
-//print_r( $embed );echo "\n\n\n";
 
 					$content = wp_kses_post(
 						'<p>' .
@@ -111,14 +110,6 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					// Create video post - if it doesn't already exist
 					$post_slug = sanitize_title( $post_title );
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
-
-echo $video_url . "\n\n\n";
-
-if ( 'https://www.youtube.com/watch?v=smGmtRr9kU8' === $video_url ) {
-	print_r( $existing_post );
-	die;
-	echo $video_url . "\n";die;
-}
 
 					if ( empty( $existing_post ) ) {
 
