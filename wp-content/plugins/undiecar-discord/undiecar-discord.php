@@ -115,7 +115,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 echo $video_url . "\n\n\n";
 
 if ( 'https://www.youtube.com/watch?v=smGmtRr9kU8' === $video_url ) {
-	echo $existing_post;
+	print_r( $existing_post );
 	die;
 	echo $video_url . "\n";die;
 }
