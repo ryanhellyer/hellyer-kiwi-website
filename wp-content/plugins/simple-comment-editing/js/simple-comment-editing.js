@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
 			var element = this;
 
 			//Set up event for when the edit button is clicked
-			$(element).on('click', 'a', function (e) {
+			$(element).on('click', 'a:first', function (e) {
 				e.preventDefault();
 				$('#sce-edit-comment-status' + ajax_params.cid).removeClass().addClass('sce-status').css('display', 'none');
 				//Hide the edit button and show the textarea
@@ -190,6 +190,7 @@ jQuery(document).ready(function ($) {
 				//Update the timer and show the editing interface
 				$(element).find('.sce-timer').html(timer_text);
 				$(element).siblings('.sce-textarea').find('.sce-timer').html(timer_text);
+
 				$(element).show(400, function () {
 					/**
      * Event: sce.timer.loaded
@@ -201,6 +202,7 @@ jQuery(document).ready(function ($) {
      * @param jQuery Element of the comment
      */
 					$(element).trigger('sce.timer.loaded', element);
+					console.log(element);
 				});
 
 				//Save state in textarea
@@ -232,6 +234,7 @@ jQuery(document).ready(function ($) {
 							var timer_text = sce.get_timer_text(timer_minutes, timer_seconds);
 							$(element).find('.sce-timer').html(timer_text);
 							$(element).siblings('.sce-textarea').find('.sce-timer').html(timer_text);
+							$(element).trigger('sce.timer.countdown', element);
 							sce.timers[response.comment_id].seconds = timer_seconds;
 							sce.timers[response.comment_id].minutes = timer_minutes;
 						}
@@ -306,7 +309,7 @@ jQuery(document).ready(function ($) {
   * @param int    number of minutes left
   * @param int    seconds left
   */
-		text = wp.hooks.applyFilters('sce.comment.timer.text', text, _n('minute', 'minutes', minutes, 'simple-comment-editing'), _n('second', 'seconds', seconds, 'simple-comment-editing'), original_minutes, original_seconds);
+		text = wp.hooks.applyFilters('sce.comment.timer.text', text, _n('day', 'days', days, 'simple-comment-editing'), _n('hour', 'hours', hours, 'simple-comment-editing'), _n('minute', 'minutes', minutes, 'simple-comment-editing'), _n('second', 'seconds', seconds, 'simple-comment-editing'), days, hours, minutes, seconds);
 		return text;
 	};
 	sce.set_comment_cookie = function (pid, cid, callback) {

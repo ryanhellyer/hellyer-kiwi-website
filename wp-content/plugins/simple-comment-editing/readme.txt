@@ -2,8 +2,8 @@
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment,
 Requires at least: 5.0
-Tested up to: 5.0
-Stable tag: 2.3.3
+Tested up to: 5.1
+Stable tag: 2.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://mediaron.com/contribute/
@@ -26,9 +26,21 @@ Simple Comment Editing features:
 
 <h3>Introducing Simple Comment Editing Options</h3>
 
-Introducing Simple Comment Editing Options. If you lack programming experience and want to customize Simple Comment Editing, then this plugin is for you. See a demo below.
+Introducing Simple Comment Editing Options. If you lack programming experience and want to customize Simple Comment Editing, then this plugin is for you. See the features below.
 
-https://www.youtube.com/watch?v=dn6QOmzc9RM&rel=0
+<ul>
+<li>Set the comment timer</li>
+<li>Stop the timer</li>
+<li>Hide the timer</li>
+<li>Select button styles to match your theme</li>
+<li>Enable comment editing logging to show an editing history for the comment</li>
+<li>See how many people are editing comments</li>
+<li>Receive email notifications of edited or deleted comments</li>
+<li>Edit the messages and text shown to users</li>
+<li>Set a minimum comment length</li>
+<li>Disable/Enable comment deletion</li>
+<li>And More!</li>
+</ul>
 
 > Get <a href="https://mediaron.com/simple-comment-editing-options">Simple Comment Editing Options</a> today!
 
@@ -51,7 +63,7 @@ It's impossible to style an inline comment editor for every theme.  We've includ
 No options :) - Just simple comment editing. If you prefer options, try out the add-on <a href="https://mediaron.com/simple-comment-editing-options">Simple Comment Editing Options</a>.
 
 = How do I customize this plugin? =
-For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a> or get <a href="https://mediaron.com/simple-comment-editing-options">Simple Comment Editing Options</a>. 
+For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a> or get <a href="https://mediaron.com/simple-comment-editing-options">Simple Comment Editing Options</a>.
 
 = What browsers have you tested this with? =
 Simple Comment Editing will work all the way back to IE10.
@@ -64,6 +76,11 @@ Simple Comment Editing will work all the way back to IE10.
 4. Simple Comment Editing Options front-end.
 
 == Changelog ==
+
+= 2.3.4 =
+* Released 2019-02-14
+* New hook to allow scripts to load after SCE scripts
+* Ability to stop the timer and finish editing
 
 = 2.3.3 =
 * Released 2018-11-08
@@ -104,7 +121,7 @@ Simple Comment Editing will work all the way back to IE10.
 * Released 2017-11-15
 * Added filter to remove the delete comment notifications
 
-= 2.1.5 = 
+= 2.1.5 =
 * Released 2017-01-20
 * Resolving Epoch 1.0 conflict
 
@@ -125,7 +142,7 @@ Simple Comment Editing will work all the way back to IE10.
 * Bug fix: Deletion filter now works in JS and in HTML output
 * Bug fix: Changing comment time in filter resulted in undefined in JS output
 * New filters: Allow changing of edit and save/cancel/delete buttons
-* Epoch 2.0 compatible 
+* Epoch 2.0 compatible
 
 
 = 1.9.4 =
@@ -150,7 +167,7 @@ Simple Comment Editing will work all the way back to IE10.
 * Released 2015-10-21
 * Fixed Portuguese translation (thanks Marco Santos)
 * Added Lithuanian translation
-* Fixed timer scroll issue where the delay was too long (thanks MamasLT) 
+* Fixed timer scroll issue where the delay was too long (thanks MamasLT)
 
 = 1.8.3 =
 * Released 2015-10-20
@@ -164,7 +181,7 @@ Simple Comment Editing will work all the way back to IE10.
 
 = 1.7.1 =
 * Released 2015-09-26
-* Fixed Epoch+SCE user logged in dilemma 
+* Fixed Epoch+SCE user logged in dilemma
 
 = 1.7.0 =
 * Released 2015-09-20
@@ -237,7 +254,7 @@ Simple Comment Editing will work all the way back to IE10.
 * Added filter for custom error messages when saving a comment
 
 = 1.2.2 =
-* Updated 2014-12-11 - Ensuring WordPress 4.1 compatibility 
+* Updated 2014-12-11 - Ensuring WordPress 4.1 compatibility
 * Released 2014-09-02
 * Added Romanian language
 * Added French language
@@ -302,6 +319,9 @@ Simple Comment Editing will work all the way back to IE10.
 
 == Upgrade Notice ==
 
+= 2.3.4 =
+New hook to allow scripts to load after SCE scripts. Ability to stop the timer and finish editing.
+
 = 2.3.3 =
 Fixing timer when it's less than a minute and the timer disaappears
 
@@ -322,4 +342,4 @@ Allow logged in users (author of the post) to bypass cookie authentication
 
 == Customization ==
 
-For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a>. 
+For advanced options, please see the <a href="https://github.com/ronalfy/simple-comment-editing#wordpress-filters">SCE Filter/Action reference</a>.
