@@ -581,13 +581,17 @@ td span.tick-mark:before {
       padding: 20px 30px 40px 30px; }
     #results #standings th {
       padding: 0; }
-    #results #standings td:first-child,
-    #results #standings th:first-child {
-      padding-left: 40px; }
-    #results #standings td:last-child,
-    #results #standings th:last-child {
-      text-align: right;
-      padding-right: 40px; }
+    #results #standings td,
+    #results #standings th {
+      /*
+      			&:last-child {
+      				text-align: right;
+      				padding-right: 40px;
+      			}
+      */ }
+      #results #standings td:first-child,
+      #results #standings th:first-child {
+        padding-left: 40px; }
     #results #standings td {
       padding: 15px 0;
       font-family: "Open Sans", sans-serif;
