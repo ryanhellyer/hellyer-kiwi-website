@@ -123,7 +123,7 @@ class SRC_Events extends SRC_Core {
 			array(
 				'public'             => true,
 				'publicly_queryable' => true,
-				'label'              => esc_html__( 'Events', 'undiecar' ),
+				'label'              => esc_html__( 'Events', 'src' ),
 				'supports'           => array( 'title', 'editor', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-flag',
 			)
@@ -146,32 +146,32 @@ class SRC_Events extends SRC_Core {
 
 		$cmb = new_cmb2_box( array(
 			'id'           => $slug,
-			'title'        => esc_html__( 'Event Information', 'undiecar' ),
+			'title'        => esc_html__( 'Event Information', 'src' ),
 			'object_types' => array( 'event', ),
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Season', 'undiecar' ),
+			'name'       => esc_html__( 'Season', 'src' ),
 			'id'         => 'season',
 			'type'       => 'select',
 			'options_cb' => 'src_get_seasons',
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Track', 'undiecar' ),
+			'name'       => esc_html__( 'Track', 'src' ),
 			'id'         => 'track',
 			'type'       => 'select',
 			'options_cb' => 'src_get_tracks',
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Time of day', 'undiecar' ),
+			'name' => esc_html__( 'Time of day', 'src' ),
 			'id'         => 'time_of_day',
 			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Date', 'undiecar' ),
+			'name' => esc_html__( 'Date', 'src' ),
 			'id'   => 'date',
 			'type' => 'text_date_timestamp',
 		) );
@@ -203,7 +203,7 @@ class SRC_Events extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'Number of races', 'undiecar' ),
+			'name' => esc_html__( 'Number of races', 'src' ),
 			'id'   => 'number_of_races',
 			'type' => 'text',
 			'default' => '1',
@@ -240,20 +240,15 @@ class SRC_Events extends SRC_Core {
 				'type' => 'text',
 			) );
 
-			$cmb->add_field( array(
-				'name' => 'Race #' . $number . ' points mulitiplier',
-				'desc'   => 'race_' . $number . '_points_multiplier',
-				'id' => 'race_' . $number . '_points_multiplier',
-				'type' => 'text',
-				'default' => '1.0',
-				'attributes' => array(
-					'type' => 'number',
-					'pattern' => '\d*',
-				),
-			) );
-
 			$number++;
 		}
+
+		$cmb->add_field( array(
+			'name' => esc_html__(  'Points multiplier', 'src' ),
+			'id'         => $slug . '_points_multiplier',
+			'type'       => 'text',
+			'default'    => '1.0',
+		) );
 
 		// Setup files for each car
 		$query = new WP_Query( array(
@@ -271,21 +266,21 @@ class SRC_Events extends SRC_Core {
 					$count++;
 
 					$cmb->add_field( array(
-						'name'        => sprintf( esc_html__( 'Setup file for %s', 'undiecar' ), get_the_title( get_the_ID() ) ),
-						'description' => esc_html__( 'Please note that due to a technical glitch, you may need to upload the file via the media upload section, then just select it here. Leave blank if open setups allowed.', 'undiecar' ),
+						'name'        => sprintf( esc_html__( 'Setup file for %s', 'src' ), get_the_title( get_the_ID() ) ),
+						'description' => esc_html__( 'Please note that due to a technical glitch, you may need to upload the file via the media upload section, then just select it here. Leave blank if open setups allowed.', 'src' ),
 						'id'          => 'setup_file_' . get_the_ID(),
 						'type'        => 'file',
 					) );
 
 					$cmb->add_field( array(
-						'name'        => sprintf( esc_html__( 'Setup default for %s', 'undiecar' ), get_the_title( get_the_ID() ) ),
-						'description' => esc_html__( 'This is just a text fallback for when no fixed setup is available.', 'undiecar' ),
+						'name'        => sprintf( esc_html__( 'Setup default for %s', 'src' ), get_the_title( get_the_ID() ) ),
+						'description' => esc_html__( 'This is just a text fallback for when no fixed setup is available.', 'src' ),
 						'id'          => 'setup_default_' . get_the_ID(),
 						'type'        => 'text',
 					) );
 
 					$cmb->add_field( array(
-						'name' => esc_html__( 'Fuel amount', 'undiecar' ),
+						'name' => esc_html__( 'Fuel amount', 'src' ),
 						'id'         => 'fuel_amount_' . get_the_ID(),
 						'type'       => 'text',
 					) );
@@ -343,8 +338,8 @@ class SRC_Events extends SRC_Core {
 
 	public function qualifying_grid() {
 		return array(
-			'normal'   => esc_html__( 'Normal', 'undiecar' ),
-			'reversed' => esc_html__( 'Reversed', 'undiecar' ),
+			'normal'   => esc_html__( 'Normal', 'src' ),
+			'reversed' => esc_html__( 'Reversed', 'src' ),
 		);
 	}
 
@@ -682,7 +677,7 @@ class SRC_Events extends SRC_Core {
 
 			// Add text for reversed grid races.
 			if ( 'reversed' === get_post_meta( get_the_ID(), 'qualifying_grid', true ) ) {
-				$qualifying_grid = ' ' . esc_html__( 'The grid for race two will be reversed.', 'undiecar' );
+				$qualifying_grid = ' ' . esc_html__( 'The grid for race two will be reversed.', 'src' );
 			}
 
 		}
@@ -709,11 +704,11 @@ class SRC_Events extends SRC_Core {
 		$date_timestamp = get_post_meta( get_the_ID(), 'date', true );
 		$time = $date_timestamp + strtotime( $q_time ) + HOUR_IN_SECONDS * 2;
 		if ( time() < $time ) {
-			$will_be = esc_html__( 'will be', 'undiecar' );
-			$begins = esc_html__( 'begins', 'undiecar' );
-		} else {
 			$will_be = esc_html__( 'was', 'undiecar' );
 			$begins = esc_html__( 'began', 'undiecar' );
+		} else {
+			$will_be = esc_html__( 'will be', 'undiecar' );
+			$begins = esc_html__( 'begins', 'undiecar' );
 		}
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
@@ -792,12 +787,12 @@ class SRC_Events extends SRC_Core {
 		$nav_html = '<div id="next-prev-buttons">';
 		if ( isset( $this->event['previous_round'] ) && false !==  $this->event['previous_round'] ) {
 			$url = get_permalink( $this->event['previous_round']['id'] );
-			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignleft">&laquo; ' . esc_html__( 'Last race', 'undiecar' ) . '</a>';
+			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignleft">&laquo; ' . esc_html__( 'Last race', 'src' ) . '</a>';
 		}
 
 		if ( isset( $this->event['next_round'] ) && false !== $this->event['next_round'] ) {
 			$url = get_permalink( $this->event['next_round']['id'] );
-			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'undiecar' ) . '&raquo;</a>';
+			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'src' ) . '&raquo;</a>';
 		}
 		$nav_html .= '</div>';
 
@@ -812,7 +807,7 @@ class SRC_Events extends SRC_Core {
 					$least_incidents_text = '';
 				}
 
-				$url = home_url() . '/' . __( 'member', 'undiecar' ) . '/' . sanitize_title( $driver ) . '/';
+				$url = home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $driver ) . '/';
 				$least_incidents_text .= '<a href="' . esc_url( $url ) . '">' . esc_html( $driver ) . '</a>';
 			}
 		}
@@ -838,14 +833,14 @@ class SRC_Events extends SRC_Core {
 			if ( '' !== get_post_meta( get_the_ID(), '_pole_position', true ) ) {
 				$name = get_post_meta( get_the_ID(), '_pole_position', true );
 				$bonus_points .= '
-				Pole position: <a href="' . esc_url( home_url() . '/' . __( 'member', 'undiecar' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>
+				Pole position: <a href="' . esc_url( home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>
 				<br />';
 			}
 
 			if ( '' !== get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
 				$name = get_post_meta( get_the_ID(), '_fastest_lap', true );
 				$bonus_points .= '
-				Fastest lap: <a href="' . esc_url( home_url() . '/' . __( 'member', 'undiecar' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
+				Fastest lap: <a href="' . esc_url( home_url() . '/' . __( 'member', 'src' ) . '/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
 			}
 
 			$bonus_points .= '
@@ -894,7 +889,7 @@ class SRC_Events extends SRC_Core {
 			// No cars, so bail now
 			return;
 		} else if ( 1 === $count ) {
-			$content .= '<h3>' . esc_html__( 'Allowed car', 'undiecar' ) . '</h3>';
+			$content .= '<h3>' . esc_html__( 'Allowed car', 'src' ) . '</h3>';
 			$car_id = $cars[0];
 
 			$content .= '<p>';
@@ -914,8 +909,8 @@ class SRC_Events extends SRC_Core {
 			$content .= '</p>';
 
 		} else {
-			$content .= '<h3>' . esc_html__( 'Allowed cars', 'undiecar' ) . '</h3>';
-			$content .= '<p>' . esc_html__( 'This is a multi-car event. Drivers may choose one of the following cars.', 'undiecar' ) . '</p>';
+			$content .= '<h3>' . esc_html__( 'Allowed cars', 'src' ) . '</h3>';
+			$content .= '<p>' . esc_html__( 'This is a multi-car event. Drivers may choose one of the following cars.', 'src' ) . '</p>';
 			$content .= '<ol>';
 
 			foreach ( $cars as $car_id ) {
@@ -949,7 +944,7 @@ class SRC_Events extends SRC_Core {
 
 		add_meta_box(
 			'iracing-results-uploader', // ID
-			__( 'Upload iRacing results', 'undiecar' ), // Title
+			__( 'Upload iRacing results', 'src' ), // Title
 			array(
 				$this,
 				'results_upload_metabox_html', // Callback to method to display HTML
@@ -972,19 +967,19 @@ class SRC_Events extends SRC_Core {
 /*
 		echo '
 		<p>
-			<label for="result-qual-file">' . esc_html__( 'Qualifying results', 'undiecar' ) . '</label>
+			<label for="result-qual-file">' . esc_html__( 'Qualifying results', 'src' ) . '</label>
 			<input type="file" id="result-qual-file" name="result-qual-file" />
 		</p>
 		<p>
-			<label for="result-1-file">' . esc_html__( 'Race 1 results', 'undiecar' ) . '</label>
+			<label for="result-1-file">' . esc_html__( 'Race 1 results', 'src' ) . '</label>
 			<input type="file" id="result-1-file" name="result-1-file" />
 		</p>
 		<p>
-			<label for="result-2-file">' . esc_html__( 'Race 2 results', 'undiecar' ) . '</label>
+			<label for="result-2-file">' . esc_html__( 'Race 2 results', 'src' ) . '</label>
 			<input type="file" id="result-2-file" name="result-2-file" />
 		</p>
 		<p>
-			<label for="result-3-file">' . esc_html__( 'Race 3 results', 'undiecar' ) . '</label>
+			<label for="result-3-file">' . esc_html__( 'Race 3 results', 'src' ) . '</label>
 			<input type="file" id="result-3-file" name="result-3-file" />
 		</p>
 		<input type="hidden" id="result-nonce" name="result-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
@@ -1011,7 +1006,7 @@ class SRC_Events extends SRC_Core {
 
 			echo '
 			<p>
-				<label for="' . esc_attr( 'result-' . $number ) . '">' . sprintf( esc_html__( 'Race %s results', 'undiecar' ), absint( $number ) ) . '</label>
+				<label for="' . esc_attr( 'result-' . $number ) . '">' . sprintf( esc_html__( 'Race %s results', 'src' ), absint( $number ) ) . '</label>
 				<textarea id="' . esc_attr( 'result-' . $number ) . '" name="' . esc_attr( 'result-' . $number ) . '"></textarea>
 			</p>';
 
@@ -1232,7 +1227,7 @@ class SRC_Events extends SRC_Core {
 				continue;
 			}
 
-			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'undiecar' ) . '</h3>';
+			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'src' ) . '</h3>';
 			$html .= '<table class="some-list">';
 
 			$html .= '<thead><tr>';
@@ -1267,7 +1262,7 @@ class SRC_Events extends SRC_Core {
 			$columns_to_keep[] = 'laps compl';
 			$columns_to_keep[] = 'Inc';
 
-			$html .= '<th>' . esc_html__( 'Pos', 'undiecar' ) . '</th>';			
+			$html .= '<th>' . esc_html__( 'Pos', 'src' ) . '</th>';			
 			foreach ( $columns_to_keep as $key => $label ) {
 				$html .= '<th>' . esc_html( $label ) . '</th>';			
 			}
