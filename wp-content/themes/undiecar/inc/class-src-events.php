@@ -705,9 +705,12 @@ class SRC_Events extends SRC_Core {
 			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
 		}
 
+
 		// Work out past/future strings
 		$date_timestamp = get_post_meta( get_the_ID(), 'date', true );
-		$time = $date_timestamp + strtotime( $q_time ) + HOUR_IN_SECONDS * 2;
+
+		$time = strtotime( date( 'Y-m-d', $date_timestamp ) . ' ' . $q_time ) + HOUR_IN_SECONDS * 2;
+
 		if ( time() < $time ) {
 			$will_be = esc_html__( 'will be', 'undiecar' );
 			$begins = esc_html__( 'begins', 'undiecar' );
