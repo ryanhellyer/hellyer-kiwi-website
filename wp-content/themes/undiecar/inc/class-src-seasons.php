@@ -431,6 +431,12 @@ class SRC_Seasons extends SRC_Core {
 
 		) );
 
+		$cmb->add_field( array(
+			'name'       => esc_html__( 'Fixed setups?', 'src' ),
+			'id'         => 'fixed_setup',
+			'type'       => 'checkbox',
+		) );
+
 	}
 
 	public function teams_metaboxes() {
