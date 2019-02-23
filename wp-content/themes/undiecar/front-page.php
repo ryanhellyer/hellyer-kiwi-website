@@ -301,53 +301,53 @@ if ( isset( $our_events[0] ) ) {
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
-<td>345</td>
-<td>28</td>
+<td>375</td>
+<td>DROP-28</td>
 <td>54</td>
 <td>41</td>
 <td>55</td>
 <td>46</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>61</td>
 <td>60</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>58</td>
+<td> </td>
 </tr>
 <tr>
 <td>2</td>
 <td>Nikolay Ladushkin</td>
-<td>322</td>
-<td>&nbsp;</td>
+<td>331</td>
+<td> </td>
 <td>37</td>
 <td>64</td>
 <td>49</td>
-<td>25</td>
+<td>DROP-25</td>
 <td>30</td>
 <td>63</td>
 <td>54</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>34</td>
+<td> </td>
 </tr>
 <tr>
 <td>3</td>
 <td>James Chesters</td>
-<td>243</td>
+<td>273</td>
 <td>42</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>29</td>
-<td>18</td>
+<td>DROP-18</td>
 <td>47</td>
 <td>28</td>
 <td>42</td>
 <td>37</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>48</td>
+<td> </td>
 </tr>
 <tr>
 <td>4</td>
 <td>Josu Solaguren</td>
 <td>199</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>30</td>
 <td>30</td>
 <td>21</td>
@@ -355,23 +355,23 @@ if ( isset( $our_events[0] ) ) {
 <td>25</td>
 <td>54</td>
 <td>9</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>5</td>
 <td>Vincent Bluthenthal</td>
-<td>170</td>
+<td>183</td>
 <td>55</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>18</td>
 <td>42</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>13</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>42</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>13</td>
+<td> </td>
 </tr>
 <tr>
 <td>6</td>
@@ -381,15 +381,30 @@ if ( isset( $our_events[0] ) ) {
 <td>6</td>
 <td>42</td>
 <td>24</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td> </td>
+<td> </td>
 <td>30</td>
 <td>48</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>7</td>
+<td>Ryan Hellyer</td>
+<td>162</td>
+<td>60</td>
+<td> </td>
+<td>26</td>
+<td> </td>
+<td> </td>
+<td>36</td>
+<td>12</td>
+<td> </td>
+<td>28</td>
+<td> </td>
+</tr>
+<tr>
+<td>8</td>
 <td>Bruno Le Doare</td>
 <td>147</td>
 <td>30</td>
@@ -397,58 +412,42 @@ if ( isset( $our_events[0] ) ) {
 <td>41</td>
 <td>30</td>
 <td>21</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>3</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Ryan Hellyer</td>
-<td>134</td>
-<td>60</td>
-<td>&nbsp;</td>
-<td>26</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>36</td>
-<td>12</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>9</td>
-<td>Thomas Lademann</td>
-<td>134</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>36</td>
-<td>&nbsp;</td>
-<td>50</td>
-<td>48</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>10</td>
 <td>Frank Oosterhuis</td>
-<td>134</td>
-<td>&nbsp;</td>
+<td>138</td>
+<td> </td>
 <td>3</td>
 <td>42</td>
-<td>&nbsp;</td>
+<td> </td>
 <td>19</td>
 <td>18</td>
 <td>36</td>
 <td>16</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>4</td>
+<td> </td>
 </tr>
-
+<tr>
+<td>10</td>
+<td>Aron Kertesz (div 2)</td>
+<td>135</td>
+<td>48</td>
+<td>12</td>
+<td>30</td>
+<td> </td>
+<td> </td>
+<td>16</td>
+<td>15</td>
+<td> </td>
+<td>14</td>
+<td> </td>
+</tr>
 
 
 
