@@ -303,9 +303,9 @@ if ( isset( $our_events[0] ) ) {
 <td>1</td>
 <td>Olivier Dean2</td>
 <td>388</td>
-<td>drop</td>
+<td>D</td>
 <td>54</td>
-<td>drop</td>
+<td>D</td>
 <td>55</td>
 <td>46</td>
 <td> </td>
@@ -322,7 +322,7 @@ if ( isset( $our_events[0] ) ) {
 <td>37</td>
 <td>64</td>
 <td>49</td>
-<td>drop</td>
+<td>D</td>
 <td>30</td>
 <td>63</td>
 <td>54</td>
@@ -336,7 +336,7 @@ if ( isset( $our_events[0] ) ) {
 <td>42</td>
 <td> </td>
 <td>29</td>
-<td>drop</td>
+<td>D</td>
 <td>47</td>
 <td>28</td>
 <td>42</td>
@@ -355,7 +355,7 @@ if ( isset( $our_events[0] ) ) {
 <td>30</td>
 <td>25</td>
 <td>54</td>
-<td>drop</td>
+<td>D</td>
 <td> </td>
 <td>30</td>
 </tr>
@@ -424,7 +424,7 @@ if ( isset( $our_events[0] ) ) {
 <td>Frank Oosterhuis</td>
 <td>159</td>
 <td> </td>
-<td>drop</td>
+<td>D</td>
 <td>42</td>
 <td> </td>
 <td>19</td>
