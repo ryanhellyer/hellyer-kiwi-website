@@ -9,7 +9,7 @@
  */
 class Spam_Destroyer {
 
-	public $version = '2.1.1';                     // The pluin version number
+	public $version = '2.1.2';                     // The plugin version number
 	public $spam_key;                              // Key used for confirmation of bot-like behaviour
 	public $speed = 2;                             // Will be killed as spam if posted faster than this
 	public $encryption_method = 'AES-256-CBC';     // The encryption method used
@@ -325,24 +325,38 @@ class Spam_Destroyer {
 
 		// Check the hidden input field against the key
 		if ( $_POST['killer_value'] != $this->spam_key ) {
+
 			// BAM! And the spam signup is dead :)
 			if ( isset( $_POST['bbp_topic_id'] ) ) {
-				bbp_add_error('bbp_reply_content', esc_html__('Sorry, but you have been detected as spam', 'spam-destroyer' ) );
+				bbp_add_error( 'bbp_reply_content', esc_html__( 'Sorry, but you have been detected as spam', 'spam-destroyer' ) );
 			} else {
-				$result['errors']->add( 'blogname', '' );
+
+				if ( isset( $result['errors'] ) ) {
+					$result['errors']->add( 'blogname', '' );
+				}
+
 			}
 		}
 
 		// Check for cookies presence
 		if ( isset( $_COOKIE[ $this->spam_key ] ) ) {
+
 			// If time not set correctly, then assume it's spam
 			if ( $_COOKIE[$this->spam_key] > 1 && ( ( time() - $_COOKIE[$this->spam_key] ) < $this->speed ) ) {
+
 				// Something's up, since the commenters cookie time frame doesn't match ours
-			$result['errors']->add( 'blogname', '' );
+				if ( isset( $result['errors'] ) ) {
+					$result['errors']->add( 'blogname', '' );
+				}
+
 			}
 		} else {
+
 			// Cookie not set therefore destroy the evil splogger
-			$result['errors']->add( 'blogname', '' );
+			if ( isset( $result['errors'] ) ) {
+				$result['errors']->add( 'blogname', '' );
+			}
+
 		}
 		return $result;
 	}
