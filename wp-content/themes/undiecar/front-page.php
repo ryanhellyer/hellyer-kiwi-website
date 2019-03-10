@@ -240,7 +240,7 @@ if ( isset( $our_events[0] ) ) {
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall-connor-welsh.jpg);">
 		<h2>Next season</h2>
 		<p>
-			Season 8<br />
+			<?php echo esc_html( get_the_title( $season_id ) ); ?><br />
 			Race with free iRacing content. Fixed setups provided for each track.
 		</p>
 	</a>
