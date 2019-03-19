@@ -2,8 +2,8 @@
 /**
  * Front page template file.
  *
- * @package Undiecar Theme
- * @since Undiecar Theme 1.0
+ * @package Undycar Theme
+ * @since Undycar Theme 1.0
  */
 
 get_header();
@@ -71,6 +71,7 @@ get_header();
 
 			$event_id = get_the_ID();
 			$event_date = get_post_meta( $event_id, 'date', true );
+
 			unset( $time );
 /*** THIS NEEDS UPGRADED TO WORK WITH THE NUMBER OF RACES, RATHER THAN GUESSING HOW MANY RACES THERE ARE ***/
 			foreach ( array( 3, 2, 1 ) as $race ) {
@@ -235,12 +236,11 @@ if ( isset( $our_events[0] ) ) {
 
 /*
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall6.jpg);">
-	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/porsche-tall.jpg);">
 */
-	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall-connor-welsh.jpg);">
-		<h2>Next season</h2>
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/porsche-tall.jpg);">
+		<h2>This season</h2>
 		<p>
-			<?php echo esc_html( get_the_title( $season_id ) ); ?><br />
+			Season 7<br />
 			Race with free iRacing content. Fixed setups provided for each track.
 		</p>
 	</a>
@@ -267,11 +267,12 @@ if ( isset( $our_events[0] ) ) {
 -->
 				<h2><?php echo esc_html( get_the_title( $season_id ) ); ?></h2>
 				<?php
-//					$championship_title = esc_html( get_the_title( $season_id ) );
-//					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+					$championship_title = esc_html( get_the_title( $season_id ) );
+					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+
+
+/*
 				?>
-
-
 <table class="some-list" id="src-championship">
 <thead>
 <tr>
@@ -288,6 +289,7 @@ if ( isset( $our_events[0] ) ) {
 <th>R8</th>
 <th>R9</th>
 <th>R10</th>
+<th>R11</th>
 </tr>
 </thead>
 <tbody>
@@ -297,162 +299,166 @@ if ( isset( $our_events[0] ) ) {
 
 
 
-
-
 <tr>
 <td>1</td>
 <td>Olivier Dean2</td>
-<td>388</td>
-<td>D</td>
-<td>54</td>
-<td>D</td>
-<td>55</td>
-<td>46</td>
+<td>91</td>
+<td>20</td>
+<td>19</td>
+<td>14</td>
+<td>18</td>
 <td> </td>
-<td>61</td>
-<td>60</td>
-<td>58</td>
-<td>54</td>
+<td>20</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>2</td>
-<td>Nikolay Ladushkin</td>
-<td>331</td>
+<td>Justin Hess</td>
+<td>85</td>
+<td>13</td>
+<td>17</td>
+<td>18</td>
+<td>7</td>
+<td>9</td>
+<td>21</td>
 <td> </td>
-<td>37</td>
-<td>64</td>
-<td>49</td>
-<td>D</td>
-<td>30</td>
-<td>63</td>
-<td>54</td>
-<td>34</td>
+<td> </td>
+<td> </td>
+<td> </td>
 <td> </td>
 </tr>
 <tr>
 <td>3</td>
-<td>James Chesters</td>
-<td>273</td>
-<td>42</td>
+<td>Henry Bennett</td>
+<td>70</td>
+<td>14</td>
+<td>11</td>
+<td>19</td>
+<td>16</td>
+<td>1</td>
+<td>9</td>
 <td> </td>
-<td>29</td>
-<td>D</td>
-<td>47</td>
-<td>28</td>
-<td>42</td>
-<td>37</td>
-<td>48</td>
+<td> </td>
+<td> </td>
+<td> </td>
 <td> </td>
 </tr>
 <tr>
 <td>4</td>
-<td>Josu Solaguren</td>
-<td>220</td>
+<td>Thomas Lademann (div 2)</td>
+<td>56</td>
+<td>17</td>
+<td>8</td>
+<td>5</td>
+<td>12</td>
+<td>7</td>
+<td>7</td>
 <td> </td>
-<td>30</td>
-<td>30</td>
-<td>21</td>
-<td>30</td>
-<td>25</td>
-<td>54</td>
-<td>D</td>
 <td> </td>
-<td>30</td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>5</td>
-<td>Matt Tempest (div 2)</td>
-<td>189</td>
-<td>18</td>
-<td>6</td>
-<td>42</td>
-<td>24</td>
+<td>Alejandro Yanes</td>
+<td>55</td>
+<td> </td>
+<td>4</td>
+<td>17</td>
+<td>15</td>
+<td>8</td>
+<td>11</td>
 <td> </td>
 <td> </td>
-<td>30</td>
-<td>48</td>
 <td> </td>
-<td>21</td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>6</td>
-<td>Vincent Bluthenthal</td>
-<td>183</td>
-<td>55</td>
+<td>Frank Oosterhuis</td>
+<td>49</td>
 <td> </td>
-<td>18</td>
-<td>42</td>
 <td> </td>
-<td>13</td>
+<td>9</td>
+<td>20</td>
+<td>20</td>
 <td> </td>
-<td>42</td>
-<td>13</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 <td> </td>
 </tr>
 <tr>
 <td>7</td>
-<td>Matt Fretwell</td>
-<td>174</td>
-<td> </td>
-<td> </td>
-<td>32</td>
-<td> </td>
-<td>40</td>
+<td>Nikolay Ladushkin</td>
+<td>48</td>
 <td> </td>
 <td>8</td>
-<td>12</td>
-<td>20</td>
-<td>62</td>
+<td>17</td>
+<td>23</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>8</td>
-<td>Ryan Hellyer</td>
-<td>162</td>
-<td>60</td>
-<td> </td>
-<td>26</td>
-<td> </td>
-<td> </td>
-<td>36</td>
+<td>Josu Solaguren</td>
+<td>48</td>
+<td>6</td>
+<td>2</td>
 <td>12</td>
+<td>9</td>
+<td>5</td>
+<td>14</td>
 <td> </td>
-<td>28</td>
+<td> </td>
+<td> </td>
+<td> </td>
 <td> </td>
 </tr>
 <tr>
 <td>9</td>
-<td>Frank Oosterhuis</td>
-<td>159</td>
+<td>Steven Brumfield</td>
+<td>47</td>
 <td> </td>
-<td>D</td>
-<td>42</td>
+<td>15</td>
+<td>20</td>
+<td>6</td>
+<td>6</td>
 <td> </td>
-<td>19</td>
-<td>18</td>
-<td>36</td>
-<td>16</td>
-<td>4</td>
-<td>24</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>10</td>
-<td>Aron Kertesz (div 2)</td>
-<td>153</td>
-<td>48</td>
+<td>Andreas Robertsson</td>
+<td>45</td>
+<td> </td>
+<td> </td>
+<td>8</td>
 <td>12</td>
-<td>30</td>
-<td> </td>
-<td> </td>
-<td>16</td>
-<td>15</td>
-<td> </td>
-<td>14</td>
 <td>18</td>
+<td>7</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
 </tr>
-
-
-
-
 
 
 
@@ -460,6 +466,8 @@ if ( isset( $our_events[0] ) ) {
 
 </tbody>
 </table>
+*/
+?>
 
 
 
