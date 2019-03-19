@@ -46,8 +46,8 @@ class SRC_Register extends SRC_Core {
 		$content = '
 <form action="" method="POST">
 	<input name="src-login-name" type="text" value="" placeholder="iRacing name" required />
-	<input name="src-login-password" type="password" value="" placeholder="Enter your password here" required />
-	<input type="submit" value="Log in" />
+	<input name="src-login-password" type="password" value="" placeholder="' . esc_attr__( 'Enter your password here', 'undiecar' ) . '" required />
+	<input type="submit" value="' . esc_attr__( 'Log in', 'undiecar' ) . '" />
 </form>';
 
 
@@ -97,7 +97,7 @@ class SRC_Register extends SRC_Core {
 		}
 		$display_name = '';
 		if ( isset( $_POST['src-name'] ) ) {
-			$display_name = sanitize_title( $_POST['src-name'] );
+			$display_name = esc_html( $_POST['src-name'] );
 		}
 		$password = '';
 		if ( isset( $_POST['src-password'] ) ) {
@@ -122,7 +122,6 @@ $message_text .= ' The form below is broken, please use the login page until the
 
 $message_text .= ' The form below is broken, please use the login page until then ... https://undiecar.com/login/';
 
-
 				$display_name = $user->display_name;
 				define( 'SRC_USERNAME_EXISTS', true );
 			}
@@ -140,7 +139,6 @@ $message_text .= ' The form below is broken, please use the login page until the
 		$content = apply_filters( 'src_register_start', $content );
 
 		$content .= '
-
 	<input name="src-name" type="text" value="' . esc_attr( $display_name ) . '" placeholder="iRacing name" required />';
 
 		if ( ! defined( 'SRC_USERNAME_EXISTS' ) ) {

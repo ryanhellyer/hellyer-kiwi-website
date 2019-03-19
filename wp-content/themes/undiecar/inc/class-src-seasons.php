@@ -21,7 +21,7 @@ class SRC_Seasons extends SRC_Core {
 		add_action( 'init',            array( $this, 'init' ) );
 		add_filter( 'the_content',     array( $this, 'schedule' ) );
 		add_filter( 'the_content',     array( $this, 'drivers' ) );
-//		add_filter( 'the_content',     array( $this, 'championships' ), 8 );
+		add_filter( 'the_content',     array( $this, 'championships' ), 8 );
 
 //		add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
 		add_filter( 'the_content',     array( $this, 'permanently_store_results' ), 100 );
@@ -72,36 +72,7 @@ class SRC_Seasons extends SRC_Core {
 			return $content;
 		}
 
-		$content = $this->championship( $content, false, 100, esc_html( 'Overall championship', 'undiecar' ) );
-
-		// Get list of car IDs
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-		$season_id = get_the_ID();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$car_ids[] = get_the_ID();
-			}
-			wp_reset_query();
-		}
-
-		foreach ( $car_ids as $car_id ) {
-
-			if ( 'on' === get_post_meta( $season_id, 'car-' . $car_id, true ) ) {
-
-				$car = get_the_title( $car_id );
-				$content = $this->championship( $content, false, 100, esc_html( 'Championship: ', 'undiecar' ) . $car, false, null, 'all', $car );
-			}
-
-		}
-
-		if ( 'on' === get_post_meta( get_the_ID(), 'seperate_road_oval_champs', true ) ) {
-			$content = $this->championship( $content, false, 5, esc_html( 'Road Championship', 'undiecar' ), false, null, 'road' );
-			$content = $this->championship( $content, false, 5, esc_html( 'Oval Championship', 'undiecar' ), false, null, 'oval' );
-		}
+		$content = $this->championship( $content, false, 100, esc_html__( 'Championship', 'undiecar' ) );
 
 		return $content;
 	}
@@ -178,7 +149,10 @@ class SRC_Seasons extends SRC_Core {
 
 				$date = get_post_meta( get_the_ID(), 'date', true );
 
-				$formatted_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+				$formatted_time = get_post_meta( get_the_ID(), 'event_qualifying_timestamp', true ); // legacy
+				if ( '' !== $formatted_time ) {
+					$formatted_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+				}
 
 				$date_formatted = date( 'Y-m-d', $date ) . ' ' . $formatted_time;
 				$time_stamp = strtotime( $date_formatted );
@@ -395,6 +369,31 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
+			'name'       => esc_html__( 'Division 1', 'src' ),
+			'description'=> esc_html__( 'Set the average road/oval iRating required for entry into division 1. Leave blank for no separate divisions.', 'src' ),
+			'id'         => 'division_1_cutoff',
+			'type'       => 'text',
+			'default' => '',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+			),
+		) );
+
+		$cmb->add_field( array(
+			'name'       => esc_html__( 'Drop scores', 'src' ),
+			'description'=> esc_html__( 'Set the number of events which competitors can drop their results for.', 'src' ),
+			'id'         => 'drop_scores',
+			'type'       => 'text',
+			'default' => '',
+			'attributes' => array(
+				'type' => 'number',
+				'pattern' => '\d*',
+			),
+		) );
+
+
+		$cmb->add_field( array(
 			'name'       => esc_html__( 'Bonus point for pole position', 'src' ),
 			'id'         => 'bonus_point_pole',
 			'type'       => 'checkbox',
@@ -409,12 +408,6 @@ class SRC_Seasons extends SRC_Core {
 		$cmb->add_field( array(
 			'name'       => esc_html__( 'Bonus point for most laps led', 'src' ),
 			'id'         => 'bonus_point_most_laps_led',
-			'type'       => 'checkbox',
-		) );
-
-		$cmb->add_field( array(
-			'name'       => esc_html__( 'Separate road and oval championships?', 'src' ),
-			'id'         => 'seperate_road_oval_champs',
 			'type'       => 'checkbox',
 		) );
 

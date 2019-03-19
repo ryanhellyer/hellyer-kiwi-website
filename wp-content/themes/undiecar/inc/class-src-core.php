@@ -249,7 +249,7 @@ class SRC_Core {
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			$stored_results = self::get_driver_points_from_season( $season_id, $track_types, $car );
+			$stored_results = self::get_driver_points_from_season( $season_id );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -261,10 +261,6 @@ class SRC_Core {
 			$content .= "<!-- Using permanently stored results -->";
 		}
 
-		if ( false === $title ) {
-//			$title = esc_html__( 'Drivers championship', 'src' );
-		}
-
 		// Work out if multiple cars
 		foreach ( $stored_results as $name => $points ) {
 
@@ -272,6 +268,7 @@ class SRC_Core {
 			if ( isset( $name_exploded[1] ) ) {
 				$multiple_cars = true;
 			}
+
 		}
 
 
@@ -281,7 +278,7 @@ class SRC_Core {
 				$content .= '<h3>' . esc_html( $title ) . '</h3>';
 			}
 
-			$content .= '<table class="some-list" id="src-championship">';
+			$content .= '<table class="some-list">';
 
 			$content .= '<thead><tr>';
 
@@ -314,22 +311,26 @@ class SRC_Core {
 					continue;
 				}
 
-				$name_exploded = explode( '|', $name );
-				if ( isset( $name_exploded[1] ) ) {
-					$name = $name_exploded[0];
-					$car = $name_exploded[1];
-				}
-
 				$linked_name = $name;
 				$car_number = '';
 				$member = get_user_by( 'login', sanitize_title( $name ) );
 				if ( isset( $member->data->ID ) ) {
 					$member_id = $member->data->ID;
 
+					// Work out if they're div 2 or 1
+					$road_irating = get_user_meta( $member_id, 'road_irating', true );
+					$oval_irating = get_user_meta( $member_id, 'oval_irating', true );
+					$av_rating = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
+					if ( $av_rating < get_post_meta( $season_id, 'division_1_cutoff', true ) ) {
+						$name = $name . ' ' . esc_html__( '(Div 2)', 'undiecar' );
+					}
+
+					// Get car number
 					if ( '' !== get_user_meta( $member_id, 'car_number', true ) ) {
 						$car_number = get_user_meta( $member_id, 'car_number', true );
 					}
 
+					// Get nationality
 					$nationality = '';
 					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
 						$country_code = get_user_meta( $member_id, 'nationality', true );
@@ -348,6 +349,7 @@ class SRC_Core {
 
 				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
 				$whole = floor( $points );
+
 				$inc = ( 1 - ( $points - $whole ) ) / self::FRACTION;
 				$inc = ( 0 + ( $points - $whole ) );
 				if ( 0 == $inc ) {
@@ -392,7 +394,7 @@ class SRC_Core {
 	 *
 	 * @todo Complete PHPDoc
 	 */
-	public function register_user( $username, $display_name, $password, $email, $member_info ) {
+	public function register_user( $username, $display_name, $password, $email, $member_info = array() ) {
 		// Create the user
 		$user_data = array(
 			'user_login'   => $username,
@@ -873,25 +875,7 @@ class SRC_Core {
 	/**
 	 * Get all driver points from a season.
 	 */
-	static function get_driver_points_from_season( $season_id, $track_types = 'all', $only_this_car = null ) {
-
-		// Get list of allowed cars
-		$query = new WP_Query( array(
-			'post_type'      => 'car',
-			'posts_per_page' => 100
-		) );
-		$cars = array();
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				if ( '' !== get_post_meta( $season_id, 'car-' . get_the_ID(), true ) ) {
-					$cars[] = get_the_ID();
-				}
-
-			}
-			wp_reset_postdata();
-		}
+	static function get_driver_points_from_season( $season_id ) {
 
 		// Get all events from that season
 		$query = new WP_Query( array(
@@ -906,270 +890,45 @@ class SRC_Core {
 			'update_post_term_cache' => false,
 		) );
 
-		$stored_results = $fastest_laps = array();
+		$stored_points = $fastest_laps = array();
+		$number_of_events = 0;
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 
-				// Handle championship for a specific track type
-				$track_id = get_post_meta( get_the_ID(), 'track', true );
-				$track_type = get_post_meta( $track_id, 'track_type', true );
-				if ( 'road' === $track_types && 'oval' === $track_type ) {
-					continue;
-				} else if ( 'oval' === $track_types && 'oval' !== $track_type ) {
-					continue;
-				}
+				$number_of_events++;
 
 				$fastest_laps = array();
 				$incident_results = array();
-				foreach ( array( 1, 2, 3 ) as $key => $race_number ) {
+
+				$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
+				$number_of_races = absint( $number_of_races );
+				$race_number = 0;
+				while ( $race_number <= $number_of_races ) {
+					$race_number++;
+
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 					$results = json_decode( $results, true );
-					$points_positions = get_post_meta( $season_id, 'points_positions', true );
 
-					if ( is_array( $results ) ) {
+					if ( is_array( $results ) && ! empty( $results ) ) {
 
-						// Ignore result if only meant to provide results for specific car
-						$pos = 1;
-						foreach ( $results as $key => $result ) {
+						$points_positions = get_post_meta( $season_id, 'points_positions', true );
+						$points_multiplier = get_post_meta( get_the_ID(), 'race_' . $race_number . '_points_multiplier', true );
 
-							if (
-								null !== $only_this_car
-								&&
-								isset( $result['car'] )
-								&&
-								$result['car'] !== $only_this_car
-							) {
-								unset( $results[ $key ] );
-							} else if ( null !== $only_this_car ) {
-								$results[ $key ][ 'position' ] = $pos;
-								$pos++;
+						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier );
+
+						// Merge results
+						foreach ( $race_points as $driver_name => $points ) {
+
+							if ( ! isset( $stored_points[ $driver_name ][ get_the_ID() ] ) ) {
+								$stored_points[ $driver_name ][ get_the_ID() ] = 0;
 							}
+
+							$stored_points[ $driver_name ][ get_the_ID() ] = $stored_points[ $driver_name ][ get_the_ID() ] + $points;
 
 						}
 
-						if ( null !== $only_this_car ) {
-							usort( $results, function( $a, $b ) {
-								return $a['position'] <=> $b['position'];
-							});
-						}
 
-						// Add points for finishing position and calc incidents
-						foreach ( $results as $key => $result ) {
-
-							// Earlier versions used the key as position
-							if ( isset( $results[ 0 ] ) ) {
-								$pos = $result[ 'position' ];
-							} else {
-								$pos = $key;
-							}
-
-							if ( isset( $result['car'] ) ) {
-								$car = $result['car'];
-							}
-
-							// If multiple cars in championship, then store which car they used (in case they switch cars mid-season)
-							if ( isset( $car ) && 1 < count( $cars ) ) {
-								$car = str_replace( 'Porsche 911 GT3 Cup (991)', 'Porsche 911 GT3 Cup', $car ); // Crude hack to fix change from CSV to JSON API - not required after summer season 1
-								$name = $result['name'] . '|' . $car;
-							} else {
-								$name = $result['name'];
-							}
-
-							if ( isset( $points_positions[$pos - 1] ) ) {
-
-								// Get points multiplier (for races worth more than normal points)
-								$points_multiplier = get_post_meta( get_the_ID(), 'event_race-' . $race_number . '_points_multiplier', true );
-								if ( ! is_numeric( $points_multiplier ) ) {
-									$points_multiplier = 1;
-								}
-
-								// Add drivers points
-								$points = $points_positions[$pos - 1] * $points_multiplier;
-								if ( isset( $stored_results[$name] ) ) {
-									$stored_results[$name] = $stored_results[$name] + $points;
-								} else {
-									$stored_results[$name] = $points;
-								}
-
-							}
-
-							// Store fastest laps
-							if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] ) {
-
-								$time_exploded = explode( ':', $result['fastest_lap_time'] );
-
-								if ( isset( $time_exploded[1] ) ) {
-									$time = $time_exploded[0] * 60 + $time_exploded[1];
-								} else {
-									$time = $time_exploded[0];
-								}
-
-								if (
-									! isset( $fastest_laps[$name] )
-									||
-									(
-										isset( $fastest_laps[$name] )
-										&&
-										$fastest_laps[$name] > $time
-									)
-								) {
-
-									// Ignore names of 'Name' as this indicates the CSV file has an incorrect line in it (happened early 2018)
-									if ( 'Name' !== $name ) {
-										if ( '-1' !== $time ) { // ignore anything with a time of -1
-											$fastest_laps[$name] = $time;
-										}
-									}
-
-								}
-
-							}
-
-							// Get least incident info (we ignore anyone who isn't within one lap of the lead)
-							if ( isset( $results[1]['laps-completed'] ) ) {
-								$results[1]['laps_completed'] = $results[1]['laps-completed']; // Fixing previous error
-							}
-							if ( isset( $results[1]['laps-completed'] ) ) {
-								$result['laps_completed'] = $result['laps-completed']; // Fixing previous error
-							}
-							if (
-								$results[1]['laps_completed'] === $result['laps_completed']
-								||
-								( $results[1]['laps_completed'] - 1 ) === $result['laps_completed']
-							) {
-								$name = $result['name'];
-								$incident_results[$name][$key] = $result['incidents'];
-							} else {
-								$incident_results[$name][$key] = 100000;
-							}
-
-							// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
-							if ( isset( $stored_results[$name] ) ) {
-								$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
-							} else {
-								$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
-							}
-
-						}
-
-						// Give bonus points for most spectacular crash in each race
-						$most_spectacular_crash_name = get_post_meta( get_the_ID(), 'event_race_' . $race_number . '_most_spectacular_crash', true );
-						if ( isset( $stored_results[$most_spectacular_crash_name] ) ) {
-							$stored_results[$most_spectacular_crash_name] = $stored_results[$most_spectacular_crash_name] + 1;
-						} else if ( '' !== $most_spectacular_crash_name ) {
-							$stored_results[$most_spectacular_crash_name] = 1;
-						}
-
-					}
-
-				}
-
-				// Work out who gets points for the least incidents
-				// Work out how many races there were - only want to count drivers who completed both races
-				foreach ( $incident_results as $x => $driver_incidents ) {
-
-					if ( isset( $max ) && $max < count( $driver_incidents ) ) {
-						$max = count( $driver_incidents );
-					} else if ( ! isset( $max ) ) {
-						$max = count( $driver_incidents );
-					}
-
-				}
-
-				// Remove drivers who weren't in both races
-				foreach ( $incident_results as $x => $driver_incidents ) {
-
-					if ( $max !== count( $driver_incidents ) ) {
-						unset( $incident_results[$x] );
-					} else {
-						$incident_results[$x] = array_sum( $driver_incidents );
-					}
-
-				}
-				asort( $incident_results );
-
-				$least_incident_drivers = array();
-				unset( $least_incidents );
-				foreach ( $incident_results as $driver_name => $incidents ) {
-					// Grab definite least incidents value
-					if ( ! ( isset( $least_incidents ) ) ) {
-						$least_incidents = $incidents;
-					}
-
-					if ( $least_incidents === $incidents ) {
-						$least_incident_drivers[] = $driver_name;
-					}
-
-				}
-
-				// Add least incident points
-				foreach ( $least_incident_drivers as $lkey => $name ) {
-					if ( isset( $stored_results[$name] ) ) {
-						$stored_results[$name] = $stored_results[$name] + 1;
-					} else {
-						$stored_results[$name] = 1;
-					}
-
-				}
-
-				if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
-					// Store least incident info in events
-					if ( is_array( $least_incident_drivers ) ) {
-						update_post_meta( get_the_ID(), '_least_incidents', $least_incident_drivers );
-					} else {
-						delete_post_meta( get_the_ID(), '_least_incidents' );
-					}
-
-				}
-				unset( $incident_results );
-				unset( $max );
-
-				// Add bonus point for pole
-				$qual_results = get_post_meta( get_the_ID(), '_results_qual', true );
-				$qual_results = json_decode( $qual_results, true );
-				if ( isset( $qual_results[1] ) ) {
-					$pole_position = $qual_results[1];
-					$name = $pole_position['name'];
-					if ( isset( $stored_results[$name] ) ) {
-						$stored_results[$name] = $stored_results[$name] + 1;
-
-						// Record who won pole
-						if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_pole_position', true ) ) {
-							update_post_meta( get_the_ID(), '_pole_position', $name );
-						}
-
-					}
-				}
-
-				// Add bonus points for fastest lap in each event
-				asort( $fastest_laps );
-
-				// Fixing buggy fastest laps
-				if ( 'update' === get_option( 'undiecar-cache' ) ) {
-					delete_post_meta( get_the_ID(), '_fastest_lap' );
-				}
-
-				foreach ( $fastest_laps as $name => $fastest_lap_time ) {
-
-					if ( isset( $stored_results[$name] ) ) {
-
-						// Record who won bonus point
-						if ( 'update' === get_option( 'undiecar-cache' ) || '' === get_post_meta( get_the_ID(), '_fastest_lap', true ) ) {
-
-							// Handling multiclass driver names (where name is attached to car during processing)
-							$exploded = explode( '|', $name );
-							if ( isset( $exploded[ 1 ] ) ) {
-								$recorded_name = $exploded[ 0 ];
-							} else {
-								$recorded_name = $name;
-							}
-
-							update_post_meta( get_the_ID(), '_fastest_lap', $recorded_name );
-						}
-
-						$stored_results[$name] = $stored_results[$name] + 1;
-						break;
 					}
 
 				}
@@ -1179,27 +938,158 @@ class SRC_Core {
 		}
 		wp_reset_query();
 
-		arsort( $stored_results );
+		// Handle drop scores
+		$points_to_keep = $number_of_events - get_post_meta( $season_id, 'drop_scores', true );
+		$points_with_dropscores = array();
+		foreach ( $stored_points as $driver_name => $points ) {
+			arsort( $points );
 
-		// Deal with multi-car seasons (where drivers car is appended to their name)
-		$new_stored_results = array();
-		foreach ( $stored_results as $key => $pts ) {
-			$x = explode( '|', $key );
-			if ( isset( $x[ 1 ] ) ) {
-				$name = $x[ 0 ];
-			} else {
-				$name = $key;
+			$points_with_dropscores[ $driver_name ] = 0;
+
+			$points_batchs = 0;
+			foreach ( $points as $point ) {
+
+				if ( $points_batchs < $points_to_keep ) {
+					$points_with_dropscores[ $driver_name ] = $points_with_dropscores[ $driver_name ] + $point;
+				}
+
+				$points_batchs++;
+			}
+		}
+
+		// Put scores in order
+		arsort( $points_with_dropscores );
+
+		return $points_with_dropscores;
+	}
+
+	static function get_driver_points_from_single_race( $results, $points_positions, $points_multiplier ) {
+		$stored_results = array();
+
+		// Loop through each drivers results
+		foreach ( $results as $key => $result ) {
+
+			$pos = $result[ 'position' ];
+			$name = $result['name'];
+
+			// Get points for this driver
+			if ( isset( $points_positions[$pos - 1] ) ) {
+
+				// Get points multiplier (for races worth more than normal points)
+				if ( ! is_numeric( $points_multiplier ) ) {
+					$points_multiplier = 1;
+				}
+
+				// Add drivers points
+				$points = $points_positions[$pos - 1] * $points_multiplier;
+				if ( isset( $stored_results[$name] ) ) {
+					$stored_results[$name] = $stored_results[$name] + $points;
+				} else {
+					$stored_results[$name] = $points;
+				}
+
 			}
 
-			if ( isset( $new_stored_results[ $name ] ) ) {
-				$new_stored_results[ $name ] = $new_stored_results[ $name ] + $pts;
+			// Adding tiny fraction of a point to allow us to work out who is in front when there is a draw on points
+			if ( isset( $stored_results[$name] ) ) {
+				$stored_results[$name] = $stored_results[$name] - ( $result['incidents'] * self::FRACTION );
 			} else {
-				$new_stored_results[ $name ] = $pts;
+				$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
 			}
 
 		}
 
-		return $new_stored_results;
+		// Fastest lap bonus point
+		$fastest_driver = SRC_Core::get_fastest_lap( $results );
+		if ( isset( $stored_results[ $fastest_driver ] ) ) {
+			$stored_results[ $fastest_driver ] = $stored_results[ $fastest_driver ] + 1;
+		}
+
+		// Least incidents bonus points
+		$least_incident_drivers = SRC_Core::get_least_incident_drivers( $results );
+		if ( is_array( $least_incident_drivers ) ) {
+
+			foreach ( $least_incident_drivers as $incident_name => $incidents ) {
+				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 1;
+			}
+
+		}
+
+		return $stored_results;
+	}
+
+	static function get_fastest_lap( $results ) {
+		$fastest_lap = null;
+
+		foreach ( $results as $key => $result ) {
+			$name = $result[ 'name' ];
+
+			if ( isset( $result['fastest_lap_time'] ) && '' !== $result['fastest_lap_time'] && '-1' !== $result['fastest_lap_time'] ) {
+				$time_exploded = explode( ':', $result['fastest_lap_time'] );
+
+				$hours = ( 60 * $time_exploded[0] );
+				$minutes = ( 60 * 60 * $time_exploded[1] );
+				$seconds = $time_exploded[2];
+				$time = $hours + $minutes +  $seconds;
+			}
+
+			$fastest_laps[ $name ] = $time;
+
+		}
+
+		if ( isset( $fastest_laps ) ) {
+			$fastest_lap_array = array_keys( $fastest_laps, min( $fastest_laps ) );
+			$fastest_lap = $fastest_lap_array[ 0 ];
+		}
+
+		// Store fastest lap
+		if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_fastest_lap', true ) ) ) {
+			update_post_meta( get_the_ID(), '_fastest_lap', $fastest_lap );
+		}
+
+		return $fastest_lap;
+	}
+
+	static function get_least_incident_drivers( $results ) {
+		$incidents = null;
+
+		// Only allow those who are within 1 lap of the leader to get least incidents award
+		foreach ( $results as $key => $result ) {
+			$name = $result[ 'name' ];
+
+			$laps_by_leader = $results[0]['laps_completed'];
+			$laps_required = $laps_by_leader - 1;
+			if ( $result[ 'laps_completed'] >= $laps_required ) {
+				$incidents[ $name ] = $result[ 'incidents' ];
+			}
+
+		}
+
+		// Remove those who don't have the minimum number of incidents
+		if ( isset( $incidents ) ) {
+
+			foreach ( $incidents as $name => $incident_number ) {
+
+				if ( min( $incidents ) !== $incident_number ) {
+					unset( $incidents[ $name ] );
+				}
+
+			}
+
+		}
+
+		// Store fastest lap
+		if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
+
+			array();
+			foreach ( $incidents as $name => $incident_number ) {
+				$names[] = $name;
+			}
+
+			update_post_meta( get_the_ID(), '_least_incidents', $names );
+		}
+
+		return $incidents;
 	}
 
 }
