@@ -181,16 +181,13 @@ class SRC_Core {
 					}
 				}
 
-				// Don't bother showing drivers who haven't scored any points yet
-				$points = absint( round( $points ) );
-
 				$content .= '<tr>';
 
 				$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
 				$content .= '<td class="col-name">' . $linked_name . '</td>';
 				$content .= '<td class="col-inc drivers-list">' . $driver_list /* escaped earlier */ . '</td>';
-				$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
-				$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+				$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
+				$content .= '<td class="col-pts">' . round( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 
 				$content .= '</tr>';
 
@@ -372,8 +369,8 @@ class SRC_Core {
 						<td class="col-car">' . esc_html( $car ) . '</td>';
 					}
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
-					$content .= '<td class="col-inc">' . absint( $inc ) . '</td>';
-					$content .= '<td class="col-pts">' . absint( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
+					$content .= '<td class="col-pts">' . round( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 
 					$content .= '</tr>';
 				}
@@ -997,6 +994,13 @@ class SRC_Core {
 				$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
 			}
 
+		}
+
+		// Pole position bonus point
+		foreach ( $stored_results as $name => $result ) {
+			$stored_results[$name]++;
+			update_post_meta( get_the_ID(), '_pole_position', $name );
+			break;
 		}
 
 		// Fastest lap bonus point
