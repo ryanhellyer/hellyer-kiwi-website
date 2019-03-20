@@ -30,6 +30,7 @@ $header_image       = get_user_meta( $member_id, 'header_image', true );
 $season             = get_user_meta( $member_id, 'season', true );
 $note               = get_user_meta( $member_id, 'note', true );
 $invited            = get_user_meta( $member_id, 'invited', true );
+$former_champion    = get_user_meta( $member_id, 'former_champion', true );
 $custid             = get_user_meta( $member_id, 'custid', true );
 
 get_header();
@@ -215,6 +216,10 @@ if (
 		echo '
 		<label>Invited? (yes|null)</label>
 		<input name="invited" type="text" value="' . esc_attr( $invited ) . '" />';
+
+		echo '
+		<label>Former champion? (yes|null)</label>
+		<input name="former_champion" type="text" value="' . esc_attr( $former_champion ) . '" />';
 	}
 
 
