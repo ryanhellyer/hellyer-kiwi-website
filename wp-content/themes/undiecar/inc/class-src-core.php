@@ -319,7 +319,11 @@ class SRC_Core {
 					$oval_irating = get_user_meta( $member_id, 'oval_irating', true );
 					$av_rating = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
 					$listed_name = $name;
-					if ( $av_rating < get_post_meta( $season_id, 'division_1_cutoff', true ) ) {
+					if (
+						$av_rating < get_post_meta( $season_id, 'division_1_cutoff', true )
+						&&
+						'yes' !== get_user_meta( $member_id, 'former_champion', true )
+					) {
 						$listed_name = $name . ' ' . esc_html__( '(Div 2)', 'undiecar' );
 					}
 

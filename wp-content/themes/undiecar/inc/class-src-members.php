@@ -162,6 +162,10 @@ class SRC_Members extends SRC_Core {
 					'meta_key' => 'invited',
 					'sanitize' => 'wp_kses_limited',
 				);
+				$user_meta['former_champion'] = array(
+					'meta_key' => 'former_champion',
+					'sanitize' => 'wp_kses_limited',
+				);
 			}
 
 			foreach ( $user_meta as $field_key => $x ) {
