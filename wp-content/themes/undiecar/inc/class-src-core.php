@@ -318,8 +318,9 @@ class SRC_Core {
 					$road_irating = get_user_meta( $member_id, 'road_irating', true );
 					$oval_irating = get_user_meta( $member_id, 'oval_irating', true );
 					$av_rating = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
+					$listed_name = $name;
 					if ( $av_rating < get_post_meta( $season_id, 'division_1_cutoff', true ) ) {
-						$name = $name . ' ' . esc_html__( '(Div 2)', 'undiecar' );
+						$listed_name = $name . ' ' . esc_html__( '(Div 2)', 'undiecar' );
 					}
 
 					// Get car number
@@ -340,7 +341,7 @@ class SRC_Core {
 
 					}
 
-					$linked_name = '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $name ) . '</a>';
+					$linked_name = '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $listed_name ) . '</a>';
 
 				}
 
