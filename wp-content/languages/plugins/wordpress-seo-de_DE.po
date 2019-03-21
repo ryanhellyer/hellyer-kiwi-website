@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-03-21 13:33:54+0000\n"
+"PO-Revision-Date: 2019-03-21 15:45:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,6 +23,10 @@ msgstr "All-around SEO Training"
 #: admin/views/sidebar.php:65
 msgid "%s for WordPress training"
 msgstr "%s for WordPress Training"
+
+#: inc/class-myyoast-api-request.php:184
+msgid "No JSON object was returned."
+msgstr "Es wurde kein JSON-Objekt zurückgegeben."
 
 #: languages/yoast-components.php:289
 msgid "The image you selected is too small for Facebook"
@@ -713,10 +717,27 @@ msgstr "Wusstest du schon, dass %s auch Plural- oder Zeitformen deiner Keyphrase
 msgid "%1$s with ID %2$s couldn't be patched"
 msgstr "%1$s mit der ID %2$s konnte nicht eingesetzt werden"
 
+#. translators: %1$s expands to the object ID. %2$s resolved to the object
+#. type.
+#: inc/exceptions/class-invalid-argument-exception.php:147
+msgid "No object with ID %1$s and %2$s could be found"
+msgstr "Es konnte kein Objekt mit der ID %1$s und %2$s gefunden werden"
+
+#. translators: %1$s expands to the object subtype. %2$s resolved to the object
+#. type.
+#: inc/exceptions/class-invalid-argument-exception.php:128
+msgid "`%1$s` is not a valid subtype of `%2$s`"
+msgstr "`%1$s` ist keine gültige Subtyp von `%2$s`"
+
 #. translators: %1$s expands to the object type.
 #: inc/exceptions/class-invalid-argument-exception.php:110
 msgid "The object type `%1$s` is invalid"
 msgstr "Der Objekt-Typ `%1$s` ist ungültig."
+
+#. translators: %1$s expands to the parameter name.
+#: inc/exceptions/class-invalid-argument-exception.php:24
+msgid "The parameter `%1$s` cannot be empty."
+msgstr "Der Parameter `%1$s` darf nicht leer sein."
 
 #: inc/class-wpseo-rank.php:139
 msgid "SEO: No Focus Keyphrase"
