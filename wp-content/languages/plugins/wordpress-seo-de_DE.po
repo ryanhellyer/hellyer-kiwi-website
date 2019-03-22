@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-03-21 15:45:25+0000\n"
+"PO-Revision-Date: 2019-03-22 10:46:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -85,6 +85,12 @@ msgstr "Keyphrase"
 msgid "Free"
 msgstr "Kostenlos"
 
+#. translators: %1$s expands to the link to the article, %2$s closes the link
+#. to the article
+#: admin/views/tabs/metas/paper-content/media-content.php:41
+msgid "Please carefully consider the implications and %1$sread this post%2$s if you want more information about the impact of showing media in search results."
+msgstr "Bitte berücksichtige die Auswirkungen und %1$slies diesen Beitrag%2$s wenn du mehr über den Einfluss der Anzeige von Medien in den Suchergebnissen erfahren möchtest."
+
 #: admin/views/tabs/metas/paper-content/media-content.php:38
 msgid "By enabling this option, attachment URLs become visible to both your visitors and Google. To add value to your website, they should contain useful information, or they might have a negative impact on your ranking."
 msgstr "Durch Aktivierung dieser Option, werden Anhangsseiten-URLs sowohl für deine Besucher als auch Google sichtbar. Um den Wert deiner Website zu stärken, sollten sie nützliche Informationen enthalten, sonst kann es sein, dass diese negative Auswirkungen auf dein Ranking haben."
@@ -121,7 +127,7 @@ msgstr "Die %3$sText-Link-Zähler%4$s -Funktion (vorgestellt in %1$s %2$s) ist d
 #. is anchor closing.
 #: admin/links/class-link-notifier.php:97
 msgid "The Text link counter feature provides insights in how many links are found in your text and how many links are referring to your text. This is very helpful when you are improving your %1$sinternal linking%2$s."
-msgstr "Die integrierte Text-Link-Zähler-Funktion zeigt an, wie viele Links in deinem Text gefunden werden und wie viele Links auf deinen Text verweisen. Das ist sehr hilfreich, wenn du dein %1$sInternal Linking%2$s verbessern möchtest."
+msgstr "Die integrierte Text-Link-Zähler-Funktion zeigt an, wie viele Links in deinem Text gefunden werden und wie viele Links auf deinen Text verweisen. Das ist sehr hilfreich, wenn du deine %1$sinterne Verlinkung%2$s verbessern möchtest."
 
 #: admin/links/class-link-notifier.php:94
 msgid "Count links"
@@ -200,6 +206,10 @@ msgstr "%1$sKeyphrase in Zwischenüberschriften%3$s: Mehr als 75% deiner hierarc
 #: languages/yoast-seo-js.php:244
 msgid "%1$sKeyphrase in subheading%3$s: %2$sUse more keyphrases or synonyms in your higher-level subheadings%3$s!"
 msgstr "%1$sKeyphrase in Zwischenüberschriften%3$s: %2$sVerwende mehr Keyphrasen und Synonyme in deinen hierarchische höheren Zwischenüberschriften%3$s!"
+
+#: languages/wordpress-seojs.php:5
+msgid "We're sorry! Unfortunately, the recalibrated analysis beta doesn't work as intended with your current setup {{bold}}yet{{/bold}}. Please deactivate the recalibration beta under \"SEO - General - Features\" and please try again later. We value your input! If you can't access the feature page, please contact your administrator. "
+msgstr "Es tut uns leid! Leider arbeitet die rekalibrierte Beta-Auswertung {{bold}}noch{{/bold}} nicht wie erwartet mit deinem aktuellen Setup zusammen. Bitte deaktiviere die Beta-Version der Rekalibrierung unter \"SEO - Allgemein - Funktionen\" und bitte versuche es später noch einmal. Anmerkungen von dir sind immer willkommen. Falls du die FUNKTIONS-Seite nicht aufrufen kannst, bitte kontaktiere deinen Administrator."
 
 #. translators: 1: object ID; 2: object type.
 #: src/models/indexable.php:174
@@ -818,6 +828,10 @@ msgstr[1] "Es gibt neue Benachrichtigungen."
 msgid "Colon"
 msgstr "Doppelpunkt"
 
+#: languages/yoast-components.php:17
+msgid "This is a list of related content to which you could link in your post. {{a}}Read our article about site structure{{/a}} to learn more about how internal linking can help improve your SEO."
+msgstr "Dies ist eine Liste von verwandtem Inhalt auf den du in deinem Beitrag verweisen kannst. {{a}}Lies unseren Artikel über Seitenstruktur{{/a}}, um mehr darüber zu lernen, wie interne Verlinkungen deinen SEO Score verbessern können."
+
 #: languages/wordpress-seojs.php:272
 msgid "%s, %s and %s"
 msgstr "%s, %s und %s"
@@ -1049,7 +1063,7 @@ msgstr "Nicht unterstützt!"
 
 #: languages/yoast-components.php:23
 msgid "Read {{a}}our article about site structure{{/a}} to learn more about how internal linking can help improve your SEO."
-msgstr "Lies {{a}}unseren Artikel über die Struktur der Website{{/a}}, um mehr darüber zu erfahren, wie die interne Verlinkung deine SEO verbessern kann."
+msgstr "Lies {{a}}unseren Artikel über Seitenstruktur{{/a}}, um mehr darüber zu erfahren, wie interne Verlinkungen deinen SEO Score verbessern können."
 
 #: languages/yoast-components.php:20
 msgid "Once you add a bit more copy, we'll give you a list of related content here to which you could link in your post."
@@ -2459,7 +2473,7 @@ msgstr "Links in deinem Text zählen"
 #. is Yoast.com 3: is anchor closing.
 #: admin/links/class-link-reindex-dashboard.php:220
 msgid "The links in all your public texts need to be counted. This will provide insights of which texts need more links to them. If you want to know more about the why and how of internal linking, check out %1$sthe article about internal linking on %2$s%3$s."
-msgstr "Die Links in deinen öffentlichen Texten müssen gezählt werden. Dies gewährt Einblick in den Status deiner Texte und zeigt, welche Texte mehr Links benötigten. Wenn du mehr über interne Verlinkung wissen möchtest, besuche %1$sfolgenden Artikel zum Thema auf %2$s%3$s."
+msgstr "Die Links in deinen öffentlichen Texten müssen gezählt werden. Dies gewährt Einblick in den Status deiner Texte und zeigt, welche Texte mehr Links benötigen. Wenn du mehr über interne Verlinkung wissen möchtest, besuche %1$sfolgenden Artikel zum Thema auf %2$s%3$s."
 
 #: admin/views/class-yoast-feature-toggles.php:96
 #: admin/links/class-link-reindex-dashboard.php:65
@@ -2540,6 +2554,11 @@ msgstr "Hole das Meiste mit %2$s aus %1$s heraus"
 msgid "Upgrade to Premium"
 msgstr "Upgrade zu Premium"
 
+#. translators: %1$s resolves to Yoast SEO Premium
+#: admin/config-ui/components/class-component-suggestions.php:36
+msgid "Do you want to outrank your competition? %1$s gives you awesome additional features that'll help you to set up your SEO strategy like a professional. Add synonyms and related keywords, use our Premium SEO analysis, the redirect manager and our internal linking tool. %1$s will also give you access to premium support."
+msgstr "Möchtest du besser sein als deine Konkurrenz? %1$s gibt dir großartige Zusatz-Funktionen, die dir helfen deine SEO Strategie wie ein Profi anzugehen. Füge Synonyme und verwandte Keywords hinzu, nutze unsere Premium SEO Analyse, den Redirect-Manager und unser Tool für interne Verlinkung. %1$s bietet außerdem Zugriff zu unserem Premium Support. "
+
 #. translators: %s resolves to Yoast SEO Premium
 #: admin/config-ui/components/class-component-suggestions.php:34
 msgid "Outrank the competition with %s"
@@ -2589,7 +2608,7 @@ msgstr "24/7 Support"
 
 #: admin/class-premium-upsell-admin-block.php:58
 msgid "Superfast internal linking suggestions"
-msgstr "Superschnelle interne Verlinkungsvorschläge"
+msgstr "Superschnelle Vorschläge zur internen Verlinkung"
 
 #. translators: %1$s expands to a 'Yoast SEO Premium' text linked to the
 #. yoast.com website.
