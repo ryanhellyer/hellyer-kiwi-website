@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-03-27 16:20:39+0000\n"
+"PO-Revision-Date: 2019-03-27 16:53:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,6 +31,10 @@ msgstr "EWWW I.O. übersetzen"
 msgid "Here are some ways you can contribute to the development of this plugin:"
 msgstr "Hier sind ein paar Wege, wie du die Entwicklung dieses Plugins unterstützen kannst:"
 
+#: common.php:8117
+msgid "Improves actual and perceived loading time as images will be loaded only as they enter (or are about to enter) the viewport. When used with the ExactDN and WebP features, the plugin will load the best available image size and format for each device."
+msgstr "Verbessert die tatsächliche und wahrgenommene Ladezeit, da Bilder nur dann geladen werden, wenn sie in den Viewport gelangen (oder kurz davor stehen). Bei Verwendung mit den ExactDN- und WebP-Funktionen lädt das Plugin die beste verfügbare Bildgröße und das beste Format für jedes Gerät."
+
 #: common.php:8115
 msgid "Lazy Load"
 msgstr "Lazy Load"
@@ -43,13 +47,21 @@ msgstr "Mitwirken"
 msgid "Support"
 msgstr "Support"
 
+#: common.php:1502
+msgid "EWWW Image Optimizer has detected a WooCommerce thumbnail regeneration. To optimize new thumbnails, you may run the Bulk Optimizer from the Media menu. This notice may be dismissed after the regeneration is complete."
+msgstr "EWWW Image Optimizer hat eine WooCommerce-Vorschaubild-Regeneration festgestellt. Um neue Vorschaubilder zu optimieren, kannst du die Massenoptimierung vom Medien-Menü aus starten. Dieser Hinweis kann verworfen werden, sobald die Regeneration abgeschlossen ist."
+
 #: common.php:1480
 msgid "ShortPixel image optimization has been disabled to prevent conflicts with ExactDN (EWWW Image Optimizer)."
 msgstr "ShortPixel-Bildoptimierung wurde deaktiviert, um Konflikte mit ExactDN (EWWW Image Optimizer) zu vermeiden."
 
+#: unique.php:565
+msgid "Sites that use ExactDN already have built-in image optimization and may dismiss this notice to disable local compression."
+msgstr "Websites, die ExactDN benutzen, haben bereits eine integrierte Optimierung und können diesen Hinweis verwerfen, um lokale Kompression zu deaktivieren."
+
 #: bulk.php:771
 msgid "Images compressed by TinyJPG and TinyPNG have been skipped, refresh and use the Force Re-optimize option to override."
-msgstr "Bilder, die durch TinyJPG und TinyPNG jomprimiert wurden, wurden übersprungen. Um das zu verhindern, neu laden und die Option Reoptimierung erzwingen benutzen."
+msgstr "Bilder, die durch TinyJPG und TinyPNG komprimiert wurden, wurden übersprungen. Um das zu verhindern, neu laden und die Option Reoptimierung erzwingen benutzen."
 
 #: common.php:8331
 msgid "JS WebP Rewriting"
@@ -57,7 +69,7 @@ msgstr "JS WebP Rewriting"
 
 #: common.php:3246
 msgid "Could not validate EWWW Image Optimizer API key, please check your key to ensure it is correct."
-msgstr " EWWW-Image-Optimizer-API-Schlüssel konnte nicht validiert werden, bitte prüfe, ob dein Schlüssel korrekt ist."
+msgstr "Konnte EWWW Image Optimizer API-Schlüssel nicht prüfen. Bitte prüfe deinen Schlüssel auf Korrektheit."
 
 #: unique.php:564
 msgid "An API key or ExactDN subscription will allow you to offload the compression to our dedicated servers instead."
