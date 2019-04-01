@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-04-01 10:59:14+0000\n"
+"PO-Revision-Date: 2019-04-01 11:28:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -976,7 +976,7 @@ msgstr "Feil ved kopiering"
 
 #: languages/wordpress-seojs.php:26
 msgid "An error occurred loading the %s primary taxonomy picker."
-msgstr "En feil oppstod under lasting av %s velgeren for primærtaksonomi"
+msgstr "Det oppstod en feil under innlasting av den primære taksonomivelgeren %s."
 
 #. translators: %1$s expands to Yoast.
 #: inc/class-structured-data-blocks.php:61
@@ -1085,11 +1085,11 @@ msgstr "Usortert liste"
 
 #: languages/wordpress-seojs.php:194
 msgid "Showing step items as an ordered list."
-msgstr "Viser stegelementer som en arrangert liste."
+msgstr "Viser trinnelementene som en ordnet liste."
 
 #: languages/wordpress-seojs.php:191
 msgid "Showing step items as an unordered list"
-msgstr "Viser stegelementer som en uarrangert liste."
+msgstr "Viser trinnelementene som en uordnet liste"
 
 #: languages/wordpress-seojs.php:188
 msgid "Add step"
@@ -1097,15 +1097,15 @@ msgstr "Legg til trinn"
 
 #: languages/wordpress-seojs.php:209
 msgid "Delete total time"
-msgstr "Slett totaltid"
+msgstr "Slett total tid"
 
 #: languages/wordpress-seojs.php:197
 msgid "Add total time"
-msgstr "Legg til totaltid"
+msgstr "Legg til total tid"
 
 #: languages/wordpress-seojs.php:182
 msgid "How to"
-msgstr "Hvordan gjøre"
+msgstr "Hvordan"
 
 #: languages/wordpress-seojs.php:179
 msgid "How-to"
@@ -1121,19 +1121,19 @@ msgstr "Analyseresultater"
 
 #: languages/wordpress-seojs.php:70
 msgid "Enter a focus keyphrase to calculate the SEO score"
-msgstr "Legg inn et nøkkelord for å beregne SEO-vurderingen"
+msgstr "Skriv inn fokusnøkkelord for å beregne SEO-poengsummen"
 
 #: languages/wordpress-seojs.php:20
 msgid "Learn more about Cornerstone Content."
-msgstr "Lær mer om hjørnesteinsinnhold"
+msgstr "Lær mer om hjørnesteinsinnhold."
 
 #: languages/wordpress-seojs.php:17
 msgid "Cornerstone content should be the most important and extensive articles on your site."
-msgstr "Hjørnesteinsinnholdet burde være de viktigste og mest omfattende artiklene på din side."
+msgstr "Hjørnesteinsinnhold bør være de viktigste og mest omfattende artiklene på nettstedet ditt."
 
 #: admin/pages/network.php:20
 msgid "Restore Site"
-msgstr "Gjenopprett side"
+msgstr "Gjenopprett nettsted"
 
 #: admin/menu/class-network-admin-menu.php:34
 msgid "Network Settings"
@@ -1141,7 +1141,7 @@ msgstr "Nettverksinnstillinger"
 
 #: admin/class-yoast-network-admin.php:263
 msgid "You are not allowed to perform this action."
-msgstr "Du har ikke tilgang til å utføre denne handlingen."
+msgstr "Du har ikke lov til å utføre denne handlingen."
 
 #. translators: %s: error message
 #: admin/class-yoast-network-admin.php:195
@@ -1151,20 +1151,20 @@ msgstr "Feil: %s"
 #. translators: %s: success message
 #: admin/class-yoast-network-admin.php:193
 msgid "Success: %s"
-msgstr "Vellykket: %s"
+msgstr "Suksess: %s"
 
 #. translators: %s expands to the ID of a site within a multisite network.
 #: admin/class-yoast-network-admin.php:155
 msgid "Site with ID %d not found."
-msgstr "Siden med ID %d ble ikke funnet."
+msgstr "Nettsted med ID %d ikke funnet."
 
 #: admin/class-yoast-network-admin.php:146
 msgid "No site has been selected to restore."
-msgstr "Ingen sider er valgt for gjenoppretting."
+msgstr "Intet nettsted er valgt for å gjenopprette."
 
 #: admin/class-yoast-network-admin.php:110
 msgid "You are not allowed to modify unregistered network settings."
-msgstr "Du har ikke tilgang til å endre uregistrerte nettverksinstillinger."
+msgstr "Du har ikke lov til å endre uregistrerte nettverksinnstillinger."
 
 #: admin/class-yoast-network-admin.php:81
 msgid "deleted"
@@ -1172,11 +1172,11 @@ msgstr "slettet"
 
 #: admin/class-multiple-keywords-modal.php:21
 msgid "Would you like to add another keyphrase?"
-msgstr "Vil du legge til flere nøkkelord?"
+msgstr "Vil du legge til et nøkkelord til?"
 
 #: languages/yoast-components.php:101
 msgid "image preview"
-msgstr "Forhåndsvisning av bilde"
+msgstr "forhåndsvisning av bilde"
 
 #: languages/yoast-components.php:29
 msgid "Copied!"
@@ -1190,9 +1190,13 @@ msgstr "Ikke støttet!"
 msgid "Read {{a}}our article about site structure{{/a}} to learn more about how internal linking can help improve your SEO."
 msgstr "Les {{a}}artikkelen vår om nettstedstruktur{{/a}} for å lære mer om hvordan internlenker kan hjelpe deg til bedre SEO."
 
+#: languages/yoast-components.php:20
+msgid "Once you add a bit more copy, we'll give you a list of related content here to which you could link in your post."
+msgstr "Når du legger til litt mer tekst, gir vi deg en liste over relatert innhold her som du kan lenke til i innlegget ditt."
+
 #: languages/yoast-components.php:14
 msgid "Consider linking to these {{a}}cornerstone articles:{{/a}}"
-msgstr "Vurder å lenke til disse {{a}}hjørnesteinsartiklene:{{/a}}"
+msgstr "Vurder å lenke til disse {{a}}hjørnesteinsartiklene:{{/a)}"
 
 #: languages/yoast-components.php:11
 msgid "Consider linking to these articles:"
@@ -1863,6 +1867,13 @@ msgstr "Se hvem som har bidratt til %1$s."
 msgid "Help on this search results setting"
 msgstr "Hjelp med denne innstillingen for søkeresultater"
 
+#. translators: 1: expands to an indexable object's name, like a post type or
+#. taxonomy; 2: expands to <code>noindex</code>; 3: link open tag; 4: link
+#. close tag.
+#: admin/views/class-view-utils.php:48
+msgid "Not showing the archive for %1$s in the search results technically means those will have a %2$s robots meta and will be excluded from XML sitemaps. %3$sMore info on the search results settings%4$s."
+msgstr "Ikke å vise arkivet for%1$s i søkeresultater betyr teknisk at de vil ha en %2$s robotmeta og ville være utelukket fra XML-nettstedskartet. %3$sMer informasjon om innstillingene for søkeresultater%4$s."
+
 #. translators: %1$s expands to the taxonomy name %2$s expands to the current
 #. taxonomy index value
 #: admin/taxonomy/class-taxonomy-settings-fields.php:67
@@ -1881,10 +1892,16 @@ msgstr "Innholdstyper"
 msgid "Check SEO configuration"
 msgstr "Sjekk SEO konfigurasjon"
 
+#. translators: %1$s expands to Yoast SEO, %2$s is a link start tag to the
+#. Onboarding Wizard, %3$s is the link closing tag.
+#: admin/notifiers/class-configuration-notifier.php:105
+msgid "Want to make sure your %1$s settings are still OK? %2$sOpen the configuration wizard again%3$s to validate them."
+msgstr "Vil du kontrollere at innstillingene for %1$s fortsatt er OK? %2$sÅpne konfigurasjonsveiviseren på nytt%3$s for å validere dem."
+
 #. translators: %1$s expands to the post type name.
 #: admin/metabox/class-metabox.php:80
 msgid "Should search engines follow links on this %1$s?"
-msgstr "Skal søkemotorer følge lenkene på denne %1$s?"
+msgstr "Skal søkemotorer følge lenker på dette/denne %1$s?"
 
 #. translators: %1$s expands to Yes or No,  %2$s expands to the post type name.
 #: admin/metabox/class-metabox.php:75
@@ -1900,13 +1917,17 @@ msgstr "Tillat at søkemotorer viser %s i søkeresultatene?"
 
 #: frontend/class-frontend.php:1200 admin/menu/class-admin-menu.php:89
 msgid "Search Appearance"
-msgstr "Søkevisning"
+msgstr "Søkeutseende"
+
+#: admin/config-ui/fields/class-field-post-type-visibility.php:19
+msgid "Please specify what content types you would like to appear in search engines. If you do not know the differences between these, it's best to choose the default settings."
+msgstr "Vennligst spesifiser hvilke innholdstyper du vil se i søkemotorer. Hvis du ikke vet forskjellene mellom disse, er det best å velge standardinnstillingene."
 
 #. Translators: %1$s expands to the name of the post type. The options given to
 #. the user are "visible" and "hidden"
 #: admin/config-ui/fields/class-field-choice-post-type.php:32
 msgid "Search engines should show \"%1$s\" in search results:"
-msgstr "Søkemotorer skal vise \"%1$s\" i søkeresultatene: "
+msgstr "Søkemotorer bør vise \"%1$s\" i søkeresultatene:"
 
 #: admin/config-ui/class-configuration-structure.php:86
 msgid "Search engine visibility"
@@ -1921,7 +1942,11 @@ msgstr "Vis %s i søkeresultater?"
 #. translators: %1$s expands to Yoast SEO.
 #: admin/class-plugin-conflict.php:157
 msgid "Toggle %1$s's XML Sitemap"
-msgstr "Skru av/på XML-sidekart for %1$s"
+msgstr "Skru %1$s sitt XML-nettstedskart av/på"
+
+#: admin/views/tabs/social/twitterbox.php:22
+msgid "Enable this feature if you want Twitter to display a preview with images and a text excerpt when a link to your site is shared."
+msgstr "Aktiver denne funksjonen hvis du vil at Twitter skal vise en forhåndsvisning med bilde og et tekstutdrag når en lenk til nettstedet ditt blir delt."
 
 #: admin/class-help-center.php:260
 msgid "Search result"
@@ -1933,7 +1958,15 @@ msgstr "SEO-analyse"
 
 #: admin/views/class-yoast-feature-toggles.php:98
 msgid "The text link counter helps you improve your site structure."
-msgstr "Telleren for tekstlenker hjelper deg å forbedre sidestrukturen."
+msgstr "Tekstlenktelleren hjelper deg å forbedre strukturen på nettstedet."
+
+#: admin/class-help-center.php:138
+msgid "If you have a problem that you can't solve with our video tutorials or knowledge base, you can send a message to our support team. They can be reached 24/7."
+msgstr "Hvis du har problemer som du ikke får løst ved å se på våre video-veiledninger eller i vår kunnskapsbase, kan du sende en melding til vårt hjelpesenter. De tar i mot henvendelser 24/7."
+
+#: admin/class-help-center.php:142
+msgid "Support requests you create here are sent directly into our support system, which is secured with 256 bit SSL, so communication is 100% secure."
+msgstr "Forespørsler om kundestøtte som du oppretter her blir sendt direkte til vårt system for kundestøtte. Forbindelsen er kryptert med 256 biters SSL slik at all kommunikasjon er 100% kryptert."
 
 #: admin/class-help-center.php:269
 msgid "New support request"
@@ -1996,6 +2029,11 @@ msgstr "Gode resultater"
 msgid "Get better search results in local search"
 msgstr "Oppnå bedre søkeresultater i lokale søk"
 
+#. translators: %1$s expands to WooCommerce
+#: admin/views/licenses.php:52
+msgid "Allow customers to pick up their %s order locally"
+msgstr "Tillat kunder å hente sin %s-bestilling lokalt"
+
 #: admin/views/class-yoast-feature-toggles.php:74
 msgid "The SEO analysis offers suggestions to improve the SEO of your text."
 msgstr "SEO-analysen gir deg anbefalinger for å forberede SEO-en i teksten din."
@@ -2014,15 +2052,15 @@ msgstr "Oppdag hvorfor lesbarhet er viktig for SEO."
 
 #: admin/views/class-yoast-feature-toggles.php:90
 msgid "The cornerstone content feature lets you to mark and filter cornerstone content on your website."
-msgstr "Funksjonen for hjørnesteinsinnhold lar deg markere og filtrere hjørnesteinsinnhold på nettsiden din."
+msgstr "Funksjonen for hjørnesteinsinnhold lar deg merke og filtrere hjørnesteinsinnhold på nettstedet ditt."
 
 #: admin/views/class-yoast-feature-toggles.php:91
 msgid "Find out how cornerstone content can help you improve your site structure."
-msgstr "Oppdag hvordan hjørnesteinsinnhold kan forbedre sidestrukturen."
+msgstr "Finn ut hvordan hjørnesteinsinnhold kan hjelpe deg med å forbedre strukturen på nettstedet ditt."
 
 #: admin/views/class-yoast-feature-toggles.php:99
 msgid "Find out how the text link counter can enhance your SEO."
-msgstr "Finn ut hvordan telleren for tekstlenker kan forbedre sidens SEO"
+msgstr "Finn ut hvordan tekstlenktelleren kan forbedre din SEO."
 
 #. translators: %s: Ryte
 #: admin/views/class-yoast-feature-toggles.php:115
@@ -2033,6 +2071,10 @@ msgstr "%s integrasjon"
 #: admin/views/class-yoast-feature-toggles.php:120
 msgid "Read more about how %s works."
 msgstr "Les mer om hvordan %s fungerer."
+
+#: admin/views/tabs/social/facebook.php:23
+msgid "Enable this feature if you want Facebook and other social media to display a preview with images and a text excerpt when a link to your site is shared."
+msgstr "Aktiver denne funksjonen hvis du ønsker at Facebook og andre sosiale media skal vise en forhåndsvisning med bilde og et tekstutdrag når en lenk til ditt nettsted blir delt."
 
 #. translators: %s expands to Yoast SEO Premium.
 #: admin/class-social-admin.php:186
@@ -2094,12 +2136,12 @@ msgstr "Ditt nettsted-språk er satt til {language}. Hvis dette ikke er riktig, 
 
 #: languages/yoast-components.php:191
 msgid "Your site language is set to %s. "
-msgstr "Ditt nettsted-språk er satt til %s."
+msgstr "Ditt nettsted-språk er satt til %s. "
 
 #: languages/yoast-components.php:155
 #: admin/formatter/class-metabox-formatter.php:169
 msgid "Highlight this result in the text"
-msgstr "fremhev dette resultat i teksten"
+msgstr "Fremhev dette resultat i teksten"
 
 #: languages/yoast-components.php:171
 #: admin/formatter/class-metabox-formatter.php:165
@@ -2274,6 +2316,16 @@ msgstr "Hei, din SEO fungerer bra! Sjekk ut statistikken:"
 msgid "You don't have any published posts, your SEO scores will appear here once you make your first post!"
 msgstr "Du har ingen publiserte innlegg, SEO-poengsummen din vil synliggjøres når du har publisert ditt første innlegg!"
 
+#: admin/config-ui/fields/class-field-title-intro.php:19
+msgid "On this page, you can change the name of your site and choose which separator to use. The separator will display, for instance, between your post title and site name. Symbols are shown in the size they'll appear in the search results. Choose the one that fits your brand best or takes up the least space in the snippets."
+msgstr "På denne siden kan du endre navnet på nettstedet ditt og velge hvilket skilletegn som skal brukes. Skiletegnet vil for eksempel vises mellom innleggstittel og nettstedsnavn. Symboler vises i størrelsen de vises i søkeresultatene. Velg den som passer best for merkevaren din eller tar opp minst plass i tekstutdragene."
+
+#. translators: %1$s is the plugin name, %2$s is a link opening tag, %3$s is a
+#. link closing tag.
+#: admin/config-ui/fields/class-field-social-profiles-intro.php:21
+msgid "%1$s can tell search engines about your social media profiles. These will be used in Google's Knowledge Graph. There are additional sharing options in the %1$s Social settings. %2$sRead more%3$s about these options."
+msgstr "%1$s kan fortelle søkemotorer om dine sosiale medieprofiler. Disse vil bli brukt i Google Knowledge Graph. Det finnes flere delingsalternativer i de sosiale innstillingene %1$s. %2$sLes mer%3$s om disse alternativene."
+
 #: admin/config-ui/fields/class-field-site-type.php:28
 msgid "Something else"
 msgstr "Noe annet"
@@ -2307,6 +2359,20 @@ msgstr "En blogg"
 msgid "What does the site %1$s represent?"
 msgstr "Hva står %1$s for?"
 
+#: admin/config-ui/fields/class-field-multiple-authors.php:21
+msgid "If you choose no, your author archives will be deactivated to prevent  duplicate content issues."
+msgstr "Hvis du velger nei, vil forfatterarkivet ditt bli deaktivert for å forhindre problemer med duplikatinnhold."
+
+#: admin/config-ui/fields/class-field-google-search-console-intro.php:28
+msgid "Note: we don't store your data in any way and don't have full access to your account. Your privacy is safe with us."
+msgstr "Merk: Vi lagrer ikke dataene dine på noen måte og har ikke full tilgang til kontoen din. Ditt personvern er trygt hos oss."
+
+#. translators: %1$s is the plugin name. %2$s is a link start tag to a Yoast
+#. help page, %3$s is the link closing tag.
+#: admin/config-ui/fields/class-field-google-search-console-intro.php:22
+msgid "%1$s integrates with Google Search Console, a must-have tool for site owners. It provides you with information about the health of your site. Don't have a Google account or is your site not activated yet? Find out %2$show to connect Google Search Console to your site%3$s."
+msgstr "%1$s integreres med Google Search Console, et verktøy nettstedseiere må ha. Det gir deg informasjon om helsen til nettstedet ditt. Har du ikke en Google-konto, eller er nettstedet ditt ikke aktivert ennå? Finn ut %2$sVis hvordan koble til Google Search Console til ditt nettstedet%3$s."
+
 #: admin/config-ui/fields/class-field-environment.php:24
 msgid "Option B: My site is under construction and should not be indexed"
 msgstr "Valg B: Nettstedet mitt er under konstruksjon og bør ikke indekseres"
@@ -2315,9 +2381,17 @@ msgstr "Valg B: Nettstedet mitt er under konstruksjon og bør ikke indekseres"
 msgid "Option A: My site is live and ready to be indexed"
 msgstr "Valg A: Nettstedet mitt er aktivt og er klart for å bli indeksert"
 
+#: admin/config-ui/fields/class-field-environment.php:21
+msgid "Choose under construction if you want to keep the site out of the index of search engines. Don't forget to activate it once you're ready to publish your site."
+msgstr "Velg under bygging hvis du vil holde nettstedet borte fra indeksen hos søkemotorer. Ikke glem å aktivere det når du er klar til å publisere nettstedet ditt."
+
 #: admin/config-ui/fields/class-field-environment.php:19
 msgid "Please specify if your site is under construction or already active."
 msgstr "Vennligst spesifiser om nettstedet er under konstruksjon eller allerede aktivt."
+
+#: admin/config-ui/fields/class-field-company-or-person.php:21
+msgid "This information will be used in Google's Knowledge Graph Card, the big block of information you see on the right side of the search results."
+msgstr "Denne informasjonen vil bli brukt i Googles kunnskapskort, den stor informsjonsboksen som vises på høyre side for søkeresultatene."
 
 #: admin/config-ui/fields/class-field-company-or-person.php:19
 msgid "Does your site represent a person or company?"
@@ -2381,7 +2455,7 @@ msgstr "Forespørselsmetoden %1$s er ikke gyldig."
 
 #: admin/views/partial-alerts-warnings.php:16
 msgid "Muted notifications:"
-msgstr "Ignorerte varsler:"
+msgstr "Avslåtte varsler:"
 
 #: admin/views/partial-alerts-errors.php:16
 msgid "Muted problems:"
@@ -2443,6 +2517,10 @@ msgstr "Teller for tekstlenker"
 msgid "Number of internal links linking to this post. See \"Yoast Columns\" text in the help tab for more info."
 msgstr "Antall interne lenker som lenker til dette innlegget. Se \"Yoast Columns\" tekst i hjelp-fanen for mer informasjon."
 
+#: admin/links/class-link-columns.php:181
+msgid "Number of outgoing internal links in this post. See \"Yoast Columns\" text in the help tab for more info."
+msgstr "Antall utgående interne lenker i dette innlegget. Se \"Yoast kolonner\"-teksten i hjelpfanen for mer informasjon. "
+
 #. translators: %1$s: Yoast SEO, %2$s: Link to article about content analysis,
 #. %3$s: Anchor closing, %4$s: Link to article about text links, %5$s: Emphasis
 #. open tag, %6$s: Emphasis close tag
@@ -2501,6 +2579,11 @@ msgstr "Hvis du ønsker å rangere foran dine konkurrenter i en bestemt by eller
 #: admin/config-ui/components/class-component-suggestions.php:98
 msgid "Attract more customers near you"
 msgstr "Tiltrekk deg flere kunder i nærheten av deg"
+
+#. translators: %1$s resolves to Yoast SEO
+#: admin/config-ui/components/class-component-suggestions.php:79
+msgid "Do you want to know all the ins and outs of the %1$s plugin? Do you want to learn all about our advanced settings? Want to be able to really get the most out of the %1$s plugin? Check out our %1$s plugin training and start outranking the competition!"
+msgstr "Vil du vite alle de minste detaljene i %1$s-utvidelsen? Vil du lære alt om våre avanserte innstillinger? Vil du få mest mulig ut av %1$s-utvidelsen? Sjekk ut vår %1$s-opplæring og begynn å utrangere konkurrentene!"
 
 #. translators: %1$s resolves to Yoast SEO, %2$s resolves to Yoast SEO plugin
 #. training
