@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-04-01 11:28:51+0000\n"
+"PO-Revision-Date: 2019-04-01 11:51:12+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1220,6 +1220,10 @@ msgstr "Nettstedets slagord"
 msgid "%1$sRemove this message%2$s"
 msgstr "%1$sFjern denne meldingen%2$s"
 
+#: admin/notifiers/class-post-type-archive-notification-handler.php:58
+msgid "We've recently improved the functionality of the Search Appearance settings. Unfortunately, we've discovered that for some edge-cases, saving the settings for specific post type archives might have gone wrong."
+msgstr "Vi har nylig forbedret funksjonaliteten til innstillingene for søkeutseende. Dessverre har vi oppdaget at det i enkelte tilfeller har gått galt med lagring av innstillinger for bestemte innholdstyper."
+
 #. translators: %1$s expands to the missing field name.
 #: admin/menu/class-replacevar-editor.php:113
 msgid "Not all required fields are given. Missing field %1$s"
@@ -1240,7 +1244,7 @@ msgstr "Optimaliser din butikk's SEO og sell fler produkter!"
 
 #: admin/views/sidebar.php:103
 msgid "Be found in Google Video search and enhance your video sharing on social media."
-msgstr "Bli funnet i Google Video søk og forbedre deling av dine videoer på sosiale medier"
+msgstr "Bli funnet i Google Video-søk og forbedre deling av dine videoer på sosiale medier."
 
 #: admin/views/sidebar.php:93
 msgid "Be found in Google Maps and local results."
@@ -1252,11 +1256,15 @@ msgstr "Utvid Yoast SEO"
 
 #: admin/views/sidebar.php:80
 msgid "Learn practical SEO skills to rank higher in Google."
-msgstr "Lær praktiske SEO skills for å bli høyere rangert hos Google"
+msgstr "Lær praktiske SEO-ferdigheter for å bli høyere rangert hos Google."
 
 #: admin/views/sidebar.php:70
 msgid "Don’t waste time figuring out the best settings yourself."
 msgstr "Ikke bruk tid på å finne de beste innstillingene selv."
+
+#: admin/views/sidebar.php:55
+msgid "Get quick wins to make your site rank higher in search engines."
+msgstr "Få raske gevinster med å få nettstedet til å score høyere i søkemotorer."
 
 #: languages/wordpress-seojs.php:77
 msgid "Add synonyms"
@@ -1281,11 +1289,17 @@ msgstr "Få opplæring i utvidelsen %s nå"
 msgid "Get the most out of the %s plugin"
 msgstr "Få mest mulig ut av utvidelsen %s"
 
+#. translators: %1$s expands to 'Yoast SEO for WordPress', %2$s to Joost de
+#. Valk.
+#: admin/config-ui/components/class-component-configuration-choices.php:75
+msgid "If you want to take full advantage of the plugin, get our %1$s training. Get insights from renowned SEO expert %2$s and the team behind the plugin. Actionable tips that'll help you configure your site to perform even better in search and for your visitors. Hours of video, sliced into bite-sized clips for you to learn from!"
+msgstr "Hvis du ønsker å dra full nytte av utvidelsen, få vår %1$s-opplæring. Få innsikt fra anerkjent SEO-ekspert %2$s og teamet bak utvidelsen. Nyttige tips som hjelper deg med å konfigurere nettstedet til å yte enda bedre i søk og for de besøkende. Flere timer med video, delt inn i små klipp, for deg, til å lære fra!"
+
 #. translators: %1$s expands to an opening anchor tag, %2$s expands to a
 #. closing anchor tag.
 #: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:16
 msgid "You can edit the SEO meta-data for this custom type on the %1$sShop page%2$s."
-msgstr "Du kan endre SEO meta-data for denne tilpassede typen på %1$sbutikksiden%2$s"
+msgstr "Du kan endre SEO-metadata for denne tilpassede typen på %1$sbutikksiden%2$s."
 
 #: admin/views/tabs/metas/paper-content/post_type/woocommerce-shop-page.php:11
 msgid "You haven't set a Shop page in your WooCommerce settings. Please do this first."
@@ -1526,6 +1540,12 @@ msgstr "%1$s respekterer personvernet ditt. Les våre %2$spersonvernregler%3$s o
 msgid "If you know what this means and you do not want to see this message anymore, you can %1$sdismiss this message%2$s."
 msgstr "Hvis du vet hva dette betyr, og du ikke vil se denne meldingen lenger, kan du %1$savvise denne meldingen%2$s."
 
+#. translators: %1$s expands to the link to the article, %2$s closes the link
+#. tag.
+#: admin/class-admin-media-purge-notification.php:69
+msgid "Your site's settings currently allow attachment URLs on your site to exist. Please read %1$sthis post about a potential issue%2$s with attachment URLs and check whether you have the correct setting for your site."
+msgstr "Nettstedets innstillinger tillater nå at lenker til vedlegg finnes. Les %1$sdette innlegget om et mulig problem med vedlegg%2$s og kontroller om du har riktig innstilling for ditt nettsted."
+
 #. translators: %1$s expands to the requested indexable type
 #: admin/services/class-indexable.php:92
 msgid "Unknown type %1$s"
@@ -1534,6 +1554,11 @@ msgstr "Ukjent type %1$s"
 #: admin/config-ui/fields/class-field-mailchimp-signup.php:41
 msgid "Includes a free MyYoast account which gives you access to our free SEO for Beginners course!"
 msgstr "Inkluderer en gratis MyYoast-konto, som gir deg tilgang til vårt gratis SEO for nybegynnere-kurs!"
+
+#. translators: %1$s expands to Yoast SEO for WordPress, %2$s expands to Yoast
+#: admin/config-ui/fields/class-field-mailchimp-signup.php:24
+msgid "Sign up for our newsletter if you would like to keep up-to-date about %1$s, other cool plugins by %2$s, and interesting news and tips from the world of SEO."
+msgstr "Meld deg på vårt nyhetsbrev om du ønsker å holde deg oppdatert om %1$s, andre kule utvidelser av %2$s, og interessante nyheter og tips fra SEO-verdenen."
 
 #. translators: %1$s expands to a link start tag to the Baidu Webmaster Tools
 #. site add page, %2$s is the link closing tag.
@@ -1566,6 +1591,12 @@ msgstr "Filtrer på innholdstype"
 #: admin/class-bulk-editor-list-table.php:384
 msgid "Show All Content Types"
 msgstr "Vis alle innholdstyper"
+
+#. translators: %1$s resolves to the opening tag of the link to the comment
+#. setting page, %2$s resolves to the closing tag of the link
+#: admin/class-admin-init.php:169
+msgid "To fix this uncheck the box in front of the \"Break comments into pages...\" on the %1$sComment settings page%2$s."
+msgstr "For å fikse dette fjerner du merket i boksen foran \"Del opp kommentarer i sider...\" på siden %1$sinnstillinger for diskusjon%2$s."
 
 #: inc/class-wpseo-replace-vars.php:1325
 msgid "Replaced with the normal title for an archive generated by WordPress"
@@ -1615,9 +1646,17 @@ msgstr "Vennligst ta en sikkerhetskopi av databasen din før du starter denne pr
 msgid "Step 1: Create a backup"
 msgstr "Trinn 1: Opprett en sikkerhetskopi"
 
+#: admin/views/tabs/tool/import-seo.php:47
+msgid "We've detected data from one or more SEO plugins on your site. Please follow the following steps to import that data:"
+msgstr "Vi har oppdaget data fra en eller flere SEO-utvidelser på nettstedet ditt. Følg fremgangsmåten nedenfor for å importere disse dataene:"
+
 #: admin/views/tabs/tool/import-seo.php:35
 msgid "Plugin: "
-msgstr "Utvidelse:"
+msgstr "Utvidelse: "
+
+#: admin/views/tabs/tool/import-seo.php:20
+msgid "Yoast SEO did not detect any plugin data from plugins it can import from."
+msgstr "Yoast SEO oppdaget ikke noen data fra utvidelser det kan importere fra."
 
 #: admin/statistics/class-statistics-service.php:210
 msgid "Posts that should not show up in search results"
@@ -1657,7 +1696,7 @@ msgstr "%s data ble fjernet."
 #. from.
 #: admin/import/class-import-status.php:121
 msgid "%s data successfully imported."
-msgstr "%s data ble riktig importert"
+msgstr "%s-data importert."
 
 #. translators: %s is replaced with the name of the plugin we're trying to find
 #. data from.
@@ -1672,6 +1711,10 @@ msgstr "Forbedre dine SEO ferdigheter"
 #: admin/views/sidebar.php:33
 msgid "No ads"
 msgstr "Ingen reklame"
+
+#: admin/views/sidebar.php:32
+msgid "24/7 email support"
+msgstr "E-poststøtte 24/7"
 
 #: admin/views/sidebar.php:31
 msgid "No more dead links a.k.a. 404 pages"
@@ -1699,6 +1742,16 @@ msgstr "denne forfatters arkiv"
 msgid "Do not allow search engines to show %s in search results."
 msgstr "Ikke tillatt søkemotorer å vise %s i søkeresultater."
 
+#. translators: 1: link open tag; 2: link close tag., 3: the translated label
+#. of the button
+#: admin/views/tabs/social/facebook.php:55
+msgid "Click the \"%3$s\" button to use the meta description already set in the %1$sSearch Appearance Homepage%2$s setting."
+msgstr "Klikk knappen \"%3$s\" for å bruke metabeskrivelsen som allerede er angitt i innstillingen %1$ssøkeutseende på forsiden%2$s."
+
+#: admin/views/tabs/social/facebook.php:52
+msgid "Help on copying the home meta description"
+msgstr "Hjelp til å kopiere metabeskrivelsen for forsiden"
+
 #: admin/views/tabs/social/accounts.php:19
 msgid "To let search engines know which social profiles are associated to this site, enter your site social profiles data below."
 msgstr "For å la søkemotorene vite hvilke sosiale profiler som er assosiert med denne siden, skriv inn dine sosiale profiler nedenfor."
@@ -1718,7 +1771,7 @@ msgstr "Kategori-URLer for WordPress inneholder et prefiks, normalt %s, og denne
 
 #: admin/views/tabs/metas/taxonomies/category-url.php:14
 msgid "Help on the category prefix setting"
-msgstr "Få hjelp med kategoriprefiksen"
+msgstr "Hjelp for innstillingen om kategori-prefiks"
 
 #: admin/views/tabs/metas/taxonomies.php:48
 msgid "Category URLs"
@@ -1727,6 +1780,10 @@ msgstr "Kategori-URLer"
 #: admin/views/tabs/metas/paper-content/rss-content.php:19
 msgid "Learn more about the available variables"
 msgstr "Lær mer om de tilgjengelige variablene"
+
+#: admin/views/tabs/metas/rss.php:20
+msgid "Learn more about the RSS feed setting"
+msgstr "Lær mer om innstillingen for RSS-strøm"
 
 #. translators: %s expands to the post type's name.
 #: admin/views/tabs/metas/paper-content/post-type-content.php:40
@@ -1753,9 +1810,18 @@ msgstr "Når du laster topp media (for eksempel et bilde eller en video) til Wor
 msgid "Learn more about the Media and attachment URLs setting"
 msgstr "Lær mer om innstillingen for media og vedleggs-URL"
 
+#: admin/views/tabs/metas/paper-content/general/title-separator.php:12
+#: admin/views/tabs/social/facebook.php:34
+msgid "Learn more about the title separator setting"
+msgstr "Lær mer om innstillingen for skilletegn i tittelen"
+
 #: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:23
 msgid "Knowledge Graph"
 msgstr "Kunnskapsgraf"
+
+#: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:12
+msgid "Learn more about the knowledge graph setting"
+msgstr "Lær mer om innstillingen for kunskapskort"
 
 #: admin/views/tabs/metas/paper-content/general/homepage.php:17
 msgid "This is what shows in the search results when people find your homepage. This means this is probably what they see when they search for your brand name."
@@ -1763,15 +1829,27 @@ msgstr "Dette er hva som vises i søkeresultater når besøkende finner hjemmesi
 
 #: admin/views/tabs/metas/paper-content/general/homepage.php:16
 msgid "Learn more about the homepage setting"
-msgstr "Lær mer om hjemmesideinstillingen"
+msgstr "Lær mer om innstillingen for hjemmesiden"
+
+#: admin/views/tabs/metas/paper-content/special-pages.php:12
+msgid "Learn more about the special pages setting"
+msgstr "Lær mer om innstillingen for spesielle sider"
 
 #: admin/views/tabs/metas/paper-content/date-archives-settings.php:36
 msgid "date archives"
-msgstr "arkivdatoer"
+msgstr "datoarkiver"
+
+#: admin/views/tabs/metas/paper-content/date-archives-settings.php:24
+msgid "Help on the date archives search results setting"
+msgstr "Hjelp til søkeresultatinnstillingen for datoarkivene"
 
 #: admin/views/tabs/metas/paper-content/author-archive-settings.php:61
 msgid "archives for authors without posts"
 msgstr "arkiv for forfattere uten innlegg"
+
+#: admin/views/tabs/metas/paper-content/author-archive-settings.php:49
+msgid "Help on the authors without posts archive search results setting"
+msgstr "Hjelp til innstillingen om søkeresultater for forfattere uten innleggsarkiv"
 
 #: admin/views/tabs/metas/archives/help.php:31
 msgid "Archives settings help"
@@ -1807,6 +1885,10 @@ msgstr "Få verifikasjonskode til Bing i %1$sBing Webmaster Tools%2$s."
 #: admin/views/tabs/dashboard/webmaster-tools.php:53
 msgid "Bing verification code"
 msgstr "Bing verifiseringskode"
+
+#: admin/views/tabs/dashboard/webmaster-tools.php:19
+msgid "You can use the boxes below to verify with the different Webmaster Tools. This feature will add a verification meta tag on your home page. Follow the links to the different Webmaster Tools and look for instructions for the meta tag verification method to get the verification code. If your site is already verified, you can just forget about these."
+msgstr "Du kan bruke boksene nedenfor for å verifisere med de forskjellige verktøyene for nettredaktører. Denne funksjonen legger til en metatag for bekreftelse på hjemmesiden din. Følg koblingene til de forskjellige verktøyene for nettredaktører, og se etter instruksjoner om bekreftelsesmetoder for å få bekreftelseskoden. Hvis nettstedet ditt allerede er bekreftet, kan du bare glemme disse."
 
 #: admin/views/tabs/dashboard/webmaster-tools.php:18
 msgid "Learn more about the Webmaster Tools verification"
