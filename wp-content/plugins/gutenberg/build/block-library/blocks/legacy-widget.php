@@ -14,7 +14,7 @@
  *
  * @return string Returns the post content with the legacy widget added.
  */
-function render_block_legacy_widget( $attributes ) {
+function gutenberg_render_block_legacy_widget( $attributes ) {
 	if ( ! isset( $attributes['identifier'] ) ) {
 		return '';
 	}
@@ -55,11 +55,14 @@ function render_block_legacy_widget( $attributes ) {
 /**
  * Register legacy widget block.
  */
-function register_block_core_legacy_widget() {
+function gutenberg_register_block_core_legacy_widget() {
 	register_block_type(
 		'core/legacy-widget',
 		array(
 			'attributes'      => array(
+				'className'        => array(
+					'type' => 'string',
+				),
 				'identifier'       => array(
 					'type' => 'string',
 				),
@@ -70,9 +73,9 @@ function register_block_core_legacy_widget() {
 					'type' => 'boolean',
 				),
 			),
-			'render_callback' => 'render_block_legacy_widget',
+			'render_callback' => 'gutenberg_render_block_legacy_widget',
 		)
 	);
 }
 
-add_action( 'init', 'register_block_core_legacy_widget' );
+add_action( 'init', 'gutenberg_register_block_core_legacy_widget', 20 );
