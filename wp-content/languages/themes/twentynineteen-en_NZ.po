@@ -24,10 +24,6 @@ msgstr "Twenty Nineteen"
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
 msgstr "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
 
-#: inc/back-compat.php:39 inc/back-compat.php:53 inc/back-compat.php:73
-msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
-msgstr "Twenty Nineteen requires WordPress version 4.7+ or higher. You are running version %s. Upgrade it and try again."
-
 #: image.php:87
 msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
@@ -38,6 +34,10 @@ msgstr "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title
 msgctxt "post"
 msgid "Featured"
 msgstr "Featured"
+
+#: inc/back-compat.php:39 inc/back-compat.php:53 inc/back-compat.php:73
+msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Nineteen requires WordPress version 4.7+ or higher. You are running version %s. Upgrade it and try again."
 
 #: inc/template-functions.php:216
 msgid "Back"
@@ -65,19 +65,19 @@ msgctxt "primary color"
 msgid "Default"
 msgstr "Default"
 
-#: functions.php:166
+#: functions.php:170
 msgid "White"
 msgstr "White"
 
-#: functions.php:161
+#: functions.php:165
 msgid "Light Gray"
 msgstr "Light Grey"
 
-#: functions.php:156
+#: functions.php:160
 msgid "Dark Gray"
 msgstr "Dark Grey"
 
-#: functions.php:151
+#: functions.php:155
 msgid "Secondary"
 msgstr "Secondary"
 
@@ -126,87 +126,17 @@ msgstr "Full size"
 msgid "Page"
 msgstr "Page"
 
-#: functions.php:190
+#: functions.php:194
 msgid "Add widgets here to appear in your footer."
 msgstr "Add widgets here to appear in your footer."
 
-#: functions.php:188 template-parts/footer/footer-widgets.php:12
+#: template-parts/footer/footer-widgets.php:12 functions.php:192
 msgid "Footer"
 msgstr "Footer"
 
 #: inc/customizer.php:53
 msgid "Primary Color"
 msgstr "Primary Colour"
-
-#: template-parts/content/content-none.php:39
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-
-#. translators: 1: link to WP admin new post page.
-#: template-parts/content/content-none.php:26
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-
-#: comments.php:95
-msgid "Previous"
-msgstr "Previous"
-
-#: comments.php:96
-msgid "Next"
-msgstr "Next"
-
-#: image.php:52 template-parts/content/content-page.php:27
-#: template-parts/content/content.php:49
-#: template-parts/content/content-single.php:40
-msgid "Pages:"
-msgstr "Pages:"
-
-#: header.php:24
-msgid "Skip to content"
-msgstr "Skip to content"
-
-#: functions.php:61 template-parts/header/site-branding.php:46
-msgid "Social Links Menu"
-msgstr "Social Links Menu"
-
-#: comments.php:116
-msgid "Comments are closed."
-msgstr "Comments are closed."
-
-#: 404.php:20
-msgid "Oops! That page can&rsquo;t be found."
-msgstr "Oops! That page can&rsquo;t be found."
-
-#: 404.php:24
-msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "It looks like nothing was found at this location. Maybe try a search?"
-
-#: template-parts/content/content-none.php:46
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content/content.php:36
-#: template-parts/content/content-single.php:27
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-
-#: single.php:41
-msgid "Previous Post"
-msgstr "Previous Post"
-
-#: single.php:38
-msgid "Next Post"
-msgstr "Next Post"
-
-#. translators: used between list items, there is a space after the comma.
-#: inc/template-tags.php:86 inc/template-tags.php:98
-msgid ", "
-msgstr ", "
-
-#: template-parts/header/site-branding.php:33
-msgid "Top Menu"
-msgstr "Top Menu"
 
 #: template-parts/post/discussion-meta.php:18
 msgid "No comments"
@@ -228,13 +158,54 @@ msgstr "View more posts"
 msgid "Published by %s"
 msgstr "Published by %s"
 
+#: template-parts/header/site-branding.php:33
+msgid "Top Menu"
+msgstr "Top Menu"
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: template-parts/content/content.php:49
+#: template-parts/content/content-page.php:27
+#: template-parts/content/content-single.php:40 image.php:52
+msgid "Pages:"
+msgstr "Pages:"
+
+#: template-parts/content/content-none.php:46
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+
+#: template-parts/content/content-none.php:39
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content/content-none.php:26
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+
+#: template-parts/content/content-none.php:16
+msgid "Nothing Found"
+msgstr "Nothing Found"
+
 #: single.php:42
 msgid "Previous post:"
 msgstr "Previous post:"
 
+#: single.php:41
+msgid "Previous Post"
+msgstr "Previous Post"
+
 #: single.php:39
 msgid "Next post:"
 msgstr "Next post:"
+
+#: single.php:38
+msgid "Next Post"
+msgstr "Next Post"
 
 #: search.php:22
 msgid "Search results for:"
@@ -255,6 +226,11 @@ msgstr "Tags:"
 #: inc/template-tags.php:92
 msgid "Posted in"
 msgstr "Posted in"
+
+#. translators: used between list items, there is a space after the comma.
+#: inc/template-tags.php:86 inc/template-tags.php:98
+msgid ", "
+msgstr ", "
 
 #. translators: %s: Name of current post. Only visible to screen readers.
 #: inc/template-tags.php:63
@@ -319,9 +295,34 @@ msgstr "Category Archives: "
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Edit <span class=\"screen-reader-text\">%s</span>"
 
-#: functions.php:59 functions.php:146
+#: header.php:24
+msgid "Skip to content"
+msgstr "Skip to content"
+
+#: template-parts/header/site-branding.php:46 functions.php:61
+msgid "Social Links Menu"
+msgstr "Social Links Menu"
+
+#: functions.php:59 functions.php:150
 msgid "Primary"
 msgstr "Primary"
+
+#. translators: %s: WordPress.
+#: footer.php:28
+msgid "Proudly powered by %s."
+msgstr "Proudly powered by %s."
+
+#: comments.php:116
+msgid "Comments are closed."
+msgstr "Comments are closed."
+
+#: comments.php:96
+msgid "Next"
+msgstr "Next"
+
+#: comments.php:95
+msgid "Previous"
+msgstr "Previous"
 
 #: comments.php:92 comments.php:95 comments.php:96
 msgid "Comments"
@@ -366,14 +367,17 @@ msgstr "%1$s at %2$s"
 msgid "%s <span class=\"screen-reader-text says\">says:</span>"
 msgstr "%s <span class=\"screen-reader-text says\">says:</span>"
 
-#. translators: %s: WordPress.
-#: footer.php:28
-msgid "Proudly powered by %s."
-msgstr "Proudly powered by %s."
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "It looks like nothing was found at this location. Maybe try a search?"
 
-#: template-parts/content/content-none.php:16
-msgid "Nothing Found"
-msgstr "Nothing Found"
+#: 404.php:20
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Oops! That page can&rsquo;t be found."
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "the WordPress team"
 
 #. Theme URI of the theme
 msgid "https://github.com/WordPress/twentynineteen"
@@ -383,7 +387,3 @@ msgstr "https://github.com/WordPress/twentynineteen"
 #: footer.php:25
 msgid "https://wordpress.org/"
 msgstr "https://en-nz.wordpress.org/"
-
-#. Author of the theme
-msgid "the WordPress team"
-msgstr "the WordPress team"
