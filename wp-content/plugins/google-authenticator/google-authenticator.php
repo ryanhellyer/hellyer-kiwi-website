@@ -4,7 +4,7 @@ Plugin Name: Google Authenticator
 Plugin URI: https://github.com/ivankruchkoff/google-authenticator
 Description: Two-Factor Authentication for WordPress using the Android/iPhone/Blackberry app as One Time Password generator.
 Author: Ivan Kruchkoff
-Version: 0.50
+Version: 0.51
 Author URI: https://github.com/ivankruchkoff
 Compatibility: WordPress 5.1
 Text Domain: google-authenticator
@@ -562,10 +562,6 @@ function loginfooter() {
  * @return user/loginstatus
  */
 function check_otp( $user, $username = '', $password = '' ) {
-	// If a failure has already occurred somewhere along the way, pass it along rather than continuing with auth.
-	if ( is_wp_error( $user ) ) {
-		return $user;
-	}
 	// Store result of loginprocess, so far.
 	$userstate = $user;
 
