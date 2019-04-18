@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 
 	/**
-	 * Base64 encoded placeholder image.
+	 * Base64-encoded placeholder image.
 	 *
 	 * @access protected
 	 * @var string $placeholder_src
@@ -56,6 +56,7 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 
 		// Filter early, so that others at the default priority take precendence.
 		add_filter( 'ewww_image_optimizer_use_lqip', array( $this, 'maybe_lqip' ), 9 );
+		add_filter( 'ewww_image_optimizer_use_siip', array( $this, 'maybe_siip' ), 9 );
 
 		// Load the appropriate JS.
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
@@ -172,9 +173,41 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 					if ( false === strpos( $file, 'nggid' ) && apply_filters( 'ewww_image_optimizer_use_lqip', true ) && $this->parsing_exactdn && strpos( $file, $this->exactdn_domain ) ) {
 						$placeholder_src = add_query_arg( array( 'lazy' => 1 ), $file );
 						ewwwio_debug_message( "current placeholder is $placeholder_src" );
+					} elseif ( apply_filters( 'ewww_image_optimizer_use_siip', true ) ) {
+						// Get image dimensions for inline SVG placeholder.
+						list( $width, $height ) = $this->get_dimensions_from_filename( $file );
+
+						$width_attr  = $this->get_attribute( $image, 'width' );
+						$height_attr = $this->get_attribute( $image, 'height' );
+
+						if ( false === $width || false === $height ) {
+							ewwwio_debug_message( "dimensions not found in $file, using attrs" );
+							$width  = $width_attr;
+							$height = $height_attr;
+						}
+
+						// Can't use a relative width or height, so unset the dimensions in favor of not breaking things.
+						if ( false !== strpos( $width, '%' ) || false !== strpos( $height, '%' ) ) {
+							$width  = false;
+							$height = false;
+						}
+
+						// Falsify them if empty.
+						$width  = $width ? (int) $width : false;
+						$height = $height ? (int) $height : false;
+						if ( $width && $height ) {
+							$placeholder_src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 $width $height'%3E%3C/svg%3E";
+							if ( empty( $width_attr ) ) {
+								$this->set_attribute( $image, 'width', $width );
+							}
+							if ( empty( $height_attr ) ) {
+								$this->set_attribute( $image, 'height', $height );
+							}
+						}
 					}
 
 					if ( $srcset ) {
+						$placeholder_src = apply_filters( 'ewww_image_optimizer_lazy_placeholder', $placeholder_src, $image );
 						if ( strpos( $placeholder_src, '64,R0lGOD' ) ) {
 							$this->set_attribute( $image, 'srcset', $placeholder_src, true );
 							$this->remove_attribute( $image, 'src' );
@@ -222,7 +255,7 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 							$picture = str_replace( $source, $lazy_source, $picture );
 						}
 					}
-					if ( $picture != $pictures[ $index ] ) {
+					if ( $picture !== $pictures[ $index ] ) {
 						ewwwio_debug_message( 'lazified sources for picture element' );
 						$buffer = str_replace( $pictures[ $index ], $picture, $buffer );
 					}
@@ -320,6 +353,13 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 		if ( strpos( $image, 'data-pin-description=' ) && strpos( $image, 'width="0" height="0"' ) ) {
 			return false;
 		}
+
+		// Ignore native lazy loading images.
+		$loading_attr = $this->get_attribute( $image, 'loading' );
+		if ( $loading_attr && in_array( trim( $loading_attr ), array( 'auto', 'eager', 'lazy' ), true ) ) {
+			return false;
+		}
+
 		$exclusions = apply_filters(
 			'ewww_image_optimizer_lazy_exclusions',
 			array(
@@ -366,7 +406,9 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 		$exclusions = apply_filters(
 			'ewww_image_optimizer_lazy_bg_image_exclusions',
 			array(
+				'data-no-lazy=',
 				'lazyload',
+				'skip-lazy',
 			),
 			$tag
 		);
@@ -389,6 +431,19 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 			return false;
 		}
 		return $use_lqip;
+	}
+
+	/**
+	 * Check if SIIP should be used, but allow filters to alter the option.
+	 *
+	 * @param bool $use_siip Whether LL should use SVG inline image placeholders.
+	 * @return bool True to use SIIP, false to skip them.
+	 */
+	function maybe_siip( $use_siip ) {
+		if ( defined( 'EWWW_IMAGE_OPTIMIZER_USE_SIIP' ) && ! EWWW_IMAGE_OPTIMIZER_USE_SIIP ) {
+			return false;
+		}
+		return $use_siip;
 	}
 
 	/**
