@@ -39,14 +39,14 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 
 
 //define( 'ALLOW_ROOKIES', true );
-//define( 'ALLOW_B_LICENSES', true );
+define( 'ALLOW_B_LICENSES', true );
 //define( 'ALLOW_C_LICENSES', true );
 //define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
-define( 'MIN_OVAL_IRATING', 1000 );
-define( 'MIN_ROAD_IRATING', 1000 );
+define( 'MIN_OVAL_IRATING', 100 );
+define( 'MIN_ROAD_IRATING', 100 );
 
 
 
