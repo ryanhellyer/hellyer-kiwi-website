@@ -428,12 +428,12 @@ foreach ( $events as $event => $vars ) {
 				continue;
 			}
 
-			// If no iRating, then set it to 0
+			// If no iRating, then set it to 1200
 			if ( ! isset( $stats[$driver_name]['oval_irating'] ) ) {
-				$stats[$driver_name]['oval_irating'] = 0;
+				$stats[$driver_name]['oval_irating'] = 1200;
 			}
 			if ( ! isset( $stats[$driver_name]['road_irating'] ) ) {
-				$stats[$driver_name]['road_irating'] = 0;
+				$stats[$driver_name]['road_irating'] = 1200;
 			}
 
 			// Bail out if they don't meet either oval or road iRating minimums
