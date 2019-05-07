@@ -61,7 +61,7 @@ class ExactDN extends EWWWIO_Page_Parser {
 	 * @access public
 	 * @var string $remove_path
 	 */
-	private $remove_path = '';
+	public $remove_path = '';
 
 	/**
 	 * The ExactDN domain/zone.
@@ -122,7 +122,6 @@ class ExactDN extends EWWWIO_Page_Parser {
 		// Images in post content and galleries.
 		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
 		// Start an output buffer before any output starts.
-		/* add_action( 'template_redirect', array( $this, 'buffer_start' ), 2 ); */
 		add_filter( 'ewww_image_optimizer_filter_page_output', array( $this, 'filter_page_output' ), 5 );
 
 		// Core image retrieval.
@@ -176,7 +175,7 @@ class ExactDN extends EWWWIO_Page_Parser {
 
 		// Configure Autoptimize with our CDN domain.
 		add_filter( 'autoptimize_filter_cssjs_multidomain', array( $this, 'autoptimize_cdn_url' ) );
-		if ( defined( 'AUTOPTIMIZE_PLUGIN_DIR' ) ) {
+		if ( false && defined( 'AUTOPTIMIZE_PLUGIN_DIR' ) && ewww_image_optimizer_get_option( 'exactdn_all_the_things' ) ) {
 			$ao_cdn_url = ewww_image_optimizer_get_option( 'autoptimize_cdn_url' );
 			if ( empty( $ao_cdn_url ) ) {
 				ewww_image_optimizer_set_option( 'autoptimize_cdn_url', '//' . $this->exactdn_domain );
@@ -510,6 +509,16 @@ class ExactDN extends EWWWIO_Page_Parser {
 	}
 
 	/**
+	 * Method to override the ExactDN domain at runtime, use with caution.
+	 *
+	 * @param string $domain The ExactDN domain to use instead.
+	 */
+	function set_domain( $domain ) {
+		if ( is_string( $domain ) ) {
+			$this->exactdn_domain = $domain;
+		}
+	}
+	/**
 	 * Get the ExactDN option.
 	 *
 	 * @param string $option_name The name of the ExactDN option.
@@ -638,13 +647,6 @@ class ExactDN extends EWWWIO_Page_Parser {
 	}
 
 	/**
-	 * Starts an output buffer and registers the callback function to do ExactDN url replacement.
-	 */
-	function buffer_start() {
-		ob_start( array( $this, 'filter_page_output' ) );
-	}
-
-	/**
 	 * Identify images in page content, and if images are local (uploaded to the current site), pass through ExactDN.
 	 *
 	 * @param string $content The page/post content.
@@ -766,6 +768,18 @@ class ExactDN extends EWWWIO_Page_Parser {
 				}
 				if ( ! $lazy && strpos( $images['img_tag'][ $index ], 'a3-lazy-load/assets/images/lazy_placeholder' ) ) {
 					$lazy_load_src = $this->get_attribute( $images['img_tag'][ $index ], 'data-src' );
+				}
+				if (
+					! $lazy &&
+					strpos( $images['img_tag'][ $index ], ' data-src=' ) &&
+					strpos( $images['img_tag'][ $index ], 'lazyload' ) &&
+					(
+						strpos( $images['img_tag'][ $index ], 'data:image/gif' ) ||
+						strpos( $images['img_tag'][ $index ], 'data:image/svg' )
+					)
+				) {
+					$lazy_load_src = $this->get_attribute( $images['img_tag'][ $index ], 'data-src' );
+					ewwwio_debug_message( "found ewwwio ll src: $lazy_load_src" );
 				}
 				if ( ! $lazy && $lazy_load_src ) {
 					$placeholder_src      = $src;
@@ -1060,7 +1074,7 @@ class ExactDN extends EWWWIO_Page_Parser {
 							ewwwio_debug_message( 'checking to see if srcset width already exists' );
 							$srcset_url      = $exactdn_url . ' ' . (int) $width . 'w, ';
 							$new_srcset_attr = $this->get_attribute( $new_tag, $this->srcset_attr );
-							if ( $new_srcset_attr && false === strpos( $new_srcset_attr, ' ' . (int) $width . 'w' ) ) {
+							if ( $new_srcset_attr && false === strpos( $new_srcset_attr, ' ' . (int) $width . 'w' ) && ! preg_match( '/\s(1|2|3)x/', $new_srcset_attr ) ) {
 								ewwwio_debug_message( 'src not in srcset, adding' );
 								$this->set_attribute( $new_tag, $this->srcset_attr, $srcset_url . $new_srcset_attr, true );
 								// Replace original tag with modified version.
@@ -1625,8 +1639,12 @@ class ExactDN extends EWWWIO_Page_Parser {
 
 		$upload_dir      = wp_get_upload_dir();
 		$resize_existing = defined( 'EXACTDN_RESIZE_EXISTING' ) && EXACTDN_RESIZE_EXISTING;
+		$w_descriptor    = true;
 
 		foreach ( $sources as $i => $source ) {
+			if ( 'x' === $source['descriptor'] ) {
+				$w_descriptor = false;
+			}
 			if ( ! $this->validate_image_url( $source['url'] ) ) {
 				continue;
 			}
@@ -1692,6 +1710,10 @@ class ExactDN extends EWWWIO_Page_Parser {
 		 */
 		$multipliers = apply_filters( 'exactdn_srcset_multipliers', array( .2, .4, .6, .8, 1, 2, 3, 1920 ) );
 		$url         = trailingslashit( $upload_dir['baseurl'] ) . $image_meta['file'];
+		if ( ! $w_descriptor ) {
+			ewwwio_debug_message( 'using x descriptors instead of w' );
+			$multipliers = array_filter( $multipliers, 'is_int' );
+		}
 
 		if (
 			/** Short-circuit via exactdn_srcset_multipliers filter. */
@@ -1704,7 +1726,7 @@ class ExactDN extends EWWWIO_Page_Parser {
 			&& isset( $image_meta['width'] ) && isset( $image_meta['height'] ) && isset( $image_meta['file'] )
 			/** Verify we have the requested width/height. */
 			&& isset( $size_array[0] ) && isset( $size_array[1] )
-			) {
+		) {
 
 			$fullwidth  = $image_meta['width'];
 			$fullheight = $image_meta['height'];
@@ -1736,6 +1758,9 @@ class ExactDN extends EWWWIO_Page_Parser {
 				$newwidth = intval( $base * $multiplier );
 				if ( 1920 === (int) $multiplier ) {
 					$newwidth = 1920;
+					if ( ! $w_descriptor ) {
+						continue;
+					}
 				}
 				if ( $newwidth < 50 ) {
 					continue;
@@ -1764,8 +1789,8 @@ class ExactDN extends EWWWIO_Page_Parser {
 
 				$newsources[ $newwidth ] = array(
 					'url'        => $this->generate_url( $url, $args ),
-					'descriptor' => 'w',
-					'value'      => $newwidth,
+					'descriptor' => ( $w_descriptor ? 'w' : 'x' ),
+					'value'      => ( $w_descriptor ? $newwidth : $multiplier ),
 				);
 
 				$currentwidths[] = $newwidth;
@@ -2041,9 +2066,13 @@ class ExactDN extends EWWWIO_Page_Parser {
 	 */
 	protected function validate_image_url( $url, $exactdn_is_valid = false ) {
 		ewwwio_debug_message( '<b>' . __METHOD__ . '()</b>' );
+		if ( false !== strpos( $url, 'data:image/' ) ) {
+			ewwwio_debug_message( "could not parse data uri: $url" );
+			return false;
+		}
 		$parsed_url = $this->parse_url( $url );
 		if ( ! $parsed_url ) {
-			ewwwio_debug_message( 'could not parse' );
+			ewwwio_debug_message( "could not parse: $url" );
 			return false;
 		}
 

@@ -5,7 +5,7 @@ Tags: image, compress, resize, optimize, optimization, lossless, lossy, seo, web
 Requires at least: 4.9
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 4.7.3
+Stable tag: 4.7.4
 License: GPLv3
 
 Speed up your website and improve your visitors' experience by automatically compressing and resizing images and PDFs. Boost SEO and improve sales.
@@ -173,6 +173,14 @@ http://developer.yahoo.com/performance/rules.html#opt_images
 
 * Feature requests can be viewed and submitted at https://github.com/nosilver4u/ewww-image-optimizer/labels/enhancement
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
+
+= 4.7.4 =
+* fixed: ExactDN modifies Autoptimize CDN setting even when Include All Resources is disabled
+* fixed: noscript elements with newlines being parsed incorrectly by Lazy Load and JS WebP
+* fixed: Lazy Load parsing breaking img elements in script blocks
+* fixed: Lazy Load and JS WebP bail when SVGs are wrapped in XML tags
+* fixed: ExactDN mixes x and w srcset descriptors
+* fixed: page parsers (ExactDN, Lazy, JS WebP) still fail to process some img elements that have unquoted src attributes
 
 = 4.7.3 =
 * added: disable WebP script block on certain pages by defining EWWW_IMAGE_OPTIMIZER_NO_JS as true

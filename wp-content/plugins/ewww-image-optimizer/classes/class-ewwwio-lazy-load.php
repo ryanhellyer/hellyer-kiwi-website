@@ -109,7 +109,7 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 			is_preview() ||
 			( defined( 'REST_REQUEST' ) && REST_REQUEST ) ||
 			wp_script_is( 'twentytwenty-twentytwenty', 'enqueued' ) ||
-			preg_match( '/<\?xml/', $buffer )
+			preg_match( '/^<\?xml/', $buffer )
 		) {
 			if ( empty( $buffer ) ) {
 				ewwwio_debug_message( 'empty buffer' );
@@ -141,7 +141,7 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 			if ( wp_script_is( 'twentytwenty-twentytwenty', 'enqueued' ) ) {
 				ewwwio_debug_message( 'twentytwenty enqueued' );
 			}
-			if ( preg_match( '/<\?xml/', $buffer ) ) {
+			if ( preg_match( '/^<\?xml/', $buffer ) ) {
 				ewwwio_debug_message( 'not html, xml tag found' );
 			}
 			if ( strpos( $buffer, 'amp-boilerplate' ) ) {
@@ -153,7 +153,7 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 		$above_the_fold   = apply_filters( 'ewww_image_optimizer_lazy_fold', 0 );
 		$images_processed = 0;
 
-		$images = $this->get_images_from_html( preg_replace( '/<noscript.*?\/noscript>/', '', $buffer ), false );
+		$images = $this->get_images_from_html( preg_replace( '/<(noscript|script).*?\/\1>/s', '', $buffer ), false );
 		if ( ! empty( $images[0] ) && ewww_image_optimizer_iterable( $images[0] ) ) {
 			foreach ( $images[0] as $index => $image ) {
 				$images_processed++;
@@ -346,7 +346,8 @@ class EWWWIO_Lazy_Load extends EWWWIO_Page_Parser {
 		}
 
 		// Skip inline data URIs.
-		if ( strpos( $image, "src='data:image" ) || strpos( $image, 'src="data:image' ) ) {
+		$image_src = $this->get_attribute( $image, 'src' );
+		if ( false !== strpos( $image_src, 'data:image' ) ) {
 			return false;
 		}
 		// Ignore 0-size Pinterest schema images.
