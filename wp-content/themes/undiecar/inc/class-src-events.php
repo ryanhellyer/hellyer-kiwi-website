@@ -736,7 +736,7 @@ class SRC_Events extends SRC_Core {
 
 			$html .= wpautop(
 				sprintf(
-					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
+					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> track in %s. Qualifying %s at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
 					$will_be,
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
