@@ -732,8 +732,6 @@ class SRC_Events extends SRC_Core {
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
-//echo '___'.$q_time . '___';
-
 			$html .= wpautop(
 				sprintf(
 					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> track in %s. Qualifying %s at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
