@@ -732,6 +732,8 @@ class SRC_Events extends SRC_Core {
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 
+//echo '___'.$q_time . '___';
+
 			$html .= wpautop(
 				sprintf(
 					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> %s track in %s. Qualifying begins at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
@@ -744,7 +746,7 @@ class SRC_Events extends SRC_Core {
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
 					esc_html( src_get_countries()[ $this->event['current_round']['track_country'] ] ),
 					$begins,
-					esc_html( $q_time ),
+					'x'.esc_html( $q_time ),
 					$formatted_number,
 					esc_html( get_post_meta( get_the_ID(), 'race_length', true ) ),
 					$suffix,
