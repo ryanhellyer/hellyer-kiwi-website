@@ -578,7 +578,7 @@ class SRC_Events extends SRC_Core {
 
 		$game_time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
 		if ( '' !== $game_time_of_day ) {
-			$sidebar_html .= '<br />In game time of day: ' . esc_html( $game_time_of_day );
+			$sidebar_html .= '<br />Game time: ' . esc_html( $game_time_of_day );
 		}
 
 		$sidebar_html .= '
