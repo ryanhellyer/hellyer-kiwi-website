@@ -575,6 +575,15 @@ class SRC_Events extends SRC_Core {
 			$sidebar_html .= '
 				<strong>' . esc_html( get_the_title( $season_id ) ) . '</strong>';
 		}
+
+		$game_time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
+		if ( '' !== $game_time_of_day ) {
+			$sidebar_html .= '
+			<p>
+				In game time of day: ' . esc_html( $game_time_of_day ) . '
+			</p>';
+		}
+
 		$sidebar_html .= '
 			</p>';
 
