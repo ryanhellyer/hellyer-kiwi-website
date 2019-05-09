@@ -237,11 +237,11 @@ if ( isset( $our_events[0] ) ) {
 /*
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall6.jpg);">
 */
-	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/porsche-tall.jpg);">
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/andreas-robbertson-mx-5.jpg);">
 		<h2>This season</h2>
 		<p>
 			<?php echo esc_html( get_the_title( $season_id ) ); ?><br />
-			Race with free iRacing content. Fixed setups provided for each track.
+			Race with free iRacing content. Fixed setups.
 		</p>
 	</a>
 
