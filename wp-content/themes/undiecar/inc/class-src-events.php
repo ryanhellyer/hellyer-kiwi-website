@@ -576,13 +576,19 @@ class SRC_Events extends SRC_Core {
 				<strong>' . esc_html( get_the_title( $season_id ) ) . '</strong>';
 		}
 
-		$game_time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
-		if ( '' !== $game_time_of_day ) {
-			$sidebar_html .= '<br />Game time: ' . esc_html( $game_time_of_day );
-		}
-
 		$sidebar_html .= '
 			</p>';
+
+		// sidebar game time
+		$game_time_of_day = get_post_meta( get_the_ID(), 'time_of_day', true );
+		if ( '' !== $game_time_of_day ) {
+			$sidebar_html .= '
+			<p>
+				<strong>Game time<strong>
+				<br />
+				' . esc_html( $game_time_of_day ) . '
+			</p>';
+		}
 
 		// Sidebar practice times
 		$time = get_post_meta( get_the_ID(), 'fp1_time', true );
