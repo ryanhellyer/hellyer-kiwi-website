@@ -716,7 +716,8 @@ class SRC_Events extends SRC_Core {
 		if ( '' === $q_time ) {
 			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
 		}
-
+			$q_time = get_post_meta( get_the_ID(), 'qualifying_time', true );
+echo '___'.$q_time . '___';
 
 		// Work out past/future strings
 		$date_timestamp = get_post_meta( get_the_ID(), 'date', true );
