@@ -1,68 +1,87 @@
-# Translation of Plugins - Regenerate Thumbnails - Development (trunk) in English (New Zealand)
-# This file is distributed under the same license as the Plugins - Regenerate Thumbnails - Development (trunk) package.
+# Translation of Plugins - Regenerate Thumbnails - Stable (latest release) in English (New Zealand)
+# This file is distributed under the same license as the Plugins - Regenerate Thumbnails - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-01-05 03:07:24+0000\n"
+"PO-Revision-Date: 2019-05-10 15:36:22+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_NZ\n"
-"Project-Id-Version: Plugins - Regenerate Thumbnails - Development (trunk)\n"
+"Project-Id-Version: Plugins - Regenerate Thumbnails - Stable (latest release)\n"
+
+#. translators: Used for listing old sizes of currently registered thumbnails
+#: includes/class-regeneratethumbnails-regenerator.php:682
+msgid "%s (old)"
+msgstr "%s (old)"
+
+#: includes/class-regeneratethumbnails-regenerator.php:608
+msgid "Attachment %d"
+msgstr "Attachment %d"
+
+#: includes/class-regeneratethumbnails-regenerator.php:570
+msgid "Unable to load the metadata for this attachment."
+msgstr "Unable to load the metadata for this attachment."
+
+#: includes/class-regeneratethumbnails-regenerator.php:554
+msgid "The current image editor cannot process this file type."
+msgstr "The current image editor cannot process this file type."
+
+#. translators: The relative upload path to the attachment.
+#: includes/class-regeneratethumbnails-regenerator.php:137
+msgid "The fullsize image file cannot be found in your uploads directory at <code>%s</code>. Without it, new thumbnail images can't be generated."
+msgstr "The fullsize image file cannot be found in your uploads directory at <code>%s</code>. Without it, new thumbnail images can't be generated."
+
+#: includes/class-regeneratethumbnails-regenerator.php:84
+msgid "This attachment is a site icon and therefore the thumbnails shouldn't be touched."
+msgstr "This attachment is a site icon and therefore the thumbnails shouldn't be touched."
+
+#: includes/class-regeneratethumbnails-regenerator.php:73
+msgid "This item is not an attachment."
+msgstr "This item is not an attachment."
+
+#: includes/class-regeneratethumbnails-regenerator.php:62
+msgid "No attachment exists with that ID."
+msgstr "No attachment exists with that ID."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:258
+msgid "The page number requested is larger than the number of pages available."
+msgstr "The page number requested is larger than the number of pages available."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:64
+msgid "Posts to process per loop. This is to control memory usage and you likely don't need to adjust this."
+msgstr "Posts to process per loop. This is to control memory usage and you likely don't need to adjust this."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:58
+msgid "Specific post IDs to update rather than any posts that use this attachment."
+msgstr "Specific post IDs to update rather than any posts that use this attachment."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:52
+msgid "The types of posts to update. Defaults to all public post types."
+msgstr "The types of posts to update. Defaults to all public post types."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:47
+msgid "Whether to update the image tags in any posts that make use of this attachment."
+msgstr "Whether to update the image tags in any posts that make use of this attachment."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:42
+msgid "Whether to delete any old, now unregistered thumbnail files."
+msgstr "Whether to delete any old, now unregistered thumbnail files."
+
+#: includes/class-regeneratethumbnails-rest-controller.php:37
+msgid "Whether to only regenerate missing thumbnails. It's faster with this enabled."
+msgstr "Whether to only regenerate missing thumbnails. It's faster with this enabled."
 
 #: regenerate-thumbnails.php:491
 msgctxt "bulk actions dropdown"
 msgid "Regenerate Thumbnails"
 msgstr "Regenerate Thumbnails"
 
-#: regenerate-thumbnails.php:256 regenerate-thumbnails.php:429
-#: regenerate-thumbnails.php:445 regenerate-thumbnails.php:469
-msgctxt "action for a single image"
-msgid "Regenerate Thumbnails"
-msgstr "Regenerate Thumbnails"
-
-#: regenerate-thumbnails.php:225
-msgid "Delete thumbnail files for old unregistered sizes in order to free up server space. This may result in broken images in your posts and pages."
-msgstr "Delete thumbnail files for old unregistered sizes in order to free up server space. This may result in broken images in your posts and pages."
-
-#: regenerate-thumbnails.php:166
-msgctxt "admin menu entry title"
-msgid "Regenerate Thumbnails"
-msgstr "Regenerate Thumbnails"
-
-#: regenerate-thumbnails.php:165 regenerate-thumbnails.php:317
-msgctxt "admin page title"
-msgid "Regenerate Thumbnails"
-msgstr "Regenerate Thumbnails"
-
-#: includes/class-regeneratethumbnails-regenerator.php:608
-msgid "Attachment %d"
-msgstr "Attachment %d"
-
-#: regenerate-thumbnails.php:277
-msgid "Skipped Attachment ID {id}: {reason}"
-msgstr "Skipped Attachment ID {id}: {reason}"
-
-#: regenerate-thumbnails.php:276
-msgid "Skipped Attachment ID {id} ({name}): {reason}"
-msgstr "Skipped Attachment ID {id} ({name}): {reason}"
-
-#: includes/class-regeneratethumbnails-regenerator.php:570
-msgid "Unable to load the metadata for this attachment."
-msgstr "Unable to load the metadata for this attachment."
-
-#. Author URI of the plugin
-msgid "https://alex.blog/"
-msgstr "https://alex.blog/"
-
-#. Description of the plugin
-msgid "Regenerate the thumbnails for one or more of your image uploads. Useful when changing their sizes or your theme."
-msgstr "Regenerate the thumbnails for one or more of your image uploads. Useful when changing their sizes or your theme."
-
-#. Plugin URI of the plugin
-msgid "https://alex.blog/wordpress-plugins/regenerate-thumbnails/"
-msgstr "https://alex.blog/wordpress-plugins/regenerate-thumbnails/"
+#: regenerate-thumbnails.php:429 regenerate-thumbnails.php:445
+#: regenerate-thumbnails.php:469
+msgid "Regenerate the thumbnails for this single image"
+msgstr "Regenerate the thumbnails for this single image"
 
 #: regenerate-thumbnails.php:360
 msgid "This tool won't be able to do anything because your server doesn't support image editing which means that WordPress can't create thumbnail images. Please ask your host to install the Imagick or GD PHP extensions."
@@ -99,6 +118,14 @@ msgstr "{count} hours"
 #: regenerate-thumbnails.php:278
 msgid "All done in {duration}."
 msgstr "All done in {duration}."
+
+#: regenerate-thumbnails.php:277
+msgid "Skipped Attachment ID {id}: {reason}"
+msgstr "Skipped Attachment ID {id}: {reason}"
+
+#: regenerate-thumbnails.php:276
+msgid "Skipped Attachment ID {id} ({name}): {reason}"
+msgstr "Skipped Attachment ID {id} ({name}): {reason}"
 
 #: regenerate-thumbnails.php:275
 msgid "Regenerated {name}"
@@ -164,6 +191,12 @@ msgstr "<strong>ERROR:</strong> {error}"
 #: regenerate-thumbnails.php:258
 msgid "Regenerate Thumbnails: {name} — WordPress"
 msgstr "Regenerate Thumbnails: {name} — WordPress"
+
+#: regenerate-thumbnails.php:256 regenerate-thumbnails.php:429
+#: regenerate-thumbnails.php:445 regenerate-thumbnails.php:469
+msgctxt "action for a single image"
+msgid "Regenerate Thumbnails"
+msgstr "Regenerate Thumbnails"
 
 #: regenerate-thumbnails.php:253
 msgid "Another alternative is to use the <a href=\"{url-photon}\">Photon</a> functionality that comes with the <a href=\"{url-jetpack}\">Jetpack</a> plugin. It generates thumbnails on-demand using WordPress.com's infrastructure. <em>Disclaimer: The author of this plugin, Regenerate Thumbnails, is an employee of the company behind WordPress.com and Jetpack but I would recommend it even if I wasn't.</em>"
@@ -239,6 +272,10 @@ msgstr "<strong>{label}:</strong> {width}×{height} pixels ({cropMethod}) <code>
 msgid "<strong>{label}:</strong> {width}×{height} pixels ({cropMethod})"
 msgstr "<strong>{label}:</strong> {width}×{height} pixels ({cropMethod})"
 
+#: regenerate-thumbnails.php:225
+msgid "Delete thumbnail files for old unregistered sizes in order to free up server space. This may result in broken images in your posts and pages."
+msgstr "Delete thumbnail files for old unregistered sizes in order to free up server space. This may result in broken images in your posts and pages."
+
 #: regenerate-thumbnails.php:224
 msgid "Skip regenerating existing correctly sized thumbnails (faster)."
 msgstr "Skip regenerating existing correctly sized thumbnails (faster)."
@@ -247,69 +284,32 @@ msgstr "Skip regenerating existing correctly sized thumbnails (faster)."
 msgid "Loading…"
 msgstr "Loading…"
 
-#: includes/class-regeneratethumbnails-rest-controller.php:254
-msgid "The page number requested is larger than the number of pages available."
-msgstr "The page number requested is larger than the number of pages available."
+#: regenerate-thumbnails.php:166
+msgctxt "admin menu entry title"
+msgid "Regenerate Thumbnails"
+msgstr "Regenerate Thumbnails"
 
-#: includes/class-regeneratethumbnails-rest-controller.php:64
-msgid "Posts to process per loop. This is to control memory usage and you likely don't need to adjust this."
-msgstr "Posts to process per loop. This is to control memory usage and you likely don't need to adjust this."
+#: regenerate-thumbnails.php:165 regenerate-thumbnails.php:317
+msgctxt "admin page title"
+msgid "Regenerate Thumbnails"
+msgstr "Regenerate Thumbnails"
 
-#: includes/class-regeneratethumbnails-rest-controller.php:58
-msgid "Specific post IDs to update rather than any posts that use this attachment."
-msgstr "Specific post IDs to update rather than any posts that use this attachment."
-
-#: includes/class-regeneratethumbnails-rest-controller.php:52
-msgid "The types of posts to update. Defaults to all public post types."
-msgstr "The types of posts to update. Defaults to all public post types."
-
-#: includes/class-regeneratethumbnails-rest-controller.php:47
-msgid "Whether to update the image tags in any posts that make use of this attachment."
-msgstr "Whether to update the image tags in any posts that make use of this attachment."
-
-#: includes/class-regeneratethumbnails-rest-controller.php:42
-msgid "Whether to delete any old, now unregistered thumbnail files."
-msgstr "Whether to delete any old, now unregistered thumbnail files."
-
-#: includes/class-regeneratethumbnails-rest-controller.php:37
-msgid "Whether to only regenerate missing thumbnails. It's faster with this enabled."
-msgstr "Whether to only regenerate missing thumbnails. It's faster with this enabled."
-
-#. translators: Used for listing old sizes of currently registered thumbnails
-#: includes/class-regeneratethumbnails-regenerator.php:682
-msgid "%s (old)"
-msgstr "%s (old)"
-
-#: includes/class-regeneratethumbnails-regenerator.php:554
-msgid "The current image editor cannot process this file type."
-msgstr "The current image editor cannot process this file type."
-
-#. translators: The relative upload path to the attachment.
-#: includes/class-regeneratethumbnails-regenerator.php:137
-msgid "The fullsize image file cannot be found in your uploads directory at <code>%s</code>. Without it, new thumbnail images can't be generated."
-msgstr "The fullsize image file cannot be found in your uploads directory at <code>%s</code>. Without it, new thumbnail images can't be generated."
-
-#: includes/class-regeneratethumbnails-regenerator.php:84
-msgid "This attachment is a site icon and therefore the thumbnails shouldn't be touched."
-msgstr "This attachment is a site icon and therefore the thumbnails shouldn't be touched."
-
-#: includes/class-regeneratethumbnails-regenerator.php:73
-msgid "This item is not an attachment."
-msgstr "This item is not an attachment."
-
-#: includes/class-regeneratethumbnails-regenerator.php:62
-msgid "No attachment exists with that ID."
-msgstr "No attachment exists with that ID."
+#. Author URI of the plugin
+msgid "https://alex.blog/"
+msgstr "https://alex.blog/"
 
 #. Author of the plugin
 msgid "Alex Mills (Viper007Bond)"
 msgstr "Alex Mills (Viper007Bond)"
 
+#. Description of the plugin
+msgid "Regenerate the thumbnails for one or more of your image uploads. Useful when changing their sizes or your theme."
+msgstr "Regenerate the thumbnails for one or more of your image uploads. Useful when changing their sizes or your theme."
+
+#. Plugin URI of the plugin
+msgid "https://alex.blog/wordpress-plugins/regenerate-thumbnails/"
+msgstr "https://alex.blog/wordpress-plugins/regenerate-thumbnails/"
+
 #. Plugin Name of the plugin
 msgid "Regenerate Thumbnails"
 msgstr "Regenerate Thumbnails"
-
-#: regenerate-thumbnails.php:429 regenerate-thumbnails.php:445
-#: regenerate-thumbnails.php:469
-msgid "Regenerate the thumbnails for this single image"
-msgstr "Regenerate the thumbnails for this single image"
