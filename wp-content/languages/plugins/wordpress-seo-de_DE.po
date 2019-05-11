@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-05-11 10:16:35+0000\n"
+"PO-Revision-Date: 2019-05-11 10:36:09+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,6 +22,10 @@ msgstr "Um deine aktuellen Crawling-Fehler zu sehen, %1$sbesuche die Google Sear
 #: admin/google_search_console/views/gsc-display.php:36
 msgid "Google has discontinued its Crawl Errors API. Therefore, any possible crawl errors you might have cannot be displayed here anymore. %1$sRead our statement on this for further information%2$s."
 msgstr "Google hat die API zur Anzeige der Crawling-Fehler eingestellt. Deswegen können mögliche Crawling-Fehler hier nicht mehr dargestellt werden. %1$sBitte lies unsere Stellungnahme für weitergehende Informationen%2$s."
+
+#: languages/wordpress-seojs.php:26
+msgid "Truly optimize your site for a local audience with our %s plugin! Optimized address details, opening hours, store locator and pickup option!"
+msgstr "Optimiere deine Website für ein lokales Publikum mit unserem %s-Plugin! Optimierte Adressdaten, Öffnungszeiten, Filialfinder und Abhol-Option!"
 
 #: admin/views/tabs/metas/paper-content/general/knowledge-graph.php:50
 msgid "Organization logo"
@@ -1025,6 +1029,11 @@ msgstr "Deaktivieren"
 msgid "Allow Control"
 msgstr "Kontrolle zulassen"
 
+#. translators: %s expands to Yoast SEO
+#: admin/views/tabs/network/features.php:24
+msgid "This tab allows you to selectively disable %s features for all sites in the network. By default all features are enabled, which allows site admins to choose for themselves if they want to toggle a feature on or off for their site. When you disable a feature here, site admins will not be able to use that feature at all."
+msgstr "Diese Registerkarte ermöglicht es dir, die %s Funktionen für alle Seiten im Netzwerk selektiv zu deaktivieren. Standardmäßig sind alle Funktionen aktiviert, so dass die Administratoren der Website selbst entscheiden können, ob sie eine Funktion für ihre Website ein- oder ausschalten möchten. Wenn du eine Funktion hier deaktivieren möchtest, können die Administratoren diese Funktion überhaupt nicht verwenden."
+
 #: languages/wordpress-seojs.php:113 admin/views/sidebar.php:28
 msgid "Rank better with synonyms & related keyphrases"
 msgstr "Ranke besser mit Synonymen & verwandten Keyphrasen."
@@ -1090,6 +1099,10 @@ msgstr "Bild löschen"
 msgid "Get %s"
 msgstr "Erhalte %s"
 
+#: languages/wordpress-seojs.php:251
+msgid "Optional. Customize how you want to describe the duration of the instruction"
+msgstr "Optional. Passe an, wie du die Dauer der Anleitung beschreiben möchtest. "
+
 #: languages/wordpress-seojs.php:248
 msgid "Describe the duration of the instruction:"
 msgstr "Beschreibe die Dauer der Anleitung:"
@@ -1144,6 +1157,10 @@ msgid_plural "%d days"
 msgstr[0] "%d Tag"
 msgstr[1] "%d Tage"
 
+#: languages/wordpress-seojs.php:245
+msgid "Optional. This can give you better control over the styling of the steps."
+msgstr "Optional. Dies kann dir eine bessere Kontrolle über das Styling der Schritte geben."
+
 #: languages/wordpress-seojs.php:242
 msgid "CSS class(es) to apply to the steps"
 msgstr "CSS-Klasse(n), die auf die Schritte angewendet werden sollen"
@@ -1160,9 +1177,21 @@ msgstr "Stunden"
 msgid "days"
 msgstr "Tage"
 
+#: languages/wordpress-seojs.php:203
+msgid "Create a How-to guide in an SEO-friendly way. You can only use one How-to block per post."
+msgstr "Erstelle eine Anleitung auf SEO-freundliche Weise. Du kannst nur einen How-to-Absatz pro Beitrag verwenden."
+
+#: languages/wordpress-seojs.php:166
+msgid "List your Frequently Asked Questions in an SEO-friendly way. You can only use one FAQ block per post."
+msgstr "Liste deine häufig gestellten Fragen SEO-freundlich auf. Du kannst nur einen FAQ-Absatz pro Bericht verwenden."
+
 #: languages/wordpress-seojs.php:38
 msgid "Copy error"
 msgstr "Fehler kopieren"
+
+#: languages/wordpress-seojs.php:35
+msgid "An error occurred loading the %s primary taxonomy picker."
+msgstr "Beim Laden des primären Taxonomie-Pickers %s ist ein Fehler aufgetreten."
 
 #. translators: %1$s expands to Yoast.
 #: inc/class-structured-data-blocks.php:62
@@ -1220,6 +1249,14 @@ msgstr "Links zu dieser URL überprüfen"
 #: inc/class-wpseo-admin-bar-menu.php:248
 msgid "Keyword research training"
 msgstr "Übungen zur Keyword-Suche"
+
+#. translators: %1$s is the archive template link start tag, %2$s is the link
+#. closing tag, %3$s is a comma separated string with content types.
+#: admin/notifiers/class-post-type-archive-notification-handler.php:65
+msgid "Please check the %1$sarchive template%2$s for the following content type: %3$s."
+msgid_plural "Please check the %1$sarchive templates%2$s for the following content types: %3$s."
+msgstr[0] "Überprüfe die %1$sArchiv-Vorlage%2$s für den folgenden Inhaltstyp: %3$s."
+msgstr[1] "Überprüfe die %1$sArchiv-Vorlagen%2$s für die folgenden Inhaltstypen: %3$s."
 
 #: languages/yoast-components.php:89
 msgid "Are you trying to use multiple keyphrases? You should add them separately below."
@@ -1347,6 +1384,10 @@ msgstr "Es ist dir nicht erlaubt, nicht registrierte Netzwerk-Einstellungen zu �
 #: admin/class-yoast-network-admin.php:81
 msgid "deleted"
 msgstr "gelöscht"
+
+#: admin/class-multiple-keywords-modal.php:21
+msgid "Would you like to add another keyphrase?"
+msgstr "Möchten Sie eine weitere Schlüsselphrase hinzufügen?"
 
 #: languages/yoast-components.php:47
 msgid "image preview"
@@ -3147,7 +3188,7 @@ msgstr "%1$s Video Tutorial"
 #. link closing tag.
 #: admin/class-product-upsell-notice.php:154
 msgid "%1$sPlease don't show me this notification anymore%2$s"
-msgstr "%1$sBitte zeige mir diese Benachrichtigung nicht mehr an%2$s"
+msgstr "%1$sDiese Benachrichtigung bitte nicht mehr anzeigen%2$s"
 
 #. translators: %1$s is a link start tag to the bugreport guidelines on the
 #. Yoast knowledge base, %2$s is the link closing tag.
@@ -3191,6 +3232,12 @@ msgstr "%1$s zu %2$s"
 #: admin/class-admin.php:304
 msgid "Warning: the variable %s cannot be used in this template. See the help center for more info."
 msgstr "Warnung: Die Variable %s kann in diesem Template nicht genutzt werden. Schau ins Hilfe-Center für weitere Informationen."
+
+#. translators: %1$s expands anchor to premium plugin page, %2$s expands to
+#. </a>
+#: admin/class-product-upsell-notice.php:120
+msgid "By the way, did you know we also have a %1$sPremium plugin%2$s? It offers advanced features, like a redirect manager and support for multiple keyphrases. It also comes with 24/7 personal support."
+msgstr "Übrigens, wusstest du, dass wir auch ein %1$sPremium Plugin%2$s haben? Es bietet erweiterte Funktionen, wie einen Redirect Manager und Unterstützung für mehrere Schlüsselphrasen. Unser persönlicher 24/7 Support gehört selbstverständlich ebenfalls zum Lieferumfang."
 
 #: admin/class-bulk-editor-list-table.php:784
 msgid "(no title)"
@@ -3502,6 +3549,10 @@ msgstr "Google Trends"
 #: inc/class-wpseo-admin-bar-menu.php:199
 msgid "Notifications"
 msgstr "Benachrichtigungen"
+
+#: admin/views/user-profile.php:48
+msgid "Removes the focus keyphrase section from the metabox and disables all SEO-related suggestions."
+msgstr "Entfernt den Reiter für Schlüsselphrasen aus der Metabox und deaktiviert alle für die SEO-Bewertung relevanten Vorschläge."
 
 #: admin/views/user-profile.php:45
 msgid "Disable SEO analysis"
