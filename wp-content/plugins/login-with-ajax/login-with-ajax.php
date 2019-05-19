@@ -4,7 +4,7 @@ Plugin Name: Login With Ajax
 Plugin URI: http://wordpress.org/extend/plugins/login-with-ajax/
 Description: Ajax driven login widget. Customisable from within your template folder, and advanced settings from the admin area.
 Author: Marcus Sykes
-Version: 3.1.8
+Version: 3.1.8.1
 Author URI: http://msyk.es/?utm_source=login-with-ajax&utm_medium=plugin-header&utm_campaign=plugins
 Tags: Login, Ajax, Redirect, BuddyPress, MU, WPMU, sidebar, admin, widget
 Text Domain: login-with-ajax
@@ -24,7 +24,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-define('LOGIN_WITH_AJAX_VERSION', '3.1.8');
+define('LOGIN_WITH_AJAX_VERSION', '3.1.8.1');
 class LoginWithAjax {
 
 	/**
@@ -516,12 +516,6 @@ $lwa_data = get_option('lwa_data');
 if( version_compare( get_option('lwa_version',0), LOGIN_WITH_AJAX_VERSION, '<' ) ){
     include_once('lwa-install.php');
 }
-
-//Add translation
-function lwa_load_plugin_textdomain(){
-	load_plugin_textdomain('login-with-ajax', false, "login-with-ajax/langs");
-}
-add_action('plugins_loaded','lwa_load_plugin_textdomain');
 
 //Include admin file if needed
 if(is_admin()){

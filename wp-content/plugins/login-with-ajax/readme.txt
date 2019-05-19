@@ -4,7 +4,7 @@ Tags: login, ajax, ajax login, registration, redirect redirect, buddypress, mult
 Text Domain: events-manager
 Requires at least: 4.8
 Tested up to: 5.2
-Stable tag: 3.1.8
+Stable tag: 3.1.8.1
 Requires PHP: 5.2
 License: GPLv2 or later
 
@@ -35,7 +35,7 @@ If you have any problems with the plugin after reading the FAQ, Other Notes, etc
 
 = Translated Languages Available =
 
-To view translated languages avaialble or to contribute translations in your language, visit the [WordPress translation portal](https://translate.wordpress.org/projects/wp-plugins/login-with-ajax/)
+To view translated languages avaialble or to contribute translations in your language, visit the [WordPress translation portal](https://translate.wordpress.org/projects/wp-plugins/login-with-ajax/). Any translated languages over 90% will be automatically installed with the plugin, for other languages not fully translated, please see our FAQ.
 
 == Installation ==
 
@@ -131,6 +131,19 @@ The JavaScript ajax magic relies on the class names and hierarchical structure w
 
 == Frequently Asked Questions ==
 
+= Language Support =
+If your language has been translated 90% or more on the [translate.wordpress.org project page](https://translate.wordpress.org/projects/wp-plugins/login-with-ajax/), then your language translation of Login With Ajax should be automatically installed and maintained by WordPress.
+
+If not, you can also manually install this, we'll use Russian as an example:
+
+1. Find your language on the [translate.wordpress.org project page](https://translate.wordpress.org/projects/wp-plugins/login-with-ajax/), and click on either the stable or development column percentage.
+2. Click the 'Export' link at the bottom of the page, but select 'All Current' and the (.mo) file format, save the downloaded file.
+3. Rename that file in the format of login-with-ajax-LANG.mo, where LANG = your language locale, for example russian is ru_RU so you'd get `login-with-ajax-ru_RU.mo`
+4. Upload that file to the `wp-content/languages` folder on your WordPress installation.
+5. Your Login With Ajax plugin should now be translated partially into your language.
+
+We suggest you contribute to the WordPress translation project page, anyone with a registered wordpress.org account can suggest new translations!
+
 = The registration link doesn't show! What's wrong? =
 Before you start troubleshooting, make sure your blog has registrations enabled via the admin area (Settings > General) and that your widget has the registration link box checked.
 
@@ -150,6 +163,10 @@ For further questions and answers (or to submit one yourself) go to our [https:/
 
 
 == Changelog ==
+= 3.1.8.1 =
+* fixed translations from translate.wordpress.org not loading properly (languages must be translated %95 or more),
+* fixed settings pages save button not working in 3.1.8 release
+
 = 3,1,8 =
 * removed langs file, as WP translate services now handle translation and updates automatically
 * updated admin area to include %LANG% hints in redirect templates and split login/logout for clearler explanations of other placeholders that can be used

@@ -145,7 +145,7 @@ class LoginWithAjaxAdmin{
 				</div>
 				<div id="post-body">
 					<div id="post-body-content">
-						<p method="post" action="">
+						<form method="post" action="">
 						<h3><?php _e("General Settings", 'login-with-ajax'); ?></h3>
 						<table class="form-table">
 							<?php if( count(LoginWithAjax::$templates) > 1 ) : ?>
