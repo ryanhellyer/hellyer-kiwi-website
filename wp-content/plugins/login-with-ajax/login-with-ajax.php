@@ -4,12 +4,12 @@ Plugin Name: Login With Ajax
 Plugin URI: http://wordpress.org/extend/plugins/login-with-ajax/
 Description: Ajax driven login widget. Customisable from within your template folder, and advanced settings from the admin area.
 Author: Marcus Sykes
-Version: 3.1.7
-Author URI: http://msyk.es
+Version: 3.1.8
+Author URI: http://msyk.es/?utm_source=login-with-ajax&utm_medium=plugin-header&utm_campaign=plugins
 Tags: Login, Ajax, Redirect, BuddyPress, MU, WPMU, sidebar, admin, widget
 Text Domain: login-with-ajax
 
-Copyright (C) 2016 NetWebLogic LLC
+Copyright (C) 2019 Pixelite SL
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-define('LOGIN_WITH_AJAX_VERSION', '3.1.7');
+define('LOGIN_WITH_AJAX_VERSION', '3.1.8');
 class LoginWithAjax {
 
 	/**
@@ -135,6 +135,8 @@ class LoginWithAjax {
 		$return = array('result'=>false, 'error'=>'Unknown command requested');
 		switch ( $_REQUEST["login-with-ajax"] ) {
 			case 'login': //A login has been requested
+				//remove known interferences
+				add_filter('ws_plugin__s2member_login_redirect', '__return_false');
 			    $return = self::login();
 				break;
 			case 'remember': //Remember the password

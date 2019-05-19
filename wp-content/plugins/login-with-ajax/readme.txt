@@ -1,9 +1,11 @@
 ﻿=== Login With Ajax ===
 Contributors: netweblogic
 Tags: login, ajax, ajax login, registration, redirect redirect, buddypress, multi site, sidebar, admin, widget
-Requires at least: 3.7
-Tested up to: 4.7.2
-Stable tag: 3.1.7
+Text Domain: events-manager
+Requires at least: 4.8
+Tested up to: 5.2
+Stable tag: 3.1.8
+Requires PHP: 5.2
 License: GPLv2 or later
 
 Add smooth ajax login/registration effects and choose where users get redirected upon log in/out. Supports SSL, MultiSite, and BuddyPress.
@@ -33,38 +35,7 @@ If you have any problems with the plugin after reading the FAQ, Other Notes, etc
 
 = Translated Languages Available =
 
-Here's a list of currently translated languages. Translations that have been submitted are greatly appreciated and hopefully make this plugin a better one. If you'd like to contribute, please have a look at [our translation site](http://translate.netweblogic.com/projects/login-with-ajax), or let us know on the [support forums](http://wordpress.org/support/plugin/login-with-ajax).
-
-* Afrikaans - [Johnny Dunhin](http://helpendehand.co.za)
-* Albanian - [Besnik Bleta](http://blogu.programeshqip.org/)
-* Arabic (SA) - Adel Madshel
-* Bosnian - Nenad Cvetkovic
-* Catalan - Xavi Valenti
-* Chinese - [Simon Lau](http://fashion-bop.com)
-* Czech -  Marek Liolias, Ondra Kalous, Henry Greek, Viktor Jezek 
-* Danish - Christian B.
-* Dutch - Sjors Spoorendonk
-* Estonian - Oliver Busch
-* Finnish - Jaakko Kangosjärvi
-* French - [Geoffroy Deleury](http://wall.clan-zone.dk)
-* German - Linus Metzler
-* Greek - George Alexakis, Lamprakis Fousekis
-* Hebrew - Menachem Shapiro
-* Hindi - Anonymous
-* Hungarian - Lorinc Borda
-* Italian - Marco aka teethgrinder
-* Japanese - [Ryuei Sasaki](http://ryueisasaki.com/)
-* Limburgish - Anonymous
-* Lithuanian - [Gera Dieta](http://www.kulinare.lt/)
-* Persian - [Mohammad Hosein Ameri](http://khandoon.ir/), [Mohammad Akbari](http://www.mo-akbari.com)
-* Polish - Ryszard Rysz
-* Portuguese (Brazil) - Humberto S. Ribeiro, Diogo Goncalves, Fabiano Arruda
-* Romanian - Gabriel Berzescu
-* Russian - [xl32](http://wordpress.org/support/profile/xl32),
-* Slovak - [Branco](http://webhostinggeeks.com/blog/)
-* Spanish - Myself and [Danilo Casati](http://e-rgonomy.com)
-* Swedish - Tommy Wahlund
-* Turkish - Mesut Soylu, Oskay Yurtturk
+To view translated languages avaialble or to contribute translations in your language, visit the [WordPress translation portal](https://translate.wordpress.org/projects/wp-plugins/login-with-ajax/)
 
 == Installation ==
 
@@ -78,7 +49,7 @@ Here's a list of currently translated languages. Translations that have been sub
 
 5. Happy logging in!
 
-== Notes ==
+== Upgrade Notice ==
 
 = Upgrading from v3 to v3.1 =
 Due to the improvmenets necessary (specifically allowing multiple LWA widgets on one page), it was important to modify the template files to use classnames instead of ids.
@@ -94,6 +65,8 @@ We've tried to minimize potential conflicts arising from this, but you should co
  * underscores become hyphens
  * Example : LoginWithAjax_Form > lwa-form
 
+== Notes ==
+
 = Shortcodes & Template Tags =
 
 You can use the [shortcode](http://codex.wordpress.org/Shortcode) [login-with-ajax] or [lwa] and [template tag](http://codex.wordpress.org/Template_Tags) `login_with_ajax()` with these options :
@@ -107,7 +80,11 @@ You can use the [shortcode](http://codex.wordpress.org/Shortcode) [login-with-aj
 * remember - (1 or 0)
  * If value is 1 (default), a remember password link appears for password recovery
 * redirect
- * Successful logins are redirected to this URL 
+ * Successful logins are redirected to this URL
+
+= Multilingual Support =
+
+We have WPML compatiblity with regards to login/logout redirects. Aside from custom redirect links for each language, you can also use the %LANG% placeholder to dynamically insert the language fragment used to build URLs, such as *en* for English or *es* for Spanish.
  
 = SSL Logins =
 
@@ -169,10 +146,15 @@ Yes, see the notes section.
 = Do you have a shortcode or template tag? =
 Yes, see the notes section.
 
-For further questions and answers (or to submit one yourself) go to our [http://netweblogic.com/forums/](support forums).
+For further questions and answers (or to submit one yourself) go to our [https://wordpress.org/support/plugin/login-with-ajax/](support forums).
 
 
 == Changelog ==
+= 3,1,8 =
+* removed langs file, as WP translate services now handle translation and updates automatically
+* updated admin area to include %LANG% hints in redirect templates and split login/logout for clearler explanations of other placeholders that can be used
+* fixed s2member redirection compatibility issues
+
 = 3.1.7 =
 * fixed XSS security vulnerability on LWA settings page allowing code injection if an authorized user follows a properly structured url to that page, this does not affect the security of the login forms, only the settings page. Kudos Neven Biruski from DefenceCode for responsible disclosure.
 * changed our hooks logout_url and login_redirect added as actions to filters which prevented functionality in some situations

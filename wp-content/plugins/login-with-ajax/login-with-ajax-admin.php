@@ -111,7 +111,7 @@ class LoginWithAjaxAdmin{
 		}
 		?>
 		<div class="wrap nwl-plugin">
-			<h1>Login With Ajax</h1>
+			<h2>Login With Ajax</h2>
 			<div id="poststuff" class="metabox-holder has-right-sidebar">
 				<div id="side-info-column" class="inner-sidebar">
 					<div id="categorydiv" class="postbox ">
@@ -145,8 +145,8 @@ class LoginWithAjaxAdmin{
 				</div>
 				<div id="post-body">
 					<div id="post-body-content">
-						<form method="post" action="">
-						<h2><?php _e("General Settings", 'login-with-ajax'); ?></h2>
+						<p method="post" action="">
+						<h3><?php _e("General Settings", 'login-with-ajax'); ?></h3>
 						<table class="form-table">
 							<?php if( count(LoginWithAjax::$templates) > 1 ) : ?>
 							<tr valign="top">
@@ -178,7 +178,17 @@ class LoginWithAjaxAdmin{
 						</table>
 						
 						
-						<h2><?php _e("Redirection Settings", 'login-with-ajax'); ?></h2>
+						<h3><?php _e("Login Redirection Settings", 'login-with-ajax'); ?></h3>
+						<p><em><?php echo esc_html(sprintf(__("If you'd like to send the user to a specific URL after %s, enter a full URL (e.g. http://wordpress.org/) in the fields below. The following placeholders can be used in all %s redirect links", 'login-with-ajax'), __('login','login-with-ajax'), __('login','login-with-ajax'))); ?></em></p>
+						<p>
+							<ul>
+								<li><em><?php _e("Enter %LASTURL% to send the user back to the page they were previously on.", 'login-with-ajax'); ?></em></li>
+								<li><em><?php _e("Use %USERNAME% and it will be replaced with the username of person logging in.", 'login-with-ajax'); ?></em></li>
+								<?php if( class_exists('SitePress') ): ?>
+									<li><em><?php _e("Use %LANG% and it will be replaced with the current language used in multilingual URLs, for example, English may be <code>en</code>", 'login-with-ajax'); ?></em></li>
+								<?php endif; ?>
+							</ul>
+						</p>
 						<table class="form-table">
 							<tr valign="top">
 								<th scope="row">
@@ -187,7 +197,6 @@ class LoginWithAjaxAdmin{
 								<td>
 									<input type="text" name="lwa_login_redirect" value='<?php echo (!empty($lwa_data['login_redirect'])) ? $lwa_data['login_redirect']:''; ?>' class='wide' />
 									<em><?php _e("If you'd like to send the user to a specific URL after login, enter it here (e.g. http://wordpress.org/)", 'login-with-ajax'); ?></em>
-									<br/><em><?php _e("Use %USERNAME% and it will be replaced with the username of person logging in.", 'login-with-ajax'); ?></em>
 									<?php
 									//WMPL itegrations
 									function lwa_icl_inputs( $name, $lwa_data ){
@@ -215,19 +224,6 @@ class LoginWithAjaxAdmin{
 										}
 									}
 									lwa_icl_inputs('login_redirect', $lwa_data);
-									?> 
-								</td>
-							</tr>
-							<tr valign="top">
-								<th scope="row">
-									<label><?php _e("Global Logout Redirect", 'login-with-ajax'); ?></label>
-								</th>
-								<td>
-									<input type="text" name="lwa_logout_redirect" value='<?php echo (!empty($lwa_data['logout_redirect'])) ? $lwa_data['logout_redirect']:''; ?>' class='wide' />
-									<em><?php _e("If you'd like to send the user to a specific URL after logout, enter it here (e.g. http://wordpress.org/)", 'login-with-ajax'); ?></em>
-									<br /><em><?php _e("Enter %LASTURL% to send the user back to the page they were previously on.", 'login-with-ajax'); ?></em>
-									<?php 
-									lwa_icl_inputs('logout_redirect', $lwa_data);
 									?> 
 								</td>
 							</tr>
@@ -284,6 +280,29 @@ class LoginWithAjaxAdmin{
 									</table>
 								</td>
 							</tr>
+						</table>
+
+
+						<h3><?php _e("Logout Redirection Settings", 'login-with-ajax'); ?></h3>
+						<p><em><?php echo esc_html(sprintf(__("If you'd like to send the user to a specific URL after %s, enter a full URL (e.g. http://wordpress.org/) in the fields below. The following placeholders can be used in all %s redirect links", 'login-with-ajax'), __('logout','login-with-ajax'), __('logout','login-with-ajax'))); ?></em></p>
+								<ul>
+									<li><em><?php _e("Enter %LASTURL% to send the user back to the page they were previously on.", 'login-with-ajax'); ?></em></li>
+									<?php if( class_exists('SitePress') ): ?>
+										<li><em><?php _e("Use %LANG% and it will be replaced with the current language used in multilingual URLs, for example, English may be <code>en</code>", 'login-with-ajax'); ?></em></li>
+									<?php endif; ?>
+								</ul>
+						<table class="form-table">
+							<tr valign="top">
+								<th scope="row">
+									<label><?php _e("Global Logout Redirect", 'login-with-ajax'); ?></label>
+								</th>
+								<td>
+									<input type="text" name="lwa_logout_redirect" value='<?php echo (!empty($lwa_data['logout_redirect'])) ? $lwa_data['logout_redirect']:''; ?>' class='wide' />
+									<?php
+									lwa_icl_inputs('logout_redirect', $lwa_data);
+									?>
+								</td>
+							</tr>
 							<tr valign="top">
 								<th scope="row">
 									<label><?php _e("Role-Based Custom Logout Redirects", 'login-with-ajax'); ?></label>
@@ -312,7 +331,7 @@ class LoginWithAjaxAdmin{
 							</tr>
 						</table>
 						
-						<h2><?php _e("Notification Settings", 'login-with-ajax'); ?></h2>
+						<h3><?php _e("Notification Settings", 'login-with-ajax'); ?></h3>
 						<p>
 							<em><?php _e("If you'd like to override the default Wordpress email users receive once registered, make sure you check the box below and enter a new email subject and message.", 'login-with-ajax'); ?></em><br />
 							<em><?php _e("If this feature doesn't work, please make sure that you don't have another plugin installed which also manages user registrations (e.g. BuddyPress and MU).", 'login-with-ajax'); ?></em>										
