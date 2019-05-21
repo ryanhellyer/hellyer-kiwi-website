@@ -977,7 +977,15 @@ class SRC_Core {
 			// Get qualifying time
 			$q_time = $result['qual_time'];
 			$q = explode( ':', $q_time );
-			$q_times[] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
+			if (
+				is_numeric( $q[0] )
+				&&
+				is_numeric( $q[1] )
+				&&
+				is_numeric( $q[2] )
+			) {
+				$q_times[$name] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
+			}
 
 			// Get points for this driver
 			if ( isset( $points_positions[$pos - 1] ) ) {
