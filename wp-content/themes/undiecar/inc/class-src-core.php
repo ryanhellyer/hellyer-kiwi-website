@@ -973,9 +973,13 @@ class SRC_Core {
 
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
+
+			// Get qualifying time
 			$q_time = $result['qual_time'];
+
 if ( isset( $_GET['test'] ) ) {
-print_r( $q_time );die;
+	echo strtotime( $q_time );
+	die;
 }
 			// Get points for this driver
 			if ( isset( $points_positions[$pos - 1] ) ) {
@@ -1104,27 +1108,6 @@ print_r( $stored_results );die;
 		}
 
 		return $incidents;
-	}
-
-	/**
-	 * iRacing time formatter.
-	 * iRacing uses odd time format in 1/10000th seconds
-	 */
-	protected function get_formatted_time_from_iracing( $time ) {
-
-		// If negative, then it's because it's recording a person as a lap down, so just send it straight back
-		if ( $time < 0 ) {
-			return $time;
-		}
-
-		$time_in_seconds = $time / 10000;
-
-		$milliseconds = str_replace( '0.', '', ( $time_in_seconds - (int) $time_in_seconds ) );
-		$milliseconds = substr( $milliseconds, 0, 4 );
-
-		$formatted_time = gmdate( 'H:i:s', $time_in_seconds ) . '.' . $milliseconds;
-
-		return $formatted_time;
 	}
 
 }
