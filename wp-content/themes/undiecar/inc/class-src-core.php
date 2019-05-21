@@ -977,14 +977,8 @@ class SRC_Core {
 			// Get qualifying time
 			$q_time = $result['qual_time'];
 			$q = explode( ':', $q_time );
-			$q_time = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
-//00:00:33.3981
+			$q_times[] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
 
-if ( isset( $_GET['test'] ) ) {
-	echo $q_time;
-//	echo strtotime( $q_time );
-	die;
-}
 			// Get points for this driver
 			if ( isset( $points_positions[$pos - 1] ) ) {
 
@@ -1012,7 +1006,8 @@ if ( isset( $_GET['test'] ) ) {
 
 		}
 if ( isset( $_GET['test'] ) ) {
-print_r( $stored_results );die;
+	sort( $q_times );
+print_r( $q_times );die;
 }
 		// Pole position bonus point
 		foreach ( $stored_results as $name => $result ) {
