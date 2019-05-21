@@ -978,11 +978,11 @@ class SRC_Core {
 			$q_time = $result['qual_time'];
 			$q = explode( ':', $q_time );
 			if (
-				is_numeric( $q[0] )
+				isset( $q[0] ) && is_numeric( $q[0] )
 				&&
-				is_numeric( $q[1] )
+				isset( $q[1] ) && is_numeric( $q[1] )
 				&&
-				is_numeric( $q[2] )
+				isset( $q[2] ) && is_numeric( $q[2] )
 			) {
 				$q_times[$name] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
 			}
@@ -1013,12 +1013,10 @@ class SRC_Core {
 			}
 
 		}
-if ( isset( $_GET['test'] ) ) {
-	sort( $q_times );
-print_r( $q_times );die;
-}
+
 		// Pole position bonus point
-		foreach ( $stored_results as $name => $result ) {
+		asort( $q_times );
+		foreach ( $q_times as $name => $points ) {
 			$stored_results[$name]++;
 			update_post_meta( get_the_ID(), '_pole_position', $name );
 			break;
