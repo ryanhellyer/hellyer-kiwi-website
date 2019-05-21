@@ -1013,18 +1013,11 @@ class SRC_Core {
 			}
 
 		}
-		// Pole position bonus point
+		// Pole position bonus point - sort qualifying times, then grab the first result
 		asort( $q_times );
 		foreach ( $q_times as $name => $points ) {
 			$stored_results[$name]++;
 			update_post_meta( get_the_ID(), '_pole_position', $name );
-
-if ( isset( $_GET['test'] ) ) {
-//print_r( $q_times );
-//echo "\n\n\n";
-//	echo $name;die;
-}
-
 			break;
 		}
 
