@@ -1000,7 +1000,9 @@ class SRC_Core {
 			}
 
 		}
-
+if ( isset( $_GET['test'] ) ) {
+print_r( $stored_results );die;
+}
 		// Pole position bonus point
 		foreach ( $stored_results as $name => $result ) {
 			$stored_results[$name]++;
