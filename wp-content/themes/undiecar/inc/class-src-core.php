@@ -974,6 +974,9 @@ class SRC_Core {
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
 
+if ( isset( $_GET['test'] ) ) {
+print_r( $result );die;
+}
 			// Get points for this driver
 			if ( isset( $points_positions[$pos - 1] ) ) {
 
