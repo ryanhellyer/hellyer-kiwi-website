@@ -973,7 +973,7 @@ class SRC_Core {
 
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
-			$q_time = SRC_Core::get_formatted_time_from_iracing( $result['qual_time'] );
+			$q_time = $result['qual_time'];
 if ( isset( $_GET['test'] ) ) {
 print_r( $q_time );die;
 }
