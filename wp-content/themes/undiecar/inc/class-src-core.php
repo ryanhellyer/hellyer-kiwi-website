@@ -1020,9 +1020,9 @@ class SRC_Core {
 			update_post_meta( get_the_ID(), '_pole_position', $name );
 
 if ( isset( $_GET['test'] ) ) {
-print_r( $q_times );
-echo "\n\n\n";
-	echo $name;die;
+//print_r( $q_times );
+//echo "\n\n\n";
+//	echo $name;die;
 }
 
 			break;
