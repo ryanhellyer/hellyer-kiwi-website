@@ -232,13 +232,21 @@ if ( isset( $our_events[0] ) ) {
 			$season_id = get_option( 'current-season' );
 		}
 
+		if ( get_option( 'next-season' ) === get_option( 'current-season' ) ) {
+			$text = __( 'This season', 'undiecar' );
+		} else {
+			$text = __( 'Next season', 'undiecar' );
+		}
+
 		echo esc_url( get_permalink( $season_id ) );
+
+
 
 /*
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall6.jpg);">
 */
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/mats-sjoblom-tall.jpg);">
-		<h2>This season</h2>
+		<h2><?php echo esc_html( $text ); ?></h2>
 		<p>
 			<?php echo esc_html( get_the_title( $season_id ) ); ?><br />
 			Race with free iRacing content. Fixed setups.
