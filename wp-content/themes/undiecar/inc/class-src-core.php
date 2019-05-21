@@ -976,6 +976,9 @@ class SRC_Core {
 
 			// Get qualifying time
 			$q_time = $result['qual_time'];
+			$q = explode( ':', $q_time );
+			$q_time = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
+//00:00:33.3981
 
 if ( isset( $_GET['test'] ) ) {
 	echo $q_time;
