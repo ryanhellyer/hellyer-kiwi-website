@@ -23,6 +23,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 	public function __construct() {
 
 				if ( 'Renzo A. Olivieri' === $_GET['user_processing'] ) {
+					$driver_id = 1777;
 					$driver_data = $this->iracing_member_info( 'Renzo A. Olivieri' );
 					echo $name . ', ';
 
