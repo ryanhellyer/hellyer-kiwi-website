@@ -978,7 +978,8 @@ class SRC_Core {
 			$q_time = $result['qual_time'];
 
 if ( isset( $_GET['test'] ) ) {
-	echo strtotime( $q_time );
+	echo $q_time;
+//	echo strtotime( $q_time );
 	die;
 }
 			// Get points for this driver
