@@ -14,33 +14,6 @@ if ( ! isset( $_GET['user_processing'] ) ) {
 }
 
 
-if ( 'Renzo A. Olivieri' === $_GET['user_processing'] ) {
-	$driver_data = $this->iracing_member_info( 'Renzo A. Olivieri' );
-	echo $name . ', ';
-
-	// Add some meta keys
-	$meta_keys = array(
-		'club',
-		'oval_avg_inc',
-		'oval_license',
-		'oval_irating',
-		'road_avg_inc',
-		'road_license',
-		'road_irating',
-		'custid',
-	);
-	foreach ( $meta_keys as $meta_key ) {
-		if ( isset( $driver_data[$meta_key] ) ) {
-			update_user_meta(
-				$driver_id,
-				esc_html( $meta_key ),
-				esc_html( $driver_data[$meta_key] )
-			);
-		}
-	}
-
-	die('done');
-}
 
 /**
  * Update information from iRacing, including iRating.
@@ -48,6 +21,35 @@ if ( 'Renzo A. Olivieri' === $_GET['user_processing'] ) {
 class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 	public function __construct() {
+
+				if ( 'Renzo A. Olivieri' === $_GET['user_processing'] ) {
+					$driver_data = $this->iracing_member_info( 'Renzo A. Olivieri' );
+					echo $name . ', ';
+
+					// Add some meta keys
+					$meta_keys = array(
+						'club',
+						'oval_avg_inc',
+						'oval_license',
+						'oval_irating',
+						'road_avg_inc',
+						'road_license',
+						'road_irating',
+						'custid',
+					);
+					foreach ( $meta_keys as $meta_key ) {
+						if ( isset( $driver_data[$meta_key] ) ) {
+							update_user_meta(
+								$driver_id,
+								esc_html( $meta_key ),
+								esc_html( $driver_data[$meta_key] )
+							);
+						}
+					}
+
+					die('done');
+				}
+
 
 		if ( ! isset( $_GET['start'] ) ) {
 			return;
