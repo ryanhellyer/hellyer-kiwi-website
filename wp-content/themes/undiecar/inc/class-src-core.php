@@ -1038,6 +1038,9 @@ class SRC_Core {
 		}
 
 if ( isset( $_GET['test'] ) ) {
+	echo "\n\n\n";
+	echo get_the_title( get_the_ID() );
+	echo "\n";
 	print_r( $least_incident_drivers );
 	echo "\n.........\n";
 }
