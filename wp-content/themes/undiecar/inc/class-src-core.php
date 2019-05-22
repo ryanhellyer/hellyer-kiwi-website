@@ -1017,7 +1017,7 @@ class SRC_Core {
 		asort( $q_times );
 		foreach ( $q_times as $name => $points ) {
 			$stored_results[$name]++;
-			update_post_meta( get_the_ID(), '_pole_position', $name );
+			update_post_meta( get_the_ID(), '_pole_position', $name ); // Should only be stored when first, or caching FIX THIS LATER
 			break;
 		}
 
@@ -1038,7 +1038,8 @@ class SRC_Core {
 		}
 
 if ( isset( $_GET['test'] ) ) {
-	
+	print_r( $least_incident_drivers );
+	echo "\n.........\n";
 }
 
 		return $stored_results;
