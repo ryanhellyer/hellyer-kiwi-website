@@ -1032,7 +1032,7 @@ class SRC_Core {
 		if ( is_array( $least_incident_drivers ) ) {
 
 			foreach ( $least_incident_drivers as $incident_name => $incidents ) {
-//				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 1;
+				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 1;
 			}
 
 		}
