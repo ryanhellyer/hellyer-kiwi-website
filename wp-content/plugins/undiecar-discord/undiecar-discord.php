@@ -130,9 +130,6 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 						$content .= esc_url( $video_url ) . "\n\n";
 					}
 
-						print_r( $content );die;
-
-
 					// Create video post - if it doesn't already exist
 					$post_slug = sanitize_title( $post_title );
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
