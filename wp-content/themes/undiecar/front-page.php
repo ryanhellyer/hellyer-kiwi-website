@@ -142,15 +142,13 @@ get_header();
 		$image_url = wp_get_attachment_image_src( $event['track_logo'], 'src-four' );
 		$image_url = $image_url[0];
 
+		$season_id = get_post_meta( $event['event_id'], 'season', true );
+		$season_name = get_the_title( $season_id );
 		?>
 
 		<li class="<?php echo esc_attr( 'post-' . $count ); ?>">
 			<a href="<?php echo esc_url( get_the_permalink( $event['event_id'] ) ); ?>">
 				<?php
-					if ( '' === $season_name ) {
-						$season_name = ' '; // Need to leave spacer there to ensure the blocks line up
-					}
-
 					echo '<span class="season-label">' . esc_html( $season_name ) . '</span>';
 					?>
 
@@ -158,8 +156,6 @@ get_header();
 				<h3 class="screen-reader-text"><?php echo esc_html( $event['track_name'] ); ?></h3>
 				<?php
 
-				$season_id = get_post_meta( $event['event_id'], 'season', true );
-				$season_name = get_the_title( $season_id );
 				$season_label = get_post_meta( $season_id, 'label', true );
 
 //				if ( 'Special Events' === $season_name ) {
