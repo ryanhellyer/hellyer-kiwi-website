@@ -105,7 +105,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 								'<a href="' . esc_url( $channel ) . '">' . esc_html( $author ) . '</a>'
 							)
 						) .
-						"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . esc_url( $video_url ) . "\n\n"
+						"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n" . esc_url( $video_url ) . "\n\n"
 					);
 print_r( $content );die;
 					// Create video post - if it doesn't already exist
