@@ -167,7 +167,8 @@ print_r( $event );echo '
 
 
 -->';
-					echo esc_html( $event['track_type'] );
+//					echo esc_html( $event['track_type'] );
+					echo esc_html( get_the_title( $event['event_id'] ) );
 
 					if ( '' === $season_name ) {
 						$season_name = ' '; // Need to leave spacer there to ensure the blocks line up
