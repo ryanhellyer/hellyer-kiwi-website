@@ -158,6 +158,15 @@ get_header();
 //					esc_html_e( 'Special Event', 'undiecar' );
 //					echo '<span class="season-label"> </span>';
 //				} else {
+echo '<!--
+
+
+
+';
+print_r( $event );echo '
+
+
+-->';
 					echo esc_html( $event['track_type'] );
 
 					if ( '' === $season_name ) {
