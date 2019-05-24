@@ -104,7 +104,8 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 								esc_html__( 'The following video was kindly created by  %s.', 'undiecar' ),
 								'<a href="' . esc_url( $channel ) . '">' . esc_html( $author ) . '</a>'
 							)
-						) . "\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n";
+						) .
+						"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n";
 					);
 
 					// Add embedded video clip. Manually add Twitch, and rely on Oembed for everything else (Twitch doesn't support native Oembed)
