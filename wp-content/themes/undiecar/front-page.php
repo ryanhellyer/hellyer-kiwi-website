@@ -148,10 +148,6 @@ get_header();
 
 		<li class="<?php echo esc_attr( 'post-' . $count ); ?>">
 			<a href="<?php echo esc_url( get_the_permalink( $event['event_id'] ) ); ?>">
-				<?php
-					echo '<span class="season-label">' . esc_html( $season_name ) . '</span>';
-					?>
-
 				<img src="<?php echo esc_url( $image_url ); ?>" />
 				<h3 class="screen-reader-text"><?php echo esc_html( $event['track_name'] ); ?></h3>
 				<?php
@@ -162,17 +158,10 @@ get_header();
 //					esc_html_e( 'Special Event', 'undiecar' );
 //					echo '<span class="season-label"> </span>';
 //				} else {
-echo '<!--
-
-
-
-';
-print_r( $event );echo '
-
-
--->';
 //					echo esc_html( $event['track_type'] );
 					echo esc_html( get_the_title( $event['event_id'] ) );
+
+					echo '<span class="season-label">' . esc_html( $season_name ) . '</span>';
 
 
 //				}
