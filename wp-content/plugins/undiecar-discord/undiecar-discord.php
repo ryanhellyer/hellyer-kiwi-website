@@ -107,7 +107,24 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 						) .
 						"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n" . esc_url( $video_url ) . "\n\n"
 					);
+
 if ( 'Twitch' === $provider ) {
+
+	if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 );
+		$twitch_id = absint( substr( $dynamicstring, -9 ) ); // get ID from last 9 characters of URL
+
+		$content .= '
+<iframe
+	src="' . esc_url( 'https://player.twitch.tv/?' . $twitch_id ) . '"
+	height="400"
+	width="300"
+	frameborder="0"
+	scrolling="no"
+	allowfullscreen="true">
+</iframe>';
+
+
+
 	print_r( $content );die;
 }
 					// Create video post - if it doesn't already exist
