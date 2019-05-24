@@ -112,6 +112,7 @@ if ( 'Twitch' === $provider ) {
 
 	if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 ) ) {
 		$twitch_id = absint( substr( $video_url, -9 ) ); // get ID from last 9 characters of URL
+		//https://www.twitch.tv/videos/427959134
 
 		$content .= '
 			<iframe
