@@ -110,18 +110,19 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 
 if ( 'Twitch' === $provider ) {
 
-	if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 );
-		$twitch_id = absint( substr( $dynamicstring, -9 ) ); // get ID from last 9 characters of URL
+	if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 ) ) {
+		$twitch_id = absint( substr( $video_url, -9 ) ); // get ID from last 9 characters of URL
 
 		$content .= '
-<iframe
-	src="' . esc_url( 'https://player.twitch.tv/?' . $twitch_id ) . '"
-	height="400"
-	width="300"
-	frameborder="0"
-	scrolling="no"
-	allowfullscreen="true">
-</iframe>';
+			<iframe
+				src="' . esc_url( 'https://player.twitch.tv/?' . $twitch_id ) . '"
+				height="400"
+				width="300"
+				frameborder="0"
+				scrolling="no"
+				allowfullscreen="true">
+			</iframe>';
+	}
 
 
 
