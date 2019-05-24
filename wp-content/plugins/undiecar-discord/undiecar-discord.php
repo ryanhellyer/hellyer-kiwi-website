@@ -162,7 +162,6 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 
 			}
 
-//die;
 			// Import the attached images
 			foreach ( $message['attachments'] as $key2 => $attachment ) {
 				$message_id = $message['id'];
