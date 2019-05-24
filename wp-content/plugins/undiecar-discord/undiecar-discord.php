@@ -116,9 +116,9 @@ if ( 'Twitch' === $provider ) {
 
 		$content .= '
 			<iframe
-				src="' . esc_url( 'https://player.twitch.tv/?' . $twitch_id ) . '"
-				height="400"
-				width="300"
+				src="' . esc_url( 'https://player.twitch.tv/?autoplay=false&video=v' . $twitch_id ) . '"
+				width="620"
+				height="378"
 				frameborder="0"
 				scrolling="no"
 				allowfullscreen="true">
