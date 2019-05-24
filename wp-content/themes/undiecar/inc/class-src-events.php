@@ -1485,7 +1485,7 @@ class SRC_Events extends SRC_Core {
 	public function previous_events() {
 
 		$query = new WP_Query( array(
-			'posts_per_page'         => 100,
+			'posts_per_page'         => 1000,
 			'post_type'              => 'event',
 			'no_found_rows'          => true,
 			'update_post_meta_cache' => false,
