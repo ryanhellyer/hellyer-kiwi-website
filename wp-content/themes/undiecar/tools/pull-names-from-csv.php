@@ -39,8 +39,8 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 
 
 //define( 'ALLOW_ROOKIES', true );
-define( 'ALLOW_B_LICENSES', true );
-define( 'ALLOW_C_LICENSES', true );
+//define( 'ALLOW_B_LICENSES', true ); // Note licenses only applies to road licenses, not oval licenses
+//define( 'ALLOW_C_LICENSES', true );
 //define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
@@ -70,7 +70,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'2019-s3-radicals' => array(
+	'gte-s2-2019' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -79,6 +79,14 @@ $events = array(
 		'time_3'           => 999,
 	),
 /*
+	'2019-s3-radicals' => array(
+		'incident_ratio_1' => 1,
+		'incident_ratio_2' => 1,
+		'incident_ratio_3' => 1,
+		'time_1'           => 999,
+		'time_2'           => 999,
+		'time_3'           => 999,
+	),
 	'2019-s2-c-fixed-trucks' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
