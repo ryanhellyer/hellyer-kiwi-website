@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-05-20 12:15:53+0000\n"
+"PO-Revision-Date: 2019-05-29 10:19:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,46 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Gutenberg - Stable (latest release)\n"
+
+#: build/components/index.js:19
+msgid "Separate with commas or the Enter key."
+msgstr "Trenne sie durch Kommas oder die Eingabetaste."
+
+#: build/components/index.js:19
+msgid "Separate with commas, spaces, or the Enter key."
+msgstr "Trenne sie durch Kommas, Leerzeichen oder die Eingabetaste."
+
+#: build/block-editor/index.js:55
+msgid "Separate multiple classes with spaces."
+msgstr "Trenne mehrere Klassen durch Leerzeichen."
+
+#: build/block-library/index.js:14
+msgid "Move Image Forward"
+msgstr "Bild weiter bewegen"
+
+#: build/block-library/index.js:14
+msgid "Move Image Backward"
+msgstr "Bild zurück bewegen"
+
+#: lib/class-wp-rest-widget-areas-controller.php:150
+msgid "Sorry, you are not allowed to edit sidebars."
+msgstr "Du bist leider nicht berechtigt, Seitenleisten zu bearbeiten."
+
+#: lib/class-wp-rest-widget-areas-controller.php:99
+msgid "Sorry, you are not allowed to read sidebars."
+msgstr "Du bist leider nicht berechtigt, Seitenleisten zu sehen."
+
+#: lib/class-wp-rest-widget-areas-controller.php:56
+msgid "Sidebar content."
+msgstr "Seitenleisten Inhalt."
+
+#: lib/class-wp-rest-widget-areas-controller.php:49
+msgid "The sidebar’s ID."
+msgstr "Die ID der Seitenleiste."
+
+#: lib/class-experimental-wp-widget-blocks-manager.php:327
+msgid "Displays a set of blocks"
+msgstr "Zeigt eine Gruppe von Blöcken an"
 
 #: build/components/index.js:19
 msgid "Block rendered as empty."
@@ -59,33 +99,40 @@ msgstr "Hinweis: Die automatische Wiedergabe von Audio kann bei einigen Besucher
 msgid "Read More"
 msgstr "Weiterlesen"
 
-#: lib/widgets.php:159
+#: lib/widgets.php:180
 msgid "Block area updated."
 msgstr "Block-Bereich aktualisiert."
 
-#: lib/widgets.php:158
+#: lib/widgets.php:179
 msgid "Block area scheduled."
 msgstr "Block-Bereich geplant."
 
-#: lib/widgets.php:146
+#: lib/widgets.php:167
 msgid "Edit Block Area"
 msgstr "Block-Bereich bearbeiten"
+
+#: lib/widgets.php:162
+msgctxt "admin menu"
+msgid "Block Areas"
+msgstr "Block-Bereiche"
+
+#: lib/widgets.php:161
+msgctxt "post type singular name"
+msgid "Block Area (Experimental)"
+msgstr "Block-Bereich (Experimentell)"
+
+#: lib/widgets.php:160
+msgctxt "post type general name"
+msgid "Block Area (Experimental)"
+msgstr "Block-Bereich (Experimentell)"
+
+#: lib/widgets.php:158
+msgid "Experimental custom post type that will store block areas referenced by themes."
+msgstr "Experimenteller individueller Inhaltstyp, der Block-Bereiche speichert, auf die von Themes zurückgegriffen werden kann."
 
 #: build/edit-widgets/index.js:1
 msgid "Widgets screen content"
 msgstr "Widgets-Bildschirminhalt"
-
-#: build/edit-widgets/index.js:1
-msgid "Header"
-msgstr "Header"
-
-#: build/edit-widgets/index.js:1
-msgid "Footer"
-msgstr "Footer"
-
-#: build/edit-widgets/index.js:1
-msgid "Sidebar"
-msgstr "Seitenleiste"
 
 #: build/edit-widgets/index.js:1
 msgid "Widgets advanced settings"
@@ -633,24 +680,24 @@ msgstr "Dieses Bild hat ein leeres alt-Attribut."
 msgid "This image has an empty alt attribute; its file name is %s"
 msgstr "Dieses Bild hat ein leeres alt-Attribut; sein Dateiname ist %s."
 
-#: lib/widgets.php:157
+#: lib/widgets.php:178
 msgid "Block area reverted to draft."
 msgstr "Block-Bereich auf Entwurf zurückgesetzt."
 
-#: lib/widgets.php:156
+#: lib/widgets.php:177
 msgid "Block area published privately."
 msgstr "Block-Bereich privat veröffentlicht."
 
-#: lib/widgets.php:151
+#: lib/widgets.php:172
 msgid "No block areas found in Trash."
 msgstr "Keinen Block-Bereich im Papierkorb gefunden."
 
-#: lib/widgets.php:143
+#: lib/widgets.php:164
 msgctxt "Block"
 msgid "Add New"
 msgstr "Block hinzufügen"
 
-#: lib/widgets.php:142
+#: lib/widgets.php:163
 msgctxt "add new on admin bar"
 msgid "Block Area"
 msgstr "Block-Bereich"
@@ -3134,8 +3181,8 @@ msgstr "Original suchen"
 msgid "Copy All Content"
 msgstr "Kompletten Inhalt kopieren"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
-#: build/edit-post/index.js:12
+#: build/edit-post/index.js:12 build/block-library/index.js:14
+#: build/editor/index.js:17
 msgid "Copied!"
 msgstr "Kopiert!"
 
@@ -3163,7 +3210,7 @@ msgstr "Block"
 msgid "Document"
 msgstr "Dokument"
 
-#: build/editor/index.js:17 build/edit-post/index.js:12
+#: build/edit-post/index.js:12 build/editor/index.js:17
 msgid "Featured Image"
 msgstr "Beitragsbild"
 
@@ -3220,10 +3267,6 @@ msgid "Item added."
 msgstr "Element hinzugefügt."
 
 #: build/components/index.js:19
-msgid "Separate with commas"
-msgstr "Mit Kommas trennen"
-
-#: build/components/index.js:19
 msgid "Drop files to upload"
 msgstr "Dateien für den Upload bereitstellen"
 
@@ -3249,8 +3292,8 @@ msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] "%d Ergebnis gefunden, benutze die Pfeile nach oben oder unten zum Navigieren."
 msgstr[1] "%d Ergebnisse gefunden, benutze die Pfeile nach oben oder unten zum Navigieren."
 
-#: build/block-library/blocks/latest-comments.php:31 build/editor/index.js:17
-#: build/edit-post/index.js:12
+#: build/block-library/blocks/latest-comments.php:31
+#: build/edit-post/index.js:12 build/editor/index.js:17
 msgid "(no title)"
 msgstr "(kein Titel)"
 
@@ -3331,7 +3374,7 @@ msgstr "Auswählen"
 msgid "Select or Upload Media"
 msgstr "Medium wählen oder hochladen"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 #: build/block-editor/index.js:55
 msgid "Video"
 msgstr "Video"
@@ -3412,7 +3455,7 @@ msgstr "horizontale Linie"
 msgid "Separator"
 msgstr "Trennzeichen"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 msgid "Quote"
 msgstr "Zitat"
 
@@ -3528,12 +3571,12 @@ msgstr "Foto"
 msgid "Image Settings"
 msgstr "Bild-Einstellungen"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 #: build/block-editor/index.js:55
 msgid "Image"
 msgstr "Bild"
 
-#: build/block-library/index.js:14 build/edit-post/index.js:12
+#: build/edit-post/index.js:12 build/block-library/index.js:14
 #: build/block-editor/index.js:55
 msgid "Preview"
 msgstr "Vorschau"
@@ -3582,7 +3625,7 @@ msgstr "Fotos"
 msgid "images"
 msgstr "Bilder"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 msgid "Remove Image"
 msgstr "Bild entfernen"
 
@@ -3606,7 +3649,7 @@ msgstr "Bilder zuschneiden"
 msgid "Gallery Settings"
 msgstr "Galerie-Einstellungen"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 msgid "Gallery"
 msgstr "Galerie"
 
@@ -3710,8 +3753,8 @@ msgstr "Text hinzufügen…"
 msgid "Button"
 msgstr "Button"
 
-#: build/block-library/index.js:14 build/block-editor/index.js:55
-#: build/format-library/index.js:12
+#: build/block-library/index.js:14 build/format-library/index.js:12
+#: build/block-editor/index.js:55
 msgid "Apply"
 msgstr "Übernehmen"
 
@@ -3735,7 +3778,7 @@ msgstr "Wiederverwendbare Blöcke"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 #: build/format-library/index.js:12
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -3752,7 +3795,7 @@ msgstr "Schreibe eine Beschriftung..."
 msgid "Use URL"
 msgstr "URL verwenden"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 #: build/block-editor/index.js:55
 msgid "Audio"
 msgstr "Audio"
@@ -3762,8 +3805,8 @@ msgid "Upload"
 msgstr "Hochladen"
 
 #: build/block-editor/index.js:55
-msgid "Additional CSS Class"
-msgstr "Zusätzliche CSS-Klasse"
+msgid "Additional CSS Class(es)"
+msgstr "Zusätzliche CSS-Klasse(n)"
 
 #: build/block-editor/index.js:55
 msgid "Anchors lets you link directly to a section on a page."
@@ -3865,7 +3908,7 @@ msgstr "Eigene Felder"
 msgid "Excerpt"
 msgstr "Auszug"
 
-#: build/editor/index.js:17 build/edit-post/index.js:12
+#: build/edit-post/index.js:12 build/editor/index.js:17
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -3873,7 +3916,7 @@ msgstr "Veröffentlichen"
 msgid "Metadata"
 msgstr "Meta-Daten"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/editor/index.js:17
 msgid "Save"
 msgstr "Speichern"
 
@@ -3890,8 +3933,9 @@ msgstr "Dokumentation"
 msgid "Demo"
 msgstr "Demo"
 
+#: build/block-library/blocks/rss.php:35
 #: build/block-library/blocks/latest-posts.php:37
-#: build/block-library/blocks/rss.php:35 build/block-library/index.js:14
+#: build/block-library/index.js:14
 msgid "(Untitled)"
 msgstr "(Ohne Titel)"
 
