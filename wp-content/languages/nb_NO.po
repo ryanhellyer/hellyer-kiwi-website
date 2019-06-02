@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.2.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-05-10 09:01:21+0000\n"
+"PO-Revision-Date: 2019-05-18 11:32:04+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,7 @@ msgstr "off"
 #. translators: Translate this to the correct language tag for your locale, *
 #. see https://www.w3.org/International/articles/language-tags/ for reference.
 #. * Do not translate into your own language.
-#: wp-includes/general-template.php:781
+#: wp-includes/general-template.php:780
 msgid "html_lang_attribute"
 msgstr "nb-NO"
 
@@ -51,6 +51,30 @@ msgctxt "text direction"
 msgid "ltr"
 msgstr "ltr"
 
+#. translators: closing curly single quote
+#: wp-includes/formatting.php:113
+msgctxt "closing curly single quote"
+msgid "&#8217;"
+msgstr "&#8217;"
+
+#. translators: opening curly single quote
+#: wp-includes/formatting.php:111
+msgctxt "opening curly single quote"
+msgid "&#8216;"
+msgstr "&#8216;"
+
+#. translators: closing curly double quote
+#: wp-includes/formatting.php:100
+msgctxt "closing curly double quote"
+msgid "&#8221;"
+msgstr "&raquo;"
+
+#. translators: opening curly double quote
+#: wp-includes/formatting.php:98 wp-includes/formatting.php:5241
+msgctxt "opening curly double quote"
+msgid "&#8220;"
+msgstr "&laquo;"
+
 #. translators: $thousands_sep argument for
 #. https://secure.php.net/number_format, default is ,
 #: wp-includes/class-wp-locale.php:200
@@ -62,6 +86,16 @@ msgstr "&nbsp;"
 #: wp-includes/class-wp-locale.php:213
 msgid "number_format_decimal_point"
 msgstr ","
+
+#: wp-includes/load.php:152
+msgid "Insufficient Requirements"
+msgstr "Utilstrekkelige forutsetninger"
+
+#. translators: 1: link to tutorial, 2: additional link attributes, 3:
+#. accessibility text
+#: wp-includes/media-template.php:167
+msgid "<a href=\"%1$s\" %2$s>Describe the purpose of the image%3$s</a>. Leave empty if the image is purely decorative."
+msgstr "<a href=\"%1$s\" %2$s>Beskriv hensikten med bildet%3$s</a>. La stå tom om bildet kun er dekorativt.."
 
 #. translators: %s: theme name
 #: wp-includes/class-wp-recovery-mode-email-service.php:263
@@ -113,7 +147,7 @@ msgstr ""
 msgid "Please contact your host for assistance with investigating this issue further."
 msgstr "Vennligst kontakt webleverandøren din for hjelp med å undersøke dette problemet videre. "
 
-#: wp-includes/class-wp-fatal-error-handler.php:169
+#: wp-includes/class-wp-fatal-error-handler.php:173
 msgid "The site is experiencing technical difficulties. Please check your site admin email inbox for instructions."
 msgstr "Nettstedet opplever tekniske utfordringer. Vennligst sjekk din nettstedsadministrators e-postkasse for å få instruksjoner."
 
@@ -163,7 +197,7 @@ msgstr "[%s] Forespørsel om endring av e-postadresse for nettverksadministrator
 
 #. translators: Site admin email change notification email subject. %s: Site
 #. title
-#: wp-includes/functions.php:6602
+#: wp-includes/functions.php:6610
 msgid "[%s] Admin Email Changed"
 msgstr "[%s] Endret e-postadresse for administrator"
 
@@ -412,11 +446,11 @@ msgstr "Funksjon deaktivert"
 msgid "Block Manager"
 msgstr "Blokkbehandler"
 
-#: wp-includes/js/dist/block-editor.js:17982
+#: wp-includes/js/dist/block-editor.js:17991
 msgid "Change block type or style"
 msgstr "Endre blokktype eller stil"
 
-#: wp-includes/js/dist/block-editor.js:17050
+#: wp-includes/js/dist/block-editor.js:17059
 #: wp-includes/js/dist/block-library.js:6537
 #: wp-includes/js/dist/block-library.js:16785
 #: wp-includes/js/dist/block-library.js:17628
@@ -425,12 +459,12 @@ msgctxt "block style"
 msgid "Default"
 msgstr "Standard"
 
-#: wp-includes/js/dist/block-editor.js:14320
+#: wp-includes/js/dist/block-editor.js:14321
 msgctxt "keyboard key"
 msgid "Space"
 msgstr "Mellomrom"
 
-#: wp-includes/js/dist/block-editor.js:14313
+#: wp-includes/js/dist/block-editor.js:14314
 msgctxt "keyboard key"
 msgid "Backspace"
 msgstr "Slettetast"
@@ -443,15 +477,15 @@ msgstr "Flere kontroller for rik tekst"
 msgid "Attempt Block Recovery"
 msgstr "Forsøk gjenoppretting av blokk"
 
-#: wp-includes/js/dist/editor.js:11859
+#: wp-includes/js/dist/editor.js:11861
 msgid "Search Terms"
 msgstr "Søkeord"
 
-#: wp-includes/js/dist/editor.js:11388
+#: wp-includes/js/dist/editor.js:11390
 msgid "Stick to the top of the blog"
 msgstr "Fest til toppen av innleggssiden"
 
-#: wp-includes/js/dist/editor.js:9432
+#: wp-includes/js/dist/editor.js:9434
 msgid "Exit the Editor"
 msgstr "Gå ut av redigeringsverktøyet"
 
@@ -498,7 +532,7 @@ msgstr "Detaljer om feilen"
 msgid "A recovery link was already sent %1$s ago. Please wait another %2$s before requesting a new email."
 msgstr "En gjenopprettingslink ble allerede sendt for %1$s siden. Vennligst vent %2$s før du forespør ny e-post."
 
-#: wp-login.php:429 wp-includes/class-wp-recovery-mode-email-service.php:65
+#: wp-includes/class-wp-recovery-mode-email-service.php:65
 msgid "The email could not be sent. Possible reason: your host may have disabled the mail() function."
 msgstr "E-posten kunne ikke sendes. Mulig årsak: Nettverten din kan ha deaktivert mail()-funksjonen."
 
@@ -567,11 +601,6 @@ msgstr "Vedleggsliste"
 #: wp-includes/class-wp-customize-widgets.php:780
 msgid "Keep widget settings and move it to the inactive widgets"
 msgstr "Behold widgetinnstillingene og flytt den til de inaktive widgetene"
-
-#. translators: 1: link start tag, 2: accessibility text, 3: link end tag
-#: wp-includes/media-template.php:167
-msgid "%1$sDescribe the purpose of the image%2$s%3$s. Leave empty if the image is purely decorative."
-msgstr "%1$sBeskriv formålet med bildet%2$s%3$s. La det være tomt hvis bildet er rent dekorativt."
 
 #: wp-includes/class-wp-recovery-mode-cookie-service.php:103
 msgid "Invalid cookie."
@@ -656,7 +685,7 @@ msgstr "Mangler forespørsel-ID."
 msgid "Usage of the title attribute on the login logo is not recommended for accessibility reasons. Use the link text instead."
 msgstr "Bruk av tittelattributt på påloggingslogoen anbefales ikke av hensyn til tilgjengelighet. Bruk lenketeksten i stedet."
 
-#: wp-includes/functions.php:7020
+#: wp-includes/functions.php:7028
 msgid "Update PHP"
 msgstr "Oppdater PHP"
 
@@ -674,7 +703,7 @@ msgid "REST API routes must be registered on the %s action."
 msgstr "REST-API-ruter må registreres på handlingen %s."
 
 #. translators: used to join last two items in a list with more than 2 times
-#: wp-includes/formatting.php:4916
+#: wp-includes/formatting.php:4920
 msgid "%1$s, and %2$s"
 msgstr "%1$s og %2$s"
 
@@ -762,16 +791,16 @@ msgid "Formats"
 msgstr "Formater"
 
 #. translators: used to join items in a list with more than 2 items
-#: wp-includes/formatting.php:4914
+#: wp-includes/formatting.php:4918
 msgid "%1$s, %2$s"
 msgstr "%1$s, %2$s"
 
 #. translators: %s: default Update PHP page URL
-#: wp-includes/functions.php:6963
+#: wp-includes/functions.php:6971
 msgid "This resource is provided by your web host, and is specific to your site. For more information, <a href=\"%s\" target=\"_blank\">see the official WordPress documentation</a>."
 msgstr "Denne ressursen leveres av webhotellet ditt, og er spesifikk for ditt nettsted. For mer informasjon, <a href=\"%s\" target=\"_blank\">se den offisielle WordPress-dokumentasjonen</a>."
 
-#: wp-includes/functions.php:6920
+#: wp-includes/functions.php:6928
 msgctxt "localized PHP upgrade information page"
 msgid "https://wordpress.org/support/update-php/"
 msgstr "https://wordpress.org/support/update-php/"
@@ -790,7 +819,7 @@ msgid_plural "%s minutes"
 msgstr[0] "%s minutt"
 msgstr[1] "%s minutter"
 
-#: wp-includes/class-wp-fatal-error-handler.php:171
+#: wp-includes/class-wp-fatal-error-handler.php:175
 msgid "The site is experiencing technical difficulties."
 msgstr "Nettstedet har tekniske vanskeligheter."
 
@@ -883,7 +912,7 @@ msgid "Top Toolbar"
 msgstr "Verktøylinje på toppen"
 
 #. translators: %d: number of words
-#: wp-includes/js/dist/block-editor.js:17176
+#: wp-includes/js/dist/block-editor.js:17185
 msgid "%d word"
 msgid_plural "%d words"
 msgstr[0] "%d ord"
@@ -905,27 +934,27 @@ msgstr "Dette bildet mangler alt-tekst; dets filnavn er %s"
 msgid "Permalink"
 msgstr "Permalenke"
 
-#: wp-includes/js/dist/editor.js:8660
+#: wp-includes/js/dist/editor.js:8662
 msgid "To edit the featured image, you need permission to upload media."
 msgstr "For å endre fremhevet bilde trenger du tillatelse til å laste opp media."
 
-#: wp-includes/js/dist/block-editor.js:16092
+#: wp-includes/js/dist/block-editor.js:16101
 msgid "Given your current role, you can only link a video, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til videoer og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16090
+#: wp-includes/js/dist/block-editor.js:16099
 msgid "Given your current role, you can only link an image, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til et bilde og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16088
+#: wp-includes/js/dist/block-editor.js:16097
 msgid "Given your current role, you can only link an audio, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til lydfiler og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16085
+#: wp-includes/js/dist/block-editor.js:16094
 msgid "Given your current role, you can only link a media file, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til mediefiler og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16064
+#: wp-includes/js/dist/block-editor.js:16073
 msgid "To edit this block, you need permission to upload media."
 msgstr "For å endre denne blokken trenger du tillatelse til å laste opp media."
 
@@ -959,11 +988,11 @@ msgid_plural "%s blocks selected."
 msgstr[0] "%s blokk valgt."
 msgstr[1] "%s blokker valgt."
 
-#: wp-includes/js/dist/editor.js:12119
+#: wp-includes/js/dist/editor.js:12121
 msgid "Start writing with text or HTML"
 msgstr "Start skrive tekst eller HTML"
 
-#: wp-includes/js/dist/editor.js:12111
+#: wp-includes/js/dist/editor.js:12113
 msgid "Type text or HTML"
 msgstr "Skriv tekst eller HTML"
 
@@ -972,7 +1001,7 @@ msgstr "Skriv tekst eller HTML"
 msgid "Start writing or type / to choose a block"
 msgstr "Start å skrive eller tast / for å velge blokktype"
 
-#: wp-includes/js/dist/block-editor.js:17959
+#: wp-includes/js/dist/block-editor.js:17968
 msgid "Block icon"
 msgstr "Ikon for blokk"
 
@@ -1000,7 +1029,7 @@ msgstr "Stable på mobil"
 msgid "Custom Fields"
 msgstr "Egendefinerte felt"
 
-#: wp-includes/js/dist/editor.js:10981
+#: wp-includes/js/dist/editor.js:10983
 msgid "Scheduled"
 msgstr "Planlagt"
 
@@ -1032,7 +1061,7 @@ msgstr "Komma"
 msgid "The response is not a valid JSON response."
 msgstr "Responsen var ikke en gyldig JSON-respons."
 
-#: wp-includes/js/dist/format-library.js:1167
+#: wp-includes/js/dist/format-library.js:1168
 msgid "Link edited."
 msgstr "Lenke redigert."
 
@@ -1042,7 +1071,7 @@ msgstr "Lenke redigert."
 msgid "%s (opens in a new tab)"
 msgstr "%s (åpner i en ny fane)"
 
-#: wp-includes/js/dist/format-library.js:1359
+#: wp-includes/js/dist/format-library.js:1360
 msgid "Link removed."
 msgstr "Lenke fjernet."
 
@@ -1377,19 +1406,19 @@ msgstr "Vis media til venstre"
 msgid "Write list…"
 msgstr "Skriv liste..."
 
-#: wp-includes/js/dist/block-editor.js:14319
+#: wp-includes/js/dist/block-editor.js:14320
 msgid "Indent list item"
 msgstr "Element i innrykksliste"
 
-#: wp-includes/js/dist/block-editor.js:14312
+#: wp-includes/js/dist/block-editor.js:14313
 msgid "Outdent list item"
 msgstr "Element i utrykksliste"
 
-#: wp-includes/js/dist/block-editor.js:14299
+#: wp-includes/js/dist/block-editor.js:14300
 msgid "Convert to ordered list"
 msgstr "Konverter til ordnet liste"
 
-#: wp-includes/js/dist/block-editor.js:14286
+#: wp-includes/js/dist/block-editor.js:14287
 msgid "Convert to unordered list"
 msgstr "Konverter til uordnet liste"
 
@@ -2097,7 +2126,7 @@ msgid "Close settings"
 msgstr "Lukk innstillinger"
 
 #. translators: %d: number of blocks
-#: wp-includes/js/dist/block-editor.js:17172
+#: wp-includes/js/dist/block-editor.js:17181
 msgid "%d block"
 msgid_plural "%d blocks"
 msgstr[0] "%d blokk"
@@ -2360,43 +2389,43 @@ msgid "Document and block tools"
 msgstr "Dokument- og blokk-verktøy"
 
 #. translators: %s: file name
-#: wp-includes/js/dist/editor.js:14770
+#: wp-includes/js/dist/editor.js:14772
 msgid "Error while uploading file %s to the media library."
 msgstr "Feil ved opplasting av fil %s til mediebiblioteket."
 
-#: wp-includes/js/dist/editor.js:14680
+#: wp-includes/js/dist/editor.js:14682
 msgid "This file is empty."
 msgstr "Filen er tom."
 
-#: wp-includes/js/dist/editor.js:14654
+#: wp-includes/js/dist/editor.js:14656
 msgid "Sorry, this file type is not supported here."
 msgstr "Beklager, denne filtypen er støttet her."
 
-#: wp-includes/js/dist/editor.js:6834
+#: wp-includes/js/dist/editor.js:6836
 msgid "Untitled Reusable Block"
 msgstr "Gjenbrukbar blokk uten tittel"
 
-#: wp-includes/js/dist/editor.js:6744
+#: wp-includes/js/dist/editor.js:6746
 msgid "Block deleted."
 msgstr "Blokk slettet."
 
-#: wp-includes/js/dist/editor.js:6629
+#: wp-includes/js/dist/editor.js:6631
 msgid "Block created."
 msgstr "Blokk opprettet."
 
-#: wp-includes/js/dist/editor.js:4396
+#: wp-includes/js/dist/editor.js:4397
 msgid "Trashing failed"
 msgstr "Kasting feilet"
 
-#: wp-includes/js/dist/editor.js:4382
+#: wp-includes/js/dist/editor.js:4383
 msgid "Updating failed"
 msgstr "Oppdatering feilet"
 
-#: wp-includes/js/dist/editor.js:4380
+#: wp-includes/js/dist/editor.js:4381
 msgid "Scheduling failed"
 msgstr "Planlegging feilet"
 
-#: wp-includes/js/dist/editor.js:4378 wp-includes/js/dist/editor.js:4379
+#: wp-includes/js/dist/editor.js:4379 wp-includes/js/dist/editor.js:4380
 msgid "Publishing failed"
 msgstr "Publisering feilet"
 
@@ -2460,406 +2489,406 @@ msgstr "Livaktig rød"
 msgid "Pale pink"
 msgstr "Blek rosa"
 
-#: wp-includes/js/dist/block-editor.js:19651
+#: wp-includes/js/dist/block-editor.js:19674
 msgid "Additional CSS Class"
 msgstr "Ekstra CSS-klasse"
 
-#: wp-includes/js/dist/block-editor.js:19555
+#: wp-includes/js/dist/block-editor.js:19578
 msgid "Anchors lets you link directly to a section on a page."
 msgstr "Ankere lar deg lenke direkte til en seksjon på en side."
 
-#: wp-includes/js/dist/block-editor.js:19554
+#: wp-includes/js/dist/block-editor.js:19577
 msgid "HTML Anchor"
 msgstr "HTML-anker"
 
-#: wp-includes/js/dist/block-editor.js:15853
+#: wp-includes/js/dist/block-editor.js:15862
 #: wp-includes/js/dist/block-library.js:10371
 msgid "Link Settings"
 msgstr "Innstillinger for lenker"
 
-#: wp-includes/js/dist/block-editor.js:16580
+#: wp-includes/js/dist/block-editor.js:16589
 msgid "Insert Link"
 msgstr "Sett inn lenke"
 
-#: wp-includes/js/dist/editor.js:13025
+#: wp-includes/js/dist/editor.js:13027
 msgid "You have unsaved changes. If you proceed, they will be lost."
 msgstr "Du har endringer som ikke er lagret. De vil forsvinne dersom du fortsetter."
 
-#: wp-includes/js/dist/editor.js:7811
+#: wp-includes/js/dist/editor.js:7813
 msgid "Reset the template"
 msgstr "Tilbakestill malen"
 
-#: wp-includes/js/dist/editor.js:7808
+#: wp-includes/js/dist/editor.js:7810
 msgid "Keep it as is"
 msgstr "Behold den som den er"
 
-#: wp-includes/js/dist/editor.js:7805
+#: wp-includes/js/dist/editor.js:7807
 msgid "The content of your post doesn’t match the template assigned to your post type."
 msgstr "Innholdet i innlegget ditt passer ikke med malen for innleggstypen."
 
-#: wp-includes/js/dist/editor.js:7796
+#: wp-includes/js/dist/editor.js:7798
 msgid "Resetting the template may result in loss of content, do you want to continue?"
 msgstr "Tilbakestilling av malen kan føre til at du mister innhold. Vil du fortsette?"
 
-#: wp-includes/js/dist/editor.js:12904
+#: wp-includes/js/dist/editor.js:12906
 msgid "Document Outline"
 msgstr "Dokumentomriss"
 
-#: wp-includes/js/dist/editor.js:12896
+#: wp-includes/js/dist/editor.js:12898
 msgid "Paragraphs"
 msgstr "Avsnitt"
 
-#: wp-includes/js/dist/editor.js:12892
+#: wp-includes/js/dist/editor.js:12894
 msgid "Headings"
 msgstr "Overskrifter"
 
-#: wp-includes/js/dist/editor.js:12886
+#: wp-includes/js/dist/editor.js:12888
 msgid "Document Statistics"
 msgstr "Dokumentstatistikk"
 
-#: wp-includes/js/dist/editor.js:12950
+#: wp-includes/js/dist/editor.js:12952
 msgid "Content structure"
 msgstr "Struktur for innholdet"
 
-#: wp-includes/js/dist/block-editor.js:16924
+#: wp-includes/js/dist/block-editor.js:16933
 msgid "Skip to the selected block"
 msgstr "Hopp til valgte blokk"
 
-#: wp-includes/js/dist/editor.js:14934
+#: wp-includes/js/dist/editor.js:14936
 msgid "View the autosave"
 msgstr "Vis autolagringen"
 
-#: wp-includes/js/dist/editor.js:14931
+#: wp-includes/js/dist/editor.js:14933
 msgid "There is an autosave of this post that is more recent than the version below."
 msgstr "Det er en automatisk lagret versjon av dette innlegget som er nyere enn versjonen nedenfor."
 
-#: wp-includes/js/dist/editor.js:9876
+#: wp-includes/js/dist/editor.js:9878
 msgid "Protected with a password you choose. Only those with the password can view this post."
 msgstr "Beskyttet med et passord du velger. Bare dem som har passordet kan se denne posten."
 
-#: wp-includes/js/dist/editor.js:9872
+#: wp-includes/js/dist/editor.js:9874
 msgid "Only visible to site admins and editors."
 msgstr "Bare synlig for administratorer og redaktører."
 
-#: wp-includes/js/dist/editor.js:9868
+#: wp-includes/js/dist/editor.js:9870
 msgid "Visible to everyone."
 msgstr "Synlig for alle."
 
-#: wp-includes/js/dist/editor.js:10032
+#: wp-includes/js/dist/editor.js:10034
 msgid "Use a secure password"
 msgstr "Bruk et sikkert passord"
 
-#: wp-includes/js/dist/editor.js:10026
+#: wp-includes/js/dist/editor.js:10028
 msgid "Create password"
 msgstr "Opprett passord"
 
-#: wp-includes/js/dist/editor.js:9997
+#: wp-includes/js/dist/editor.js:9999
 msgid "Post Visibility"
 msgstr "Postens synlighet"
 
-#: wp-includes/js/dist/editor.js:9936
+#: wp-includes/js/dist/editor.js:9938
 msgid "Would you like to privately publish this post now?"
 msgstr "Vil du publisere denne posten privat nå?"
 
-#: wp-includes/js/dist/editor.js:12748
+#: wp-includes/js/dist/editor.js:12750
 msgid "Move to trash"
 msgstr "Flytt til papirkurven"
 
-#: wp-includes/js/dist/editor.js:12636 wp-includes/js/dist/editor.js:12641
+#: wp-includes/js/dist/editor.js:12638 wp-includes/js/dist/editor.js:12643
 msgid "Add title"
 msgstr "Legg til tittel"
 
-#: wp-includes/js/dist/editor.js:11860
+#: wp-includes/js/dist/editor.js:11862
 msgid "Terms"
 msgstr "Termer"
 
-#: wp-includes/js/dist/editor.js:11854
+#: wp-includes/js/dist/editor.js:11856
 msgid "Parent Term"
 msgstr "Foreldrebegrep"
 
-#: wp-includes/js/dist/editor.js:11852 wp-includes/js/dist/editor.js:11853
+#: wp-includes/js/dist/editor.js:11854 wp-includes/js/dist/editor.js:11855
 msgid "Add new term"
 msgstr "Legg til et begrep"
 
-#: wp-includes/js/dist/editor.js:11852 wp-includes/js/dist/editor.js:11853
+#: wp-includes/js/dist/editor.js:11854 wp-includes/js/dist/editor.js:11855
 msgid "Add new category"
 msgstr "Legg til en kategori"
 
-#: wp-includes/js/dist/editor.js:10449
+#: wp-includes/js/dist/editor.js:10451
 msgctxt "term"
 msgid "Remove %s"
 msgstr "Fjern %s"
 
-#: wp-includes/js/dist/editor.js:10448
+#: wp-includes/js/dist/editor.js:10450
 msgctxt "term"
 msgid "%s removed"
 msgstr "%s fjernet"
 
-#: wp-includes/js/dist/editor.js:10447 wp-includes/js/dist/editor.js:11604
+#: wp-includes/js/dist/editor.js:10449 wp-includes/js/dist/editor.js:11606
 msgctxt "term"
 msgid "%s added"
 msgstr "%s lagt til"
 
-#: wp-includes/js/dist/editor.js:10446 wp-includes/js/dist/editor.js:11604
+#: wp-includes/js/dist/editor.js:10448 wp-includes/js/dist/editor.js:11606
 msgid "Term"
 msgstr "Begrep"
 
-#: wp-includes/js/dist/editor.js:10446
+#: wp-includes/js/dist/editor.js:10448
 msgid "Tag"
 msgstr "Stikkord"
 
-#: wp-includes/js/dist/editor.js:10445
+#: wp-includes/js/dist/editor.js:10447
 msgid "Add New Term"
 msgstr "Legg til begrep"
 
-#: wp-includes/js/dist/editor.js:11097
+#: wp-includes/js/dist/editor.js:11099
 msgid "Switch to Draft"
 msgstr "Bytt til kladd"
 
-#: wp-includes/js/dist/editor.js:11083
+#: wp-includes/js/dist/editor.js:11085
 msgid "Are you sure you want to unschedule this post?"
 msgstr "Er du sikker på at du vil fjerne dette innlegget fra planlegging?"
 
-#: wp-includes/js/dist/editor.js:11081
+#: wp-includes/js/dist/editor.js:11083
 msgid "Are you sure you want to unpublish this post?"
 msgstr "Er du sikker på at du vil avpublisere denne posten?"
 
-#: wp-includes/js/dist/editor.js:10156
+#: wp-includes/js/dist/editor.js:10158
 msgid "Immediately"
 msgstr "Umiddelbart"
 
-#: wp-includes/js/dist/editor.js:11222
+#: wp-includes/js/dist/editor.js:11224
 msgid "Saving"
 msgstr "Lagrer"
 
-#: wp-includes/js/dist/editor.js:11222
+#: wp-includes/js/dist/editor.js:11224
 msgid "Autosaving"
 msgstr "Autolagrer"
 
-#: wp-includes/js/dist/editor.js:9816
+#: wp-includes/js/dist/editor.js:9818
 msgid "Finished writing? That’s great, let’s get this published right now. Just click “Publish” and you’re good to go."
 msgstr "Ferdig med å skrive? Det er flott, så la oss få dette publisert straks. Klikk bare \"Publiser\" og du er i gang."
 
-#: wp-includes/js/dist/editor.js:9806
+#: wp-includes/js/dist/editor.js:9808
 msgid "Publish…"
 msgstr "Publiser..."
 
-#: wp-includes/js/dist/editor.js:10729
+#: wp-includes/js/dist/editor.js:10731
 msgid "Publish:"
 msgstr "Publisher:"
 
-#: wp-includes/js/dist/editor.js:10723
+#: wp-includes/js/dist/editor.js:10725
 msgid "Visibility:"
 msgstr "Synlighet:"
 
-#: wp-includes/js/dist/editor.js:10716
+#: wp-includes/js/dist/editor.js:10718
 msgid "Double-check your settings before publishing."
 msgstr "Dobbeltsjekk dine innstillinger før du publiserer."
 
-#: wp-includes/js/dist/editor.js:10715
+#: wp-includes/js/dist/editor.js:10717
 msgid "Are you ready to publish?"
 msgstr "Er du klar til å publisere?"
 
-#: wp-includes/js/dist/editor.js:10713
+#: wp-includes/js/dist/editor.js:10715
 msgid "Your work will be published at the specified date and time."
 msgstr "Ditt arbeid vil bli publisert på den angitte dato og tidspunkt."
 
-#: wp-includes/js/dist/editor.js:10712
+#: wp-includes/js/dist/editor.js:10714
 msgid "Are you ready to schedule?"
 msgstr "Er du klar til å planlegge?"
 
-#: wp-includes/js/dist/editor.js:10710
+#: wp-includes/js/dist/editor.js:10712
 msgid "When you’re ready, submit your work for review, and an Editor will be able to approve it for you."
 msgstr "Når du er klar, send inn ditt arbeid til gjennomgang og en redaktør vil kunne godkjenne det for deg."
 
-#: wp-includes/js/dist/editor.js:10709
+#: wp-includes/js/dist/editor.js:10711
 msgid "Are you ready to submit for review?"
 msgstr "Er du klar til å sende inn til gjennomgang?"
 
 #: wp-includes/media-template.php:469 wp-includes/media-template.php:647
-#: wp-includes/js/dist/editor.js:10864
+#: wp-includes/js/dist/editor.js:10866
 msgid "Copy Link"
 msgstr "Kopier lenke"
 
-#: wp-includes/js/dist/editor.js:10864 wp-includes/js/dist/edit-post.js:1398
+#: wp-includes/js/dist/editor.js:10866 wp-includes/js/dist/edit-post.js:1398
 #: wp-includes/js/dist/block-library.js:12010
 msgid "Copied!"
 msgstr "Kopiert!"
 
 #. translators: %s: post type singular name
-#: wp-includes/js/dist/editor.js:10852
+#: wp-includes/js/dist/editor.js:10854
 msgid "%s address"
 msgstr "adresse til %s"
 
-#: wp-includes/js/dist/editor.js:10847
+#: wp-includes/js/dist/editor.js:10849
 msgid "What’s next?"
 msgstr "Hva nå?"
 
-#: wp-includes/js/dist/editor.js:10837
+#: wp-includes/js/dist/editor.js:10839
 msgid "is now live."
 msgstr "er nå lagt ut."
 
-#: wp-includes/js/dist/editor.js:10837
+#: wp-includes/js/dist/editor.js:10839
 msgid "is now scheduled. It will go live on"
 msgstr "er nå planlagt. Det publiseres "
 
-#: wp-includes/js/dist/editor.js:10529
+#: wp-includes/js/dist/editor.js:10531
 msgid "Tags help users and search engines navigate your site and find your content. Add a few keywords to describe your post."
 msgstr "Stikkord hjelper brukere og søkemotorer å navigere på ditt nettsted og finne ditt innhold. Legg til et par stikkord som beskriver ditt innlegg."
 
-#: wp-includes/js/dist/editor.js:10525
+#: wp-includes/js/dist/editor.js:10527
 msgid "Add tags"
 msgstr "Legg til stikkord"
 
-#: wp-includes/js/dist/editor.js:10639
+#: wp-includes/js/dist/editor.js:10641
 msgid "Apply the \"%1$s\" format."
 msgstr "Bruk formatet til \"%1$s\"."
 
-#: wp-includes/js/dist/editor.js:10636
+#: wp-includes/js/dist/editor.js:10638
 msgid "Your theme uses post formats to highlight different kinds of content, like images or videos. Apply a post format to see this special styling."
 msgstr "Ditt tema bruker innleggsformat til å fremheve forskjellig type innhold, som bilder eller videoer. Bruk et innleggsformat for å se denne spesielle stylingen."
 
-#: wp-includes/js/dist/editor.js:10632
+#: wp-includes/js/dist/editor.js:10634
 msgid "Use a post format"
 msgstr "Bruk et innleggsformat"
 
-#: wp-includes/js/dist/editor.js:11002
+#: wp-includes/js/dist/editor.js:11004
 msgid "Always show pre-publish checks."
 msgstr "Vis alltid kontroll for publisering."
 
-#: wp-includes/js/dist/editor.js:10994
+#: wp-includes/js/dist/editor.js:10996
 msgid "Close panel"
 msgstr "Lukk panel"
 
-#: wp-includes/js/dist/editor.js:9655
+#: wp-includes/js/dist/editor.js:9657
 msgid "Submit for Review"
 msgstr "Send til godkjenning"
 
-#: wp-includes/js/dist/editor.js:9651
+#: wp-includes/js/dist/editor.js:9653
 msgid "Scheduling…"
 msgstr "Planlegger..."
 
-#: wp-includes/js/dist/editor.js:9649
+#: wp-includes/js/dist/editor.js:9651
 msgid "Updating…"
 msgstr "Oppdaterer..."
 
-#: wp-includes/js/dist/editor.js:9647
+#: wp-includes/js/dist/editor.js:9649
 msgid "Publishing…"
 msgstr "Publiserer..."
 
-#: wp-includes/js/dist/editor.js:9198
+#: wp-includes/js/dist/editor.js:9200
 msgid "Click “Preview” to load a preview of this page, so you can make sure you’re happy with your blocks."
 msgstr "Klikk \"Forhåndsvis\" for å laste inn en en forhåndsvisning slik at du kan være sikker på at du er fornøyd med dine blokker."
 
-#: wp-includes/js/dist/editor.js:9192
+#: wp-includes/js/dist/editor.js:9194
 msgctxt "imperative verb"
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
-#: wp-includes/js/dist/editor.js:9071 wp-includes/js/dist/editor.js:9081
+#: wp-includes/js/dist/editor.js:9073 wp-includes/js/dist/editor.js:9083
 msgid "Generating preview…"
 msgstr "Genererer forhåndsvisning..."
 
-#: wp-includes/js/dist/editor.js:9610
+#: wp-includes/js/dist/editor.js:9612
 msgid "Allow Pingbacks & Trackbacks"
 msgstr "Tillat tilbakeping og tilbakesporinger"
 
-#: wp-includes/js/dist/editor.js:12442
+#: wp-includes/js/dist/editor.js:12444
 msgid "Change Permalinks"
 msgstr "Endre permalenker"
 
-#: wp-includes/js/dist/editor.js:12414
+#: wp-includes/js/dist/editor.js:12416
 msgid "Permalink:"
 msgstr "Permalenke:"
 
-#: wp-includes/js/dist/editor.js:12392
+#: wp-includes/js/dist/editor.js:12394
 msgid "Copy the permalink"
 msgstr "Kopier permalenken"
 
-#: wp-includes/js/dist/editor.js:12392
+#: wp-includes/js/dist/editor.js:12394
 msgid "Permalink copied"
 msgstr "Permalenke kopiert"
 
-#: wp-includes/js/dist/editor.js:12249
+#: wp-includes/js/dist/editor.js:12251
 msgid "Edit post permalink"
 msgstr "Rediger innleggets permalanke"
 
-#: wp-includes/js/dist/editor.js:9465
+#: wp-includes/js/dist/editor.js:9467
 msgid "Take Over"
 msgstr "Ta over"
 
 #. translators: %s: user's display name
-#: wp-includes/js/dist/editor.js:9455
+#: wp-includes/js/dist/editor.js:9457
 msgid "Another user is currently working on this post, which means you cannot make changes, unless you take over."
 msgstr "En annen bruker arbeider for tiden med dette innlegget, noe som betyr at du ikke kan gjøre endringer, med mindre tar over."
 
 #. translators: %s: user's display name
-#: wp-includes/js/dist/editor.js:9455
+#: wp-includes/js/dist/editor.js:9457
 msgid "%s is currently working on this post, which means you cannot make changes, unless you take over."
 msgstr "%s arbeider for tiden med dette inlegget, noe som betyr at du ikke kan gjøre endringer, med mindre du tar over."
 
 #. translators: %s: user's display name
-#: wp-includes/js/dist/editor.js:9447
+#: wp-includes/js/dist/editor.js:9449
 msgid "Another user now has editing control of this post. Don’t worry, your changes up to this moment have been saved."
 msgstr "En annen bruker har nå kontroll på redigeringen av dette innlegget. Ingen bekymring, da dine endringer, frem til det øyeblikket, er lagret."
 
 #. translators: %s: user's display name
-#: wp-includes/js/dist/editor.js:9447
+#: wp-includes/js/dist/editor.js:9449
 msgid "%s now has editing control of this post. Don’t worry, your changes up to this moment have been saved."
 msgstr "%s har nå kontroll på redigeringen av dette innlegget. Ingen bekymring, da dine endringer, frem til dette skjedde, er lagret."
 
-#: wp-includes/js/dist/editor.js:9443
+#: wp-includes/js/dist/editor.js:9445
 msgid "Avatar"
 msgstr "Avatar"
 
-#: wp-includes/js/dist/editor.js:9435
+#: wp-includes/js/dist/editor.js:9437
 msgid "This post is already being edited."
 msgstr "Dette innlegget redigeres allerede."
 
-#: wp-includes/js/dist/editor.js:9435
+#: wp-includes/js/dist/editor.js:9437
 msgid "Someone else has taken over this post."
 msgstr "Noen andre har tatt over dette innlegget."
 
-#: wp-includes/js/dist/editor.js:9018
+#: wp-includes/js/dist/editor.js:9020
 msgid "%d Revision"
 msgid_plural "%d Revisions"
 msgstr[0] "%d revisjon"
 msgstr[1] "%d revisjoner"
 
-#: wp-includes/js/dist/editor.js:8863
+#: wp-includes/js/dist/editor.js:8865
 msgid "Post Format"
 msgstr "Innleggsformat"
 
-#: wp-includes/js/dist/editor.js:8837
+#: wp-includes/js/dist/editor.js:8839
 msgid "Chat"
 msgstr "Chat"
 
-#: wp-includes/js/dist/editor.js:8825
+#: wp-includes/js/dist/editor.js:8827
 msgid "Standard"
 msgstr "Standard"
 
-#: wp-includes/js/dist/editor.js:8810
+#: wp-includes/js/dist/editor.js:8812
 msgid "Aside"
 msgstr "Sidefelt"
 
-#: wp-includes/js/dist/editor.js:8712
+#: wp-includes/js/dist/editor.js:8714
 #: wp-includes/js/dist/block-library.js:15741
 msgid "Replace image"
 msgstr "Erstatt bilde"
 
-#: wp-includes/js/dist/editor.js:8691
+#: wp-includes/js/dist/editor.js:8693
 msgid "Edit or update the image"
 msgstr "Rediger eller oppdater bildet"
 
-#: wp-includes/js/dist/editor.js:8521
+#: wp-includes/js/dist/editor.js:8523
 msgid "Learn more about manual excerpts"
 msgstr "Lær mer om manuelle utdrag"
 
-#: wp-includes/js/dist/editor.js:8513
+#: wp-includes/js/dist/editor.js:8515
 msgid "Write an excerpt (optional)"
 msgstr "Skriv et utdrag (valgfritt)"
 
-#: wp-includes/js/dist/editor.js:8480
+#: wp-includes/js/dist/editor.js:8482
 msgid "Allow Comments"
 msgstr "Tillat kommentarer"
 
@@ -2867,35 +2896,35 @@ msgstr "Tillat kommentarer"
 msgid "(%s: %s)"
 msgstr "(%s: %s)"
 
-#: wp-includes/js/dist/editor.js:8223
+#: wp-includes/js/dist/editor.js:8225
 msgid "no parent"
 msgstr "ingen forelder"
 
-#: wp-includes/js/dist/editor.js:8217
+#: wp-includes/js/dist/editor.js:8219
 msgid "no title"
 msgstr "ingen tittel"
 
-#: wp-includes/js/dist/editor.js:8108
+#: wp-includes/js/dist/editor.js:8110
 msgid "Order"
 msgstr "Rekkefølge"
 
-#: wp-includes/js/dist/block-editor.js:16082
+#: wp-includes/js/dist/block-editor.js:16091
 msgid "Drag a video, upload a new one or select a file from your library."
 msgstr "Dra inn en video, last opp en ny eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16080
+#: wp-includes/js/dist/block-editor.js:16089
 msgid "Drag an image, upload a new one or select a file from your library."
 msgstr "Dra et bilde, last opp et nytt, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16078
+#: wp-includes/js/dist/block-editor.js:16087
 msgid "Drag an audio, upload a new one or select a file from your library."
 msgstr "Dra en lydfil, last opp en ny, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16075
+#: wp-includes/js/dist/block-editor.js:16084
 msgid "Drag a media file, upload a new one or select a file from your library."
 msgstr "Dra en mediefil, last opp en ny, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:15913
+#: wp-includes/js/dist/block-editor.js:15922
 msgid "Paste or type URL"
 msgstr "Lim inn eller skriv URL"
 
@@ -2924,7 +2953,7 @@ msgstr "Tilgjengelige blokktyper"
 msgid "Search for a block"
 msgstr "Søk etter en blokk"
 
-#: wp-includes/js/dist/editor.js:11762
+#: wp-includes/js/dist/editor.js:11764
 #: wp-includes/js/dist/block-editor.js:11093
 msgid "%d result found."
 msgid_plural "%d results found."
@@ -2935,35 +2964,35 @@ msgstr[1] "%d resultater funnet."
 msgid "Add %s"
 msgstr "Legg til %s"
 
-#: wp-includes/js/dist/editor.js:7963
+#: wp-includes/js/dist/editor.js:7965
 msgid "The editor has encountered an unexpected error."
 msgstr "Det har oppstått en uventet feil med teksteditoren."
 
-#: wp-includes/js/dist/editor.js:7962
+#: wp-includes/js/dist/editor.js:7964
 msgid "Copy Error"
 msgstr "Feil ved kopiering"
 
-#: wp-includes/js/dist/editor.js:7958
+#: wp-includes/js/dist/editor.js:7960
 msgid "Copy Post Text"
 msgstr "Kopier innleggstekst"
 
-#: wp-includes/js/dist/editor.js:7954
+#: wp-includes/js/dist/editor.js:7956
 msgid "Attempt Recovery"
 msgstr "Forsøk gjenoppretting"
 
-#: wp-includes/js/dist/editor.js:7405
+#: wp-includes/js/dist/editor.js:7407
 msgid "(Multiple H1 headings are not recommended)"
 msgstr "(Flere H1-overskrifter er ikke anbefalt)"
 
-#: wp-includes/js/dist/editor.js:7400
+#: wp-includes/js/dist/editor.js:7402
 msgid "(Your theme may already use a H1 for the post title)"
 msgstr "(Det er mulig at temaet ditt allerede bruker H1 på posttittelen)"
 
-#: wp-includes/js/dist/editor.js:7395
+#: wp-includes/js/dist/editor.js:7397
 msgid "(Incorrect heading level)"
 msgstr "(Feil tittelnivå)"
 
-#: wp-includes/js/dist/editor.js:7390
+#: wp-includes/js/dist/editor.js:7392
 msgid "(Empty heading)"
 msgstr "(Tom tittel)"
 
@@ -2979,62 +3008,62 @@ msgstr "Denne fargekombinasjonen kan være vanskelig for folk å lese. Bruk en m
 msgid "(current %s: %s)"
 msgstr "(nåværende %s: %s)"
 
-#: wp-includes/js/dist/block-editor.js:18013
+#: wp-includes/js/dist/block-editor.js:18022
 msgid "Transform To:"
 msgstr "Forvandle til:"
 
-#: wp-includes/js/dist/block-editor.js:18006
+#: wp-includes/js/dist/block-editor.js:18015
 msgid "Block Styles"
 msgstr "Blokktyper"
 
-#: wp-includes/js/dist/block-editor.js:17982
+#: wp-includes/js/dist/block-editor.js:17991
 msgid "Change type of %d block"
 msgid_plural "Change type of %d blocks"
 msgstr[0] "Endre type for %d blokk"
 msgstr[1] "Endre type for %d blokker"
 
-#: wp-includes/js/dist/block-editor.js:17564
+#: wp-includes/js/dist/block-editor.js:17573
 msgid "Remove from Reusable Blocks"
 msgstr "Fjern fra Gjenbrukbare blokker"
 
-#: wp-includes/js/dist/block-editor.js:17476
+#: wp-includes/js/dist/block-editor.js:17485
 msgid "Convert to Regular Block"
 msgstr "Konverter til gjenbrukbar boks"
 
-#: wp-includes/js/dist/block-editor.js:17472
+#: wp-includes/js/dist/block-editor.js:17481
 msgid "Add to Reusable Blocks"
 msgstr "Legg til som gjenbrukbar blokk"
 
-#: wp-includes/js/dist/block-editor.js:17843
+#: wp-includes/js/dist/block-editor.js:17852
 msgid "Remove Block"
 msgstr "Fjern blokk"
 
-#: wp-includes/js/dist/block-editor.js:17822
+#: wp-includes/js/dist/block-editor.js:17831
 msgid "Insert After"
 msgstr "Legg til etter"
 
-#: wp-includes/js/dist/block-editor.js:17817
+#: wp-includes/js/dist/block-editor.js:17826
 msgid "Insert Before"
 msgstr "Legg til foran"
 
-#: wp-includes/js/dist/block-editor.js:17812
+#: wp-includes/js/dist/block-editor.js:17821
 msgid "Duplicate"
 msgstr "Dupliser"
 
 #: wp-includes/js/dist/block-editor.js:9729
-#: wp-includes/js/dist/block-editor.js:17776
+#: wp-includes/js/dist/block-editor.js:17785
 msgid "More options"
 msgstr "Flere alternativer"
 
-#: wp-includes/js/dist/block-editor.js:17776
+#: wp-includes/js/dist/block-editor.js:17785
 msgid "Hide options"
 msgstr "Skjul alternativer"
 
-#: wp-includes/js/dist/block-editor.js:17410
+#: wp-includes/js/dist/block-editor.js:17419
 msgid "Edit visually"
 msgstr "Rediger visuelt"
 
-#: wp-includes/js/dist/block-editor.js:17410
+#: wp-includes/js/dist/block-editor.js:17419
 msgid "Edit as HTML"
 msgstr "Rediger som HTML"
 
@@ -3107,7 +3136,7 @@ msgid "Resolve"
 msgstr "Løs"
 
 #: wp-includes/js/dist/block-editor.js:9988
-#: wp-includes/js/dist/block-editor.js:17628
+#: wp-includes/js/dist/block-editor.js:17637
 msgid "Convert to Blocks"
 msgstr "Konverter til blokker"
 
@@ -3130,7 +3159,7 @@ msgstr "Noe gikk galt med denne blokken, så den kan ikke forhåndsvises."
 msgid "Add block"
 msgstr "Legg til blokk"
 
-#: wp-includes/js/dist/block-editor.js:17235
+#: wp-includes/js/dist/block-editor.js:17244
 msgid "No block selected."
 msgstr "Ingen blokk valgt."
 
@@ -3173,7 +3202,7 @@ msgstr "Feil vedl lasting av blokk: %s"
 msgid "Number of items"
 msgstr "Antall elementer"
 
-#: wp-includes/js/dist/components.js:35118 wp-includes/js/dist/editor.js:11604
+#: wp-includes/js/dist/components.js:35118 wp-includes/js/dist/editor.js:11606
 msgid "Category"
 msgstr "Kategori"
 
@@ -3252,13 +3281,13 @@ msgstr "Tilpasset skriftstørrelse"
 
 #. translators: accessibility text
 #: wp-includes/widgets/class-wp-widget-custom-html.php:313
-#: wp-includes/media-template.php:172
+#: wp-includes/media-template.php:173
 #: wp-includes/customize/class-wp-customize-nav-menu-locations-control.php:59
-#: wp-includes/functions.php:7022
+#: wp-includes/functions.php:7030
 #: wp-includes/class-wp-customize-manager.php:4270
 #: wp-includes/class-wp-customize-manager.php:5572
 #: wp-includes/class-wp-customize-manager.php:5593
-#: wp-includes/js/dist/components.js:31986 wp-includes/js/dist/editor.js:9196
+#: wp-includes/js/dist/components.js:31986 wp-includes/js/dist/editor.js:9198
 msgid "(opens in a new tab)"
 msgstr "(åpnes i en ny fane)"
 
@@ -3401,19 +3430,19 @@ msgstr "Fargevelger"
 
 #: wp-includes/js/dist/components.js:27728
 #: wp-includes/js/dist/components.js:33378
-#: wp-includes/js/dist/block-editor.js:16314
+#: wp-includes/js/dist/block-editor.js:16323
 msgid "No results."
 msgstr "Ingen treff."
 
 #: wp-includes/js/dist/components.js:27726
 #: wp-includes/js/dist/components.js:33376
-#: wp-includes/js/dist/block-editor.js:16312
+#: wp-includes/js/dist/block-editor.js:16321
 msgid "%d result found, use up and down arrow keys to navigate."
 msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] "%d resultat funnet. Bruk piltastene for å navigere."
 msgstr[1] "%d resultater funnet. Bruk piltastene for å navigere."
 
-#: wp-includes/post.php:279 wp-includes/js/dist/editor.js:6629
+#: wp-includes/post.php:279 wp-includes/js/dist/editor.js:6631
 msgid "Block updated."
 msgstr "Blokk oppdatert."
 
@@ -3500,7 +3529,7 @@ msgstr "Blokker"
 msgid "M j, Y g:i a"
 msgstr "j. M Y H:i"
 
-#: wp-includes/js/dist/editor.js:12900
+#: wp-includes/js/dist/editor.js:12902
 msgid "Blocks"
 msgstr "Blokker"
 
@@ -3975,12 +4004,12 @@ msgid "User Requests"
 msgstr "Brukerforespørsler"
 
 #. translators: deleted long text
-#: wp-includes/functions.php:6748
+#: wp-includes/functions.php:6756
 msgid "This content was deleted by the author."
 msgstr "Dette innholdet ble slettet av forfatteren."
 
 #. translators: deleted text
-#: wp-includes/functions.php:6744
+#: wp-includes/functions.php:6752
 msgid "[deleted]"
 msgstr "[slettet]"
 
@@ -4393,7 +4422,7 @@ msgid "Displays an image gallery."
 msgstr "Viser et bildegalleri."
 
 #: wp-includes/widgets/class-wp-widget-media-gallery.php:27
-#: wp-includes/js/dist/editor.js:8813
+#: wp-includes/js/dist/editor.js:8815
 #: wp-includes/js/dist/block-library.js:13262
 #: wp-includes/js/dist/block-library.js:13421
 msgid "Gallery"
@@ -4521,7 +4550,7 @@ msgstr "Forkast endringer"
 msgid "Please save your changes in order to share the preview."
 msgstr "Vennligst lagre endringene dine for å dele forhåndsvisningen."
 
-#: wp-includes/js/dist/editor.js:9806
+#: wp-includes/js/dist/editor.js:9808
 msgid "Schedule…"
 msgstr "Planlegg..."
 
@@ -4905,13 +4934,13 @@ msgstr ""
 msgid "User cannot be added to this site."
 msgstr "Brukeren kan ikke legges til denne siden."
 
-#: wp-includes/load.php:1441
+#: wp-includes/load.php:1448
 msgid "Scrape nonce check failed. Please try again."
 msgstr "Scrape nonce-sjekk feilet. Prøv igjen."
 
 #. translators: Do not translate OLD_EMAIL, NEW_EMAIL, SITENAME, SITEURL: those
 #. are placeholders.
-#: wp-includes/functions.php:6585
+#: wp-includes/functions.php:6593
 msgid ""
 "Hi,\n"
 "\n"
@@ -4937,7 +4966,7 @@ msgstr ""
 "Alle hos ###SITENAME###\n"
 "###SITEURL###"
 
-#: wp-includes/functions.php:6501
+#: wp-includes/functions.php:6509
 msgid "Only UUID V4 is supported at this time."
 msgstr "Bare UUID V4 er støttet på dette tidspunktet."
 
@@ -5725,7 +5754,7 @@ msgid "Suggested image dimensions: %1$s by %2$s pixels."
 msgstr "Foreslått bildedimensjon: %1$s x %2$s piksler."
 
 #: wp-includes/script-loader.php:1119 wp-includes/functions.php:2353
-#: wp-includes/js/dist/editor.js:14641
+#: wp-includes/js/dist/editor.js:14643
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr "Beklager, men av sikkerhetsmessige grunner er denne filtypen ikke tillatt."
 
@@ -7433,7 +7462,7 @@ msgctxt "previous set of posts"
 msgid "Previous"
 msgstr "Forrige"
 
-#: wp-login.php:615 wp-login.php:1072 wp-includes/general-template.php:464
+#: wp-login.php:615 wp-login.php:1072 wp-includes/general-template.php:463
 msgid "Username or Email Address"
 msgstr "Brukernavn eller e-postadresse"
 
@@ -7753,7 +7782,7 @@ msgid "Edit selected menu"
 msgstr "Rediger valgt meny"
 
 #: wp-includes/class-wp-editor.php:1306
-#: wp-includes/js/dist/format-library.js:1165
+#: wp-includes/js/dist/format-library.js:1166
 msgid "Warning: the link has been inserted but may have errors. Please test it."
 msgstr "Advarsel: lenken er satt inn, men kan inneholde feil. Vennligst test den."
 
@@ -8071,12 +8100,12 @@ msgstr "Passordet er endret for bruker: %s"
 msgid "Image crop area preview. Requires mouse interaction."
 msgstr "Forhåndsvisning av bildebeskjæring. Krever mus-interaksjon."
 
-#: wp-includes/formatting.php:4674
+#: wp-includes/formatting.php:4678
 msgid "https://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure"
 msgstr "https://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure"
 
 #. translators: %s: Codex URL
-#: wp-includes/formatting.php:4673
+#: wp-includes/formatting.php:4677
 msgid "A structure tag is required when using custom permalinks. <a href=\"%s\">Learn more</a>"
 msgstr "En struktur-tagg kreves når du bruker tilpassede permalenker. <a href=\"%s\">Lær mer</a>"
 
@@ -8120,11 +8149,11 @@ msgid "Link options"
 msgstr "Lenkevalg"
 
 #: wp-includes/script-loader.php:1395
-#: wp-includes/js/dist/format-library.js:1169
+#: wp-includes/js/dist/format-library.js:1170
 msgid "Link inserted."
 msgstr "Lenke satt inn."
 
-#: wp-includes/script-loader.php:1394 wp-includes/js/dist/block-editor.js:16411
+#: wp-includes/script-loader.php:1394 wp-includes/js/dist/block-editor.js:16420
 msgid "Link selected."
 msgstr "Lenke valgt."
 
@@ -8273,7 +8302,7 @@ msgstr "<strong>FEIL</strong>: Ugyldig brukernavn, e-post eller feil passord."
 
 #. translators: 1: blog name, 2: separator(raquo), 3: term name, 4: taxonomy
 #. singular name
-#: wp-includes/general-template.php:2845
+#: wp-includes/general-template.php:2844
 msgid "%1$s %2$s %3$s %4$s Feed"
 msgstr "%1$s %2$s %3$s %4$s Strøm"
 
@@ -8353,7 +8382,7 @@ msgid "Invalid object type"
 msgstr "Ugyldig objektstype"
 
 #: wp-includes/class-wp-editor.php:1283
-#: wp-includes/js/dist/block-editor.js:16473
+#: wp-includes/js/dist/block-editor.js:16482
 msgid "Paste URL or type to search"
 msgstr "Lim inn URL eller skriv for å søke"
 
@@ -8423,7 +8452,7 @@ msgstr "https://codex.wordpress.org/Debugging_in_WordPress"
 msgid "Please see <a href=\"%s\">Debugging in WordPress</a> for more information."
 msgstr "Vennligst se <a href=\"%s\">Feilsøking i WordPress</a> for mer informasjon."
 
-#: wp-includes/load.php:486
+#: wp-includes/load.php:493
 msgid "<strong>ERROR</strong>: %1$s in %2$s can only contain numbers, letters, and underscores."
 msgstr "<strong>FEIL</strong>: %1$s i %2$s kan kun inneholde tall, bokstaver og understreker."
 
@@ -8958,7 +8987,7 @@ msgid "Older comments"
 msgstr "Eldre kommentarer"
 
 #. translators: Post calendar label. %s: Date
-#: wp-includes/general-template.php:2229
+#: wp-includes/general-template.php:2228
 msgid "Posts published on %s"
 msgstr "Innlegg publisert %s"
 
@@ -9065,8 +9094,8 @@ msgstr "Veksle valg: %s"
 #. Asian characters), enter 'characters_excluding_spaces' or
 #. 'characters_including_spaces'. Otherwise, enter 'words'. Do not translate
 #. into your own language.
-#: wp-includes/script-loader.php:2165 wp-includes/formatting.php:3760
-#: wp-includes/js/dist/editor.js:12848
+#: wp-includes/script-loader.php:2165 wp-includes/formatting.php:3764
+#: wp-includes/js/dist/editor.js:12850
 msgctxt "Word count type. Do not translate!"
 msgid "words"
 msgstr "words"
@@ -9708,7 +9737,7 @@ msgstr "XML-feil: %1$s på linje %2$s"
 msgid "User Dashboard: %s"
 msgstr "Brukerkontrollpanel: %s"
 
-#: wp-includes/js/dist/editor.js:8520
+#: wp-includes/js/dist/editor.js:8522
 msgid "https://codex.wordpress.org/Excerpt"
 msgstr "https://codex.wordpress.org/Excerpt"
 
@@ -9953,13 +9982,13 @@ msgstr "Ingen kommentarer<span class=\"screen-reader-text\"> til %s</span>"
 
 #. translators: 1: 'siteurl'/'home' argument, 2: bloginfo() function name, 3:
 #. 'url' argument
-#: wp-includes/general-template.php:713
+#: wp-includes/general-template.php:712
 msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s option instead."
 msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk valget %3$s isteden."
 
 #. translators: 1: 'text_direction' argument, 2: bloginfo() function name, 3:
 #. is_rtl() function name
-#: wp-includes/general-template.php:793
+#: wp-includes/general-template.php:792
 msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s function instead."
 msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk funksjonen %3$s istedet."
 
@@ -10130,94 +10159,94 @@ msgid "The following values do not describe a valid date: year %1$s, month %2$s,
 msgstr "De følgende verdiene beskriver ikke en gyldig dato: år %1$s, måned %2$s, dag %3$s."
 
 #. translators: Category archive title. %s: Category name
-#: wp-includes/general-template.php:1559
+#: wp-includes/general-template.php:1558
 msgid "Category: %s"
 msgstr "Kategori: %s"
 
 #. translators: Tag archive title. %s: Tag name
-#: wp-includes/general-template.php:1562
+#: wp-includes/general-template.php:1561
 msgid "Tag: %s"
 msgstr "Stikkord: %s"
 
 #. translators: Author archive title. %s: Author name
-#: wp-includes/general-template.php:1565
+#: wp-includes/general-template.php:1564
 msgid "Author: %s"
 msgstr "Forfatter: %s"
 
 #. translators: Yearly archive title. %s: Year
-#: wp-includes/general-template.php:1568
+#: wp-includes/general-template.php:1567
 msgid "Year: %s"
 msgstr "År: %s"
 
-#: wp-includes/general-template.php:1577
+#: wp-includes/general-template.php:1576
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr "Notiser"
 
 #. translators: Daily archive title. %s: Date
-#: wp-includes/general-template.php:1574 wp-includes/general-template.php:2227
+#: wp-includes/general-template.php:1573 wp-includes/general-template.php:2226
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "j. F Y"
 
 #. translators: Daily archive title. %s: Date
-#: wp-includes/general-template.php:1574
+#: wp-includes/general-template.php:1573
 msgid "Day: %s"
 msgstr "Dag: %s"
 
 #. translators: Monthly archive title. %s: Month name and year
-#: wp-includes/general-template.php:1571
+#: wp-includes/general-template.php:1570
 msgid "Month: %s"
 msgstr "Måned: %s"
 
-#: wp-includes/general-template.php:1581
+#: wp-includes/general-template.php:1580
 msgctxt "post format archive title"
 msgid "Images"
 msgstr "Bilder"
 
-#: wp-includes/general-template.php:1579
+#: wp-includes/general-template.php:1578
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr "Gallerier"
 
-#: wp-includes/general-template.php:1585
+#: wp-includes/general-template.php:1584
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr "Sitater"
 
-#: wp-includes/general-template.php:1583
+#: wp-includes/general-template.php:1582
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr "Videoer"
 
-#: wp-includes/general-template.php:1587
+#: wp-includes/general-template.php:1586
 msgctxt "post format archive title"
 msgid "Links"
 msgstr "Lenker"
 
-#: wp-includes/general-template.php:1589
+#: wp-includes/general-template.php:1588
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr "Statusoppdateringer"
 
-#: wp-includes/general-template.php:1593
+#: wp-includes/general-template.php:1592
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr "Samtaler"
 
-#: wp-includes/general-template.php:1591
+#: wp-includes/general-template.php:1590
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr "Lyder"
 
 #. translators: Taxonomy term archive title. 1: Taxonomy singular name, 2:
 #. Current taxonomy term
-#: wp-includes/general-template.php:1601
+#: wp-includes/general-template.php:1600
 msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
 
 #. translators: Post type archive title. %s: Post type name
-#: wp-includes/general-template.php:1597
+#: wp-includes/general-template.php:1596
 msgid "Archives: %s"
 msgstr "Arkiv: %s"
 
@@ -11097,7 +11126,7 @@ msgstr "Tekstfarge"
 msgid "Background color"
 msgstr "Bakgrunnsfarge"
 
-#: wp-includes/js/dist/editor.js:8294
+#: wp-includes/js/dist/editor.js:8296
 msgid "Template:"
 msgstr "Mal:"
 
@@ -11349,7 +11378,7 @@ msgstr "https://wordpress.org/support/"
 msgid "https://wordpress.org/"
 msgstr "https://nb.wordpress.org/"
 
-#: wp-includes/js/dist/editor.js:8828
+#: wp-includes/js/dist/editor.js:8830
 msgid "Status"
 msgstr "Status"
 
@@ -11385,22 +11414,22 @@ msgstr "Kunne ikke finne det oppgitte søkeuttrykket."
 msgid "Table"
 msgstr "Tabell"
 
-#: wp-includes/general-template.php:4226
+#: wp-includes/general-template.php:4225
 msgctxt "admin color scheme"
 msgid "Coffee"
 msgstr "Kaffe"
 
-#: wp-includes/general-template.php:4214
+#: wp-includes/general-template.php:4213
 msgctxt "admin color scheme"
 msgid "Ocean"
 msgstr "Hav"
 
-#: wp-includes/general-template.php:4202
+#: wp-includes/general-template.php:4201
 msgctxt "admin color scheme"
 msgid "Ectoplasm"
 msgstr "Ektoplasma"
 
-#: wp-includes/general-template.php:4190
+#: wp-includes/general-template.php:4189
 msgctxt "admin color scheme"
 msgid "Sunrise"
 msgstr "Soloppgang"
@@ -11468,17 +11497,17 @@ msgstr "no-subset"
 msgid "Use commas instead of %s to separate excluded terms."
 msgstr "Bruk kommaer istedenfor %s for å skille utelatte oppføringer."
 
-#: wp-includes/general-template.php:4178
+#: wp-includes/general-template.php:4177
 msgctxt "admin color scheme"
 msgid "Midnight"
 msgstr "Mørk"
 
-#: wp-includes/general-template.php:4154
+#: wp-includes/general-template.php:4153
 msgctxt "admin color scheme"
 msgid "Light"
 msgstr "Lys"
 
-#: wp-includes/general-template.php:4137
+#: wp-includes/general-template.php:4136
 msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Standard"
@@ -11572,7 +11601,7 @@ msgstr "Ugyldig"
 
 #. translators: Time difference between two dates, in years. %s: Number of
 #. years
-#: wp-includes/formatting.php:3658
+#: wp-includes/formatting.php:3662
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s år"
@@ -11580,7 +11609,7 @@ msgstr[1] "%s år"
 
 #. translators: Time difference between two dates, in months. %s: Number of
 #. months
-#: wp-includes/formatting.php:3651
+#: wp-includes/formatting.php:3655
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] "%s måned"
@@ -11588,7 +11617,7 @@ msgstr[1] "%s måneder"
 
 #. translators: Time difference between two dates, in weeks. %s: Number of
 #. weeks
-#: wp-includes/formatting.php:3644
+#: wp-includes/formatting.php:3648
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s uke"
@@ -11645,6 +11674,10 @@ msgstr "Nettleseren på din enhet kan ikke brukes for å laste opp filer. Du kan
 msgid "<strong>ERROR</strong>: Couldn&#8217;t register you&hellip; please contact the <a href=\"mailto:%s\">webmaster</a> !"
 msgstr "<strong>FEIL:</strong> Kunne ikke registrere deg… vennligst kontakt <a href=\"mailto:%s\">admin</a> !"
 
+#: wp-login.php:429
+msgid "Possible reason: your host may have disabled the mail() function."
+msgstr "Mulig grunn: mail()-funksjonen er kanskje deaktivert på din server."
+
 #: wp-includes/post-template.php:298
 msgid "(more&hellip;)"
 msgstr "(mer&hellip;)"
@@ -11677,17 +11710,17 @@ msgstr "Innloggingssiden vil åpnes i en ny fane. Etter at du har logget inn kan
 msgid "%s <span class=\"says\">says:</span>"
 msgstr "%s <span class=\"says\">sier:</span>"
 
-#: wp-includes/general-template.php:278 wp-includes/general-template.php:285
+#: wp-includes/general-template.php:277 wp-includes/general-template.php:284
 msgctxt "submit button"
 msgid "Search"
 msgstr "Søk"
 
-#: wp-includes/general-template.php:275 wp-includes/general-template.php:283
+#: wp-includes/general-template.php:274 wp-includes/general-template.php:282
 msgctxt "label"
 msgid "Search for:"
 msgstr "Søk etter:"
 
-#: wp-includes/general-template.php:276
+#: wp-includes/general-template.php:275
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Søk &hellip;"
@@ -11734,7 +11767,7 @@ msgstr "Gi bildetekst til dette bildet&hellip;"
 msgid "Random Order"
 msgstr "Tilfeldig rekkefølge"
 
-#: wp-includes/media.php:3689 wp-includes/js/dist/block-editor.js:16146
+#: wp-includes/media.php:3689 wp-includes/js/dist/block-editor.js:16155
 msgid "Insert from URL"
 msgstr "Sett inn fra URL"
 
@@ -11759,7 +11792,7 @@ msgstr "Fant ikke noe."
 msgid "Reverse order"
 msgstr "Omvendt rekkefølge"
 
-#: wp-includes/js/dist/editor.js:8648
+#: wp-includes/js/dist/editor.js:8650
 msgid "Set featured image"
 msgstr "Bestem fremhevet bilde"
 
@@ -11804,8 +11837,8 @@ msgid "Manage Video"
 msgstr "Håndter video"
 
 #: wp-includes/widgets/class-wp-widget-media-video.php:27
-#: wp-includes/post.php:2630 wp-includes/js/dist/editor.js:8831
-#: wp-includes/js/dist/block-editor.js:16105
+#: wp-includes/post.php:2630 wp-includes/js/dist/editor.js:8833
+#: wp-includes/js/dist/block-editor.js:16114
 #: wp-includes/js/dist/block-library.js:15794
 msgid "Video"
 msgstr "Video"
@@ -11839,8 +11872,8 @@ msgid "Insert into page"
 msgstr "Sett inn på side"
 
 #: wp-includes/widgets/class-wp-widget-media-audio.php:27
-#: wp-includes/post.php:2629 wp-includes/js/dist/editor.js:8834
-#: wp-includes/js/dist/block-editor.js:16101
+#: wp-includes/post.php:2629 wp-includes/js/dist/editor.js:8836
+#: wp-includes/js/dist/block-editor.js:16110
 #: wp-includes/js/dist/block-library.js:14521
 msgid "Audio"
 msgstr "Lyd"
@@ -11928,7 +11961,7 @@ msgstr "Slipp filer for å laste opp"
 msgid "Create Gallery"
 msgstr "Lag galleri"
 
-#: wp-includes/media.php:3657 wp-includes/js/dist/block-editor.js:16137
+#: wp-includes/media.php:3657 wp-includes/js/dist/block-editor.js:16146
 msgid "Media Library"
 msgstr "Mediebibliotek"
 
@@ -12155,7 +12188,7 @@ msgid "Display post date?"
 msgstr "Vis innleggsdato?"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: post type name
-#: wp-includes/general-template.php:2851
+#: wp-includes/general-template.php:2850
 msgid "%1$s %2$s %3$s Feed"
 msgstr "%1$s %2$s %3$s-strøm"
 
@@ -12189,7 +12222,7 @@ msgid "Colors"
 msgstr "Farger"
 
 #: wp-includes/script-loader.php:1430 wp-includes/script-loader.php:1640
-#: wp-includes/js/dist/editor.js:11238
+#: wp-includes/js/dist/editor.js:11240
 msgid "Saved"
 msgstr "Lagret"
 
@@ -12291,7 +12324,7 @@ msgid "Change image"
 msgstr "Bytt bilde"
 
 #: wp-includes/customize/class-wp-customize-header-image-control.php:140
-#: wp-includes/js/dist/editor.js:8650
+#: wp-includes/js/dist/editor.js:8652
 msgid "Remove image"
 msgstr "Fjern bilde"
 
@@ -12319,11 +12352,11 @@ msgstr "Godkjente filtyper"
 msgid "Remove"
 msgstr "Fjern"
 
-#: wp-includes/js/dist/block-editor.js:16125
+#: wp-includes/js/dist/block-editor.js:16134
 msgid "Upload"
 msgstr "Last opp"
 
-#: wp-includes/js/dist/editor.js:8646 wp-includes/js/dist/edit-post.js:4629
+#: wp-includes/js/dist/editor.js:8648 wp-includes/js/dist/edit-post.js:4629
 #: wp-includes/js/dist/edit-post.js:5491
 msgid "Featured Image"
 msgstr "Framhevet bilde"
@@ -12455,7 +12488,7 @@ msgstr "Slagord"
 msgid "Your latest posts"
 msgstr "Dine siste innlegg"
 
-#: wp-includes/js/dist/block-editor.js:17250
+#: wp-includes/js/dist/block-editor.js:17259
 msgid "Styles"
 msgstr "Stiler"
 
@@ -12566,28 +12599,16 @@ msgid "Sorry, you are not allowed to edit posts in this post type."
 msgstr "Beklager, du har ikke lov til å redigere innlegg av denne typen."
 
 #. translators: Monthly archive title. %s: Month name and year
-#: wp-includes/general-template.php:1092 wp-includes/general-template.php:1571
+#: wp-includes/general-template.php:1091 wp-includes/general-template.php:1570
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "F Y"
 
 #. translators: Yearly archive title. %s: Year
-#: wp-includes/general-template.php:1089 wp-includes/general-template.php:1568
+#: wp-includes/general-template.php:1088 wp-includes/general-template.php:1567
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
-
-#. translators: closing curly single quote
-#: wp-includes/formatting.php:113
-msgctxt "closing curly single quote"
-msgid "&#8217;"
-msgstr "&#8217;"
-
-#. translators: opening curly single quote
-#: wp-includes/formatting.php:111
-msgctxt "opening curly single quote"
-msgid "&#8216;"
-msgstr "&#8216;"
 
 #. translators: double prime, for example in 9" (nine inches)
 #: wp-includes/formatting.php:108
@@ -12606,18 +12627,6 @@ msgstr "&#8242;"
 msgctxt "apostrophe"
 msgid "&#8217;"
 msgstr "&#8217;"
-
-#. translators: closing curly double quote
-#: wp-includes/formatting.php:100
-msgctxt "closing curly double quote"
-msgid "&#8221;"
-msgstr "&raquo;"
-
-#. translators: opening curly double quote
-#: wp-includes/formatting.php:98 wp-includes/formatting.php:5237
-msgctxt "opening curly double quote"
-msgid "&#8220;"
-msgstr "&laquo;"
 
 #: wp-signup.php:198
 msgid "Allow search engines to index this site."
@@ -12739,7 +12748,7 @@ msgstr "<strong>FEIL</strong>: Nettsteds-URL allerede tatt."
 msgid "Documentation"
 msgstr "Dokumentasjon"
 
-#: wp-includes/general-template.php:4047 wp-includes/formatting.php:3749
+#: wp-includes/general-template.php:4046 wp-includes/formatting.php:3753
 msgid "&hellip;"
 msgstr "&hellip;"
 
@@ -12800,12 +12809,12 @@ msgstr "Denne filen er ikke et bilde. Vennligst prøv med en annen."
 msgid "This is larger than the maximum size. Please try another."
 msgstr "Dette er mer enn maksimal størrelse. Vennligst prøv med en annen."
 
-#: wp-includes/general-template.php:4166
+#: wp-includes/general-template.php:4165
 msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Blå"
 
-#: wp-includes/formatting.php:4655
+#: wp-includes/formatting.php:4659
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "Tidssonen du har skrevet inn er ikke gyldig. Vennligst velg en gyldig tidssone."
 
@@ -12849,9 +12858,9 @@ msgstr "Alle sider"
 msgid "All Posts"
 msgstr "Alle innlegg"
 
-#: wp-includes/class-wp-editor.php:1154 wp-includes/js/dist/editor.js:8816
-#: wp-includes/js/dist/format-library.js:1296
-#: wp-includes/js/dist/format-library.js:1396
+#: wp-includes/class-wp-editor.php:1154 wp-includes/js/dist/editor.js:8818
+#: wp-includes/js/dist/format-library.js:1297
+#: wp-includes/js/dist/format-library.js:1397
 msgid "Link"
 msgstr "Lenke"
 
@@ -12891,7 +12900,7 @@ msgstr "Forhåndslast"
 msgid "Poster"
 msgstr "Plakat"
 
-#: wp-includes/js/dist/editor.js:12890
+#: wp-includes/js/dist/editor.js:12892
 msgid "Words"
 msgstr "Ord"
 
@@ -13098,7 +13107,7 @@ msgstr "Høyde for store bilder"
 
 #: wp-includes/js/dist/block-library.js:10384
 #: wp-includes/js/dist/block-library.js:11741
-#: wp-includes/js/dist/format-library.js:1223
+#: wp-includes/js/dist/format-library.js:1224
 msgid "Open in New Tab"
 msgstr "Åpne i ny fane"
 
@@ -13227,7 +13236,7 @@ msgid "F, Y"
 msgstr "F, Y"
 
 #. translators: used to join items in a list with only 2 items
-#: wp-includes/formatting.php:4918
+#: wp-includes/formatting.php:4922
 msgid "%1$s and %2$s"
 msgstr "%1$s og %2$s"
 
@@ -13235,7 +13244,7 @@ msgstr "%1$s og %2$s"
 msgid "Choose from the most used tags"
 msgstr "Velg fra de mest brukte stikkordene"
 
-#: wp-includes/js/dist/editor.js:14667
+#: wp-includes/js/dist/editor.js:14669
 msgid "This file exceeds the maximum upload size for this site."
 msgstr "Filen overstiger maksstørrelsen for opplastinger på dette nettstedet."
 
@@ -13248,7 +13257,7 @@ msgstr "Kategorier"
 msgid "All Tags"
 msgstr "Alle stikkord"
 
-#: wp-includes/taxonomy.php:552 wp-includes/js/dist/editor.js:11854
+#: wp-includes/taxonomy.php:552 wp-includes/js/dist/editor.js:11856
 msgid "Parent Category"
 msgstr "Forelderkategori"
 
@@ -13260,7 +13269,7 @@ msgstr "Forelderkategori:"
 msgid "Update Tag"
 msgstr "Oppdater stikkord"
 
-#: wp-includes/taxonomy.php:557 wp-includes/js/dist/editor.js:10445
+#: wp-includes/taxonomy.php:557 wp-includes/js/dist/editor.js:10447
 msgid "Add New Tag"
 msgstr "Legg til nytt stikkord"
 
@@ -13484,7 +13493,7 @@ msgstr ""
 msgid "Sorry, that site already exists!"
 msgstr "Beklager, det nettstedet finnes allerede!"
 
-#: wp-includes/load.php:598
+#: wp-includes/load.php:605
 msgid "The site you have requested is not installed properly. Please contact the system administrator."
 msgstr "Nettstedet du etterspør er ikke riktig installert. Vennligst kontakt administratoren."
 
@@ -13496,15 +13505,15 @@ msgstr "Dette nettstedet har blitt arkivert eller deaktivert."
 msgid "The given object ID is not that of a menu item."
 msgstr "Spesifisert objekt-ID er ikke et menyvalg."
 
-#: wp-includes/formatting.php:4596
+#: wp-includes/formatting.php:4600
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Nettstedsadressen du skrev inn virker ikke å være en gyldig URL. Vennligst skriv inn en gyldig URL."
 
-#: wp-includes/formatting.php:4583
+#: wp-includes/formatting.php:4587
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "WordPress-adressen som du skrev inn virker ikke å være en gyldig URL. Vennligst skriv inn en gyldig URL."
 
-#: wp-includes/formatting.php:4473
+#: wp-includes/formatting.php:4477
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "E-postadressen som du skrev inn virker ikke å være en gyldig adresse. Vennligst skriv inn en gyldig e-postadresse."
 
@@ -13575,15 +13584,15 @@ msgstr "Er du sikker på at du vil installere denne utvidelsen?"
 msgid "Use as featured image"
 msgstr "Bruk som fremhevet bilde"
 
-#: wp-includes/general-template.php:1100
+#: wp-includes/general-template.php:1099
 msgid "Page %s"
 msgstr "Side %s"
 
-#: wp-includes/load.php:223
+#: wp-includes/load.php:230
 msgid "Briefly unavailable for scheduled maintenance. Check back in a minute."
 msgstr "Midlertidig utilgjengelig for planlagt vedlikehold. Prøv igjen om ett minutt."
 
-#: wp-includes/load.php:224
+#: wp-includes/load.php:231
 msgid "Maintenance"
 msgstr "Vedlikehold"
 
@@ -13775,7 +13784,7 @@ msgstr "WordPress database error %1$s for query %2$s"
 msgid "WordPress database error %1$s for query %2$s made by %3$s"
 msgstr "WordPress database error %1$s for query %2$s made by %3$s"
 
-#: wp-includes/load.php:148
+#: wp-includes/load.php:151
 msgid "Your PHP installation appears to be missing the MySQL extension which is required by WordPress."
 msgstr "Din PHP-installasjon ser ut til å mangle MySQL-utvidelsen som kreves av WordPress."
 
@@ -14103,6 +14112,10 @@ msgstr "<strong>FEIL</strong>: Vennligst skriv inn din e-postadresse."
 msgid "Invalid key."
 msgstr "Ugyldig nøkkel."
 
+#: wp-login.php:429
+msgid "The email could not be sent."
+msgstr "E-posten kunne ikke sendes."
+
 #. translators: Password reset notification email subject. %s: Site title
 #: wp-login.php:399
 msgid "[%s] Password Reset"
@@ -14200,7 +14213,7 @@ msgstr "Feil under lagring av endringer."
 msgid "Submitted on:"
 msgstr "Sendt:"
 
-#: wp-includes/script-loader.php:1605 wp-includes/js/dist/editor.js:9875
+#: wp-includes/script-loader.php:1605 wp-includes/js/dist/editor.js:9877
 msgid "Password Protected"
 msgstr "Passordbeskyttet"
 
@@ -14287,8 +14300,8 @@ msgstr "av"
 
 #: wp-includes/script-loader.php:1102
 #: wp-includes/widgets/class-wp-widget-media-image.php:27
-#: wp-includes/class-wp-editor.php:1110 wp-includes/js/dist/editor.js:8819
-#: wp-includes/js/dist/block-editor.js:16103
+#: wp-includes/class-wp-editor.php:1110 wp-includes/js/dist/editor.js:8821
+#: wp-includes/js/dist/block-editor.js:16112
 #: wp-includes/js/dist/block-library.js:10702
 #: wp-includes/js/dist/format-library.js:570
 msgid "Image"
@@ -14627,7 +14640,7 @@ msgstr "Sett inn sideskift"
 msgid "Fill Screen"
 msgstr "Fyll skjermen"
 
-#: wp-includes/js/dist/editor.js:8822 wp-includes/js/dist/block-library.js:6521
+#: wp-includes/js/dist/editor.js:8824 wp-includes/js/dist/block-library.js:6521
 msgid "Quote"
 msgstr "Sitat"
 
@@ -14792,7 +14805,7 @@ msgstr "Hevet skrift"
 msgid "Subscript"
 msgstr "Senket skrift"
 
-#: wp-includes/js/dist/format-library.js:1388
+#: wp-includes/js/dist/format-library.js:1389
 msgid "Unlink"
 msgstr "Fjern lenke"
 
@@ -14801,13 +14814,13 @@ msgid "ordered list"
 msgstr "sortert liste"
 
 #: wp-includes/class-wp-editor.php:1050
-#: wp-includes/js/dist/format-library.js:1429
-#: wp-includes/js/dist/format-library.js:1449
+#: wp-includes/js/dist/format-library.js:1430
+#: wp-includes/js/dist/format-library.js:1450
 msgid "Strikethrough"
 msgstr "Gjennomstreking"
 
 #: wp-includes/class-wp-editor.php:1049
-#: wp-includes/js/dist/format-library.js:1471
+#: wp-includes/js/dist/format-library.js:1472
 msgid "Underline"
 msgstr "Understreket"
 
@@ -14872,8 +14885,8 @@ msgstr "Avsnitt"
 msgid "Font Size"
 msgstr "Skriftstørrelse"
 
-#: wp-includes/js/dist/editor.js:8877 wp-includes/js/dist/editor.js:10522
-#: wp-includes/js/dist/editor.js:10629
+#: wp-includes/js/dist/editor.js:8879 wp-includes/js/dist/editor.js:10524
+#: wp-includes/js/dist/editor.js:10631
 msgid "Suggestion:"
 msgstr "Forslag:"
 
@@ -15154,94 +15167,94 @@ msgstr "Bruker har blokkert for forespørseler igjennom HTTP."
 msgid "Gray"
 msgstr "Grå"
 
-#: wp-includes/general-template.php:3960
+#: wp-includes/general-template.php:3959
 msgid "Next &raquo;"
 msgstr "Neste &raquo;"
 
-#: wp-includes/general-template.php:3959
+#: wp-includes/general-template.php:3958
 msgid "&laquo; Previous"
 msgstr "&laquo; Forrige"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: search phrase
-#: wp-includes/general-template.php:2849
+#: wp-includes/general-template.php:2848
 msgid "%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed"
 msgstr "%1$s %2$s Søkeresultater for &laquo;%3$s&raquo;-strøm"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: author name
-#: wp-includes/general-template.php:2847
+#: wp-includes/general-template.php:2846
 msgid "%1$s %2$s Posts by %3$s Feed"
 msgstr "%1$s %2$s innlegg etter %3$s-strøm"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: tag name
-#: wp-includes/general-template.php:2843
+#: wp-includes/general-template.php:2842
 msgid "%1$s %2$s %3$s Tag Feed"
 msgstr "%1$s %2$s %3$s stikkord-strøm"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: category name
-#: wp-includes/general-template.php:2841
+#: wp-includes/general-template.php:2840
 msgid "%1$s %2$s %3$s Category Feed"
 msgstr "%1$s %2$s %3$s kategori-strøm"
 
 #. translators: 1: blog name, 2: separator(raquo), 3: post title
-#: wp-includes/general-template.php:2839
+#: wp-includes/general-template.php:2838
 msgid "%1$s %2$s %3$s Comments Feed"
 msgstr "%1$s %2$s %3$s kommentarstrøm"
 
 #. translators: 1: blog title, 2: separator (raquo)
-#: wp-includes/general-template.php:2799
+#: wp-includes/general-template.php:2798
 msgid "%1$s %2$s Comments Feed"
 msgstr "%1$s %2$s kommentarstrøm"
 
 #. translators: 1: blog title, 2: separator (raquo)
-#: wp-includes/general-template.php:2797
+#: wp-includes/general-template.php:2796
 msgid "%1$s %2$s Feed"
 msgstr "%1$s %2$s strøm"
 
 #. translators: Separator between blog name and feed type in feed links
-#: wp-includes/general-template.php:2795 wp-includes/general-template.php:2837
+#: wp-includes/general-template.php:2794 wp-includes/general-template.php:2836
 msgctxt "feed link"
 msgid "&raquo;"
 msgstr "&raquo;"
 
 #. translators: Calendar caption: 1: month name, 2: 4-digit year
-#: wp-includes/general-template.php:2132
+#: wp-includes/general-template.php:2131
 msgctxt "calendar caption"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 #. translators: 1: month name, 2: 4-digit year
-#: wp-includes/media.php:3576 wp-includes/general-template.php:1893
+#: wp-includes/media.php:3576 wp-includes/general-template.php:1892
 msgid "%1$s %2$d"
 msgstr "%1$s %2$d"
 
-#: wp-includes/general-template.php:1053 wp-includes/general-template.php:1268
+#: wp-includes/general-template.php:1052 wp-includes/general-template.php:1267
 msgid "Page not found"
 msgstr "Fant ikke siden"
 
 #. translators: 1: separator, 2: search phrase
-#: wp-includes/general-template.php:1263
+#: wp-includes/general-template.php:1262
 msgid "Search Results %1$s %2$s"
 msgstr "Søkeresultater %1$s %2$s"
 
-#: wp-includes/general-template.php:601
+#: wp-includes/general-template.php:600
 msgid "Site Admin"
 msgstr "Nettstedsadmin"
 
 #: wp-login.php:634 wp-login.php:761 wp-login.php:845 wp-login.php:1107
-#: wp-includes/general-template.php:596
+#: wp-includes/general-template.php:595
 msgid "Register"
 msgstr "Registrer"
 
-#: wp-login.php:1087 wp-includes/general-template.php:466
+#: wp-login.php:1087 wp-includes/general-template.php:465
 msgid "Remember Me"
 msgstr "Husk meg"
 
-#: wp-includes/general-template.php:327
+#: wp-includes/general-template.php:326
 msgid "Log out"
 msgstr "Logg ut"
 
 #: wp-login.php:631 wp-login.php:699 wp-login.php:758 wp-login.php:849
-#: wp-includes/general-template.php:325
+#: wp-includes/general-template.php:324
 msgid "Log in"
 msgstr "Logg inn"
 
@@ -15331,7 +15344,7 @@ msgid ", "
 msgstr ", "
 
 #. translators: Time difference between two dates, in days. %s: Number of days
-#: wp-includes/formatting.php:3637
+#: wp-includes/formatting.php:3641
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s dag"
@@ -15340,7 +15353,7 @@ msgstr[1] "%s dager"
 #. translators: Time duration in hour or hours.
 #. translators: Time difference between two dates, in hours. %s: Number of
 #. hours
-#: wp-includes/functions.php:377 wp-includes/formatting.php:3630
+#: wp-includes/functions.php:377 wp-includes/formatting.php:3634
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] "%s time"
@@ -15348,7 +15361,7 @@ msgstr[1] "%s timer"
 
 #. translators: Time difference between two dates, in minutes (min=minute). %s:
 #. Number of minutes
-#: wp-includes/formatting.php:3623
+#: wp-includes/formatting.php:3627
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] "%s minutt"
@@ -15835,7 +15848,7 @@ msgstr "Temaer"
 msgid "Sites"
 msgstr "Nettsteder"
 
-#: wp-includes/js/dist/block-editor.js:16580
+#: wp-includes/js/dist/block-editor.js:16589
 msgid "Edit Link"
 msgstr "Rediger lenke"
 
@@ -15847,7 +15860,7 @@ msgstr "Ja"
 msgid "Edit Category"
 msgstr "Rediger kategori"
 
-#: wp-login.php:1056 wp-login.php:1089 wp-includes/general-template.php:467
+#: wp-login.php:1056 wp-login.php:1089 wp-includes/general-template.php:466
 msgid "Log In"
 msgstr "Logg inn"
 
@@ -15938,8 +15951,8 @@ msgstr "Hjelp"
 #: wp-includes/script-loader.php:1392 wp-includes/script-loader.php:1666
 #: wp-includes/widgets/class-wp-widget-recent-posts.php:97
 #: wp-includes/blocks/latest-comments.php:31 wp-includes/media.php:3265
-#: wp-includes/js/dist/editor.js:10845
-#: wp-includes/js/dist/block-editor.js:16504
+#: wp-includes/js/dist/editor.js:10847
+#: wp-includes/js/dist/block-editor.js:16513
 #: wp-includes/js/dist/edit-post.js:4995
 msgid "(no title)"
 msgstr "(ingen tittel)"
@@ -15965,7 +15978,7 @@ msgstr "Velg"
 #: wp-includes/class-wp-customize-manager.php:5600
 #: wp-includes/class-wp-editor.php:1077 wp-includes/class-wp-editor.php:1727
 #: wp-includes/js/dist/components.js:30790
-#: wp-includes/js/dist/block-editor.js:16598
+#: wp-includes/js/dist/block-editor.js:16607
 #: wp-includes/js/dist/edit-post.js:3942 wp-includes/js/dist/edit-post.js:4216
 #: wp-includes/js/dist/edit-post.js:4608
 msgid "Close"
@@ -16029,15 +16042,15 @@ msgstr "Legg til eller fjern stikkord"
 
 #: wp-includes/script-loader.php:1390 wp-includes/script-loader.php:1599
 #: wp-includes/script-loader.php:1711 wp-includes/media.php:3640
-#: wp-includes/js/dist/editor.js:9657
+#: wp-includes/js/dist/editor.js:9659
 msgid "Update"
 msgstr "Oppdater"
 
-#: wp-includes/js/dist/editor.js:9659
+#: wp-includes/js/dist/editor.js:9661
 msgid "Schedule"
 msgstr "Planlegg"
 
-#: wp-includes/script-loader.php:1603 wp-includes/js/dist/editor.js:9867
+#: wp-includes/script-loader.php:1603 wp-includes/js/dist/editor.js:9869
 msgid "Public"
 msgstr "Offentlig"
 
@@ -16046,7 +16059,7 @@ msgid "Public, Sticky"
 msgstr "Offentlig, klebrig"
 
 #: wp-includes/script-loader.php:1602 wp-includes/post.php:891
-#: wp-includes/post.php:911 wp-includes/js/dist/editor.js:9871
+#: wp-includes/post.php:911 wp-includes/js/dist/editor.js:9873
 msgid "Private"
 msgstr "Privat"
 
@@ -16058,7 +16071,7 @@ msgstr "OK"
 msgid "Privately Published"
 msgstr "Privat publisert"
 
-#: wp-includes/script-loader.php:1600 wp-includes/js/dist/editor.js:11249
+#: wp-includes/script-loader.php:1600 wp-includes/js/dist/editor.js:11251
 msgid "Save as Pending"
 msgstr "Lagre som ventende"
 
@@ -16067,7 +16080,7 @@ msgid "Image URL"
 msgstr "Bilde URL"
 
 #: wp-includes/media.php:4171 wp-includes/class-wp-editor.php:1127
-#: wp-includes/js/dist/block-editor.js:16098
+#: wp-includes/js/dist/block-editor.js:16107
 msgid "Media"
 msgstr "Media"
 
@@ -16159,11 +16172,11 @@ msgstr "Filen &laquo;%s&raquo; finnes ikke?"
 msgid "Thumbnail"
 msgstr "Miniatyrbilde"
 
-#: wp-includes/class-wp-editor.php:1073 wp-includes/js/dist/editor.js:7715
+#: wp-includes/class-wp-editor.php:1073 wp-includes/js/dist/editor.js:7717
 msgid "Redo"
 msgstr "Gjør om"
 
-#: wp-login.php:1076 wp-includes/general-template.php:465
+#: wp-login.php:1076 wp-includes/general-template.php:464
 msgid "Password"
 msgstr "Passord"
 
@@ -16173,7 +16186,7 @@ msgstr "Brukernavn"
 
 #: wp-includes/widgets/class-wp-widget-archives.php:30
 #: wp-includes/widgets/class-wp-widget-archives.php:43
-#: wp-includes/blocks/archives.php:35 wp-includes/general-template.php:1603
+#: wp-includes/blocks/archives.php:35 wp-includes/general-template.php:1602
 #: wp-includes/theme-compat/sidebar.php:119
 #: wp-includes/js/dist/block-library.js:17307
 msgid "Archives"
@@ -16209,7 +16222,7 @@ msgstr "Svar"
 
 #: wp-includes/script-loader.php:1421 wp-includes/script-loader.php:1601
 #: wp-includes/class-wp-customize-manager.php:4729
-#: wp-includes/js/dist/editor.js:11249
+#: wp-includes/js/dist/editor.js:11251
 msgid "Save Draft"
 msgstr "Lagre kladd"
 
@@ -16251,7 +16264,7 @@ msgstr "Forhåndsvis"
 msgid "RSS"
 msgstr "RSS"
 
-#: wp-includes/js/dist/block-editor.js:16605
+#: wp-includes/js/dist/block-editor.js:16614
 msgid "Submit"
 msgstr "Send"
 
@@ -16311,7 +16324,7 @@ msgid "Name"
 msgstr "Navn"
 
 #: wp-includes/class-wp-editor.php:1113
-#: wp-includes/js/dist/block-editor.js:17257
+#: wp-includes/js/dist/block-editor.js:17266
 msgid "Advanced"
 msgstr "Avansert"
 
@@ -16330,7 +16343,7 @@ msgid "Categories"
 msgstr "Kategorier"
 
 #: wp-includes/script-loader.php:1639 wp-includes/class-wp-editor.php:1145
-#: wp-includes/js/dist/editor.js:12264
+#: wp-includes/js/dist/editor.js:12266
 #: wp-includes/js/dist/block-library.js:12424
 msgid "Save"
 msgstr "Lagre"
@@ -16366,7 +16379,7 @@ msgstr "Utdrag"
 
 #: wp-includes/script-loader.php:1419 wp-includes/script-loader.php:1597
 #: wp-includes/class-wp-customize-manager.php:4724
-#: wp-includes/js/dist/editor.js:9662 wp-includes/js/dist/edit-post.js:5157
+#: wp-includes/js/dist/editor.js:9664 wp-includes/js/dist/edit-post.js:5157
 msgid "Publish"
 msgstr "Publiser"
 
@@ -16376,19 +16389,19 @@ msgstr "Kommentarer"
 
 #: wp-includes/class-wp-customize-widgets.php:777 wp-includes/media.php:3678
 #: wp-includes/class-wp-editor.php:1284
-#: wp-includes/js/dist/block-editor.js:15919
+#: wp-includes/js/dist/block-editor.js:15928
 #: wp-includes/js/dist/block-library.js:17530
 #: wp-includes/js/dist/format-library.js:712
 #: wp-includes/js/dist/format-library.js:974
 msgid "Apply"
 msgstr "Bruk"
 
-#: wp-includes/class-wp-editor.php:1072 wp-includes/js/dist/editor.js:7753
+#: wp-includes/class-wp-editor.php:1072 wp-includes/js/dist/editor.js:7755
 msgid "Undo"
 msgstr "Angre"
 
 #. translators: %s: search phrase
-#: wp-includes/general-template.php:1058
+#: wp-includes/general-template.php:1057
 msgid "Search Results for &#8220;%s&#8221;"
 msgstr "Søkeresultater for &laquo;%s&raquo;"
 
@@ -16399,10 +16412,10 @@ msgstr "%s siden"
 
 #: wp-includes/class-wp-editor.php:1282
 #: wp-includes/class-walker-comment.php:242
-#: wp-includes/class-walker-comment.php:391 wp-includes/js/dist/editor.js:12436
+#: wp-includes/class-walker-comment.php:391 wp-includes/js/dist/editor.js:12438
 #: wp-includes/js/dist/block-library.js:11514
 #: wp-includes/js/dist/block-library.js:12403
-#: wp-includes/js/dist/format-library.js:1055
+#: wp-includes/js/dist/format-library.js:1056
 msgid "Edit"
 msgstr "Rediger"
 
@@ -16425,14 +16438,14 @@ msgstr "Kommentar"
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:92
 #: wp-includes/class-wp-editor.php:1159 wp-includes/class-wp-editor.php:1732
 #: wp-includes/class-wp-customize-nav-menus.php:1189
-#: wp-includes/js/dist/block-editor.js:15912
-#: wp-includes/js/dist/block-editor.js:16468
+#: wp-includes/js/dist/block-editor.js:15921
+#: wp-includes/js/dist/block-editor.js:16477
 #: wp-includes/js/dist/block-library.js:11720
 msgid "URL"
 msgstr "URL"
 
 #: wp-includes/class-wp-editor.php:1107 wp-includes/theme-compat/sidebar.php:29
-#: wp-includes/js/dist/editor.js:8424
+#: wp-includes/js/dist/editor.js:8426
 msgid "Author"
 msgstr "Forfatter"
 
@@ -16453,19 +16466,19 @@ msgstr "d/m, Y"
 msgid "Draft"
 msgstr "Kladd"
 
-#: wp-includes/post.php:890 wp-includes/js/dist/editor.js:9567
+#: wp-includes/post.php:890 wp-includes/js/dist/editor.js:9569
 msgid "Pending Review"
 msgstr "Venter på gjennomgang"
 
 #: wp-includes/script-loader.php:1420 wp-includes/script-loader.php:1607
 #: wp-includes/post.php:892 wp-includes/post.php:912
-#: wp-includes/js/dist/editor.js:10981
+#: wp-includes/js/dist/editor.js:10983
 msgid "Published"
 msgstr "Publisert"
 
 #: wp-includes/media-template.php:429 wp-includes/media-template.php:621
 #: wp-includes/revision.php:34 wp-includes/class-wp-editor.php:1103
-#: wp-includes/js/dist/editor.js:7463
+#: wp-includes/js/dist/editor.js:7465
 msgid "Title"
 msgstr "Tittel"
 
