@@ -134,7 +134,7 @@ class SRC_Cars extends SRC_Core {
 	 * @return string  The modified page content
 	 */
 	public function add_content_season_posts( $content ) {
-
+return $content;
 		// Bail out if not on season post-type
 		if ( 'season' !== get_post_type() ) {
 			return $content;
