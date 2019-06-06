@@ -90,11 +90,11 @@ if ( is_search() ) {
 	global $display_name;
 	$title = $display_name;
 	$content = '';
-	$image_url = get_template_directory_uri() . '/images/cars/404-page.jpg';
+	$image_url = get_template_directory_uri() . '/images/cars/radicals-summit.jpg';
 } else if ( is_404() ) {
 	$title = '404 error';
 	$content = '';
-	$image_url = get_template_directory_uri() . '/images/cars/404-page.jpg';
+	$image_url = get_template_directory_uri() . '/images/cars/trucks-bathurst.jpg';
 } else if ( is_archive() || is_home() ) {
 
 	$title = get_the_title( get_option( 'page_for_posts' ) );
