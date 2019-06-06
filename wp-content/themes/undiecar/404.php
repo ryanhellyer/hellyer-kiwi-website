@@ -16,7 +16,7 @@ echo '
 		' . wpautop( "We can't find what you were looking for. Perhaps searching will help." ) . '
 		' . get_search_form( false ) . '
 		<br /><br />
-		<img src="' . esc_url( get_template_directory_uri() . '/images/cars/background4.jpg' ) . '" />
+		' . do_shortcode( '[gallery columns="2" size="full" link="file" ids="3428,3607,1707,3451" orderby="rand"]' ) . '
 
 	</article>
 </main>';
