@@ -167,6 +167,9 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 				$file_size = $attachment['size'];
 				$file_url = $attachment['url'];
 				$file_description = esc_html( $message['content'] );
+				if ( '' === $file_description ) {
+					$file_description = pathinfo( $file_name, PATHINFO_FILENAME );;
+				}
 
 				// Check the attachment doesn't already exist
 				$args = array(
