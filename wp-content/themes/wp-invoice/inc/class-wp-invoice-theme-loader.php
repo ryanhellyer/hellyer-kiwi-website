@@ -307,6 +307,8 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			}
 		}
 
+		$amount = round( $amount );
+
 		return $amount;
 	}
 
