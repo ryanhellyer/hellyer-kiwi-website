@@ -1,8 +1,8 @@
 === Gutenberg ===
 Contributors: matveb, joen, karmatosed
-Requires at least: 5.0.0
+Requires at least: 5.1.0
 Tested up to: 5.2
-Stable tag: 5.8.0
+Stable tag: 5.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,20 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 == Changelog ==
 
+For 5.9.2:
+
+### Bug Fixes
+
+ - Fix Regression for blocks using InnerBlocks.Content from the editor package (support forwardRef components in the block serializer).
+
+For 5.9.1:
+
+### Bug Fixes
+
+* Fix the issue where [statics for deprecated components were not hoisted](https://github.com/WordPress/gutenberg/pull/16152)
+
+For 5.9.0:
+
 ### Features
 
 *   Allow [grouping/ungrouping blocks](https://github.com/WordPress/gutenberg/pull/14908) using the Group block.
@@ -101,7 +115,7 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 
 ### Bug Fixes
 
-*   [Focus the Button block’s input](https://github.com/WordPress/gutenberg/pull/15951) upon creation.
+*   [Focus the Button blockâ€™s input](https://github.com/WordPress/gutenberg/pull/15951) upon creation.
 *   Prevent [Embed block crashes](https://github.com/WordPress/gutenberg/pull/15866) when used inside locked containers.
 *   Properly [center the default appender placeholder](https://github.com/WordPress/gutenberg/pull/15868).
 *   Correct [default appender icon transition jump](https://github.com/WordPress/gutenberg/pull/15892) in Safari.
@@ -158,7 +172,7 @@ See also <a href="https://github.com/WordPress/gutenberg/blob/master/CONTRIBUTIN
 ### Mobile
 
 *   Fix [caret position](https://github.com/WordPress/gutenberg/pull/15833) when splitting text blocks.
-*   Fix the initial value of the [“Open in New Tab” toggle](https://github.com/WordPress/gutenberg/pull/15812).
+*   Fix the initial value of the [â€œOpen in New Tabâ€ toggle](https://github.com/WordPress/gutenberg/pull/15812).
 *   Fix [Video block crash](https://github.com/WordPress/gutenberg/pull/15857) on drawing on Android.
 *   Fix caret position after [inline paste](https://github.com/WordPress/gutenberg/pull/15701).
 *   [Focus the RichText component](https://github.com/WordPress/gutenberg/pull/15878) on block mount.
