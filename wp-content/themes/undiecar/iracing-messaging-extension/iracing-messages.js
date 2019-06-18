@@ -264,7 +264,7 @@
 })(this)
 
 // Add data
-if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' ) {
+if ( window.location.href === 'https://members.iracing.com/jforum/pm/send.page' ) {
 
 	// Process data
 	chrome.storage.sync.get({
@@ -358,6 +358,6 @@ if ( window.location.href === 'http://members.iracing.com/jforum/pm/send.page' )
 }
 
 // Redirect back
-if ( window.location.href === 'http://members.iracing.com/jforum/jforum.page' ) {
-	window.location.href = 'http://members.iracing.com/jforum/pm/send.page';
+if ( window.location.href === 'https://members.iracing.com/jforum/jforum.page' ) {
+	window.location.href = 'https://members.iracing.com/jforum/pm/send.page';
 }
