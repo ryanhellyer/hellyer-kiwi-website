@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.2.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-05-26 20:27:38+0000\n"
+"PO-Revision-Date: 2019-06-10 17:45:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -87,8 +87,8 @@ msgid "Improvements for Everyone"
 msgstr "Forbedringer for alle"
 
 #: wp-admin/about.php:129
-msgid "This administrator-focused update will let you safely fix or manage fatal errors without requiring developer time. It features better handling of the so-called “white screen of death,” and a way to enter recovery mode,  which pauses error-causing plugins or themes."
-msgstr "Den administratorfokuserte oppdateringen vil la deg rette og administrere fatale feil uten at det krever en utvikler.  Den inneholder bedre håndtering av den såkalte \"hvit skjerm-døden\", og en måte å gå inn i gjenopprettingsmodus som pauser utvidelsen eller temaet som forårsaker feilen."
+msgid "This administrator-focused update will let you safely fix or manage fatal errors without requiring developer time. It features better handling of the so-called “white screen of death”, and a way to enter recovery mode, which pauses error-causing plugins or themes."
+msgstr "Den administratorfokuserte oppdateringen vil la deg rette eller behandle fatale feil uten at det krever en utvikler. Den inneholder bedre håndtering av den såkalte \"hvit skjerm-døden\", og en måte å gå i gjenopprettingsmodus som pauser de utvidelser eller temaet som forårsaker feilen."
 
 #: wp-admin/about.php:128
 msgid "PHP Error Protection"
@@ -115,19 +115,14 @@ msgstr "Å holde nettstedet ditt sikkert"
 msgid "Congratulations on updating to WordPress %s! This update makes it easier than ever to fix your site if something goes wrong."
 msgstr "Gratulerer, du har nå oppdatert til WordPress %s! Denne oppdateringen gjør det enklere enn noen gang å fikse nettstedet ditt om noe går galt."
 
-#. translators: 1: The filename of the package.
-#: wp-admin/includes/file.php:1191 wp-admin/includes/file.php:1222
-msgid "The authenticity of %1$s could not be verified as signature verification is unavailable on this system."
-msgstr "Autentisiteten til %1$s kunne ikke bekreftes fordi signaturverifisering ikke er tilgjengelig i dette systemet."
-
 #. translators: tab heading for Site Health Status page
-#: wp-admin/site-health-info.php:52
+#: wp-admin/site-health-info.php:52 wp-admin/site-health.php:57
 msgctxt "Site Health"
 msgid "Status"
 msgstr "Status"
 
 #. translators: tab heading for Site Health Info page
-#: wp-admin/site-health-info.php:59
+#: wp-admin/site-health-info.php:59 wp-admin/site-health.php:64
 msgctxt "Site Health"
 msgid "Info"
 msgstr "Info"
@@ -142,7 +137,7 @@ msgid "Closed"
 msgstr "Stengt"
 
 #. translators: %s: number of critical issues found
-#: wp-admin/site-health.php:96 wp-admin/js/site-health.js:68
+#: wp-admin/site-health.php:102 wp-admin/js/site-health.js:68
 msgid "%s Critical issue"
 msgid_plural "%s Critical issues"
 msgstr[0] "%s kritisk sake"
@@ -186,6 +181,7 @@ msgid "PHP modules perform most of the tasks on the server that make your site r
 msgstr "PHP-moduler kjører mesteparten av oppgavene på serveren som får nettstedet ditt til å fungere. Endringer her må gjøres av din server-administrator. "
 
 #: wp-admin/includes/class-wp-site-health.php:652
+#: wp-admin/includes/dashboard.php:1631
 msgid "PHP is the programming language we use to build and maintain WordPress. Newer versions of PHP are both faster and more secure, so updating will have a positive effect on your site&#8217;s performance."
 msgstr "PHP er programmeringsspråket vi bruker til å bygge og vedlikeholde WordPress. Nyere versjoner av PHP er både raskere og sikrere, så å oppdatere vil ha positiv effekt på ditt nettsteds ytelse. "
 
@@ -261,7 +257,7 @@ msgstr "Nettstedet ditt har 1 installert tema og det er oppdatert."
 msgid "Your site has 1 active plugin, and it is up to date."
 msgstr "Nettstedet ditt har 1 aktiv utvidelse og den er oppdatert."
 
-#: wp-admin/site-health.php:117
+#: wp-admin/site-health.php:123
 msgid "Passed tests"
 msgstr "Beståtte tester"
 
@@ -281,7 +277,7 @@ msgstr "Vil du vil eksportere en praktisk liste over all informasjonen på denne
 msgid "This page can show you every detail about the configuration of your WordPress website. If we see anything here that could be improved, we will let you know on the Site Health Status page."
 msgstr "Denne siden kan vise deg alle detaljer vedrørende konfigurasjonen av ditt WordPress-nettsted. Hvis vi ser noe som kan forbedres, så forteller vi deg det på siden for status for nettstedhelse. "
 
-#: wp-admin/site-health-info.php:68 wp-admin/site-health.php:67
+#: wp-admin/site-health-info.php:68 wp-admin/site-health.php:73
 msgid "The Site Health check requires JavaScript."
 msgstr "Helsesjekk for nettstedet krever JavaScript."
 
@@ -339,7 +335,8 @@ msgid "The authenticity of %s could not be verified as no signature was found."
 msgstr "Autentisiteten til %s kunne ikke bekreftes fordi ingen signatur ble funnet."
 
 #. translators: %s: The filename of the package.
-#: wp-admin/includes/file.php:1171
+#: wp-admin/includes/file.php:1171 wp-admin/includes/file.php:1191
+#: wp-admin/includes/file.php:1222
 msgid "The authenticity of %s could not be verified as signature verification is unavailable on this system."
 msgstr "Autentisiteten til %s kunne ikke bekreftes fordi signaturverifisering ikke er tilgjengelig på dette systemet."
 
@@ -491,7 +488,7 @@ msgstr "Det er en ny versjon av %1$s tilgjengelig, men den virker ikke med din v
 msgid "This plugin failed to load properly and is paused during recovery mode."
 msgstr "Denne utvidelsen kunne ikke lastes riktig og er derfor midlertidig stoppet under gjenopprettingsmodus."
 
-#: wp-admin/includes/theme.php:905
+#: wp-admin/includes/theme.php:910
 msgid "Go to the Themes screen"
 msgstr "Gå til temaer"
 
@@ -507,42 +504,37 @@ msgstr "Total størrelse er ikke tilgjengelig. Noen feil kan kan ha oppstått un
 msgid "The size cannot be calculated. The directory is not accessible. Usually caused by invalid permissions."
 msgstr "Størrelsen kan ikke beregnes. Mappen er ikke tilgjengelig. Vanligvis forårsaket av ugyldige filsystemtillatelser."
 
-#. translators: %s: number of ratings
-#: wp-admin/includes/theme.php:727
-msgid "(%s ratings) <span class=\"screen-reader-text\">link to view ratings opens in a new tab</span>"
-msgstr "(%s poeng) <span class=\"screen-reader-text\">lenke til å se poengene åpnes i en ny fane</span>"
-
 #: wp-admin/includes/class-wp-debug-data.php:218
 msgid "These settings alter where and how parts of WordPress are loaded."
 msgstr "Disse innstillingene endrer hvor og hvordan deler av WordPress laster inn."
 
 #. translators: %s: number of items with no issues
-#: wp-admin/site-health.php:126 wp-admin/js/site-health.js:72
+#: wp-admin/site-health.php:132 wp-admin/js/site-health.js:72
 msgid "%s Item with no issues detected"
 msgid_plural "%s Items with no issues detected"
 msgstr[0] "%s element uten merknader"
 msgstr[1] "%s elementer uten merknader"
 
 #. translators: %s: number of recommended improvements
-#: wp-admin/site-health.php:107 wp-admin/js/site-health.js:70
+#: wp-admin/site-health.php:113 wp-admin/js/site-health.js:70
 msgid "%s Recommended improvement"
 msgid_plural "%s Recommended improvements"
 msgstr[0] "%s anbefalt forbedring"
 msgstr[1] "%s anbefalte forbedringer"
 
-#: wp-admin/site-health.php:90
+#: wp-admin/site-health.php:96
 msgid "The site health check shows critical information about your WordPress configuration and items that require your attention."
 msgstr "Helsesjekken for nettstedet viser kritisk informasjon om din WordPress-konfigurasjon og elementer som krever din oppmerksomhet."
 
-#: wp-admin/site-health.php:17 wp-admin/site-health.php:87
+#: wp-admin/site-health.php:17 wp-admin/site-health.php:93
 msgid "Site Health Status"
 msgstr "Helsestatus for nettstedet"
 
-#: wp-admin/site-health.php:81
+#: wp-admin/site-health.php:87
 msgid "Everything is running smoothly here."
 msgstr "Alt kjører smertefritt her. "
 
-#: wp-admin/site-health.php:77
+#: wp-admin/site-health.php:83
 msgid "Great job!"
 msgstr "Bra jobba! "
 
@@ -1685,10 +1677,6 @@ msgstr "Sett opp din hjemmeside"
 msgid "Learn more about updating PHP"
 msgstr "Lær mer om å oppdatere PHP"
 
-#: wp-admin/includes/dashboard.php:1631
-msgid "PHP is the programming language we use to build and maintain WordPress. Newer versions of PHP are both faster and more secure, so updating will have a positive effect on your site’s performance."
-msgstr "PHP er programmeringsspråket vi bruker til å bygge og vedlikeholde WordPress. Nyere versjoner av PHP er både raskere og sikrere, så en oppdatering vil ha en positiv effekt på nettstedets ytelse."
-
 #: wp-admin/includes/dashboard.php:1630
 msgid "What is PHP and how does it affect my site?"
 msgstr "Hva er PHP og hvordan påvirker det mitt nettsted?"
@@ -1830,11 +1818,11 @@ msgctxt "plugin"
 msgid "Resume %s"
 msgstr "Gjenoppta %s"
 
-#: wp-admin/includes/theme.php:903
+#: wp-admin/includes/theme.php:908
 msgid "You can find more details and make changes on the Themes screen."
 msgstr "Du kan finne flere detaljer og gjøre endringer på «Temaer»-siden."
 
-#: wp-admin/includes/theme.php:902
+#: wp-admin/includes/theme.php:907
 msgid "One or more themes failed to load properly."
 msgstr "Ett eller flere tema kunne ikke lastes riktig."
 
@@ -1843,7 +1831,7 @@ msgstr "Ett eller flere tema kunne ikke lastes riktig."
 msgid "Deleting a category does not delete the posts in that category. Instead, posts that were only assigned to the deleted category are set to the default category %s. The default category cannot be deleted."
 msgstr "Sletting av en kategori sletter ikke innleggene i kategorien. I stedet blir innleggene som kun var tilordnet den slettede kategorien tilordnet standardkategorien %s. Standardkategorien kan ikke slettes."
 
-#: wp-admin/includes/theme.php:875
+#: wp-admin/includes/theme.php:880
 msgid "Could not resume the theme."
 msgstr "Kunne ikke gjenoppta temaet."
 
@@ -3390,7 +3378,7 @@ msgid "Choose either a city in the same timezone as you or a UTC timezone offset
 msgstr "Velg enten en by i samme tidssone som deg, eller et bestemt avvik fra UTC-tidssonen."
 
 #. translators: %s: number of ratings
-#: wp-admin/theme-install.php:341
+#: wp-admin/includes/theme.php:729 wp-admin/theme-install.php:341
 msgid "(%s ratings)"
 msgstr "(%s vurderinger)"
 
@@ -3749,7 +3737,7 @@ msgstr "Dette vil erstatte innholdet i redigereren med siste sikkerhetskopierte 
 msgid "Close media attachment panel"
 msgstr "Lukk medievedleggspanelet"
 
-#: wp-admin/includes/ms.php:1075 wp-admin/site-health.php:59
+#: wp-admin/includes/ms.php:1075
 msgid "Info"
 msgstr "Info"
 
@@ -6139,7 +6127,7 @@ msgstr "Når denne innstillingen er aktiv vises en påminnelse i kontrollpanelet
 msgid "Accessibility Ready"
 msgstr "Tilgjengelighetstilpasset"
 
-#: wp-admin/includes/theme.php:741 wp-admin/themes.php:559
+#: wp-admin/includes/theme.php:746 wp-admin/themes.php:559
 msgid "This is a child theme of %s."
 msgstr "Dette er et dattertema til %s."
 
@@ -6244,7 +6232,7 @@ msgstr "Vis neste tema"
 msgid "Show previous theme"
 msgstr "Vis forrige tema"
 
-#: wp-admin/includes/theme.php:735 wp-admin/themes.php:552
+#: wp-admin/includes/theme.php:740 wp-admin/themes.php:552
 msgid "Update Available"
 msgstr "Oppdatering tilgjengelig"
 
@@ -8589,7 +8577,7 @@ msgid "Plugins %s"
 msgstr "Utvidelser %s"
 
 #. translators: %s: plugin name
-#: wp-admin/includes/theme.php:763
+#: wp-admin/includes/theme.php:768
 #: wp-admin/includes/class-wp-theme-install-list-table.php:478
 #: wp-admin/includes/deprecated.php:1381 wp-admin/theme-install.php:299
 #: wp-admin/theme-install.php:319
@@ -8604,7 +8592,7 @@ msgstr "Alle brukere"
 #: wp-admin/includes/class-wp-links-list-table.php:88
 #: wp-admin/includes/class-wp-links-list-table.php:323
 #: wp-admin/includes/class-wp-themes-list-table.php:200
-#: wp-admin/includes/theme.php:758
+#: wp-admin/includes/theme.php:763
 #: wp-admin/includes/class-wp-plugins-list-table.php:500
 #: wp-admin/includes/class-wp-plugins-list-table.php:654
 #: wp-admin/includes/class-wp-plugins-list-table.php:683
@@ -10659,7 +10647,7 @@ msgstr "Velg tema å redigere:"
 msgid "Edit Themes"
 msgstr "Rediger temaer"
 
-#: wp-admin/includes/theme.php:747 wp-admin/themes.php:563
+#: wp-admin/includes/theme.php:752 wp-admin/themes.php:563
 msgid "Tags:"
 msgstr "Stikkord:"
 
@@ -11565,7 +11553,7 @@ msgstr "En kolonne"
 msgid "Feature Filter"
 msgstr "Funksjonalitetsfilter"
 
-#: wp-admin/includes/class-wp-screen.php:939
+#: wp-admin/includes/class-wp-screen.php:932
 msgid "Screen Options"
 msgstr "Visningsinnstillinger"
 

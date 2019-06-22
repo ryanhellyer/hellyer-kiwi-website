@@ -446,11 +446,11 @@ msgstr "Funksjon deaktivert"
 msgid "Block Manager"
 msgstr "Blokkbehandler"
 
-#: wp-includes/js/dist/block-editor.js:17991
+#: wp-includes/js/dist/block-editor.js:18013
 msgid "Change block type or style"
 msgstr "Endre blokktype eller stil"
 
-#: wp-includes/js/dist/block-editor.js:17059
+#: wp-includes/js/dist/block-editor.js:17081
 #: wp-includes/js/dist/block-library.js:6537
 #: wp-includes/js/dist/block-library.js:16785
 #: wp-includes/js/dist/block-library.js:17628
@@ -459,17 +459,17 @@ msgctxt "block style"
 msgid "Default"
 msgstr "Standard"
 
-#: wp-includes/js/dist/block-editor.js:14321
+#: wp-includes/js/dist/block-editor.js:14343
 msgctxt "keyboard key"
 msgid "Space"
 msgstr "Mellomrom"
 
-#: wp-includes/js/dist/block-editor.js:14314
+#: wp-includes/js/dist/block-editor.js:14336
 msgctxt "keyboard key"
 msgid "Backspace"
 msgstr "Slettetast"
 
-#: wp-includes/js/dist/block-editor.js:13782
+#: wp-includes/js/dist/block-editor.js:13804
 msgid "More Rich Text Controls"
 msgstr "Flere kontroller for rik tekst"
 
@@ -532,7 +532,7 @@ msgstr "Detaljer om feilen"
 msgid "A recovery link was already sent %1$s ago. Please wait another %2$s before requesting a new email."
 msgstr "En gjenopprettingslink ble allerede sendt for %1$s siden. Vennligst vent %2$s før du forespør ny e-post."
 
-#: wp-includes/class-wp-recovery-mode-email-service.php:65
+#: wp-login.php:429 wp-includes/class-wp-recovery-mode-email-service.php:65
 msgid "The email could not be sent. Possible reason: your host may have disabled the mail() function."
 msgstr "E-posten kunne ikke sendes. Mulig årsak: Nettverten din kan ha deaktivert mail()-funksjonen."
 
@@ -557,31 +557,31 @@ msgid "Recovery Mode not initialized."
 msgstr "Gjenopprettingsmodus ikke initialisert."
 
 #. translators: user role for subscriber
-#: wp-includes/capabilities.php:994
+#: wp-includes/capabilities.php:1019
 msgctxt "User role"
 msgid "Subscriber"
 msgstr "Abonnent"
 
 #. translators: user role for contributors
-#: wp-includes/capabilities.php:992
+#: wp-includes/capabilities.php:1017
 msgctxt "User role"
 msgid "Contributor"
 msgstr "Bidragsyter"
 
 #. translators: user role for authors
-#: wp-includes/capabilities.php:990
+#: wp-includes/capabilities.php:1015
 msgctxt "User role"
 msgid "Author"
 msgstr "Forfatter"
 
 #. translators: user role for editors
-#: wp-includes/capabilities.php:988
+#: wp-includes/capabilities.php:1013
 msgctxt "User role"
 msgid "Editor"
 msgstr "Redaktør"
 
 #. translators: user role for administrators
-#: wp-includes/capabilities.php:986
+#: wp-includes/capabilities.php:1011
 msgctxt "User role"
 msgid "Administrator"
 msgstr "Administrator"
@@ -912,7 +912,7 @@ msgid "Top Toolbar"
 msgstr "Verktøylinje på toppen"
 
 #. translators: %d: number of words
-#: wp-includes/js/dist/block-editor.js:17185
+#: wp-includes/js/dist/block-editor.js:17207
 msgid "%d word"
 msgid_plural "%d words"
 msgstr[0] "%d ord"
@@ -938,23 +938,23 @@ msgstr "Permalenke"
 msgid "To edit the featured image, you need permission to upload media."
 msgstr "For å endre fremhevet bilde trenger du tillatelse til å laste opp media."
 
-#: wp-includes/js/dist/block-editor.js:16101
+#: wp-includes/js/dist/block-editor.js:16123
 msgid "Given your current role, you can only link a video, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til videoer og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16099
+#: wp-includes/js/dist/block-editor.js:16121
 msgid "Given your current role, you can only link an image, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til et bilde og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16097
+#: wp-includes/js/dist/block-editor.js:16119
 msgid "Given your current role, you can only link an audio, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til lydfiler og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16094
+#: wp-includes/js/dist/block-editor.js:16116
 msgid "Given your current role, you can only link a media file, you cannot upload."
 msgstr "Gitt din nåværende rolle, kan du bare lenke til mediefiler og ikke laste opp nye."
 
-#: wp-includes/js/dist/block-editor.js:16073
+#: wp-includes/js/dist/block-editor.js:16095
 msgid "To edit this block, you need permission to upload media."
 msgstr "For å endre denne blokken trenger du tillatelse til å laste opp media."
 
@@ -996,12 +996,12 @@ msgstr "Start skrive tekst eller HTML"
 msgid "Type text or HTML"
 msgstr "Skriv tekst eller HTML"
 
-#: wp-includes/js/dist/block-editor.js:12830
+#: wp-includes/js/dist/block-editor.js:12852
 #: wp-includes/js/dist/block-library.js:5734
 msgid "Start writing or type / to choose a block"
 msgstr "Start å skrive eller tast / for å velge blokktype"
 
-#: wp-includes/js/dist/block-editor.js:17968
+#: wp-includes/js/dist/block-editor.js:17990
 msgid "Block icon"
 msgstr "Ikon for blokk"
 
@@ -1406,19 +1406,19 @@ msgstr "Vis media til venstre"
 msgid "Write list…"
 msgstr "Skriv liste..."
 
-#: wp-includes/js/dist/block-editor.js:14320
+#: wp-includes/js/dist/block-editor.js:14342
 msgid "Indent list item"
 msgstr "Element i innrykksliste"
 
-#: wp-includes/js/dist/block-editor.js:14313
+#: wp-includes/js/dist/block-editor.js:14335
 msgid "Outdent list item"
 msgstr "Element i utrykksliste"
 
-#: wp-includes/js/dist/block-editor.js:14300
+#: wp-includes/js/dist/block-editor.js:14322
 msgid "Convert to ordered list"
 msgstr "Konverter til ordnet liste"
 
-#: wp-includes/js/dist/block-editor.js:14287
+#: wp-includes/js/dist/block-editor.js:14309
 msgid "Convert to unordered list"
 msgstr "Konverter til uordnet liste"
 
@@ -2126,7 +2126,7 @@ msgid "Close settings"
 msgstr "Lukk innstillinger"
 
 #. translators: %d: number of blocks
-#: wp-includes/js/dist/block-editor.js:17181
+#: wp-includes/js/dist/block-editor.js:17203
 msgid "%d block"
 msgid_plural "%d blocks"
 msgstr[0] "%d blokk"
@@ -2489,24 +2489,24 @@ msgstr "Livaktig rød"
 msgid "Pale pink"
 msgstr "Blek rosa"
 
-#: wp-includes/js/dist/block-editor.js:19674
+#: wp-includes/js/dist/block-editor.js:19696
 msgid "Additional CSS Class"
 msgstr "Ekstra CSS-klasse"
 
-#: wp-includes/js/dist/block-editor.js:19578
+#: wp-includes/js/dist/block-editor.js:19600
 msgid "Anchors lets you link directly to a section on a page."
 msgstr "Ankere lar deg lenke direkte til en seksjon på en side."
 
-#: wp-includes/js/dist/block-editor.js:19577
+#: wp-includes/js/dist/block-editor.js:19599
 msgid "HTML Anchor"
 msgstr "HTML-anker"
 
-#: wp-includes/js/dist/block-editor.js:15862
+#: wp-includes/js/dist/block-editor.js:15884
 #: wp-includes/js/dist/block-library.js:10371
 msgid "Link Settings"
 msgstr "Innstillinger for lenker"
 
-#: wp-includes/js/dist/block-editor.js:16589
+#: wp-includes/js/dist/block-editor.js:16611
 msgid "Insert Link"
 msgstr "Sett inn lenke"
 
@@ -2550,7 +2550,7 @@ msgstr "Dokumentstatistikk"
 msgid "Content structure"
 msgstr "Struktur for innholdet"
 
-#: wp-includes/js/dist/block-editor.js:16933
+#: wp-includes/js/dist/block-editor.js:16955
 msgid "Skip to the selected block"
 msgstr "Hopp til valgte blokk"
 
@@ -2892,7 +2892,7 @@ msgstr "Skriv et utdrag (valgfritt)"
 msgid "Allow Comments"
 msgstr "Tillat kommentarer"
 
-#: wp-includes/js/dist/block-editor.js:13617
+#: wp-includes/js/dist/block-editor.js:13639
 msgid "(%s: %s)"
 msgstr "(%s: %s)"
 
@@ -2908,23 +2908,23 @@ msgstr "ingen tittel"
 msgid "Order"
 msgstr "Rekkefølge"
 
-#: wp-includes/js/dist/block-editor.js:16091
+#: wp-includes/js/dist/block-editor.js:16113
 msgid "Drag a video, upload a new one or select a file from your library."
 msgstr "Dra inn en video, last opp en ny eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16089
+#: wp-includes/js/dist/block-editor.js:16111
 msgid "Drag an image, upload a new one or select a file from your library."
 msgstr "Dra et bilde, last opp et nytt, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16087
+#: wp-includes/js/dist/block-editor.js:16109
 msgid "Drag an audio, upload a new one or select a file from your library."
 msgstr "Dra en lydfil, last opp en ny, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:16084
+#: wp-includes/js/dist/block-editor.js:16106
 msgid "Drag a media file, upload a new one or select a file from your library."
 msgstr "Dra en mediefil, last opp en ny, eller velg en fil fra biblioteket."
 
-#: wp-includes/js/dist/block-editor.js:15922
+#: wp-includes/js/dist/block-editor.js:15944
 msgid "Paste or type URL"
 msgstr "Lim inn eller skriv URL"
 
@@ -3004,66 +3004,66 @@ msgstr "Denne fargekombinasjonen kan være vanskelig for folk å lese. Bruk en l
 msgid "This color combination may be hard for people to read. Try using a darker background color and/or a brighter text color."
 msgstr "Denne fargekombinasjonen kan være vanskelig for folk å lese. Bruk en mørkere bakgrunnsfarge og/eller en lysere tekstfarge."
 
-#: wp-includes/js/dist/block-editor.js:13530
+#: wp-includes/js/dist/block-editor.js:13552
 msgid "(current %s: %s)"
 msgstr "(nåværende %s: %s)"
 
-#: wp-includes/js/dist/block-editor.js:18022
+#: wp-includes/js/dist/block-editor.js:18044
 msgid "Transform To:"
 msgstr "Forvandle til:"
 
-#: wp-includes/js/dist/block-editor.js:18015
+#: wp-includes/js/dist/block-editor.js:18037
 msgid "Block Styles"
 msgstr "Blokktyper"
 
-#: wp-includes/js/dist/block-editor.js:17991
+#: wp-includes/js/dist/block-editor.js:18013
 msgid "Change type of %d block"
 msgid_plural "Change type of %d blocks"
 msgstr[0] "Endre type for %d blokk"
 msgstr[1] "Endre type for %d blokker"
 
-#: wp-includes/js/dist/block-editor.js:17573
+#: wp-includes/js/dist/block-editor.js:17595
 msgid "Remove from Reusable Blocks"
 msgstr "Fjern fra Gjenbrukbare blokker"
 
-#: wp-includes/js/dist/block-editor.js:17485
+#: wp-includes/js/dist/block-editor.js:17507
 msgid "Convert to Regular Block"
 msgstr "Konverter til gjenbrukbar boks"
 
-#: wp-includes/js/dist/block-editor.js:17481
+#: wp-includes/js/dist/block-editor.js:17503
 msgid "Add to Reusable Blocks"
 msgstr "Legg til som gjenbrukbar blokk"
 
-#: wp-includes/js/dist/block-editor.js:17852
+#: wp-includes/js/dist/block-editor.js:17874
 msgid "Remove Block"
 msgstr "Fjern blokk"
 
-#: wp-includes/js/dist/block-editor.js:17831
+#: wp-includes/js/dist/block-editor.js:17853
 msgid "Insert After"
 msgstr "Legg til etter"
 
-#: wp-includes/js/dist/block-editor.js:17826
+#: wp-includes/js/dist/block-editor.js:17848
 msgid "Insert Before"
 msgstr "Legg til foran"
 
-#: wp-includes/js/dist/block-editor.js:17821
+#: wp-includes/js/dist/block-editor.js:17843
 msgid "Duplicate"
 msgstr "Dupliser"
 
 #: wp-includes/js/dist/block-editor.js:9729
-#: wp-includes/js/dist/block-editor.js:17785
+#: wp-includes/js/dist/block-editor.js:17807
 msgid "More options"
 msgstr "Flere alternativer"
 
-#: wp-includes/js/dist/block-editor.js:17785
+#: wp-includes/js/dist/block-editor.js:17807
 msgid "Hide options"
 msgstr "Skjul alternativer"
 
-#: wp-includes/js/dist/block-editor.js:17419
+#: wp-includes/js/dist/block-editor.js:17441
 msgid "Edit visually"
 msgstr "Rediger visuelt"
 
-#: wp-includes/js/dist/block-editor.js:17419
+#: wp-includes/js/dist/block-editor.js:17441
 msgid "Edit as HTML"
 msgstr "Rediger som HTML"
 
@@ -3121,7 +3121,7 @@ msgstr "Flytt %1$s blokk fra posisjon %2$d ned til posisjon %3$d"
 msgid "Block %s is the only block, and cannot be moved"
 msgstr "Blokk \"%s\" er den eneste blokken og kan ikke flyttes"
 
-#: wp-includes/js/dist/block-editor.js:12458
+#: wp-includes/js/dist/block-editor.js:12480
 msgid "Block: %s"
 msgstr "Blokk: %s"
 
@@ -3136,7 +3136,7 @@ msgid "Resolve"
 msgstr "Løs"
 
 #: wp-includes/js/dist/block-editor.js:9988
-#: wp-includes/js/dist/block-editor.js:17637
+#: wp-includes/js/dist/block-editor.js:17659
 msgid "Convert to Blocks"
 msgstr "Konverter til blokker"
 
@@ -3154,12 +3154,12 @@ msgid "This block has encountered an error and cannot be previewed."
 msgstr "Noe gikk galt med denne blokken, så den kan ikke forhåndsvises."
 
 #: wp-includes/js/dist/block-editor.js:11346
-#: wp-includes/js/dist/block-editor.js:12862
-#: wp-includes/js/dist/block-editor.js:12963
+#: wp-includes/js/dist/block-editor.js:12884
+#: wp-includes/js/dist/block-editor.js:12985
 msgid "Add block"
 msgstr "Legg til blokk"
 
-#: wp-includes/js/dist/block-editor.js:17244
+#: wp-includes/js/dist/block-editor.js:17266
 msgid "No block selected."
 msgstr "Ingen blokk valgt."
 
@@ -3430,13 +3430,13 @@ msgstr "Fargevelger"
 
 #: wp-includes/js/dist/components.js:27728
 #: wp-includes/js/dist/components.js:33378
-#: wp-includes/js/dist/block-editor.js:16323
+#: wp-includes/js/dist/block-editor.js:16345
 msgid "No results."
 msgstr "Ingen treff."
 
 #: wp-includes/js/dist/components.js:27726
 #: wp-includes/js/dist/components.js:33376
-#: wp-includes/js/dist/block-editor.js:16321
+#: wp-includes/js/dist/block-editor.js:16343
 msgid "%d result found, use up and down arrow keys to navigate."
 msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] "%d resultat funnet. Bruk piltastene for å navigere."
@@ -8153,7 +8153,7 @@ msgstr "Lenkevalg"
 msgid "Link inserted."
 msgstr "Lenke satt inn."
 
-#: wp-includes/script-loader.php:1394 wp-includes/js/dist/block-editor.js:16420
+#: wp-includes/script-loader.php:1394 wp-includes/js/dist/block-editor.js:16442
 msgid "Link selected."
 msgstr "Lenke valgt."
 
@@ -8382,7 +8382,7 @@ msgid "Invalid object type"
 msgstr "Ugyldig objektstype"
 
 #: wp-includes/class-wp-editor.php:1283
-#: wp-includes/js/dist/block-editor.js:16482
+#: wp-includes/js/dist/block-editor.js:16504
 msgid "Paste URL or type to search"
 msgstr "Lim inn URL eller skriv for å søke"
 
@@ -11674,10 +11674,6 @@ msgstr "Nettleseren på din enhet kan ikke brukes for å laste opp filer. Du kan
 msgid "<strong>ERROR</strong>: Couldn&#8217;t register you&hellip; please contact the <a href=\"mailto:%s\">webmaster</a> !"
 msgstr "<strong>FEIL:</strong> Kunne ikke registrere deg… vennligst kontakt <a href=\"mailto:%s\">admin</a> !"
 
-#: wp-login.php:429
-msgid "Possible reason: your host may have disabled the mail() function."
-msgstr "Mulig grunn: mail()-funksjonen er kanskje deaktivert på din server."
-
 #: wp-includes/post-template.php:298
 msgid "(more&hellip;)"
 msgstr "(mer&hellip;)"
@@ -11767,7 +11763,7 @@ msgstr "Gi bildetekst til dette bildet&hellip;"
 msgid "Random Order"
 msgstr "Tilfeldig rekkefølge"
 
-#: wp-includes/media.php:3689 wp-includes/js/dist/block-editor.js:16155
+#: wp-includes/media.php:3689 wp-includes/js/dist/block-editor.js:16177
 msgid "Insert from URL"
 msgstr "Sett inn fra URL"
 
@@ -11838,7 +11834,7 @@ msgstr "Håndter video"
 
 #: wp-includes/widgets/class-wp-widget-media-video.php:27
 #: wp-includes/post.php:2630 wp-includes/js/dist/editor.js:8833
-#: wp-includes/js/dist/block-editor.js:16114
+#: wp-includes/js/dist/block-editor.js:16136
 #: wp-includes/js/dist/block-library.js:15794
 msgid "Video"
 msgstr "Video"
@@ -11873,7 +11869,7 @@ msgstr "Sett inn på side"
 
 #: wp-includes/widgets/class-wp-widget-media-audio.php:27
 #: wp-includes/post.php:2629 wp-includes/js/dist/editor.js:8836
-#: wp-includes/js/dist/block-editor.js:16110
+#: wp-includes/js/dist/block-editor.js:16132
 #: wp-includes/js/dist/block-library.js:14521
 msgid "Audio"
 msgstr "Lyd"
@@ -11961,7 +11957,7 @@ msgstr "Slipp filer for å laste opp"
 msgid "Create Gallery"
 msgstr "Lag galleri"
 
-#: wp-includes/media.php:3657 wp-includes/js/dist/block-editor.js:16146
+#: wp-includes/media.php:3657 wp-includes/js/dist/block-editor.js:16168
 msgid "Media Library"
 msgstr "Mediebibliotek"
 
@@ -12352,7 +12348,7 @@ msgstr "Godkjente filtyper"
 msgid "Remove"
 msgstr "Fjern"
 
-#: wp-includes/js/dist/block-editor.js:16134
+#: wp-includes/js/dist/block-editor.js:16156
 msgid "Upload"
 msgstr "Last opp"
 
@@ -12488,7 +12484,7 @@ msgstr "Slagord"
 msgid "Your latest posts"
 msgstr "Dine siste innlegg"
 
-#: wp-includes/js/dist/block-editor.js:17259
+#: wp-includes/js/dist/block-editor.js:17281
 msgid "Styles"
 msgstr "Stiler"
 
@@ -14112,10 +14108,6 @@ msgstr "<strong>FEIL</strong>: Vennligst skriv inn din e-postadresse."
 msgid "Invalid key."
 msgstr "Ugyldig nøkkel."
 
-#: wp-login.php:429
-msgid "The email could not be sent."
-msgstr "E-posten kunne ikke sendes."
-
 #. translators: Password reset notification email subject. %s: Site title
 #: wp-login.php:399
 msgid "[%s] Password Reset"
@@ -14301,7 +14293,7 @@ msgstr "av"
 #: wp-includes/script-loader.php:1102
 #: wp-includes/widgets/class-wp-widget-media-image.php:27
 #: wp-includes/class-wp-editor.php:1110 wp-includes/js/dist/editor.js:8821
-#: wp-includes/js/dist/block-editor.js:16112
+#: wp-includes/js/dist/block-editor.js:16134
 #: wp-includes/js/dist/block-library.js:10702
 #: wp-includes/js/dist/format-library.js:570
 msgid "Image"
@@ -15848,7 +15840,7 @@ msgstr "Temaer"
 msgid "Sites"
 msgstr "Nettsteder"
 
-#: wp-includes/js/dist/block-editor.js:16589
+#: wp-includes/js/dist/block-editor.js:16611
 msgid "Edit Link"
 msgstr "Rediger lenke"
 
@@ -15952,7 +15944,7 @@ msgstr "Hjelp"
 #: wp-includes/widgets/class-wp-widget-recent-posts.php:97
 #: wp-includes/blocks/latest-comments.php:31 wp-includes/media.php:3265
 #: wp-includes/js/dist/editor.js:10847
-#: wp-includes/js/dist/block-editor.js:16513
+#: wp-includes/js/dist/block-editor.js:16535
 #: wp-includes/js/dist/edit-post.js:4995
 msgid "(no title)"
 msgstr "(ingen tittel)"
@@ -15978,7 +15970,7 @@ msgstr "Velg"
 #: wp-includes/class-wp-customize-manager.php:5600
 #: wp-includes/class-wp-editor.php:1077 wp-includes/class-wp-editor.php:1727
 #: wp-includes/js/dist/components.js:30790
-#: wp-includes/js/dist/block-editor.js:16607
+#: wp-includes/js/dist/block-editor.js:16629
 #: wp-includes/js/dist/edit-post.js:3942 wp-includes/js/dist/edit-post.js:4216
 #: wp-includes/js/dist/edit-post.js:4608
 msgid "Close"
@@ -16080,7 +16072,7 @@ msgid "Image URL"
 msgstr "Bilde URL"
 
 #: wp-includes/media.php:4171 wp-includes/class-wp-editor.php:1127
-#: wp-includes/js/dist/block-editor.js:16107
+#: wp-includes/js/dist/block-editor.js:16129
 msgid "Media"
 msgstr "Media"
 
@@ -16264,7 +16256,7 @@ msgstr "Forhåndsvis"
 msgid "RSS"
 msgstr "RSS"
 
-#: wp-includes/js/dist/block-editor.js:16614
+#: wp-includes/js/dist/block-editor.js:16636
 msgid "Submit"
 msgstr "Send"
 
@@ -16324,7 +16316,7 @@ msgid "Name"
 msgstr "Navn"
 
 #: wp-includes/class-wp-editor.php:1113
-#: wp-includes/js/dist/block-editor.js:17266
+#: wp-includes/js/dist/block-editor.js:17288
 msgid "Advanced"
 msgstr "Avansert"
 
@@ -16389,7 +16381,7 @@ msgstr "Kommentarer"
 
 #: wp-includes/class-wp-customize-widgets.php:777 wp-includes/media.php:3678
 #: wp-includes/class-wp-editor.php:1284
-#: wp-includes/js/dist/block-editor.js:15928
+#: wp-includes/js/dist/block-editor.js:15950
 #: wp-includes/js/dist/block-library.js:17530
 #: wp-includes/js/dist/format-library.js:712
 #: wp-includes/js/dist/format-library.js:974
@@ -16438,8 +16430,8 @@ msgstr "Kommentar"
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:92
 #: wp-includes/class-wp-editor.php:1159 wp-includes/class-wp-editor.php:1732
 #: wp-includes/class-wp-customize-nav-menus.php:1189
-#: wp-includes/js/dist/block-editor.js:15921
-#: wp-includes/js/dist/block-editor.js:16477
+#: wp-includes/js/dist/block-editor.js:15943
+#: wp-includes/js/dist/block-editor.js:16499
 #: wp-includes/js/dist/block-library.js:11720
 msgid "URL"
 msgstr "URL"
