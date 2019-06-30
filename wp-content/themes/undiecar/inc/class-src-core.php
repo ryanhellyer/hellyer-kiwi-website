@@ -1101,7 +1101,7 @@ class SRC_Core {
 		}
 
 		// Store fastest lap
-		if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
+//		if ( 'update' === get_option( 'undiecar-cache' ) || empty( get_post_meta( get_the_ID(), '_least_incidents', true ) ) ) {
 
 			array();
 			foreach ( $incidents as $name => $incident_number ) {
@@ -1109,7 +1109,7 @@ class SRC_Core {
 			}
 
 			update_post_meta( get_the_ID(), '_least_incidents', $names );
-		}
+//		}
 
 		return $incidents;
 	}
