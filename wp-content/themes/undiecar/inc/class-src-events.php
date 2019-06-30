@@ -1171,11 +1171,16 @@ class SRC_Events extends SRC_Core {
 						'laps_completed'   => absint( $laps_completed ),
 						'incidents'        => absint( $incidents ),
 					);
-					$drivers[ $driver_name ] = array_merge( $x, $drivers[ $driver_name ] );
+					if ( isset( $drivers[ $driver_name ] ) && is_array( $drivers[ $driver_name ] ) ) {
+						$drivers[ $driver_name ] = array_merge( $drivers[ $driver_name ], $x );
+					} else {
+						$drivers[ $driver_name ] = $x;
+					}
 
 				}
 
 			}
+
 			$results = array();
 			foreach ( $drivers as $key => $driver ) {
 				$new_key = $driver[ 'position' ] - 1;
@@ -1183,12 +1188,11 @@ class SRC_Events extends SRC_Core {
 			}
 
 			ksort( $results );
-
 			$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 			update_post_meta( $post_id, '_results_' . $race_number, $results );
 
 		}
-
+die('done');
 	}
 
 	/**
