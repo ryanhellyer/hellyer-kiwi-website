@@ -1192,7 +1192,7 @@ class SRC_Events extends SRC_Core {
 			update_post_meta( $post_id, '_results_' . $race_number, $results );
 
 		}
-die('done');
+
 	}
 
 	/**
