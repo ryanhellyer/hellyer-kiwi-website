@@ -319,7 +319,7 @@ function ewww_image_optimizer_tool_folder_permissions_notice() {
 	echo "<div id='ewww-image-optimizer-warning-tool-folder-permissions' class='notice notice-error'><p><strong>" .
 		/* translators: %s: Folder location where executables should be installed */
 		sprintf( esc_html__( 'EWWW Image Optimizer could not install tools in %s', 'ewww-image-optimizer' ), htmlentities( EWWW_IMAGE_OPTIMIZER_TOOL_PATH ) ) . '.</strong> ' .
-		esc_html__( 'Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, check the option to Use System Paths.', 'ewww-image-optimizer' ) . ' ' .
+		esc_html__( 'Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, use the override which allows you to skip the bundled tools.', 'ewww-image-optimizer' ) . ' ' .
 		/* translators: 1: Settings Page (link) 2: Installation Instructions (link) */
 		sprintf( esc_html__( 'For more details, visit the %1$s or the %2$s.', 'ewww-image-optimizer' ), "<a href='$settings_page'>" . esc_html__( 'Settings Page', 'ewww-image-optimizer' ) . '</a>', "<a href='https://docs.ewww.io/'>" . esc_html__( 'Installation Instructions', 'ewww-image-optimizer' ) . '</a>' ) . '</p></div>';
 }
@@ -1206,14 +1206,12 @@ function ewww_image_optimizer_escapeshellcmd( $path ) {
 function ewww_image_optimizer_tool_found( $path, $tool ) {
 	ewwwio_debug_message( '<b>' . __FUNCTION__ . '()</b>' );
 	ewwwio_debug_message( "testing case: $tool at $path" );
-	$fork = '2>&1';
-	if ( ( defined( 'EWWW_IMAGE_OPTIMIZER_FORK' ) && ! EWWW_IMAGE_OPTIMIZER_FORK ) || 'WINNT' === PHP_OS ) {
-		$fork = '';
-	}
+
 	// '*b' cases are 'blind' testing in case we can't get at the version string, but the binaries are actually working, we run a test compression, and compare the results with what they should be.
 	switch ( $tool ) {
 		case 'j': // jpegtran.
-			exec( $path . ' -v ' . EWWW_IMAGE_OPTIMIZER_IMAGES_PATH . "sample.jpg $fork", $jpegtran_version );
+			// In case you forget, it is not any slower to run jpegtran this way (with a sample file to operate on) than the other tools.
+			exec( $path . ' -v ' . EWWW_IMAGE_OPTIMIZER_IMAGES_PATH . 'sample.jpg 2>&1', $jpegtran_version );
 			if ( ewww_image_optimizer_iterable( $jpegtran_version ) ) {
 				ewwwio_debug_message( "$path: {$jpegtran_version[0]}" );
 			} else {
@@ -1242,7 +1240,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			}
 			break;
 		case 'o': // optipng.
-			exec( $path . " -v $fork", $optipng_version );
+			exec( $path . ' -v 2>&1', $optipng_version );
 			if ( ewww_image_optimizer_iterable( $optipng_version ) ) {
 				ewwwio_debug_message( "$path: {$optipng_version[0]}" );
 			} else {
@@ -1269,7 +1267,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			}
 			break;
 		case 'g': // gifsicle.
-			exec( $path . " --version $fork", $gifsicle_version );
+			exec( $path . ' --version 2>&1', $gifsicle_version );
 			if ( ewww_image_optimizer_iterable( $gifsicle_version ) ) {
 				ewwwio_debug_message( "$path: {$gifsicle_version[0]}" );
 			} else {
@@ -1296,7 +1294,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			}
 			break;
 		case 'p': // pngout.
-			exec( "$path $fork", $pngout_version );
+			exec( "$path 2>&1", $pngout_version );
 			if ( ewww_image_optimizer_iterable( $pngout_version ) ) {
 				ewwwio_debug_message( "$path: {$pngout_version[0]}" );
 			} else {
@@ -1323,7 +1321,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			}
 			break;
 		case 'q': // pngquant.
-			exec( $path . " -V $fork", $pngquant_version );
+			exec( $path . ' -V 2>&1', $pngquant_version );
 			if ( ewww_image_optimizer_iterable( $pngquant_version ) ) {
 				ewwwio_debug_message( "$path: {$pngquant_version[0]}" );
 			} else {
@@ -1353,7 +1351,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			if ( PHP_OS === 'WINNT' ) {
 				return false;
 			}
-			exec( "$path $fork", $nice_output );
+			exec( "$path 2>&1", $nice_output );
 			if ( ewww_image_optimizer_iterable( $nice_output ) && isset( $nice_output[0] ) ) {
 				ewwwio_debug_message( "$path: {$nice_output[0]}" );
 			} else {
@@ -1369,7 +1367,7 @@ function ewww_image_optimizer_tool_found( $path, $tool ) {
 			}
 			break;
 		case 'w': // cwebp.
-			exec( "$path -version $fork", $webp_version );
+			exec( "$path -version 2>&1", $webp_version );
 			if ( ewww_image_optimizer_iterable( $webp_version ) ) {
 				ewwwio_debug_message( "$path: {$webp_version[0]}" );
 			} else {
