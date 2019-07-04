@@ -385,7 +385,7 @@ class SRC_Events extends SRC_Core {
 
 			'meta_key'               => 'season',
 			'meta_value'             => $season_id,
-			'post_status' => 'any',
+			'post_status'            => 'publish',
 			'no_found_rows'          => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
@@ -815,7 +815,7 @@ echo "\n...................\n" . ' -->';
 
 		if ( isset( $this->event['next_round'] ) && false !== $this->event['next_round'] ) {
 			$url = get_permalink( $this->event['next_round']['id'] );
-			$nav_html .= '(' . $this->event['next_round']['id'] . ') <a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'undiecar' ) . '&raquo;</a>';
+			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'undiecar' ) . '&raquo;</a>';
 		}
 		$nav_html .= '</div>';
 
