@@ -815,7 +815,7 @@ echo "\n...................\n" . ' -->';
 
 		if ( isset( $this->event['next_round'] ) && false !== $this->event['next_round'] ) {
 			$url = get_permalink( $this->event['next_round']['id'] );
-			$nav_html .= '<a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'undiecar' ) . '&raquo;</a>';
+			$nav_html .= '(' . $this->event['next_round']['id'] . ') <a href="' . esc_url( $url ) . '" class="button alignright">' . esc_html__( 'Next race', 'undiecar' ) . '&raquo;</a>';
 		}
 		$nav_html .= '</div>';
 
