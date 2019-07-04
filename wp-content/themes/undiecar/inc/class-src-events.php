@@ -439,7 +439,9 @@ class SRC_Events extends SRC_Core {
 
 		$round_number = '';
 		foreach ( $new_events as $key => $event ) {
-
+echo '<!-- ' . "\n.......................\n";
+print_r( $event );
+echo "\n.......................\n -->";
 			// If on current event ... 
 			if ( get_the_ID() === $event['id'] ) {
 				$round_number = $key + 1;
@@ -731,9 +733,11 @@ class SRC_Events extends SRC_Core {
 		}
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
+/*
 echo '<!-- ' . "\n.......................\n";
 print_r( $this->event );
 echo "\n...................\n" . ' -->';
+*/
 			$html .= wpautop(
 				sprintf(
 					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> track in %s. Qualifying %s at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
