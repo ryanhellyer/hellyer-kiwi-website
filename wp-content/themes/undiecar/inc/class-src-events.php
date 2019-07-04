@@ -418,6 +418,9 @@ class SRC_Events extends SRC_Core {
 			wp_reset_postdata();
 		}
 		wp_reset_query();
+echo "\n\n\n".'<!-- ' . "\n.......................\n";
+print_r( $events );
+echo "\n.......................\n -->"."\n\n\n";
 
 		// Sort events into date order
 		ksort( $events );
