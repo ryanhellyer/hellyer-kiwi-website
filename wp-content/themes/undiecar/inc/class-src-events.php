@@ -380,7 +380,7 @@ class SRC_Events extends SRC_Core {
 
 		// Get all events from that season
 		$query = new WP_Query( array(
-			'posts_per_page'         => 100,
+			'posts_per_page'         => 1000,
 			'post_type'              => 'event',
 
 			'meta_key'               => 'season',
@@ -394,10 +394,6 @@ class SRC_Events extends SRC_Core {
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
-echo "\n\n\n".'<!-- ' . "\n.......................\n";
-the_title();
-//print_r( $event );
-echo "\n.......................\n -->"."\n\n\n";
 
 				$date  = get_post_meta( get_the_ID(), 'date', true );
 				$track = get_post_meta( get_the_ID(), 'track', true );
