@@ -403,7 +403,7 @@ class SRC_Events extends SRC_Core {
 					'title'       => get_the_title(),
 					'track'       => $track,
 				);
-
+/*
 				foreach ( $this->event_types() as $name => $desc ) {
 
 					$time = get_post_meta( get_the_ID(), 'event_' . sanitize_title( $name ) . '_timestamp', true );
@@ -412,7 +412,7 @@ class SRC_Events extends SRC_Core {
 					}
 
 				}
-
+*/
 			}
 
 			wp_reset_postdata();
