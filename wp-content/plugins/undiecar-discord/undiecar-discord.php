@@ -53,7 +53,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 		);
 		$last_message_id = $channel['last_message_id'];
 
-		$messages = $discord->channel->getChannelMessages(['channel.id' => DISCORD_PHOTO_CHANNEL_ID,'before'=> 0,'after'=> 0,'around'=> (int) $last_message_id,'limit'=> 1000]);
+		$messages = $discord->channel->getChannelMessages(['channel.id' => DISCORD_PHOTO_CHANNEL_ID,'before'=> 0,'after'=> 0,'around'=> (int) $last_message_id,'limit'=> 100]);
 
 		$dir = wp_upload_dir();
 		$base_dir = $dir['basedir'];
