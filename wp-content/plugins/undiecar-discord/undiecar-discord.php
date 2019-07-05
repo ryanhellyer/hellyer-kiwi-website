@@ -134,9 +134,9 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					$post_slug = sanitize_title( $post_title );
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
 print_r( $existing_post );
-echo "\n\n";
+echo "\n\n....";
 $id = $existing_post->ID;
-$thumbnail = get_the_post_thumbnail( $id );
+$thumbnail = get_post_thumbnail_id( $id );
 print_r( $thumbnail );
 echo "\n\n";
 echo $post_title . "\n";
