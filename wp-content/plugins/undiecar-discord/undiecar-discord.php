@@ -163,9 +163,13 @@ die;
 
 					} else {
 
-						$id = $existing_post->ID;
-						if ( '' === get_post_thumbnail_id( $id ) ) {
-	
+						$post_id = $existing_post->ID;
+						if ( '' === get_post_thumbnail_id( $post_id ) ) {
+
+							$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
+							$result = set_post_thumbnail( $post_id, $attachment_id );
+	print_r( $result );
+	die;
 						}
 
 					}
