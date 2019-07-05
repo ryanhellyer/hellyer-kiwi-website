@@ -61,113 +61,114 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 		foreach ( $messages as $key1 => $message ) {
 
 			// Import each embedded video as a new video post
-			foreach ( $message[ 'embeds' ] as $key3 => $embed ) {
+			if ( isset( $message[ 'embeds' ] ) ) {
+				foreach ( $message[ 'embeds' ] as $key3 => $embed ) {
 
-				if ( 'video' === $embed[ 'type' ] ) {
+					if ( 'video' === $embed[ 'type' ] ) {
 
-					$video_url     = esc_url(  $embed[ 'url' ] );
+						$video_url     = esc_url(  $embed[ 'url' ] );
 
-					$post_title = '';
-					if ( isset( $embed[ 'title' ] ) ) {
-						$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
-					}
-
-					$description = '';
-					if ( isset( $embed[ 'description' ] ) ) {
-						$description   = esc_html( $embed[ 'description' ] );
-					}
-
-					$author = '';
-					if ( isset( $embed[ 'author' ][ 'name' ]) ) {
-						$author        = esc_html( $embed[ 'author' ][ 'name' ] );
-					}
-
-					$channel = '';
-					if ( isset( $embed[ 'author' ][ 'url' ] ) ) {
-						$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
-					}
-
-					$thumbnail_url = '';
-					if ( isset( $embed[ 'thumbnail' ][ 'url' ] ) ) {
-						$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
-					}
-
-					$provider = '';
-					if ( isset( $embed[ 'provider' ][ 'name' ] ) ) {
-						$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
-					}
-
-					$content = wp_kses_post(
-						wpautop( $description ) .
-						wpautop(
-							sprintf(
-								esc_html__( 'The following video was kindly created by  %s.', 'undiecar' ),
-								'<a href="' . esc_url( $channel ) . '">' . esc_html( $author ) . '</a>'
-							)
-						) .
-						"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n"
-					);
-
-					// Add embedded video clip. Manually add Twitch, and rely on Oembed for everything else (Twitch doesn't support native Oembed)
-					if ( 'Twitch' === $provider ) {
-
-						if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 ) ) {
-							$twitch_id = absint( substr( $video_url, -9 ) ); // get ID from last 9 characters of URL
-							//https://www.twitch.tv/videos/427959134
-
-							$content .= '
-								<iframe
-									src="' . esc_url( 'https://player.twitch.tv/?autoplay=false&video=v' . $twitch_id ) . '"
-									width="620"
-									height="378"
-									frameborder="0"
-									scrolling="no"
-									allowfullscreen="true">
-								</iframe>';
+						$post_title = '';
+						if ( isset( $embed[ 'title' ] ) ) {
+							$post_title    = esc_html( 'Video:', 'undiecar' ) . ' ' . esc_html( $embed[ 'title' ] );
 						}
 
-					} else {
-						$content .= esc_url( $video_url ) . "\n\n";
-					}
+						$description = '';
+						if ( isset( $embed[ 'description' ] ) ) {
+							$description   = esc_html( $embed[ 'description' ] );
+						}
 
-					// Create video post - if it doesn't already exist
-					$post_slug = sanitize_title( $post_title );
-					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
+						$author = '';
+						if ( isset( $embed[ 'author' ][ 'name' ]) ) {
+							$author        = esc_html( $embed[ 'author' ][ 'name' ] );
+						}
 
-					if ( empty( $existing_post ) ) {
+						$channel = '';
+						if ( isset( $embed[ 'author' ][ 'url' ] ) ) {
+							$channel       = esc_url(  $embed[ 'author' ][ 'url' ] );
+						}
 
-						$post_id = wp_insert_post(
-							array(
-								'post_name'    => $post_slug,
-								'post_title'   => $post_title,
-								'post_content' => $content,
-								'post_status'  => 'publish',
-								'post_type'    => 'video',
-							)
+						$thumbnail_url = '';
+						if ( isset( $embed[ 'thumbnail' ][ 'url' ] ) ) {
+							$thumbnail_url = esc_url(  $embed[ 'thumbnail' ][ 'url' ] );
+						}
+
+						$provider = '';
+						if ( isset( $embed[ 'provider' ][ 'name' ] ) ) {
+							$provider      = esc_html( $embed[ 'provider' ][ 'name' ] );
+						}
+
+						$content = wp_kses_post(
+							wpautop( $description ) .
+							wpautop(
+								sprintf(
+									esc_html__( 'The following video was kindly created by  %s.', 'undiecar' ),
+									'<a href="' . esc_url( $channel ) . '">' . esc_html( $author ) . '</a>'
+								)
+							) .
+							"\n\n" . '<a href="' . esc_url( $video_url ) . '">' . esc_url( $video_url ) . '</a>' . "\n\n"
 						);
 
-						require_once( ABSPATH . 'wp-admin/includes/media.php' );
-						require_once( ABSPATH . 'wp-admin/includes/file.php' );
-						require_once( ABSPATH . 'wp-admin/includes/image.php' );
+						// Add embedded video clip. Manually add Twitch, and rely on Oembed for everything else (Twitch doesn't support native Oembed)
+						if ( 'Twitch' === $provider ) {
 
-						$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
-						$result = set_post_thumbnail( $post_id, $attachment_id );
+							if ( 'https://www.twitch.tv/videos/' === substr( $video_url, 0, 29 ) ) {
+								$twitch_id = absint( substr( $video_url, -9 ) ); // get ID from last 9 characters of URL
+								//https://www.twitch.tv/videos/427959134
 
-					} else {
+								$content .= '
+									<iframe
+										src="' . esc_url( 'https://player.twitch.tv/?autoplay=false&video=v' . $twitch_id ) . '"
+										width="620"
+										height="378"
+										frameborder="0"
+										scrolling="no"
+										allowfullscreen="true">
+									</iframe>';
+							}
 
-						// Sometimes thumbnails get misssed, so we need to go add them later
-						$post_id = $existing_post->ID;
-						if ( '' === get_post_thumbnail_id( $post_id ) ) {
+						} else {
+							$content .= esc_url( $video_url ) . "\n\n";
+						}
+
+						// Create video post - if it doesn't already exist
+						$post_slug = sanitize_title( $post_title );
+						$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
+
+						if ( empty( $existing_post ) ) {
+
+							$post_id = wp_insert_post(
+								array(
+									'post_name'    => $post_slug,
+									'post_title'   => $post_title,
+									'post_content' => $content,
+									'post_status'  => 'publish',
+									'post_type'    => 'video',
+								)
+							);
+
+							require_once( ABSPATH . 'wp-admin/includes/media.php' );
+							require_once( ABSPATH . 'wp-admin/includes/file.php' );
+							require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
 							$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
 							$result = set_post_thumbnail( $post_id, $attachment_id );
 
+						} else {
+
+							// Sometimes thumbnails get misssed, so we need to go add them later
+							$post_id = $existing_post->ID;
+							if ( '' === get_post_thumbnail_id( $post_id ) ) {
+
+								$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
+								$result = set_post_thumbnail( $post_id, $attachment_id );
+
+							}
+
 						}
 
 					}
-
 				}
-
 			}
 
 			// Import the attached images
