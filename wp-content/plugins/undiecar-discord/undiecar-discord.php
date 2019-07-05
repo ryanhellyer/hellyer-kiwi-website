@@ -54,7 +54,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 		$last_message_id = $channel['last_message_id'];
 
 		$messages = $discord->channel->getChannelMessages(['channel.id' => DISCORD_PHOTO_CHANNEL_ID,'before'=> 0,'after'=> 0,'around'=> (int) $last_message_id,'limit'=> 100]);
-print_r( $messages );die;
+
 		$dir = wp_upload_dir();
 		$base_dir = $dir['basedir'];
 
@@ -133,7 +133,8 @@ print_r( $messages );die;
 					// Create video post - if it doesn't already exist
 					$post_slug = sanitize_title( $post_title );
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
-
+echo $post_title . "\n";
+echo $thumbnail_url . "\n\n";
 					if ( empty( $existing_post ) ) {
 
 						$post_id = wp_insert_post(
