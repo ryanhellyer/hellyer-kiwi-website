@@ -172,46 +172,48 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 			}
 
 			// Import the attached images
-			foreach ( $message['attachments'] as $key2 => $attachment ) {
-				$message_id = $message['id'];
-				$author = $message['author']['username'];
-				$file_name = $attachment['filename'];
-				$file_size = $attachment['size'];
-				$file_url = $attachment['url'];
-				$file_description = esc_html( $message['content'] );
-				if ( '' === $file_description ) {
-					$file_description = pathinfo( $file_name, PATHINFO_FILENAME );;
+			if ( isset( $message['attachments'] ) ) {
+				foreach ( $message['attachments'] as $key2 => $attachment ) {
+					$message_id = $message['id'];
+					$author = $message['author']['username'];
+					$file_name = $attachment['filename'];
+					$file_size = $attachment['size'];
+					$file_url = $attachment['url'];
+					$file_description = esc_html( $message['content'] );
+					if ( '' === $file_description ) {
+						$file_description = pathinfo( $file_name, PATHINFO_FILENAME );;
+					}
+
+					// Check the attachment doesn't already exist
+					$args = array(
+						'posts_per_page' => 1,
+						'post_type'      => 'attachment',
+						'post_status'    => 'inherit',
+						'meta_key'               => 'discord_message_id',
+						'meta_value'             => $message_id,
+						'no_found_rows'          => true,  // useful when pagination is not needed.
+						'update_post_meta_cache' => false, // useful when post meta will not be utilized.
+						'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
+						'fields'                 => 'ids'
+					);
+					$attachments = new WP_Query( $args );
+					if ( ! isset( $attachments->posts[0] ) ) {
+
+						require_once( ABSPATH . 'wp-admin/includes/media.php' );
+						require_once( ABSPATH . 'wp-admin/includes/file.php' );
+						require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+						$attachment_id = media_sideload_image( $file_url, null, $file_description, 'id' );
+
+						// Get new file name (may have changed on uploading)
+						$file_name = basename ( get_attached_file( $attachment_id ) );
+
+						update_post_meta( $attachment_id, 'gallery', true );
+						update_post_meta( $attachment_id, 'discord_message_id', $message_id );
+
+					}
+
 				}
-
-				// Check the attachment doesn't already exist
-				$args = array(
-					'posts_per_page' => 1,
-					'post_type'      => 'attachment',
-					'post_status'    => 'inherit',
-					'meta_key'               => 'discord_message_id',
-					'meta_value'             => $message_id,
-					'no_found_rows'          => true,  // useful when pagination is not needed.
-					'update_post_meta_cache' => false, // useful when post meta will not be utilized.
-					'update_post_term_cache' => false, // useful when taxonomy terms will not be utilized.
-					'fields'                 => 'ids'
-				);
-				$attachments = new WP_Query( $args );
-				if ( ! isset( $attachments->posts[0] ) ) {
-
-					require_once( ABSPATH . 'wp-admin/includes/media.php' );
-					require_once( ABSPATH . 'wp-admin/includes/file.php' );
-					require_once( ABSPATH . 'wp-admin/includes/image.php' );
-
-					$attachment_id = media_sideload_image( $file_url, null, $file_description, 'id' );
-
-					// Get new file name (may have changed on uploading)
-					$file_name = basename ( get_attached_file( $attachment_id ) );
-
-					update_post_meta( $attachment_id, 'gallery', true );
-					update_post_meta( $attachment_id, 'discord_message_id', $message_id );
-
-				}
-
 			}
 
 		}
