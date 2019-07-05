@@ -133,15 +133,7 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					// Create video post - if it doesn't already exist
 					$post_slug = sanitize_title( $post_title );
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
-/*
-print_r( $existing_post );
-echo "\n\n....";
-print_r( $thumbnail );
-echo "\n\n";
-echo $post_title . "\n";
-echo $thumbnail_url . "\n\n";
-die;
-*/
+
 					if ( empty( $existing_post ) ) {
 
 						$post_id = wp_insert_post(
@@ -163,13 +155,13 @@ die;
 
 					} else {
 
+						// Sometimes thumbnails get misssed, so we need to go add them later
 						$post_id = $existing_post->ID;
 						if ( '' === get_post_thumbnail_id( $post_id ) ) {
 
 							$attachment_id = media_sideload_image( $thumbnail_url, null, $post_title, 'id' );
 							$result = set_post_thumbnail( $post_id, $attachment_id );
-	print_r( $result );
-	die;
+
 						}
 
 					}
