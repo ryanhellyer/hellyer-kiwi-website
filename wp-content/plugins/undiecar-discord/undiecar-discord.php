@@ -135,6 +135,10 @@ if ( isset( $_GET['test_discord'] ) ) {add_action( 'admin_init', array( $this, '
 					$existing_post = get_page_by_path( $post_slug, OBJECT, 'video' );
 print_r( $existing_post );
 echo "\n\n";
+$id = $existing_post->ID;
+$thumbnail = get_the_post_thumbnail( $id );
+print_r( $thumbnail );
+echo "\n\n";
 echo $post_title . "\n";
 echo $thumbnail_url . "\n\n";
 die;
