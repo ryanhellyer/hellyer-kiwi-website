@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-07-10 13:58:58+0000\n"
+"PO-Revision-Date: 2019-07-31 15:51:55+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,19 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_GB\n"
 "Project-Id-Version: Plugins - Gutenberg - Stable (latest release)\n"
+
+#: build/components/index.js:19
+msgid "Custom"
+msgstr "Custom"
+
+#: build/editor/index.js:17
+msgid "Draft"
+msgstr "Draft"
+
+#. translators: 1: block name, 2: block style name
+#: lib/class-wp-block-styles-registry.php:76
+msgid "Block \"%1$s\" does not contain a style named \"%2$s.\"."
+msgstr "Block \"%1$s\" does not contain a style named \"%2$s.\"."
 
 #: build/block-editor/index.js:55
 msgid "Learn more about anchors"
@@ -340,6 +353,7 @@ msgid "Note: Autoplaying audio may cause usability issues for some visitors."
 msgstr "Note: autoplaying audio may cause usability issues for some visitors."
 
 #: build/block-library/blocks/latest-posts.php:70
+#: build/block-library/index.js:14
 msgid "Read More"
 msgstr "Read More"
 
@@ -504,8 +518,8 @@ msgstr "Add a block"
 
 #: build/block-editor/index.js:55
 msgctxt "Block vertical alignment setting label"
-msgid "Change Alignment"
-msgstr "Change Alignment"
+msgid "Change vertical alignment"
+msgstr "Change vertical alignment"
 
 #: build/block-editor/index.js:55
 msgctxt "Block vertical alignment setting"
@@ -894,10 +908,6 @@ msgstr "Try again"
 msgid "Editor tips"
 msgstr "Editor tips"
 
-#: build/components/index.js:19
-msgid "Font size: %s"
-msgstr "Font size: %s"
-
 #: build/edit-post/index.js:12
 msgid "Block (selected)"
 msgstr "Block (selected)"
@@ -992,11 +1002,11 @@ msgid_plural "%s blocks selected."
 msgstr[0] "%s block selected."
 msgstr[1] "%s blocks selected."
 
-#: build/block-editor/index.js:55
+#: lib/widgets-page.php:57 build/block-editor/index.js:55
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: build/block-editor/index.js:55
+#: lib/widgets-page.php:60 build/block-editor/index.js:55
 msgid "Full Size"
 msgstr "Full Size"
 
@@ -1017,15 +1027,15 @@ msgid "Block icon"
 msgstr "Block icon"
 
 #: build/block-editor/index.js:55
-msgid "Align text right"
+msgid "Align Text Right"
 msgstr "Align text right"
 
 #: build/block-editor/index.js:55
-msgid "Align text center"
+msgid "Align Text Center"
 msgstr "Align text centre"
 
 #: build/block-editor/index.js:55
-msgid "Align text left"
+msgid "Align Text Left"
 msgstr "Align text left"
 
 #: build/block-editor/index.js:55 build/block-library/index.js:14
@@ -1086,7 +1096,7 @@ msgctxt "font size name"
 msgid "Small"
 msgstr "Small"
 
-#: build/block-editor/index.js:55 build/components/index.js:19
+#: build/block-editor/index.js:55
 msgctxt "font size name"
 msgid "Normal"
 msgstr "Normal"
@@ -1412,11 +1422,6 @@ msgctxt "noun"
 msgid "View"
 msgstr "View"
 
-#: build/components/index.js:19
-msgctxt "font size name"
-msgid "Custom"
-msgstr "Custom"
-
 #: build/block-library/index.js:14
 msgctxt "editor button"
 msgid "Left to right"
@@ -1445,10 +1450,6 @@ msgstr "Block Navigation"
 #: build/block-editor/index.js:55
 msgid "Styles"
 msgstr "Styles"
-
-#: build/edit-post/index.js:12
-msgid "Click to change"
-msgstr "Click to change"
 
 #: build/edit-post/index.js:12
 msgid "Advanced Panels"
@@ -1730,7 +1731,7 @@ msgstr "Cover Settings"
 msgid "Edit media"
 msgstr "Edit media"
 
-#: build/block-editor/index.js:55
+#: lib/widgets-page.php:58 build/block-editor/index.js:55
 msgid "Medium"
 msgstr "Medium"
 
@@ -1814,10 +1815,6 @@ msgstr "Exit Code Editor"
 msgid "Editing Code"
 msgstr "Editing Code"
 
-#: build/components/index.js:19
-msgid "Custom font size"
-msgstr "Custom font size"
-
 #: build/block-library/index.js:14
 msgid "Solid Color"
 msgstr "Solid Colour"
@@ -1893,12 +1890,12 @@ msgid "After Conversion"
 msgstr "After Conversion"
 
 #: build/block-editor/index.js:55
-msgid "Change Alignment"
-msgstr "Change Alignment"
+msgid "Change alignment"
+msgstr "Change alignment"
 
 #: build/block-editor/index.js:55
-msgid "Change Text Alignment"
-msgstr "Change Text Alignment"
+msgid "Change text alignment"
+msgstr "Change text alignment"
 
 #: build/block-library/index.js:14
 msgid "Template block used as a container."
@@ -2571,7 +2568,7 @@ msgstr "Dots"
 msgid "Wide Line"
 msgstr "Wide Line"
 
-#: build/block-editor/index.js:55
+#: lib/widgets-page.php:59 build/block-editor/index.js:55
 msgid "Large"
 msgstr "Large"
 
@@ -2813,10 +2810,6 @@ msgid "Schedule…"
 msgstr "Schedule…"
 
 #: build/editor/index.js:17
-msgid "Change Permalinks"
-msgstr "Change Permalinks"
-
-#: build/editor/index.js:17
 msgid "Edit post permalink"
 msgstr "Edit post permalink"
 
@@ -2840,7 +2833,7 @@ msgstr "Close plugin"
 msgid "Editor settings"
 msgstr "Editor settings"
 
-#: build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/block-library/index.js:14
 msgid "Link Settings"
 msgstr "Link Settings"
 
@@ -3543,6 +3536,7 @@ msgid "Edit Link"
 msgstr "Edit Link"
 
 #: build/editor/index.js:17 build/format-library/index.js:1
+#: build/block-library/index.js:14
 msgid "Link"
 msgstr "Link"
 
@@ -3981,7 +3975,6 @@ msgid "Button"
 msgstr "Button"
 
 #: build/block-editor/index.js:55 build/format-library/index.js:1
-#: build/block-library/index.js:14
 msgid "Apply"
 msgstr "Apply"
 
@@ -4060,11 +4053,11 @@ msgid "Color: %s"
 msgstr "Colour: %s"
 
 #: build/block-editor/index.js:55
-msgid "Full width"
+msgid "Full Width"
 msgstr "Full width"
 
 #: build/block-editor/index.js:55
-msgid "Wide width"
+msgid "Wide Width"
 msgstr "Wide width"
 
 #: build/blocks/index.js:2
@@ -4080,15 +4073,15 @@ msgid "Common Blocks"
 msgstr "Common Blocks"
 
 #: build/block-editor/index.js:55
-msgid "Align right"
+msgid "Align Right"
 msgstr "Align right"
 
 #: build/block-editor/index.js:55
-msgid "Align center"
+msgid "Align Center"
 msgstr "Align centre"
 
 #: build/block-editor/index.js:55
-msgid "Align left"
+msgid "Align Left"
 msgstr "Align left"
 
 #. Description of the plugin
@@ -4142,6 +4135,10 @@ msgstr "Metadata"
 #: build/editor/index.js:17 build/block-library/index.js:14
 msgid "Save"
 msgstr "Save"
+
+#: lib/class-wp-block-styles-registry.php:50
+msgid "Block style name must be a string."
+msgstr "Block style name must be a string."
 
 #. translators: %s: Minimum required version
 #: gutenberg.php:80
