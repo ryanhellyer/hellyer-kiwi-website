@@ -843,7 +843,8 @@ echo "\n...................\n" . ' -->';
 			||
 			'' !== get_post_meta( get_the_ID(), '_fastest_lap', true )
 		) {
-
+/*
+REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			$bonus_points = '
 			<h3>Bonus points</h3>
 			<p>';
@@ -868,6 +869,7 @@ echo "\n...................\n" . ' -->';
 
 			$bonus_points .= '
 			</p>';
+*/
 		}
 
 		$content = '<div id="base-content">' . $html . $content . $this->get_car_list() . $bonus_points . '</div>' . $sidebar_html . $this->add_results() . $map_html . $nav_html;
