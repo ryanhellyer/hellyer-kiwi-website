@@ -677,7 +677,9 @@ class SRC_Events extends SRC_Core {
 
 		// Count up how many races there are
 		$race_count = 0;
-
+print_r(
+	get_post_meta( get_the_ID() )
+);
 		if ( '' !== get_post_meta( get_the_ID(), 'race_1_time', true ) ) {
 			$race_count++;
 		}
