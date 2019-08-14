@@ -1,11 +1,11 @@
 === EWWW Image Optimizer ===
 Contributors: nosilver4u
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MKMQKCBFFG3WW
-Tags: image, compress, resize, optimize, optimization, lossless, lossy, seo, webp, wp-cli, scale, tinypng, tinyjpg
+Tags: optimize, image, convert, webp, resize, compress, lazy load, optimization, lossless, lossy, seo, scale
 Requires at least: 5.0
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 4.8.1
+Stable tag: 4.9.0
 License: GPLv3
 
 Speed up your website and improve your visitors' experience by automatically compressing and resizing images and PDFs. Boost SEO and improve sales.
@@ -22,7 +22,7 @@ EWWW I.O. will optimize images uploaded and created by any plugin, and features 
 1. **Smooth Handling** with pixel-perfect optimization using industry-leading tools and progressive rendering.
 1. **High Torque** as we bring you the best compression/quality ratio available with our lossy options for JPG, PNG, and PDF files.
 1. **Adaptive Steering** with intelligent conversion options to get the right image format for the job (JPG, PNG, or GIF).
-1. **Free Parking** The core plugin is free and always will be. Additionally, if you choose the API, you never pay for an image we can’t compress, you are never billed for a month you do not use the API, and pre-paid credits never expire. Plus, get WebP image generation at no extra cost: any JPG or PNG can be converted to Google’s next-generation image format.
+1. **Free Parking** The core plugin is free and always will be. However, our paid services offer up to 80% compression, and a [host of other features](https://ewww.io/plans/)!
 1. **Comprehensive Coverage:** no image gets left behind, optimize everything on your site, beyond just the WordPress Media Library.
 1. **Safety First:** all communications are secured with top SSL encryption.
 1. **Roadside Assistance:** top-notch support is in our DNA. While API customers get top priority, we answer [every single support question with care](https://ewww.io/contact-us/).
@@ -159,9 +159,8 @@ Using the command *gifsicle -b -O3 --careful original file*. This is particularl
 
 = I want to know more about image optimization, and why you chose these options/tools. =
 
-That's not a question, but since I made it up, I'll answer it. See these resources:
-https://developers.google.com/speed/docs/insights/OptimizeImages
-http://developer.yahoo.com/performance/rules.html#opt_images
+That's not a question, but since I made it up, I'll answer it. See this resource:
+https://developers.google.com/web/tools/lighthouse/audits/optimize-images
 
 == Screenshots ==
 
@@ -174,13 +173,25 @@ http://developer.yahoo.com/performance/rules.html#opt_images
 * Feature requests can be viewed and submitted at https://github.com/nosilver4u/ewww-image-optimizer/labels/enhancement
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
 
+= 4.9.0 =
+* added: Lazy Load background image support for section elements
+* added: ExactDN background image support for li,span, and section elements
+* added: lazysizes print plugin, enable via EWWW_IMAGE_OPTIMIZER_LAZY_PRINT constant
+* added: compatibility with upcoming Easy Image Optimizer
+* changed: automatic compression disabled during WP/LR Sync with admin notice
+* changed: Lazy Load PNG placeholders capped at 1920px wide to prevent errors
+* changed: use ExactDN, when active, for Lazy Load PNG placeholders
+* changed: EWWW_MEMORY_LIMIT renamed to EIO_MEMORY_LIMIT for setting plugin memory limit
+* fixed: WebP test image not refreshing after inserting .htaccess rules
+* fixed: errors when manually adding lazysizes script
+
 = 4.8.1 =
 * added: Lazy Load background image support added for span elements
 * changed: constrain by height for background images that are taller than they are wide
 * changed: debug.log moved to more suitable location
-* fix: Lazy Load breaks when an image has an empty class attribute
-* fix: regression that caused jpegtran and pngout tests to fail on Windows
-* fix: writing to debug.log causes errors
+* fixed: Lazy Load breaks when an image has an empty class attribute
+* fixed: regression that caused jpegtran and pngout tests to fail on Windows
+* fixed: writing to debug.log causes errors
 
 = 4.8.0 =
 * added: ability to resize images outside media library via scheduled or bulk optimization
