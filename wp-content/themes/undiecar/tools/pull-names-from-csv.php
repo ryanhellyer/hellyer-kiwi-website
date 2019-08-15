@@ -407,7 +407,7 @@ foreach ( $events as $event => $vars ) {
 	$csv_files = scandir( $directory, 1 );
 
 	foreach ( $csv_files as $key => $csv_file_name ) {
-
+echo $csv_file_name;die;
 		if ( '.csv' !== substr( $csv_file_name, -4 ) ) {
 			continue;
 		}
