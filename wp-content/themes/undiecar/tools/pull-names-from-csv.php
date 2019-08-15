@@ -53,7 +53,8 @@ define( 'MIN_ROAD_IRATING', 800 );
 /*****
  ****** IMPORTANT:
  ****** use GET_USERS() to CHECK FOR EXISTING USERS - needs new code for this
- ******/
+ ****** /wp-admin/?test_discord=true
+*/
 
 
 
