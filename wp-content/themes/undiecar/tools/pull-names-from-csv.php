@@ -40,6 +40,7 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 
 //define( 'ALLOW_ROOKIES', true );
 define( 'ALLOW_A_LICENSES', true ); // Note licenses only applies to road licenses, not oval licenses
+define( 'ALLOW_B_LICENSES', true );
 //define( 'ALLOW_C_LICENSES', true );
 //define( 'ALLOW_D_LICENSES', true );
 
