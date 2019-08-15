@@ -71,7 +71,7 @@ foreach ( array_merge(
 
 
 $events = array(
-	'skippy-2019-s3' => array(
+	'skippies-2019-s3' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -405,9 +405,6 @@ foreach ( $events as $event => $vars ) {
 	$stats = json_decode( $stats, true );
 
 	$csv_files = scandir( $directory, 1 );
-echo $directory . "\n";
-print_r( $csv_files );
-die;
 	foreach ( $csv_files as $key => $csv_file_name ) {
 		if ( '.csv' !== substr( $csv_file_name, -4 ) ) {
 			continue;
