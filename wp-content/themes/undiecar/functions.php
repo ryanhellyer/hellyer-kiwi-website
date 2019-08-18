@@ -3,7 +3,7 @@
 if ( is_super_admin() ) {
 
 //add_action( 'template_redirect', function() {
-	print_r( get_post_meta( 3967 ) );die;
+//	print_r( get_post_meta( 3967 ) );die;
 //} );
 
 	require( 'tools/get-names-from-json.php' );
