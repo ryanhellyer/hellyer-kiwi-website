@@ -216,8 +216,6 @@ class SRC_Events extends SRC_Core {
 		) );
 
 		$number_of_races = get_post_meta( $event_id, 'number_of_races', true );
-echo "\n\n\n\n\n";
-echo $event_id;die;
 
 		$number_of_races = absint( $number_of_races );
 		$number = 1;
