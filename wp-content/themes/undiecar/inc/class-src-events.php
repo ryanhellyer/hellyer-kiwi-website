@@ -630,28 +630,27 @@ class SRC_Events extends SRC_Core {
 				$title = 'Race #' . $number;
 			}
 
+			$time = get_post_meta( get_the_ID(), 'race_' . $number . '_time', true );
+			if ( '' !== $time ) {
 			$sidebar_html .= '
 				<p>
 					<strong>' . esc_html( $title ) . '</strong>
 					<br />';
 
-			$time = get_post_meta( get_the_ID(), 'race_' . $number . '_time', true );
-			if ( '' !== $time ) {
-
 				$sidebar_html .= '
 				Start time: ' . esc_html( $time ) . ' GMT
 				<br />';
-			}
 
-			$length = get_post_meta( get_the_ID(), 'race_' . $number . '_length', true );
-			if ( '' !== $length ) {
+				$length = get_post_meta( get_the_ID(), 'race_' . $number . '_length', true );
+				if ( '' !== $length ) {
+
+					$sidebar_html .= '
+					Length: ' . esc_html( $length );
+				}
 
 				$sidebar_html .= '
-				Length: ' . esc_html( $length );
+				</p>';
 			}
-
-			$sidebar_html .= '
-			</p>';
 
 			$number++;
 		}
