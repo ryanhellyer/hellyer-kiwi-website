@@ -2,7 +2,9 @@
 
 if ( is_super_admin() ) {
 
-print_r( get_post_meta( 3967 ) );die;
+//add_action( 'template_redirect', function() {
+	print_r( get_post_meta( 3967 ) );die;
+//} );
 
 	require( 'tools/get-names-from-json.php' );
 	require( 'tools/emails.php' );
