@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '491.0' );
+define( 'EWWW_IMAGE_OPTIMIZER_VERSION', '492.0' );
 
 // Initialize a couple globals.
 $eio_debug  = '';
@@ -1180,6 +1180,7 @@ function ewww_image_optimizer_save_admin_colors() {
 		$ewwwio_admin_color = '#0073aa';
 	}
 }
+
 /**
  * Determines the background color to use based on the selected admin theme.
  */
@@ -1946,6 +1947,10 @@ function ewww_image_optimizer_handle_upload( $params ) {
 	} else {
 		$file_path = $params['file'];
 	}
+	if ( ! is_file( $file_path ) || ! filesize( $file_path ) ) {
+		clearstatcache();
+		return $params;
+	}
 	ewww_image_optimizer_autorotate( $file_path );
 	$new_image = ewww_image_optimizer_autoconvert( $file_path );
 	if ( $new_image ) {
@@ -1964,7 +1969,6 @@ function ewww_image_optimizer_handle_upload( $params ) {
 		}
 		$file_path = $new_image;
 	}
-	// NOTE: if you use the ewww_image_optimizer_defer_resizing filter to defer the resize operation, only the "other" dimensions will apply
 	// Resize here unless the user chose to defer resizing or imsanity is enabled with a max size.
 	if ( ! apply_filters( 'ewww_image_optimizer_defer_resizing', false ) && ! function_exists( 'imsanity_get_max_width_height' ) ) {
 		if ( empty( $params['type'] ) ) {
@@ -1976,6 +1980,7 @@ function ewww_image_optimizer_handle_upload( $params ) {
 			ewww_image_optimizer_resize_upload( $file_path );
 		}
 	}
+	clearstatcache();
 	return $params;
 }
 
@@ -6188,6 +6193,7 @@ function ewww_image_optimizer_lr_sync_update( $meta, $id = null ) {
 	}
 
 	// Get a list of all the image files optimized for this attachment.
+	global $wpdb;
 	$optimized_images = $wpdb->get_results( $wpdb->prepare( "SELECT id,path,image_size FROM $wpdb->ewwwio_images WHERE attachment_id = %d AND gallery = 'media' AND image_size <> 0 ORDER BY orig_size DESC", $id ), ARRAY_A );
 	if ( ! ewww_image_optimizer_iterable( $optimized_images ) ) {
 		return $meta;
