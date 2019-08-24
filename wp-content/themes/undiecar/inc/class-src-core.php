@@ -921,7 +921,10 @@ class SRC_Core {
 						$points_multiplier = get_post_meta( get_the_ID(), 'race_' . $race_number . '_points_multiplier', true );
 
 						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier );
-
+if ( isset( $_GET['test'] ) ) {
+print_r( $race_points );
+echo "\n\n\n";
+}
 						// Merge results
 						foreach ( $race_points as $driver_name => $points ) {
 
