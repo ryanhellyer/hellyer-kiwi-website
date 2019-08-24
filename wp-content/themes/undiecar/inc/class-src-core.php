@@ -908,6 +908,9 @@ class SRC_Core {
 				$race_number = 0;
 				while ( $race_number <= $number_of_races ) {
 					$race_number++;
+//if ( 3514 !== get_the_ID() ) {
+//	continue;
+//}
 
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 					$results = json_decode( $results, true );
@@ -970,22 +973,32 @@ class SRC_Core {
 
 		// Loop through each drivers results
 		foreach ( $results as $key => $result ) {
-
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
 
 			// Get qualifying time
-			$q_time = $result['qual_time'];
-			$q = explode( ':', $q_time );
-			if (
-				isset( $q[0] ) && is_numeric( $q[0] )
-				&&
-				isset( $q[1] ) && is_numeric( $q[1] )
-				&&
-				isset( $q[2] ) && is_numeric( $q[2] )
-			) {
-				$q_times[$name] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
+			if ( isset( $result['qual_time'] ) ) {
+				$q_time = $result['qual_time'];
+
+				$q = explode( ':', $q_time );
+				if (
+					isset( $q[0] ) && is_numeric( $q[0] )
+					&&
+					isset( $q[1] ) && is_numeric( $q[1] )
+					&&
+					isset( $q[2] ) && is_numeric( $q[2] )
+				) {
+					$q_times[$name] = $q[0] * 60 * 60 + $q[1] * 60 + $q[2];
+				}
+
 			}
+//echo $q_time . "\n";
+//print_r( $result );die;
+//echo $points_multiplier. "\n";
+//if ( $points_multiplier == '2' ) {
+//	print_r( $result );
+//	echo $q_time;
+//}
 
 			// Get points for this driver
 			if ( isset( $points_positions[$pos - 1] ) ) {
@@ -1013,12 +1026,16 @@ class SRC_Core {
 			}
 
 		}
+
 		// Pole position bonus point - sort qualifying times, then grab the first result
-		asort( $q_times );
-		foreach ( $q_times as $name => $points ) {
-			$stored_results[$name]++;
-			update_post_meta( get_the_ID(), '_pole_position', $name ); // Should only be stored when first, or caching FIX THIS LATER
-			break;
+		if ( isset( $q_times ) && is_array( $q_times ) ) {
+			asort( $q_times );
+			foreach ( $q_times as $name => $points ) {
+				$stored_results[$name]++;
+				update_post_meta( get_the_ID(), '_pole_position', $name ); // Should only be stored when first, or caching FIX THIS LATER
+// THIS NEEDS SET BETTER
+				break;
+			}
 		}
 
 		// Fastest lap bonus point
@@ -1042,7 +1059,6 @@ class SRC_Core {
 
 	static function get_fastest_lap( $results ) {
 		$fastest_lap = null;
-
 		foreach ( $results as $key => $result ) {
 			$name = $result[ 'name' ];
 
