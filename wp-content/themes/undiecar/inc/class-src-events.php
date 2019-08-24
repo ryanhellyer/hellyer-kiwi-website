@@ -630,27 +630,28 @@ class SRC_Events extends SRC_Core {
 				$title = 'Race #' . $number;
 			}
 
-			$time = get_post_meta( get_the_ID(), 'race_' . $number . '_time', true );
-			if ( '' !== $time ) {
 			$sidebar_html .= '
 				<p>
 					<strong>' . esc_html( $title ) . '</strong>
 					<br />';
 
+			$time = get_post_meta( get_the_ID(), 'race_' . $number . '_time', true );
+			if ( '' !== $time ) {
+
 				$sidebar_html .= '
 				Start time: ' . esc_html( $time ) . ' GMT
 				<br />';
+			}
 
-				$length = get_post_meta( get_the_ID(), 'race_' . $number . '_length', true );
-				if ( '' !== $length ) {
-
-					$sidebar_html .= '
-					Length: ' . esc_html( $length );
-				}
+			$length = get_post_meta( get_the_ID(), 'race_' . $number . '_length', true );
+			if ( '' !== $length ) {
 
 				$sidebar_html .= '
-				</p>';
+				Length: ' . esc_html( $length );
 			}
+
+			$sidebar_html .= '
+			</p>';
 
 			$number++;
 		}
@@ -675,8 +676,17 @@ class SRC_Events extends SRC_Core {
 		 */
 
 		// Count up how many races there are
-		$race_count = absint( get_post_meta( get_the_ID(), 'number_of_races', true ) );
+		$race_count = 0;
 
+		if ( '' !== get_post_meta( get_the_ID(), 'race_1_time', true ) ) {
+			$race_count++;
+		}
+		if ( '' !== get_post_meta( get_the_ID(), 'race_2_time', true ) ) {
+			$race_count++;
+		}
+		if ( '' !== get_post_meta( get_the_ID(), 'race_3_time', true ) ) {
+			$race_count++;
+		}
 		$suffix = '';
 		$qualifying_grid = '';
 		if ( 1 < $race_count ) {
@@ -764,8 +774,8 @@ echo "\n...................\n" . ' -->';
 					esc_html( $this->event['round_number'] ),
 					esc_html( $this->event['number_of_rounds_in_season'] ),
 					esc_url( get_permalink( $this->event['season_id'] ) ),
-				 	esc_html( get_the_title( $season_id ) ),
-				 	$will_be,
+					esc_html( get_the_title( $season_id ) ),
+					$will_be,
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
 					esc_html( get_post_meta( $current_track, 'track_length', true ) ) . ' km',
@@ -1108,23 +1118,24 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			$results = stripslashes( $_POST[ 'result-' . $race_number ] );
 			$results = json_decode( $results );
 
+			$drivers = array();
 			foreach ( $results->rows as $key => $row ) {
 				$driver_name = urldecode( $row->displayname );
 				$driver_name = str_replace( '+', ' ', $driver_name );
+				$car_name = str_replace( '+', ' ', $row->ccName );
+
+				if ( 'RACE' === $row->simsesname ) {
+					$start_pos = absint( $row->startpos ) + 1;
+					$drivers[ $driver_name ]['start_pos'] = absint( $start_pos );
+				}
+
+				$drivers[ $driver_name ]['name']      = esc_html( $driver_name );
+				$drivers[ $driver_name ]['car']       = esc_html( $car_name );
 
 				if ( 'QUALIFY' === $row->simsesname ) {
-
-					$car_name = str_replace( '+', ' ', $row->ccName );
-					$start_pos = absint( $row->finishpos ) + 1;
 					$qual_time = $this->get_formatted_time_from_iracing( $row->bestquallaptime );
 
-					$drivers[ $driver_name ] = array(
-						'name'          => esc_html( $driver_name ),
-						'car'           => esc_html( $car_name ),
-						'start_pos'     => absint( $start_pos ),
-						'qual_time'     => esc_html( $qual_time ),
-					);
-
+					$drivers[ $driver_name ]['qual_time'] = esc_html( $qual_time );
 				}
 
 				if ( 'RACE' === $row->simsesname ) {
@@ -1170,7 +1181,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 					if ( isset( $drivers[ $driver_name ] ) && is_array( $drivers[ $driver_name ] ) ) {
 						$drivers[ $driver_name ] = array_merge( $drivers[ $driver_name ], $x );
 					} else {
-						$drivers[ $driver_name ] = $x;
+						$drivers[ $driver_name ] = $x; // Not sure why this would be required, coz it's missing the data from above in this scenario ...
 					}
 
 				}
@@ -1186,7 +1197,6 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			ksort( $results );
 			$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 			update_post_meta( $post_id, '_results_' . $race_number, $results );
-
 		}
 
 	}
@@ -1246,7 +1256,13 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 				continue;
 			}
 
-			$html .= '<h3 class="table-heading">' . esc_html__( 'Results table - Race #' . $race_number, 'undiecar' ) . '</h3>';
+			if ( 1 !== $number_of_races ) {
+				$title =__( 'Results table - Race #' . $race_number, 'undiecar' );
+			} else {
+				$title =__( 'Results table', 'undiecar' );
+			}
+
+			$html .= '<h3 class="table-heading">' . esc_html( $title ) . '</h3>';
 			$html .= '<table class="some-list">';
 
 			$html .= '<thead><tr>';
@@ -1362,7 +1378,6 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 					$qual = '';
 				}
 				$html .= '<td>' . esc_html( $this->get_simplified_time( $qual ) ) . '</td>';
-
 				$html .= '<td>' . esc_html( $this->get_simplified_time( $result['avg_lap_time'] ) ) . '</td>';
 				$html .= '<td>' . esc_html( $this->get_simplified_time( $result['fastest_lap_time'] ) ) . '</td>';
 
@@ -1561,6 +1576,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 	 * Simplifying time output.
 	 */
 	private function get_simplified_time( $time ) {
+
 		// Strip hours off if zero
 		if ( '00:' === substr( $time, 0, 3 ) ) {
 			$time = substr( $time, 3 );
@@ -1589,12 +1605,13 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			$time = '';
 		}
 
-		$exploded = explode( '.', $time );
-		if ( isset( $exploded[ 1 ] ) ) {
-			$x = $exploded[ 1 ] / 100;
-			$milliseconds = round( $x );
-			$time = $exploded[ 0 ] . '.' . $milliseconds;
+		$exploded = explode( ':', $time );
+		$count = count( $exploded ) - 1;
+		if ( isset( $exploded[ $count ] ) ) {
+			$decimal = round( $exploded[ $count ], 2 );
+			$exploded[$count] = $decimal;
 		}
+		$time = implode( ':', $exploded );
 
 		if ( $time < 0 ) {
 			return '';
