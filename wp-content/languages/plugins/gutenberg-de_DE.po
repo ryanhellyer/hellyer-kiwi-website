@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-08-07 07:25:02+0000\n"
+"PO-Revision-Date: 2019-08-29 22:48:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,40 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Gutenberg - Stable (latest release)\n"
+
+#: build/edit-post/index.js:12
+msgid "%1$d block is disabled."
+msgid_plural "%1$d blocks are disabled."
+msgstr[0] "%1$d Block ist deaktiviert."
+msgstr[1] "%1$d Blöcke sind deaktiviert."
+
+#: build/block-library/index.js:14
+msgid "Reverse List Numbering"
+msgstr "Nummerierung der Liste umkehren"
+
+#: build/block-library/index.js:14
+msgid "Start Value"
+msgstr "Startwert"
+
+#: build/block-library/index.js:14
+msgid "Clear Media"
+msgstr "Medien entfernen"
+
+#: build/block-editor/index.js:55
+msgid "Not set"
+msgstr "Nicht festgelegt"
+
+#: build/block-library/index.js:14
+msgid "Color"
+msgstr "Farbe"
+
+#: gutenberg.php:74
+msgid "Experiments Settings"
+msgstr "Einstellungen für Experimente"
+
+#: lib/experiments-page.php:100
+msgid "Gutenberg has some experimental features you can turn on. Simply select each you would like to use. These features are likely to change so it is inadvisable to use them in production."
+msgstr "Gutenberg hat einige experimentelle Funktionen, die du aktivieren kannst. Wähle einfach die Funktionen aus, die du nutzen möchtest. Diese Funktionen können sich wahrscheinlich ändern, daher ist es nicht ratsam diese für produktive Websites zu verwenden."
 
 #: build/components/index.js:19
 msgid "Custom"
@@ -227,11 +261,11 @@ msgstr "Bild weiter bewegen"
 msgid "Move Image Backward"
 msgstr "Bild zurück bewegen"
 
-#: lib/class-wp-rest-widget-areas-controller.php:150
+#: lib/class-wp-rest-widget-areas-controller.php:200
 msgid "Sorry, you are not allowed to edit sidebars."
 msgstr "Du bist leider nicht berechtigt, Seitenleisten zu bearbeiten."
 
-#: lib/class-wp-rest-widget-areas-controller.php:99
+#: lib/class-wp-rest-widget-areas-controller.php:149
 msgid "Sorry, you are not allowed to read sidebars."
 msgstr "Du bist leider nicht berechtigt, Seitenleisten zu sehen."
 
@@ -299,11 +333,6 @@ msgstr "Spalteneinstellungen"
 #: build/block-library/index.js:14
 msgid "Note: Autoplaying audio may cause usability issues for some visitors."
 msgstr "Hinweis: Die automatische Wiedergabe von Audio kann bei einigen Besuchern zu Problemen bei der Benutzerfreundlichkeit führen."
-
-#: build/block-library/blocks/latest-posts.php:70
-#: build/block-library/index.js:14
-msgid "Read More"
-msgstr "Weiterlesen"
 
 #: lib/widgets.php:189
 msgid "Block area updated."
@@ -524,12 +553,12 @@ msgstr "Widget ist ungültig."
 msgid "Change block type or style"
 msgstr "Block-Typ oder -Stil ändern"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgctxt "keyboard key"
 msgid "Space"
 msgstr "Leertaste"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgctxt "keyboard key"
 msgid "Backspace"
 msgstr "Backspace"
@@ -562,7 +591,7 @@ msgstr "Klassen-Name des Widgets."
 msgid "Sorry, you are not allowed to access widgets on this site."
 msgstr "Du bist leider nicht berechtigt, auf Widgets dieser Website zuzugreifen."
 
-#: gutenberg.php:49 gutenberg.php:50
+#: gutenberg.php:50 gutenberg.php:51
 msgid "Widgets (beta)"
 msgstr "Widgets (Beta)"
 
@@ -695,8 +724,8 @@ msgstr "finden"
 msgid "Help visitors find your content."
 msgstr "Hilf Besuchern, deine Inhalte zu finden."
 
-#: build/block-library/blocks/search.php:76
-#: build/block-library/blocks/search.php:84 build/block-library/index.js:14
+#: build/block-library/blocks/search.php:77
+#: build/block-library/blocks/search.php:85 build/block-library/index.js:14
 msgid "Search"
 msgstr "Suchen"
 
@@ -1672,10 +1701,6 @@ msgid "Cover"
 msgstr "Cover"
 
 #: build/block-library/index.js:14
-msgid "Cover Settings"
-msgstr "Cover-Einstellungen"
-
-#: build/block-library/index.js:14
 msgid "Edit media"
 msgstr "Medien bearbeiten"
 
@@ -1879,7 +1904,7 @@ msgstr "Diese Datei ist leer."
 msgid "Sorry, this file type is not supported here."
 msgstr "Dieser Dateityp wird hier leider nicht unterstützt."
 
-#: build/edit-post/index.js:12 build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/edit-post/index.js:12
 msgid "Manage All Reusable Blocks"
 msgstr "Alle wiederverwendbaren Blöcke verwalten"
 
@@ -2066,10 +2091,6 @@ msgstr "Deine letzten Änderungen rückgängig machen."
 #: build/edit-post/index.js:12
 msgid "Save your changes."
 msgstr "Deine Änderungen speichern."
-
-#: build/edit-post/index.js:12
-msgid "Display this help."
-msgstr "Diese Hilfe anzeigen."
 
 #: build/edit-post/index.js:12
 msgid "Global shortcuts"
@@ -2282,6 +2303,10 @@ msgstr "Alt-Text (Alternativer Text)"
 msgid "Reusable Block"
 msgstr "Wiederverwendbarer Block"
 
+#: lib/class-wp-rest-widget-areas-controller.php:98
+msgid "Unique identifier for the object."
+msgstr "Eindeutige Kennung für das Objekt."
+
 #: build/editor/index.js:17
 msgid "Untitled Reusable Block"
 msgstr "Unbenannter wiederverwendbarer Block"
@@ -2398,11 +2423,11 @@ msgstr "Anzahl der Beiträge anzeigen"
 msgid "Archives Settings"
 msgstr "Archiv-Einstellungen"
 
-#: gutenberg.php:60
+#: gutenberg.php:62
 msgid "https://wordpress.org/support/plugin/gutenberg"
 msgstr "https://wordpress.org/support/plugin/gutenberg"
 
-#: gutenberg.php:58
+#: gutenberg.php:60
 msgid "Support"
 msgstr "Support"
 
@@ -2488,7 +2513,7 @@ msgstr "Helles Rosa"
 msgid "Inline Image"
 msgstr "Inline-Bild"
 
-#: build/edit-post/index.js:12 build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/edit-post/index.js:12
 msgid "Available block types"
 msgstr "Verfügbare Block-Typen"
 
@@ -2556,7 +2581,7 @@ msgstr "Schreibe einen Dateinamen…"
 msgid "Edit file"
 msgstr "Datei bearbeiten"
 
-#: build/list-reusable-blocks/index.js:1 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/list-reusable-blocks/index.js:1
 msgid "File"
 msgstr "Datei"
 
@@ -3088,7 +3113,7 @@ msgstr "Veröffentlicht"
 msgid "Schedule"
 msgstr "Planen"
 
-#: build/edit-widgets/index.js:1 build/editor/index.js:17
+#: build/editor/index.js:17 build/edit-widgets/index.js:1
 msgid "Update"
 msgstr "Aktualisieren"
 
@@ -3178,7 +3203,7 @@ msgstr "kein Titel"
 msgid "Order"
 msgstr "Reihenfolge"
 
-#: build/edit-post/index.js:12 build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/edit-post/index.js:12
 msgid "No blocks found."
 msgstr "Keine Blöcke gefunden."
 
@@ -3200,7 +3225,7 @@ msgstr "Einbettungen"
 msgid "Blocks"
 msgstr "Blöcke"
 
-#: build/edit-post/index.js:12 build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/edit-post/index.js:12
 msgid "Search for a block"
 msgstr "Suche nach einem Block"
 
@@ -3346,8 +3371,8 @@ msgstr "Original suchen"
 msgid "Copy All Content"
 msgstr "Kompletten Inhalt kopieren"
 
-#: build/edit-post/index.js:12 build/editor/index.js:17
-#: build/block-library/index.js:14
+#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/edit-post/index.js:12
 msgid "Copied!"
 msgstr "Kopiert!"
 
@@ -3375,7 +3400,7 @@ msgstr "Block"
 msgid "Document"
 msgstr "Dokument"
 
-#: build/edit-post/index.js:12 build/editor/index.js:17
+#: build/editor/index.js:17 build/edit-post/index.js:12
 msgid "Featured Image"
 msgstr "Beitragsbild"
 
@@ -3415,7 +3440,7 @@ msgstr "Obere Editor-Leiste"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: build/components/index.js:19 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/components/index.js:19
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -3457,8 +3482,10 @@ msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] "%d Ergebnis gefunden, benutze die Pfeile nach oben oder unten zum Navigieren."
 msgstr[1] "%d Ergebnisse gefunden, benutze die Pfeile nach oben oder unten zum Navigieren."
 
+#: build/block-library/blocks/rss.php:35
 #: build/block-library/blocks/latest-comments.php:31
-#: build/edit-post/index.js:12 build/editor/index.js:17
+#: build/block-library/blocks/latest-posts.php:37 build/editor/index.js:17
+#: build/block-library/index.js:14 build/edit-post/index.js:12
 msgid "(no title)"
 msgstr "(kein Titel)"
 
@@ -3470,7 +3497,7 @@ msgstr "URL"
 msgid "Submit"
 msgstr "Senden"
 
-#: build/edit-post/index.js:12 build/block-editor/index.js:55
+#: build/block-editor/index.js:55 build/edit-post/index.js:12
 #: build/components/index.js:19
 msgid "Close"
 msgstr "Schließen"
@@ -3504,7 +3531,7 @@ msgstr "Fett"
 msgid "Remove Link"
 msgstr "Link entfernen"
 
-#: build/components/index.js:19 build/block-library/index.js:14
+#: build/block-library/index.js:14 build/components/index.js:19
 msgid "Number of items"
 msgstr "Anzahl Elemente"
 
@@ -3669,6 +3696,7 @@ msgstr "Initialbuchstabe"
 msgid "Text Settings"
 msgstr "Text-Einstellungen"
 
+#: build/block-library/blocks/latest-posts.php:70
 #: build/block-library/index.js:14
 msgid "Read more"
 msgstr "Weiterlesen"
@@ -3689,19 +3717,19 @@ msgstr "Geordnete Liste"
 msgid "bullet list"
 msgstr "Aufzählungsliste"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgid "Indent list item"
 msgstr "Listenelement einrücken"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgid "Outdent list item"
 msgstr "Listenelement ausrücken"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgid "Convert to ordered list"
 msgstr "Zu geordneter Liste umwandeln"
 
-#: build/block-editor/index.js:55
+#: build/block-library/index.js:14
 msgid "Convert to unordered list"
 msgstr "Zu ungeordneter Liste umwandeln"
 
@@ -3823,10 +3851,6 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: build/block-library/index.js:14
-msgid "Edit gallery"
-msgstr "Galerie bearbeiten"
-
-#: build/block-library/index.js:14
 msgid "Classic"
 msgstr "Classic Editor"
 
@@ -3889,6 +3913,10 @@ msgstr "Bild bearbeiten"
 #: build/block-library/index.js:14
 msgid "Columns"
 msgstr "Spalten"
+
+#: gutenberg.php:75
+msgid "Experiments"
+msgstr "Experimente"
 
 #: build/block-library/index.js:14
 msgid "Code"
@@ -4008,7 +4036,7 @@ msgstr "Volle Breite"
 msgid "Wide Width"
 msgstr "Weite Breite"
 
-#: build/blocks/index.js:2
+#: lib/experiments-page.php:47 build/blocks/index.js:2
 msgid "Widgets"
 msgstr "Widgets"
 
@@ -4040,7 +4068,7 @@ msgstr "Druck seit 1440. Dies ist das Entwicklungs-Plugin für den neuen Block-E
 msgid "Add title"
 msgstr "Titel hier eingeben"
 
-#: gutenberg.php:93
+#: gutenberg.php:104
 msgid "Gutenberg development mode requires files to be built. Run <code>npm install</code> to install dependencies, <code>npm run build</code> to build the files or <code>npm run dev</code> to build the files and watch for changes. Read the <a href=\"https://github.com/WordPress/gutenberg/blob/master/docs/contributors/getting-started.md\">contributing</a> file for more information."
 msgstr "Im Gutenberg-Entwicklungsmodus müssen Dateien erstellt werden. Führe <code>npm install</code> aus, um Abhängigkeiten zu installieren, und <code>npm run dev</code>, um die Dateien zu erstellen und zu beobachten. Lese die Datei <a href=\"https://github.com/WordPress/gutenberg/blob/master/docs/contributors/getting-started.md\">Beitragen (eng.)</a> für weitere Informationen."
 
@@ -4072,7 +4100,7 @@ msgstr "Eigene Felder"
 msgid "Excerpt"
 msgstr "Auszug"
 
-#: build/edit-post/index.js:12 build/editor/index.js:17
+#: build/editor/index.js:17 build/edit-post/index.js:12
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -4089,11 +4117,11 @@ msgid "Block style name must be a string."
 msgstr "Block-Style Namen müssen Zeichenfolgen sein."
 
 #. translators: %s: Minimum required version
-#: gutenberg.php:80
+#: gutenberg.php:91
 msgid "Gutenberg requires WordPress %s or later to function properly. Please upgrade WordPress before activating Gutenberg."
 msgstr "Gutenberg erfordert WordPress %s oder aktueller, um korrekt zu funktionieren. Bitte aktualisiere WordPress, bevor du Gutenberg aktivierst."
 
-#: gutenberg.php:64
+#: gutenberg.php:66
 msgid "Documentation"
 msgstr "Dokumentation"
 
@@ -4101,8 +4129,7 @@ msgstr "Dokumentation"
 msgid "Demo"
 msgstr "Demo"
 
-#: build/block-library/blocks/latest-posts.php:37
-#: build/block-library/blocks/rss.php:35 build/block-library/index.js:14
+#: build/block-library/index.js:14
 msgid "(Untitled)"
 msgstr "(Ohne Titel)"
 
