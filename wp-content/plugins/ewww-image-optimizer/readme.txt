@@ -5,7 +5,7 @@ Tags: optimize, image, convert, webp, resize, compress, lazy load, optimization,
 Requires at least: 5.0
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 4.9.2
+Stable tag: 4.9.3
 License: GPLv3
 
 Speed up your website and improve your visitors' experience by automatically compressing and resizing images and PDFs. Boost SEO and improve sales.
@@ -172,6 +172,15 @@ https://developers.google.com/web/tools/lighthouse/audits/optimize-images
 
 * Feature requests can be viewed and submitted at https://github.com/nosilver4u/ewww-image-optimizer/labels/enhancement
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
+
+= 4.9.3 =
+* fixed: ExactDN incorrectly scales Elementor background images rather than cropping
+* fixed: ExactDN cannot work with Divi/Elementor background images due to use of external CSS files
+* fixed: JS WebP rewriting picture tags that already have WebP markup in Force WebP mode
+* fixed: JS WebP incorrectly parses GIF/SVG images in Force WebP mode
+* fixed: JS WebP does not support lazy load + infinite scroll
+* fixed: Lazy Load auto-scaling breaks if background image is enclosed in encoded quotes
+* fixed: GRAND FlaGallery integration broken by hook suffix change
 
 = 4.9.2 =
 * fixed: generating lazy load PNG placeholders with large heights causes 500 errors
