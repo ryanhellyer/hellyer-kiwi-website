@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Gutenberg - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-09-18 13:57:26+0000\n"
+"PO-Revision-Date: 2019-09-19 09:44:17+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Plugins - Gutenberg - Stable (latest release)\n"
 
 #: build/edit-post/index.js:12
-msgid "Enable Inserter Help Panel"
-msgstr "Hilfefenster für Inserter aktivieren"
+msgid "Tips"
+msgstr "Tipps"
 
 #: build/edit-post/index.js:12
 msgid "%1$d block is disabled."
@@ -67,7 +67,7 @@ msgid "There are blocks available for all kinds of content: insert text, heading
 msgstr "Für alle Arten von Inhalten stehen Blöcke zur Verfügung: Text einfügen, Überschriften, Bilder, Listen, Videos, Tabellen und vieles mehr."
 
 #: build/block-editor/index.js:55
-msgid "Welcome to the wonderful world of blocks! Blocks are the basis of all content within the editor. "
+msgid "Welcome to the wonderful world of blocks! Blocks are the basis of all content within the editor."
 msgstr "Willkommen in der wunderbaren Welt der Blöcke! Blöcke sind die Grundlage für alle Inhalte innerhalb des Editors."
 
 #: lib/class-wp-rest-widget-areas-controller.php:124
@@ -130,7 +130,7 @@ msgstr "Zeige diese Tastenkombinationen."
 msgid "Experiments Settings"
 msgstr "Einstellungen für Experimente"
 
-#: lib/experiments-page.php:100
+#: lib/experiments-page.php:111
 msgid "Gutenberg has some experimental features you can turn on. Simply select each you would like to use. These features are likely to change so it is inadvisable to use them in production."
 msgstr "Gutenberg hat einige experimentelle Funktionen, die du aktivieren kannst. Wähle einfach die Funktionen aus, die du nutzen möchtest. Diese Funktionen können sich wahrscheinlich ändern, daher ist es nicht ratsam diese für produktive Websites zu verwenden."
 
@@ -175,7 +175,7 @@ msgstr "Mehr über Anker erfahren"
 msgid "Enter a word or two — without spaces — to make a unique web address just for this heading, called an “anchor.” Then, you’ll be able to link directly to this section of your page."
 msgstr "Gib ein oder zwei Wörter - ohne Leerzeichen - ein, um eine eindeutige Webadresse nur für diese Überschrift zu erstellen, die als \"Anker\" bezeichnet wird. Dann kannst du direkt zu diesem Abschnitt deiner Seite verlinken."
 
-#: lib/customizer.php:60
+#: lib/customizer.php:61
 msgid "Widget Blocks (Experimental)"
 msgstr "Widget Blöcke (Experimentell)"
 
@@ -218,6 +218,10 @@ msgstr "Wähle ein Layout aus, mit dem du beginnen möchtest."
 #: build/block-editor/index.js:55
 msgid "Select a layout to start with, or make one yourself."
 msgstr "Wählen ein Layout aus, mit dem du beginnen möchtest, oder erstelle es selbst."
+
+#: build/block-library/index.js:14
+msgid "Menu Item (Experimental)"
+msgstr "Menüeintrag (experimentell)"
 
 #: build/block-library/index.js:14
 msgid "What's this?"
@@ -282,10 +286,6 @@ msgstr "Neue Seiten automatisch hinzufügen"
 #: build/block-library/index.js:14
 msgid "Menu Settings"
 msgstr "Menü-Einstellungen"
-
-#: build/block-library/index.js:14
-msgid "Search or paste a link"
-msgstr "Suche oder füge einen Link ein."
 
 #: build/block-library/index.js:14
 msgid "Upload a file or pick one from your media library."
@@ -367,12 +367,12 @@ msgid "Separate multiple classes with spaces."
 msgstr "Trenne mehrere Klassen durch Leerzeichen."
 
 #: build/block-library/index.js:14
-msgid "Move Image Forward"
-msgstr "Bild weiter bewegen"
+msgid "Move image forward"
+msgstr "Bild weiter verschieben"
 
 #: build/block-library/index.js:14
-msgid "Move Image Backward"
-msgstr "Bild zurück bewegen"
+msgid "Move image backward"
+msgstr "Bild zurück verschieben"
 
 #: lib/class-wp-rest-widget-areas-controller.php:200
 msgid "Sorry, you are not allowed to edit sidebars."
@@ -677,7 +677,7 @@ msgid "Backspace"
 msgstr "Backspace"
 
 #: build/block-editor/index.js:55
-msgid "More Rich Text Controls"
+msgid "More rich text controls"
 msgstr "Mehr Formatierungen"
 
 #: build/editor/index.js:17
@@ -837,8 +837,8 @@ msgstr "finden"
 msgid "Help visitors find your content."
 msgstr "Hilf Besuchern, deine Inhalte zu finden."
 
-#: build/block-library/blocks/search.php:77
-#: build/block-library/blocks/search.php:85 build/block-library/index.js:14
+#: build/block-library/blocks/search.php:78
+#: build/block-library/blocks/search.php:86 build/block-library/index.js:14
 msgid "Search"
 msgstr "Suchen"
 
@@ -1226,11 +1226,6 @@ msgctxt "block style"
 msgid "Large"
 msgstr "Groß"
 
-#: build/block-library/index.js:14
-msgctxt "block style"
-msgid "Squared"
-msgstr "Quadratisch"
-
 #: build/format-library/index.js:1
 msgid "%s (opens in a new tab)"
 msgstr "%s (öffnet in neuem Tab)"
@@ -1533,8 +1528,8 @@ msgstr "URL einfügen oder eingeben"
 msgid "Insert from URL"
 msgstr "Von URL einfügen"
 
-#: build/block-editor/index.js:55
-msgid "Block Navigation"
+#: build/block-library/index.js:14
+msgid "Block Navigator"
 msgstr "Block-Navigation"
 
 #: build/block-editor/index.js:55
@@ -1548,10 +1543,6 @@ msgstr "Weitere Bedienfelder"
 #: build/edit-post/index.js:12
 msgid "Document Panels"
 msgstr "Dokument-Bedienfelder"
-
-#: build/edit-post/index.js:12
-msgid "Enable Tips"
-msgstr "Tipps aktivieren"
 
 #: build/edit-post/index.js:12
 msgid "General"
@@ -1886,10 +1877,6 @@ msgid "Convert to HTML"
 msgstr "Zu HTML umwandeln"
 
 #: build/edit-post/index.js:12
-msgid "Enable Pre-publish Checks"
-msgstr "Prüfungen vor der Veröffentlichung aktivieren"
-
-#: build/edit-post/index.js:12
 msgid "This block can only be used once."
 msgstr "Dieser Block kann nur einmal verwendet werden."
 
@@ -1982,14 +1969,6 @@ msgstr "Ausrichtung ändern"
 #: build/block-editor/index.js:55
 msgid "Change text alignment"
 msgstr "Textausrichtung ändern"
-
-#: build/block-library/index.js:14
-msgid "Template block used as a container."
-msgstr "Template-Block als Container benutzt."
-
-#: build/block-library/index.js:14
-msgid "Reusable Template"
-msgstr "Wiederverwendbares Template"
 
 #: build/block-editor/index.js:55
 msgid "%d block"
@@ -2241,56 +2220,56 @@ msgstr "Neuen Block nach dem/den ausgewählten Block/Blöcken einfügen."
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturkürzel"
 
-#: post-content.php:181
+#: post-content.php:185
 msgid "Thanks for testing Gutenberg!"
 msgstr "Danke für das Testen von Gutenberg!"
 
-#: post-content.php:173
+#: post-content.php:177
 msgid "Help build Gutenberg"
 msgstr "Hilf, Gutenberg zu gestalten"
 
 #. translators: %s: Gutenberg GitHub repository URL
-#: post-content.php:164
+#: post-content.php:168
 msgid "If you want to learn more about how to build additional blocks, or if you are interested in helping with the project, head over to the <a href=\"%s\">GitHub repository</a>."
 msgstr "Falls du mehr darüber erfahren willst, wie zusätzliche Blöcke erstellt werden oder falls du bei dem Projekt mithelfen möchtest, komm rüber zum <a href=\"%s\">GitHub repository</a>."
 
-#: post-content.php:155
+#: post-content.php:159
 msgid "The WordPress community"
 msgstr "Die WordPress-Community"
 
-#: post-content.php:155
+#: post-content.php:159
 msgid "Code is Poetry"
 msgstr "Code ist Poesie"
 
-#: post-content.php:151
+#: post-content.php:155
 msgid "You can build any block you like, static or dynamic, decorative or plain. Here&#8217;s a pullquote block:"
 msgstr "Du kannst jede Art von Block erstellen, die du magst, statisch oder dynamisch, dekorativ oder schlicht. Hier ist ein Block mit einem hervorgehobenen Zitat:"
 
-#: post-content.php:141
+#: post-content.php:145
 msgid "Any block can opt into these alignments. The embed block has them also, and is responsive out of the box:"
 msgstr "Jeder Block kann sich an diese Ausrichtungen anpassen. Der Einbetten-Block hat sie auch und ist standardmäßig responsiv:"
 
-#: post-content.php:137
+#: post-content.php:141
 msgid "The above is a gallery with just two images. It&#8217;s an easier way to create visually appealing layouts, without having to deal with floats. You can also easily convert the gallery back to individual images again, by using the block switcher."
 msgstr "Hier oben ist eine Galerie mit nur zwei Bildern. Das ist ein einfache Möglichkeit, optisch ansprechende Layouts zu erstellen, ohne dafür floats zu verwenden. Du kannst die Galerie mithilfe des Block-Umschalters auch wieder zurück in einzelne Bilder konvertieren."
 
-#: post-content.php:126
+#: post-content.php:128
 msgid "Sure, the full-wide image can be pretty big. But sometimes the image is worth it."
 msgstr "Klar, ein Bild in ganzer Breite kann ganz schön groß sein. Aber manchmal ist das Bild es wert."
 
-#: post-content.php:122
+#: post-content.php:124
 msgid "Accessibility is important &mdash; don&#8217;t forget image alt attribute"
 msgstr "Barrierefreiheit ist wichtig &ndash; vergiss das alt-Attribut des Bildes nicht."
 
-#: post-content.php:118
+#: post-content.php:120
 msgid "If you combine the new <strong>wide</strong> and <strong>full-wide</strong> alignments with galleries, you can create a very media rich layout, very quickly:"
 msgstr "Wenn du die neuen <strong>Weite-Breite</strong> und <strong>Volle-Breite</strong>-Ausrichtungen mit Galerien kombinierst, kannst du sehr schnell ein umfangreiches, multimediales Layout erstellen:"
 
-#: post-content.php:114
+#: post-content.php:116
 msgid "Media Rich"
 msgstr "Multimedial"
 
-#: post-content.php:110
+#: post-content.php:112
 msgid "You can change the amount of columns in your galleries by dragging a slider in the block inspector in the sidebar."
 msgstr "Du kannst die Anzahl der Spalten in deinen Galerien ändern, indem du einen Schieberegler im Block-Inspektor in der Seitenleiste bewegst."
 
@@ -2623,7 +2602,7 @@ msgid "Pale pink"
 msgstr "Helles Rosa"
 
 #: build/format-library/index.js:1
-msgid "Inline Image"
+msgid "Inline image"
 msgstr "Inline-Bild"
 
 #: build/block-editor/index.js:55 build/edit-post/index.js:12
@@ -2659,11 +2638,11 @@ msgid "Large"
 msgstr "Groß"
 
 #: build/block-library/index.js:14
-msgid "Show Download Button"
+msgid "Show download button"
 msgstr "Download-Button anzeigen"
 
 #: build/block-library/index.js:14
-msgid "Download Button Settings"
+msgid "Download button settings"
 msgstr "Download-Button Einstellungen"
 
 #: build/block-library/index.js:14
@@ -2671,7 +2650,7 @@ msgid "Link To"
 msgstr "Link zur"
 
 #: build/block-library/index.js:14
-msgid "Text Link Settings"
+msgid "Text link settings"
 msgstr "Text-Link Einstellungen"
 
 #: build/block-library/index.js:14
@@ -2761,6 +2740,10 @@ msgstr "Klicke auf „Vorschau“, um eine Vorschau dieser Seite zu laden, damit
 #: build/block-library/index.js:14
 msgid "Replace image"
 msgstr "Bild ersetzen"
+
+#: build/block-library/index.js:14
+msgid "Remove image"
+msgstr "Kein Bild verwenden"
 
 #: build/media-utils/index.js:1
 msgid "Error while uploading file %s to the media library."
@@ -2920,7 +2903,7 @@ msgid "Editor settings"
 msgstr "Editor-Einstellungen"
 
 #: build/block-editor/index.js:55 build/block-library/index.js:14
-msgid "Link Settings"
+msgid "Link settings"
 msgstr "Link-Einstellungen"
 
 #: build/format-library/index.js:1
@@ -3472,7 +3455,7 @@ msgstr "Kein Block ausgewählt."
 msgid "Transform into:"
 msgstr "Umwandeln in:"
 
-#: build/edit-post/index.js:12
+#: build/block-directory/index.js:1 build/edit-post/index.js:12
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -3610,17 +3593,17 @@ msgstr "URL"
 msgid "Submit"
 msgstr "Senden"
 
-#: build/block-editor/index.js:55 build/edit-post/index.js:12
-#: build/components/index.js:19
+#: build/block-editor/index.js:55 build/block-library/index.js:14
+#: build/edit-post/index.js:12 build/components/index.js:19
 msgid "Close"
 msgstr "Schließen"
 
 #: build/block-editor/index.js:55 build/block-library/index.js:14
-msgid "Insert Link"
+msgid "Insert link"
 msgstr "Link einfügen"
 
 #: build/block-editor/index.js:55 build/block-library/index.js:14
-msgid "Edit Link"
+msgid "Edit link"
 msgstr "Link bearbeiten"
 
 #: build/editor/index.js:17 build/format-library/index.js:1
@@ -3641,7 +3624,7 @@ msgid "Bold"
 msgstr "Fett"
 
 #: build/block-library/index.js:14
-msgid "Remove Link"
+msgid "Remove link"
 msgstr "Link entfernen"
 
 #: build/block-library/index.js:14 build/components/index.js:19
@@ -3867,11 +3850,11 @@ msgid "Display post date"
 msgstr "Beitragsdatum anzeigen"
 
 #: build/block-library/index.js:14
-msgid "Grid View"
+msgid "Grid view"
 msgstr "Rasteransicht"
 
 #: build/block-library/index.js:14
-msgid "List View"
+msgid "List view"
 msgstr "Listenansicht"
 
 #: build/format-library/index.js:1 build/block-library/index.js:14
@@ -3935,7 +3918,7 @@ msgstr "Fotos"
 msgid "images"
 msgstr "Bilder"
 
-#: build/editor/index.js:17 build/block-library/index.js:14
+#: build/editor/index.js:17
 msgid "Remove Image"
 msgstr "Bild entfernen"
 
@@ -4012,10 +3995,6 @@ msgid "Write title…"
 msgstr "Schreibe einen Titel…"
 
 #: build/block-library/index.js:14
-msgid "Text Alignment"
-msgstr "Textausrichtung"
-
-#: build/block-library/index.js:14
 msgid "Fixed Background"
 msgstr "Hintergrund fixiert"
 
@@ -4064,6 +4043,7 @@ msgid "Button"
 msgstr "Button"
 
 #: build/block-editor/index.js:55 build/format-library/index.js:1
+#: build/block-library/index.js:14
 msgid "Apply"
 msgstr "Übernehmen"
 
