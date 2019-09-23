@@ -67,7 +67,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 			}
 
 			$x =  $_GET['start'];
-			$end = $_GET['start'] + 10;
+			$end = $_GET['start'] + 1;
 			while( $x <= $end ) {
 
 				$driver = $drivers[$x];
