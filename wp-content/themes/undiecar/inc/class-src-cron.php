@@ -55,6 +55,8 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 			return;
 		}
 
+		set_time_limit( 600 );
+
 		$dir = wp_upload_dir();
 
 		// Get raw file paths
