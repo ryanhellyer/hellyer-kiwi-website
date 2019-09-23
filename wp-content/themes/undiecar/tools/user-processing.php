@@ -57,6 +57,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 		}
 
 		if ( 'update_iracing_info' === $_GET['user_processing'] ) {
+			set_time_limit( 600 );
 
 			$drivers = get_users( array( 'number' => 2000 ) );
 			$x =  $_GET['start'];
