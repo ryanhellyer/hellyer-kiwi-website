@@ -1036,7 +1036,7 @@ if ( isset( $_GET['test'] ) ) {
 		if ( isset( $q_times ) && is_array( $q_times ) ) {
 			asort( $q_times );
 			foreach ( $q_times as $name => $points ) {
-				$stored_results[$name]++;
+				$stored_results[$name] = $stored_results[$name] + 2;
 				update_post_meta( get_the_ID(), '_pole_position', $name ); // Should only be stored when first, or caching FIX THIS LATER
 // THIS NEEDS SET BETTER
 				break;
@@ -1046,7 +1046,7 @@ if ( isset( $_GET['test'] ) ) {
 		// Fastest lap bonus point
 		$fastest_driver = SRC_Core::get_fastest_lap( $results );
 		if ( isset( $stored_results[ $fastest_driver ] ) ) {
-			$stored_results[ $fastest_driver ] = $stored_results[ $fastest_driver ] + 1;
+			$stored_results[ $fastest_driver ] = $stored_results[ $fastest_driver ] + 2;
 		}
 
 		// Least incidents bonus points
@@ -1054,7 +1054,7 @@ if ( isset( $_GET['test'] ) ) {
 		if ( is_array( $least_incident_drivers ) ) {
 
 			foreach ( $least_incident_drivers as $incident_name => $incidents ) {
-				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 1;
+				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 2;
 			}
 
 		}
