@@ -59,7 +59,13 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 		if ( 'update_iracing_info' === $_GET['user_processing'] ) {
 			set_time_limit( 600 );
 
-			$drivers = get_users( array( 'number' => 2000 ) );
+			// Cache the drivers list coz it takes stupid long to access them all
+			$key = 'undiecar_drivers_temp_list';
+			if ( false === ( $drivers = get_transient( $key ) ) ) {
+				$drivers = get_users( array( 'number' => 2000 ) );
+				set_transient( $key, $drivers, HOUR_IN_SECONDS );
+			}
+
 			$x =  $_GET['start'];
 			$end = $_GET['start'] + 10;
 			while( $x <= $end ) {
