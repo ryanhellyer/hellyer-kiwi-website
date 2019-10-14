@@ -1,1 +1,0 @@
-strattic-search-pro
