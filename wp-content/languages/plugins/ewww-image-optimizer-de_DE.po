@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - EWWW Image Optimizer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-17 15:10:19+0000\n"
+"PO-Revision-Date: 2019-10-17 17:32:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,31 +11,31 @@ msgstr ""
 "Language: de\n"
 "Project-Id-Version: Plugins - EWWW Image Optimizer - Stable (latest release)\n"
 
-#: unique.php:2752
+#: unique.php:2742
 msgid "Image could not be converted to WebP."
 msgstr "Bild konnte nicht zu WebP konvertiert werden."
 
-#: unique.php:2748
+#: unique.php:2738
 msgid "WebP image larger than original, saved anyway with Force WebP option."
 msgstr "WebP-Bild größer als Original, aber wegen Option WebP erzwingen dennoch gespeichert."
 
-#: unique.php:2741
+#: unique.php:2731
 msgid "WebP image was larger than original."
 msgstr "WebP-Bild war größer als das Original."
 
-#: unique.php:2700
+#: unique.php:2690
 msgid "WebP image already exists."
 msgstr "WebP-Bild existiert bereits."
 
-#: unique.php:2697
+#: unique.php:2687
 msgid "File is not writable."
 msgstr "Datei ist nicht beschreibbar."
 
-#: unique.php:2695
+#: unique.php:2685
 msgid "Could not find file."
 msgstr "Datei konnte nicht gefunden werden."
 
-#: unique.php:1769
+#: unique.php:1759
 msgid "Path traversal in filename not allowed."
 msgstr "Traversal ist in Dateinamen nicht erlaubt."
 
@@ -46,6 +46,44 @@ msgstr "Der kostenlose Modus von EWWW Image Optimizer wird nur von Linux, FreeBS
 #: bulk.php:225
 msgid "Skip compression and only attempt WebP conversion."
 msgstr "Kompression überspringen und nur WebP-Konvertierung versuchen."
+
+#: bulk.php:223
+msgid "WebP Only"
+msgstr "Nur WebP"
+
+#. translators: 1: An image URL on a CDN 2: An image URL 3: An example folder
+#. URL
+#: common.php:8998
+msgid "For example, with a CDN URL of %1$s and a local URL of %2$s you would enter %3$s."
+msgstr "Zum Beispiel, mit einer CDN-URL von %1$s und einer lokalen URL von %2$s würdest du %3$s eingeben."
+
+#: common.php:8976
+msgid "JPG to WebP conversion is lossy, but quality loss is minimal. PNG to WebP conversion is lossless unless premium compression is active."
+msgstr "JPG-zu-WepP-Konvertierung ist verlustbehaftet, aber der Qualitätsverlist ist minimal. PNG-zu-WebP-Konvertierung ist verlustlos, falls Premium-Kompression aktiv ist."
+
+#: common.php:7241
+msgid "Not optimized"
+msgstr "Nicht optimiert"
+
+#: common.php:1565
+msgid "You may generate WebP images via the Bulk Optimizer."
+msgstr "Du kannst WebP-Bilder mit dem Massenoptimierer erzeugen."
+
+#: common.php:1562
+msgid "It looks like you already started optimizing your images, you will need to generate WebP images via the Bulk Optimizer."
+msgstr "Es sieht aus, also hättest du bereits begonnen, deine Bilder zu optimieren, du wirst WebP-Bilder mit dem Massenoptimierer erzeugen müssen."
+
+#: bulk.php:25
+msgid "Nothing has been optimized yet!"
+msgstr "Noch wurde nichts optimiert!"
+
+#: common.php:8822
+msgid "Optimize the original version of images that have been scaled down by WordPress."
+msgstr "Die Originalversion von Bildern optimieren, die von WordPress herunterskaliert wurden."
+
+#: common.php:8818
+msgid "Include Originals"
+msgstr "Inklusive Originalen"
 
 #: common.php:1713
 msgid "Post Review"
@@ -269,11 +307,11 @@ msgstr "Bildeditor Speichern gescheitert"
 msgid "Image resize failed."
 msgstr "Bildskalierung gescheitert."
 
-#: unique.php:2794 unique.php:2840
+#: unique.php:2784 unique.php:2830
 msgid "insufficient memory available for installation"
 msgstr "Unzureichender Speicher verfügbar für die Installation"
 
-#: unique.php:2777
+#: unique.php:2767
 msgid "zlib or phar extension missing from PHP"
 msgstr "zlib- oder phar-Erweiterung fehlt bei PHP"
 
@@ -979,7 +1017,7 @@ msgstr "Konnte WebP-URL: %s nicht speichern."
 msgid "Could not save Folder to Optimize: %s. Please ensure that it is a valid location on the server."
 msgstr "Konnte Ordner zum Optimieren: %s nicht speichern. Bitte stelle sicher, dass es ein gültiger Speicherort auf dem Server ist."
 
-#: unique.php:1808
+#: unique.php:1798
 msgid "Unknown file type"
 msgstr "Unbekannter Dateityp"
 
@@ -1073,15 +1111,15 @@ msgstr "Alle %d Minuten"
 msgid "Allow resizing of existing Media Library images."
 msgstr "Skalierung bestehender Mediathek-Bilder erlauben."
 
-#: unique.php:2522
+#: unique.php:2512
 msgid "GIF optimization is disabled"
 msgstr "GIF-Optimierung deaktiviert"
 
-#: unique.php:2240
+#: unique.php:2230
 msgid "PNG optimization is disabled"
 msgstr "PNG-Optimierung deaktiviert"
 
-#: unique.php:1970
+#: unique.php:1960
 msgid "JPG optimization is disabled"
 msgstr "JPG-Optimierung deaktiviert"
 
@@ -1185,8 +1223,8 @@ msgstr "Letztes optimiertes Bild"
 msgid "Image credits available:"
 msgstr "Image credits verfügbar:"
 
-#: unique.php:1283 unique.php:1310 unique.php:1337 unique.php:1364
-#: unique.php:1391 unique.php:1437
+#: unique.php:1273 unique.php:1300 unique.php:1327 unique.php:1354
+#: unique.php:1381 unique.php:1427
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -1318,33 +1356,33 @@ msgstr "Optimierte Größe – %s"
 msgid "%1$d images have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
 msgstr "%1$d Bilder wurden ausgewählt (%2$d unoptimiert), mit %3$d Skalierungen (%4$d unoptimiert)."
 
-#: unique.php:2828 unique.php:2868
+#: unique.php:2818 unique.php:2858
 msgid "extraction of files failed"
 msgstr "Extraktion von Dateien gescheitert"
 
-#: unique.php:2823 unique.php:2863
+#: unique.php:2813 unique.php:2853
 msgid "could not set permissions"
 msgstr "Konnte keine Berechtigungen setzen"
 
-#: unique.php:2818 unique.php:2858 unique.php:2881
+#: unique.php:2808 unique.php:2848 unique.php:2871
 msgid "could not move pngout"
 msgstr "Konnte pngout nicht verschieben"
 
-#: classes/class-ewwwio-install-cloud.php:76 unique.php:2762
+#: classes/class-ewwwio-install-cloud.php:76 unique.php:2752
 msgid "You do not have permission to install image optimizer utilities."
 msgstr "Dir fehlt die Berechtigung, Bildoptimierungswerkzeuge zu installieren."
 
 #. translators: %s: Image filename
-#: unique.php:1783
+#: unique.php:1773
 msgid "%s is not writable"
 msgstr "%s ist nicht beschreibbar"
 
 #. translators: %s: Image filename
-#: unique.php:1776
+#: unique.php:1766
 msgid "Could not find %s"
 msgstr "Konnte %s nicht finden"
 
-#: unique.php:1749 unique.php:1877 unique.php:1883
+#: unique.php:1739 unique.php:1867 unique.php:1873
 msgid "Optimization skipped"
 msgstr "Optimierung übersprungen"
 
@@ -1651,8 +1689,8 @@ msgid "Optimize now!"
 msgstr "Jetzt optimieren!"
 
 #: classes/class-ewww-flag.php:762 classes/class-ewww-nextgen.php:474
-#: classes/class-ewww-nextcellent.php:332 common.php:7080 unique.php:1814
-#: unique.php:2636
+#: classes/class-ewww-nextcellent.php:332 common.php:7080 unique.php:1804
+#: unique.php:2626
 msgid "Unsupported file type"
 msgstr "Nicht unterstützter Dateityp"
 
@@ -1687,8 +1725,8 @@ msgstr "JPG nach PNG"
 #: classes/class-ewww-nextcellent.php:314
 #: classes/class-ewww-nextcellent.php:321
 #: classes/class-ewww-nextcellent.php:328 common.php:7027 common.php:7046
-#: common.php:7059 unique.php:1586 unique.php:1974 unique.php:2244
-#: unique.php:2248 unique.php:2526
+#: common.php:7059 unique.php:1576 unique.php:1964 unique.php:2234
+#: unique.php:2238 unique.php:2516
 msgid "%s is missing"
 msgstr "%s fehlt"
 
@@ -1964,7 +2002,7 @@ msgid "Filename"
 msgstr "Dateiname"
 
 #: classes/class-ewww-nextgen.php:288 common.php:2980 common.php:2983
-#: common.php:4318 unique.php:2644
+#: common.php:4318 unique.php:2634
 msgid "License exceeded"
 msgstr "Lizenz abgelaufen"
 
