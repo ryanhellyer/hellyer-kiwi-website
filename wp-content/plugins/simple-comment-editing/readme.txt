@@ -2,8 +2,8 @@
 Contributors: ronalfy
 Tags: ajax, comments,edit comments, edit, comment,
 Requires at least: 5.0
-Tested up to: 5.1
-Stable tag: 2.3.8
+Tested up to: 5.3
+Stable tag: 2.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://mediaron.com/contribute/
@@ -26,7 +26,7 @@ Simple Comment Editing features:
 
 <h3>Introducing Simple Comment Editing Options</h3>
 
-Introducing Simple Comment Editing Options (a paid add-on to Simple Comment Editing). If you lack programming experience and want to customize Simple Comment Editing, then this plugin is for you. See the features below.
+Introducing Simple Comment Editing Options (a free add-on to Simple Comment Editing). If you lack programming experience and want to customize Simple Comment Editing, then this plugin is for you. See the features below.
 
 <ul>
 <li>Set the comment timer</li>
@@ -44,7 +44,7 @@ Introducing Simple Comment Editing Options (a paid add-on to Simple Comment Edit
 <li>And More!</li>
 </ul>
 
-> Get <a href="https://mediaron.com/simple-comment-editing-options">Simple Comment Editing Options</a> today!
+> Get <a href="https://mediaron.com/simple-comment-editing-options">the free Simple Comment Editing Options</a> today!
 
 <h3>Help Contribute</h3>
 
@@ -78,6 +78,10 @@ Simple Comment Editing will work all the way back to IE10.
 4. Simple Comment Editing Options front-end.
 
 == Changelog ==
+
+= 2.3.9 =
+* Released 2019-11-06
+* Fixed bug where edited (and approved) comments were sent back to moderation.
 
 = 2.3.8 =
 * Released 2019-03-17
@@ -338,17 +342,8 @@ Simple Comment Editing will work all the way back to IE10.
 
 == Upgrade Notice ==
 
-= 2.3.8 =
-Adjusting filters to prevent WSOD
-
-= 2.3.7 =
-Added options panel for editing the timer time.
-
-= 2.3.6 =
-Added new filter for unlimited editing option. Fixing PHP 5.3 fatal error.
-
-= 2.3.5 =
-Updating JavaScript hooks to work with WordPress 5.0+
+= 2.3.9 =
+Fixed bug where edited (and approved) comments were sent back to moderation.
 
 == Customization ==
 
