@@ -16,4 +16,4 @@ $new_meta[3] = $old_meta[4];
 $new_meta[4] = $old_meta[5];
 $new_meta[5] = $old_meta[0];
 
-update_meta( $post_id, $new_meta );
+update_post_meta( $post_id, '_results_1', $new_meta );
