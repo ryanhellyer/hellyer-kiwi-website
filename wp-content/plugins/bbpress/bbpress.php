@@ -5,7 +5,7 @@
  *
  * bbPress is forum software with a twist from the creators of WordPress.
  *
- * $Id: bbpress.php 6938 2019-11-12 17:48:18Z johnjamesjacoby $
+ * $Id: bbpress.php 6949 2019-11-14 18:24:11Z johnjamesjacoby $
  *
  * @package bbPress
  * @subpackage Main
@@ -17,7 +17,7 @@
  * Description: bbPress is forum software with a twist from the creators of WordPress.
  * Author:      The bbPress Contributors
  * Author URI:  https://bbpress.org
- * Version:     2.6.0
+ * Version:     2.6.1
  * Text Domain: bbpress
  * Domain Path: /languages/
  * License:     GPLv2 or later (license.txt)
@@ -203,7 +203,7 @@ final class bbPress {
 
 		/** Versions **********************************************************/
 
-		$this->version    = '2.6.0';
+		$this->version    = '2.6.1';
 		$this->db_version = '263';
 
 		/** Paths *************************************************************/
@@ -751,11 +751,24 @@ final class bbPress {
 
 		// Define "count" meta-type array
 		$count = array(
+
+			// Counts are always integers
 			'type'              => 'integer',
+
+			// Generic count description
 			'description'       => esc_html__( 'bbPress Item Count', 'bbpress' ),
+
+			// Counts are single values
 			'single'            => true,
+
+			// Counts should be made available in REST
+			'show_in_rest'      => true,
+
+			// Never allow counts to go negative
 			'sanitize_callback' => 'bbp_number_not_negative',
-			'show_in_rest'      => true
+
+			 // All users may update count meta data
+			'auth_callback'     => '__return_true'
 		);
 
 		/** Post **************************************************************/
