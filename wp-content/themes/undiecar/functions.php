@@ -6,6 +6,7 @@ if ( is_super_admin() ) {
 //	print_r( get_post_meta( 3967 ) );die;
 //} );
 
+	require( 'tools/modify-results.php' );
 	require( 'tools/get-names-from-json.php' );
 	require( 'tools/emails.php' );
 	require( 'tools/pull-names-from-csv.php' );
