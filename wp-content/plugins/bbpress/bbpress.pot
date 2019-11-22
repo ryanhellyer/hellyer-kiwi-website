@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv2 or later (license.txt).
 msgid ""
 msgstr ""
-"Project-Id-Version: bbPress 2.6.1\n"
+"Project-Id-Version: bbPress 2.6.2\n"
 "Report-Msgid-Bugs-To: https://bbpress.trac.wordpress.org\n"
-"POT-Creation-Date: 2019-11-14 22:59:19+00:00\n"
+"POT-Creation-Date: 2019-11-22 16:30:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -325,7 +325,7 @@ msgid "Database connection failed."
 msgstr ""
 
 #: includes/admin/classes/class-bbp-converter.php:162
-#: includes/admin/settings.php:1768
+#: includes/admin/settings.php:1791
 msgid "Start"
 msgstr ""
 
@@ -638,9 +638,10 @@ msgid "View"
 msgstr ""
 
 #: includes/admin/classes/class-bbp-topic-replies-list-table.php:149
-#: includes/common/template.php:2265 includes/forums/template.php:54
-#: includes/replies/template.php:55 includes/replies/template.php:1848
-#: includes/topics/template.php:53 includes/topics/template.php:2403
+#: includes/admin/settings.php:391 includes/common/template.php:2265
+#: includes/forums/template.php:54 includes/replies/template.php:55
+#: includes/replies/template.php:1848 includes/topics/template.php:53
+#: includes/topics/template.php:2403
 #: templates/default/bbpress/user-details.php:74
 msgid "Edit"
 msgstr ""
@@ -650,7 +651,7 @@ msgid "No replies to this topic."
 msgstr ""
 
 #: includes/admin/forums.php:101 includes/admin/replies.php:115
-#: includes/admin/settings.php:1845 includes/admin/tools/help.php:95
+#: includes/admin/settings.php:1868 includes/admin/tools/help.php:95
 #: includes/admin/topics.php:119
 msgid "Overview"
 msgstr ""
@@ -753,7 +754,7 @@ msgstr ""
 
 #: includes/admin/forums.php:144 includes/admin/forums.php:200
 #: includes/admin/replies.php:161 includes/admin/replies.php:215
-#: includes/admin/settings.php:1911 includes/admin/tools/help.php:43
+#: includes/admin/settings.php:1934 includes/admin/tools/help.php:43
 #: includes/admin/tools/help.php:72 includes/admin/tools/help.php:130
 #: includes/admin/topics.php:167 includes/admin/topics.php:220
 msgid "For more information:"
@@ -761,7 +762,7 @@ msgstr ""
 
 #: includes/admin/forums.php:145 includes/admin/forums.php:201
 #: includes/admin/replies.php:162 includes/admin/replies.php:216
-#: includes/admin/settings.php:1912 includes/admin/tools/help.php:44
+#: includes/admin/settings.php:1935 includes/admin/tools/help.php:44
 #: includes/admin/tools/help.php:73 includes/admin/tools/help.php:131
 #: includes/admin/topics.php:168 includes/admin/topics.php:221
 msgid ""
@@ -771,7 +772,7 @@ msgstr ""
 
 #: includes/admin/forums.php:146 includes/admin/forums.php:202
 #: includes/admin/replies.php:163 includes/admin/replies.php:217
-#: includes/admin/settings.php:1913 includes/admin/tools/help.php:45
+#: includes/admin/settings.php:1936 includes/admin/tools/help.php:45
 #: includes/admin/tools/help.php:74 includes/admin/tools/help.php:132
 #: includes/admin/topics.php:169 includes/admin/topics.php:222
 msgid ""
@@ -887,7 +888,7 @@ msgid "Forum Moderators"
 msgstr ""
 
 #: includes/admin/forums.php:267 includes/admin/settings.php:184
-#: includes/admin/settings.php:436 includes/admin/tools/common.php:452
+#: includes/admin/settings.php:444 includes/admin/tools/common.php:452
 #: includes/admin/topics.php:480 includes/extend/buddypress/loader.php:260
 #: templates/default/bbpress/user-details.php:67
 msgid "Subscriptions"
@@ -1113,7 +1114,7 @@ msgstr ""
 msgid "Forum Parent"
 msgstr ""
 
-#: includes/admin/metaboxes.php:369 includes/admin/settings.php:1421
+#: includes/admin/metaboxes.php:369 includes/admin/settings.php:1444
 #: templates/default/bbpress/form-forum.php:144
 msgid "&mdash; No parent &mdash;"
 msgstr ""
@@ -1651,7 +1652,7 @@ msgstr ""
 msgid "Anonymous"
 msgstr ""
 
-#: includes/admin/settings.php:168 includes/admin/settings.php:2000
+#: includes/admin/settings.php:168 includes/admin/settings.php:2023
 msgid "Revisions"
 msgstr ""
 
@@ -1661,7 +1662,7 @@ msgstr ""
 msgid "Favorites"
 msgstr ""
 
-#: includes/admin/settings.php:192 includes/admin/settings.php:444
+#: includes/admin/settings.php:192 includes/admin/settings.php:452
 #: includes/admin/tools/common.php:455 includes/admin/topics.php:420
 #: includes/extend/buddypress/loader.php:234
 #: includes/extend/buddypress/loader.php:336
@@ -1677,7 +1678,7 @@ msgstr ""
 msgid "Super Moderators"
 msgstr ""
 
-#: includes/admin/settings.php:224 includes/admin/settings.php:391
+#: includes/admin/settings.php:224 includes/admin/settings.php:399
 #: includes/common/template.php:2380 includes/search/template.php:175
 #: templates/default/bbpress/form-reply-search.php:20
 #: templates/default/bbpress/form-search.php:21
@@ -1717,552 +1718,554 @@ msgstr ""
 msgid "Topic View"
 msgstr ""
 
-#: includes/admin/settings.php:404
+#: includes/admin/settings.php:412
 msgid "User Base"
 msgstr ""
 
-#: includes/admin/settings.php:412 includes/extend/buddypress/loader.php:211
+#: includes/admin/settings.php:420 includes/extend/buddypress/loader.php:211
 #: includes/extend/buddypress/loader.php:319
 #: templates/default/bbpress/user-details.php:36
 msgid "Topics Started"
 msgstr ""
 
-#: includes/admin/settings.php:420 includes/extend/buddypress/loader.php:222
+#: includes/admin/settings.php:428 includes/extend/buddypress/loader.php:222
 #: includes/extend/buddypress/loader.php:327
 #: templates/default/bbpress/user-details.php:42
 msgid "Replies Created"
 msgstr ""
 
-#: includes/admin/settings.php:428 includes/extend/buddypress/loader.php:346
+#: includes/admin/settings.php:436 includes/extend/buddypress/loader.php:346
 msgid "Favorite Topics"
 msgstr ""
 
-#: includes/admin/settings.php:457 includes/admin/tools/upgrade.php:371
+#: includes/admin/settings.php:465 includes/admin/tools/upgrade.php:371
 #: includes/extend/buddypress/functions.php:341
 msgid "Group Forums"
 msgstr ""
 
-#: includes/admin/settings.php:465
+#: includes/admin/settings.php:473
 msgid "Primary Forum"
 msgstr ""
 
-#: includes/admin/settings.php:478
+#: includes/admin/settings.php:486
 msgid "Use Akismet"
 msgstr ""
 
-#: includes/admin/settings.php:492
+#: includes/admin/settings.php:500
 msgid "Select Platform"
 msgstr ""
 
-#: includes/admin/settings.php:500
+#: includes/admin/settings.php:508
 msgid "Database Server"
 msgstr ""
 
-#: includes/admin/settings.php:508
+#: includes/admin/settings.php:516
 msgid "Database Port"
 msgstr ""
 
-#: includes/admin/settings.php:516
+#: includes/admin/settings.php:524
 msgid "Database Name"
 msgstr ""
 
-#: includes/admin/settings.php:524
+#: includes/admin/settings.php:532
 msgid "Database User"
 msgstr ""
 
-#: includes/admin/settings.php:532
+#: includes/admin/settings.php:540
 msgid "Database Password"
 msgstr ""
 
-#: includes/admin/settings.php:540
+#: includes/admin/settings.php:548
 msgid "Table Prefix"
 msgstr ""
 
-#: includes/admin/settings.php:552
+#: includes/admin/settings.php:560
 msgid "Rows Limit"
 msgstr ""
 
-#: includes/admin/settings.php:560
+#: includes/admin/settings.php:568
 msgid "Delay Time"
 msgstr ""
 
-#: includes/admin/settings.php:568
+#: includes/admin/settings.php:576
 msgid "Convert Users"
 msgstr ""
 
-#: includes/admin/settings.php:576
+#: includes/admin/settings.php:584
 msgid "Stop on Error"
 msgstr ""
 
-#: includes/admin/settings.php:584
+#: includes/admin/settings.php:592
 msgid "Start Over"
 msgstr ""
 
-#: includes/admin/settings.php:592
+#: includes/admin/settings.php:600
 msgid "Helper Data"
 msgstr ""
 
-#: includes/admin/settings.php:645
+#: includes/admin/settings.php:653
 msgid "Setting time limits and other user posting capabilities"
 msgstr ""
 
-#: includes/admin/settings.php:669
+#: includes/admin/settings.php:677
 msgid "Allow users to edit their content for %s minutes after posting"
 msgstr ""
 
-#: includes/admin/settings.php:671
+#: includes/admin/settings.php:679
 msgid "If checked, setting to \"0 minutes\" allows editing forever."
 msgstr ""
 
-#: includes/admin/settings.php:694
+#: includes/admin/settings.php:702
 msgid "Allow flood protection by throttling users for %s seconds after posting"
 msgstr ""
 
-#: includes/admin/settings.php:696
+#: includes/admin/settings.php:704
 msgid "Use this to discourage users from spamming your forums."
 msgstr ""
 
-#: includes/admin/settings.php:710
+#: includes/admin/settings.php:718
 msgid "Allow guest users without accounts to create topics and replies"
 msgstr ""
 
-#: includes/admin/settings.php:711
+#: includes/admin/settings.php:719
 msgid "Works best on intranets or paired with antispam measures like Akismet."
 msgstr ""
 
-#: includes/admin/settings.php:744
+#: includes/admin/settings.php:752
 msgid "Automatically give registered visitors the %s forum role"
 msgstr ""
 
-#: includes/admin/settings.php:746
+#: includes/admin/settings.php:754
 msgid "Uncheck this to manually assign all user access to your forums."
 msgstr ""
 
-#: includes/admin/settings.php:761
+#: includes/admin/settings.php:769
 msgid "Forum features that can be toggled on and off"
 msgstr ""
 
-#: includes/admin/settings.php:775
+#: includes/admin/settings.php:783
 msgid "Allow users to mark topics as favorites"
 msgstr ""
 
-#: includes/admin/settings.php:789
+#: includes/admin/settings.php:797
 msgid "Allow users to subscribe to forums and topics"
 msgstr ""
 
-#: includes/admin/settings.php:803
+#: includes/admin/settings.php:811
 msgid "Allow tracking of topics each user engages in"
 msgstr ""
 
-#: includes/admin/settings.php:817
+#: includes/admin/settings.php:825
 msgid "Allow topics to have tags"
 msgstr ""
 
-#: includes/admin/settings.php:831
+#: includes/admin/settings.php:839
 msgid "Allow forums to have dedicated moderators"
 msgstr ""
 
-#: includes/admin/settings.php:845
+#: includes/admin/settings.php:853
 msgid "Allow moderators to edit other users"
 msgstr ""
 
-#: includes/admin/settings.php:859
+#: includes/admin/settings.php:867
 msgid "Allow forum wide search"
 msgstr ""
 
-#: includes/admin/settings.php:894
+#: includes/admin/settings.php:902
 msgid "Enable threaded (nested) replies %s levels deep"
 msgstr ""
 
-#: includes/admin/settings.php:909
+#: includes/admin/settings.php:917
 msgid "Allow topic and reply revision logging"
 msgstr ""
 
-#: includes/admin/settings.php:923
+#: includes/admin/settings.php:931
 msgid "Add toolbar & buttons to textareas to help with HTML formatting"
 msgstr ""
 
-#: includes/admin/settings.php:936
+#: includes/admin/settings.php:944
 msgid "How your forum content is displayed within your existing theme."
 msgstr ""
 
-#: includes/admin/settings.php:964
+#: includes/admin/settings.php:972
 msgid "will serve all bbPress templates"
 msgstr ""
 
-#: includes/admin/settings.php:968
+#: includes/admin/settings.php:976
 msgid "No template packages available."
 msgstr ""
 
-#: includes/admin/settings.php:982
+#: includes/admin/settings.php:990
 msgid ""
 "Embed media (YouTube, Twitter, Flickr, etc...) directly into topics and "
 "replies"
 msgstr ""
 
-#: includes/admin/settings.php:997
+#: includes/admin/settings.php:1005
 msgid "How many topics and replies to show per page"
 msgstr ""
 
-#: includes/admin/settings.php:1011 includes/admin/settings.php:1025
-#: includes/admin/settings.php:1054 includes/admin/settings.php:1068
+#: includes/admin/settings.php:1019 includes/admin/settings.php:1033
+#: includes/admin/settings.php:1062 includes/admin/settings.php:1076
 msgid "per page"
 msgstr ""
 
-#: includes/admin/settings.php:1040
+#: includes/admin/settings.php:1048
 msgid "How many topics and replies to show per RSS page"
 msgstr ""
 
-#: includes/admin/settings.php:1087
+#: includes/admin/settings.php:1095
 msgid ""
 "Customize your Forums root. Partner with a WordPress Page and use "
 "Shortcodes for more flexibility."
 msgstr ""
 
-#: includes/admin/settings.php:1116
+#: includes/admin/settings.php:1124
 msgid "Prefix all forum content with the Forum Root slug (Recommended)"
 msgstr ""
 
-#: includes/admin/settings.php:1134
+#: includes/admin/settings.php:1142
 msgid "Forum Index"
 msgstr ""
 
-#: includes/admin/settings.php:1137
+#: includes/admin/settings.php:1145
 msgid "Topics by Last Post"
 msgstr ""
 
-#: includes/admin/settings.php:1159
+#: includes/admin/settings.php:1167
 msgid "This setting will be ignored because %s was found in your theme."
 msgstr ""
 
-#: includes/admin/settings.php:1174
+#: includes/admin/settings.php:1182
 msgid "Customize your user profile slugs."
 msgstr ""
 
-#: includes/admin/settings.php:1279
-msgid "Custom slugs for single forums, topics, replies, tags, views, and search."
+#: includes/admin/settings.php:1287
+msgid ""
+"Custom slugs for single forums, topics, replies, tags, views, edit, and "
+"search."
 msgstr ""
 
-#: includes/admin/settings.php:1385
+#: includes/admin/settings.php:1408
 msgid "Forum settings for BuddyPress"
 msgstr ""
 
-#: includes/admin/settings.php:1399
+#: includes/admin/settings.php:1422
 msgid "Allow BuddyPress Groups to have their own forums"
 msgstr ""
 
-#: includes/admin/settings.php:1443
+#: includes/admin/settings.php:1466
 msgid "create a new one"
 msgstr ""
 
-#: includes/admin/settings.php:1444
+#: includes/admin/settings.php:1467
 msgid "Use %s to contain your group forums, or %s"
 msgstr ""
 
-#: includes/admin/settings.php:1446
+#: includes/admin/settings.php:1469
 msgid "Use %s to contain your group forums"
 msgstr ""
 
-#: includes/admin/settings.php:1451
+#: includes/admin/settings.php:1474
 msgid "Changing this will not move existing forums."
 msgstr ""
 
-#: includes/admin/settings.php:1466
+#: includes/admin/settings.php:1489
 msgid "Forum settings for Akismet"
 msgstr ""
 
-#: includes/admin/settings.php:1481
+#: includes/admin/settings.php:1504
 msgid "Allow Akismet to actively prevent forum spam."
 msgstr ""
 
-#: includes/admin/settings.php:1497
+#: includes/admin/settings.php:1520
 msgid "Forums Settings"
 msgstr ""
 
-#: includes/admin/settings.php:1507
+#: includes/admin/settings.php:1530
 #: templates/default/bbpress/form-user-edit.php:161
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/settings.php:1525
+#: includes/admin/settings.php:1548
 msgid ""
 "Information about the database for your previous forums so they can be "
 "converted."
 msgstr ""
 
-#: includes/admin/settings.php:1548
+#: includes/admin/settings.php:1571
 msgid "The previous forum software"
 msgstr ""
 
-#: includes/admin/settings.php:1562
+#: includes/admin/settings.php:1585
 msgid "Use default %s if same server, or IP or hostname"
 msgstr ""
 
-#: includes/admin/settings.php:1576
+#: includes/admin/settings.php:1599
 msgid "Use default %s if unsure"
 msgstr ""
 
-#: includes/admin/settings.php:1590
+#: includes/admin/settings.php:1613
 msgid "User to access the database"
 msgstr ""
 
-#: includes/admin/settings.php:1606
+#: includes/admin/settings.php:1629
 msgid "Toggle"
 msgstr ""
 
-#: includes/admin/settings.php:1610
+#: includes/admin/settings.php:1633
 msgid "Password for the above database user"
 msgstr ""
 
-#: includes/admin/settings.php:1624
+#: includes/admin/settings.php:1647
 msgid "Name of the database with your old forum data"
 msgstr ""
 
-#: includes/admin/settings.php:1637
+#: includes/admin/settings.php:1660
 msgid "Some optional parameters to help tune the conversion process."
 msgstr ""
 
-#: includes/admin/settings.php:1651
+#: includes/admin/settings.php:1674
 msgid "Use %s if converting from BuddyPress Legacy"
 msgstr ""
 
-#: includes/admin/settings.php:1665
+#: includes/admin/settings.php:1688
 msgid "entry maximum when querying for data to convert"
 msgstr ""
 
-#: includes/admin/settings.php:1666
+#: includes/admin/settings.php:1689
 msgid "Keep this low if you experience out-of-memory issues."
 msgstr ""
 
-#: includes/admin/settings.php:1680
+#: includes/admin/settings.php:1703
 msgid "second delay between each query of rows above"
 msgstr ""
 
-#: includes/admin/settings.php:1681
+#: includes/admin/settings.php:1704
 msgid "Keep this high to prevent too-many-connection issues."
 msgstr ""
 
-#: includes/admin/settings.php:1695
+#: includes/admin/settings.php:1718
 msgid "Halt the conversion if an error occurs"
 msgstr ""
 
-#: includes/admin/settings.php:1696
+#: includes/admin/settings.php:1719
 msgid "This is helpful if you want to debug problems."
 msgstr ""
 
-#: includes/admin/settings.php:1711
+#: includes/admin/settings.php:1734
 msgid "Restart the converter from the beginning"
 msgstr ""
 
-#: includes/admin/settings.php:1712
+#: includes/admin/settings.php:1735
 msgid ""
 "This forces all steps back to 0. Avoid duplicate data by purging or "
 "resetting first."
 msgstr ""
 
-#: includes/admin/settings.php:1726
+#: includes/admin/settings.php:1749
 msgid "Purge all meta-data from a previous import"
 msgstr ""
 
-#: includes/admin/settings.php:1727
+#: includes/admin/settings.php:1750
 msgid ""
 "Use this if an import failed, or you just want to remove the relationship "
 "data."
 msgstr ""
 
-#: includes/admin/settings.php:1741
+#: includes/admin/settings.php:1764
 msgid "Import user accounts from previous forums"
 msgstr ""
 
-#: includes/admin/settings.php:1742
+#: includes/admin/settings.php:1765
 msgid "Passwords remain encrypted, and are converted as individual users log in."
 msgstr ""
 
-#: includes/admin/settings.php:1762
+#: includes/admin/settings.php:1785
 msgid "Up next: step %s"
 msgstr ""
 
-#: includes/admin/settings.php:1763
+#: includes/admin/settings.php:1786
 msgid "Ready"
 msgstr ""
 
-#: includes/admin/settings.php:1767
+#: includes/admin/settings.php:1790
 msgid "Resume"
 msgstr ""
 
-#: includes/admin/settings.php:1772
+#: includes/admin/settings.php:1795
 msgid "Previously stopped at step %d of %d"
 msgstr ""
 
-#: includes/admin/settings.php:1773
+#: includes/admin/settings.php:1796
 msgid "Ready to go."
 msgstr ""
 
-#: includes/admin/settings.php:1776 includes/admin/tools/repair.php:43
+#: includes/admin/settings.php:1799 includes/admin/tools/repair.php:43
 #: includes/admin/tools/reset.php:23 includes/admin/tools/upgrade.php:40
 msgid "Forum Tools"
 msgstr ""
 
-#: includes/admin/settings.php:1787
+#: includes/admin/settings.php:1810
 msgid "Toggle panel: Import Status"
 msgstr ""
 
-#: includes/admin/settings.php:1791
+#: includes/admin/settings.php:1814
 msgid "Import Monitor"
 msgstr ""
 
-#: includes/admin/settings.php:1803
+#: includes/admin/settings.php:1826
 msgid "Pause"
 msgstr ""
 
-#: includes/admin/settings.php:1846
+#: includes/admin/settings.php:1869
 msgid "This screen provides access to all of the Forums settings."
 msgstr ""
 
-#: includes/admin/settings.php:1847 includes/admin/tools/help.php:97
+#: includes/admin/settings.php:1870 includes/admin/tools/help.php:97
 msgid ""
 "Please see the additional help tabs for more information on each individual "
 "section."
 msgstr ""
 
-#: includes/admin/settings.php:1853
+#: includes/admin/settings.php:1876
 msgid "Main Settings"
 msgstr ""
 
-#: includes/admin/settings.php:1854
+#: includes/admin/settings.php:1877
 msgid "The \"Main Settings\" section includes a number of options:"
 msgstr ""
 
-#: includes/admin/settings.php:1857
+#: includes/admin/settings.php:1880
 msgid ""
 "You can choose to lock a post after a certain number of minutes. \"Locking "
 "post editing\" will prevent the author from editing some amount of time "
 "after saving a post."
 msgstr ""
 
-#: includes/admin/settings.php:1858
+#: includes/admin/settings.php:1881
 msgid ""
 "\"Throttle time\" is the amount of time required between posts from a "
 "single author. The higher the throttle time, the longer a user will need to "
 "wait between posting to the forum."
 msgstr ""
 
-#: includes/admin/settings.php:1859
+#: includes/admin/settings.php:1882
 msgid ""
 "Favorites are a way for users to save and later return to topics they "
 "favor. This is enabled by default."
 msgstr ""
 
-#: includes/admin/settings.php:1860
+#: includes/admin/settings.php:1883
 msgid ""
 "Subscriptions allow users to subscribe for notifications to topics that "
 "interest them. This is enabled by default."
 msgstr ""
 
-#: includes/admin/settings.php:1861
+#: includes/admin/settings.php:1884
 msgid ""
 "Topic-Tags allow users to filter topics between forums. This is enabled by "
 "default."
 msgstr ""
 
-#: includes/admin/settings.php:1862
+#: includes/admin/settings.php:1885
 msgid ""
 "\"Anonymous Posting\" allows guest users who do not have accounts on your "
 "site to both create topics as well as replies."
 msgstr ""
 
-#: includes/admin/settings.php:1863
+#: includes/admin/settings.php:1886
 msgid ""
 "The Fancy Editor brings the luxury of the Visual editor and HTML editor "
 "from the traditional WordPress dashboard into your theme."
 msgstr ""
 
-#: includes/admin/settings.php:1864
+#: includes/admin/settings.php:1887
 msgid ""
 "Auto-embed will embed the media content from a URL directly into the "
 "replies. For example: links to Flickr and YouTube."
 msgstr ""
 
-#: includes/admin/settings.php:1867
+#: includes/admin/settings.php:1890
 msgid ""
 "You must click the Save Changes button at the bottom of the screen for new "
 "settings to take effect."
 msgstr ""
 
-#: includes/admin/settings.php:1873
+#: includes/admin/settings.php:1896
 msgid "Theme Packages"
 msgstr ""
 
-#: includes/admin/settings.php:1874
+#: includes/admin/settings.php:1897
 msgid ""
 "The \"Theme Packages\" section allows you to choose which theme package "
 "should be used."
 msgstr ""
 
-#: includes/admin/settings.php:1877
+#: includes/admin/settings.php:1900
 msgid "The \"bbPress Default\" package is installed by default."
 msgstr ""
 
-#: includes/admin/settings.php:1878
+#: includes/admin/settings.php:1901
 msgid "Some themes may choose to ignore this setting entirely."
 msgstr ""
 
-#: includes/admin/settings.php:1879
+#: includes/admin/settings.php:1902
 msgid "Packages can be stacked to allow for intelligent fallbacks."
 msgstr ""
 
-#: includes/admin/settings.php:1887
+#: includes/admin/settings.php:1910
 msgid "Per Page"
 msgstr ""
 
-#: includes/admin/settings.php:1888
+#: includes/admin/settings.php:1911
 msgid ""
 "The \"Per Page\" section allows you to control the number of topics and "
 "replies appear on each page."
 msgstr ""
 
-#: includes/admin/settings.php:1890
+#: includes/admin/settings.php:1913
 msgid ""
 "This is comparable to the WordPress \"Reading Settings\" page, where you "
 "can set the number of posts that should show on blog pages and in feeds."
 msgstr ""
 
-#: includes/admin/settings.php:1891
+#: includes/admin/settings.php:1914
 msgid ""
 "These are broken up into two separate groups: one for what appears in your "
 "theme, another for RSS feeds."
 msgstr ""
 
-#: includes/admin/settings.php:1899
+#: includes/admin/settings.php:1922
 msgid "Slugs"
 msgstr ""
 
-#: includes/admin/settings.php:1900
+#: includes/admin/settings.php:1923
 msgid ""
 "The \"Slugs\" section allows you to control the permalink structure for "
 "your forums."
 msgstr ""
 
-#: includes/admin/settings.php:1902
+#: includes/admin/settings.php:1925
 msgid ""
 "\"Archive Slugs\" are used as the \"root\" for your forums and topics. If "
 "you combine these values with existing page slugs, bbPress will attempt to "
 "output the most correct title and content."
 msgstr ""
 
-#: includes/admin/settings.php:1903
+#: includes/admin/settings.php:1926
 msgid ""
 "\"Single Slugs\" are used as a prefix when viewing an individual forum, "
 "topic, reply, user, or view."
 msgstr ""
 
-#: includes/admin/settings.php:1904
+#: includes/admin/settings.php:1927
 msgid ""
 "In the event of a slug collision with WordPress or BuddyPress, a warning "
 "will appear next to the problem slug(s)."
 msgstr ""
 
-#: includes/admin/settings.php:1998
+#: includes/admin/settings.php:2021
 #: templates/default/bbpress/loop-forums.php:24
 #: templates/default/bbpress/loop-replies.php:21
 #: templates/default/bbpress/loop-replies.php:47
@@ -2270,63 +2273,67 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: includes/admin/settings.php:1999
+#: includes/admin/settings.php:2022
 msgid "Pages"
 msgstr ""
 
-#: includes/admin/settings.php:2001
+#: includes/admin/settings.php:2024
 msgid "Attachments"
 msgstr ""
 
-#: includes/admin/settings.php:2002
+#: includes/admin/settings.php:2025
 msgid "Menus"
 msgstr ""
 
-#: includes/admin/settings.php:2005
+#: includes/admin/settings.php:2028
 msgid "Tag base"
 msgstr ""
 
-#: includes/admin/settings.php:2008
+#: includes/admin/settings.php:2031
 msgid "Category base"
 msgstr ""
 
-#: includes/admin/settings.php:2013
+#: includes/admin/settings.php:2036
 msgid "Forums base"
 msgstr ""
 
-#: includes/admin/settings.php:2016
+#: includes/admin/settings.php:2039
 msgid "Topics base"
 msgstr ""
 
-#: includes/admin/settings.php:2019
+#: includes/admin/settings.php:2042
 msgid "Forum slug"
 msgstr ""
 
-#: includes/admin/settings.php:2022
+#: includes/admin/settings.php:2045
 msgid "Topic slug"
 msgstr ""
 
-#: includes/admin/settings.php:2025
+#: includes/admin/settings.php:2048
 msgid "Reply slug"
 msgstr ""
 
-#: includes/admin/settings.php:2028
+#: includes/admin/settings.php:2051
+msgid "Edit slug"
+msgstr ""
+
+#: includes/admin/settings.php:2054
 msgid "User base"
 msgstr ""
 
-#: includes/admin/settings.php:2031
+#: includes/admin/settings.php:2057
 msgid "View base"
 msgstr ""
 
-#: includes/admin/settings.php:2034
+#: includes/admin/settings.php:2060
 msgid "Topic tag slug"
 msgstr ""
 
-#: includes/admin/settings.php:2046
+#: includes/admin/settings.php:2072
 msgid "%s page"
 msgstr ""
 
-#: includes/admin/settings.php:2069
+#: includes/admin/settings.php:2095
 msgid "Possible %1$s conflict: %2$s"
 msgstr ""
 
@@ -3070,7 +3077,7 @@ msgid "Recount replies in each topic"
 msgstr ""
 
 #: includes/admin/tools.php:260
-msgid "Run this if the number of topics in any topics are incorrect."
+msgid "Run this if the number of replies in any topics are incorrect."
 msgstr ""
 
 #: includes/admin/tools.php:271
@@ -3657,27 +3664,27 @@ msgstr[1] ""
 msgid "Pending: %s"
 msgstr ""
 
-#: includes/common/functions.php:406 includes/common/functions.php:463
-msgid "Private: %s"
-msgstr ""
-
-#: includes/common/functions.php:410 includes/common/functions.php:467
+#: includes/common/functions.php:410 includes/common/functions.php:468
 msgid "Spammed: %s"
 msgstr ""
 
-#: includes/common/functions.php:414 includes/common/functions.php:471
+#: includes/common/functions.php:414 includes/common/functions.php:472
 msgid "Trashed: %s"
 msgstr ""
 
-#: includes/common/functions.php:555
+#: includes/common/functions.php:464
+msgid "Private: %s"
+msgstr ""
+
+#: includes/common/functions.php:556
 msgid "<strong>ERROR</strong>: Invalid author name."
 msgstr ""
 
-#: includes/common/functions.php:561
+#: includes/common/functions.php:562
 msgid "<strong>ERROR</strong>: Invalid email address."
 msgstr ""
 
-#: includes/common/functions.php:1100
+#: includes/common/functions.php:1101
 msgid ""
 "%1$s wrote:\n"
 "\n"
@@ -3692,7 +3699,7 @@ msgid ""
 "Login and visit the topic to unsubscribe from these emails."
 msgstr ""
 
-#: includes/common/functions.php:1267
+#: includes/common/functions.php:1268
 msgid ""
 "%1$s wrote:\n"
 "\n"
@@ -6028,46 +6035,46 @@ msgstr ""
 msgid "Forum Topics Started"
 msgstr ""
 
-#: templates/default/bbpress-functions.php:211
+#: templates/default/bbpress-functions.php:219
 msgid "Something went wrong. Refresh your browser and try again."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:225
+#: templates/default/bbpress-functions.php:233
 msgid "Favorites are no longer active."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:230
+#: templates/default/bbpress-functions.php:238
 msgid "Please login to favorite."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:240
-#: templates/default/bbpress-functions.php:303
+#: templates/default/bbpress-functions.php:248
+#: templates/default/bbpress-functions.php:311
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:250
+#: templates/default/bbpress-functions.php:258
 msgid "Favorite failed."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:255
-#: templates/default/bbpress-functions.php:318
+#: templates/default/bbpress-functions.php:263
+#: templates/default/bbpress-functions.php:326
 msgid "Are you sure you meant to do that?"
 msgstr ""
 
-#: templates/default/bbpress-functions.php:265
-#: templates/default/bbpress-functions.php:328
+#: templates/default/bbpress-functions.php:273
+#: templates/default/bbpress-functions.php:336
 msgid "The request was unsuccessful. Please try again."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:288
+#: templates/default/bbpress-functions.php:296
 msgid "Subscriptions are no longer active."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:293
+#: templates/default/bbpress-functions.php:301
 msgid "Please login to subscribe."
 msgstr ""
 
-#: templates/default/bbpress-functions.php:313
+#: templates/default/bbpress-functions.php:321
 msgid "Subcription failed."
 msgstr ""
 
