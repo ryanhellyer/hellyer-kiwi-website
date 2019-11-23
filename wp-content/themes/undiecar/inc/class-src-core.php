@@ -1031,10 +1031,12 @@ if ( isset( $_GET['test'] ) ) {
 			}
 
 		}
-
+echo $name . "\n";
+if ( $name === 'Hugo Olsson' ) {
+print_r( $result );die;
+}
 		// Add bonus point for leading race.
 		if ( 0 != $result['laps_led'] ) {
-print_r( $result );die;
 		}
 		if ( is_numeric( $result['laps_led'] ) && 0 < $result['laps_led'] ) {
 			$stored_results[$name] = $stored_results[$name] + 2;
