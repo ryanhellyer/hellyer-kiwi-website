@@ -1032,6 +1032,11 @@ if ( isset( $_GET['test'] ) ) {
 
 		}
 
+		// Add bonus point for leading race.
+		if ( is_numeric( $result['laps_led'] ) && 0 < $result['laps_led'] ) {
+			$stored_results[$name] = $stored_results[$name] + 2;
+		}
+
 		// Pole position bonus point - sort qualifying times, then grab the first result
 		if ( isset( $q_times ) && is_array( $q_times ) ) {
 			asort( $q_times );
