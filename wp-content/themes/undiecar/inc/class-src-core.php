@@ -1030,9 +1030,13 @@ if ( isset( $_GET['test'] ) ) {
 				$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
 			}
 
-echo $name . "\n";
+//echo $name . "\n";
 if ( $name === 'Hugo Olsson' ) {
-print_r( $result );die;
+	if ( 0 !== $result['laps_led'] ) {
+		echo "\n\n\n";
+		print_r( $result );
+		echo "\n\n\n";
+	}
 }
 
 			// Add bonus point for leading race.
