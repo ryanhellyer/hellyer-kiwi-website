@@ -1030,16 +1030,18 @@ if ( isset( $_GET['test'] ) ) {
 				$stored_results[$name] = 0 - ( $result['incidents'] * self::FRACTION );
 			}
 
-		}
 echo $name . "\n";
 if ( $name === 'Hugo Olsson' ) {
 print_r( $result );die;
 }
-		// Add bonus point for leading race.
-		if ( 0 != $result['laps_led'] ) {
-		}
-		if ( is_numeric( $result['laps_led'] ) && 0 < $result['laps_led'] ) {
-			$stored_results[$name] = $stored_results[$name] + 2;
+
+			// Add bonus point for leading race.
+			if ( 0 != $result['laps_led'] ) {
+			}
+			if ( is_numeric( $result['laps_led'] ) && 0 < $result['laps_led'] ) {
+				$stored_results[$name] = $stored_results[$name] + 2;
+			}
+
 		}
 
 		// Pole position bonus point - sort qualifying times, then grab the first result
