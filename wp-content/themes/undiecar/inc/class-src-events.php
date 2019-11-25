@@ -731,10 +731,11 @@ class SRC_Events extends SRC_Core {
 		}
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
-/*
 echo '<!-- ' . "\n.......................\n";
-print_r( $this->event );
+$bla = get_post_meta( $this->event['current_round']['track'] );
+print_r( $bla );
 echo "\n...................\n" . ' -->';
+/*
 */
 			$html .= wpautop(
 				sprintf(
