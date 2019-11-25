@@ -731,12 +731,6 @@ class SRC_Events extends SRC_Core {
 		}
 
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
-echo '<!-- ' . "\n.......................\n";
-$bla = get_post_meta( $this->event['current_round']['track'] );
-print_r( $bla );
-echo "\n...................\n" . ' -->';
-/*
-*/
 			$html .= wpautop(
 				sprintf(
 					__( 'This event %s held on %s %s at the %s long <a href="%s">%s</a> track in %s. Qualifying %s at %s GMT, followed by %s %s race%s.%s', 'undiecar' ),
@@ -768,6 +762,12 @@ echo "\n...................\n" . ' -->';
 			if ( isset( $this->event['current_round']['track_country'] ) ) {
 				$current_track_country = $this->event['current_round']['track_country'];
 			}
+echo '<!-- ' . "\n.......................\n";
+$bla = get_post_meta( $this->event['current_round']['track'], 'track_length', true );
+print_r( $bla );
+echo "\n...................\n" . ' -->';
+/*
+*/
 
 			$html .= wpautop(
 				sprintf(
