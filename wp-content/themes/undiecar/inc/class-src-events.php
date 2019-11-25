@@ -762,12 +762,6 @@ class SRC_Events extends SRC_Core {
 			if ( isset( $this->event['current_round']['track_country'] ) ) {
 				$current_track_country = $this->event['current_round']['track_country'];
 			}
-echo '<!-- ' . "\n.......................\n";
-$bla = get_post_meta( $this->event['current_round']['track'], 'track_length', true );
-print_r( $bla );
-echo "\n...................\n" . ' -->';
-/*
-*/
 
 			$html .= wpautop(
 				sprintf(
@@ -779,7 +773,7 @@ echo "\n...................\n" . ' -->';
 					$will_be,
 					esc_html( date( 'l', $this->event['current_round']['date'] ) ), // Day of week
 					esc_html( $date ),
-					esc_html( get_post_meta( $current_track, 'track_length', true ) ) . ' km',
+					get_post_meta( $this->event['current_round']['track'], 'track_length', true ) . ' km',
 					esc_url( $track_url ),
 					esc_html( $this->event['current_round']['track_name'] ),
 					'', // Removed as was repetitive after already mentioning track type in track name sometimes esc_html( $this->event['current_round']['track_type'] ),
