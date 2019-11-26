@@ -4,6 +4,8 @@ if ( ! isset( $_GET['modify_result'] ) ) {
 	return;
 }
 
+return;
+
 $post_id = 4035;
 
 $meta = get_post_meta( $post_id, '_results_2', true );
