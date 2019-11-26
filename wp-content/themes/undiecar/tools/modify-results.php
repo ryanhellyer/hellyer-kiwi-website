@@ -11,6 +11,8 @@ $new_meta = $old_meta = json_decode( $meta, true );
 
 //print_r( $new_meta[0] );die;
 
+
+/*
 $new_meta[2]['position'] = 4;
 $new_meta[3]['position'] = 5;
 $new_meta[4]['position'] = 6;
@@ -23,6 +25,9 @@ $new_meta[10]['position'] = 12;
 $new_meta[11]['position'] = 13;
 $new_meta[12]['position'] = 14;
 $new_meta[13]['position'] = 3;
+*/
+$new_meta[2.5] = $new_meta[13];
+unset( $new_meta[13] );
 
 print_r( $new_meta );
 die;
