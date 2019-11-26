@@ -15,7 +15,14 @@ $new_meta[2]['position'] = 3;
 $new_meta[3]['position'] = 4;
 $new_meta[4]['position'] = 5;
 $new_meta[5]['position'] = 6;
-$new_meta[6]['position'] = 2;
+$new_meta[6]['position'] = 7;
+$new_meta[7]['position'] = 8;
+$new_meta[8]['position'] = 9;
+$new_meta[9]['position'] = 10;
+$new_meta[10]['position'] = 11;
+$new_meta[11]['position'] = 12;
+$new_meta[12]['position'] = 13;
+$new_meta[13]['position'] = 3;
 
 
 /*
