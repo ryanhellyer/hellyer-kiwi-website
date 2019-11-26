@@ -29,8 +29,8 @@ $new_meta[13]['position'] = 3;
 $new_meta[2.5] = $new_meta[13];
 unset( $new_meta[13] );
 
-print_r( $new_meta );
-die;
+//print_r( $new_meta );
+//die;
 
 /*
 $new_meta[0] = $old_meta[1];
