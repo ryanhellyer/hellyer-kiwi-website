@@ -9,9 +9,12 @@ class SRC_AI extends SRC_Core {
 
 	// List of cars ( use % instead of \\ to simplify code escaping).
 	private $cars = array(
-		'mx5%mx52016_67'   => 'Global Mazda MX-5 Cup',
-		'porsche911cup_88' => 'Porsche 911 GT3 Cup',
-		'rt2000_1'         => 'Formula Skip Barber 2000',
+		'mx5%mx52016_67'                => 'Global Mazda MX-5 Cup',
+		'porsche911cup_88'              => 'Porsche 911 GT3 Cup',
+		'rt2000_1'                      => 'Formula Skip Barber 2000',
+		'stockcars%camarozl12018_103'   => 'NASCAR Cup Series Chevrolet Camaro ZL1',
+		'stockcars%toyotacamry_56'      => 'NASCAR Cup Series Toyota Camry',
+		'stockcars%fordmustang2019_110' => 'NASCAR Cup Series Ford Mustang',
 	);
 
 	/**
