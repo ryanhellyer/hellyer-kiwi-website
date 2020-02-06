@@ -7,14 +7,14 @@ class SRC_AI extends SRC_Core {
 
 	private $iracing_ids;
 
-	// List of cars ( use % instead of \\ to simplify code escaping).
+	// List of cars ( use ~ instead of \\ to simplify code escaping).
 	private $cars = array(
-		'mx5%mx52016_67'                => 'Global Mazda MX-5 Cup',
+		'mx5~mx52016_67'                => 'Global Mazda MX-5 Cup',
 		'porsche911cup_88'              => 'Porsche 911 GT3 Cup',
 		'rt2000_1'                      => 'Formula Skip Barber 2000',
-		'stockcars%camarozl12018_103'   => 'NASCAR Cup Series Chevrolet Camaro ZL1',
-		'stockcars%toyotacamry_56'      => 'NASCAR Cup Series Toyota Camry',
-		'stockcars%fordmustang2019_110' => 'NASCAR Cup Series Ford Mustang',
+		'stockcars~camarozl12018_103'   => 'NASCAR Cup Series Chevrolet Camaro ZL1',
+		'stockcars~toyotacamry_56'      => 'NASCAR Cup Series Toyota Camry',
+		'stockcars~fordmustang2019_110' => 'NASCAR Cup Series Ford Mustang',
 	);
 
 	/**
@@ -118,14 +118,14 @@ class SRC_AI extends SRC_Core {
 			} else {
 				$car_number = rand( 100,300 );
 			}
-//https://undiecar.com/?ai_roster&display&cars=mx5%mx52016_67/porsche911cup_88
+//https://undiecar.com/?ai_roster&display&cars=mx5~mx52016_67/porsche911cup_88
 			// Get cars.
 			if ( isset( $_GET['cars'] ) ) {
 				$cars = explode( '/', $_GET['cars'] );
 			} else {
 				// Add default cars if none specified.
 				$cars = array(
-					0 => 'mx5%mx52016_67',
+					0 => 'mx5~mx52016_67',
 					1 => 'porsche911cup_88',
 				);
 			}
@@ -135,7 +135,7 @@ class SRC_AI extends SRC_Core {
 					$x = explode( '_', $car );
 					if ( isset( $x[1] ) ) {
 						$cars[ $key ] = array(
-							'path' => str_replace( '%', '//', $x[0] ),
+							'path' => str_replace( '~', '//', $x[0] ),
 							'id'   => $x[1],
 						);
 					}
@@ -151,13 +151,12 @@ class SRC_AI extends SRC_Core {
 			$car_count   = count( $cars );
 			$car_counter = 0;
 			while ( $car_counter < $car_count ) {
-
-				$car    = str_replace( '\\\\', '%', $cars[ $car_counter ] );
+				$car    = str_replace( '\\\\', '~', $cars[ $car_counter ] );
 				$car_path = $car['path'];
+
 				$path        = $uploads_dir . $car_path . '/' . $paint_file;
 				if ( file_exists( $path ) ) {
 					break;
-					echo $path . "\n";
 				}
 
 				$car_counter++;
@@ -207,7 +206,7 @@ class SRC_AI extends SRC_Core {
 			$uploads_dir = wp_upload_dir();
 			$uploads_dir = $uploads_dir['path'] . '/paints/';
 			$paint_file  = 'car_' . absint( $iracing_id ) . '.tga';
-			$car_path    = str_replace( '\\\\', '%', $car_path );
+			$car_path    = str_replace( '\\\\', '~', $car_path );
 			$path        = $uploads_dir . $car_path . '/' . $paint_file;
 			if ( file_exists( $path ) ) {
 				$roster .= ',
