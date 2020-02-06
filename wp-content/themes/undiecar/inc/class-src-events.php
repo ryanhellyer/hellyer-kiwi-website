@@ -89,13 +89,13 @@ class SRC_Events extends SRC_Core {
 	/**
 	 * Allow setup file uploads.
 	 *
-	 * @param  array $mime_types   The allowed mime types.
-	 * @return array modified mime types
+	 * @param  array   $mime_types   The allowed mime types
+	 * @return array  modified mime types
 	 */
-	public function allow_setup_uploads( $mime_types ) {
+	public function allow_setup_uploads( $mime_types ){
 		$mime_types['sto']  = 'application/octet-stream';
-		$mime_types['json'] = 'application/json';
-		$mime_types['zip']  = 'application/zip';
+		$mime_types['json'] = 'image/json';
+		$mime_types['zip']  = 'image/zip';
 
 		return $mime_types;
 	}
@@ -1662,3 +1662,14 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 	}
 
 }
+
+
+
+function wph_disable_mime_check ( $data ,  $file , $filename , $mimes ) {
+	$wp_filetype  = wp_check_filetype ( $filename ,  $mimes ) ;
+	$ext  = $wp_filetype [ 'ext' ] ;
+	$type  = $wp_filetype [ 'type' ] ;
+	$proper_filename  = $data [ 'proper_filename' ] ;
+	return  compact ( 'ext' ,  'type' , 'proper_filename' ) ;
+}
+//add_filter ( 'wp_check_filetype_and_ext' ,  'wph_disable_mime_check' , 10 , 4 ) ;
