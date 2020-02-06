@@ -89,10 +89,10 @@ class SRC_Events extends SRC_Core {
 	/**
 	 * Allow setup file uploads.
 	 *
-	 * @param  array   $mime_types   The allowed mime types
-	 * @return array  modified mime types
+	 * @param  array $mime_types   The allowed mime types.
+	 * @return array modified mime types
 	 */
-	public function allow_setup_uploads( $mime_types ){
+	public function allow_setup_uploads( $mime_types ) {
 		$mime_types['sto']  = 'application/octet-stream';
 		$mime_types['json'] = 'application/json';
 		$mime_types['zip']  = 'application/zip';
