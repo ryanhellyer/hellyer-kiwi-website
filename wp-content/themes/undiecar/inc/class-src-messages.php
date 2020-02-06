@@ -16,17 +16,18 @@ class SRC_Messages extends SRC_Core {
 	 * Add methods to appropriate hooks and filters.
 	 */
 	public function __construct() {
-		add_action( 'init',           array( $this, 'init' ) );
+		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_metaboxes' ) );
-		add_action( 'save_post',      array( $this, 'meta_boxes_save' ), 10, 2 );
+		add_action( 'save_post', array( $this, 'meta_boxes_save' ), 10, 2 );
+		add_action( 'template_redirect', array( $this, 'show_image' ) );
 
-		add_shortcode( 'b',         array( $this, 'shortcode_b' ) );
-		add_shortcode( 'u',         array( $this, 'shortcode_u' ) );
-		add_shortcode( 'url',       array( $this, 'shortcode_url' ) );
-		add_shortcode( 'img',       array( $this, 'shortcode_img' ) );
-		add_shortcode( 'hide',      array( $this, 'shortcode_hide' ) );
+		add_shortcode( 'b', array( $this, 'shortcode_b' ) );
+		add_shortcode( 'u', array( $this, 'shortcode_u' ) );
+		add_shortcode( 'url', array( $this, 'shortcode_url' ) );
+		add_shortcode( 'img', array( $this, 'shortcode_img' ) );
+		add_shortcode( 'hide', array( $this, 'shortcode_hide' ) );
+		add_shortcode( 'thumbnail', array( $this, 'shortcode_thumbnail' ) );
 //		add_filter( 'the_content', array( $this, 'shortcode_fudging' ) );
-//		add_filter( 'the_content', array( $this, 'textarea' ), 20 );
 	}
 
 	/**
@@ -55,11 +56,10 @@ class SRC_Messages extends SRC_Core {
 
 		$message_id = $_GET[ 'post' ];
 		$content = get_post_meta( $message_id, '_message', true );
-//$content = $this->shortcode_fudging( $content );
-//		$html = apply_filters( 'the_content', $html );
+
 		$html = do_shortcode( $content );
 
-		echo '<h2>' . esc_html__( 'HTML version', 'src' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'HTML version', 'undiecar' ) . '</h2>';
 		echo '<textarea style="height:300px;width:100%;">' . $html . '</textarea>';
 
 	}
@@ -91,6 +91,13 @@ class SRC_Messages extends SRC_Core {
 		return '';
 	}
 
+	public function shortcode_thumbnail() {
+		$post_id   = absint( $_GET['post'] );
+		$image_url = get_permalink( $post_id );
+		$image_url = add_query_arg( 'driver', '[NAME]', $image_url );
+
+		return '[img]' . esc_html( $image_url ) /*Don't use esc_url() due to it removing shortcodes */ . '[/img]';
+	}
 
 	/**
 	 * Init.
@@ -108,8 +115,8 @@ class SRC_Messages extends SRC_Core {
 				'exclude_from_search' => true,
 				'show_ui' => true,
 
-//'publicly_queryable' => true,
-				'label'              => esc_html__( 'Messages', 'src' ),
+				'publicly_queryable' => true,
+				'label'              => esc_html__( 'Messages', 'undiecar' ),
 				'supports'           => array( 'title', 'thumbnail' ),
 				'menu_icon'          => 'dashicons-flag',
 			)
@@ -120,7 +127,7 @@ class SRC_Messages extends SRC_Core {
 			array(
 				'public'             => true,
 				'publicly_queryable' => false,
-				'label'              => esc_html__( 'Message chunks', 'src' ),
+				'label'              => esc_html__( 'Message chunks', 'undiecar' ),
 				'supports'           => array( 'title' ),
 				'show_in_menu'           => 'edit.php?post_type=message',
 			)
@@ -135,7 +142,7 @@ class SRC_Messages extends SRC_Core {
 
 		add_meta_box(
 			'message', // ID
-			__( 'Message', 'src' ), // Title
+			__( 'Message', 'undiecar' ), // Title
 			array(
 				$this,
 				'meta_box', // Callback to method to display HTML
@@ -147,10 +154,22 @@ class SRC_Messages extends SRC_Core {
 
 		add_meta_box(
 			'message_output', // ID
-			__( 'Message output', 'src' ), // Title
+			__( 'Message output', 'undiecar' ), // Title
 			array(
 				$this,
 				'html_version', // Callback to method to display HTML
+			),
+			array( 'message', 'message-chunk' ), // Post type
+			'normal', // Context, choose between 'normal', 'advanced', or 'side'
+			'core'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
+		add_meta_box(
+			'message_recipients', // ID
+			__( 'Message recipients', 'undiecar' ), // Title
+			array(
+				$this,
+				'recipients', // Callback to method to display HTML
 			),
 			array( 'message', 'message-chunk' ), // Post type
 			'normal', // Context, choose between 'normal', 'advanced', or 'side'
@@ -205,6 +224,27 @@ class SRC_Messages extends SRC_Core {
 	}
 
 	/**
+	 * Display the recipients in a metabox.
+	 */
+	public function recipients() {
+
+		if ( isset( $_GET['post'] ) ) {
+			$log   = get_post_meta( $_GET['post'], 'log', true );
+			$log   = array_unique( $log );
+
+			echo '<ul>';
+			foreach ( $log as $key => $driver_name ) {
+				echo '<li><a href="' . esc_url( home_url( '/member/' . sanitize_title( $driver_name ) . '/' ) ) . '">' . esc_html( $driver_name ) . '</a></li>';
+			}
+			echo '</ul>';
+
+		} else {
+			echo 'coming later ...';
+		}
+
+	}
+
+	/**
 	 * Save opening times meta box data.
 	 *
 	 * @param  int     $post_id  The post ID
@@ -223,6 +263,53 @@ class SRC_Messages extends SRC_Core {
 			// Sanitize and store the data
 			$_message = wp_kses_post( $_POST['_message'] );
 			update_post_meta( $post_id, '_message', $_message );
+		}
+
+	}
+
+	/**
+	 * Show featured image.
+	 * Used for tracking views on messages read.
+	 */
+	public function show_image() {
+
+		// Bail out if not on a message post.
+		if ( 'message' !== get_post_type() || ! isset( $_GET['driver'] ) ) {
+			return;
+		}
+
+		// Load main loop.
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+
+				$image_key = 'message_' . get_the_ID() . '_image';
+				if ( false === ( $image_contents = get_transient( $image_key ) ) ) {
+					$image       = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
+					$src         = $image[0];
+					$uploads_dir = wp_upload_dir();
+					$file        = str_replace( $uploads_dir['url'], $uploads_dir['path'], $src );
+
+					$image_contents = file_get_contents( $file );
+
+					set_transient( $image_key, $image_contents, HOUR_IN_SECONDS );
+				}
+
+				// Update log meta.
+				$log   = get_post_meta( get_the_ID(), 'log', true );
+				$log[] = $_GET['driver'];
+				$log   = array_unique( $log );
+				update_post_meta( get_the_ID(), 'log', $log );
+
+				// Output the file.
+				header( 'Content-Type: image/jpg' );
+				header( 'Content-Length: ' . (string) ( filesize( $file ) ) );
+				echo $image_contents;
+				die;
+			}
+
+		} else {
+			require( get_template_directory() . '/404.php' );
 		}
 
 	}

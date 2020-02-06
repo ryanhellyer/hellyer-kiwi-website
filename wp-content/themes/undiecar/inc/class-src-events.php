@@ -1154,9 +1154,32 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 					$user = new WP_User_Query( $args );
 					if ( isset( $user->results[0]->ID ) ) {
 						$user_id = absint( $user->results[0]->ID );
+
+						// Updating car number.
 						$current_number = get_user_meta( $user_id, 'car_number', true );
 						if ( '' === $current_number || '0' === $current_number ) {
 							update_user_meta( $user_id, 'car_number', $car_no );
+						}
+
+						// Updating suit design.
+						$stored_design = get_user_meta( $user_id, 'suit_design', true );
+						$new_design    = esc_html( $row->suit_pattern . ',' . $row->suit_color1 . ',' . $row->suit_color2 . ',' . $row->suit_color3 );
+						if ( $new_design !== $stored_design ) {
+							update_user_meta( $user_id, 'suit_design', $new_design );
+						}
+
+						// Updating car design.
+						$stored_design = get_user_meta( $user_id, 'car_design', true );
+						$new_design    = esc_html( $row->car_pattern . ',' . $row->car_color1 . ',' . $row->car_color2 . ',' . $row->car_color3 );
+						if ( $new_design !== $stored_design ) {
+							update_user_meta( $user_id, 'car_design', $new_design );
+						}
+
+						// Updating helmet design.
+						$stored_design = get_user_meta( $user_id, 'helmet_design', true );
+						$new_design    = esc_html( $row->helm_pattern . ',' . $row->helm_color1 . ',' . $row->helm_color2 . ',' . $row->helm_color3 );
+						if ( $new_design !== $stored_design ) {
+							update_user_meta( $user_id, 'helmet_design', $new_design );
 						}
 					}
 
