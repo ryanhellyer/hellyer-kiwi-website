@@ -7,6 +7,13 @@ class SRC_AI extends SRC_Core {
 
 	private $iracing_ids;
 
+	// List of cars ( use | instead of \\ to simplify code escaping).
+	private $cars = array(
+		'mx5|mx52016_67'   => 'Global Mazda MX-5 Cup',
+		'porsche911cup_88' => 'Porsche 911 GT3 Cup',
+		'rt2000_1'         => 'Formula Skip Barber 2000',
+	);
+
 	/**
 	 * Class constructor.
 	 */
@@ -96,9 +103,6 @@ class SRC_AI extends SRC_Core {
 				$member_id = $member->data->ID;
 			}
 
-			// Storing iRacing ID (used later for getting paint files).
-			$this->iracing_ids[] = get_user_meta( $member_id, 'custid', true );
-
 			// Get driver skill.
 			$driver_skill = absint( 100 * ( ( count( $driver_points ) - $count ) / count( $driver_points ) ) );
 			if ( 0 === $driver_skill ) {
@@ -150,6 +154,9 @@ class SRC_AI extends SRC_Core {
 			$car_path = str_replace( '|', '\\\\', $car_path );
 			$car_id   = $car['id'];
 
+			// Storing iRacing ID (used later for getting paint files).
+			$this->iracing_ids[ $car['path'] ][] = get_user_meta( $member_id, 'custid', true );
+//print_r( $this->iracing_ids );die;
 			// Get colour schemes.
 			$helmet_design = get_user_meta( $member_id, 'helmet_design', true );
 			if ( '' === $helmet_design ) {
@@ -214,11 +221,14 @@ class SRC_AI extends SRC_Core {
 				// Add paint files.
 				$uploads_dir = wp_upload_dir();
 				$uploads_dir = $uploads_dir['path'] . '/paints/';
-				foreach ( $this->iracing_ids as $key => $iracing_id ) {
-					$paint_file = absint( $iracing_id ) . '.tga';
-					$path       = $uploads_dir . $file_name;
-					if ( file_exists( $path ) ) {
-						$zip->addFile ( $path, 'undiecar/' . $paint_file );	
+				foreach ( $this->iracing_ids as $car_slug => $iracing_ids ) {
+					foreach ( $iracing_ids as $key => $iracing_id ) {
+						$paint_file = absint( $iracing_id ) . '.tga';
+						$path       = $uploads_dir . $car_slug . '/' . $paint_file;
+
+						if ( file_exists( $path ) ) {
+							$zip->addFile ( $path, 'undiecar/' . $paint_file );	
+						}
 					}
 				}
 
@@ -242,19 +252,12 @@ class SRC_AI extends SRC_Core {
 	 */
 	public function shortcode() {
 
-		// List of cars ( use | instead of \\ to simplify code escaping).
-		$cars = array(
-			'mx5|mx52016_67'   => 'Global Mazda MX-5 Cup',
-			'porsche911cup_88' => 'Porsche 911 GT3 Cup',
-			'rt2000_1'         => 'Formula Skip Barber 2000',
-		);
-
 		$content = '<form id="undiecar-rosters" method="get" action="">';
 
 		$content .= '<label>Car #1</label>';
 		$content .= '<select id="undiecar-car1" name="undiecar-car1">';
 		$content .= '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
-		foreach ( $cars as $car_slug => $car_name ) {
+		foreach ( $this->cars as $car_slug => $car_name ) {
 			$content .= '<option value="' . esc_attr( $car_slug ) . '">' . esc_html( $car_name ) . '</option>';
 		}
 		$content .= '</select>';
@@ -262,7 +265,7 @@ class SRC_AI extends SRC_Core {
 		$content .= '<label>Car #2</label>';
 		$content .= '<select id="undiecar-car2" name="undiecar-car2">';
 		$content .= '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
-		foreach ( $cars as $car_slug => $car_name ) {
+		foreach ( $this->cars as $car_slug => $car_name ) {
 			$content .= '<option value="' . esc_attr( $car_slug ) . '">' . esc_html( $car_name ) . '</option>';
 		}
 		$content .= '</select>';
@@ -270,7 +273,7 @@ class SRC_AI extends SRC_Core {
 		$content .= '<label>Car #3</label>';
 		$content .= '<select id="undiecar-car3" name="undiecar-car3">';
 		$content .= '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
-		foreach ( $cars as $car_slug => $car_name ) {
+		foreach ( $this->cars as $car_slug => $car_name ) {
 			$content .= '<option value="' . esc_attr( $car_slug ) . '">' . esc_html( $car_name ) . '</option>';
 		}
 		$content .= '</select>';
@@ -326,7 +329,6 @@ undiecar_roster_button.addEventListener( 'click', function( e ) {
 	let number = document.getElementById( 'undiecar-number' ).value;
 	url_parts = url_parts + '&number=' + number;
 	let url = undiecar_roster_form_url + url_parts;
-//console.log( url );
 
 	// Redirect instead of processing form submission.
 	window.location = url;
