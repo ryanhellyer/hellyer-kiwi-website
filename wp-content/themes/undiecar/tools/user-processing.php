@@ -22,6 +22,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 	public function __construct() {
 
+				/*
 				if ( 'Renzo A. Olivieri' === $_GET['user_processing'] ) {
 					$driver_id = 1777;
 					$driver_data = $this->iracing_member_info( 'Renzo A. Olivieri' );
@@ -50,6 +51,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 
 					die('done');
 				}
+				*/
 
 
 		if ( ! isset( $_GET['start'] ) ) {
@@ -66,17 +68,20 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 				set_transient( $key, $drivers, HOUR_IN_SECONDS );
 			}
 
-			$x =  $_GET['start'];
+			$x   =  $_GET['start'];
 			$end = $_GET['start'] + 1;
 			while( $x <= $end ) {
-
-				$driver = $drivers[$x];
+				$driver    = $drivers[$x];
 				$driver_id = $driver->ID;
 
-				$name = $driver->data->display_name;
-				$driver_data = $this->iracing_member_info( $name );
-				echo $name . ', ';
+				$x++;
 
+				$name = $driver->data->display_name;
+
+				$driver_data = $this->iracing_member_info( $name );
+
+				echo $name . ', ';
+				echo '<br />custid: ' . $driver_data['custid'] . '<br />';
 				// Add some meta keys
 				$meta_keys = array(
 					'club',
@@ -98,7 +103,6 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 					}
 				}
 
-				$x++;
 			}
 
 			echo '<meta http-equiv="refresh" content="0;URL=\'' . 
