@@ -122,32 +122,26 @@ class SRC_AI extends SRC_Core {
 			// Get cars.
 			if ( isset( $_GET['cars'] ) ) {
 				$cars = explode( '/', $_GET['cars'] );
-				if ( is_array( $cars ) ) {
-					foreach ( $cars as $key => $car ) {
-						$x = explode( '_', $car );
-						if ( isset( $x[1] ) ) {
-							$cars[ $key ] = array(
-								'path' => $x[0],
-								'id'   => $x[1],
-							);
-						}
-					}
-				}
-				shuffle( $cars ); // Shuffle it to keep the car selection random.
-			}
-			if ( ! isset( $cars ) ) {
+			} else {
 				// Add default cars if none specified.
 				$cars = array(
-					0 => array(
-						'path' => 'porsche911cup',
-						'id'   => 88,
-					),
-					1 => array(
-						'path' => 'mx5%mx52016',
-						'id'   => 67,
-					),
+					0 => 'mx5%mx52016_67',
+					1 => 'porsche911cup_88',
 				);
 			}
+
+			if ( is_array( $cars ) ) {
+				foreach ( $cars as $key => $car ) {
+					$x = explode( '_', $car );
+					if ( isset( $x[1] ) ) {
+						$cars[ $key ] = array(
+							'path' => str_replace( '%', '//', $x[0] ),
+							'id'   => $x[1],
+						);
+					}
+				}
+			}
+			shuffle( $cars ); // Shuffle it to keep the car selection random.
 
 			// Randomly select a car.
 			$iracing_id  = get_user_meta( $member_id, 'custid', true );
