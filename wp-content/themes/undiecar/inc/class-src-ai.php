@@ -130,6 +130,7 @@ class SRC_AI extends SRC_Core {
 						}
 					}
 				}
+				shuffle( $cars ); // Shuffle it to keep the car selection random.
 			}
 			if ( ! isset( $cars ) ) {
 				// Add default cars if none specified.
@@ -139,39 +140,36 @@ class SRC_AI extends SRC_Core {
 						'id'   => 88,
 					),
 					1 => array(
-						'path' => 'mx5\\mx52016',
+						'path' => 'mx5%mx52016',
 						'id'   => 67,
 					),
 				);
 			}
 
 			// Randomly select a car.
-			$car_count = count( $cars );
-			$rand      = rand( 0, ( $car_count - 1 ) );
-			$car = $cars[ $rand ];
+			$iracing_id  = get_user_meta( $member_id, 'custid', true );
+			$uploads_dir = wp_upload_dir();
+			$uploads_dir = $uploads_dir['path'] . '/paints/';
+			$paint_file  = 'car_' . absint( $iracing_id ) . '.tga';
+			$car_count   = count( $cars );
+			$car_counter = 0;
+			while ( $car_counter < $car_count ) {
 
-			$car_path = $car['path'];
-			$car_path = str_replace( '%', '\\\\', $car_path );
-			$car_id   = $car['id'];
+				$car    = str_replace( '\\\\', '%', $cars[ $car_counter ] );
+				$car_path = $car['path'];
+				$path        = $uploads_dir . $car_path . '/' . $paint_file;
+				if ( file_exists( $path ) ) {
+					break;
+					echo $path . "\n";
+				}
+
+				$car_counter++;
+			}
+			$car_id = $car['id'];
 
 			// Storing iRacing ID (used later for getting paint files).
-			$iracing_id                          = get_user_meta( $member_id, 'custid', true );
 			$this->iracing_ids[ $car['path'] ][] = $iracing_id;
-/*
-if ( 'Bruce Johnson' === $driver_name ) {
-	print_r(
-		get_user_meta( $member_id )
-	);
-	die;
-}
-if ( '150414' === get_user_meta( $member_id, 'custid', true ) ) {
-	echo $driver_name;
-	die;
-} else {
-//	echo 'abc';die;
-}
-*/
-//print_r( $this->iracing_ids );die;
+
 			// Get colour schemes.
 			$helmet_design = get_user_meta( $member_id, 'helmet_design', true );
 			if ( '' === $helmet_design ) {
@@ -206,8 +204,7 @@ if ( '150414' === get_user_meta( $member_id, 'custid', true ) ) {
 			"driverAge": 13,
 			"pitCrewSkill": 53,
 			"strategyRiskiness": 72,
-			"iracing_id": ' . absint( $iracing_id ) . '
-';
+			"iracing_id": ' . absint( $iracing_id );
 
 			// Add paint file reference if it exists.
 			$uploads_dir = wp_upload_dir();
@@ -216,7 +213,6 @@ if ( '150414' === get_user_meta( $member_id, 'custid', true ) ) {
 			$car_path    = str_replace( '\\\\', '%', $car_path );
 			$path        = $uploads_dir . $car_path . '/' . $paint_file;
 			if ( file_exists( $path ) ) {
-//echo $car_path . "\n";echo $path;die;
 				$roster .= ',
 			"carTgaName": "car_' . absint( $iracing_id ) . '.tga"';
 			}
