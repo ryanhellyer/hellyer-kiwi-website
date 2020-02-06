@@ -7,9 +7,9 @@ class SRC_AI extends SRC_Core {
 
 	private $iracing_ids;
 
-	// List of cars ( use | instead of \\ to simplify code escaping).
+	// List of cars ( use % instead of \\ to simplify code escaping).
 	private $cars = array(
-		'mx5|mx52016_67'   => 'Global Mazda MX-5 Cup',
+		'mx5%mx52016_67'   => 'Global Mazda MX-5 Cup',
 		'porsche911cup_88' => 'Porsche 911 GT3 Cup',
 		'rt2000_1'         => 'Formula Skip Barber 2000',
 	);
@@ -115,7 +115,7 @@ class SRC_AI extends SRC_Core {
 			} else {
 				$car_number = rand( 100,300 );
 			}
-//https://undiecar.com/?ai_roster&display&cars=mx5|mx52016_67/porsche911cup_88
+//https://undiecar.com/?ai_roster&display&cars=mx5%mx52016_67/porsche911cup_88
 			// Get cars.
 			if ( isset( $_GET['cars'] ) ) {
 				$cars = explode( '/', $_GET['cars'] );
@@ -151,11 +151,26 @@ class SRC_AI extends SRC_Core {
 			$car = $cars[ $rand ];
 
 			$car_path = $car['path'];
-			$car_path = str_replace( '|', '\\\\', $car_path );
+			$car_path = str_replace( '%', '\\\\', $car_path );
 			$car_id   = $car['id'];
 
 			// Storing iRacing ID (used later for getting paint files).
-			$this->iracing_ids[ $car['path'] ][] = get_user_meta( $member_id, 'custid', true );
+			$iracing_id                          = get_user_meta( $member_id, 'custid', true );
+			$this->iracing_ids[ $car['path'] ][] = $iracing_id;
+/*
+if ( 'Bruce Johnson' === $driver_name ) {
+	print_r(
+		get_user_meta( $member_id )
+	);
+	die;
+}
+if ( '150414' === get_user_meta( $member_id, 'custid', true ) ) {
+	echo $driver_name;
+	die;
+} else {
+//	echo 'abc';die;
+}
+*/
 //print_r( $this->iracing_ids );die;
 			// Get colour schemes.
 			$helmet_design = get_user_meta( $member_id, 'helmet_design', true );
@@ -190,7 +205,24 @@ class SRC_AI extends SRC_Core {
 			"driverSmoothness": 0,
 			"driverAge": 13,
 			"pitCrewSkill": 53,
-			"strategyRiskiness": 72
+			"strategyRiskiness": 72,
+			"iracing_id": ' . absint( $iracing_id ) . '
+';
+
+			// Add paint file reference if it exists.
+			$uploads_dir = wp_upload_dir();
+			$uploads_dir = $uploads_dir['path'] . '/paints/';
+			$paint_file  = 'car_' . absint( $iracing_id ) . '.tga';
+			$car_path    = str_replace( '\\\\', '%', $car_path );
+			$path        = $uploads_dir . $car_path . '/' . $paint_file;
+			if ( file_exists( $path ) ) {
+//echo $car_path . "\n";echo $path;die;
+				$roster .= ',
+			"carTgaName": "car_' . absint( $iracing_id ) . '.tga"';
+			}
+
+
+			$roster .= '
 		}';
 		}
 
@@ -223,7 +255,7 @@ class SRC_AI extends SRC_Core {
 				$uploads_dir = $uploads_dir['path'] . '/paints/';
 				foreach ( $this->iracing_ids as $car_slug => $iracing_ids ) {
 					foreach ( $iracing_ids as $key => $iracing_id ) {
-						$paint_file = absint( $iracing_id ) . '.tga';
+						$paint_file = 'car_' . absint( $iracing_id ) . '.tga';
 						$path       = $uploads_dir . $car_slug . '/' . $paint_file;
 
 						if ( file_exists( $path ) ) {
