@@ -135,7 +135,7 @@ class SRC_AI extends SRC_Core {
 					$x = explode( '_', $car );
 					if ( isset( $x[1] ) ) {
 						$cars[ $key ] = array(
-							'path' => str_replace( '~', '//', $x[0] ),
+							'path' => str_replace( '~', '\\\\', $x[0] ),
 							'id'   => $x[1],
 						);
 					}
@@ -151,11 +151,13 @@ class SRC_AI extends SRC_Core {
 			$car_count   = count( $cars );
 			$car_counter = 0;
 			while ( $car_counter < $car_count ) {
-				$car    = str_replace( '\\\\', '~', $cars[ $car_counter ] );
-				$car_path = $car['path'];
+				$car_path = $cars[ $car_counter ]['path'];
+				$path     = $uploads_dir . $car_path . '/' . $paint_file;
 
-				$path        = $uploads_dir . $car_path . '/' . $paint_file;
+				// Select the car.
+				$car = $cars[ $car_counter ];
 				if ( file_exists( $path ) ) {
+					$car = $cars[ $car_counter ];
 					break;
 				}
 
