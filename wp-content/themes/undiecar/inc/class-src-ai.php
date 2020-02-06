@@ -5,6 +5,8 @@
  */
 class SRC_AI extends SRC_Core {
 
+	private $iracing_ids;
+
 	/**
 	 * Class constructor.
 	 */
@@ -93,7 +95,10 @@ class SRC_AI extends SRC_Core {
 			if ( isset( $member->data->ID ) ) {
 				$member_id = $member->data->ID;
 			}
-$iracing_id = get_user_meta( $member_id, 'custid', true );
+
+			// Storing iRacing ID (used later for getting paint files).
+			$this->iracing_ids[] = get_user_meta( $member_id, 'custid', true );
+
 			// Get driver skill.
 			$driver_skill = absint( 100 * ( ( count( $driver_points ) - $count ) / count( $driver_points ) ) );
 			if ( 0 === $driver_skill ) {
@@ -199,28 +204,23 @@ $iracing_id = get_user_meta( $member_id, 'custid', true );
 			echo $this->get_roster();
 			die;
 		} else {
-			/*
-
-			header( 'Content-Description: File Transfer' );
-			header( 'Content-Type: application/octet-stream' );
-			header( 'Content-Disposition: attachment; filename=roster.json' ); 
-			header( 'Content-Transfer-Encoding: binary' );
-			header( 'Connection: Keep-Alive' );
-			header( 'Expires: 0' );
-			header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
-			header( 'Pragma: public' );
-
-			echo $this->get_roster();
-			die;
-			*/
-
 			$zip = new ZipArchive;
 			$file_name = 'undiecar-roster.zip';
 			if ( $zip->open( $file_name, ZipArchive::CREATE ) === TRUE ) {
 
 				// Add a file new.txt file to zip using the text specified
 				$zip->addFromString( 'undiecar/roster.json', $this->get_roster() );
-				$zip->addEmptyDir ( 'undiecar' );
+
+				// Add paint files.
+				$uploads_dir = wp_upload_dir();
+				$uploads_dir = $uploads_dir['path'] . '/paints/';
+				foreach ( $this->iracing_ids as $key => $iracing_id ) {
+					$paint_file = absint( $iracing_id ) . '.tga';
+					$path       = $uploads_dir . $file_name;
+					if ( file_exists( $path ) ) {
+						$zip->addFile ( $path, 'undiecar/' . $paint_file );	
+					}
+				}
 
 				// All files are added, so close the zip file.
 				$zip->close();
