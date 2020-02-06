@@ -242,9 +242,10 @@ class SRC_AI extends SRC_Core {
 			$zip = new ZipArchive;
 			$file_name = 'undiecar-roster.zip';
 			if ( $zip->open( $file_name, ZipArchive::CREATE ) === TRUE ) {
+				$dir_name = 'Undiecar';
 
 				// Add a file new.txt file to zip using the text specified
-				$zip->addFromString( 'undiecar/roster.json', $this->get_roster() );
+				$zip->addFromString( $dir_name . '/roster.json', $this->get_roster() );
 
 				// Add paint files.
 				$uploads_dir = wp_upload_dir();
@@ -255,7 +256,7 @@ class SRC_AI extends SRC_Core {
 						$path       = $uploads_dir . $car_slug . '/' . $paint_file;
 
 						if ( file_exists( $path ) ) {
-							$zip->addFile ( $path, 'undiecar/' . $paint_file );	
+							$zip->addFile ( $path, $dir_name . '/' . $paint_file );	
 						}
 					}
 				}
