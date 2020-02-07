@@ -1147,6 +1147,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 					$laps_led         = $row->lapslead;
 					$laps_completed   = $row->lapscomplete;
 					$incidents        = $row->incidents;
+					$weight_penalty   = $row->weight_penalty_kg;
 
 					// Check if the user has a number, and if not, give them the one they used in this race
 					$args= array(
@@ -1197,6 +1198,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 						'laps_led'         => absint( $laps_led ),
 						'laps_completed'   => absint( $laps_completed ),
 						'incidents'        => absint( $incidents ),
+						'weight_penalty'   => esc_html( $weight_penalty ),
 					);
 					if ( isset( $drivers[ $driver_name ] ) && is_array( $drivers[ $driver_name ] ) ) {
 						$drivers[ $driver_name ] = array_merge( $drivers[ $driver_name ], $x );
