@@ -488,12 +488,12 @@ delete_transient( 'undiecar_gallery' );
 		return do_shortcode( $undiecar_gallery );
 	}
 
-	public function season_gallery( $args = array() ) {
+	public function season_gallery( $gallery_args = array() ) {
 
-		if ( ! isset( $args['season'] ) ) {
+		if ( ! isset( $gallery_args['season'] ) ) {
 			return;
 		}
-		$season = $args['season'];
+		$season = $gallery_args['season'];
 
 if ( isset( $_GET['delete_cache'] ) ) {
 delete_transient( 'undiecar_gallery_' . $season );
@@ -576,7 +576,18 @@ delete_transient( 'undiecar_gallery_' . $season );
 			set_transient( 'undiecar_gallery', 'undiecar_gallery_' . $season, HOUR_IN_SECONDS );
 		}
 
-		return do_shortcode( $undiecar_gallery );
+		$gallery_html = do_shortcode( $undiecar_gallery );
+
+		// Add a title if one is set.
+		if (
+			isset( $gallery_args['title'] )
+			&&
+			'' != $gallery_html
+		) {
+			$gallery_html = '<h3>' . esc_html( $gallery_args['title'] ) . '</h3>' . $gallery_html;
+		}
+
+		return $gallery_html;
 	}
 
 }

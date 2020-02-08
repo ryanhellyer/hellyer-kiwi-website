@@ -19,9 +19,11 @@ class SRC_Seasons extends SRC_Core {
 
 		// Add action hooks
 		add_action( 'init',            array( $this, 'init' ) );
+
 		add_filter( 'the_content',     array( $this, 'schedule' ) );
 		add_filter( 'the_content',     array( $this, 'drivers' ) );
 		add_filter( 'the_content',     array( $this, 'championships' ), 8 );
+		add_filter( 'the_content',     array( $this, 'gallery' ), 12 );
 
 //		add_filter( 'the_content',     array( $this, 'teams_championship' ), 9 );
 		add_filter( 'the_content',     array( $this, 'permanently_store_results' ), 100 );
@@ -644,6 +646,16 @@ class SRC_Seasons extends SRC_Core {
 		}
 
 		return $content . $html;
+	}
+
+	/**
+	 * Add all pictures from the current season as a gallery.
+	 */
+	public function gallery( $content ) {
+
+		$content .= do_shortcode( '[undiecar_season_gallery season="10" title="' . esc_html__( 'Gallery', 'undiecar' ) . '"]' );
+
+		return $content;
 	}
 
 }

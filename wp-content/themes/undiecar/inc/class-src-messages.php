@@ -38,8 +38,15 @@ class SRC_Messages extends SRC_Core {
 	 * @return string  The modified post content
 	 */
 	public function shortcode_fudging( $content ) {
+		if ( isset( $_GET[ 'post' ] ) ) {
+			$post_id = absint( $_GET[ 'post' ] );
+		} else if ( isset( $_POST[ 'post_ID' ] ) ) {
+			$post_id = absint( $_POST[ 'post_ID' ] );
+		} else {
+			return $content;
+		}
 
-		$content = get_post_meta( get_the_ID(), '_message', true );
+		$content = get_post_meta( $post_id, '_message', true );
 		$content = str_replace( '[url=', '[url temp=', $content );
 
 		return $content;
@@ -184,18 +191,6 @@ class SRC_Messages extends SRC_Core {
 		);
 
 		add_meta_box(
-			'news_id', // ID
-			__( 'News Item', 'undiecar' ), // Title
-			array(
-				$this,
-				'meta_news_id', // Callback to method to display HTML
-			),
-			array( 'message', 'message-chunk' ), // Post type
-			'side', // Context, choose between 'normal', 'advanced', or 'side'
-			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
-		);
-
-		add_meta_box(
 			'message', // ID
 			__( 'Message', 'undiecar' ), // Title
 			array(
@@ -249,50 +244,42 @@ class SRC_Messages extends SRC_Core {
 	 * Output the event ID box.
 	 */
 	public function meta_event_id() {
-
-		$query = new WP_Query( array(
-			'post_type'      => 'event',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1000,
-			'no_found_rows'  => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-			'fields'         => 'ids'
-		) );
-		$event_array = array();
-		if ( $query->have_posts() ) {
-
-			echo '<select name="_event_id">';
-			echo '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$event_id   = get_the_ID();
-				$season_id  = get_post_meta( get_the_ID(), 'season', true );
-				$event_date = get_post_meta( $event_id, 'date', true );
-				echo '<option value="' . esc_attr( $event_id ) . '">' . esc_html( get_the_title( $season_id ) . ': ' . get_the_title( get_the_ID() ) ) . '</option>';
-			}
-			echo '</select>';
-		}
-	}
-
-	/**
-	 * Output the news ID box.
-	 */
-	public function meta_news_id() {
-
-		if ( ! isset( $_GET['post'] ) ) {
+		if ( isset( $_GET[ 'post' ] ) ) {
+			$post_id = absint( $_GET[ 'post' ] );
+		} else if ( isset( $_POST[ 'post_ID' ] ) ) {
+			$post_id = absint( $_POST[ 'post_ID' ] );
+		} else {
 			return;
 		}
 
-		$post_id = absint( $_GET['post'] );
 		$news_id = get_post_meta( $post_id, '_news_id', true );
-		echo 'News item ID: ' . absint( $news_id ) . '<br>';
-
 		if ( is_numeric( $news_id ) )  {
-			echo get_the_title( $news_id );
+			echo '<a href="' . esc_url( get_permalink( $news_id ) ) . '">' . esc_html( get_the_title( $news_id ) ) . '</a>';
 		} else {
-			esc_html_e( 'Coming soon', 'undiecar' );
+			$query = new WP_Query( array(
+				'post_type'      => 'event',
+				'post_status'    => 'publish',
+				'posts_per_page' => 1000,
+				'no_found_rows'  => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'fields'         => 'ids'
+			) );
+			$event_array = array();
+			if ( $query->have_posts() ) {
+
+				echo '<select name="_event_id">';
+				echo '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
+				while ( $query->have_posts() ) {
+					$query->the_post();
+
+					$event_id   = get_the_ID();
+					$season_id  = get_post_meta( get_the_ID(), 'season', true );
+					$event_date = get_post_meta( $event_id, 'date', true );
+					echo '<option value="' . esc_attr( $event_id ) . '">' . esc_html( get_the_title( $season_id ) . ': ' . get_the_title( get_the_ID() ) ) . '</option>';
+				}
+				echo '</select>';
+			}
 		}
 	}
 
@@ -300,12 +287,13 @@ class SRC_Messages extends SRC_Core {
 	 * Output the message meta box.
 	 */
 	public function meta_box() {
-
-		if ( ! isset( $_GET['post'] ) ) {
+		if ( isset( $_GET[ 'post' ] ) ) {
+			$post_id = absint( $_GET[ 'post' ] );
+		} else if ( isset( $_POST[ 'post_ID' ] ) ) {
+			$post_id = absint( $_POST[ 'post_ID' ] );
+		} else {
 			return;
 		}
-
-		$post_id = absint( $_GET['post'] );
 
 		$html = '
 			<p>
@@ -388,6 +376,11 @@ class SRC_Messages extends SRC_Core {
 	 */
 	public function meta_boxes_save( $post_id, $post ) {
 
+		// Bail out if not saving message post-type.
+		if ( 'message' !== get_post_type( $post_id ) ) {
+			return $post_id;
+		}
+
 		// Only save if correct post data sent
 		if ( isset( $_POST['_message'] ) && isset( $_POST['_event_id'] ) ) {
 
@@ -399,7 +392,7 @@ class SRC_Messages extends SRC_Core {
 			// Sanitize and store the data
 			$_message = wp_kses_post( $_POST['_message'] );
 			update_post_meta( $post_id, '_message', $_message );
-/*
+
 			// Bail if no event ID set yet.
 			if ( '' === $_POST['_event_id'] ) {
 				return $post_id;
@@ -409,7 +402,7 @@ class SRC_Messages extends SRC_Core {
 			$event_id = absint( $_POST['_event_id'] );
 			$news_id  = get_post_meta( $post_id, '_news_id', true );
 
-			if ( '' === $news_id ) {
+			if ( ! is_numeric( $news_id ) ) {
 				$title           = sprintf( esc_html__( 'Reminder: %s', 'undiecar' ), get_the_title( $event_id ) );
 				$event_timestamp = get_post_meta( $event_id, 'date', true );
 				$post_timestamp  = $event_timestamp - ( 2 * DAY_IN_SECONDS ); // days before actual event
@@ -418,20 +411,20 @@ class SRC_Messages extends SRC_Core {
 				$args = array(
 					'post_title'    => wp_strip_all_tags( $title ),
 					'post_content'  => wp_kses_post( do_shortcode( $_message ) ),
+					'post_type'     => 'post',
 					'post_status'   => 'publish',
 					'post_author'   => 1,
 					'post_date'     => $post_date,
 					'post_date_gmt' => $post_date,
 				);
 
-//echo 'zzz';die;
-				$_news_id = wp_insert_post( $args );
-echo 'yyy';die;
-				update_post_meta( $post_id, '_news_id', $_news_id );
-echo 'abc';die;
+				$news_id = wp_insert_post( $args );
+				update_post_meta( $post_id, '_news_id', $news_id );
+
+				// Add featured image to new news item.
+				$attachment_id = get_post_thumbnail_id( $post_id );
+				set_post_thumbnail( $news_id, $attachment_id );
 			}
-echo 'xyz';die;
-*/
 		}
 	}
 
@@ -483,3 +476,22 @@ echo 'xyz';die;
 	}
 
 }
+/*
+add_action('admin_init', function() {
+return;
+	$args = array(
+		'post_title'    => 'TEST',
+		'post_content'  => 'content',
+		'post_type'     => 'post',
+		'post_status'   => 'publish',
+		'post_author'   => 1,
+//		'post_date'     => $post_date,
+//		'post_date_gmt' => $post_date,
+	);
+	$x = wp_insert_post( $args );
+	echo get_permalink( $x );
+	echo '<br>';
+	print_r( $x );
+	die;
+});
+*/

@@ -154,9 +154,8 @@ class SRC_Tracks extends SRC_Core {
 				$image_ids .= $image_id;
 			}
 		}
-		if ( '' !== $image_ids ) {
-			$content .= '[gallery link="file" columns="' . esc_attr( $count ) . '" size="src-four" ids="' . esc_attr( $image_ids ) . '"]';
-		}
+
+		$content .= '[gallery link="file" columns="' . esc_attr( $count ) . '" size="src-four" ids="' . esc_attr( $image_ids ) . '"]';
 
 		return $content;
 	}

@@ -948,8 +948,13 @@ if ( isset( $_GET['test'] ) ) {
 		}
 		wp_reset_query();
 
-		// Handle drop scores
-		$points_to_keep = $number_of_events - get_post_meta( $season_id, 'drop_scores', true );
+		// Handle drop scores.
+		$drop_scores = get_post_meta( $season_id, 'drop_scores', true );
+		if ( ! is_numeric( $drop_scores ) ) {
+			$drop_scores = 0;
+		}
+
+		$points_to_keep = $number_of_events - $drop_scores;
 		$points_with_dropscores = array();
 		foreach ( $stored_points as $driver_name => $points ) {
 			arsort( $points );

@@ -132,6 +132,7 @@ class SRC_Theme_Setup extends SRC_Core {
 	}
 
 	public function force_404() {
+
 		global $wp_query;
 		if ( is_archive() ) {
 			status_header( 404 );
