@@ -141,17 +141,15 @@ class SRC_Messages extends SRC_Core {
 			'message',
 			array(
 
-				'publicly_queryable' => false,
-				'show_in_nav_menus' => false,
-				'show_in_menu' => true,
-
+				'publicly_queryable'  => false,
+				'show_in_nav_menus'   => false,
+				'show_in_menu'        => true,
 				'exclude_from_search' => true,
-				'show_ui' => true,
-
-				'publicly_queryable' => false,
-				'label'              => esc_html__( 'Messages', 'undiecar' ),
-				'supports'           => array( 'title', 'thumbnail' ),
-				'menu_icon'          => 'dashicons-flag',
+				'show_ui'             => true,
+				'publicly_queryable'  => true,
+				'label'               => esc_html__( 'Messages', 'undiecar' ),
+				'supports'            => array( 'title', 'thumbnail' ),
+				'menu_icon'           => 'dashicons-flag',
 			)
 		);
 
