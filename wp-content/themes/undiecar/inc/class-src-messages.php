@@ -80,6 +80,9 @@ class SRC_Messages extends SRC_Core {
 		// Convert button to URL shortcode.
 		$message = str_replace( '[button', '[url', $content );
 		$message = str_replace( '[/button]', '[/url]', $message );
+		$message = str_replace( '[hide]', '', $message );
+		$message = str_replace( '[/hide]', '', $message );
+		$message = str_replace( '[thumbnail]', do_shortcode( '[thumbnail]' ), $message );
 
 		echo '<h2>' . esc_html__( 'Message version', 'undiecar' ) . '</h2>';
 		echo '<textarea style="height:300px;width:100%;">' . $message . '</textarea>';
