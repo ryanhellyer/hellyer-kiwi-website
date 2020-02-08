@@ -24,6 +24,7 @@ class SRC_Messages extends SRC_Core {
 		add_shortcode( 'b', array( $this, 'shortcode_b' ) );
 		add_shortcode( 'u', array( $this, 'shortcode_u' ) );
 		add_shortcode( 'url', array( $this, 'shortcode_url' ) );
+		add_shortcode( 'button', array( $this, 'shortcode_button' ) );
 		add_shortcode( 'img', array( $this, 'shortcode_img' ) );
 		add_shortcode( 'hide', array( $this, 'shortcode_hide' ) );
 		add_shortcode( 'thumbnail', array( $this, 'shortcode_thumbnail' ) );
@@ -55,17 +56,38 @@ class SRC_Messages extends SRC_Core {
 		}
 
 		$message_id = $_GET[ 'post' ];
-		$content = get_post_meta( $message_id, '_message', true );
-
-		$html = do_shortcode( $content );
+		$content    = get_post_meta( $message_id, '_message', true );
+		$html       = do_shortcode( $content );
 
 		echo '<h2>' . esc_html__( 'HTML version', 'undiecar' ) . '</h2>';
 		echo '<textarea style="height:300px;width:100%;">' . $html . '</textarea>';
 
 	}
 
+	/**
+	 * Converting messages on frontend to textarea.
+	 * Allows for easy copy/paste of code
+	 */
+	public function message_version() {
+
+		if ( ! isset( $_GET[ 'post' ] ) ) {
+			return;
+		}
+
+		$message_id = $_GET[ 'post' ];
+		$content    = get_post_meta( $message_id, '_message', true );
+
+		// Convert button to URL shortcode.
+		$message = str_replace( '[button', '[url', $content );
+		$message = str_replace( '[/button]', '[/url]', $message );
+
+		echo '<h2>' . esc_html__( 'Message version', 'undiecar' ) . '</h2>';
+		echo '<textarea style="height:300px;width:100%;">' . $message . '</textarea>';
+
+	}
+
 	public function shortcode_b( $args = null, $content ) {
-		return '<strong>' . $content . '</strong>';
+		return '<strong>' . do_shortcode( $content ) . '</strong>';
 	}
 
 	public function shortcode_u( $args = null, $content ) {
@@ -73,14 +95,21 @@ class SRC_Messages extends SRC_Core {
 	}
 
 	public function shortcode_url( $args, $content = null ) {
+		$url = $content;
 
-		if ( isset( $args['temp'] ) ) {
-			$url = $args['temp'];
-		} else {
-			$url = $content;
+		return '<a href="' . esc_url( $url ) . '">' . do_shortcode( $content ) . '</a>';
+	}
+
+	public function shortcode_button( $args, $content = null ) {
+
+		if ( ! isset( $args[0] ) ) {
+			return $content;
 		}
 
-		return '<a href="' . esc_url( $url ) . '">' . $content . '</a>';
+		$args[0] = str_replace( '=', '', $args[0] );
+		$url = $args[0];
+
+		return '<a href="' . esc_url( $url ) . '" class="button">' . esc_html( $content ) . '</a>';
 	}
 
 	public function shortcode_img( $args = null, $url ) {
@@ -92,6 +121,7 @@ class SRC_Messages extends SRC_Core {
 	}
 
 	public function shortcode_thumbnail() {
+
 		$post_id   = absint( $_GET['post'] );
 		$image_url = get_permalink( $post_id );
 		$image_url = add_query_arg( 'driver', '[NAME]', $image_url );
@@ -141,6 +171,30 @@ class SRC_Messages extends SRC_Core {
 	public function add_metaboxes() {
 
 		add_meta_box(
+			'event_id', // ID
+			__( 'Event', 'undiecar' ), // Title
+			array(
+				$this,
+				'meta_event_id', // Callback to method to display HTML
+			),
+			array( 'message', 'message-chunk' ), // Post type
+			'side', // Context, choose between 'normal', 'advanced', or 'side'
+			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
+		add_meta_box(
+			'news_id', // ID
+			__( 'News Item', 'undiecar' ), // Title
+			array(
+				$this,
+				'meta_news_id', // Callback to method to display HTML
+			),
+			array( 'message', 'message-chunk' ), // Post type
+			'side', // Context, choose between 'normal', 'advanced', or 'side'
+			'high'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
+		add_meta_box(
 			'message', // ID
 			__( 'Message', 'undiecar' ), // Title
 			array(
@@ -155,6 +209,18 @@ class SRC_Messages extends SRC_Core {
 		add_meta_box(
 			'message_output', // ID
 			__( 'Message output', 'undiecar' ), // Title
+			array(
+				$this,
+				'message_version', // Callback to method to display HTML
+			),
+			array( 'message', 'message-chunk' ), // Post type
+			'normal', // Context, choose between 'normal', 'advanced', or 'side'
+			'core'  // Position, choose between 'high', 'core', 'default' or 'low'
+		);
+
+		add_meta_box(
+			'html_output', // ID
+			__( 'HTML output', 'undiecar' ), // Title
 			array(
 				$this,
 				'html_version', // Callback to method to display HTML
@@ -179,13 +245,70 @@ class SRC_Messages extends SRC_Core {
 	}
 
 	/**
+	 * Output the event ID box.
+	 */
+	public function meta_event_id() {
+
+		$query = new WP_Query( array(
+			'post_type'      => 'event',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1000,
+			'no_found_rows'  => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+			'fields'         => 'ids'
+		) );
+		$event_array = array();
+		if ( $query->have_posts() ) {
+
+			echo '<select name="_event_id">';
+			echo '<option value="">' . esc_html__( 'None', 'undiecar' ) . '</option>';
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$event_id   = get_the_ID();
+				$season_id  = get_post_meta( get_the_ID(), 'season', true );
+				$event_date = get_post_meta( $event_id, 'date', true );
+				echo '<option value="' . esc_attr( $event_id ) . '">' . esc_html( get_the_title( $season_id ) . ': ' . get_the_title( get_the_ID() ) ) . '</option>';
+			}
+			echo '</select>';
+		}
+	}
+
+	/**
+	 * Output the news ID box.
+	 */
+	public function meta_news_id() {
+
+		if ( ! isset( $_GET['post'] ) ) {
+			return;
+		}
+
+		$post_id = absint( $_GET['post'] );
+		$news_id = get_post_meta( $post_id, '_news_id', true );
+		echo 'News item ID: ' . absint( $news_id ) . '<br>';
+
+		if ( is_numeric( $news_id ) )  {
+			echo get_the_title( $news_id );
+		} else {
+			esc_html_e( 'Coming soon', 'undiecar' );
+		}
+	}
+
+	/**
 	 * Output the message meta box.
 	 */
 	public function meta_box() {
 
+		if ( ! isset( $_GET['post'] ) ) {
+			return;
+		}
+
+		$post_id = absint( $_GET['post'] );
+
 		$html = '
 			<p>
-				<textarea style="width:100%;min-height:300px;" name="_message" id="_message">' . esc_textarea( get_post_meta( get_the_ID(), '_message', true ) ) . '</textarea>
+				<textarea style="width:100%;min-height:300px;" name="_message" id="_message">' . esc_textarea( get_post_meta( $post_id, '_message', true ) ) . '</textarea>
 			</p>
 
 			<input type="hidden" id="message-nonce" name="message-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">';
@@ -230,18 +353,30 @@ class SRC_Messages extends SRC_Core {
 
 		if ( isset( $_GET['post'] ) ) {
 			$log   = get_post_meta( $_GET['post'], 'log', true );
-			$log   = array_unique( $log );
 
-			echo '<ul>';
-			foreach ( $log as $key => $driver_name ) {
-				echo '<li><a href="' . esc_url( home_url( '/member/' . sanitize_title( $driver_name ) . '/' ) ) . '">' . esc_html( $driver_name ) . '</a></li>';
+			if ( is_array( $log ) ) {
+
+				echo '<ul>';
+				foreach ( $log as $driver_name => $times ) {
+					echo '<li><a href="' . esc_url( home_url( '/member/' . sanitize_title( $driver_name ) . '/' ) ) . '">';
+					echo esc_html( $driver_name );
+					echo '</a>';
+
+					if ( is_array( $times ) ) {
+						sort( $times );
+						foreach ( $times as $k => $time ) {
+							echo '<br />';
+							echo esc_html( date( 'l jS \of F Y h:i:s A', $time ) );
+						}
+					}
+
+					echo '</li>';
+				}
+				echo '</ul>';
+			} else {
+				echo 'coming later ...';
 			}
-			echo '</ul>';
-
-		} else {
-			echo 'coming later ...';
 		}
-
 	}
 
 	/**
@@ -253,18 +388,50 @@ class SRC_Messages extends SRC_Core {
 	public function meta_boxes_save( $post_id, $post ) {
 
 		// Only save if correct post data sent
-		if ( isset( $_POST['_message'] ) ) {
+		if ( isset( $_POST['_message'] ) && isset( $_POST['_event_id'] ) ) {
 
 			// Do nonce security check
 			if ( ! wp_verify_nonce( $_POST['message-nonce'], __FILE__ ) ) {
-				return;
+				return $post_id;
 			}
 
 			// Sanitize and store the data
 			$_message = wp_kses_post( $_POST['_message'] );
 			update_post_meta( $post_id, '_message', $_message );
-		}
+/*
+			// Bail if no event ID set yet.
+			if ( '' === $_POST['_event_id'] ) {
+				return $post_id;
+			}
 
+			// Save corresponding news item.
+			$event_id = absint( $_POST['_event_id'] );
+			$news_id  = get_post_meta( $post_id, '_news_id', true );
+
+			if ( '' === $news_id ) {
+				$title           = sprintf( esc_html__( 'Reminder: %s', 'undiecar' ), get_the_title( $event_id ) );
+				$event_timestamp = get_post_meta( $event_id, 'date', true );
+				$post_timestamp  = $event_timestamp - ( 2 * DAY_IN_SECONDS ); // days before actual event
+				$post_date       = date( 'Y-m-d H:i:s', $post_timestamp );
+
+				$args = array(
+					'post_title'    => wp_strip_all_tags( $title ),
+					'post_content'  => wp_kses_post( do_shortcode( $_message ) ),
+					'post_status'   => 'publish',
+					'post_author'   => 1,
+					'post_date'     => $post_date,
+					'post_date_gmt' => $post_date,
+				);
+
+//echo 'zzz';die;
+				$_news_id = wp_insert_post( $args );
+echo 'yyy';die;
+				update_post_meta( $post_id, '_news_id', $_news_id );
+echo 'abc';die;
+			}
+echo 'xyz';die;
+*/
+		}
 	}
 
 	/**
@@ -284,21 +451,21 @@ class SRC_Messages extends SRC_Core {
 				the_post();
 
 				$image_key = 'message_' . get_the_ID() . '_image';
+//delete_transient( $image_key );
 				if ( false === ( $image_contents = get_transient( $image_key ) ) ) {
-					$image       = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
-					$src         = $image[0];
-					$uploads_dir = wp_upload_dir();
-					$file        = str_replace( $uploads_dir['url'], $uploads_dir['path'], $src );
-
+					$image          = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
+					$src            = $image[0];
+					$uploads_dir    = wp_upload_dir();
+					$file           = str_replace( $uploads_dir['url'], $uploads_dir['path'], $src );
 					$image_contents = file_get_contents( $file );
 
 					set_transient( $image_key, $image_contents, HOUR_IN_SECONDS );
 				}
 
 				// Update log meta.
-				$log   = get_post_meta( get_the_ID(), 'log', true );
-				$log[] = $_GET['driver'];
-				$log   = array_unique( $log );
+				$log                   = (array) get_post_meta( get_the_ID(), 'log', true );
+				$driver_name           = esc_html( $_GET['driver'] );
+				$log[ $driver_name ][] = time();
 				update_post_meta( get_the_ID(), 'log', $log );
 
 				// Output the file.
