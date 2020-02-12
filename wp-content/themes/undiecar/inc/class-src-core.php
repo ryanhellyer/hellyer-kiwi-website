@@ -306,11 +306,12 @@ delete_post_meta( $season_id, '_stored_results' );
 			foreach ( $events as $event_id ) {
 				$count++;
 				$content .= '
-				<th class="col-pts">' . esc_html( 'R' . $count ) . '</th>
-';
+				<th class="col-pts">' . esc_html( 'R' . $count ) . '</th>';
 			}
 
-			$content .= '<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
+			$content .= '
+				<th class="col-pts">' . esc_html__( 'Pts', 'src' ) . '</th>
+				<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
 			</tr></thead>';
 
 			$content .= '<tbody>';
@@ -380,8 +381,7 @@ delete_post_meta( $season_id, '_stored_results' );
 				$inc = $inc / self::FRACTION;
 
 				// Don't bother showing drivers who haven't scored any points yet
-				$total_points = absint( round( $points ) );
-				if ( 0 !== $points && '' !== $name) {
+				if ( '' !== $name) {
 
 					$content .= '<tr>';
 
@@ -396,13 +396,13 @@ delete_post_meta( $season_id, '_stored_results' );
 					foreach ( $events as $event_id ) {
 
 						if ( isset( $points[ $event_id ] ) ) {
-							$pts = absint( round( $points[ $event_id ] ) );
+							$pts = absint( $points[ $event_id ] );
 						} else {
 							$pts = '';
 						}
 						$content .= '<td class="col-pts">' . esc_html( $pts ) . '</td>';
 					}
-					$content .= '<td class="col-pts">' . round( $total_points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+					$content .= '<td class="col-pts">' . absint( $total_points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
 
 					$content .= '</tr>';
