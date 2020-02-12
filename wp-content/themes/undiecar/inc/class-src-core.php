@@ -201,6 +201,200 @@ class SRC_Core {
 	}
 
 	/**
+	 * The championship summary table.
+	 *
+	 * COPY PASTE FROM ORIGINAL MAIN CHAMPIONSHIP TABLE.
+	 * SIMPLIFIED HACK TO MAKE IT WORK ON THE FRONT PAGE.
+	 *
+	 * @param  string  $content   The post content
+	 * @param  bool    $bypass    true if bypassing post-type check
+	 * @param  int     $limit     The max number of drivers to show
+	 * @param  string  $title     Title to use
+	 * @param  string  $save_results  true if saving results - this is used for storing results at end of season
+	 * @param  string  $track_types Type of tracks to include
+	 * @param  int     $season_id the ID of the season of the championsing permanship table
+	 */
+	static function championship_summary( $content, $bypass = false, $limit = 100, $title = false, $save_results = false, $season_id = null, $track_types = 'all', $car = null ) {
+
+		if ( 'season' !== get_post_type() && true !== $bypass ) {
+			return $content;
+		}
+
+		if ( null !== $season_id ) {
+			// bypass
+		} else if ( is_front_page() ) {
+
+			if ( '' === get_option( 'current-season' ) ) {
+				$season_id = get_option( 'last-season' );
+			} else {
+				$season_id = get_option( 'current-season' );
+			}
+
+		} else if ( null === $season_id ) {
+			$season_id = get_the_ID();
+		}
+
+		// Don't show championship listings for special season
+		$season = get_post( $season_id ); 
+		if ( 'special-events' === $season->post_name ) {
+			return $content;
+		}
+
+		/*
+		 * Use stored results if available and set to use them.
+		 *  Otherwise recalculate the results (normal mid-season)
+		 */
+		$stored_results = get_post_meta( $season_id, '_stored_summary_results', true );
+		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
+
+		if ( '' === $stored_results || '1' !== $use_stored_results ) {
+
+			$stored_results = self::get_driver_points_from_season( $season_id );
+
+			// Someone has asked for the results to be stored permanently (used for end of season)
+			if ( true === $save_results ) {
+				update_post_meta( $season_id, '_stored_summary_results', $stored_results );
+			}
+
+		} // End of championship positions calculation
+		else {
+			$content .= "<!-- Using permanently stored results -->";
+		}
+
+		// Work out if multiple cars
+		foreach ( $stored_results as $name => $points ) {
+
+			$name_exploded = explode( '|', $name );
+			if ( isset( $name_exploded[1] ) ) {
+				$multiple_cars = true;
+			}
+
+		}
+
+
+		if ( array() !== $stored_results ) {
+
+			if ( false !== $title ) {
+				$content .= '<h3>' . esc_html( $title ) . '</h3>';
+			}
+
+			$content .= '<table class="some-list">';
+
+			$content .= '<thead><tr>';
+
+			$content .= '
+				<th class="col-pos">' . esc_html__( 'Pos', 'src' ) . '</th>
+				<th class="col-name">' . esc_html__( 'Name', 'src' ) . '</th>
+				<th class="col-number">' . esc_html__( 'Num', 'src' ) . '</th>';
+
+			if ( isset( $multiple_cars ) ) {
+			$content .= '
+				<th class="col-car">' . esc_html__( 'Car', 'src' ) . '</th>';				
+			}
+
+			$content .= '
+				<th class="col-nationality">' . esc_html__( 'Country', 'src' ) . '</th>
+				<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
+				<th class="col-pts">' . esc_html__( 'Pts', 'src' ) . '</th>';
+			$content .= '</tr></thead>';
+
+			$content .= '<tbody>';
+
+			$position = 0;
+			$car_number = '';
+			$nationality = '';
+			foreach ( $stored_results as $name => $points ) {
+				$position++;
+
+				// Limit the number of drivers shown
+				if ( $position > $limit ) {
+					continue;
+				}
+
+				$linked_name = $name;
+				$car_number = '';
+				$member = get_user_by( 'login', sanitize_title( $name ) );
+				if ( isset( $member->data->ID ) ) {
+					$member_id = $member->data->ID;
+
+					// Work out if they're div 2 or 1
+					$road_irating = get_user_meta( $member_id, 'road_irating', true );
+					$oval_irating = get_user_meta( $member_id, 'oval_irating', true );
+					$av_rating = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
+					$listed_name = $name;
+					if (
+						$av_rating < get_post_meta( $season_id, 'division_1_cutoff', true )
+						&&
+						'yes' !== get_user_meta( $member_id, 'former_champion', true )
+					) {
+						$listed_name = $name . ' ' . esc_html__( '(Div 2)', 'undiecar' );
+					}
+
+					// Get car number
+					if ( '' !== get_user_meta( $member_id, 'car_number', true ) ) {
+						$car_number = get_user_meta( $member_id, 'car_number', true );
+					}
+
+					// Get nationality
+					$nationality = '';
+					if ( '' !== get_user_meta( $member_id, 'nationality', true ) ) {
+						$country_code = get_user_meta( $member_id, 'nationality', true );
+						$country = self::get_countries( $country_code );
+						if ( ! is_array( $country ) ) {
+							$nationality = $country;
+						} else {
+							$nationality = $country_code; // Supporting legacy values for nationality
+						}
+
+					}
+
+					$linked_name = '<a href="' . esc_url( home_url() . '/member/' . sanitize_title( $name ) . '/' ) . '">' . esc_html( $listed_name ) . '</a>';
+
+				}
+
+				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
+				$whole = floor( $points );
+
+				$inc = ( 1 - ( $points - $whole ) ) / self::FRACTION;
+				$inc = ( 0 + ( $points - $whole ) );
+				if ( 0 == $inc ) {
+					$inc = 1;
+				}
+				$inc = 1 - $inc;
+				$inc = $inc / self::FRACTION;
+
+				// Don't bother showing drivers who haven't scored any points yet
+				$points = absint( round( $points ) );
+				if ( 0 !== $points && '' !== $name) {
+
+					$content .= '<tr>';
+
+					$content .= '<td class="col-pos">' . esc_html( $position ) . '</td>';
+					$content .= '<td class="col-name">' . $linked_name . '</td>';
+					$content .= '<td class="col-number">' . esc_html( $car_number ) . '</td>';
+					if ( isset( $multiple_cars ) ) {
+					$content .= '
+						<td class="col-car">' . esc_html( $car ) . '</td>';
+					}
+					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
+					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
+					$content .= '<td class="col-pts">' . round( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+
+					$content .= '</tr>';
+				}
+
+			}
+			$content .= '</tbody>';
+
+			$content .= '</table>';
+		} else {
+			//$content .= '<p>' . esc_html__( 'No results available yet', 'undiecar' ) . '</p>';
+		}
+
+		return $content;
+	}
+
+	/**
 	 * The championship table.
 	 *
 	 * @param  string  $content   The post content
@@ -241,7 +435,7 @@ class SRC_Core {
 		 * Use stored results if available and set to use them.
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
-delete_post_meta( $season_id, '_stored_results' );
+//delete_post_meta( $season_id, '_stored_results' );
 		$stored_results     = get_post_meta( $season_id, '_stored_results', true );
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 

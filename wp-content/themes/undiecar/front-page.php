@@ -274,7 +274,7 @@ if ( isset( $our_events[0] ) ) {
 				<h2><?php echo esc_html( get_the_title( $season_id ) ); ?></h2>
 				<?php
 					$championship_title = esc_html( get_the_title( $season_id ) );
-					echo SRC_Core::championship( '', true, 10, false, false, $season_id );
+					echo SRC_Core::championship_summary( '', true, 10, false, false, $season_id );
 
 
 /*
