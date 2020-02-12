@@ -982,7 +982,11 @@ delete_post_meta( $season_id, '_stored_results' );
 		foreach ( $stored_points as $driver_name => $points ) {
 			arsort( $points );
 			$stored_points[ $driver_name ] = $points;
+			$stored_points[ $driver_name ]['total_points'] = array_sum( $points );
 		}
+
+		// Sort the points into order.
+		$stored_points = self::sort_by_sub_value($stored_points,'total_points');
 
 		return $stored_points;
 	}
@@ -1258,6 +1262,18 @@ if ( isset( $_GET['test'] ) ) {
 		}
 
 		return $incidents;
+	}
+
+	static public function sort_by_sub_value( $a, $subkey ) {
+		foreach ( $a as $k => $v ) {
+			$b[ $k ] = strtolower( $v[ $subkey ] );
+		}
+		arsort( $b );
+		foreach( $b as $key => $val ) {
+			$c[ $key ] = $a[ $key ];
+		}
+
+		return $c;
 	}
 
 }
