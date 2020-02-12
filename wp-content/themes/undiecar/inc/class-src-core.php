@@ -492,6 +492,7 @@ delete_post_meta( $season_id, '_stored_results' );
 					$date            = absint( get_post_meta( get_the_ID(), 'date', true ) );
 					$events[ $date ] = get_the_ID();
 				}
+				wp_reset_postdata();
 			}
 			ksort( $events );
 
