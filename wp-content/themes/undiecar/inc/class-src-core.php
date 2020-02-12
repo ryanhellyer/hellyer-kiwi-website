@@ -435,7 +435,7 @@ class SRC_Core {
 		 * Use stored results if available and set to use them.
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
-//delete_post_meta( $season_id, '_stored_results' );
+delete_post_meta( $season_id, '_stored_results' );
 		$stored_results     = get_post_meta( $season_id, '_stored_results', true );
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 
@@ -588,10 +588,12 @@ class SRC_Core {
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
 					foreach ( $events as $event_id ) {
 
-						if ( isset( $points[ $event_id ] ) ) {
+						if ( isset( $points[ $event_id ] ) && 'drop' === $points[ $event_id ] ) {
+							$pts = '🚫';
+						} else if ( isset( $points[ $event_id ] ) ) {
 							$pts = absint( $points[ $event_id ] );
 						} else {
-							$pts = '';
+							$pts = '&mdash;';
 						}
 						$content .= '<td class="col-pts">' . esc_html( $pts ) . '</td>';
 					}
@@ -1174,12 +1176,22 @@ class SRC_Core {
 		$points_with_dropscores = array();
 		foreach ( $stored_points as $driver_name => $points ) {
 			arsort( $points );
+			$count = 0;
+			foreach ( $points as $key => $pts ) {
+
+				if ( $count > $points_to_keep ) {
+					$points[ $key ] = 'drop';
+				}
+
+				$count++;
+			}
+
 			$stored_points[ $driver_name ] = $points;
 			$stored_points[ $driver_name ]['total_points'] = array_sum( $points );
 		}
 
 		// Sort the points into order.
-		$stored_points = self::sort_by_sub_value($stored_points,'total_points');
+		$stored_points = self::sort_by_sub_value( $stored_points, 'total_points' );
 
 		return $stored_points;
 	}
