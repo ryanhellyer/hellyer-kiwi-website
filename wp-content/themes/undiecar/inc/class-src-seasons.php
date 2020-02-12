@@ -653,6 +653,11 @@ class SRC_Seasons extends SRC_Core {
 	 */
 	public function gallery( $content ) {
 
+		// Bail out now if not on a season.
+		if ( 'season' !== get_post_type() ) {
+			return $content;
+		}
+
 		$content .= do_shortcode( '[undiecar_season_gallery season="10" title="' . esc_html__( 'Gallery', 'undiecar' ) . '"]' );
 
 		return $content;
