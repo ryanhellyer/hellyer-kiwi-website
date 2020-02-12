@@ -652,13 +652,19 @@ class SRC_Seasons extends SRC_Core {
 	 * Add all pictures from the current season as a gallery.
 	 */
 	public function gallery( $content ) {
+		global $post;
 
 		// Bail out now if not on a season.
-		if ( 'season' !== get_post_type() ) {
+		if (
+			'season' !== get_post_type()
+			||
+			'stored' === get_post_meta( get_the_ID(), '_permanently_store_results', true )
+		) {
 			return $content;
 		}
 
-		$content .= do_shortcode( '[undiecar_season_gallery season="10" title="' . esc_html__( 'Gallery', 'undiecar' ) . '"]' );
+		$slug = $post->post_name;
+		$content .= do_shortcode( '[undiecar_season_gallery season="' . esc_attr( $slug ) . '" title="' . esc_html__( 'Gallery', 'undiecar' ) . '"]' );
 
 		return $content;
 	}

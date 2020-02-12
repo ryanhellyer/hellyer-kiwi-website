@@ -435,7 +435,7 @@ class SRC_Core {
 		 * Use stored results if available and set to use them.
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
-delete_post_meta( $season_id, '_stored_results' );
+//delete_post_meta( $season_id, '_stored_results' );
 		$stored_results     = get_post_meta( $season_id, '_stored_results', true );
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 
