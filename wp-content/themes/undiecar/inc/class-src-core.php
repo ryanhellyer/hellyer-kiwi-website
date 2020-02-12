@@ -241,12 +241,13 @@ class SRC_Core {
 		 * Use stored results if available and set to use them.
 		 *  Otherwise recalculate the results (normal mid-season)
 		 */
-		$stored_results = get_post_meta( $season_id, '_stored_results', true );
+delete_post_meta( $season_id, '_stored_results' );
+		$stored_results     = get_post_meta( $season_id, '_stored_results', true );
 		$use_stored_results = get_post_meta( $season_id, '_permanently_store_results', true );
 
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
-			$stored_results = self::get_driver_points_from_season( $season_id );
+			$stored_results = self::get_driver_results_from_season( $season_id );
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -257,17 +258,6 @@ class SRC_Core {
 		else {
 			$content .= "<!-- Using permanently stored results -->";
 		}
-
-		// Work out if multiple cars
-		foreach ( $stored_results as $name => $points ) {
-
-			$name_exploded = explode( '|', $name );
-			if ( isset( $name_exploded[1] ) ) {
-				$multiple_cars = true;
-			}
-
-		}
-
 
 		if ( array() !== $stored_results ) {
 
@@ -290,10 +280,38 @@ class SRC_Core {
 			}
 
 			$content .= '
-				<th class="col-nationality">' . esc_html__( 'Country', 'src' ) . '</th>
-				<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
-				<th class="col-pts">' . esc_html__( 'Pts', 'src' ) . '</th>';
-			$content .= '</tr></thead>';
+				<th class="col-nationality">' . esc_html__( 'Country', 'src' ) . '</th>';
+
+
+			// Get all the events (do it now to avoid repeating it in the loop further down).
+			$query = new WP_Query( array(
+				'posts_per_page'         => 100,
+				'post_type'              => 'event',
+				'meta_key'               => 'season',
+				'meta_value'             => $season_id,
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			) );
+			if ( $query->have_posts() ) {
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					$date     = absint( get_post_meta( get_the_ID(), 'date', true ) );
+					$events[ $date ] = get_the_ID();
+				}
+			}
+			ksort( $events );
+
+			$count = 0;
+			foreach ( $events as $event_id ) {
+				$count++;
+				$content .= '
+				<th class="col-pts">' . esc_html( 'R' . $count ) . '</th>
+';
+			}
+
+			$content .= '<th class="col-inc">' . esc_html__( 'Inc', 'src' ) . '</th>
+			</tr></thead>';
 
 			$content .= '<tbody>';
 
@@ -317,8 +335,8 @@ class SRC_Core {
 					// Work out if they're div 2 or 1
 					$road_irating = get_user_meta( $member_id, 'road_irating', true );
 					$oval_irating = get_user_meta( $member_id, 'oval_irating', true );
-					$av_rating = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
-					$listed_name = $name;
+					$av_rating    = ( absint( $road_irating ) + absint( $oval_irating ) ) / 2;
+					$listed_name  = $name;
 					if (
 						$av_rating < get_post_meta( $season_id, 'division_1_cutoff', true )
 						&&
@@ -350,10 +368,11 @@ class SRC_Core {
 				}
 
 				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
-				$whole = floor( $points );
+				$total_points = array_sum( $points );
+				$whole        = floor( $total_points );
 
-				$inc = ( 1 - ( $points - $whole ) ) / self::FRACTION;
-				$inc = ( 0 + ( $points - $whole ) );
+				$inc = ( 1 - ( $total_points - $whole ) ) / self::FRACTION;
+				$inc = ( 0 + ( $total_points - $whole ) );
 				if ( 0 == $inc ) {
 					$inc = 1;
 				}
@@ -361,7 +380,7 @@ class SRC_Core {
 				$inc = $inc / self::FRACTION;
 
 				// Don't bother showing drivers who haven't scored any points yet
-				$points = absint( round( $points ) );
+				$total_points = absint( round( $points ) );
 				if ( 0 !== $points && '' !== $name) {
 
 					$content .= '<tr>';
@@ -374,8 +393,17 @@ class SRC_Core {
 						<td class="col-car">' . esc_html( $car ) . '</td>';
 					}
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
+					foreach ( $events as $event_id ) {
+
+						if ( isset( $points[ $event_id ] ) ) {
+							$pts = absint( round( $points[ $event_id ] ) );
+						} else {
+							$pts = '';
+						}
+						$content .= '<td class="col-pts">' . esc_html( $pts ) . '</td>';
+					}
+					$content .= '<td class="col-pts">' . round( $total_points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
-					$content .= '<td class="col-pts">' . round( $points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 
 					$content .= '</tr>';
 				}
@@ -875,7 +903,94 @@ class SRC_Core {
 	}
 
 	/**
+	 * Get driver results from a season.
+	 *
+	 * @param int $season_id The season ID.
+	 * @return array The drivers results from the season.
+	 */
+	static function get_driver_results_from_season( $season_id ) {
+
+		// Get all events from that season
+		$query = new WP_Query( array(
+			'posts_per_page'         => 100,
+			'post_type'              => 'event',
+
+			'meta_key'               => 'season',
+			'meta_value'             => $season_id,
+
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+		) );
+
+		$stored_points = $fastest_laps = array();
+		$number_of_events = 0;
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$number_of_events++;
+
+				$fastest_laps = array();
+				$incident_results = array();
+
+				$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
+				$number_of_races = absint( $number_of_races );
+				$race_number     = 0;
+				while ( $race_number <= $number_of_races ) {
+					$race_number++;
+
+					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
+					$results = json_decode( $results, true );
+
+					if ( is_array( $results ) && ! empty( $results ) ) {
+
+						$points_positions  = get_post_meta( $season_id, 'points_positions', true );
+						$points_multiplier = get_post_meta( get_the_ID(), 'race_' . $race_number . '_points_multiplier', true );
+
+						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier );
+
+						// Merge results
+						foreach ( $race_points as $driver_name => $points ) {
+
+							if ( ! isset( $stored_points[ $driver_name ][ get_the_ID() ] ) ) {
+								$stored_points[ $driver_name ][ get_the_ID() ] = 0;
+							}
+
+							$stored_points[ $driver_name ][ get_the_ID() ] = $stored_points[ $driver_name ][ get_the_ID() ] + $points;
+
+						}
+
+
+					}
+
+				}
+
+			}
+
+		}
+		wp_reset_query();
+
+		// Handle drop scores.
+		$drop_scores = get_post_meta( $season_id, 'drop_scores', true );
+		if ( ! is_numeric( $drop_scores ) ) {
+			$drop_scores = 0;
+		}
+
+		$points_to_keep = $number_of_events - $drop_scores;
+		$points_with_dropscores = array();
+		foreach ( $stored_points as $driver_name => $points ) {
+			arsort( $points );
+			$stored_points[ $driver_name ] = $points;
+		}
+
+		return $stored_points;
+	}
+
+	/**
 	 * Get all driver points from a season.
+	 *
+	 * @todo POSSIBLY REMOVE THIS IN FUTURE AS IT MAY NOT BE USED ANYMORE.
 	 */
 	static function get_driver_points_from_season( $season_id ) {
 
