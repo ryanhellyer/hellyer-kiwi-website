@@ -282,7 +282,6 @@ delete_post_meta( $season_id, '_stored_results' );
 			$content .= '
 				<th class="col-nationality">' . esc_html__( 'Country', 'src' ) . '</th>';
 
-
 			// Get all the events (do it now to avoid repeating it in the loop further down).
 			$query = new WP_Query( array(
 				'posts_per_page'         => 100,
@@ -296,7 +295,7 @@ delete_post_meta( $season_id, '_stored_results' );
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
 					$query->the_post();
-					$date     = absint( get_post_meta( get_the_ID(), 'date', true ) );
+					$date            = absint( get_post_meta( get_the_ID(), 'date', true ) );
 					$events[ $date ] = get_the_ID();
 				}
 			}
@@ -369,7 +368,7 @@ delete_post_meta( $season_id, '_stored_results' );
 				}
 
 				// Get incidents - these are found within the points, as drivers lose a fraction of a point for every incident
-				$total_points = array_sum( $points );
+				$total_points = $points['total_points'];
 				$whole        = floor( $total_points );
 
 				$inc = ( 1 - ( $total_points - $whole ) ) / self::FRACTION;
