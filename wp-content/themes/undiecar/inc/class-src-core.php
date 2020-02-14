@@ -1393,7 +1393,11 @@ if ( isset( $_GET['test'] ) ) {
 			}
 
 		}
-
+if ( isset( $_GET['test'])){
+echo "\n\n\nRESULTS:\n";
+print_r( $stored_results );die;
+echo "\n\n\n";
+}
 		return $stored_results;
 	}
 
