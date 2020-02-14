@@ -592,14 +592,14 @@ class SRC_Core {
 						if ( isset( $points[ $event_id ] ) && 'drop' === $points[ $event_id ] ) {
 							$pts = '🚫';
 						} else if ( isset( $points[ $event_id ] ) ) {
-							$pts = absint( $points[ $event_id ] );
+							$pts = absint( round( $points[ $event_id ] ) );
 						} else {
 							$pts = '&mdash;';
 						}
 						$content .= '<td class="col-pts">' . esc_html( $pts ) . '</td>';
 					}
-					$content .= '<td class="col-pts">' . absint( $total_points ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
-					$content .= '<td class="col-inc">' . round( $inc ) . '</td>';
+					$content .= '<td class="col-pts">' . absint( round( $total_points ) ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
+					$content .= '<td class="col-inc">' . absint( round( $inc ) ) . '</td>';
 
 					$content .= '</tr>';
 				}
@@ -1395,7 +1395,7 @@ if ( isset( $_GET['test'] ) ) {
 		}
 if ( isset( $_GET['test'])){
 echo "\n\n\nRESULTS:\n";
-print_r( $stored_results );die;
+print_r( $stored_results );
 echo "\n\n\n";
 }
 		return $stored_results;
