@@ -82,6 +82,8 @@ $args = array(
 	'fields'                 => 'ids',
 ) ;
 
+wp_reset_query();
+
 if ( is_search() ) {
 	$title = sprintf( esc_html__( 'Search Results for: "%s"', 'undiecar' ), get_search_query() );
 	$content = '';
@@ -107,8 +109,8 @@ if ( is_search() ) {
 	! is_front_page()
 ) {
 
-	$title = get_the_post_type() . '-'.get_the_ID() . get_the_title( get_the_ID() );
-	$content = '';
+	$title     = get_the_title( get_the_ID() );
+	$content   = '';
 	$image_url = get_the_post_thumbnail_url( get_the_ID(), 'src-featured' );
 
 	// If no image URL, then grab the one from the featured image on front page
