@@ -107,7 +107,7 @@ if ( is_search() ) {
 	! is_front_page()
 ) {
 
-	$title = get_the_title( get_the_ID() );
+	$title = get_the_post_type() . '-'.get_the_ID() . get_the_title( get_the_ID() );
 	$content = '';
 	$image_url = get_the_post_thumbnail_url( get_the_ID(), 'src-featured' );
 
