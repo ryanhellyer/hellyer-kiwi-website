@@ -588,7 +588,7 @@ class SRC_Seasons extends SRC_Core {
 			$html .= '</p>';
 
 		}
-
+/*
 		// If we have any bonus points, then add those
 		$bonus_point_pole          = get_post_meta( get_the_ID(), 'bonus_point_pole', true );
 		$bonus_point_fastest_lap   = get_post_meta( get_the_ID(), 'bonus_point_fastest_lap', true );
@@ -644,7 +644,7 @@ class SRC_Seasons extends SRC_Core {
 //			$html .= '<p>' . esc_html__( 'Bonus points are awarded per event, not per class.', 'undiecar' ) . '</p>';
 
 		}
-
+*/
 		return $content . $html;
 	}
 

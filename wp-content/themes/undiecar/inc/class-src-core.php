@@ -1163,7 +1163,7 @@ class SRC_Core {
 				}
 
 			}
-
+			wp_reset_postdata();
 		}
 		wp_reset_query();
 
@@ -1269,6 +1269,7 @@ if ( isset( $_GET['test'] ) ) {
 				}
 
 			}
+			wp_reset_postdata();
 
 		}
 		wp_reset_query();
@@ -1310,6 +1311,12 @@ if ( isset( $_GET['test'] ) ) {
 		foreach ( $results as $key => $result ) {
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
+
+			// Add bonus point for leading race.
+			if ( 0 != $result['laps_led'] ) {
+				$stored_results[$name] = $stored_results[$name] + 2;
+			}
+
 
 			// Get qualifying time
 			if ( isset( $result['qual_time'] ) ) {
