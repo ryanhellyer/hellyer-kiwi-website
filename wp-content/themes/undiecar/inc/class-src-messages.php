@@ -134,7 +134,7 @@ class SRC_Messages extends SRC_Core {
 
 		$post_id   = absint( $_GET['post'] );
 		$image_url = get_permalink( $post_id );
-		$image_url = add_query_arg( 'driver', '[NAME]', $image_url );
+		$image_url = add_query_arg( 'driver', '[FULL_NAME]', $image_url );
 
 		return '[img]' . esc_html( $image_url ) /*Don't use esc_url() due to it removing shortcodes */ . '[/img]';
 	}
