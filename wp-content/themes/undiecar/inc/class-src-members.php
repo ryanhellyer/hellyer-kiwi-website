@@ -451,13 +451,14 @@ class SRC_Members extends SRC_Core {
 		</table>
 		';
 
-		if ( isset( $_GET['message'] ) ) {
+		if ( is_super_admin() ) {
+			$messages = 'Iberia,Brazil';
 
 			$drivers_list = '';
 			$number = 0;
 			foreach ( $drivers_to_notify as $driver_slug => $driver_id )  {
 
-				$remove_clubs = explode( ',', $_GET['message'] );
+				$remove_clubs = explode( ',', $messages );
 				foreach ( $remove_clubs as $club ) {
 					if ( $club === get_user_meta( $driver_id, 'club', true ) ) {
 						$remove = true;
