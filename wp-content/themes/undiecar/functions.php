@@ -1,18 +1,14 @@
 <?php
 
 if ( is_super_admin() ) {
-
-//add_action( 'template_redirect', function() {
-//	print_r( get_post_meta( 3967 ) );die;
-//} );
-
-	require( 'tools/modify-results.php' );
 	require( 'tools/get-names-from-json.php' );
+	require( 'tools/modify-results.php' );
 	require( 'tools/emails.php' );
 	require( 'tools/pull-names-from-csv.php' );
 	require( 'tools/convert-json.php' );
 	require( 'tools/create-user.php' );
 	require( 'tools/TEST-auto-news.php' );
+	require( 'tools/post-card.php' );
 }
 
 add_option( 'src_featured_page', '' );
@@ -35,6 +31,7 @@ require( 'inc/class-src-teams.php' );
 require( 'inc/class-src-messages.php' );
 require( 'inc/class-src-videos.php' );
 require( 'inc/class-src-ai.php' );
+require( 'inc/class-src-protest.php' );
 
 require( 'inc/functions.php' );
 
@@ -55,3 +52,4 @@ new SRC_Teams;
 new SRC_Messages;
 new SRC_Videos;
 new SRC_AI();
+new SRC_Protest();
