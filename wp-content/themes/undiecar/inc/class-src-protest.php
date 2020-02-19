@@ -46,7 +46,7 @@ class SRC_Protest {
 		$message .= 'Additional info: ' . esc_html( $protest_additional_info );
 
 		$response = wp_mail(
-			'ryanhellyer@gmail.com,directorjustin62@gmail.com',
+			'ryanhellyer@gmail.com', //,directorjustin62@gmail.com
 			'Undiecar protest submission from ' . esc_html( $protester_name ),
 			$message,
 			array( 'From: Undiecar Championship <donotreply@undiecar.com>' ),
