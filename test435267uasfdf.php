@@ -7,16 +7,16 @@ $args = array(
 	4  => 'Test 4    ',
 	5  => 'Test 5    ',
 	6  => 'Test 6    ',
-	7  => 'Test 7    ',
-	8  => 'Test 8    ',
-	9  => 'Test 9    ',
-	10 => 'Test 10    ',
-	11 => 'Plugin on ',
-	12 => 'Plugin off',
+//	7  => 'Test 7    ',
+//	8  => 'Test 8    ',
+//	9  => 'Test 9    ',
+//	10 => 'Test 10    ',
+	7 => 'Plugin on ',
+	8 => 'Plugin off',
 );
 
 $iterations = 0;
-while ( $iterations < 30 ) {
+while ( $iterations < 480 ) {
 
 	$count++;
 
@@ -39,5 +39,5 @@ foreach ( $args as $count => $label ) {
 	$max     = trim( max( $results[ $count ] ) );
 	$min     = trim( min( $results[ $count ] ) );
 
-	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $count . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
+	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $number . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
 }
