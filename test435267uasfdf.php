@@ -1,5 +1,5 @@
 <?php
-set_time_limit( 60 * 5 );
+set_time_limit( 480 );
 $time_start = microtime( true ); 
 
 $iterations_to_do = '';
