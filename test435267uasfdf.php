@@ -52,6 +52,7 @@ while ( $iterations < $iterations_to_do ) {
 		$requests = shell_exec( $url . $count . ' | grep Request' );
 		$requests = str_replace( 'Requests per second:    ', '', $requests );
 		$requests = str_replace( ' [#/sec] (mean)', '', $requests );
+		$requests = (int) $requests;
 
 		if ( $iterations > -1 ) {
 			$results[ $count ][] = $requests;
@@ -69,6 +70,7 @@ echo '<pre>';
 foreach ( $args as $count => $label ) {
 	$number  = count( $results[ $count ] );
 	$average = array_sum( $results[ $count ] ) / $number;
+//echo "\n........\n";print_r( $results[ $count ] );echo "\n........\n";
 	$max     = trim( max( $results[ $count ] ) );
 	$min     = trim( min( $results[ $count ] ) );
 
