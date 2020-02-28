@@ -5,11 +5,20 @@ $iterations_to_do = '';
 if ( isset( $_POST['iterations'] ) ) {
 	$iterations_to_do = (int) $_POST['iterations'];
 }
+$password = '';
+if ( isset( $_POST['password'] ) ) {
+	$password =  filter_var( $_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS );
+}
 
 $form = '
 <form action="" method="POST">
-	<label>Iterations (maxes out around 32 ish)</label>
+	<label>Iterations (maxes out around 8 ish)</label>
 	<input type="number" name="iterations" value="' . $iterations_to_do . '" />
+
+	<br />
+
+	<label>Password</label>
+	<input type="text" name="password" value="' . $password . '" />
 
 	<br /><br />
 	<input type="submit" name="submit" value="submit" />
@@ -31,23 +40,24 @@ $args = array(
 	8  => 'Plugin on ',
 );
 
-$url = 'ab -A zsuraski:M1qbewV6D9 -n 100 -c 20 https://zsuraski.site.strattic.io/?test=';
+$url = 'ab -A zsuraski:' . $password . ' -n 100 -c 20 https://zsuraski.site.strattic.io/?test=';
 echo '<pre>' . $url . '</pre><br />';
 
 $iterations = 0;
-$iterations_to_do = $iterations_to_do * count( $args );
 while ( $iterations < $iterations_to_do ) {
 
-	$count++;
+	foreach ( $args as $count => $label ) {
+		$count++;
 
-	$requests = shell_exec( $url . $count . ' | grep Request' );
-	$requests = str_replace( 'Requests per second:    ', '', $requests );
-	$requests = str_replace( ' [#/sec] (mean)', '', $requests );
+		$requests = shell_exec( $url . $count . ' | grep Request' );
+		$requests = str_replace( 'Requests per second:    ', '', $requests );
+		$requests = str_replace( ' [#/sec] (mean)', '', $requests );
 
-	$results[ $count ][] = $requests;
+		$results[ $count ][] = $requests;
 
-	if ( count( $args ) === $count ) {
-		$count = 0;
+		if ( count( $args ) === $count ) {
+			$count = 0;
+		}
 	}
 
 	$iterations++;
