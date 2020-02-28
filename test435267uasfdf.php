@@ -21,12 +21,13 @@ while ( $iterations < 30 ) {
 foreach ( array(
 	1 => 'Test 1    ',
 	2 => 'Plugin on ',
-	3 => 'Plugin off'
+	3 => 'Plugin off',
+	4 => 'Test 2    ',
 ) as $count => $label ) {
 	$number  = count( $results[ $count ] );
 	$average = array_sum( $results[ $count ] ) / $number;
 	$max     = trim( max( $results[ $count ] ) );
 	$min     = trim( min( $results[ $count ] ) );
 
-	echo $label . ' average: ' . $average . ' (from: _' . $count . '_ tests; max: _' . $max . '_; min: _' . $min . '_) ' . "\n";
+	echo $label . ' average: ' . $average . ' (from: ' . $count . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
 }
