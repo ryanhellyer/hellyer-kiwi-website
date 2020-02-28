@@ -1,5 +1,6 @@
 <?php
 set_time_limit( 60 * 5 );
+$time_start = microtime( true ); 
 
 $iterations_to_do = '';
 if ( isset( $_POST['iterations'] ) ) {
@@ -47,21 +48,18 @@ $iterations = 0;
 while ( $iterations < $iterations_to_do ) {
 
 	foreach ( $args as $count => $label ) {
-		$count++;
 
 		$requests = shell_exec( $url . $count . ' | grep Request' );
 		$requests = str_replace( 'Requests per second:    ', '', $requests );
 		$requests = str_replace( ' [#/sec] (mean)', '', $requests );
 
 		$results[ $count ][] = $requests;
-
-		if ( count( $args ) === $count ) {
-			$count = 0;
-		}
 	}
 
 	$iterations++;
 }
+
+echo '<textarea>';print_r( $results );echo '</textarea>';
 
 echo '<pre>';
 foreach ( $args as $count => $label ) {
@@ -76,3 +74,9 @@ echo '</pre>';
 
 echo '<br /><br />';
 echo $form;
+
+
+
+$time_end = microtime( true );
+$execution_time = ( $time_end - $time_start );
+echo '<br /><br />Total Execution Time: ' . $execution_time . ' s';
