@@ -1,5 +1,7 @@
 <?php
 
+set_time_limit( 60 * 5 );
+
 $args = array(
 	1  => 'Test 1    ',
 	2  => 'Test 2    ',
@@ -15,12 +17,15 @@ $args = array(
 	8 => 'Plugin off',
 );
 
+$url = 'ab -A zsuraski:M1qbewV6D9 -n 100 -c 20 https://zsuraski.site.strattic.io/?test=';
+echo $url . "\n\n";
+
 $iterations = 0;
-while ( $iterations < 480 ) {
+while ( $iterations < 64 ) {
 
 	$count++;
 
-	$requests = shell_exec( 'ab -A zsuraski:M1qbewV6D9 -n 10 -c 5 https://zsuraski.site.strattic.io/?test=' . $count . ' | grep Request' );
+	$requests = shell_exec( $url . $count . ' | grep Request' );
 	$requests = str_replace( 'Requests per second:    ', '', $requests );
 	$requests = str_replace( ' [#/sec] (mean)', '', $requests );
 
