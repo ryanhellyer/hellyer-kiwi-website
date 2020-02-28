@@ -1,5 +1,20 @@
 <?php
 
+$args = array(
+	1  => 'Test 1    ',
+	2  => 'Test 2    ',
+	3  => 'Test 3    ',
+	4  => 'Test 4    ',
+	5  => 'Test 5    ',
+	6  => 'Test 6    ',
+	7  => 'Test 7    ',
+	8  => 'Test 8    ',
+	9  => 'Test 9    ',
+	10 => 'Test 10    ',
+	11 => 'Plugin on ',
+	12 => 'Plugin off',
+);
+
 $iterations = 0;
 while ( $iterations < 30 ) {
 
@@ -11,23 +26,18 @@ while ( $iterations < 30 ) {
 
 	$results[ $count ][] = $requests;
 
-	if ( 3 === $count ) {
+	if ( count( $args ) === $count ) {
 		$count = 0;
 	}
 
 	$iterations++;
 }
 
-foreach ( array(
-	1 => 'Test 1    ',
-	2 => 'Plugin on ',
-	3 => 'Plugin off',
-	4 => 'Test 2    ',
-) as $count => $label ) {
+foreach ( $args as $count => $label ) {
 	$number  = count( $results[ $count ] );
 	$average = array_sum( $results[ $count ] ) / $number;
 	$max     = trim( max( $results[ $count ] ) );
 	$min     = trim( min( $results[ $count ] ) );
 
-	echo $label . ' average: ' . $average . ' (from: ' . $count . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
+	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $count . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
 }
