@@ -1,5 +1,23 @@
 <?php
 
+
+echo '
+<form action="" method="POST">
+	<label>Iterations</label>
+	<input type="number" name="iterations" />
+
+	<br /><br />
+	<input type="submit" name="submit" value="submit" />
+</form>';
+
+if ( isset( $_POST ) ) {
+	print_r( $_POST );
+}
+
+die;
+
+$_GET['iterations'] = (int) $_GET['iterations'];
+
 set_time_limit( 60 * 5 );
 
 $args = array(
@@ -18,10 +36,10 @@ $args = array(
 );
 
 $url = 'ab -A zsuraski:M1qbewV6D9 -n 100 -c 20 https://zsuraski.site.strattic.io/?test=';
-echo $url . "\n\n";
+echo '<p>' . $url . '</p>';
 
 $iterations = 0;
-while ( $iterations < 256 ) {
+while ( $iterations < $_GET['iterations'] ) {
 
 	$count++;
 
@@ -44,5 +62,5 @@ foreach ( $args as $count => $label ) {
 	$max     = trim( max( $results[ $count ] ) );
 	$min     = trim( min( $results[ $count ] ) );
 
-	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $number . ' tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
+	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $number . ' tests; max: ' . $max . '; min: ' . $min . ') ' . '<br />';
 }
