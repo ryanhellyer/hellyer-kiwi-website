@@ -28,5 +28,5 @@ foreach ( array(
 	$max     = max( $results[ $count ] );
 	$min     = min( $results[ $count ] );
 
-	echo $label . ' average: ' . $average . ' (from: ' . $count . ' tests; max: ' . $max . '; min: ' . $min . ') <br />';
+	echo $label . ' average: ' . $average . ' (from: _' . $count . '_ tests; max: ' . $max . '; min: ' . $min . ') ' . "\n";
 }
