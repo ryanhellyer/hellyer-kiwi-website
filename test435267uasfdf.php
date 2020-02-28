@@ -5,22 +5,18 @@ while ( $iterations < 6 ) {
 
 	$count++;
 
-
 	$requests = shell_exec( 'ab -A zsuraski:M1qbewV6D9 -n 100 -c 20 https://zsuraski.site.strattic.io/?test=' . $count . ' | grep Request' );
 	$requests = str_replace( 'Requests per second:    ', '', $requests );
 	$requests = str_replace( ' [#/sec] (mean)', '', $requests );
+
+	$results[ $count ][] = $requests;
 
 	if ( 3 === $count ) {
 		$count = 0;
 	}
 
-	$results[ $count ][] = $requests;
-
 	$iterations++;
 }
-
-print_r( $results );
-echo '<br /><br />';
 
 foreach ( array(
 	1 => 'Test 1',
