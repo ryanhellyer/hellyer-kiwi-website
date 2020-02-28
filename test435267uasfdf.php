@@ -51,8 +51,8 @@ while ( $iterations < $iterations_to_do ) {
 
 		$requests = shell_exec( $url . $count . ' | grep Request' );
 		$requests = str_replace( 'Requests per second:    ', '', $requests );
-		$requests = str_replace( ' [#/sec] (mean)', '', $requests );
-		$requests = (int) $requests;
+		$requests = str_replace( ' [#/sec] (mean)', '', $requests ) * 1000;
+		$requests = $requests / 1000; // Just crudely forcing it to be numeric.
 
 		if ( $iterations > -1 ) {
 			$results[ $count ][] = $requests;
@@ -66,23 +66,24 @@ while ( $iterations < $iterations_to_do ) {
 echo '<label>Raw results data</label>';
 echo '<textarea style="width:100%;">';print_r( $raw_results );echo '</textarea>';
 
+echo '<h3>Results</h3>';
 echo '<pre>';
 foreach ( $args as $count => $label ) {
 	$number  = count( $results[ $count ] );
 	$average = array_sum( $results[ $count ] ) / $number;
 //echo "\n........\n";print_r( $results[ $count ] );echo "\n........\n";
-	$max     = trim( max( $results[ $count ] ) );
-	$min     = trim( min( $results[ $count ] ) );
+	$max     = (int) trim( max( $results[ $count ] ) );
+	$min     = (int) trim( min( $results[ $count ] ) );
 
-	echo $label . ' average: ' . round( $average, 2 ) . ' (from: ' . $number . ' tests; max: ' . $max . '; min: ' . $min . ') ' . '<br />';
+	echo $label . ' average: ' . round( $average, 2 ) . ' req/s (from: ' . $number . ' tests; max: ' . $max . '; min: ' . $min . ') ' . '<br />';
 }
 echo '</pre>';
 
-echo '<br /><br />';
+echo '<h3>Form</h3>';
 echo $form;
 
 
 
 $time_end = microtime( true );
 $execution_time = ( $time_end - $time_start );
-echo '<br /><br />Total Execution Time: ' . $execution_time . ' s';
+echo '<br /><br />Total Execution Time: ' . round( $execution_time ) . ' s';
