@@ -3,12 +3,12 @@
 set_time_limit( 60 * 5 );
 
 $args = array(
-	1  => 'Test 1    ',
+	1  => 'Slowest 1 ',
 	2  => 'Test 2    ',
 	3  => 'Test 3    ',
 	4  => 'Test 4    ',
 	5  => 'Test 5    ',
-	6  => 'Test 6    ',
+	6  => 'Fastest 6 ',
 //	7  => 'Test 7    ',
 //	8  => 'Test 8    ',
 //	9  => 'Test 9    ',
@@ -21,7 +21,7 @@ $url = 'ab -A zsuraski:M1qbewV6D9 -n 100 -c 20 https://zsuraski.site.strattic.io
 echo $url . "\n\n";
 
 $iterations = 0;
-while ( $iterations < 64 ) {
+while ( $iterations < 256 ) {
 
 	$count++;
 
