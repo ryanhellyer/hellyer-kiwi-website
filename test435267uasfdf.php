@@ -44,7 +44,7 @@ $args = array(
 $url = 'ab -A zsuraski:' . $password . ' -n 100 -c 20 https://zsuraski.site.strattic.io/?test=';
 echo '<pre>' . $url . '</pre><br />';
 
-$iterations = 0; // Need to start less than zero to warm the site up.
+$iterations = -1; // Need to start less than zero to warm the site up.
 while ( $iterations < $iterations_to_do ) {
 
 	foreach ( $args as $count => $label ) {
@@ -53,7 +53,7 @@ while ( $iterations < $iterations_to_do ) {
 		$requests = str_replace( 'Requests per second:    ', '', $requests );
 		$requests = str_replace( ' [#/sec] (mean)', '', $requests );
 
-		if ( $iterations > 0 ) {
+		if ( $iterations > -1 ) {
 			$results[ $count ][] = $requests;
 		}
 		$raw_results[ $count ][] = $requests;
