@@ -186,6 +186,17 @@ class SRC_AI extends SRC_Core {
 				$car_design = '2,222958,447ac0,ffffff';
 			}
 
+			// Set how crazy the driver is.
+			if ( isset( $_GET['mode'] ) && 'insane' === $_GET['mode'] ) {
+				$driver_age        = '99';
+				$driver_optimism   = '100';
+				$driver_aggression = '100';
+			} else {
+				$driver_age        = '13';
+				$driver_optimism   = '50';
+				$driver_aggression = '65';
+			}
+
 			$roster .= '
 		{
 			"driverName": "' . esc_html( $driver_name ) . '",
@@ -200,10 +211,10 @@ class SRC_AI extends SRC_Core {
 			"sponsor2": 124,
 			"numberDesign": "null,null,null,null",
 			"driverSkill": ' . absint( $driver_skill ) . ',
-			"driverAggression": 65,
-			"driverOptimism": 50,
+			"driverAggression": ' . absint( $driver_aggression ) . ',
+			"driverOptimism": ' . absint( $driver_optimism ) . ',
 			"driverSmoothness": 0,
-			"driverAge": 13,
+			"driverAge": ' . absint( $driver_age ) . ',
 			"pitCrewSkill": 53,
 			"strategyRiskiness": 72,
 			"iracing_id": ' . absint( $iracing_id );
