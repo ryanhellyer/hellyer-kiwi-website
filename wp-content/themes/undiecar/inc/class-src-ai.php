@@ -15,6 +15,10 @@ class SRC_AI extends SRC_Core {
 		'stockcars~camarozl12018_103'   => 'NASCAR Cup Series Chevrolet Camaro ZL1',
 		'stockcars~toyotacamry_56'      => 'NASCAR Cup Series Toyota Camry',
 		'stockcars~fordmustang2019_110' => 'NASCAR Cup Series Ford Mustang',
+		'stockcars~impala'              => 'NASCAR K&N',
+		'dallaraf3'                     => 'Dallara F3',
+		'audirs3lms'                    => 'Audi RS3 LMS TCR',
+		'porsche718gt4'                 => 'Porsche 718 GT4',
 	);
 
 	/**
