@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - User Role Editor by Members – Best User, Role and Capability Management Plugin for WordPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-11-16 18:44:42+0000\n"
+"PO-Revision-Date: 2019-12-03 11:34:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -291,7 +291,7 @@ msgstr "Ufiltrert HTML"
 
 #: inc/functions-capabilities.php:64
 msgid "Read"
-msgstr "Les"
+msgstr "Lese"
 
 #: inc/functions-capabilities.php:63
 msgid "Moderate Comments"
@@ -369,6 +369,10 @@ msgstr "Tillegg"
 msgctxt "role"
 msgid "Add New"
 msgstr "Legg til ny"
+
+#: admin/class-role-edit.php:234
+msgid "The %s role is typically the most important role on the site. Please take extreme caution that you do not inadvertently remove necessary capabilities."
+msgstr "Rollen %s er den mest betydningsfulle rollen på dette nettstedet. Vennligst pass ytterst nøye på at du ikke fjerner nødvendige tillatelser ved en feiltakelse."
 
 #: admin/class-meta-box-custom-cap.php:90
 msgctxt "capability"
@@ -747,6 +751,18 @@ msgstr "\"Privat side\"-funksjonen omdirigerer alle brukere som ikke er logget i
 msgid "The sidebar widgets feature adds additional widgets for use in your theme's sidebars."
 msgstr "Widgets-muligheten legger til ekstra widgeter som kan brukes i widgetområdene for ditt tema."
 
+#: admin/views/class-view-general.php:404
+msgid "The multiple user roles feature allows you to assign more than one role to each user from the edit user screen."
+msgstr "Funksjonen for flere brukerroller lar deg tilordne mer enn én rolle til hver bruker fra skjermen for redigering av brukere."
+
+#: admin/views/class-view-general.php:408
+msgid "Tick the checkbox for denied capabilities to always take precedence over granted capabilities when there is a conflict. This is only relevant when using multiple roles per user."
+msgstr "Kryss av i denne boksen for alltid å la nektede tillatelser overstyre gitte tillatelser når det er konflikt. Dette er bare relevant når man bruker flere roller pr. bruker."
+
+#: admin/views/class-view-general.php:400
+msgid "The role manager allows you to manage roles on your site by giving you the ability to create, edit, and delete any role. Note that changes to roles do not change settings for the Members plugin. You are literally changing data in your WordPress database. This plugin feature merely provides an interface for you to make these changes."
+msgstr "Rollebehandleren lar deg behandle roller på dit nettsted ved å gi deg muligheten til å opprette, redigere og slette enhver rolle. Merk at endringer av roller ikke endrer innstillingene for denne utvidelsen. Du endrer bokstavelig talt data i din WordPress-databasen. Denne funksjonen i utvidelsen gir deg bare et grensesnitt slik a du kan gjøre disse endringene."
+
 #: admin/functions-help.php:24
 msgid "Support Forums"
 msgstr "Støtteforum"
@@ -878,9 +894,25 @@ msgstr "<strong>Slett</strong> fjerner rollen din fra denne listen og sletter de
 msgid "<strong>Edit</strong> takes you to the editing screen for that role. You can also reach that screen by clicking on the role name."
 msgstr "<strong>Rediger</strong> tar deg til redigeringssiden for den rollen. Du kan også nå siden ved å klikke rollenavnet."
 
+#: admin/class-roles.php:289
+msgid "Hovering over a row in the roles list will display action links that allow you to manage your role. You can perform the following actions:"
+msgstr "Å sveve pekeren over en rad i rollelisten vil vise handlingslenker som lar deg behandle din rolle. Du kan utføre følgende handlinger:"
+
+#: admin/class-roles.php:275
+msgid "You can filter the list of roles by types using the text links in the upper left. The default view is to show all roles."
+msgstr "Du kan filtrere rolleoversikten etter typer ved å bruke lenkene øverst til venstre. Standardvisningen er å vise alle roller."
+
+#: admin/class-roles.php:274
+msgid "You can hide/display columns based on your needs and decide how many roles to list per screen using the Screen Options tab."
+msgstr "Du kan skjule/vis kolonner basert på dine behov og avgjøre hvor mange roller å vise pr. skjermside ved å bruke fane Visningsinnstillinger."
+
 #: admin/class-roles.php:270
 msgid "You can customize the display of this screen&#8216;s contents in a number of ways:"
 msgstr "Du kan tilpasse visningen denne sidens innhold på mange ulike måter:"
+
+#: admin/class-roles.php:256
+msgid "This screen provides access to all of your user roles. Roles are a method of grouping users. They are made up of capabilities (caps), which give permission to users to perform specific actions on the site."
+msgstr "Denne skjermen gir tilgang til alle dine brukerroller. Roller er en metode for å gruppere brukere. De består av tillatelser (caps) som gir brukere adgang til å utføre bestemte handlinger på netstedet."
 
 #: admin/class-roles.php:237
 msgid "Bulk Actions"
@@ -1008,6 +1040,11 @@ msgstr "Rollen %s oppdatert."
 #: admin/class-role-edit.php:99
 msgid "The requested role to edit does not exist."
 msgstr "Den forespurte rollen å redigere fines ikke."
+
+#: admin/class-role-edit.php:92 admin/class-manage-users.php:161
+#: admin/class-manage-users.php:236 members.php:129 members.php:140
+msgid "Whoah, partner!"
+msgstr "Rolig, partner!"
 
 #: admin/class-meta-box-publish-role.php:141
 msgid "Add Role"
