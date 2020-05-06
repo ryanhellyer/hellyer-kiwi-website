@@ -1102,48 +1102,26 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 
 		$number_of_races = get_post_meta( $post_id, 'number_of_races', true );
 		$number_of_races = absint( $number_of_races );
-echo '$number_of_races: ' . $number_of_races . "\n\n";
-		$race_number = 1;
+		$race_number = 0;
 		while ( $race_number <= $number_of_races ) {
+			$race_number++;
 
 			// Bail out if no result found
-			if (
-				( ! isset( $_POST[ 'result-' . $race_number ] ) && ! isset( $heat_format ) )
-				||
-				( '' === $_POST[ 'result-' . $race_number ] && ! isset( $heat_format ) )
-			) {
+			if ( ! isset( $_POST[ 'result-' . $race_number ] ) || '' === $_POST[ 'result-' . $race_number ] ) {
 				continue;
 			}
 
 			// Get data from results
-			if ( isset( $heat_format ) ) {
-				$results = stripslashes( $_POST[ 'result-1' ] );
-			} else {
-				$results = stripslashes( $_POST[ 'result-' . $race_number ] );
-			}
+			$results = stripslashes( $_POST[ 'result-' . $race_number ] );
 			$results = json_decode( $results );
 
 			$drivers = array();
-//print_r( $results );die;
 			foreach ( $results->rows as $key => $row ) {
-
-//print_r( $row );die;
 				$driver_name = urldecode( $row->displayname );
 				$driver_name = str_replace( '+', ' ', $driver_name );
 				$car_name = str_replace( '+', ' ', $row->ccName );
 
-				// If we have a feature heat race, then there's definitely two races.
-				if ( 'FEATURE' === $row->simsesname ) {
-					$heat_format = true;
-				}
-
-				if (
-					'RACE' === $row->simsesname
-					||
-					( 1 === $race_number && 'HEAT+1' === $row->simsesname )
-					||
-					( 2 === $race_number && 'FEATURE' === $row->simsesname )
-				) {
+				if ( 'RACE' === $row->simsesname ) {
 					$start_pos = absint( $row->startpos ) + 1;
 					$drivers[ $driver_name ]['start_pos'] = absint( $start_pos );
 				}
@@ -1157,13 +1135,7 @@ echo '$number_of_races: ' . $number_of_races . "\n\n";
 					$drivers[ $driver_name ]['qual_time'] = esc_html( $qual_time );
 				}
 
-				if (
-					'RACE' === $row->simsesname
-					||
-					( 1 === $race_number && 'HEAT+1' === $row->simsesname )
-					||
-					( 2 === $race_number && 'FEATURE' === $row->simsesname )
-				) {
+				if ( 'RACE' === $row->simsesname ) {
 
 					$finish_position  = absint( $row->pos ) + 1;
 					$car_no           = $row->carnum;
@@ -1247,8 +1219,6 @@ echo '$number_of_races: ' . $number_of_races . "\n\n";
 			ksort( $results );
 			$results = json_encode( $results, JSON_UNESCAPED_UNICODE );
 			update_post_meta( $post_id, '_results_' . $race_number, $results );
-
-			$race_number++;
 		}
 
 	}
@@ -1304,7 +1274,6 @@ echo '$number_of_races: ' . $number_of_races . "\n\n";
 			}
 
 			$results = json_decode( $results, true );
-//print_r( $results );echo "\n\n...........\n\n";
 			if ( empty( $results ) ) {
 				continue;
 			}
