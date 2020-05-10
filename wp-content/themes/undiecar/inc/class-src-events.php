@@ -1095,6 +1095,15 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			return $post_id;
 		}
 
+		// Bail out if no results being sent.
+		if (
+			empty( $_POST['result-1'] )
+			&&
+			empty( $_POST['result-2'] )
+		) {
+			return $post_id;
+		}
+
 		// Do nonce security check
 		if ( ! wp_verify_nonce( $_POST['result-nonce'], __FILE__ ) ) {
 			return $post_id;
@@ -1102,7 +1111,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 
 		$number_of_races = get_post_meta( $post_id, 'number_of_races', true );
 		$number_of_races = absint( $number_of_races );
-echo '$number_of_races: ' . $number_of_races . "\n\n";
+
 		$race_number = 1;
 		while ( $race_number <= $number_of_races ) {
 
