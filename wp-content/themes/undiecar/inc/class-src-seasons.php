@@ -29,7 +29,6 @@ class SRC_Seasons extends SRC_Core {
 		add_filter( 'the_content',     array( $this, 'permanently_store_results' ), 100 );
 
 		add_action( 'cmb2_admin_init', array( $this, 'seasons_metaboxes' ) );
-		add_action( 'cmb2_admin_init', array( $this, 'teams_metaboxes' ) );
 		add_action( 'add_meta_boxes',  array( $this, 'permanently_store_results_metabox' ) );
 		add_action( 'save_post',       array( $this, 'permanently_store_results_save' ), 10, 2 );
 
@@ -348,19 +347,6 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name'       => esc_html__( 'Open for registration?', 'src' ),
-			'id'         => 'open_for_registration',
-			'type'       => 'checkbox',
-		) );
-
-		$cmb->add_field( array(
-			'name'       => esc_html__( 'Drivers', 'src' ),
-			'description'=> esc_html__( 'Each new driver should be on a new line', 'src' ),
-			'id'         => 'drivers',
-			'type'       => 'textarea',
-		) );
-
-		$cmb->add_field( array(
 			'name'       => esc_html__( 'Label', 'src' ),
 			'description'=> esc_html__( 'Used as a tagline or to indicater the broad title of the championship, perhaps to group a series of seasons together', 'src' ),
 			'id'         => 'label',
@@ -428,41 +414,6 @@ class SRC_Seasons extends SRC_Core {
 			'id'         => 'fixed_setup',
 			'type'       => 'checkbox',
 		) );
-
-	}
-
-	public function teams_metaboxes() {
-		$slug = 'teams';
-
-		$cmb = new_cmb2_box( array(
-			'id'           => $slug,
-			'title'        => esc_html__( 'Teams', 'src' ),
-			'object_types' => array( 'season', ),
-		) );
-
-		$teams_query = new WP_Query( array(
-			'post_type'      => 'team',
-			'post_status'    => 'publish',
-			'posts_per_page' => 100,
-			'no_found_rows'  => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		) );
-
-		if ( $teams_query->have_posts() ) {
-
-			while ( $teams_query->have_posts() ) {
-				$teams_query->the_post();
-
-				$cmb->add_field( array(
-					'name'       => esc_html( get_the_title( get_the_ID() ) ),
-					'id'         => 'team-' . get_the_ID(),
-					'type'       => 'checkbox',
-				) );
-
-			}
-		}
-		wp_reset_postdata();
 
 	}
 
