@@ -89,6 +89,11 @@ get_header();
 				}
 
 			}
+
+			if ( ! isset( $time ) ) {
+				continue;
+			}
+
 			$event_time = $event_date + $time;
 			$event_time = $event_time + ( 2 * HOUR_IN_SECONDS ); // Show on calendar for two hours after it happened
 			$track_id = get_post_meta( $event_id, 'track', true );
