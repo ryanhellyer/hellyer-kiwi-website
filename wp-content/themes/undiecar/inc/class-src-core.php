@@ -1334,7 +1334,6 @@ if ( isset( $_GET['test'] ) ) {
 
 			}
 //echo $q_time . "\n";
-//print_r( $result );die;
 //echo $points_multiplier. "\n";
 //if ( $points_multiplier == '2' ) {
 //	print_r( $result );
