@@ -589,14 +589,19 @@ class SRC_Core {
 					$content .= '<td class="col-nationality">' . esc_attr( $nationality ) . '</td>';
 					foreach ( $events as $event_id ) {
 
-						if ( isset( $points[ $event_id ] ) && 'drop' === $points[ $event_id ] ) {
-							$pts = '🚫';
+						if (
+							isset( $points[ $event_id ] )
+							&&
+							'drop-' === substr( $points[ $event_id ], 0, 5 )
+						) {
+							$pts = '<del>' . absint( substr( $points[ $event_id ], 5 ) ) . '</del>';
+
 						} else if ( isset( $points[ $event_id ] ) ) {
 							$pts = absint( round( $points[ $event_id ] ) );
 						} else {
 							$pts = '&mdash;';
 						}
-						$content .= '<td class="col-pts">' . esc_html( $pts ) . '</td>';
+						$content .= '<td class="col-pts">' . wp_kses_post( $pts ) . '</td>';
 					}
 					$content .= '<td class="col-pts">' . absint( round( $total_points ) ) . '</td>'; // Need to use absint() here due to fractions being used to put low incident drivers in front
 					$content .= '<td class="col-inc">' . absint( round( $inc ) ) . '</td>';
@@ -1181,7 +1186,7 @@ class SRC_Core {
 			foreach ( $points as $key => $pts ) {
 
 				if ( $count > $points_to_keep ) {
-					$points[ $key ] = 'drop';
+					$points[ $key ] = 'drop-' . $pts;
 				}
 
 				$count++;
