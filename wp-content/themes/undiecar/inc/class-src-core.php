@@ -594,7 +594,7 @@ class SRC_Core {
 							&&
 							'drop-' === substr( $points[ $event_id ], 0, 5 )
 						) {
-							$pts = '<del>' . absint( substr( $points[ $event_id ], 5 ) ) . '</del>';
+							$pts = '<del>' . esc_html( round( substr( $points[ $event_id ], 5 ) ) ) . '</del>';
 
 						} else if ( isset( $points[ $event_id ] ) ) {
 							$pts = absint( round( $points[ $event_id ] ) );
@@ -1182,7 +1182,7 @@ class SRC_Core {
 		$points_with_dropscores = array();
 		foreach ( $stored_points as $driver_name => $points ) {
 			arsort( $points );
-			$count = 0;
+			$count = 1;
 			foreach ( $points as $key => $pts ) {
 
 				if ( $count > $points_to_keep ) {
