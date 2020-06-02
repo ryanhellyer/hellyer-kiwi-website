@@ -1197,9 +1197,7 @@ class SRC_Core {
 		}
 
 		// Sort the points into order.
-		if ( ! empty( $stored_points ) ) {
-			$stored_points = self::sort_by_sub_value( $stored_points, 'total_points' );
-		}
+		$stored_points = self::sort_by_sub_value( $stored_points, 'total_points' );
 
 		return $stored_points;
 	}

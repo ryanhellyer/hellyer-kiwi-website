@@ -42,8 +42,6 @@ class SRC_Seasons extends SRC_Core {
 
 	public function permanently_store_results( $content ) {
 
-		wp_reset_query(); // Crude hack, should probably be run at the location the problem occured.
-
 		if (
 			1 !== get_the_ID()
 			&&
@@ -59,6 +57,7 @@ class SRC_Seasons extends SRC_Core {
 						'post_content' => $content,
 					)
 				);
+
 			}
 
 			update_post_meta( get_the_ID(), '_permanently_store_results', 'stored' );
@@ -442,7 +441,6 @@ class SRC_Seasons extends SRC_Core {
 		}
 
 		$selected = get_post_meta( get_the_ID(), '_permanently_store_results', true );
-
 		echo $selected;
 		echo '
 		<p>
