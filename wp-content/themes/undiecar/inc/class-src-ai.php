@@ -6,6 +6,7 @@
 class SRC_AI extends SRC_Core {
 
 	private $iracing_ids;
+	private $ai_result_saved;
 
 	// List of cars ( use ~ instead of \\ to simplify code escaping).
 	private $cars = array(
@@ -19,6 +20,9 @@ class SRC_AI extends SRC_Core {
 		'dallaraf3_106'                 => 'Dallara F3',
 		'audirs3lms_112'                => 'Audi RS3 LMS TCR',
 		'porsche718gt4_119'             => 'Porsche 718 GT4',
+		'indypropm18_120'               => 'Indy Pro 2000 PM18',
+		'usf2000usf17_121'              => 'USF 2000',
+		'bmwm4gt4_122'                  => 'BMW M4 GT4',
 	);
 
 	/**
@@ -31,6 +35,36 @@ class SRC_AI extends SRC_Core {
 		}
 
 		add_shortcode( 'undiecar_ai_rosters', array( $this, 'shortcode' ) );
+
+		// Results saving.
+/*
+		add_filter( 'the_content', array( $this, 'ai_form' ) );
+		add_action( 'init', array( $this, 'ai_results_upload_save' ) );
+
+		// Filter result stuff.
+		add_filter(
+			'undiecar_ai_number_races',
+			function( $number ) {
+
+				// Get season ID.
+				if ( 'event' === get_post_type() ) {
+					$season_id = get_post_meta( get_the_ID(), 'season', true );
+				} else if ( 'season' === get_post_type() ) {
+					$season_id = get_the_ID();
+				} else {
+					return $number;
+				}
+
+				if ( 'on' === get_post_meta( $season_id, 'ai_season', true ) ) {
+					$number = 1; // We don't have AI races with more than one race.
+				}
+
+				return $number;
+			}
+		);
+
+		add_filter( 'undiecar_ai_results', array( $this, 'ai_results' ) );
+*/
 	}
 
 	/**
@@ -381,4 +415,210 @@ undiecar_roster_button.addEventListener( 'click', function( e ) {
 		return $content;
 	}
 
+	/**
+	 * Add form for AI result submission.
+	 *
+	 * @param  string  $content  The post content
+	 * @return string  The modified post content
+	 */
+	public function ai_form( $content ) {
+
+		// Bail out now if this is not an event.
+		if ( 'event' !== get_post_type() ) {
+			return $content;
+		}
+
+		// Bail out now if this is not an AI season race.
+		$season_id = get_post_meta( get_the_ID(), 'season', true );
+		if ( 'on' !== get_post_meta( $season_id, 'ai_season', true ) ) {
+			return $content;
+		}
+
+		// Let them know their result was saved.
+		if ( true === $this->ai_result_saved ) {
+			return '<p>' . esc_html( 'Thanks for submitting your AI session result', 'undiecar' ) . '<br /><a class="button" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . esc_html( 'Continue to results', 'undiecar' ) . '</a></p>';
+		}
+
+		// Display form.
+		$content .= '<h2>' . esc_html__( 'AI race result submission', 'undiecar' ) . '</h2>';
+		$content .= '<p>' . esc_html__( 'Upload your season .json file here.') . '</p>';
+		$content .= '
+<form action="" method="POST" enctype="multipart/form-data">
+
+	<label for="undiecar-driver-name">Your iRacing name</label>
+	<input type="text" name="undiecar-driver-name" id="undiecar-driver-name" value="" required aria-required="true" />
+
+	<label for="undiecar-ai-json">Add season JSON file</label>
+	<input type="file" name="undiecar-ai-json" id="undiecar-ai-json" accept="text/json" />
+
+	<input type="hidden" name="undiecar-event-id" id="undiecar-event-id" value="' . esc_attr( get_the_ID() ) . '" />
+
+	<input class="button" type="submit" value="Submit &#187;" />
+	<input type="hidden" id="undiecar-ai-nonce" name="undiecar-ai-nonce" value="' . esc_attr( wp_create_nonce( __FILE__ ) ) . '">
+</form>';
+
+		return $content;
+	}
+
+	/**
+	 * AI results upload save.
+	 */
+	public function ai_results_upload_save() {
+
+		if ( ! isset( $_POST['undiecar-ai-nonce'] ) ) {
+			return;
+		}
+
+		// Bail out if no results being sent.
+		if (
+			empty( $_POST['undiecar-driver-name'] )
+			&&
+			empty( $_POST['undiecar-event-id'] )
+			&&
+			empty( $_FILES['undiecar-ai-json']['tmp_name'] )
+		) {
+			return;
+		}
+
+		// Do nonce security check
+		if ( ! wp_verify_nonce( $_POST['undiecar-ai-nonce'], __FILE__ ) ) {
+			return;
+		}
+
+// Check car ID.
+
+		$json = file_get_contents( $_FILES['undiecar-ai-json']['tmp_name'] );
+
+		$driver_name = esc_html( $_POST['undiecar-driver-name'] );
+		$event_id = absint( $_POST['undiecar-event-id'] );
+
+
+// SAVE FILE TO META HERE. MAYBE SANTIZE WHERE POSSIBLE.
+
+
+		$data = json_decode( $json, true );
+//print_r( $data );die;
+		if ( ! isset( $data['events'] ) ) {
+			return;
+		}
+
+		foreach ( $data['events'] as $key => $event ) {
+
+			// Check the track ID matches up.
+			if ( ! isset( $event['trackId'] ) ) {
+				return;
+			}
+			$track_id = $event['trackId'];
+// CHECK TRACK ID HERE.
+
+			if ( ! isset( $event['results']['session_results'] ) ) {
+				return;
+			}
+			foreach ( $event['results']['session_results'] as $k => $results ) {
+
+				if (
+					isset( $results['simsession_type_name'] )
+					&&
+					isset( $results['results'] )
+					&&
+					'Race' === $results['simsession_type_name']
+				) {
+					$results = $results['results'];
+					foreach ( $results as $x => $driver_result ) {
+						if ( $driver_name === $driver_result['display_name'] ) {
+
+							// Register driver if they don't exist already.
+							$member    = get_user_by( 'login', sanitize_title( $driver_name ) );
+							$driver_id = $member->ID;
+							if ( empty( $member ) ) {
+								$password = md5( $driver_name  . rand() );
+
+								// should add display name in here, not just the username
+								$driver_id = wp_insert_user(
+									array(
+										'user_login'   => sanitize_title( $driver_name  ),
+										'display_name' => esc_html( $driver_name  ),
+										'user_pass'    => $password,
+									)
+								);
+							}
+//foreach ( array( 2 => 'Ryan Bot 1', 5 => 'Ryan Bot 2', 6 => 'Ryan Bot 3', 1 => 'Ryan Hellyer' ) as $position => $driver_name ) {
+//	$driver_result['position'] = $position;
+							$result = array(
+								'driver_name'       => esc_html( $driver_name ),
+								'position'          => absint( $driver_result['position'] ),
+								'time'              => esc_html( $driver_result['time'] ),
+								'laps_complete'     => absint( $driver_result['laps_complete'] ),
+								'incidents'         => absint( $driver_result['incidents'] ),
+								'reason_out'        => esc_html( $driver_result['reason_out'] ),
+								//'$car_number'        => esc_html( $driver_result['car_number'] ),
+								'car_id'            => absint( $driver_result['car_id'] ),
+								'cust_id'           => absint( $driver_result['cust_id'] ),
+								'starting_position' => absint( $driver_result['starting_position'] ),
+							);
+							add_post_meta( $event_id, 'ai_result', $result );
+//}
+
+						}
+					}
+
+				}
+			}
+		}
+
+		$this->ai_result_saved = true;
+	}
+
+	/**
+	 * Filter the results if it's an AI race.
+	 *
+	 * @param array $results The results.
+	 * @return array The modified results.
+	 */
+	public function ai_results( $results ) {
+
+		// Get the season ID.
+		if ( 'event' === get_post_type() ) {
+			$season_id = get_post_meta( get_the_ID(), 'season', true );
+		} else if ( 'season' === get_post_type() ) {
+			$season_id = get_the_ID();
+		} else {
+			return $results;
+		}
+
+		// Bail out now if not on an AI event.
+		if ( 'on' !== get_post_meta( $season_id, 'ai_season', true ) ) {
+			return $results;
+		}
+
+		$ai_results = (array) get_post_meta( get_the_ID(), 'ai_result' );
+
+		// Sort by finishing position.
+		usort( $ai_results, function ($a, $b) {
+			return $a['position'] <=> $b['position'];
+		});
+
+		// Only keep drivers best result.
+		$driver_names = array_column( $ai_results, 'driver_name' );
+		$driver_names = array_unique( $driver_names );
+		$ai_results = array_filter( $ai_results, function ( $key, $value ) use ( $driver_names ) {
+			return in_array( $value, array_keys( $driver_names ) );
+		}, ARRAY_FILTER_USE_BOTH );
+
+		$results = '';
+		foreach ( $ai_results as $key => $result ) {
+			if ( isset( $result['driver_name'] ) ) {
+
+				if ( ! empty( $results ) ) {
+					$results .= ',';
+				}
+
+				$results .= '{"name":"' . esc_html( $result['driver_name'] ) . '","car":"Hosted All Cars Class","qual_time":"00:01:30.4402","start_pos":3,"car_no":45,"position":' . absint( $result['position'] ) . ',"avg_lap_time":"00:01:33.1452","fastest_lap_time":"00:01:29.7471","fastest_lap":"8","interval":"00:00:00.0","reason_out":"Running","laps_led":7,"laps_completed":13,"incidents":0,"weight_penalty":"-1"}';
+			}
+		}
+
+		$results = '[' . $results . ']';
+
+		return $results;
+	}
 }
