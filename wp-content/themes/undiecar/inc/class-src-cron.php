@@ -154,7 +154,9 @@ echo "TEST - read oval\n";
 		}
 
 echo "TEST - end\n";
-		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
+
+		// FOLLOWING LINE REMOVED COZ NOT SURE WHAT IT WAS FOR. It was causing RAM issues.
+		//$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
