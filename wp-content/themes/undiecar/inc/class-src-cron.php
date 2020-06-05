@@ -6,12 +6,23 @@
 class SRC_Cron extends SRC_Core {
 
 	/**
-	 * Class constructor
+	 * Class constructor.
 	 */
 	public function __construct() {
-add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
-add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
-//		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
+
+		if ( isset( $_GET['download_file'] ) && is_super_admin() ) {
+			add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
+		}
+
+		if ( isset( $_GET['convert_file'] ) && is_super_admin() ) {
+			add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
+		}
+
+		if ( isset( $_GET['auto_news'] ) && is_super_admin() ) {
+			add_action( 'init', array( $this, 'auto_news' ), 1 );
+		}
+
+		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
 	}
 
 	/**
@@ -26,11 +37,6 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 	 * Convert raw iRacing member file to JSON format.
 	 */
 	public function download_iracing_members_files() {
-
-		if ( ! isset( $_GET['download_file'] ) || ! is_super_admin() ) {
-			return;
-		}
-
 		$dir = wp_upload_dir();
 
 		$oval_stats = file_get_contents( 'https://s3.amazonaws.com/ir-data-now/csv/Oval_driver_stats.csv' );
@@ -50,11 +56,6 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 	 * Convert raw iRacing member file to JSON format.
 	 */
 	public function convert_iracing_members_file_to_json() {
-
-		if ( ! isset( $_GET['convert_file'] ) || ! is_super_admin() ) {
-			return;
-		}
-
 		set_time_limit( 600 );
 
 		$dir = wp_upload_dir();
@@ -84,17 +85,17 @@ add_action( 'init', array( $this, 'convert_iracing_members_file_to_json' ), 1 );
 			return $buffer;
 		}
 		$stats['road'] = readfile_chunked( $road_file_path );
-echo "TEST - read road\n";
+		echo "TEST - read road\n";
 		$stats['oval'] = readfile_chunked( $oval_file_path );
-echo "TEST - read oval\n";
+		echo "TEST - read oval\n";
 
-		// Loop through each type of racing individually
+		// Loop through each type of racing individually.
 		$new_stats = array();
 		foreach ( $stats as $type => $x ) {
 
 			$stats[$type] = explode( "\n", $stats[$type] );
 
-			// Loop through each drivers stats individually
+			// Loop through each drivers stats individually.
 			unset( $stats[$type][0] );
 			$stat_count = count( $stats[$type] );
 			//$stat_count = 2;
@@ -103,10 +104,10 @@ echo "TEST - read oval\n";
 
 				$values = explode( ',', $values );
 
-				// Get drivers name for array key
+				// Get drivers name for array key.
 				$drivers_name = esc_html( $values[0] );
 
-				// Creating individual drivers data array
+				// Creating individual drivers data array.
 				$data = array();
 
 				if ( isset( $values[1] ) ) {
@@ -129,22 +130,22 @@ echo "TEST - read oval\n";
 					$data[$type . '_irating'] = $values[14];
 				}
 
-				// Sanitizing inputs
+				// Sanitizing inputs.
 				foreach ( $data as $x => $d ) {
 					$x = mb_strimwidth ( esc_html( $x ), 0 , 100 );
 					$d = mb_strimwidth ( esc_html( $d ), 0 , 30 );
 					$data[$x] = $d;
 				}
 
-				// Seems to prevent it running out of memory, not sure why
+				// Seems to prevent it running out of memory, not sure why.
 				if ( $key > $stat_count ) {
 					continue;
 				}
 
-				// Clear memory
+				// Clear memory.
 				unset( $stats[$type] );
 
-				// Create array with alphabetical key
+				// Create array with alphabetical key.
 				$new_stats[$type][$drivers_name] = $data;
 
 			}
@@ -153,16 +154,20 @@ echo "TEST - read oval\n";
 
 		}
 
-echo "TEST - end\n";
+		echo "TEST - end\n";
 
-		// FOLLOWING LINE REMOVED COZ NOT SURE WHAT IT WAS FOR. It was causing RAM issues.
-		//$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
+		// Merging oval and road stats.
+		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
 
 		die('done');
 
+	}
+
+	public function auto_news() {
+		SRC_Auto_News::auto_news();
 	}
 
 }
