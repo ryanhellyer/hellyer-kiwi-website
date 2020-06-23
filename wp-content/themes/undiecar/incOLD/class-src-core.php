@@ -442,7 +442,6 @@ class SRC_Core {
 		if ( '' === $stored_results || '1' !== $use_stored_results ) {
 
 			$stored_results = self::get_driver_results_from_season( $season_id );
-//echo 'bla';die;
 
 			// Someone has asked for the results to be stored permanently (used for end of season)
 			if ( true === $save_results ) {
@@ -1138,21 +1137,12 @@ class SRC_Core {
 
 				$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
 				$number_of_races = absint( $number_of_races );
-				$number_of_races = apply_filters( 'undiecar_ai_number_races', $number_of_races );
-//echo $number_of_races;die;
 				$race_number     = 0;
 				while ( $race_number <= $number_of_races ) {
 					$race_number++;
 
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
-					$results = apply_filters( 'undiecar_ai_results', $results );
 					$results = json_decode( $results, true );
-if ( 4764 === get_the_ID() ) {
-//	echo get_the_title( get_the_ID() );
-//	echo "\n\n\n";
-//	print_r( $results );
-//	die;
-}
 
 					if ( is_array( $results ) && ! empty( $results ) ) {
 
@@ -1247,15 +1237,15 @@ if ( 4764 === get_the_ID() ) {
 
 				$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
 				$number_of_races = absint( $number_of_races );
-				$number_of_races = apply_filters( 'undiecar_ai_number_races', $number_of_races );
-
 				$race_number = 0;
 				while ( $race_number <= $number_of_races ) {
 					$race_number++;
+//if ( 3514 !== get_the_ID() ) {
+//	continue;
+//}
 
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 					$results = json_decode( $results, true );
-					$results = apply_filters( 'undiecar_ai_results', $results );
 
 					if ( is_array( $results ) && ! empty( $results ) ) {
 
@@ -1415,7 +1405,6 @@ echo "\n\n\nRESULTS:\n";
 print_r( $stored_results );
 echo "\n\n\n";
 }
-//print_r( $stored_results );die;
 		return $stored_results;
 	}
 

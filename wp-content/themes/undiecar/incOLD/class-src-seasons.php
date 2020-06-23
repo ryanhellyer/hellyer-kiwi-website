@@ -348,12 +348,6 @@ class SRC_Seasons extends SRC_Core {
 		) );
 
 		$cmb->add_field( array(
-			'name' => esc_html__( 'AI season?', 'undiecar' ),
-			'id'         => 'ai_season',
-			'type'       => 'checkbox',
-		) );
-
-		$cmb->add_field( array(
 			'name'       => esc_html__( 'Label', 'src' ),
 			'description'=> esc_html__( 'Used as a tagline or to indicater the broad title of the championship, perhaps to group a series of seasons together', 'src' ),
 			'id'         => 'label',
