@@ -1,11 +1,11 @@
 === Hide SEO Bloat ===
 Contributors: senlin, afragen
 Donate link: https://so-wp.com/donations
-Tags: hide, seo, bloat, remove, ads, cartoon, wordpress seo addon, admin columns, nags, traffic light, dashboard widget, hide premium
+Tags: hide, seo, bloat, remove, ads, cartoon, wordpress seo addon, admin columns, nags, dashboard widget, hide premium, classicpress
 Requires at least: 4.7.2
 Requires PHP: 5.6
-Tested up to: 5.1.1
-Stable tag: 3.10.1
+Tested up to: 5.4
+Stable tag: 3.14.0
 License: GPL-3.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -17,8 +17,9 @@ Almost anyone who uses the Yoast SEO plugin will agree that it is a good SEO plu
 
 **New in this version:**
 
-* hide outgoing internal links columns on edit Posts/Pages/CPTs screens
+* hide new notice that shows after deleting content (post, page, product, other CPT)
 
+<hr>
 
 The purpose of the Hide SEO Bloat plugin, a free addon for the Yoast SEO plugin, is to clean up all those unwanted things.
 
@@ -53,6 +54,10 @@ The **Default Settings** of the current release are as follows:
 * removes Courses menu from sidebar
 * hides SEO Scores Dropdown Filters on the Edit Posts/Pages screen
 * hides Keyword/Content Score from the Publish/Update Metabox on the Edit Post/Page/CPT screen
+* remove HTML comments that show in source code (frontend) upgraded for use with version 11 and above of Yoast SEO
+* remove Search Console submenu
+* hide help beacon
+
 
 We support this plugin exclusively through [Github](https://github.com/senlin/so-clean-up-wp-seo/issues). Therefore, if you have any questions, need help and/or want to make a feature request, please open an issue over at Github. You can also browse through open and closed issues to find what you are looking for and perhaps even help others.
 
@@ -73,6 +78,10 @@ The link to the page has been added to the Yoast SEO menu and of course there is
 
 Yes, you can.
 For version 2.4.0 [Andy Fragen](https://github.com/afragen) has refactored that part of the plugin to make it fully Multisite compatible. The Settings screen only shows in Network Admin as we don't think it makes sense that individual sites override the Network Settings.
+
+= Does Hide SEO Bloat work with ClassicPress? =
+
+Yes, the Hide SEO Bloat can also be used on sites that are running ClassicPress. Of course it is also necessary to have the Yoast SEO plugin installed.
 
 = The name of the plugin is confusing, it hides bloat of which SEO plugin? =
 
@@ -101,6 +110,70 @@ Please open an issue on [Github](https://github.com/senlin/so-clean-up-wp-seo/is
 5. dashboard widget that is removed with the plugin activated
 
 == Changelog ==
+
+= 3.14.0 =
+
+* release date May 20, 2020
+* hide new notice that shows after deleting content (post, page, product, other CPT), address issue #83, thanks [@Kagan Akbas](https://github.com/remaindeer)
+
+= 3.13.6 =
+
+* release date March 7, 2019
+* previous hide readability features setting (our v3.9.0) was blocking the icons of SEO and Readability tab of Yoast metabox; now not anymore. Thanks for reporting [@koolpad](https://wordpress.org/support/topic/non-critical-seo-readability-icons-disappear/)
+* cleanup
+
+= 3.13.5 =
+
+* release date February 25, 2020
+* fix issue where updates from other plugins are hidden in admin sidebar
+
+= 3.13.4 =
+
+* release date February 5, 2020
+* hide additional keyphrase "option" from metabox as it is ad for premium too
+
+= 3.13.3 =
+
+* release date January 9, 2020
+* update help center classes
+* hide help beacon (issue #77 - thanks for the fix [@allanrehhoff](https://github.com/allanrehhoff))
+
+= 3.13.2 =
+
+* release date November 19, 2019
+* put CSS rules back to fix bug when using quick edit function (issue #75)
+* adjust CSS to fix bug (issue #76 - thanks for the fix [@allanrehhoff](https://github.com/allanrehhoff))
+
+= 3.13.1 =
+
+* release date October 1, 2019
+* adjust the hiding of the Problems box (General settings Yoast) which received new class name
+
+= 3.13.0 =
+
+* release date August 29, 2019
+* remove notice on permalinks page that warns the user of the implications of changing them, fixes [issue #58](https://github.com/senlin/so-clean-up-wp-seo/issues/58)
+* recode hiding of the admin columns into actually removing them, fixes [issue #65](https://github.com/senlin/so-clean-up-wp-seo/issues/65)
+* recode hiding of the seo score/readability score filters into actually removing them, fixes [issue #65](https://github.com/senlin/so-clean-up-wp-seo/issues/65)
+* remove advanced accordion menu at bottom of SEO metabox for post- and custom post types, fixes [issue #67](https://github.com/senlin/so-clean-up-wp-seo/issues/67)
+
+Credits of all the above improvements go to [@Dibbyo456](https://github.com/Dibbyo456); many thanks Harry!
+
+= 3.12.0 =
+
+* release date August 17, 2019
+* remove Search Console submenu, redundant since Google has discontinued its Crawl Errors API; thanks [@Dibbyo456](https://github.com/senlin/so-clean-up-wp-seo/issues/69)
+
+= 3.11.1 =
+
+* release date July 27, 2019
+* refactor remove HTML comments from source code (frontend) with thanks to [Robert Went](https://www.robertwent.com/blog/remove-yoast-html-comments-in-version-11-0/)
+* hide upsell ad for local seo; addresses [issue #57](https://github.com/senlin/so-clean-up-wp-seo/issues/57)
+
+= 3.11.0 =
+
+* release date June 17, 2019
+* remove HTML comments from source code (frontend)
 
 = 3.10.1 =
 

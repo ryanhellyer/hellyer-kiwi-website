@@ -99,7 +99,7 @@ class CUWS {
 	 * @param string $file
 	 * @param string $version Version number.
 	 */
-	public function __construct( $file = '', $version = '3.10.1' ) {
+	public function __construct( $file = '', $version = '3.14.0' ) {
 		$this->_version = $version;
 		$this->_token   = 'cuws';
 
@@ -127,6 +127,17 @@ class CUWS {
 		add_action( 'admin_head', array( $this, 'so_cuws_hide_visibility_css' ) );
 		// @since 3.10.0
 		add_action( 'admin_menu', array( $this, 'so_cuws_remove_menu_item'), 999 );
+		// @since 3.11.0
+		add_action( 'plugins_loaded', array( $this, 'so_cuws_remove_frontend_html_comments' ), 999 );
+		// @since 3.13.0
+		add_action( 'admin_init', array( $this, 'so_cuws_remove_class_hook' ) );
+		// @since 3.13.0
+		add_action( 'admin_menu', array( $this, 'so_cuws_remove_admin_columns_init' ), 11 );
+		// @since 3.13.0
+		add_action( 'admin_init', array( $this, 'so_cuws_remove_seo_scores_dropdown_filters' ), 20 );
+		// @since 3.13.0
+		add_action( 'current_screen', array( $this, 'remove_advanced_menu_metabox' ) );
+
 
 		// Load API for generic admin functions
 		if ( is_admin() ) {
@@ -189,20 +200,165 @@ class CUWS {
 	}
 
 	/**
-	 * Version 9.5 of Yoast SEO introduced the Courses menu item in the sidebar
-	 * This function removes that menu item and in case this function does not work,
-	 * there is also a CSS rule that hides the menu-item
+	 * Remove Search Console
 	 *
 	 * @since v3.10.0
 	 */
 	public function so_cuws_remove_menu_item() {
 
-		if ( ! empty( $this->options['remove_courses'] ) ) {
+		// Google has discontinued its Crawl Errors API so the Search Console page in Yoast is useless now; thanks [@Dibbyo456](https://github.com/senlin/so-clean-up-wp-seo/issues/69); @since v3.12.0
+		remove_submenu_page( 'wpseo_dashboard', 'wpseo_search_console' );
 
-			remove_submenu_page( 'wpseo_dashboard', 'wpseo_courses' );
+	}
+
+	/**
+	 * Upon request by many the plugin now also removes the frontend HTML comments left by Yoast
+	 * improvements of v3.11.1 via [Robert Went](https://gist.github.com/robwent/f36e97fdd648a40775379a86bd97b332)
+	 *
+	 * @since v3.11.0
+	 * @modified v3.11.1
+	 */
+	public function so_cuws_remove_frontend_html_comments() {
+
+		if ( ! empty( $this->options['remove_html_comments'] ) ) {
+
+			if ( defined( 'WPSEO_VERSION' ) ) {
+				add_action( 'get_header', function () { ob_start( function ( $o ) {
+					return preg_replace( '/\n?<.*?Yoast SEO plugin.*?>/mi', '', $o ); } ); } );
+				add_action('wp_head',function (){ ob_end_flush(); }, 999);
+			}
+
+		}
+    }
+
+    /**
+	 * Remove warning notice when changing permalinks
+	 *
+	 * Removes the permalink notice action (see includes/remove-class.php)
+	 * Uses @remove_class_hook.
+	 *
+	 * @since	v3.13.0
+	 */
+	public function so_cuws_remove_class_hook() {
+
+		if ( ! empty( $this->options['remove_permalinks_warning'] ) ) {
+
+			remove_class_hook( 'admin_notices', 'WPSEO_Admin_Init', 'permalink_settings_notice' );
 
 		}
 	}
+
+	/*
+	 * Remove admin columns
+	 * @since v2.0.0 remove seo columns one by one
+	 * @modified 2.0.2 add empty array as default to avoid warnings form subsequent
+	 *  in_array checks - credits [Ronny Myhre Njaastad](https://github.com/ronnymn)
+	 * @modified 2.1 simplify the CSS rules and add the rule to hide the seo-score
+	 *  column on taxonomies (added to v3.1 of Yoast SEO plugin)
+	 * @modified 2.6.0 only 2 columns left change from checkboxes to radio
+	 * @modified 2.6.1 revert radio to checkboxes and removing the options
+	 *  for focus keyword, title and meta-description
+	 * @modified 3.10.1 add checkbox to hide outgoing internal links column
+	 * @modified 3.13.0 recode the function to **remove** columns instead of hiding them - credits [Dibbyo456](https://github.com/Dibbyo456)
+	 */
+	public function so_cuws_remove_admin_columns_init() {
+
+		// post, page and custom post types
+		$all_post_types = array_merge( array( 'post', 'page' ), get_post_types( array( '_builtin' => false ) ) );
+
+		foreach( $all_post_types as $post_type ) {
+			add_filter( 'manage_edit-'. $post_type .'_columns', array( $this, 'so_cuws_remove_admin_columns' ), 10, 1  );
+		}
+
+	}
+
+	public function so_cuws_remove_admin_columns( $columns ) {
+
+		// if empty return columns right away.
+		if ( empty( $this->options['hide_admincolumns'] ) ) {
+			return $columns;
+		}
+
+		// seo score column
+		if ( in_array( 'seoscore', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-score'] );
+		}
+
+		// readability column
+		if ( in_array( 'readability', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-score-readability'] );
+		}
+
+		// title column
+		if ( in_array( 'title', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-title'] );
+		}
+
+		// meta description column
+		if ( in_array( 'metadescr', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-metadesc'] );
+		}
+
+		// focus keyword column
+		if ( in_array( 'focuskw', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-focuskw'] );
+		}
+
+		// outgoing internal links column
+		if ( in_array( 'outgoing_internal_links', $this->options['hide_admincolumns'] ) ) {
+			unset( $columns['wpseo-links'] );
+			unset( $columns['wpseo-linked'] );
+		}
+
+		return $columns;
+
+	}
+
+
+	/**
+	 * Remove (as opposed to hide) SEO/readability Scores dropdown filters on edit posts screens
+	 *
+	 * credits [Dibbyo456](https://github.com/Dibbyo456)
+	 */
+	public function so_cuws_remove_seo_scores_dropdown_filters() {
+		if ( ! empty( $this->options['hide_seo_scores_dropdown_filters'] ) ) {
+			global $wpseo_meta_columns ;
+			if ( $wpseo_meta_columns  ) {
+				remove_action( 'restrict_manage_posts', array( $wpseo_meta_columns , 'posts_filter_dropdown' ) );
+				remove_action( 'restrict_manage_posts', array( $wpseo_meta_columns , 'posts_filter_dropdown_readability' ) );
+			}
+		}
+	}
+
+
+	/**
+	 * Remove Advanced accordion menu of SEO metabox on Post and Custom Post Type edit screens
+	 *
+	 * credits [Dibbyo456](https://github.com/Dibbyo456)
+	 */
+	public function remove_advanced_menu_metabox() {
+
+		if ( ! empty( $this->options['remove_advanced'] ) ) {
+
+			// create array of default post types.
+			// do not include page for now as the advanced menu can come in handy there
+			$default_post_types = array( 'post' );
+			// get the custom post types if available.
+			$custom_post_types = get_post_types( array( '_builtin' => false ) );
+			// merge them. no errors if no cpt found.
+			$all_post_types = array_merge( $default_post_types, $custom_post_types );
+
+			// if current edit screen belongs to post types, then change capability.
+			if ( in_array( get_current_screen()->id, $all_post_types ) ) {
+				add_filter( 'user_has_cap', 'wpseo_master_filter', 10, 3 );
+				function wpseo_master_filter( $allcaps, $cap, $args ) {
+					$allcaps['wpseo_manage_options'] = false;
+					return $allcaps;
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * CSS needed to hide the various options ticked with checkboxes
@@ -232,27 +388,17 @@ class CUWS {
 
 		// hide upsell notice in Yoast SEO Dashboard
 		if ( ! empty( $this->options['hide_upsell_notice'] ) ) {
-			echo '#yoast-warnings #wpseo-upsell-notice{display:none;}'; // @since v2.5.3 hide upsell notice in Yoast SEO Dashboard; @modified v2.5.4 improved to remove entire Notification box in the main Dashboard; @modified v2.6.0 only hide this notice.
-		}
-
-		// hide upsell notice on social tab in Yoast Post/Page metabox
-		if ( ! empty( $this->options['hide_upsell_metabox_socialtab'] ) ) {
-			echo '.notice.inline.yoast-notice.yoast-notice-go-premium{display:none}'; // @since v3.2.0; @modified v3.6.0
+			echo '#yoast-warnings #wpseo-upsell-notice,#yoast-additional-keyphrase-collapsible-metabox,.wpseo-keyword-synonyms,.wpseo-multiple-keywords{display:none !important;}'; // @since v2.5.3 hide upsell notice in Yoast SEO Dashboard; @modified v2.5.4 improved to remove entire Notification box in the main Dashboard; @modified v2.6.0 only hide this notice; @modified 3.13.4 hide additional keyphrase "option" from metabox as it is ad for premium too.
 		}
 
 		// hide premium upsell admin block
 		if ( ! empty( $this->options['hide_upsell_admin_block'] ) ) {
-			echo '.yoast_premium_upsell_admin_block{display:none}'; // @since v3.1.0
+			echo '.yoast_premium_upsell,.yoast_premium_upsell_admin_block,#wpseo-local-seo-upsell{display:none}'; // @since v3.1.0; @modified v3.11.1; @modified v3.13.2
 		}
 
 		// hide "Premium" submenu in its entirety
 		if ( ! empty( $this->options['hide_premium_submenu'] ) ) {
-			echo 'li#toplevel_page_wpseo_dashboard>ul>li:nth-child(7){display:none;}'; // @since v3.6.0 hide "Premium" submenu in its entirety
-		}
-
-		// hide "Go Premium" metabox on edit Post/Page screens
-		if ( ! empty( $this->options['hide_premium_metabox'] ) ) {
-			echo '.wpseo-metabox-buy-premium{display:none!important;}'; // @since v3.6.0 hide "Go Premium" metabox on Edit Post/Page screens
+			echo 'li#toplevel_page_wpseo_dashboard>ul>li:nth-child(6){display:none;}'; // @since v3.6.0 hide "Premium" submenu in its entirety; @modified v3.12.0 decrease with 1, due to Search Console submenu being removed
 		}
 
 		// hide Post/Page/Taxonomy Deletion Premium Ad
@@ -263,7 +409,7 @@ class CUWS {
 		// Problems/Notification boxes
 		if ( ! empty( $this->options['hide_dashboard_problems_notifications'] ) ) {
 			if ( in_array( 'problems', $this->options['hide_dashboard_problems_notifications'] ) ) {
-				echo '.yoast-container.yoast-container__alert{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
+				echo '.yoast-container.yoast-container__error{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard; @modified v3.13.1
 			}
 			if ( in_array( 'notifications', $this->options['hide_dashboard_problems_notifications'] ) ) {
 				echo '.yoast-container.yoast-container__warning{display:none;}'; // @since v2.6.0 hide both Problems/Notifications boxes from Yoast SEO Dashboard
@@ -277,12 +423,7 @@ class CUWS {
 
 		// hide issue counter
 		if ( ! empty( $this->options['hide_issue_counter'] ) ) {
-			echo '#wpadminbar .yoast-issue-counter,#toplevel_page_wpseo_dashboard .update-plugins .plugin-count,#adminmenu .update-plugins{display:none;}'; // @since v2.3.0 hide issue counter from adminbar and plugin menu sidebar; @modified v3.2.1 to remove orange background that shows again
-		}
-
-		// hide new color features readability Post/Page metabox
-		if ( ! empty( $this->options['hide_readability_features'] ) ) {
-			echo 'progress,.yoast-svg-icon-seo-score-good,.yoast-svg-icon-seo-score-ok,.yoast-svg-icon-seo-score-bad,.yoast-svg-icon-seo-score-none{display:none!important;}'; //@since 3.9.0
+			echo '#wpadminbar .yoast-issue-counter,#toplevel_page_wpseo_dashboard .wp-menu-name .update-plugins{display:none;}'; // @since v2.3.0 hide issue counter from adminbar and plugin menu sidebar; @modified v3.2.1 to remove orange background that shows again; @modified v3.13.5 fix issue 81
 		}
 
 		// hide Configuration Wizard on every screen in the Yoast admin
@@ -290,10 +431,6 @@ class CUWS {
 			echo '.yoast-alerts .yoast-container__configuration-wizard{display:none;}'; // @since v3.6.0 hide Configuration Wizard
 		}
 
-		// hide SEO scores dropdown filters on edit Post/Page screen
-		if ( ! empty( $this->options['hide_seo_scores_dropdown_filters'] ) ) {
-			echo '#wpseo-filter, #wpseo-readability-filter{display:none;}'; // @since v3.10.0 hide SEO scores dropdown filters
-		}
 		/*
 		 * admin columns
 		 * @since v2.0.0 remove seo columns one by one
@@ -305,8 +442,8 @@ class CUWS {
 		 * @modified 2.6.1 revert radio to checkboxes and removing the options
 		 *  for focus keyword, title and meta-description
 		 * @modified 3.10.1 add checkbox to hide outgoing internal links column
+		 * @modified 3.13.2 put CSS rules back to fix bug when using quick edit function (issue #75)
 		 */
-
 		// all columns
 		if ( ! empty( $this->options['hide_admincolumns'] ) ) {
 			// seo score column
@@ -338,7 +475,7 @@ class CUWS {
 		// help center
 		if ( ! empty( $this->options['hide_helpcenter'] ) ) {
 			if ( in_array( 'ad', $this->options['hide_helpcenter'] ) ) {
-				echo '.wpseo-tab-video__panel.wpseo-tab-video__panel--text,#tab-link-dashboard_dashboard__contact-support,#tab-link-dashboard_general__contact-support,#tab-link-dashboard_features__contact-support,#tab-link-dashboard_knowledge-graph__contact-support,#tab-link-dashboard_webmaster-tools__contact-support,#tab-link-dashboard_security__contact-support,#tab-link-metabox_metabox__contact-support,li#react-tabs-4,.iimhyI,.yoast-video-tutorial__description.VideoTutorial__VideoDescription-dyZXgd.hQZgaX{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely; @modified v2.5.5 hide email support/ad as it is a premium only feature; @modified v2.6.0 different tabs gave different classes; @modified v3.3.0 due to Yoast 5.6 update this has all changed; @modified v3.6.0 due to more changes
+				echo '.wpseo-tab-video__panel.wpseo-tab-video__panel--text,#tab-link-dashboard_dashboard__contact-support,#tab-link-dashboard_general__contact-support,#tab-link-dashboard_features__contact-support,#tab-link-dashboard_knowledge-graph__contact-support,#tab-link-dashboard_webmaster-tools__contact-support,#tab-link-dashboard_security__contact-support,#tab-link-metabox_metabox__contact-support,.yoast-video-tutorial__description:first-child,.react-tabs__tab:last-child,#yoast-helpscout-beacon{display:none;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely; @modified v2.5.5 hide email support/ad as it is a premium only feature; @modified v2.6.0 different tabs gave different classes; @modified v3.3.0 due to Yoast 5.6 update this has all changed; @modified v3.6.0; @modified v3.13.3
 			}
 			if ( in_array( 'helpcenter', $this->options['hide_helpcenter'] ) ) {
 				echo '.yoast-help-center__button{display:none !important;}'; // @since v2.2.0 hide help center ad for premium version or help center entirely; @modified v3.3.0 due to Yoast 5.6 update this has all changed
@@ -355,7 +492,10 @@ class CUWS {
 			echo '#misc-publishing-actions #content-score, #misc-publishing-actions #keyword-score{display:none;}'; // @since v3.10.0 hide "Content / Keyword Score" from  Publish/Update metabox
 		}
 
-
+		// hide Premium ad after deleting content (post, page, wc product, cpt)
+		if ( ! empty( $this->options['hide_ad_after_trashing_content'] ) ) {
+			echo 'body.edit-php .yoast-notification.notice.notice-warning.is-dismissible{display:none;}'; // @since v3.14.0
+		}
 
 		echo '</style>';
 	}
@@ -396,7 +536,7 @@ class CUWS {
 	 *
 	 * @return CUWS $_instance
 	 */
-	public static function instance( $file = '', $version = '3.10.1' ) {
+	public static function instance( $file = '', $version = '3.14.0' ) {
 		if ( null === self::$_instance ) {
 			self::$_instance = new self( $file, $version );
 		}
@@ -457,10 +597,8 @@ class CUWS {
 			'hide_tagline_nag'                     => 'on',
 			'hide_robots_nag'                      => 'on',
 			'hide_upsell_notice'                   => 'on',
-			'hide_upsell_metabox_socialtab'			=> 'on',
 			'hide_upsell_admin_block'				=> 'on',
 			'hide_premium_submenu'					=> 'on',
-			'hide_premium_metabox'					=> 'on',
 			'hide_post_deletion_premium_ad'			=> 'on',
 			'hide_dashboard_problems_notifications' => array(
 				'problems',
@@ -469,7 +607,6 @@ class CUWS {
 			'hide_config_wizard'					=> 'on',
 			'hide_imgwarning_nag'					=> 'on',
 			'hide_issue_counter'                   => 'on',
-			'hide_readability_features'				=> 'on',
 			'hide_helpcenter'                      => array(
 				'ad'
 			),
@@ -485,8 +622,11 @@ class CUWS {
 			'remove_primarycatfeat'					=> 'on',
 			'remove_dbwidget'                      => 'on',
 			'remove_adminbar'                      => 'on',
-			'remove_courses'                       => 'on',
 			'hide_content_keyword_score'			=> 'on',
+			'remove_html_comments'					=> 'on',
+			'remove_permalinks_warning'				=> 'on',
+			'remove_advanced'						=> 'on',
+			'hide_ad_after_trashing_content'		=> 'on'
 		);
 
 		return $defaults;

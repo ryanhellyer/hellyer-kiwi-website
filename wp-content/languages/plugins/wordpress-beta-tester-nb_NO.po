@@ -2,57 +2,181 @@
 # This file is distributed under the same license as the Plugins - WordPress Beta Tester - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-06 19:54:56+0000\n"
+"PO-Revision-Date: 2020-05-13 15:46:11+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
 "Language: nb_NO\n"
 "Project-Id-Version: Plugins - WordPress Beta Tester - Stable (latest release)\n"
 
-#: src/WPBT_Extras.php:142
+#. translators: %s: Milestone version
+#: src/WPBT/WPBT_Beta_RC.php:499
+msgid "WordPress %s Field Guide"
+msgstr "WordPress %s feltveiledning"
+
+#. translators: %s: Milestone version
+#: src/WPBT/WPBT_Beta_RC.php:489
+msgid "WordPress %s Dev Notes"
+msgstr "WordPress %s utviklermerknader"
+
+#. translators: %s: link to trac search
+#: src/WPBT/WPBT_Beta_RC.php:428
+msgid "&#128027; Did you find a bug? Search for a <a href=\"%s\">trac ticket</a> to see if it has already been reported."
+msgstr "&#128027; Fant du en programfeil? Søk etter en <a href=\"%s\">trac ticket</a> for å se om den allerede er rapportert."
+
+#: src/WPBT/WPBT_Help.php:67
+msgid "A dashboard widget is displayed when the plugin is active. It will contain links to milestone commits and filing a bug report. It may contain links to Dev Notes, the Field Guide, and beta/RC release posts."
+msgstr "En kontrollpanel-widget vises når utgivelsen er aktiv. Den vil inneholde lenker til milepæl-bidrag og utfylling av feilrapport. Den kan inneholde lenker til utviklenotater, feltveiledningen og beta/RC utgivelsesinnlegg."
+
+#: src/WPBT/WPBT_Help.php:66
+msgid "Dashboard Widget"
+msgstr "Kontrollpanel-widget"
+
+#: src/WPBT/WPBT_Help.php:59
+msgid "You must currently be running a <em>Point release nightly</em> or <em>Bleeding edge nightly</em> before the option to select the specific <em>Beta/RC</em> stream will display. Once selected you will only see an update notice when the next release, RC, or beta is available."
+msgstr "Du må for tiden kjøre en <em>nattlig punktutgivelse</em> eller <em>nattlig forkantutgivelse</em> før alternativet for å velge den spesifikke <em>beta/RC</em>-kanalen vil vises. Straks valgt vil du bare se et oppdateringsvarsel når neste utgivelse, RC eller beta er tilgjengelig."
+
+#: src/WPBT/WPBT_Help.php:58
+msgid "Beta/RC"
+msgstr "Beta/RC"
+
+#: src/WPBT/WPBT_Help.php:43
+msgid "Overview"
+msgstr "Oversikt"
+
+#: src/WPBT/WPBT_Help.php:37
+msgid "<a href=\"https://make.wordpress.org/core/handbook/testing/beta-testing/\">Beta Testing</a>"
+msgstr "<a href=\"https://make.wordpress.org/core/handbook/testing/beta-testing/\">Betatesting</a>"
+
+#: src/WPBT/WPBT_Help.php:36
+msgid "For more information:"
+msgstr "For mer informasjon:"
+
+#. translators: %s: WP Beta Tester settings URL
+#: src/WPBT/WPBT_Beta_RC.php:436
+msgid "Head over to your <a href=\"%s\">WordPress Beta Tester Settings</a> and make sure the <strong>beta/RC</strong> stream is selected."
+msgstr "Gå i dine <a href=\"%s\">WordPress betatester-innstillinger</a> og sørg for at <strong>beta/RC</strong>-kanalen er valgt."
+
+#. translators: %1: link to closed and reopened trac tickets on current
+#. milestone
+#: src/WPBT/WPBT_Beta_RC.php:425
+msgid "Here are the <a href=\"%s\">commits for the milestone</a>."
+msgstr "Her er <a href=\"%s\">bidragene til milepælen</a>."
+
+#. translators: %s: WordPress version
+#: src/WPBT/WPBT_Beta_RC.php:419
+msgid "Please help test <strong>WordPress %s</strong>."
+msgstr "Vennligst hjelp å teste <strong>WordPress %s</strong>."
+
+#: src/WPBT/WPBT_Beta_RC.php:403
+msgid "WordPress Beta Testing"
+msgstr "WordPress betatesting"
+
+#. translators: Used to join items in a list with only 2 items.
+#: src/WPBT/WPBT_Core.php:304
+msgid "%1$s or %2$s"
+msgstr "%1$s eller %2$s"
+
+#. translators: Used to join last two items in a list with more than 2 times.
+#: src/WPBT/WPBT_Core.php:302
+msgid "%1$s, or %2$s"
+msgstr "%1$s eller %2$s"
+
+#. translators: Used to join items in a list with more than 2 items.
+#: src/WPBT/WPBT_Core.php:300
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#. translators: %s: version number
+#: src/WPBT/WPBT_Core.php:259 src/WPBT/WPBT_Core.php:266
+msgid "version %s"
+msgstr "versjon %s"
+
+#: src/WPBT/WPBT_Core.php:278
+msgid "version %l"
+msgstr "versjon %l"
+
+#: src/WPBT/WPBT_Settings.php:90
+msgctxt "Menu item"
+msgid "Beta Testing"
+msgstr "Betatesting"
+
+#: src/WPBT/WPBT_Beta_RC.php:126
+msgid "next release version"
+msgstr "neste utgivelssesversjon"
+
+#: src/WPBT/WPBT_Core.php:278
+msgid "whichever is released first"
+msgstr "som måtte først bli utgitt"
+
+#: src/WPBT/WPBT_Core.php:274
+msgid "next development version"
+msgstr "neste utviklingsversjon"
+
+#: src/WPBT/WPBT_Core.php:217
+msgid "This is for the Beta/RC releases only of development code from `trunk`. It will only update to beta/RC releases of `trunk`."
+msgstr "Dette er for kun beta/RC-utgivelser av nyutviklet kode fra 'trunk'. Den vil bare oppdatere til beta/RC-utgivelser av 'trunk'. "
+
+#: src/WPBT/WPBT_Core.php:215
+msgid "Beta/RC - Bleeding edge"
+msgstr "Beta/RC - forkant"
+
+#: src/WPBT/WPBT_Core.php:203
+msgid "This is for the Beta/RC releases only of the x.x.x point release. It will only update to beta/RC releases of point releases."
+msgstr "Dette er kun for beta/RC-utgivelsene av x.x.x-punktutgivelsen. Den vil bare oppdatere til beta/RC-utgivelser for kommende punktutgivelser."
+
+#: src/WPBT/WPBT_Core.php:201
+msgid "Beta/RC - Point release"
+msgstr "Beta/RC - punktutgivelse"
+
+#: src/WPBT/WPBT_Core.php:135
+msgid "<strong>Please note:</strong> There are no development builds available for the beta stream you have chosen, so you will receive normal update notifications."
+msgstr "<strong>Vennligst merk:</strong> Det er ingen utviklingsversjoner tilgjengelig for den betakanalen du har valgt, så du vil bare motta normale oppdateringsvarsler."
+
+#: src/WPBT/WPBT_Extras.php:307
+msgid "This area is for extra special beta testing. If nothing is present there are no additional features that need testing or the `wp-config.php` file is not writable. Features will set constants in the `wp-config.php` file."
+msgstr "Dette området er for ekstra spesiell betatesting. Om intet finnes er det ingen funksjoner som trenger testing eller så er `wp-config.php`-filen ikke skrivbar. Eventuelle funksjoner vil angi konstanter i `wp-config.php`-filen."
+
+#: src/WPBT/WPBT_Extras.php:152
 msgid "Look in `wp-config.php` for results."
 msgstr "Se i `wp-config.php` for resultater."
 
-#: src/WPBT_Extras.php:141
+#: src/WPBT/WPBT_Extras.php:151
 msgid "Just an example."
 msgstr "Bare et eksempel."
 
-#: src/WPBT_Extras.php:128
+#: src/WPBT/WPBT_Extras.php:137
 msgid "Disable sending emails to the admin user for successful autoupdates. Only emails indicating failures of the autoupdate process are sent."
 msgstr "Deaktiver sending av e-poster til admin ved vellykkede oppdateringer. Bare e-poster som indikerer feil i den automatiske oppdateringsprosessen bli sendt."
 
-#: src/WPBT_Extras.php:127
+#: src/WPBT/WPBT_Extras.php:136
 msgid "Skip successful autoupdate emails."
 msgstr "Hopp over e-poster om velykket automatisk oppdatering."
 
-#: src/WPBT_Extras.php:114
+#: src/WPBT/WPBT_Extras.php:123
 msgid "New Feature Testing"
 msgstr "Testing av nye funksjoner"
 
 #. translators: %s: update version
-#: src/WPBT_Core.php:148
-msgid "Currently your site is set to update to version %s."
+#: src/WPBT/WPBT_Core.php:160
+msgid "Currently your site is set to update to %s."
 msgstr "Ditt nettsted er for tiden satt til å oppdatere til versjon %s."
 
-#: src/WPBT_Core.php:82
+#: src/WPBT/WPBT_Core.php:88
 msgid "Choose an update branch"
 msgstr "Velg en oppdateringskanal"
 
-#: src/WPBT_Core.php:71
+#: src/WPBT/WPBT_Core.php:77
 msgid "Core Settings"
 msgstr "Kjerneinnstillinger"
 
-#: src/WPBT_Core.php:54
+#: src/WPBT/WPBT_Core.php:60
 msgid "WP Beta Tester Settings"
 msgstr "Innstillinger for WP Betatester"
 
-#: src/WPBT_Extras.php:287
-msgid "This area is for extra special beta testing. If nothing is present there are no additional features that need testing. Features will set constants in the `wp-config.php` file."
-msgstr "Dette området er for ekstra spesiell betatesting. Om intet er tilstede er den ingen ekstra funksjoner som trenger testes. Slike funksjoner vil sette konstanter i 'wp-config.php'-filen."
-
-#: src/WPBT_Extras.php:90
+#: src/WPBT/WPBT_Extras.php:99
 msgid "Extra Settings"
 msgstr "Ekstra innstillinger"
 
@@ -60,15 +184,15 @@ msgstr "Ekstra innstillinger"
 msgid "Peter Westwood, Andy Fragen"
 msgstr "Peter Westwood, Andy Fragen"
 
-#: src/WPBT_Settings.php:194
+#: src/WPBT/WPBT_Settings.php:206
 msgid "Why don&#8217;t you <a href=\"update-core.php\">head on over and upgrade now</a>."
 msgstr "Hvorfor ikke <a href=\"update-core.php\">gå hit og oppgradere nå</a>?"
 
-#: src/WPBT_Core.php:144
+#: src/WPBT/WPBT_Core.php:156
 msgid "By default, your WordPress install uses the stable update stream. To return to this, please deactivate this plugin and re-install from the <a href=\"update-core.php\">WordPress Updates</a> page."
 msgstr "Som standard bruker din WordPress-installasjon den stabile oppdateringskanalen. For å gå tilbake til dette, vennligst deaktiver denne utvidelsen og reinstaller fra siden <a href=\"update-core.php\">WordPress-oppdateringer</a>."
 
-#: src/WPBT_Settings.php:193
+#: src/WPBT/WPBT_Settings.php:205
 msgid "Saved."
 msgstr "Lagret."
 
@@ -88,64 +212,56 @@ msgstr "https://nb.wordpress.org/plugins/wordpress-beta-tester/"
 msgid "WordPress Beta Tester"
 msgstr "WordPress Betatester"
 
-#: src/WPBT_Core.php:174
+#: src/WPBT/WPBT_Core.php:210
 msgid "This is the bleeding edge development code from `trunk` which may be unstable at times. <em>Only use this if you really know what you are doing</em>."
-msgstr "Dette er utviklingskoden i ytterste forkant, fra 'trunk', og som kan være ustabil til tider. <em>Bruk bare denne om du virkelig vet hva du gjør</em>."
+msgstr "Dette er forkant utviklingskode fra 'trunk', og som kan være ustabil til tider. <em>Bruk bare denne om du virkelig vet hva du gjør</em>."
 
-#: src/WPBT_Core.php:172
+#: src/WPBT/WPBT_Core.php:208
 msgid "Bleeding edge nightlies"
-msgstr "Ytterste forkant nattlige versjoner"
+msgstr "Nattlige forkant-utgivelser"
 
-#: src/WPBT_Core.php:168
+#: src/WPBT/WPBT_Core.php:196
 msgid "This contains the work that is occurring on a branch in preparation for a x.x.x point release. This should also be fairly stable but will be available before the branch is ready for release."
 msgstr "Denne inneholder arbeid som skjer i en versjonsgren som forberedelse til en x.x.x punktutgivelse. Denne skulle også være rimelig stabil, men vil være tilgjengelig før versjonsgrenen er klar til utgivelse."
 
-#: src/WPBT_Core.php:166
+#: src/WPBT/WPBT_Core.php:194
 msgid "Point release nightlies"
-msgstr "Punktutgivelse nattlige versjoner"
+msgstr "Nattlige punktutgivelser"
 
-#: src/WPBT_Core.php:152
+#: src/WPBT/WPBT_Core.php:164
 msgid "Please select the update stream you would like this website to use:"
 msgstr "Vennligst velg den oppdateringskanalen du ønsker dette nettstedet skal bruke:"
 
 #. translators: %s: link to new trac ticket
-#: src/WPBT_Core.php:140
+#: src/WPBT/WPBT_Core.php:152
 msgid "Thank you for helping test WordPress. Please <a href=\"%s\">report any bugs you find</a>."
 msgstr "Takk for at du hjelper med å teste WordPress. Vennligst <a href=\"%s\">rapporter programfeil du måtte finne</a>."
 
-#: src/WPBT_Core.php:135
+#: src/WPBT/WPBT_Core.php:147 src/WPBT/WPBT_Help.php:50
 msgctxt "URL to beta support forum"
 msgid "https://wordpress.org/support/forum/alphabeta"
 msgstr "https://wordpress.org/support/forum/alphabeta"
 
-#: src/WPBT_Core.php:133
+#: src/WPBT/WPBT_Core.php:145 src/WPBT/WPBT_Help.php:48
 msgctxt "URL to database backup instructions"
 msgid "https://codex.wordpress.org/Backing_Up_Your_Database"
 msgstr "https://codex.wordpress.org/Backing_Up_Your_Database"
 
 #. translators: 1: link to backing up database, 2: link to make.wp.org/core, 3:
 #. link to beta support forum
-#: src/WPBT_Core.php:132
+#: src/WPBT/WPBT_Core.php:144 src/WPBT/WPBT_Help.php:47
 msgid "By their nature, these releases are unstable and should not be used anyplace where your data is important. So please <a href=\"%1$s\">back up your database</a> before upgrading to a test release. In order to hear about the latest beta releases, your best bet is to watch the <a href=\"%2$s\">development blog</a> and the <a href=\"%3$s\">beta forum</a>."
 msgstr "I sin natur er er disse utgivelsene ustabile og bør ikke brukes noe sted der dine data er viktige. Vennligst <a href=\"%1$s\">ta sikkerhetskopi av din database</a> før du oppgraderer til en testutgivelse. For å kunne høre om de siste betautgivelsene er det best å følge med på <a href=\"%2$s\">utviklingsbloggen</a> og <a href=\"%3$s\">beta-forumet</a>."
 
-#: src/WPBT_Core.php:124
-msgid "<strong>Please note:</strong> There are no development builds of the beta stream you have chosen available, so you will receive normal update notifications."
-msgstr "<strong>Vennligst merk:</strong> Det er ingen utviklingsversjoner i den oppdateringskanalen du har valgt, så du vil vanlige oppdateringsvarsler."
-
-#: src/WPBT_Settings.php:227
+#: src/WPBT/WPBT_Settings.php:240
 msgid "<strong>Please note:</strong> Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade as the database structure may be updated during the development of a major release."
 msgstr "<strong>Vennligst merk:</strong> Straks du har skiftet ditt nettsted til en av disse betaversjonene av programvaren vil det ikke alltid være mulig å nedgradere fordi databasestrukturen kan ha blitt oppdatert under utviklingen av av en hovedutgivelse."
 
-#: src/WPBT_Settings.php:86
-msgid "Beta Testing"
-msgstr "Beta-testing"
-
-#: src/WPBT_Settings.php:85 src/WPBT_Settings.php:224
+#: src/WPBT/WPBT_Settings.php:89 src/WPBT/WPBT_Settings.php:237
 msgid "Beta Testing WordPress"
 msgstr "Beta-testing WordPress"
 
-#. translators: %s: link to setting page
-#: src/WP_Beta_Tester.php:82
-msgid "<strong>Error:</strong> Your current <a href=\"%s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
-msgstr "<strong>Feil:</strong> Din nåværende <a href=\"%s\">WordPress Betatester-konfigurasjon</a> vil nedgradere din installasjon til en tidligere versjon - vennligst konfigurer utvidelsen på nytt."
+#. translators: %s: WordPress Beta Tester Settings page URL
+#: src/WPBT/WP_Beta_Tester.php:103
+msgid "<strong>Warning:</strong> Your current <a href=\"%s\">WordPress Beta Tester plugin configuration</a> will downgrade your install to a previous version - please reconfigure it."
+msgstr "<strong>Advarsel:</strong> Din nåværende <a href=\"%s\">WordPress Betatester-konfigurasjon</a> vil nedgradere din installasjon til en tidligere versjon - vennligst konfigurer utvidelsen på nytt."

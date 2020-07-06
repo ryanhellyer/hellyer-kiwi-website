@@ -1,10 +1,10 @@
 # WordPress Beta Tester
 
 Tags: beta, advanced, testing
-Contributors: westi, mlteal, afragen
-Tested up to: 5.2
+Contributors: westi, mlteal, afragen, pbiron
+Tested up to: 5.4
 Requires at least: 3.1
-Stable Tag: 2.0.4
+Stable Tag: 2.2.10
 License: GPLv2
 License URI: https://www.opensource.org/licenses/GPL-2.0
 Requires PHP: 5.2.4
@@ -24,7 +24,9 @@ Don't forget to backup before you start!
 
 ### Extra Settings
 
-The **Extra Settings** tab may contain choices for testing features in trunk that require constants to be set. A checked feature will add a constant to the user's `wp-config.php` file in the format as follows:
+There is a setting to **Skip successful autoupdate emails**.  It functions to disable sending emails to the admin user for successful autoupdates. Only emails indicating failures of the autoupdate process are sent.
+
+The **Extra Settings** tab may contain choices for testing new features in trunk that require constants to be set. A checked feature will add a constant to the user's `wp-config.php` file in the format as follows:
 
 `define( 'WP_BETA_TESTER_{$feature}', true );`
 
@@ -37,6 +39,53 @@ If no settings are present there is no testing to be done that requires this fea
 PRs are welcome on [GitHub](https://github.com/afragen/wordpress-beta-tester).
 
 ## Changelog
+
+#### 2.2.10 / 2020-05-01
+* sanitize, escape & ignore
+* move multiline boolean operator to front of line, new guidelines in WPCS
+* fix `correct_versions_for_downgrade()` for being on current release version
+
+#### 2.2.9 / 2020-03-24
+* delete development RSS feed transient after core upgrade
+
+#### 2.2.8 / 2020-03-17 🍀
+* add Dev Notes and Field Guide links to dashboard
+* add text/link for bug reporting to trac
+* add help tabs to screen
+* arbitrarily changed settings page id from `wp_beta_tester` to `wp-beta-tester` 😏
+
+#### 2.2.7 / 2020-03-02
+* update trac link in callout for _closed_ or _reopened_ tickets on the milestone
+* only show Beta Tester Settings page link in callout with appropriate privileges, using `manage_network_options` and `manage_options`
+* menu to Settings page also checks privileges as above
+
+#### 2.2.6 / 2020-02-25
+* removed extra `</li>` in dashboard callout, 4th time's the charm 😭
+
+#### 2.2.5 / 2020-02-25
+* less greedy regex for matching release posts in RSS for dashboard callout
+
+#### 2.2.4 / 2020-02-25 🤦‍♂️
+* added dashboard widget for network dashboard
+
+#### 2.2.3 / 2020-02-25
+* add dashboard widget callout for testing
+
+#### 2.2.2 / 2020-02-22
+* fix for strange Core API response where preferred version response contained the word 'version'. We now grab the last word of that response
+
+#### 2.2.1 / 2020-02-20
+* fix some i18n strings, thanks @pedro-mendonca
+
+#### 2.2.0 / 2020-02-19
+* added support for updating to the _beta/RC offer_. Based on and with tons of help from @pbrion, thanks Paul 👏🏻
+* fixed so a downgrade from 'unstable' to 'point' serves the correct download
+* test and exit from **Extra Settings** if `wp-config.php` is not writeable
+
+#### 2.1.0 / 2019-09-17
+* add extra setting to skip successful autoupdate emails
+* add description to checkbox settings
+* composer update
 
 #### 2.0.4
 * add update version information to settings page text
@@ -122,3 +171,4 @@ PRs are welcome on [GitHub](https://github.com/afragen/wordpress-beta-tester).
 
 1. This shows the main administration page for the plugin
 2. This shows the Extra Settings page for the plugin
+3. This shows the Dashboard callout
