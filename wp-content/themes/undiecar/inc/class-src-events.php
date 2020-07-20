@@ -479,7 +479,9 @@ class SRC_Events extends SRC_Core {
 		$this->event['previous_round']             = $previous_round;
 		$this->event['next_round']                 = $next_round;
 		$this->event['current_round']              = $current_round;
-
+echo "\n\n\n\n....\n";
+print_r( $this->event );
+echo "\n....\n\n\n";
 		// Add track information for previous, current and next rounds
 		foreach ( array( 'previous_round', 'next_round', 'current_round' ) as $key => $x ) {
 			if ( ! isset( $this->event[$x]['track'] ) ) {
@@ -731,7 +733,9 @@ class SRC_Events extends SRC_Core {
 			$will_be = esc_html__( 'was', 'undiecar' );
 			$begins = esc_html__( 'began', 'undiecar' );
 		}
-
+//echo "\n\n\n...............\n";
+//print_r( $this->event );
+//echo "\n...............\n\n\n";
 		if ( __( 'Special Events', 'undiecar' ) === get_the_title( $this->event['season_id'] ) ) {
 			$html .= wpautop(
 				sprintf(
