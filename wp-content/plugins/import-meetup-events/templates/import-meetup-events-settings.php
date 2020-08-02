@@ -78,7 +78,7 @@ $ime_authorized_user = get_option( 'ime_authorized_user', array() );
                                         ?>
                                         <input type="submit" class="button" name="ime_authorize" value="<?php echo $button_value; ?>" />
                                     </form>
-                                    <span class="ife_small">
+                                    <span class="ime_small">
                                         <?php _e( 'Please connect your meetup account for import meetup events.','import-meetup-events' ); ?>
                                     </span>
                                 <?php } ?>
@@ -162,6 +162,21 @@ $ime_authorized_user = get_option( 'ime_authorized_user', array() );
 
                     <tr>
                         <th scope="row">
+                            <?php _e('Direct link to Meetup', 'import-meetup-events'); ?> :
+                        </th>
+                        <td>
+                            <?php
+                            $direct_link = isset($meetup_options['direct_link']) ? $meetup_options['direct_link'] : 'no';
+                            ?>
+                            <input type="checkbox" name="meetup[direct_link]" value="yes" <?php if ($direct_link == 'yes') { echo 'checked="checked"'; }if (!ime_is_pro()) {echo 'disabled="disabled"'; } ?> />
+                            <span>
+                                <?php _e('Check to enable direct event link to Meetup instead of event detail page.', 'import-meetup-events'); ?>
+                            </span>
+                            <?php do_action('ime_render_pro_notice'); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
                             <?php _e( 'Advanced Synchronization', 'import-meetup-events' ); ?> : 
                         </th>
                         <td>
@@ -175,6 +190,55 @@ $ime_authorized_user = get_option( 'ime_authorized_user', array() );
                             <?php do_action( 'ime_render_pro_notice' ); ?>
                         </td>
                     </tr>
+
+                    <tr>
+						<th scope="row">
+							<?php esc_attr_e( 'Accent Color', 'import-meetup-events' ); ?> :
+						</th>
+						<td>
+						<?php
+						$accent_color = isset( $meetup_options['accent_color'] ) ? $meetup_options['accent_color'] : '#039ED7';
+						?>
+						<input class="ime_color_field" type="text" name="meetup[accent_color]" value="<?php echo esc_attr( $accent_color ); ?>"/>
+						<span class="ime_small">
+							<?php esc_attr_e( 'Choose accent color for front-end event grid and event widget.', 'import-meetup-events' ); ?>
+						</span>
+						</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <?php _e('Event Slug', 'import-meetup-events'); ?> :
+                        </th>
+                        <td>
+                            <?php
+                            $event_slug = isset($meetup_options['event_slug']) ? $meetup_options['event_slug'] : 'meetup-event';
+                            ?>
+                            <input type="text" name="meetup[event_slug]" value="<?php if ( $event_slug ) { echo $event_slug; } ?>" <?php if (!ime_is_pro()) { echo 'disabled="disabled"'; } ?> />
+                            <span class="ime_small">
+                                <?php _e('Slug for the event.', 'import-meetup-events'); ?>
+                            </span>
+                            <?php do_action('ime_render_pro_notice'); ?>
+                        </td>
+                    </tr>
+						<th scope="row">
+							<?php esc_attr_e( 'Event Display Time Format', 'import-meetup-events' ); ?> :
+						</th>
+						<td>
+						<?php
+                        $time_format = isset( $meetup_options['time_format'] ) ? $meetup_options['time_format'] : '12hours';
+						?>
+                        <select name="meetup[time_format]">
+								<option value="12hours" <?php selected('12hours', $time_format); ?>><?php esc_attr_e( '12 Hours', 'import-meetup-events' );  ?></option>
+                                <option value="24hours" <?php selected('24hours', $time_format); ?>><?php esc_attr_e( '24 Hours', 'import-meetup-events' ); ?></option>						
+                                <option value="wordpress_default" <?php selected('wordpress_default', $time_format); ?>><?php esc_attr_e( 'WordPress Default', 'import-meetup-events' ); ?></option>
+                        </select>
+						<span class="ime_small">
+							<?php esc_attr_e( 'Choose event display time format for front-end.', 'import-meetup-events' ); ?>
+						</span>
+						</td>
+					</tr>
+                    
                 </tbody>
             </table>
             <br/>

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class Import_Meetup_Events_Cpt {
 
 	// The Events Calendar Event Taxonomy
-	protected $event_slug;
+	public $event_slug;
 
 	// Event post type.
 	protected $event_posttype;
@@ -31,13 +31,16 @@ class Import_Meetup_Events_Cpt {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		
+
 		$this->event_slug = 'meetup-event';
-				
 		$this->event_posttype = 'meetup_events';
 		$this->event_category = 'meetup_category';
 		$this->event_tag = 'meetup_tag';
 
+		$ime_options       = get_option( IME_OPTIONS );
+		if (ime_is_pro()) {
+			$this->event_slug = isset( $ime_options['event_slug'] ) ? $ime_options['event_slug'] : 'meetup-event';
+        }
 		add_action( 'init', array( $this, 'register_event_post_type' ) );
 		add_action( 'init', array( $this, 'register_event_taxonomy' ) );
 
@@ -601,7 +604,7 @@ class Import_Meetup_Events_Cpt {
 	 */
 	public function meetup_events_archive( $atts = array() ){
 		//[meetup_events col='2' posts_per_page='12' category="cat1,cat2" past_events="yes" order="desc" orderby="" start_date="" end_date="" ]
-		$current_date = time();
+		$current_date = current_time( 'timestamp' );
 		$paged = ( get_query_var('paged') ? get_query_var('paged') : 1 );
 		if( is_front_page() ){
 			$paged = ( get_query_var('page') ? get_query_var('page') : 1 );
@@ -776,6 +779,12 @@ class Import_Meetup_Events_Cpt {
 			$temp_paged = $paged;
 			$paged = $curr_paged;
 		}
+		$ime_options = get_option( IME_OPTIONS );
+        $accent_color = isset( $ime_options['accent_color'] ) ? $ime_options['accent_color'] : '#039ED7';
+        $direct_link = isset($ime_options['direct_link']) ? $ime_options['direct_link'] : 'no';
+        if (!ime_is_pro()) {
+            $direct_link = 'no';
+        }
 		ob_start();
 		?>
 		<div class="ime_archive row_grid">
@@ -803,6 +812,16 @@ class Import_Meetup_Events_Cpt {
 
 			?>
 		</div>
+		
+		<style type="text/css">
+			.ime_archive .ime_event .event_date{
+			    background-color: <?php echo $accent_color;?>;
+			}
+			.ime_archive .ime_event .event_desc .event_title{
+			    color: <?php echo $accent_color;?>;
+			}
+		</style>
+
 		<?php
 		do_action( 'ime_after_event_list', $meetup_events );
 		$wp_list_events = ob_get_contents();
