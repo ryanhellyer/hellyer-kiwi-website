@@ -382,7 +382,7 @@ class SRC_Messages extends SRC_Core {
 		}
 
 		// Only save if correct post data sent
-		if ( isset( $_POST['_message'] ) && isset( $_POST['_event_id'] ) ) {
+		if ( isset( $_POST['_message'] ) ) {
 
 			// Do nonce security check
 			if ( ! wp_verify_nonce( $_POST['message-nonce'], __FILE__ ) ) {
