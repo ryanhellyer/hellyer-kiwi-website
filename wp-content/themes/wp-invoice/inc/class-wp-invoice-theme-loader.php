@@ -62,7 +62,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 						$value[$key] = '';
 					}
 				}
-
+echo $value['start-date']."\n";
 				// Convert all template tags to values
 				$template_tags = array(
 					'title'       => $value['title'],
@@ -294,8 +294,6 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 
 	public function get_amount( $invoice_id, $amount ) {
 		$currency = get_post_meta( $invoice_id, '_invoice_currency', true );
-
-		$amount = round( $amount );
 
 		foreach ( $this->currencies as $currency_code => $options ) {
 			if ( $currency === $currency_code ) {
