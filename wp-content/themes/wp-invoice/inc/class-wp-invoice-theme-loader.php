@@ -62,12 +62,22 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 						$value[$key] = '';
 					}
 				}
-echo $value['start-date']."\n";
+
+				$start_date = '';
+				if ( '' !== $value['start-date'] ) {
+					$start_date = date( get_option( 'date_format' ), strtotime( $value['start-date'] ) );
+				}
+
+				$end_date = '';
+				if ( '' !== $value['end-date'] ) {
+					$end_date = date( get_option( 'date_format' ), strtotime( $value['end-date'] ) );
+				}
+
 				// Convert all template tags to values
 				$template_tags = array(
 					'title'       => $value['title'],
-					'start_date'  => date( get_option( 'date_format' ), strtotime( $value['start-date'] ) ),
-					'end_date'    => date( get_option( 'date_format' ), strtotime( $value['end-date'] ) ),
+					'start_date'  => $start_date,
+					'end_date'    => $end_date,
 					'hours'       => $value['hours'],
 					'amount'      => $this->get_amount( $invoice_id, ( $value['hours'] * get_post_meta( $invoice_id, '_invoice_hourly_rate', true ) ) ),
 				);
@@ -294,6 +304,8 @@ echo $value['start-date']."\n";
 
 	public function get_amount( $invoice_id, $amount ) {
 		$currency = get_post_meta( $invoice_id, '_invoice_currency', true );
+
+		$amount = round( $amount );
 
 		foreach ( $this->currencies as $currency_code => $options ) {
 			if ( $currency === $currency_code ) {
