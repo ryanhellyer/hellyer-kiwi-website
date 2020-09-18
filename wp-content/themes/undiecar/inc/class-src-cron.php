@@ -155,9 +155,13 @@ class SRC_Cron extends SRC_Core {
 		}
 
 		echo "TEST - end\n";
-
+echo 'er';
 		// Merging oval and road stats.
 		$new_stats = array_replace_recursive( $new_stats['oval'], $new_stats['road'] );
+
+echo "\n";
+echo $dir['basedir'] . '/iracing-members.json';
+echo "\n";
 
 		file_put_contents( $dir['basedir'] . '/iracing-members.json', json_encode( $new_stats, JSON_UNESCAPED_UNICODE ) );
 		unset( $new_stats );
