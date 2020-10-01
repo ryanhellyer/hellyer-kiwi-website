@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.5.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-01 12:51:23+0000\n"
+"PO-Revision-Date: 2020-09-16 19:57:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -85,7 +85,7 @@ msgstr ","
 #. default is ','
 #: wp-includes/class-wp-locale.php:200
 msgid "number_format_thousands_sep"
-msgstr "&nbsp;"
+msgstr " "
 
 #. translators: %s: WP_ENVIRONMENT_TYPES
 #: wp-includes/load.php:164
@@ -268,6 +268,13 @@ msgstr "En stor hero-seksjon med et lys gradientbakgrunn, en stor overskrift og 
 msgid "Large header with a heading"
 msgstr "Stor topp med en overskrift"
 
+#: wp-includes/customize/class-wp-customize-theme-control.php:183
+#: wp-admin/includes/theme.php:929 wp-admin/themes.php:468
+#: wp-admin/themes.php:811 wp-admin/themes.php:943
+#: wp-admin/theme-install.php:283 wp-admin/theme-install.php:469
+msgid "This theme doesn&#8217;t work with your versions of WordPress and PHP."
+msgstr "Dette temaet fungerer ikke med dine versjoner av WordPress og PHP."
+
 #. translators: %s: URL to Update PHP page.
 #: wp-includes/customize/class-wp-customize-theme-control.php:136
 #: wp-includes/customize/class-wp-customize-theme-control.php:167
@@ -323,13 +330,6 @@ msgstr "<a href=\"%s\">Vennligst oppdater WordPress</a>."
 #: wp-admin/theme-install.php:473
 msgid "<a href=\"%1$s\">Please update WordPress</a>, and then <a href=\"%2$s\">learn more about updating PHP</a>."
 msgstr "<a href=\"%1$s\">Vennligst oppdater WordPress</a>, og deretter <a href=\"%2$s\">lær mer opp å oppdatere PHP</a>."
-
-#: wp-includes/customize/class-wp-customize-theme-control.php:183
-#: wp-admin/includes/theme.php:929 wp-admin/themes.php:468
-#: wp-admin/themes.php:811 wp-admin/themes.php:943
-#: wp-admin/theme-install.php:283 wp-admin/theme-install.php:469
-msgid "This theme doesn&#8217;t work with your versions of WordPress and PHP."
-msgstr "Dette temaet fungerer ikke med dine versjoner av WordPress og PHP."
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:220
 #: wp-admin/includes/theme.php:966 wp-admin/themes.php:501
@@ -793,12 +793,12 @@ msgid "This username is invalid because it uses illegal characters. Please enter
 msgstr "Brukernavnet er ugyldig fordi det bruker tegn som ikke er tillatte. Vennligst oppgi et gyldig brukernavn."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:336
-#: wp-admin/includes/ajax-actions.php:4072
-#: wp-admin/includes/ajax-actions.php:4202
-#: wp-admin/includes/ajax-actions.php:4266
-#: wp-admin/includes/ajax-actions.php:4366
-#: wp-admin/includes/ajax-actions.php:4493
-#: wp-admin/includes/ajax-actions.php:4562
+#: wp-admin/includes/ajax-actions.php:4073
+#: wp-admin/includes/ajax-actions.php:4203
+#: wp-admin/includes/ajax-actions.php:4267
+#: wp-admin/includes/ajax-actions.php:4367
+#: wp-admin/includes/ajax-actions.php:4494
+#: wp-admin/includes/ajax-actions.php:4563
 msgid "Unable to connect to the filesystem. Please confirm your credentials."
 msgstr "Kunne ikke koble til filsystemet. Vennligst bekreft din pålogging."
 
@@ -844,7 +844,7 @@ msgid "Sorry, you are not allowed to deactivate this plugin."
 msgstr "Beklager, du har ikke tillatelse til å deaktivere denne utvidelsen. "
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:488
-#: wp-admin/includes/ajax-actions.php:4538 wp-admin/plugins.php:268
+#: wp-admin/includes/ajax-actions.php:4539 wp-admin/plugins.php:268
 msgid "Sorry, you are not allowed to delete plugins for this site."
 msgstr "Beklager, du har ikke lov til å slette utvidelser på dette nettstedet."
 
@@ -853,7 +853,7 @@ msgid "Sorry, you are not allowed to activate plugins."
 msgstr "Beklager, du har ikke tillatelse til å aktivere utvidelser."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:243
-#: wp-admin/includes/ajax-actions.php:4319 wp-admin/update.php:106
+#: wp-admin/includes/ajax-actions.php:4320 wp-admin/update.php:106
 #: wp-admin/update.php:149 wp-admin/update.php:181
 #: wp-admin/plugin-install.php:19
 msgid "Sorry, you are not allowed to install plugins on this site."
@@ -863,8 +863,8 @@ msgstr "Beklager, du har ikke lov til å installere utvidelser på dette nettste
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:166
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:410
 #: wp-includes/rest-api/endpoints/class-wp-rest-plugins-controller.php:480
-#: wp-admin/includes/ajax-actions.php:4614
-#: wp-admin/includes/ajax-actions.php:4666 wp-admin/plugins.php:13
+#: wp-admin/includes/ajax-actions.php:4615
+#: wp-admin/includes/ajax-actions.php:4667 wp-admin/plugins.php:13
 msgid "Sorry, you are not allowed to manage plugins for this site."
 msgstr "Beklager, du har ikke lov til å håndtere utvidelser på dette nettstedet."
 
@@ -1351,7 +1351,7 @@ msgstr "Innleggsstatus %1$s er ikke registrert, så den er kanskje ikke pålitel
 #. translators: %s: Comment link.
 #: wp-includes/comment-template.php:981
 #: wp-admin/includes/class-wp-comments-list-table.php:871
-#: wp-admin/comment.php:200
+#: wp-admin/comment.php:204
 msgid "In reply to %s."
 msgstr "Som svar til %s."
 
@@ -1458,13 +1458,13 @@ msgstr "Om temaet kan administrere dokumenttittel."
 msgid "Allows use of HTML5 markup for search forms, comment forms, comment lists, gallery, and caption."
 msgstr "Tillater bruk av HTML5-kode for søkeskjema, kommentarskjema, kommentarlister, galleri og bildetekster."
 
-#: wp-includes/theme.php:3695
-msgid "Custom background if defined by the theme."
-msgstr "Tilpasset bakgrunn om definert av temaet."
-
 #: wp-includes/theme.php:3810
 msgid "Custom logo if defined by the theme."
 msgstr "Tilpasset logo, om definert av temaet."
+
+#: wp-includes/theme.php:3695
+msgid "Custom background if defined by the theme."
+msgstr "Tilpasset bakgrunn om definert av temaet."
 
 #: wp-includes/theme.php:3765
 msgid "Custom header if defined by the theme."
@@ -1727,10 +1727,6 @@ msgstr "Brukerens mediedata."
 msgid "No media items found. Try a different search."
 msgstr "Ingen medieobjekter funnet. Prøv et annet søk."
 
-#: wp-includes/post.php:2799
-msgid "Manage Archives"
-msgstr "Håndter arkiver"
-
 #: wp-includes/post.php:2781
 msgid "Manage Documents"
 msgstr "Administrer dokumenter"
@@ -1767,6 +1763,10 @@ msgstr "Verdiene %1$s, %2$s, og %3$s kan redigeres for å sette språk og type f
 #: wp-includes/media.php:4236
 msgid "Number of media items displayed: %d. Scroll the page for more results."
 msgstr "Antall medieobjekter vist: %d. Rull siden for flere resultater."
+
+#: wp-includes/post.php:2799
+msgid "Manage Archives"
+msgstr "Håndter arkiver"
 
 #: wp-includes/media.php:4235
 msgid "Number of media items found: %d"
@@ -1823,11 +1823,6 @@ msgstr "Nettstedet ditt har ingen %s, derfor finnes det for øyeblikket ingentin
 msgid "Entries feed"
 msgstr "Innleggsstrøm"
 
-#. translators: %s: Admin email address.
-#: wp-login.php:705
-msgid "Current administration email: %s"
-msgstr "Nåværende e-post for administrasjon: %s"
-
 #. translators: URL to the WordPress help section about admin email.
 #: wp-login.php:686
 msgid "https://wordpress.org/support/article/settings-general-screen/#email-address"
@@ -1868,6 +1863,11 @@ msgstr "E-postadressen er riktig"
 #: wp-login.php:712
 msgid "This email may be different from your personal email address."
 msgstr "Denne e-posten kan være forskjellig fra din personlige e-postadresse."
+
+#. translators: %s: Admin email address.
+#: wp-login.php:705
+msgid "Current administration email: %s"
+msgstr "Nåværende e-post for administrasjon: %s"
 
 #. translators: Maximum number of words used in a post excerpt.
 #: wp-includes/formatting.php:3823
@@ -2042,7 +2042,7 @@ msgstr "[%s] Innloggingsdetaljer"
 #: wp-admin/includes/meta-boxes.php:441 wp-admin/includes/media.php:1710
 #: wp-admin/includes/class-wp-media-list-table.php:177
 #: wp-admin/includes/class-wp-comments-list-table.php:374
-#: wp-admin/includes/class-wp-posts-list-table.php:420 wp-admin/comment.php:132
+#: wp-admin/includes/class-wp-posts-list-table.php:420 wp-admin/comment.php:136
 #: wp-admin/edit-form-comment.php:205
 msgid "Move to Trash"
 msgstr "Flytt til papirkurven"
@@ -2051,6 +2051,10 @@ msgstr "Flytt til papirkurven"
 #: wp-includes/media.php:4227
 msgid "Restore from Trash"
 msgstr "Gjenopprett fra papirkurven"
+
+#: wp-includes/admin-bar.php:184
+msgid "Support"
+msgstr "Brukerstøtte"
 
 #: wp-login.php:1258 wp-includes/wp-db.php:1122 wp-includes/wp-db.php:1701
 #: wp-includes/wp-db.php:1858 wp-includes/update.php:166
@@ -2068,10 +2072,6 @@ msgstr "Gjenopprett fra papirkurven"
 #: wp-admin/theme-install.php:63
 msgid "https://wordpress.org/support/forums/"
 msgstr "https://wordpress.org/support/forums/"
-
-#: wp-includes/admin-bar.php:184
-msgid "Support"
-msgstr "Brukerstøtte"
 
 #. translators: New email address notification email subject. %s: Site title.
 #: wp-includes/user.php:2900
@@ -2239,8 +2239,8 @@ msgstr "Ingen informasjonskapsel tilstede."
 msgid "Quote from Hello Dolly song, by Jerry Herman:"
 msgstr "Sitat fra sangen Hello Dolly ved Jerry Herman:"
 
-#: wp-login.php:1174 wp-admin/includes/ajax-actions.php:4729
-#: wp-admin/includes/ajax-actions.php:4919
+#: wp-login.php:1174 wp-admin/includes/ajax-actions.php:4730
+#: wp-admin/includes/ajax-actions.php:4920
 msgid "Missing request ID."
 msgstr "Mangler forespørsel-ID."
 
@@ -2330,7 +2330,7 @@ msgstr "Kommentaren din påventer godkjenning. Dette er en forhåndsvisning. Kom
 #. translators: %s: Database table name.
 #: wp-includes/ms-site.php:1334
 msgid "The %s table is not installed. Please run the network database upgrade."
-msgstr "Tabellen %s er ikke installert. Vennligst kjør databaseoppgraderingen for nettverket."
+msgstr "Tabellen %s er ikke installert. Vennligst kjør databaseoppdateringen for nettverket."
 
 #. translators: %d: Site ID.
 #: wp-includes/ms-site.php:699
@@ -2562,7 +2562,7 @@ msgstr "Element lagt til."
 #: wp-admin/includes/class-theme-installer-skin.php:248
 #: wp-admin/includes/class-plugin-installer-skin.php:224
 msgid "Current"
-msgstr "Nåvårende"
+msgstr "Nåværende"
 
 #: wp-includes/post.php:282 wp-includes/js/dist/editor.js:6085
 msgid "Block updated."
@@ -3096,16 +3096,6 @@ msgstr "WordPress-bruker"
 msgid "WordPress Media"
 msgstr "Mediefiler i WordPress"
 
-#. translators: Deleted text.
-#: wp-includes/functions.php:7202
-msgid "[deleted]"
-msgstr "[slettet]"
-
-#. translators: Deleted long text.
-#: wp-includes/functions.php:7206
-msgid "This content was deleted by the author."
-msgstr "Dette innholdet ble slettet av forfatteren."
-
 #: wp-login.php:1206
 msgid "User action confirmed."
 msgstr "Brukerhandling bekreftet."
@@ -3122,6 +3112,16 @@ msgstr "Ugyldig forespørsel."
 #: wp-includes/user.php:3589
 msgid "Invalid action name."
 msgstr "Ugyldig handlingsnavn."
+
+#. translators: Deleted long text.
+#: wp-includes/functions.php:7206
+msgid "This content was deleted by the author."
+msgstr "Dette innholdet ble slettet av forfatteren."
+
+#. translators: Deleted text.
+#: wp-includes/functions.php:7202
+msgid "[deleted]"
+msgstr "[slettet]"
 
 #. translators: %s: Action name.
 #: wp-includes/user.php:3648
@@ -3408,8 +3408,8 @@ msgid "Security check failed."
 msgstr "Sikkerhetssjekk feilet"
 
 #: wp-includes/class-wp-customize-manager.php:4293
-#: wp-admin/includes/post.php:1690 wp-admin/comment.php:74
-#: wp-admin/comment.php:272 wp-admin/theme-editor.php:376
+#: wp-admin/includes/post.php:1690 wp-admin/comment.php:78
+#: wp-admin/comment.php:276 wp-admin/theme-editor.php:376
 #: wp-admin/plugin-editor.php:330
 msgid "Go back"
 msgstr "Gå tilbake"
@@ -4675,13 +4675,13 @@ msgstr "Alle funksjoner, støttet av innleggstypen."
 msgid "You need to define an include parameter to order by include."
 msgstr "Du må definere et inklusjonsparameter for å sortere etter inklusjon."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:1076
-msgid "Limit result set to terms with one or more specific slugs."
-msgstr "Begrens resultatsett til termer med en eller flere spesifikke identifikatorer."
-
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1534
 msgid "Limit result set to users with one or more specific slugs."
 msgstr "Begrens resultatsett til brukere med en eller flere spesifikke identifikatorer."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:1076
+msgid "Limit result set to terms with one or more specific slugs."
+msgstr "Begrens resultatsett til termer med en eller flere spesifikke identifikatorer."
 
 #: wp-includes/post.php:1717
 msgctxt "page"
@@ -7869,7 +7869,7 @@ msgid "Live Preview: %s"
 msgstr "Live forhåndsvisning: %s"
 
 #: wp-includes/class-wp-customize-manager.php:580
-#: wp-admin/includes/ajax-actions.php:4251 wp-admin/includes/file.php:430
+#: wp-admin/includes/ajax-actions.php:4252 wp-admin/includes/file.php:430
 #: wp-admin/includes/file.php:440 wp-admin/theme-editor.php:69
 #: wp-admin/theme-editor.php:73 wp-admin/themes.php:28 wp-admin/themes.php:71
 msgid "The requested theme does not exist."
@@ -7984,17 +7984,17 @@ msgstr "Sterkt"
 msgid "Hide image"
 msgstr "Skjul bilde"
 
-#: wp-includes/customize/class-wp-customize-header-image-control.php:237
-msgid "Add new image"
-msgstr "Legg til nytt bilde"
+#: wp-includes/customize/class-wp-customize-header-image-control.php:236
+msgid "Hide header image"
+msgstr "Skjul toppbilde"
 
 #: wp-includes/customize/class-wp-customize-header-image-control.php:237
 msgid "Add new header image"
 msgstr "Legg til nytt toppbilde"
 
-#: wp-includes/customize/class-wp-customize-header-image-control.php:236
-msgid "Hide header image"
-msgstr "Skjul toppbilde"
+#: wp-includes/customize/class-wp-customize-header-image-control.php:237
+msgid "Add new image"
+msgstr "Legg til nytt bilde"
 
 #: wp-includes/class-wp-customize-manager.php:5157
 #: wp-admin/includes/template.php:2280
@@ -8034,37 +8034,9 @@ msgstr "Brukernavnet kan ikke være lengre enn 60 tegn."
 msgid "To set your password, visit the following address:"
 msgstr "For å sette et passord, besøk følgende adresse:"
 
-#. translators: 1: PHP class name, 2: Version number, 3: __construct() method.
-#: wp-includes/functions.php:4872
-msgid "The called constructor method for %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
-msgstr "Den kalte constructor-metoden for %1$s er <strong>foreldet</strong> siden versjon %2$s! Bruk %3$s isteden."
-
-#: wp-includes/class-wp-editor.php:1147
-msgctxt "HTML tag"
-msgid "Preformatted"
-msgstr "Preformatert"
-
-#. translators: 1: Original menu name, 2: Duplicate count.
-#: wp-includes/customize/class-wp-customize-nav-menu-setting.php:522
-msgid "%1$s (%2$d)"
-msgstr "%1$s (%2$d)"
-
-#: wp-includes/customize/class-wp-customize-themes-panel.php:44
-msgid "Previewing theme"
-msgstr "Forhåndsviser tema"
-
-#: wp-includes/customize/class-wp-customize-themes-panel.php:42
-msgid "Active theme"
-msgstr "Aktivt tema"
-
-#: wp-includes/class-wp-customize-nav-menus.php:659
-msgid "Menus can be displayed in locations defined by your theme."
-msgstr "Menyer kan vises i lokasjoner som er definert av ditt tema."
-
-#: wp-includes/class-wp-customize-widgets.php:786
-#: wp-includes/class-wp-customize-nav-menus.php:533
-msgid "Reorder mode closed"
-msgstr "Modus for endring av rekkefølge deaktivert"
+#: wp-includes/class-wp-customize-nav-menus.php:535
+msgid "Close reorder mode"
+msgstr "Ferdig med endring av rekkefølge"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-setting.php:440
 #: wp-includes/class-wp-customize-nav-menus.php:504
@@ -8072,9 +8044,37 @@ msgctxt "Missing menu name."
 msgid "(unnamed)"
 msgstr "(ikke navngitt)"
 
-#: wp-includes/class-wp-customize-nav-menus.php:535
-msgid "Close reorder mode"
-msgstr "Ferdig med endring av rekkefølge"
+#: wp-includes/class-wp-customize-widgets.php:786
+#: wp-includes/class-wp-customize-nav-menus.php:533
+msgid "Reorder mode closed"
+msgstr "Modus for endring av rekkefølge deaktivert"
+
+#: wp-includes/class-wp-customize-nav-menus.php:659
+msgid "Menus can be displayed in locations defined by your theme."
+msgstr "Menyer kan vises i lokasjoner som er definert av ditt tema."
+
+#: wp-includes/customize/class-wp-customize-themes-panel.php:42
+msgid "Active theme"
+msgstr "Aktivt tema"
+
+#: wp-includes/customize/class-wp-customize-themes-panel.php:44
+msgid "Previewing theme"
+msgstr "Forhåndsviser tema"
+
+#. translators: 1: Original menu name, 2: Duplicate count.
+#: wp-includes/customize/class-wp-customize-nav-menu-setting.php:522
+msgid "%1$s (%2$d)"
+msgstr "%1$s (%2$d)"
+
+#: wp-includes/class-wp-editor.php:1147
+msgctxt "HTML tag"
+msgid "Preformatted"
+msgstr "Preformatert"
+
+#. translators: 1: PHP class name, 2: Version number, 3: __construct() method.
+#: wp-includes/functions.php:4872
+msgid "The called constructor method for %1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
+msgstr "Den kalte constructor-metoden for %1$s er <strong>foreldet</strong> siden versjon %2$s! Bruk %3$s isteden."
 
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:52
 msgid "Add or remove menu items"
@@ -8159,30 +8159,9 @@ msgstr ""
 "###SITENAME###\n"
 "###SITEURL###"
 
-#. translators: %s: Shortcode tag.
-#: wp-includes/shortcodes.php:318
-msgid "Attempting to parse a shortcode without a valid callback: %s"
-msgstr "Prøver å parse en kortkode uten gyldig callback: %s"
-
-#: wp-includes/script-loader.php:641
-msgid "Close inserted text tag"
-msgstr "Lukk innsatt tekst-oppmerking"
-
-#: wp-includes/script-loader.php:644
-msgid "Close bulleted list tag"
-msgstr "Lukk kuleliste-oppmerking"
-
-#: wp-includes/script-loader.php:646
-msgid "Close numbered list tag"
-msgstr "Lukk nummerliste-oppmerking"
-
-#: wp-includes/script-loader.php:650
-msgid "Close code tag"
-msgstr "Lukk kode-oppmerking"
-
-#: wp-includes/script-loader.php:648
-msgid "Close list item tag"
-msgstr "Lukk listeelement-oppmerking"
+#: wp-includes/taxonomy.php:602
+msgid "No tags"
+msgstr "Ingen stikkord"
 
 #: wp-includes/script-loader.php:647
 msgid "List item"
@@ -8192,9 +8171,42 @@ msgstr "Listeelement"
 msgid "Inserted text"
 msgstr "Innsatt tekst"
 
-#: wp-includes/taxonomy.php:602
-msgid "No tags"
-msgstr "Ingen stikkord"
+#: wp-includes/script-loader.php:648
+msgid "Close list item tag"
+msgstr "Lukk listeelement-oppmerking"
+
+#: wp-includes/script-loader.php:650
+msgid "Close code tag"
+msgstr "Lukk kode-oppmerking"
+
+#: wp-includes/script-loader.php:646
+msgid "Close numbered list tag"
+msgstr "Lukk nummerliste-oppmerking"
+
+#: wp-includes/script-loader.php:641
+msgid "Close inserted text tag"
+msgstr "Lukk innsatt tekst-oppmerking"
+
+#: wp-includes/script-loader.php:644
+msgid "Close bulleted list tag"
+msgstr "Lukk kuleliste-oppmerking"
+
+#. translators: %s: Shortcode tag.
+#: wp-includes/shortcodes.php:318
+msgid "Attempting to parse a shortcode without a valid callback: %s"
+msgstr "Prøver å parse en kortkode uten gyldig callback: %s"
+
+#: wp-includes/script-loader.php:638
+msgid "Deleted text (strikethrough)"
+msgstr "Slettet tekst (overstrykning)"
+
+#: wp-includes/script-loader.php:639
+msgid "Close deleted text tag"
+msgstr "Lukk slettet tekst-markering"
+
+#: wp-includes/script-loader.php:632
+msgid "Close bold tag"
+msgstr "Lukk fet-oppmerking"
 
 #: wp-includes/script-loader.php:634
 msgid "Close italic tag"
@@ -8204,60 +8216,38 @@ msgstr "Lukk kursiv-oppmerking"
 msgid "Close blockquote tag"
 msgstr "Lukk blokksitat-oppmerking"
 
-#: wp-includes/script-loader.php:632
-msgid "Close bold tag"
-msgstr "Lukk fet-oppmerking"
-
-#: wp-includes/script-loader.php:639
-msgid "Close deleted text tag"
-msgstr "Lukk slettet tekst-markering"
-
-#: wp-includes/script-loader.php:638
-msgid "Deleted text (strikethrough)"
-msgstr "Slettet tekst (overstrykning)"
+#: wp-includes/media-template.php:1392
+msgctxt "media"
+msgid "Remove video track"
+msgstr "Fjern videospor"
 
 #: wp-includes/media-template.php:1345
 msgid "Remove poster image"
 msgstr "Fjern poster-bilde"
 
-#: wp-includes/media-template.php:1392
-msgctxt "media"
-msgid "Remove video track"
-msgstr "Fjern videospor"
+#: wp-includes/media-template.php:1217 wp-includes/media-template.php:1232
+msgid "Remove audio source"
+msgstr "Fjern lydkilde"
+
+#: wp-includes/media-template.php:1308 wp-includes/media-template.php:1322
+msgid "Remove video source"
+msgstr "Fjern videokilde"
 
 #: wp-includes/formatting.php:129
 msgctxt "Comma-separated list of replacement words in your language"
 msgid "&#8217;tain&#8217;t,&#8217;twere,&#8217;twas,&#8217;tis,&#8217;twill,&#8217;til,&#8217;bout,&#8217;nuff,&#8217;round,&#8217;cause,&#8217;em"
 msgstr "&#8217;tain&#8217;t,&#8217;twere,&#8217;twas,&#8217;tis,&#8217;twill,&#8217;til,&#8217;bout,&#8217;nuff,&#8217;round,&#8217;cause,&#8217;em"
 
-#: wp-includes/media-template.php:1308 wp-includes/media-template.php:1322
-msgid "Remove video source"
-msgstr "Fjern videokilde"
-
-#: wp-includes/media-template.php:1217 wp-includes/media-template.php:1232
-msgid "Remove audio source"
-msgstr "Fjern lydkilde"
-
 #: wp-includes/formatting.php:121
 msgctxt "Comma-separated list of words to texturize in your language"
 msgid "'tain't,'twere,'twas,'tis,'twill,'til,'bout,'nuff,'round,'cause,'em"
 msgstr "'tain't,'twere,'twas,'tis,'twill,'til,'bout,'nuff,'round,'cause,'em"
 
-#: wp-includes/class-wp-editor.php:1398
-msgid "Inline toolbar (when an image, link or preview is selected)"
-msgstr "Inline verktøylinje (når et bilde, link eller forhåndsvisning er valgt)"
-
-#: wp-includes/class-wp-editor.php:1396
-msgid "Additional shortcuts,"
-msgstr "Ytterligere snarveier,"
-
-#: wp-includes/class-wp-editor.php:1395
-msgid "Default shortcuts,"
-msgstr "Standard snarveier,"
-
-#: wp-includes/class-wp-editor.php:1405
-msgid "Ctrl + letter:"
-msgstr "Ctrl + bokstav:"
+#: wp-includes/widgets/class-wp-widget-text.php:502
+#: wp-includes/widgets/class-wp-widget-text.php:563
+#: wp-includes/widgets/class-wp-widget-custom-html.php:270
+msgid "Content:"
+msgstr "Innhold:"
 
 #: wp-includes/class-wp-editor.php:1402
 msgid "Ctrl + Alt + letter:"
@@ -8271,35 +8261,40 @@ msgstr "Shift + Alt + bokstav:"
 msgid "Cmd + letter:"
 msgstr "Cmd + bokstav:"
 
-#: wp-includes/widgets/class-wp-widget-text.php:502
-#: wp-includes/widgets/class-wp-widget-text.php:563
-#: wp-includes/widgets/class-wp-widget-custom-html.php:270
-msgid "Content:"
-msgstr "Innhold:"
+#: wp-includes/class-wp-editor.php:1405
+msgid "Ctrl + letter:"
+msgstr "Ctrl + bokstav:"
+
+#: wp-includes/class-wp-editor.php:1395
+msgid "Default shortcuts,"
+msgstr "Standard snarveier,"
+
+#: wp-includes/class-wp-editor.php:1396
+msgid "Additional shortcuts,"
+msgstr "Ytterligere snarveier,"
+
+#: wp-includes/class-wp-editor.php:1398
+msgid "Inline toolbar (when an image, link or preview is selected)"
+msgstr "Inline verktøylinje (når et bilde, link eller forhåndsvisning er valgt)"
 
 #: wp-includes/class-wp-xmlrpc-server.php:620
 msgid "Allow link notifications from other blogs (pingbacks and trackbacks) on new posts."
 msgstr "Tillat lenkevarslinger fra andre blogger (tilbakeping og tilbaketråkk) for nye artikler."
-
-#: wp-includes/class-wp-customize-section.php:247
-msgid "Customizing"
-msgstr "Tilpasser"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-auto-add-control.php:42
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:85
 msgid "Menu Options"
 msgstr "Alternativer for Meny"
 
+#: wp-includes/class-wp-customize-section.php:247
+msgid "Customizing"
+msgstr "Tilpasser"
+
 #: wp-includes/class-wp-customize-nav-menus.php:1266
 #: wp-admin/includes/nav-menu.php:312 wp-admin/includes/nav-menu.php:667
 #: wp-admin/includes/nav-menu.php:899
 msgid "Add to Menu"
 msgstr "Legg til i meny"
-
-#: wp-includes/class-wp-customize-nav-menus.php:1248
-#: wp-admin/includes/nav-menu.php:148
-msgid "Custom Links"
-msgstr "Egendefinerte lenker"
 
 #: wp-includes/class-wp-customize-widgets.php:838
 #: wp-includes/customize/class-wp-customize-themes-section.php:130
@@ -8310,18 +8305,22 @@ msgstr "Egendefinerte lenker"
 msgid "The search results will be updated as you type."
 msgstr "Søkeresultatene oppdateres mens du skriver."
 
+#: wp-includes/class-wp-customize-nav-menus.php:1248
+#: wp-admin/includes/nav-menu.php:148
+msgid "Custom Links"
+msgstr "Egendefinerte lenker"
+
 #: wp-includes/class-wp-customize-nav-menus.php:1159
 msgid "Search menu items&hellip;"
 msgstr "Søk i menyvalg&hellip;"
 
-#. translators: &#9656; is the unicode right-pointing triangle. %s: Section
-#. title in the Customizer.
-#: wp-includes/class-wp-customize-section.php:245
-#: wp-includes/class-wp-customize-widgets.php:827
-#: wp-includes/class-wp-customize-nav-menus.php:522
-#: wp-includes/class-wp-customize-nav-menus.php:1150
-msgid "Customizing &#9656; %s"
-msgstr "Tilpasser &#9656; %s"
+#: wp-includes/class-wp-customize-nav-menus.php:651
+msgid "This panel is used for managing navigation menus for content you have already published on your site. You can create menus and add items for existing content such as pages, posts, categories, tags, formats, or custom links."
+msgstr "Dette panelet brukes for å håndtere navigasjonsmenyer for innhold som du allerede har publisert på ditt nettsted. Du kan lage menyer og legge til elementer for eksisterende innhold, som sider, innlegg, kategorier, stikkord, formater eller tilpassede lenker."
+
+#: wp-includes/class-wp-customize-nav-menus.php:509
+msgid "Menu Locations"
+msgstr "Menylokasjoner"
 
 #: wp-includes/class-wp-customize-nav-menus.php:1093
 msgid "Move one level up"
@@ -8331,13 +8330,14 @@ msgstr "Flytt ett nivå opp"
 msgid "Move one level down"
 msgstr "Flytt ett nivå ned"
 
-#: wp-includes/class-wp-customize-nav-menus.php:509
-msgid "Menu Locations"
-msgstr "Menylokasjoner"
-
-#: wp-includes/class-wp-customize-nav-menus.php:651
-msgid "This panel is used for managing navigation menus for content you have already published on your site. You can create menus and add items for existing content such as pages, posts, categories, tags, formats, or custom links."
-msgstr "Dette panelet brukes for å håndtere navigasjonsmenyer for innhold som du allerede har publisert på ditt nettsted. Du kan lage menyer og legge til elementer for eksisterende innhold, som sider, innlegg, kategorier, stikkord, formater eller tilpassede lenker."
+#. translators: &#9656; is the unicode right-pointing triangle. %s: Section
+#. title in the Customizer.
+#: wp-includes/class-wp-customize-section.php:245
+#: wp-includes/class-wp-customize-widgets.php:827
+#: wp-includes/class-wp-customize-nav-menus.php:522
+#: wp-includes/class-wp-customize-nav-menus.php:1150
+msgid "Customizing &#9656; %s"
+msgstr "Tilpasser &#9656; %s"
 
 #: wp-includes/class-wp-customize-nav-menus.php:1153
 msgid "Add Menu Items"
@@ -8400,15 +8400,15 @@ msgstr "Laster flere resultater... vennligst vent."
 msgid "Move up one"
 msgstr "Flytt opp én"
 
-#. translators: %d: Number of additional menu items found.
-#: wp-includes/class-wp-customize-nav-menus.php:530
-msgid "Additional items found: %d"
-msgstr "Tilleggselementer funnet: %d"
-
 #. translators: %d: Number of menu items found.
 #: wp-includes/class-wp-customize-nav-menus.php:528
 msgid "Number of items found: %d"
 msgstr "Antall elementer funnet: %d"
+
+#. translators: %d: Number of additional menu items found.
+#: wp-includes/class-wp-customize-nav-menus.php:530
+msgid "Additional items found: %d"
+msgstr "Tilleggselementer funnet: %d"
 
 #. translators: %s: Title of a menu item in draft status.
 #: wp-includes/class-wp-customize-nav-menus.php:526
@@ -8416,27 +8416,27 @@ msgstr "Antall elementer funnet: %d"
 msgid "%s (Pending)"
 msgstr "%s (venter)"
 
-#: wp-includes/class-wp-customize-nav-menus.php:516
-msgid "Menu deleted"
-msgstr "Meny slettet"
-
-#: wp-includes/class-wp-customize-nav-menus.php:515
-msgid "Menu created"
-msgstr "Meny laget"
-
-#: wp-includes/class-wp-customize-nav-menus.php:513
-msgid "Menu item added"
-msgstr "Menyvalg lagt til"
-
 #. translators: %s: Title of an invalid menu item.
 #: wp-includes/class-wp-customize-nav-menus.php:524
 #: wp-admin/includes/class-walker-nav-menu-edit.php:103
 msgid "%s (Invalid)"
 msgstr "%s (Ugyldig)"
 
+#: wp-includes/class-wp-customize-nav-menus.php:515
+msgid "Menu created"
+msgstr "Meny laget"
+
+#: wp-includes/class-wp-customize-nav-menus.php:516
+msgid "Menu deleted"
+msgstr "Meny slettet"
+
 #: wp-includes/class-wp-customize-nav-menus.php:520
 msgid "Menu item is now a sub-item"
 msgstr "Menyvalg er nå et undervalg"
+
+#: wp-includes/class-wp-customize-nav-menus.php:513
+msgid "Menu item added"
+msgstr "Menyvalg lagt til"
 
 #: wp-includes/class-wp-customize-nav-menus.php:514
 msgid "Menu item deleted"
@@ -8489,6 +8489,12 @@ msgstr "Lenkeforhold (XFN)"
 msgid "CSS Classes"
 msgstr "CSS-klasser"
 
+#: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:113
+#: wp-admin/includes/class-walker-nav-menu-edit.php:200
+#: wp-admin/includes/nav-menu.php:1107
+msgid "Title Attribute"
+msgstr "Tittelattributt"
+
 #: wp-includes/widgets/class-wp-widget-media-image.php:144
 #: wp-includes/media-template.php:1161
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:108
@@ -8496,12 +8502,6 @@ msgstr "CSS-klasser"
 #: wp-admin/includes/class-walker-nav-menu-edit.php:207
 msgid "Open link in a new tab"
 msgstr "Åpne lenke i ny fane"
-
-#: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:113
-#: wp-admin/includes/class-walker-nav-menu-edit.php:200
-#: wp-admin/includes/nav-menu.php:1107
-msgid "Title Attribute"
-msgstr "Tittelattributt"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:101
 #: wp-admin/includes/class-walker-nav-menu-edit.php:194
@@ -8559,13 +8559,13 @@ msgid_plural "%1$s responses to %2$s"
 msgstr[0] "%1$s svar til %2$s"
 msgstr[1] "%1$s svar til %2$s"
 
-#: wp-includes/theme.php:3490
-msgid "Customizer"
-msgstr "Tematilpasser"
-
 #: wp-includes/script-loader.php:1113
 msgid "Site Preview"
 msgstr "Forhåndsvisning av nettsted"
+
+#: wp-includes/theme.php:3490
+msgid "Customizer"
+msgstr "Tematilpasser"
 
 #: wp-includes/taxonomy.php:432 wp-includes/taxonomy.php:433
 msgid "Taxonomy names must be between 1 and 32 characters in length."
@@ -8575,48 +8575,14 @@ msgstr "Taksonominavn må være mellom 1 og 32 tegn lange."
 msgid "Could not split shared term."
 msgstr "Kunne ikke splitte delt term."
 
-#: wp-includes/customize/class-wp-customize-nav-menu-item-setting.php:322
-#: wp-includes/class-wp-customize-nav-menus.php:168
-#: wp-includes/class-wp-customize-nav-menus.php:457
-#: wp-includes/class-wp-customize-nav-menus.php:505
-#: wp-includes/nav-menu.php:898
-msgid "Custom Link"
-msgstr "Egendefinert lenke"
+#. translators: %s: Table name.
+#: wp-includes/ms-load.php:482
+msgid "<strong>Database tables are missing.</strong> This means that MySQL is not running, WordPress was not installed properly, or someone deleted %s. You really should look at your database now."
+msgstr "<strong>Databasetabeller mangler.</strong> Dette betyr enten at MySQL ikke kjører, WordPress ikke ble installert korrekt eller at noen slettet %s. Du bør virkelig se på databasen din nå."
 
-#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
-#. those are placeholders.
-#: wp-includes/ms-functions.php:2315
-msgid ""
-"Howdy USERNAME,\n"
-"\n"
-"Your new account is set up.\n"
-"\n"
-"You can log in with the following information:\n"
-"Username: USERNAME\n"
-"Password: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Thanks!\n"
-"\n"
-"--The Team @ SITE_NAME"
-msgstr ""
-"Hei USERNAME!\n"
-"\n"
-"Din nye konto er satt opp.\n"
-"\n"
-"Du kan logge inn med følgende informasjon:\n"
-"Brukernavn: USERNAME\n"
-"Passord: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Takk!\n"
-"\n"
-"-- SITE_NAME"
-
-#. translators: 1: Site URL, 2: Table name, 3: Database name.
-#: wp-includes/ms-load.php:488
-msgid "<strong>Could not find site %1$s.</strong> Searched for table %2$s in database %3$s. Is that right?"
-msgstr "<strong>Kunne ikke finne nettstedet %1$s.</strong> Søkte etter tabellen %2$s i databasen %3$s. Er det riktig?"
+#: wp-includes/media.php:4201
+msgid "Drag and drop to reorder media files."
+msgstr "Dra og slipp for å endre rekkefølge på mediefiler."
 
 #. translators: Revision date format, see https://www.php.net/date
 #: wp-includes/post-template.php:1828 wp-includes/post-template.php:1870
@@ -8627,6 +8593,11 @@ msgstr "j. F Y @ H:i:s"
 #: wp-includes/post.php:1429 wp-includes/post.php:1430
 msgid "Post type names must be between 1 and 20 characters in length."
 msgstr "Navn på innleggstyper må være mellom 1 og 20 tegn."
+
+#. translators: 1: Site URL, 2: Table name, 3: Database name.
+#: wp-includes/ms-load.php:488
+msgid "<strong>Could not find site %1$s.</strong> Searched for table %2$s in database %3$s. Is that right?"
+msgstr "<strong>Kunne ikke finne nettstedet %1$s.</strong> Søkte etter tabellen %2$s i databasen %3$s. Er det riktig?"
 
 #. translators: Do not translate USERNAME, SITE_NAME, BLOG_URL, PASSWORD: those
 #. are placeholders.
@@ -8662,53 +8633,54 @@ msgstr ""
 "\n"
 "-- SITE_NAME"
 
-#: wp-includes/media.php:4201
-msgid "Drag and drop to reorder media files."
-msgstr "Dra og slipp for å endre rekkefølge på mediefiler."
+#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
+#. those are placeholders.
+#: wp-includes/ms-functions.php:2315
+msgid ""
+"Howdy USERNAME,\n"
+"\n"
+"Your new account is set up.\n"
+"\n"
+"You can log in with the following information:\n"
+"Username: USERNAME\n"
+"Password: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Thanks!\n"
+"\n"
+"--The Team @ SITE_NAME"
+msgstr ""
+"Hei USERNAME!\n"
+"\n"
+"Din nye konto er satt opp.\n"
+"\n"
+"Du kan logge inn med følgende informasjon:\n"
+"Brukernavn: USERNAME\n"
+"Passord: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Takk!\n"
+"\n"
+"-- SITE_NAME"
 
-#. translators: %s: Table name.
-#: wp-includes/ms-load.php:482
-msgid "<strong>Database tables are missing.</strong> This means that MySQL is not running, WordPress was not installed properly, or someone deleted %s. You really should look at your database now."
-msgstr "<strong>Databasetabeller mangler.</strong> Dette betyr enten at MySQL ikke kjører, WordPress ikke ble installert korrekt eller at noen slettet %s. Du bør virkelig se på databasen din nå."
+#: wp-includes/customize/class-wp-customize-nav-menu-item-setting.php:322
+#: wp-includes/class-wp-customize-nav-menus.php:168
+#: wp-includes/class-wp-customize-nav-menus.php:457
+#: wp-includes/class-wp-customize-nav-menus.php:505
+#: wp-includes/nav-menu.php:898
+msgid "Custom Link"
+msgstr "Egendefinert lenke"
+
+#. translators: 1: 'siteurl'/'home' argument, 2: bloginfo() function name, 3:
+#. 'url' argument.
+#: wp-includes/general-template.php:770
+msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s option instead."
+msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk valget %3$s isteden."
 
 #. translators: %s: Post title.
-#: wp-includes/comment-template.php:1577
-msgid "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
-msgstr "Kommentarer er skrudd av<span class=\"screen-reader-text\"> for %s</span>"
-
-#. translators: 1: 'text_direction' argument, 2: bloginfo() function name, 3:
-#. is_rtl() function name.
-#: wp-includes/general-template.php:851
-msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s function instead."
-msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk funksjonen %3$s istedet."
-
-#: wp-includes/media-template.php:950 wp-includes/class-wp-editor.php:1844
-#: wp-includes/class-wp-customize-nav-menus.php:1261
-#: wp-admin/includes/nav-menu.php:306
-msgid "Link Text"
-msgstr "Lenketekst"
-
-#. translators: %s: Post title.
-#: wp-includes/comment-template.php:1566
-msgid "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
-msgstr "1 kommentar<span class=\"screen-reader-text\"> til %s</span>"
-
-#. translators: 1: Number of comments, 2: Post title.
-#: wp-includes/comment-template.php:1571
-msgid "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
-msgid_plural "%1$s Comments<span class=\"screen-reader-text\"> on %2$s</span>"
-msgstr[0] "%1$s kommentar<span class=\"screen-reader-text\"> til %2$s</span>"
-msgstr[1] "%1$s kommentarer<span class=\"screen-reader-text\"> til %2$s</span>"
-
-#: wp-includes/widgets/class-wp-widget-archives.php:87
-#: wp-includes/blocks/archives.php:53
-msgid "Select Year"
-msgstr "Velg år"
-
-#: wp-includes/widgets/class-wp-widget-archives.php:93
-#: wp-includes/blocks/archives.php:59
-msgid "Select Day"
-msgstr "Velg dag"
+#: wp-includes/comment-template.php:1561
+msgid "No Comments<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Ingen kommentarer<span class=\"screen-reader-text\"> til %s</span>"
 
 #: wp-includes/widgets/class-wp-widget-archives.php:99
 #: wp-includes/blocks/archives.php:65
@@ -8720,22 +8692,44 @@ msgstr "Velg innlegg"
 msgid "Select Week"
 msgstr "Velg uke"
 
+#: wp-includes/widgets/class-wp-widget-archives.php:93
+#: wp-includes/blocks/archives.php:59
+msgid "Select Day"
+msgstr "Velg dag"
+
+#: wp-includes/widgets/class-wp-widget-archives.php:87
+#: wp-includes/blocks/archives.php:53
+msgid "Select Year"
+msgstr "Velg år"
+
+#. translators: 1: Number of comments, 2: Post title.
+#: wp-includes/comment-template.php:1571
+msgid "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
+msgid_plural "%1$s Comments<span class=\"screen-reader-text\"> on %2$s</span>"
+msgstr[0] "%1$s kommentar<span class=\"screen-reader-text\"> til %2$s</span>"
+msgstr[1] "%1$s kommentarer<span class=\"screen-reader-text\"> til %2$s</span>"
+
 #. translators: %s: Post title.
-#: wp-includes/comment-template.php:1561
-msgid "No Comments<span class=\"screen-reader-text\"> on %s</span>"
-msgstr "Ingen kommentarer<span class=\"screen-reader-text\"> til %s</span>"
+#: wp-includes/comment-template.php:1566
+msgid "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "1 kommentar<span class=\"screen-reader-text\"> til %s</span>"
 
-#. translators: 1: 'siteurl'/'home' argument, 2: bloginfo() function name, 3:
-#. 'url' argument.
-#: wp-includes/general-template.php:770
-msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s option instead."
-msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk valget %3$s isteden."
+#: wp-includes/media-template.php:950 wp-includes/class-wp-editor.php:1844
+#: wp-includes/class-wp-customize-nav-menus.php:1261
+#: wp-admin/includes/nav-menu.php:306
+msgid "Link Text"
+msgstr "Lenketekst"
 
-#: wp-includes/customize/class-wp-customize-theme-control.php:83
-#: wp-includes/customize/class-wp-customize-themes-section.php:78
-#: wp-admin/themes.php:515 wp-admin/themes.php:563 wp-admin/themes.php:862
-msgid "Theme Details"
-msgstr "Temadetaljer"
+#. translators: 1: 'text_direction' argument, 2: bloginfo() function name, 3:
+#. is_rtl() function name.
+#: wp-includes/general-template.php:851
+msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %3$s function instead."
+msgstr "Valget %1$s er foreldet for familien av %2$s-funksjoner. Bruk funksjonen %3$s istedet."
+
+#. translators: %s: Post title.
+#: wp-includes/comment-template.php:1577
+msgid "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Kommentarer er skrudd av<span class=\"screen-reader-text\"> for %s</span>"
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:249
 #: wp-includes/customize/class-wp-customize-theme-control.php:251
@@ -8749,6 +8743,12 @@ msgstr "Temadetaljer"
 #: wp-admin/js/updates.js:1377
 msgid "Live Preview"
 msgstr "Live forhåndsvisning"
+
+#: wp-includes/customize/class-wp-customize-theme-control.php:83
+#: wp-includes/customize/class-wp-customize-themes-section.php:78
+#: wp-admin/themes.php:515 wp-admin/themes.php:563 wp-admin/themes.php:862
+msgid "Theme Details"
+msgstr "Temadetaljer"
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:237
 msgctxt "theme"
@@ -8880,11 +8880,6 @@ msgstr "Du kan se alle tilbaketråkk på dette innlegget her:"
 msgid "Posts navigation"
 msgstr "Innleggnavigasjon"
 
-#: wp-includes/general-template.php:1682
-msgctxt "post format archive title"
-msgid "Images"
-msgstr "Bilder"
-
 #: wp-includes/general-template.php:1694
 msgctxt "post format archive title"
 msgid "Chats"
@@ -8919,6 +8914,11 @@ msgstr "Sitater"
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr "Gallerier"
+
+#: wp-includes/general-template.php:1682
+msgctxt "post format archive title"
+msgid "Images"
+msgstr "Bilder"
 
 #: wp-includes/general-template.php:1674 wp-includes/general-template.php:2338
 msgctxt "daily archives date format"
@@ -9075,14 +9075,6 @@ msgstr "(ikke noe navigasjonsmerke)"
 msgid "%s: %l."
 msgstr "%s: %l."
 
-#: wp-includes/media-template.php:345
-msgid "Edit previous media item"
-msgstr "Rediger forrige mediefil"
-
-#: wp-includes/media-template.php:346
-msgid "Edit next media item"
-msgstr "Rediger neste mediefil"
-
 #: wp-includes/media.php:4215 wp-admin/includes/media.php:2807
 #: wp-admin/includes/class-wp-list-table.php:613
 msgid "All dates"
@@ -9182,6 +9174,14 @@ msgstr "Maksimal filstørrelse for opplasting: %s."
 #: wp-includes/class-wp-editor.php:1870
 msgid "Search or use up and down arrow keys to select an item."
 msgstr "Søk eller bruk opp- og ned-pilene på tastaturet for å velge."
+
+#: wp-includes/media-template.php:345
+msgid "Edit previous media item"
+msgstr "Rediger forrige mediefil"
+
+#: wp-includes/media-template.php:346
+msgid "Edit next media item"
+msgstr "Rediger neste mediefil"
 
 #. translators: %s: The site/panel title in the Customizer.
 #: wp-includes/class-wp-customize-panel.php:374
@@ -10320,8 +10320,8 @@ msgstr "JavaScript må være slått på for bruke denne funksjonen."
 #: wp-admin/includes/class-wp-privacy-policy-content.php:379
 #: wp-admin/includes/schema.php:426 wp-admin/includes/media.php:1668
 #: wp-admin/includes/ajax-actions.php:1564
-#: wp-admin/includes/ajax-actions.php:2801
-#: wp-admin/includes/ajax-actions.php:2804 wp-admin/includes/dashboard.php:623
+#: wp-admin/includes/ajax-actions.php:2802
+#: wp-admin/includes/ajax-actions.php:2805 wp-admin/includes/dashboard.php:623
 #: wp-admin/options-general.php:292 wp-admin/options-general.php:318
 #: wp-admin/update-core.php:879 wp-admin/admin.php:113
 #: wp-admin/edit-form-advanced.php:625 wp-admin/edit-form-advanced.php:628
@@ -10342,11 +10342,11 @@ msgstr "j. F Y"
 #: wp-includes/class-wp-locale.php:365 wp-admin/includes/schema.php:428
 #: wp-admin/includes/class-wp-comments-list-table.php:953
 #: wp-admin/includes/ajax-actions.php:1564
-#: wp-admin/includes/ajax-actions.php:2802
-#: wp-admin/includes/ajax-actions.php:2805
+#: wp-admin/includes/ajax-actions.php:2803
+#: wp-admin/includes/ajax-actions.php:2806
 #: wp-admin/includes/class-wp-posts-list-table.php:1087
 #: wp-admin/options-general.php:292 wp-admin/options-general.php:355
-#: wp-admin/comment.php:217 wp-admin/update-core.php:879 wp-admin/admin.php:114
+#: wp-admin/comment.php:221 wp-admin/update-core.php:879 wp-admin/admin.php:114
 #: wp-admin/edit-form-advanced.php:625 wp-admin/edit-form-advanced.php:628
 msgid "g:i a"
 msgstr "H:i"
@@ -10469,7 +10469,7 @@ msgstr "Tilfeldig"
 #: wp-admin/includes/class-wp-themes-list-table.php:93
 #: wp-admin/includes/class-wp-list-table.php:335
 #: wp-admin/includes/ajax-actions.php:2180
-#: wp-admin/includes/ajax-actions.php:3783
+#: wp-admin/includes/ajax-actions.php:3784
 msgid "No items found."
 msgstr "Fant ikke noe."
 
@@ -11007,7 +11007,7 @@ msgid "Remove image"
 msgstr "Fjern bilde"
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:784
-#: wp-admin/comment.php:78
+#: wp-admin/comment.php:82
 msgid "Sorry, you are not allowed to edit this comment."
 msgstr "Beklager, du har ikke lov til å redigere denne kommentaren."
 
@@ -12463,8 +12463,8 @@ msgstr "Kunne ikke slette siden."
 #: wp-includes/class-wp-xmlrpc-server.php:3675
 #: wp-includes/class-wp-xmlrpc-server.php:3743
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:341
-#: wp-includes/comment.php:2444 wp-admin/comment.php:74
-#: wp-admin/comment.php:272 wp-admin/edit-comments.php:250
+#: wp-includes/comment.php:2444 wp-admin/comment.php:78
+#: wp-admin/comment.php:276 wp-admin/edit-comments.php:250
 msgid "Invalid comment ID."
 msgstr "Ugyldig kommentar-ID."
 
@@ -13996,24 +13996,9 @@ msgstr "Siste innlegg"
 msgid "Link Rel"
 msgstr "Rel-attributt for lenke"
 
-#. translators: 1: PHP function name, 2: Version number.
-#: wp-includes/functions.php:5063
-msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available."
-msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelige."
-
-#. translators: 1: PHP function name, 2: Version number, 3: Optional message
-#. regarding the change.
-#: wp-includes/functions.php:5052
-msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s"
-msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s! %3$s"
-
-#. translators: 1: PHP function name, 2: Version number.
-#. translators: 1: PHP file name, 2: Version number.
-#. translators: 1: WordPress hook name, 2: Version number.
-#: wp-includes/functions.php:4779 wp-includes/functions.php:4969
-#: wp-includes/functions.php:5154
-msgid "%1$s is <strong>deprecated</strong> since version %2$s with no alternative available."
-msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelig."
+#: wp-includes/ms-load.php:494
+msgid "What do I do now?"
+msgstr "Hva gjør jeg nå?"
 
 #. translators: 1: PHP function name, 2: Version number, 3: Alternative
 #. function name.
@@ -14025,9 +14010,24 @@ msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s med ingen alternati
 msgid "%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead."
 msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s! Bruk %3$s isteden."
 
-#: wp-includes/ms-load.php:494
-msgid "What do I do now?"
-msgstr "Hva gjør jeg nå?"
+#. translators: 1: PHP function name, 2: Version number.
+#. translators: 1: PHP file name, 2: Version number.
+#. translators: 1: WordPress hook name, 2: Version number.
+#: wp-includes/functions.php:4779 wp-includes/functions.php:4969
+#: wp-includes/functions.php:5154
+msgid "%1$s is <strong>deprecated</strong> since version %2$s with no alternative available."
+msgstr "%1$s er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelig."
+
+#. translators: 1: PHP function name, 2: Version number, 3: Optional message
+#. regarding the change.
+#: wp-includes/functions.php:5052
+msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s! %3$s"
+msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s! %3$s"
+
+#. translators: 1: PHP function name, 2: Version number.
+#: wp-includes/functions.php:5063
+msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available."
+msgstr "%1$s ble forespurt med et argument som er <strong>foreldet</strong> siden versjon %2$s med ingen alternativer tilgjengelige."
 
 #: wp-includes/script-loader.php:623
 msgid "Close all open tags"
@@ -14481,7 +14481,7 @@ msgstr "(Rediger)"
 
 #: wp-login.php:1106 wp-includes/comment-template.php:2350
 #: wp-admin/includes/class-wp-users-list-table.php:358
-#: wp-admin/includes/template.php:481 wp-admin/comment.php:171
+#: wp-admin/includes/template.php:481 wp-admin/comment.php:175
 #: wp-admin/user-new.php:389 wp-admin/user-new.php:485
 #: wp-admin/user-edit.php:502 wp-admin/edit-form-comment.php:53
 #: wp-admin/includes/class-wp-ms-users-list-table.php:199
@@ -14550,7 +14550,7 @@ msgstr "Legg igjen en kommentar til %s"
 #: wp-admin/includes/meta-boxes.php:216 wp-admin/includes/meta-boxes.php:408
 #: wp-admin/includes/class-wp-comments-list-table.php:949
 #: wp-admin/includes/class-wp-posts-list-table.php:1083
-#: wp-admin/comment.php:213 wp-admin/edit-form-advanced.php:171
+#: wp-admin/comment.php:217 wp-admin/edit-form-advanced.php:171
 #: wp-admin/edit-form-comment.php:126
 msgid "%1$s at %2$s"
 msgstr "%1$s, kl. %2$s"
@@ -14595,7 +14595,7 @@ msgstr "Lukk"
 #: wp-admin/includes/class-wp-post-comments-list-table.php:26
 #: wp-admin/includes/class-wp-posts-list-table.php:624
 #: wp-admin/includes/class-wp-posts-list-table.php:1595
-#: wp-admin/comment.php:166 wp-admin/edit-form-comment.php:43
+#: wp-admin/comment.php:170 wp-admin/edit-form-comment.php:43
 msgid "Author"
 msgstr "Forfatter"
 
@@ -14615,7 +14615,7 @@ msgstr "Forfatter"
 #: wp-admin/includes/class-wp-links-list-table.php:132
 #: wp-admin/includes/class-walker-nav-menu-edit.php:187
 #: wp-admin/includes/media.php:2911 wp-admin/includes/template.php:486
-#: wp-admin/includes/nav-menu.php:301 wp-admin/comment.php:177
+#: wp-admin/includes/nav-menu.php:301 wp-admin/comment.php:181
 #: wp-admin/edit-form-comment.php:59
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:361
 msgid "URL"
@@ -14623,7 +14623,7 @@ msgstr "URL"
 
 #. translators: Field name in comment form.
 #: wp-includes/comment-template.php:1117 wp-includes/comment-template.php:2416
-#: wp-admin/comment.php:228
+#: wp-admin/comment.php:232
 msgctxt "noun"
 msgid "Comment"
 msgstr "Kommentar"
@@ -14706,7 +14706,7 @@ msgstr "Høyre"
 #: wp-admin/includes/class-wp-comments-list-table.php:769
 #: wp-admin/includes/class-wp-posts-list-table.php:412
 #: wp-admin/includes/class-wp-posts-list-table.php:1348
-#: wp-admin/includes/dashboard.php:700 wp-admin/comment.php:231
+#: wp-admin/includes/dashboard.php:700 wp-admin/comment.php:235
 #: wp-admin/edit-form-comment.php:139
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:692
 #: wp-admin/includes/class-wp-ms-users-list-table.php:396
@@ -14952,7 +14952,7 @@ msgstr "Lagre kladd"
 #: wp-admin/includes/template.php:862 wp-admin/includes/file.php:2268
 #: wp-admin/includes/class-wp-posts-list-table.php:1915
 #: wp-admin/includes/dashboard.php:187 wp-admin/includes/dashboard.php:1325
-#: wp-admin/options-general.php:129 wp-admin/comment.php:240
+#: wp-admin/options-general.php:129 wp-admin/comment.php:244
 #: wp-admin/nav-menus.php:1076 wp-admin/user-new.php:549
 #: wp-admin/widgets.php:352 wp-admin/widgets.php:565 wp-admin/user-edit.php:527
 #: wp-admin/user-edit.php:642 wp-admin/js/post.js:989
@@ -15360,7 +15360,7 @@ msgstr "Kladd"
 #: wp-admin/includes/class-wp-comments-list-table.php:951
 #: wp-admin/includes/ajax-actions.php:2209
 #: wp-admin/includes/class-wp-posts-list-table.php:1085
-#: wp-admin/comment.php:215
+#: wp-admin/comment.php:219
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:473
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:494
 #: wp-admin/includes/class-wp-ms-users-list-table.php:334
