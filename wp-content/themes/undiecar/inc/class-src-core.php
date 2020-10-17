@@ -1139,7 +1139,6 @@ class SRC_Core {
 				$number_of_races = get_post_meta( get_the_ID(), 'number_of_races', true );
 				$number_of_races = absint( $number_of_races );
 				$number_of_races = apply_filters( 'undiecar_ai_number_races', $number_of_races );
-//echo $number_of_races;die;
 				$race_number     = 0;
 				while ( $race_number <= $number_of_races ) {
 					$race_number++;
@@ -1147,18 +1146,17 @@ class SRC_Core {
 					$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );
 					$results = apply_filters( 'undiecar_ai_results', $results );
 					$results = json_decode( $results, true );
-if ( 4764 === get_the_ID() ) {
-//	echo get_the_title( get_the_ID() );
-//	echo "\n\n\n";
-//	print_r( $results );
-//	die;
-}
+
 
 					if ( is_array( $results ) && ! empty( $results ) ) {
 
 						$points_positions  = get_post_meta( $season_id, 'points_positions', true );
 						$points_multiplier = get_post_meta( get_the_ID(), 'race_' . $race_number . '_points_multiplier', true );
-						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier );
+						$bonus_for_pole = false;
+						if ( 1 === $race_number ) {
+							$bonus_for_pole = true; // Only award pole bonus point for race #1.
+						}
+						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier, $bonus_for_pole );
 
 						// Merge results
 						foreach ( $race_points as $driver_name => $points ) {
@@ -1320,7 +1318,7 @@ if ( isset( $_GET['test'] ) ) {
 		return $points_with_dropscores;
 	}
 
-	static function get_driver_points_from_single_race( $results, $points_positions, $points_multiplier ) {
+	static function get_driver_points_from_single_race( $results, $points_positions, $points_multiplier, $bonus_for_pole = false ) {
 		$stored_results = array();
 
 		// Loop through each drivers results
@@ -1384,10 +1382,11 @@ if ( isset( $_GET['test'] ) ) {
 		}
 
 		// Pole position bonus point - sort qualifying times, then grab the first result
-		if ( isset( $q_times ) && is_array( $q_times ) ) {
+		if ( isset( $q_times ) && is_array( $q_times ) && true === $bonus_for_pole ) {
 			asort( $q_times );
 			foreach ( $q_times as $name => $points ) {
 				$stored_results[$name] = $stored_results[$name] + 2;
+				$pole_bonus_point_driver = $name;
 				update_post_meta( get_the_ID(), '_pole_position', $name ); // Should only be stored when first, or caching FIX THIS LATER
 // THIS NEEDS SET BETTER
 				break;
@@ -1403,24 +1402,11 @@ if ( isset( $_GET['test'] ) ) {
 		// Least incidents bonus points
 		$least_incident_drivers = SRC_Core::get_least_incident_drivers( $results );
 		if ( is_array( $least_incident_drivers ) ) {
-if ( isset( $_GET['bla'])){
-//if ( $stored_results['Sven Deml'] == 41 ) {
-	foreach ( $results as $r ) {
-		if ( $r['fastest_lap_time'] === '00:01:21.7269' ) {
-			print_r( $r );
-			die;
-		}
-	}
-
-	print_r( $results );
-//}
-}
 			foreach ( $least_incident_drivers as $incident_name => $incidents ) {
 				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 2;
 			}
 
 		}
-
 
 if ( isset( $_GET['test'])){
 echo "\n\n\nRESULTS:\n";
