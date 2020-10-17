@@ -1158,13 +1158,6 @@ if ( 4764 === get_the_ID() ) {
 
 						$points_positions  = get_post_meta( $season_id, 'points_positions', true );
 						$points_multiplier = get_post_meta( get_the_ID(), 'race_' . $race_number . '_points_multiplier', true );
-if ( isset( $_GET['bla'] ) ) {
-	echo "\n\n";
-	echo 'race: ' . $race_number . "\n";
-	echo 'ID: ' . get_the_ID() . "\n";
-	echo 'title: ' . get_the_title( get_the_ID() ) . "\n";
-	echo "\n\n";
-}
 						$race_points = SRC_Core::get_driver_points_from_single_race( $results, $points_positions, $points_multiplier );
 
 						// Merge results
@@ -1416,19 +1409,6 @@ if ( isset( $_GET['test'] ) ) {
 			}
 
 		}
-
-
-if ( isset( $_GET['bla'] ) ) {
-	echo '_'.$stored_results['Sven Deml'] . '_' . "\n";
-
-	if ( $stored_results['Sven Deml'] == '74' ) {
-		echo 'multiplier: ' . $points_multiplier . "\n";
-		echo "\n\n\n...........\n\n\n";
-		print_r( $results );
-		echo "\n\n\n...........\n\n\n";
-
-	}
-}
 
 
 if ( isset( $_GET['test'])){
