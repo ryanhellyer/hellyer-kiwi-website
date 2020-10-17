@@ -1328,7 +1328,15 @@ if ( isset( $_GET['test'] ) ) {
 		foreach ( $results as $key => $result ) {
 			$pos = $result[ 'position' ];
 			$name = $result['name'];
-
+if ( isset( $_GET['bla'] ) ) {
+	if ( $name === 'Sven Deml' ) {
+		if ( $pos === 1 ) {
+			echo "\n\n\n...........\n\n\n";
+			print_r( $result );
+			die;
+		}
+	}
+}
 			// Get qualifying time
 			if ( isset( $result['qual_time'] ) ) {
 				$q_time = $result['qual_time'];
@@ -1412,6 +1420,7 @@ if ( isset( $_GET['test'] ) ) {
 		}
 if ( isset( $_GET['test'])){
 echo "\n\n\nRESULTS:\n";
+
 print_r( $stored_results );
 echo "\n\n\n";
 }
