@@ -1441,9 +1441,9 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 				} else {
 					$qual = '';
 				}
-				$html .= '<td>' . esc_html( $this->get_simplified_time( $qual ) ) . '</td>';
+				$html .= '<td>' . esc_html( $this->get_simplified_time( $qual, 4 ) ) . '</td>';
 				$html .= '<td>' . esc_html( $this->get_simplified_time( $result['avg_lap_time'] ) ) . '</td>';
-				$html .= '<td>' . esc_html( $this->get_simplified_time( $result['fastest_lap_time'] ) ) . '</td>';
+				$html .= '<td>' . esc_html( $this->get_simplified_time( $result['fastest_lap_time'], 4 ) ) . '</td>';
 
 				$fastest_lap = $result['fastest_lap'];
 				if ( '-1' === $fastest_lap ) {
@@ -1639,7 +1639,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 	/**
 	 * Simplifying time output.
 	 */
-	private function get_simplified_time( $time ) {
+	private function get_simplified_time( $time, $round = 2 ) {
 
 		// Strip hours off if zero
 		if ( '00:' === substr( $time, 0, 3 ) ) {
@@ -1672,7 +1672,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 		$exploded = explode( ':', $time );
 		$count = count( $exploded ) - 1;
 		if ( isset( $exploded[ $count ] ) ) {
-			$decimal = round( $exploded[ $count ], 2 );
+			$decimal = round( $exploded[ $count ], $round );
 			$exploded[$count] = $decimal;
 
 			// Add extra 0 on front if the rounding stripped it off.
