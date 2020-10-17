@@ -1403,7 +1403,18 @@ if ( isset( $_GET['test'] ) ) {
 		// Least incidents bonus points
 		$least_incident_drivers = SRC_Core::get_least_incident_drivers( $results );
 		if ( is_array( $least_incident_drivers ) ) {
+if ( isset( $_GET['bla'])){
+//if ( $stored_results['Sven Deml'] == 41 ) {
+	foreach ( $results as $r ) {
+		if ( $r['fastest_lap_time'] === '00:01:21.7269' ) {
+			print_r( $r );
+			die;
+		}
+	}
 
+	print_r( $results );
+//}
+}
 			foreach ( $least_incident_drivers as $incident_name => $incidents ) {
 				$stored_results[ $incident_name ] = $stored_results[ $incident_name ] + 2;
 			}
