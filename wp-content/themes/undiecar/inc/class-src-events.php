@@ -524,6 +524,11 @@ class SRC_Events extends SRC_Core {
 	 */
 	public function add_extra_content( $content ) {
 
+		// Bail out if nothing to show.
+		if ( is_admin() ) {
+			return $content;
+		}
+
 		// Bail out now if result already stored.
 		if ( true === $this->stored ) {
 			return $content;
@@ -539,13 +544,16 @@ class SRC_Events extends SRC_Core {
 		}
 
 		// Add track logo
-		$track_logo = $this->event['current_round']['track_logo'];
-		$track_logo_image = wp_get_attachment_image_src( $track_logo, 'src-three' );
-		if ( isset( $track_logo_image[0] ) ) {
-			$track_logo_image_url = $track_logo_image[0];
-		}
+		$track_url = '';
+		if ( isset( $this->event['current_round']['track_logo'] ) ) {
+			$track_logo = $this->event['current_round']['track_logo'];
+			$track_logo_image = wp_get_attachment_image_src( $track_logo, 'src-three' );
+			if ( isset( $track_logo_image[0] ) ) {
+				$track_logo_image_url = $track_logo_image[0];
+			}
 
-		$track_url = get_permalink( $this->event['current_round']['track'] );
+			$track_url = get_permalink( $this->event['current_round']['track'] );
+		}
 
 		$sidebar_html = '
 		<div id="sidebar">
@@ -1133,32 +1141,32 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			$results = json_decode( $results );
 
 			$drivers = array();
-//print_r( $results );die;
+
+			// Work out race format.
 			foreach ( $results->rows as $key => $row ) {
 
-//print_r( $row );die;
+				if ( ! isset( $heat_format ) && 'FEATURE' === $row->simsesname ) {
+					$heat_format = 'double';
+				}
+
+				if ( 'CONSOLATION' === $row->simsesname ) {
+					$heat_format = 'triple';
+				}
+
+			}
+
+			foreach ( $results->rows as $key => $row ) {
 				$driver_name = urldecode( $row->displayname );
 				$driver_name = str_replace( '+', ' ', $driver_name );
 				$car_name = str_replace( '+', ' ', $row->ccName );
 
-				// If we have a feature heat race, then there's definitely two races.
-				if ( 'FEATURE' === $row->simsesname ) {
-					$heat_format = true;
-				}
-
-				if (
-					'RACE' === $row->simsesname
-					||
-					( 1 === $race_number && 'HEAT+1' === $row->simsesname )
-					||
-					( 2 === $race_number && 'FEATURE' === $row->simsesname )
-				) {
+				if ( 'triple' === $heat_format || 'double' === $heat_format ) {
 					$start_pos = absint( $row->startpos ) + 1;
 					$drivers[ $driver_name ]['start_pos'] = absint( $start_pos );
 				}
 
-				$drivers[ $driver_name ]['name']      = esc_html( $driver_name );
-				$drivers[ $driver_name ]['car']       = esc_html( $car_name );
+				$drivers[ $driver_name ]['name'] = esc_html( $driver_name );
+				$drivers[ $driver_name ]['car']  = esc_html( $car_name );
 
 				if ( 'QUALIFY' === $row->simsesname ) {
 					$qual_time = $this->get_formatted_time_from_iracing( $row->bestquallaptime );
@@ -1169,9 +1177,27 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 				if (
 					'RACE' === $row->simsesname
 					||
-					( 1 === $race_number && 'HEAT+1' === $row->simsesname )
+					(
+						'double' === $heat_format
+						&&
+						(
+							1 === $race_number && 'HEAT+1' === $row->simsesname
+							||
+							2 === $race_number && 'FEATURE' === $row->simsesname
+						)
+					)
 					||
-					( 2 === $race_number && 'FEATURE' === $row->simsesname )
+					(
+						'triple' === $heat_format
+						&&
+						(
+							1 === $race_number && 'HEAT+1' === $row->simsesname
+							||
+							2 === $race_number && 'CONSOLATION' === $row->simsesname
+							||
+							3 === $race_number && 'FEATURE' === $row->simsesname
+						)
+					)
 				) {
 
 					$finish_position  = absint( $row->pos ) + 1;
