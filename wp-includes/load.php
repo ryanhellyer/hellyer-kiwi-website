@@ -543,17 +543,22 @@ function wp_set_lang_dir() {
  */
 function require_wp_db() {
 	global $wpdb;
+
 	require_once ABSPATH . WPINC . '/class-wpdb.php';
+
 	if ( file_exists( WP_CONTENT_DIR . '/db.php' ) ) {
 		require_once WP_CONTENT_DIR . '/db.php';
 	}
+
 	if ( isset( $wpdb ) ) {
 		return;
 	}
+
 	$dbuser     = defined( 'DB_USER' ) ? DB_USER : '';
 	$dbpassword = defined( 'DB_PASSWORD' ) ? DB_PASSWORD : '';
 	$dbname     = defined( 'DB_NAME' ) ? DB_NAME : '';
 	$dbhost     = defined( 'DB_HOST' ) ? DB_HOST : '';
+
 	$wpdb = new wpdb( $dbuser, $dbpassword, $dbname, $dbhost );
 }
 

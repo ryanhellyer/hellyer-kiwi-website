@@ -122,20 +122,16 @@ require ABSPATH . WPINC . '/pomo/mo.php';
 global $wpdb;
 // Include the wpdb class and, if present, a db.php database drop-in.
 require_wp_db();
-echo 'test';
 
 // Set the database table prefix and the format specifiers for database table columns.
 $GLOBALS['table_prefix'] = $table_prefix;
 wp_set_wpdb_vars();
-echo 'test';
 
 // Start the WordPress object cache, or an external object cache if the drop-in is present.
 wp_start_object_cache();
-echo 'test';
 
 // Attach the default filters.
 require ABSPATH . WPINC . '/default-filters.php';
-echo 'test2';
 
 // Initialize multisite if enabled.
 if ( is_multisite() ) {
@@ -146,7 +142,6 @@ if ( is_multisite() ) {
 } elseif ( ! defined( 'MULTISITE' ) ) {
 	define( 'MULTISITE', false );
 }
-echo 'test3';
 
 register_shutdown_function( 'shutdown_action_hook' );
 
@@ -154,16 +149,12 @@ register_shutdown_function( 'shutdown_action_hook' );
 if ( SHORTINIT ) {
 	return false;
 }
-echo 'test4';
 
 // Load the L10n library.
 require_once ABSPATH . WPINC . '/l10n.php';
-echo 'test4b';
 require_once ABSPATH . WPINC . '/class-wp-textdomain-registry.php';
-echo 'test4a';
 require_once ABSPATH . WPINC . '/class-wp-locale.php';
 require_once ABSPATH . WPINC . '/class-wp-locale-switcher.php';
-echo 'test5';
 
 // Run the installer if WordPress is not installed.
 wp_not_installed();
@@ -182,6 +173,7 @@ require ABSPATH . WPINC . '/theme.php';
 require ABSPATH . WPINC . '/class-wp-theme.php';
 require ABSPATH . WPINC . '/class-wp-theme-json-schema.php';
 require ABSPATH . WPINC . '/class-wp-theme-json-data.php';
+echo 'test1';
 require ABSPATH . WPINC . '/class-wp-theme-json.php';
 require ABSPATH . WPINC . '/class-wp-theme-json-resolver.php';
 require ABSPATH . WPINC . '/global-styles-and-settings.php';
