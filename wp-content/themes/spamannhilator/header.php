@@ -17,7 +17,7 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
+<!--
 <div style="
 	position: fixed;
 	top: 0;
@@ -26,7 +26,7 @@
 	height: 100px;
 	background: url(<?php echo esc_url( get_template_directory_uri() . '/images/beta.png' ); ?>);
 "></div>
-
+-->
 <a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'src' ); ?></a>
 
 <div id="cookie-notice" class="hidden"></div>

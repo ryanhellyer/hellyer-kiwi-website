@@ -44,12 +44,12 @@ if ( ! isset( $_GET['pull_names'] ) ) {
 define( 'ALLOW_A_LICENSES', true ); // Note licenses only applies to road licenses, not oval licenses
 define( 'ALLOW_B_LICENSES', true );
 define( 'ALLOW_C_LICENSES', true );
-//define( 'ALLOW_D_LICENSES', true );
+define( 'ALLOW_D_LICENSES', true );
 
 //define( 'MIN_OVAL_IRATING', 3000 );
 //define( 'MIN_ROAD_IRATING', 2000 );
-define( 'MIN_OVAL_IRATING', 100 );
-define( 'MIN_ROAD_IRATING', 100 );
+define( 'MIN_OVAL_IRATING', 500 );
+define( 'MIN_ROAD_IRATING', 500 );
 
 
 
@@ -77,7 +77,9 @@ foreach ( array_merge(
 
 
 $events = array(
-	'pro-mazda-last' => array(
+// Pickup Cup next?
+// Maybe check safety and iRatings.
+	'dallara-dash' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -86,7 +88,7 @@ $events = array(
 		'time_3'           => 999,
 	),
 /*
-	'gte-s2-2019' => array(
+	'advanced-mx-5' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -94,7 +96,7 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-	'2019-s3-radicals' => array(
+	'street-stocks' => array(
 		'incident_ratio_1' => 1,
 		'incident_ratio_2' => 1,
 		'incident_ratio_3' => 1,
@@ -102,295 +104,9 @@ $events = array(
 		'time_2'           => 999,
 		'time_3'           => 999,
 	),
-	'2019-s2-c-fixed-trucks' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'roval-s1-2019' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'porsche-gt3-cup-2018-s4' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'radicals-s4-2018' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'nascar-b' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'nascar-a' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'daytona-trucks' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'global-mazda-s4' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'radicals-s3' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'global-mazda-s3-w5' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'mazda-mx5-cup-s2-w6-10-2018' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'advanced-mx5-s2-2018' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'ruf-s2-wks-1-10-2018' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'skippies-2018-s1-tuesday-nights' => array( // might be worth inviting B-license holders too
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'fixed-indy-iowa-s1' => array( // might be worth inviting B-license holders too
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indy-fixed-s1-w1-w9' => array( // might be worth inviting B-license holders too
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'dallara-dash-9' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'dallara-dash-6' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-s1-2018-r2' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-s1-2018-r3' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-s1-2018-r4' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-s1-2018-r1' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indy-road-s1-2018' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'pro-mazda-s4-2017' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indycar-s4-2017' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indycar2' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-2' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indycar-spa' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'skip-barber' => array(
-		'incident_ratio_1' => 1,
-		'incident_ratio_2' => 1,
-		'incident_ratio_3' => 1,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'indycar' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'laguna-seca' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 75,
-		'time_2'           => 76,
-		'time_3'           => 77,
-	),
-	'phoenix' => array(
-		'incident_ratio_1' => 0.6,
-		'incident_ratio_2' => 0.8,
-		'incident_ratio_3' => 0.9,
-		'time_1'           => 20.65, // Times largely irrelevant as qual set to 0
-		'time_2'           => 20.7, // Times largely irrelevant as qual set to 0
-		'time_3'           => 20.75, // Times largely irrelevant as qual set to 0
-	),
-	'sebring-promazda' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'bathurst-promazda' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'spa-promazda' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	'formula-renault-last-2' => array(
-		'incident_ratio_1' => 0.1,
-		'incident_ratio_2' => 0.2,
-		'incident_ratio_3' => 0.3,
-		'time_1'           => 999,
-		'time_2'           => 999,
-		'time_3'           => 999,
-	),
-	*/
+*/
+/*
+*/
 );
 
 foreach ( $events as $event => $vars ) {
@@ -421,6 +137,33 @@ foreach ( $events as $event => $vars ) {
 		$csv_file_content = file_get_contents( $csv_file_path );
 		$csv_file_content = str_replace( '"', '', $csv_file_content );
 		$csv_file_rows = explode( "\n", $csv_file_content );
+
+		// Hour of day - skip it if not at desired time of day.
+		$time = explode( ' ', explode( ',', $csv_file_rows[1] )[0] );
+		if ( ! isset( $time[1] ) ) {
+			continue; // tends to happen when on the row that describes each column.
+		}
+		$hour = explode( ':', $time[1] )[0];
+		$time = $hour . ' ' . $time[2];
+		if (
+			'4 PM' === $time
+			||
+			'5 PM' === $time
+			||
+			'6 PM' === $time
+			||
+			'7 PM' === $time
+			||
+			'8 PM' === $time
+			||
+			'9 PM' === $time
+			||
+			'10 PM' === $time
+		) {
+			// Continue.
+		} else {
+			continue;
+		}
 
 		// Stripping description out
 		unset( $csv_file_rows[0] );
@@ -492,9 +235,36 @@ foreach ( $events as $event => $vars ) {
 						&&
 						defined( 'ALLOW_C_LICENSES' )
 					)
+					||
+					(
+						'D' === $stats[$driver_name]['road_license']
+						&&
+						defined( 'ALLOW_D_LICENSES' )
+					)
 				) {
 					$drivers[$driver_name] = $event;
-					continue;
+				}
+
+			}
+
+			if ( isset( $stats[$driver_name]['oval_license'] ) ) {
+
+				// Allow A B C drivers
+				if (
+					'A' === $stats[$driver_name]['oval_license']
+					||
+					(
+						'B' === $stats[$driver_name]['oval_license']
+						&& defined( 'ALLOW_B_LICENSES' )
+					)
+					||
+					(
+						'C' === $stats[$driver_name]['oval_license']
+						&&
+						defined( 'ALLOW_C_LICENSES' )
+					)
+				) {
+					$drivers[$driver_name] = $event;
 				}
 
 			}

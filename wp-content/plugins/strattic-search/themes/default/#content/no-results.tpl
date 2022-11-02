@@ -1,0 +1,1 @@
+<h2 class="center">No posts found. Try a different search?</h2>

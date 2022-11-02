@@ -8,7 +8,10 @@ if ( is_super_admin() ) {
 	require( 'tools/convert-json.php' );
 	require( 'tools/create-user.php' );
 	require( 'tools/TEST-auto-news.php' );
-	require( 'tools/post-card.php' );
+	require( 'tools/get-standings.php' );
+	require( 'tools/check-if-contacted.php' );
+	require( 'tools/auto-unsubscribe-from-frequent-messages.php' );
+	require( 'tools/new-pms.php' );
 }
 
 add_option( 'src_featured_page', '' );
@@ -31,6 +34,7 @@ require( 'inc/class-src-messages.php' );
 require( 'inc/class-src-videos.php' );
 require( 'inc/class-src-ai.php' );
 require( 'inc/class-src-protest.php' );
+require( 'inc/class-src-post-cards.php' );
 
 require( 'inc/functions.php' );
 
@@ -51,3 +55,4 @@ new SRC_Messages;
 new SRC_Videos;
 new SRC_AI();
 new SRC_Protest();
+new SRC_Post_Cards();

@@ -35,6 +35,8 @@ header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_
 		'no_found_rows'  => true,
 		'update_post_meta_cache' => false,
 		'update_post_term_cache' => false,
+		'orderby' => 'ID',
+		'order'   => 'DESC',
 	) );
 	if ( $media_query->have_posts() ) {
 		$count = 0;

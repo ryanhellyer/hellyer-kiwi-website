@@ -1,0 +1,57 @@
+/*
+Syntax error: Invalid CSS after "		}": expected "}", was ");"
+        on line 924 of style.scss
+
+919: 		.hgroup {
+920: 			height: auto;
+921: 			overflow: hidden;
+922: 			position: relative;
+923: 		}
+924: 	);
+925: 
+926: 
+927: 	#nav {
+928: 		border-top: 10px solid red;
+929: 		position: static;
+
+Backtrace:
+style.scss:924
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:1308:in `expected'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:1242:in `expected'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:1237:in `tok!'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:637:in `block'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:630:in `ruleset'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:692:in `block in declaration_or_ruleset'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:1282:in `call'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:1282:in `rethrow'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:693:in `declaration_or_ruleset'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:655:in `block_child'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:647:in `block_contents'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:636:in `block'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:397:in `media_directive'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:216:in `special_directive'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:188:in `directive'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:654:in `block_child'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:647:in `block_contents'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:116:in `stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/scss/parser.rb:41:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/engine.rb:409:in `_to_tree'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/engine.rb:274:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin/compiler.rb:414:in `update_stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin/compiler.rb:186:in `each'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin/compiler.rb:221:in `watch'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/plugin.rb:108:in `method_missing'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/exec.rb:509:in `watch_or_update'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/exec.rb:346:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/exec.rb:43:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/lib/sass/exec.rb:22:in `parse!'
+/var/lib/gems/1.9.1/gems/sass-3.3.4/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"		}\": expected \"}\", was \");\"\A         on line 924 of style.scss\A \A 919: 		.hgroup {\A 920: 			height: auto;\A 921: 			overflow: hidden;\A 922: 			position: relative;\A 923: 		}\A 924: 	);\A 925: \A 926: \A 927: 	#nav {\A 928: 		border-top: 10px solid red;\A 929: 		position: static;"; }

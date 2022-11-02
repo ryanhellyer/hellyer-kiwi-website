@@ -10,6 +10,11 @@ class SRC_Cron extends SRC_Core {
 	 */
 	public function __construct() {
 
+		// ***** RUN THIS ONE - OTHERS ARE NOT USEFUL - CAN BE DELETED ONCE THIS IS CONFIRMED TO WORK LOL
+		if ( isset( $_GET['process_file'] ) && is_super_admin() ) {
+			add_action( 'init', array( $this, 'init' ), 1 );
+		}
+
 		if ( isset( $_GET['download_file'] ) && is_super_admin() ) {
 			add_action( 'init', array( $this, 'download_iracing_members_files' ), 1 );
 		}
@@ -23,6 +28,11 @@ class SRC_Cron extends SRC_Core {
 		}
 
 		add_action( 'after_switch_theme', array( $this, 'schedule_crons' ) );
+	}
+
+	public function init() {
+		$this->download_iracing_members_files();
+		$this->convert_iracing_members_file_to_json();
 	}
 
 	/**
@@ -92,9 +102,7 @@ class SRC_Cron extends SRC_Core {
 		// Loop through each type of racing individually.
 		$new_stats = array();
 		foreach ( $stats as $type => $x ) {
-
 			$stats[$type] = explode( "\n", $stats[$type] );
-
 			// Loop through each drivers stats individually.
 			unset( $stats[$type][0] );
 			$stat_count = count( $stats[$type] );

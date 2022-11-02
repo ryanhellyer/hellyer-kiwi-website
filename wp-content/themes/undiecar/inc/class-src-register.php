@@ -132,6 +132,12 @@ $message_text .= ' The form below is broken, please use the login page until the
 			$content .= '<p><strong>' . wp_kses_post( $message_text ) . '</strong></p>';
 		}
 
+
+
+		$content .= '<a class="button" href="https://members.iracing.com/membersite/member/LeagueView.do?league=2689">Register here</a>';
+
+/*
+		THERE USED TO BE A FORM HERE!!!
 		$content .= '
 <form action="' . esc_attr( $url ) . '" method="POST">
 ';
@@ -173,7 +179,7 @@ $message_text .= ' The form below is broken, please use the login page until the
 		$content .= '
 	<input type="submit" value="' . $joinus_text . '" />
 </form>';
-
+*/
 
 		// If argument of "echo" is set, then echo it
 		if ( ! isset( $args['echo'] ) ) {

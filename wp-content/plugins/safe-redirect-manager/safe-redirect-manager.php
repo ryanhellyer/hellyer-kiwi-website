@@ -1,33 +1,26 @@
 <?php
 /**
- * Plugin Name: Safe Redirect Manager
- * Plugin URI: https://wordpress.org/plugins/safe-redirect-manager
- * Description: Easily and safely manage HTTP redirects.
- * Author: 10up
- * Version: 1.9.3
- * Text Domain: safe-redirect-manager
- * Domain Path: /lang/
- * Author URI: https://10up.com
- * License: GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name:       Safe Redirect Manager
+ * Plugin URI:        https://wordpress.org/plugins/safe-redirect-manager
+ * Description:       Easily and safely manage HTTP redirects.
+ * Version:           1.11.1
+ * Requires at least: 4.6
+ * Requires PHP:      5.6
+ * Author:            10up
+ * Author URI:        https://10up.com
+ * License:           GPLv2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       safe-redirect-manager
  *
  * @package safe-redirect-manager
  */
 
-/**
- * Localize plugin
- *
- * @since 1.8
- */
-function srm_load_textdomain() {
-	load_plugin_textdomain( 'safe-redirect-manager', false, dirname( __FILE__ ) . '/lang' );
-}
-add_action( 'plugins_loaded', 'srm_load_textdomain' );
-
+// Load helper functions and classes
 require_once dirname( __FILE__ ) . '/inc/functions.php';
 require_once dirname( __FILE__ ) . '/inc/classes/class-srm-post-type.php';
 require_once dirname( __FILE__ ) . '/inc/classes/class-srm-redirect.php';
 
+define( 'SRM_VERSION', '1.11.1' );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once dirname( __FILE__ ) . '/inc/classes/class-srm-wp-cli.php';

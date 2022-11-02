@@ -13,7 +13,7 @@
 
 <footer id="site-footer" role="contentinfo">
 	<div class="site-info">
-		<?php _e( 'Copyright', 'hellish-simplicity' ); ?> &copy; <?php bloginfo( 'name' ); ?> <?php echo date( 'Y' ); ?>. 
+		<!-- Strattic AJAX area before | footer AJAX area --><?php _e( 'Copyright', 'hellish-simplicity' ); ?> &copy; <?php bloginfo( 'name' ); ?> <?php echo date( 'Y' ); ?>. <!-- Strattic AJAX area after | footer AJAX area -->
 		<?php printf( esc_html__( 'WordPress theme by %s.', 'hellish-simplicity' ), '<a href="https://geek.hellyer.kiwi/" title="Ryan Hellyer">Ryan Hellyer</a>' ); ?>
 	</div><!-- .site-info -->
 </footer><!-- #site-footer -->

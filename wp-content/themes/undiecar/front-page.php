@@ -119,7 +119,7 @@ get_header();
 
 			}
 
-			if ( $event_time > time() ) {
+//			if ( $event_time > time() ) {
 
 				$event_array[$event_time] = array(
 					'event_id'        => $event_id,
@@ -130,11 +130,21 @@ get_header();
 					'event_date'      => $event_date,
 				);
 
-			}
+//			}
 
 		}
 	}
 
+	krsort( $event_array );
+	$count = 0;
+	$new_event_array = array();
+	foreach ( $event_array as $time_stamp => $event ) {
+		$count++;
+		if ( $count < 6 ) {
+			$new_event_array[ $time_stamp ] = $event_array[ $time_stamp ];
+		}
+	}
+	$event_array = $new_event_array;
 	ksort( $event_array );
 
 	$count = 0;
@@ -236,7 +246,7 @@ if ( isset( $our_events[0] ) ) {
 		}
 
 		if ( get_option( 'next-season' ) === get_option( 'current-season' ) ) {
-			$text = __( 'This season', 'undiecar' );
+			$text = __( 'Final season', 'undiecar' );
 		} else {
 			$text = __( 'Next season', 'undiecar' );
 		}
@@ -248,7 +258,7 @@ if ( isset( $our_events[0] ) ) {
 /*
 	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall6.jpg);">
 */
-	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/mats-sjoblom-tall.jpg);">
+	?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( home_url() ); ?>/files/mats-sjoblom-tall.jpg);">
 		<h2><?php echo esc_html( $text ); ?></h2>
 		<p>
 			<?php echo esc_html( get_the_title( $season_id ) ); ?><br />
@@ -505,7 +515,7 @@ if ( isset( $our_events[0] ) ) {
 
 	</div>
 
-	<a href="<?php echo esc_url( home_url( '/rules/' ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://undiecar.com/files/tall-1.jpg);">
+	<a href="<?php echo esc_url( home_url( '/rules/' ) ); ?>" class="other-race" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(<?php echo esc_url( home_url() ); ?>/files/tall-1.jpg);">
 		<h2>Rules</h2>
 		<p>Minimal rules maximum fun</p>
 	</a>

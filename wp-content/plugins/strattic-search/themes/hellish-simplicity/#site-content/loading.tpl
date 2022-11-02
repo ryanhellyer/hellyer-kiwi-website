@@ -1,0 +1,1 @@
+<h1 class='page-title'>Search Results Generating …</h1>

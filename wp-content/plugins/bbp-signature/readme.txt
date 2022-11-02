@@ -3,9 +3,9 @@ Contributors: arjunskumar, robinw
 Donate link: http://arjunsk.in/donate/
 Tags: bbpress, forums, discussion, custom, signature
 Requires at least: WP 3.1.1 / bbPress 2.0 / BuddyPress 1.5+
-Tested up to: 4.5.1
+Tested up to: 5.6
 
-Stable tag: 1.2
+Stable tag: 1.3
 
 This plugin adds user signature support to bbPress 2.0. 
 
@@ -53,6 +53,10 @@ You should be running WordPress 3.1+ and [bbPress](http://wordpress.org/extend/p
 2. Result of bbP Signature
 3. Result of bbcode usage
 == Changelog ==
+
+= 1.3 (08-02-2021) =
+ * removed revision filter as was causing double display of revisions
+
 = 1.1 (29-08-2012) =
  * Added BuddyPress support.
  

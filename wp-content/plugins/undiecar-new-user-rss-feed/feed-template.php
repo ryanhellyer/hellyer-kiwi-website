@@ -27,11 +27,16 @@ header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_
 	<?php do_action( 'rss2_head' ); ?>
 	<?php
 
+	$number = 25;
+	if ( isset( $_GET['number'] ) ) {
+		$number = absint( $_GET['number'] );
+	}
+
 	$users = get_users(
 		array(
 			'orderby' => 'ID',
 			'order'   => 'DESC',
-			'number'  => 5,
+			'number'  => $number,
 		)
 	);
 

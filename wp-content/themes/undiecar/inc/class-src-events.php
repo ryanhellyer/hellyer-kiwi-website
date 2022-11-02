@@ -1149,7 +1149,7 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 					$heat_format = 'double';
 				}
 
-				if ( 'CONSOLATION' === $row->simsesname ) {
+				if ( 'B-MAIN' === $row->simsesname || 'CONSOLATION' === $row->simsesname ) {
 					$heat_format = 'triple';
 				}
 
@@ -1193,7 +1193,11 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 						(
 							1 === $race_number && 'HEAT+1' === $row->simsesname
 							||
-							2 === $race_number && 'CONSOLATION' === $row->simsesname
+							(
+								( 2 === $race_number && 'CONSOLATION' === $row->simsesname )
+								||
+								( 2 === $race_number && 'B-MAIN' ===  $row->simsesname )
+							)
 							||
 							3 === $race_number && 'FEATURE' === $row->simsesname
 						)
@@ -1335,6 +1339,45 @@ REMOVED BECAUSE THEY ONLY APPLY TO THE FIRST RACE (I THINK)
 			$race_number++;
 
 			$results = get_post_meta( get_the_ID(), '_results_' . $race_number, true );		
+//  1  /  5
+if ( isset( $_GET['temp'] ) ) {
+	$results = json_decode( $results, true );
+
+//unset( $results[4] );
+//print_r( $results );
+
+	$brummers = $results[4];
+	unset( $results[4] );
+
+	$count = 0;
+/*
+$aron = $results[5];
+$biemar = $results[6];
+$results[5] = $biemar;
+$results[6] = $aron;
+*/
+//	unset( $results[4] );
+
+	$new_results[0] = $brummers;
+	$count = 1;
+	foreach ( $results as $key => $result ) {
+		$new_results[ $count ] = $result;
+		$count++;
+	}
+
+	$count = 0;
+	foreach ( $new_results as $key => $result ) {
+		$new_results[ $count ] = $result;
+		$new_results[ $count ]['position'] = $count + 1;
+		$count++;
+	}
+//brumfield
+//print_r( $new_results );die;
+
+	$new_results = json_encode( $new_results );
+
+	update_post_meta( get_the_ID(), '_results_' . $race_number, $new_results );
+}
 			$results = apply_filters( 'undiecar_ai_results', $results );
 
 			if ( '' === $results ) {

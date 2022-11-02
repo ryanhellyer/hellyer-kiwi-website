@@ -136,10 +136,13 @@ class Custom_Image_Meta_Box {
 	 * @return   string
 	 */
 	static function get_attachment_src( $attachment_id ) {
+		$url = '';
 
 		// Grab URL from WordPress
-		$url = wp_get_attachment_image_src( $attachment_id, 'full' );
-		$url = $url[0];
+		$src = wp_get_attachment_image_src( $attachment_id, 'full' );
+		if ( isset( $src[0] ) ) {
+			$url = $src[0];
+		}
 
 		return $url;
 	}
@@ -157,9 +160,9 @@ class Custom_Image_Meta_Box {
 		// Grab URL from WordPress
 		$data = wp_get_attachment_image_src( $attachment_id, 'full' );
 
-		if ( 'width' == $dimension ) {
+		if ( 'width' == $dimension && isset( $data[1] ) ) {
 			return $data[1];
-		} else if ( 'height' == $dimension ) {
+		} else if ( 'height' == $dimension && isset( $data[2] ) ) {
 			return $data[2];
 		}
 
@@ -219,7 +222,7 @@ class Custom_Image_Meta_Box {
 			'all'
 		);
 
-		wp_localize_script( $this->name, 'custom_meta_image_name', $this->name );
+		wp_localize_script( $this->name, 'custom_meta_image_name', array( $this->name ) );
 
 	}
 

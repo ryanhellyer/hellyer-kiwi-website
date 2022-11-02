@@ -3,6 +3,19 @@
 // ******** SHOULD PROCESS STUFF HERE WITH $this->get_seasons_drivers()
 
 
+/**
+ * DOWNLOAD FILE FIRST VIA THIS:
+ * https://undiecar.com/?download_file
+ *
+ * THEN CONVERT IT TO JSON.
+ * ?convert_file 
+ *
+ * THEN PROCESS THEM ALL WITH THIS:
+ * https://undiecar.com/?user_processing=update_iracing_info&start=0
+ */
+
+
+
 // Only allow for super admins
 if ( ! is_super_admin() ) {
 	return;
@@ -79,6 +92,12 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 				$name = $driver->data->display_name;
 
 				$driver_data = $this->iracing_member_info( $name );
+				if ( '-1' === $driver_data[ 'road_irating' ] ) {
+					$driver_data[ 'road_irating' ] = 1200;
+				}
+				if ( '-1' === $driver_data[ 'oval_irating' ] ) {
+					$driver_data[ 'oval_irating' ] = 1200;
+				}
 
 				echo $name . ', ';
 				echo '<br />custid: ' . $driver_data['custid'] . '<br />';
@@ -95,6 +114,7 @@ class Undiecar_Update_iRacing_Info extends SRC_Core {
 				);
 				foreach ( $meta_keys as $meta_key ) {
 					if ( isset( $driver_data[$meta_key] ) ) {
+
 						update_user_meta(
 							$driver_id,
 							esc_html( $meta_key ),

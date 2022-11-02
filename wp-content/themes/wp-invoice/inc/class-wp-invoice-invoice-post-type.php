@@ -512,7 +512,7 @@ $data[$count]['project'] = '';
 		<p>
 			<label for="_invoice_hourly_rate"><?php _e( 'Hourly rate ', 'wp-invoice' ); ?></label>
 			<br />
-			<input type="number" name="_invoice_hourly_rate" id="_invoice_hourly_rate" value="<?php echo esc_attr( $meta_data['hourly_rate'] ); ?>" />
+			<input type="number" step="0.01" name="_invoice_hourly_rate" id="_invoice_hourly_rate" value="<?php echo esc_attr( $meta_data['hourly_rate'] ); ?>" />
 		</p>
 
 		<p>

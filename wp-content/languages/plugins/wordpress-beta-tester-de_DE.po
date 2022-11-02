@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WordPress Beta Tester - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-21 00:38:24+0000\n"
+"PO-Revision-Date: 2021-09-29 08:22:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,52 +11,77 @@ msgstr ""
 "Language: de\n"
 "Project-Id-Version: Plugins - WordPress Beta Tester - Stable (latest release)\n"
 
-#: src/WPBT/WPBT_Core.php:261 src/WPBT/WPBT_Core.php:276
+#: src/WPBT/WPBT_Core.php:173 src/WPBT/WPBT_Help.php:48
+msgctxt "URL to database backup instructions on HelpHub"
+msgid "https://wordpress.org/support/article/wordpress-backups/"
+msgstr "https://wordpress.org/support/article/wordpress-backups/"
+
+#: src/WPBT/WPBT_Core.php:206
+msgid "Channel options are overridden by the `WP_AUTO_UPDATE_CORE` constant."
+msgstr "Kanal-Optionen werden durch die Konstante `WP_AUTO_UPDATE_CORE` überschrieben."
+
+#. translators: %s: link to trac search
+#: src/WPBT/WP_Beta_Tester.php:308
+msgid "&#128027; Did you find a bug? Search for a <a href=\"%s\" target=\"_blank\">trac ticket</a> to see if it has already been reported."
+msgstr "&#128027; Hast du einen Bug gefunden? Suche in den <a href=\"%s\" target=\"_blank\">Trac-Tickets</a>, um zu prüfen, ob der Bug bereits gemeldet wurde."
+
+#. translators: %1: link to closed and reopened trac tickets on current
+#. milestone
+#: src/WPBT/WP_Beta_Tester.php:305
+msgid "Here are the <a href=\"%s\" target=\"_blank\">commits for the milestone</a>."
+msgstr "Hier sind die <a href=\"%s\" target=\"_blank\">Commits für den Milestone (engl.)</a>."
+
+#: src/WPBT/WPBT_Help.php:61
+msgid "<em>Point release</em> channel only has the <em>Nightlies</em> stream available at this time."
+msgstr "Der Kanal <em>Point release</em> hat derzeit nur den Stream für <em>Nightlies</em> zur Verfügung."
+
+#: src/WPBT/WPBT_Core.php:290 src/WPBT/WPBT_Core.php:305
 msgid "This is for the Release Candidate releases only of the selected channel."
 msgstr "Dies gilt nur für die Veröffentlichungen der Release-Kandidaten des ausgewählten Kanals."
 
-#: src/WPBT/WPBT_Core.php:259 src/WPBT/WPBT_Core.php:274
+#: src/WPBT/WPBT_Core.php:288 src/WPBT/WPBT_Core.php:303
 msgid "Release Candidates Only"
 msgstr "Nur Release-Kandidaten"
 
-#: src/WPBT/WPBT_Core.php:255 src/WPBT/WPBT_Core.php:270
+#: src/WPBT/WPBT_Core.php:284 src/WPBT/WPBT_Core.php:299
 msgid "This is for the Beta/RC releases only of the selected channel."
 msgstr "Dies gilt nur für die Beta-/RC-Veröffentlichungen des ausgewählten Kanals."
 
-#: src/WPBT/WPBT_Core.php:253 src/WPBT/WPBT_Core.php:268
+#: src/WPBT/WPBT_Core.php:282 src/WPBT/WPBT_Core.php:297
 msgid "Beta/RC Only"
 msgstr "Nur Beta/RC"
 
-#: src/WPBT/WPBT_Core.php:247
+#: src/WPBT/WPBT_Core.php:276
 msgid "Latest daily updates."
 msgstr "Die neuesten täglichen Updates."
 
-#: src/WPBT/WPBT_Core.php:245
+#: src/WPBT/WPBT_Core.php:274
 msgid "Nightlies"
 msgstr "Nightlies"
 
 #. translators: %s: WP_AUTO_UPDATE_CORE setting
-#: src/WPBT/WPBT_Core.php:232
+#. translators: %s: WP_AUTO_UPDATE_CORE setting
+#: src/WPBT/WPBT_Core.php:210 src/WPBT/WPBT_Core.php:261
 msgid "`WP_AUTO_UPDATE_CORE` is defined as `%s`."
 msgstr "`WP_AUTO_UPDATE_CORE` ist als `%s` definiert."
 
-#: src/WPBT/WPBT_Core.php:228
+#: src/WPBT/WPBT_Core.php:257
 msgid "Stream options are overridden by the `WP_AUTO_UPDATE_CORE` constant."
 msgstr "Stream-Optionen werden durch die Konstante `WP_AUTO_UPDATE_CORE` überschrieben."
 
-#: src/WPBT/WPBT_Core.php:209
+#: src/WPBT/WPBT_Core.php:237
 msgid "Bleeding edge"
 msgstr "Bleeding Edge (Hauptversions-Update)"
 
-#: src/WPBT/WPBT_Core.php:195
+#: src/WPBT/WPBT_Core.php:223
 msgid "Point release"
 msgstr "Point Release (Minorversions-Update)"
 
-#: src/WPBT/WPBT_Core.php:101
+#: src/WPBT/WPBT_Core.php:109
 msgid "Select one of the stream options below:"
 msgstr "Wähle eine der folgenden Stream-Optionen:"
 
-#: src/WPBT/WPBT_Core.php:92
+#: src/WPBT/WPBT_Core.php:100
 msgid "Select the update channel you would like this website to use:"
 msgstr "Bitte wähle den Aktualisierungs-Kanal, den du auf dieser Website verwenden möchtest:"
 
@@ -70,24 +95,19 @@ msgstr "Du musst entweder den Kanal <em>Point Release</em> (Update der Minorvers
 msgid "By their nature, these releases are unstable and should not be used any place where your data is important. So please <a href=\"%1$s\">back up your database</a> before upgrading to a test release. In order to hear about the latest beta releases, your best bet is to watch the <a href=\"%2$s\">development blog</a> and the <a href=\"%3$s\">beta forum</a>."
 msgstr "Diese Veröffentlichungen sind naturgemäß instabil und sollten nicht dort eingesetzt werden, wo deine Daten wichtig sind. Fertige also bitte ein <a href=\"%1$s\">Backup deiner Datenbank</a> an, bevor du auf eine Test-Version aktualisierst. Die besten Quellen für Informationen über die neuesten Beta-Versionen sind das <a href=\"%2$s\">Development-Blog (engl.)</a> und das <a href=\"%3$s\">Beta-Forum (engl.)</a>."
 
-#: src/WPBT/WPBT_Bootstrap.php:103
+#: src/WPBT/WPBT_Bootstrap.php:102
 msgid "Cannot run WordPress Beta Tester plugin in `wordpress-develop`"
 msgstr "Das Plugin WordPress Beta Tester funktioniert nicht in `wordpress-develop`"
 
 #. translators: %s: Milestone version
-#: src/WPBT/WP_Beta_Tester.php:362 src/WPBT/WPBT_Beta_RC.php:499
+#: src/WPBT/WP_Beta_Tester.php:379
 msgid "WordPress %s Field Guide"
 msgstr "Leitfaden für WordPress&nbsp;%s"
 
 #. translators: %s: Milestone version
-#: src/WPBT/WP_Beta_Tester.php:352 src/WPBT/WPBT_Beta_RC.php:489
+#: src/WPBT/WP_Beta_Tester.php:369
 msgid "WordPress %s Dev Notes"
 msgstr "Entwicklungs-Hinweise zu WordPress&nbsp;%s"
-
-#. translators: %s: link to trac search
-#: src/WPBT/WP_Beta_Tester.php:291 src/WPBT/WPBT_Beta_RC.php:428
-msgid "&#128027; Did you find a bug? Search for a <a href=\"%s\">trac ticket</a> to see if it has already been reported."
-msgstr "&#128027; Hast du einen Bug gefunden? Suche in den <a href=\"%s\">Trac-Tickets</a>, um zu prüfen, ob der Bug bereits gemeldet wurde."
 
 #: src/WPBT/WPBT_Help.php:69
 msgid "A dashboard widget is displayed when the plugin is active. It will contain links to milestone commits and filing a bug report. It may contain links to Dev Notes, the Field Guide, and beta/RC release posts."
@@ -114,81 +134,71 @@ msgid "For more information:"
 msgstr "Für weitere Informationen:"
 
 #. translators: %s: WP Beta Tester settings URL
-#: src/WPBT/WP_Beta_Tester.php:299 src/WPBT/WPBT_Beta_RC.php:436
+#: src/WPBT/WP_Beta_Tester.php:316
 msgid "Head over to your <a href=\"%s\">WordPress Beta Tester Settings</a> and make sure the <strong>beta/RC</strong> stream is selected."
-msgstr "Navigiere zu den <a href=\"%s\">WordPress-Beta-Tester-Einstellungen</a> and stelle sicher, dass der <strong>Beta-/RC-</strong>Stream ausgewählt ist."
-
-#. translators: %1: link to closed and reopened trac tickets on current
-#. milestone
-#: src/WPBT/WP_Beta_Tester.php:288 src/WPBT/WPBT_Beta_RC.php:425
-msgid "Here are the <a href=\"%s\">commits for the milestone</a>."
-msgstr "Hier sind die <a href=\"%s\">Commitments für den Milestone (engl.)</a>."
+msgstr "Navigiere zu den <a href=\"%s\">WordPress-Beta-Tester-Einstellungen</a> und stelle sicher, dass der <strong>Beta-/RC-</strong>Stream ausgewählt ist."
 
 #. translators: %s: WordPress version
-#: src/WPBT/WP_Beta_Tester.php:282 src/WPBT/WPBT_Beta_RC.php:419
+#: src/WPBT/WP_Beta_Tester.php:299
 msgid "Please help test <strong>WordPress %s</strong>."
 msgstr "Bitte hilf mit und teste <strong>WordPress&nbsp;%s</strong>."
 
-#: src/WPBT/WP_Beta_Tester.php:265 src/WPBT/WPBT_Beta_RC.php:403
+#: src/WPBT/WP_Beta_Tester.php:282
 msgid "WordPress Beta Testing"
 msgstr "WordPress-Beta testen"
 
 #. translators: Used to join items in a list with only 2 items.
-#: src/WPBT/WPBT_Core.php:415
+#: src/WPBT/WPBT_Core.php:449
 msgid "%1$s or %2$s"
 msgstr "%1$s oder %2$s"
 
 #. translators: Used to join last two items in a list with more than 2 times.
-#: src/WPBT/WPBT_Core.php:413
+#: src/WPBT/WPBT_Core.php:447
 msgid "%1$s, or %2$s"
 msgstr "%1$s, oder %2$s"
 
 #. translators: Used to join items in a list with more than 2 items.
-#: src/WPBT/WPBT_Core.php:411
+#: src/WPBT/WPBT_Core.php:445
 msgid "%1$s, %2$s"
 msgstr "%1$s, %2$s"
 
 #. translators: %l: next version numbers
-#: src/WPBT/WPBT_Core.php:333
+#: src/WPBT/WPBT_Core.php:362
 msgid "version %l"
 msgstr "Version %l"
 
 #. translators: %s: version number
-#: src/WPBT/WPBT_Core.php:322
+#: src/WPBT/WPBT_Core.php:351
 msgid "version %s"
 msgstr "Version %s"
 
-#: src/WPBT/WPBT_Settings.php:81
+#: src/WPBT/WPBT_Settings.php:94
 msgctxt "Menu item"
 msgid "Beta Testing"
 msgstr "Beta Testing"
 
-#: src/WPBT/WPBT_Beta_RC.php:126
-msgid "next release version"
-msgstr "nächste Release-Version"
-
 #. translators: %l: next version numbers
-#: src/WPBT/WPBT_Core.php:333
+#: src/WPBT/WPBT_Core.php:362
 msgid "whichever is released first"
 msgstr "welche auch immer zuerst veröffentlicht wird"
 
-#: src/WPBT/WPBT_Core.php:328
+#: src/WPBT/WPBT_Core.php:357
 msgid "next development version"
 msgstr "nächste Entwicklungs-Version"
 
-#: src/WPBT/WPBT_Core.php:153
+#: src/WPBT/WPBT_Core.php:163
 msgid "<strong>Please note:</strong> There are no development builds available for the beta stream you have chosen, so you will receive normal update notifications."
 msgstr "<strong>Bitte beachte:</strong> Für den von dir gewählten Beta-Stream sind keine Entwicklungsversionen verfügbar, sodass du reguläre Aktualisierungshinweise erhalten wirst."
 
-#: src/WPBT/WPBT_Extras.php:301
+#: src/WPBT/WPBT_Extras.php:300
 msgid "This area is for extra special beta testing. If nothing is present there are no additional features that need testing or the `wp-config.php` file is not writable. Features will set constants in the `wp-config.php` file."
 msgstr "Dieser Bereich ist für besondere Beta-Tests vorgesehen. Wenn nichts angegeben ist, gibt es keine zusätzlichen Funktionen, die getestet werden müssen, oder aber die Datei ‚wp-config.php‘ ist nicht beschreibbar. Die Funktionen verwenden Konstanten in der Datei ‚wp-config.php‘."
 
-#: src/WPBT/WPBT_Extras.php:142
+#: src/WPBT/WPBT_Extras.php:141
 msgid "Look in `wp-config.php` for results."
 msgstr "Schau in die Datei ‚wp-config.php‘, um das Ergebnis zu sehen."
 
-#: src/WPBT/WPBT_Extras.php:141
+#: src/WPBT/WPBT_Extras.php:140
 msgid "Just an example."
 msgstr "Nur ein Beispiel"
 
@@ -205,15 +215,15 @@ msgid "New Feature Testing"
 msgstr "Testen neuer Funktionen"
 
 #. translators: %s: update version
-#: src/WPBT/WPBT_Core.php:178
+#: src/WPBT/WPBT_Core.php:188
 msgid "Currently your site is set to update to %s."
 msgstr "Aktuell ist diese Website für die Aktualisierung auf %s konfiguriert."
 
-#: src/WPBT/WPBT_Core.php:85
+#: src/WPBT/WPBT_Core.php:93
 msgid "Core Settings"
 msgstr "Core-Einstellungen"
 
-#: src/WPBT/WPBT_Core.php:68
+#: src/WPBT/WPBT_Core.php:76
 msgid "WP Beta Tester Settings"
 msgstr "WP-Beta-Tester-Einstellungen"
 
@@ -225,15 +235,15 @@ msgstr "Extra Einstellungen"
 msgid "Peter Westwood, Andy Fragen"
 msgstr "Peter Westwood, Andy Fragen"
 
-#: src/WPBT/WPBT_Settings.php:197
+#: src/WPBT/WPBT_Settings.php:216
 msgid "Why don&#8217;t you <a href=\"update-core.php\">head on over and upgrade now</a>."
 msgstr "Navigiere hierhin <a href=\"update-core.php\">und führe jetzt ein Upgrade aus</a>."
 
-#: src/WPBT/WPBT_Core.php:174
+#: src/WPBT/WPBT_Core.php:184
 msgid "By default, your WordPress installation uses the stable update channel. To return to this, please deactivate this plugin and re-install from the <a href=\"update-core.php\">WordPress Updates</a> page."
 msgstr "Standardmäßig benutzt deine WordPress-Installation den stabilen Aktualisierungskanal. Um den ursprünglichen Zustand wiederherzustellen, deaktiviere bitte das Plugin und installiere die WordPress-Version neu über die Seite <a href=\"update-core.php\">Aktualisierungen</a> im WordPress-Dashboard."
 
-#: src/WPBT/WPBT_Settings.php:196
+#: src/WPBT/WPBT_Settings.php:215
 msgid "Saved."
 msgstr "Gespeichert."
 
@@ -253,45 +263,40 @@ msgstr "https://de.wordpress.org/plugins/wordpress-beta-tester/"
 msgid "WordPress Beta Tester"
 msgstr "WordPress Beta Tester"
 
-#: src/WPBT/WPBT_Core.php:211
+#: src/WPBT/WPBT_Core.php:239
 msgid "This is the bleeding edge development code from `trunk` which may be unstable at times. <em>Only use this if you really know what you are doing</em>."
-msgstr "Das ist der allerneueste Entwicklungs-Code aus dem ‚trunk‘-Zweig, der auch manchmal instabil sein kann. <em>Setze diesen nur ein, wenn du wirklich weißt, was du tust</em>."
+msgstr "Das ist der allerneueste Entwicklungs-Code aus dem 'trunk'-Zweig, der auch manchmal instabil sein kann. <em>Setze diesen nur ein, wenn du wirklich weißt, was du tust</em>."
 
 #. translators: %s: Current WordPress version base, eg 5.5
-#: src/WPBT/WPBT_Core.php:201
+#: src/WPBT/WPBT_Core.php:229
 msgid "This contains the work that is occurring on a branch in preparation for a %s point release. This should also be fairly stable but will be available before the branch is ready for release."
 msgstr "Das enthält den Entwicklungs-Code aus einem Zweig, der für eine %s-Punkt-Version in Vorbereitung ist. Dieser sollte bereits relativ stabil sein, ist allerdings hierüber verfügbar, bevor der Zweig bereit für die Veröffentlichung ist."
 
 #. translators: %s: link to new trac ticket
-#: src/WPBT/WPBT_Core.php:170
+#: src/WPBT/WPBT_Core.php:180
 msgid "Thank you for helping test WordPress. Please <a href=\"%s\">report any bugs you find</a>."
 msgstr "Vielen Dank für deine Hilfe beim Testen von WordPress. Bitte <a href=\"%s\">melde alle Fehler, die du findest</a>."
 
-#: src/WPBT/WPBT_Core.php:165 src/WPBT/WPBT_Help.php:50
+#: src/WPBT/WPBT_Core.php:175 src/WPBT/WPBT_Help.php:50
 msgctxt "URL to beta support forum"
 msgid "https://wordpress.org/support/forum/alphabeta"
 msgstr "https://wordpress.org/support/forum/alphabeta"
 
-#: src/WPBT/WPBT_Core.php:163 src/WPBT/WPBT_Help.php:48
-msgctxt "URL to database backup instructions"
-msgid "https://codex.wordpress.org/Backing_Up_Your_Database"
-msgstr "https://codex.wordpress.org/Backing_Up_Your_Database"
-
 #. translators: 1: link to backing up database, 2: link to make.wp.org/core, 3:
 #. link to beta support forum
-#: src/WPBT/WPBT_Core.php:162
+#: src/WPBT/WPBT_Core.php:172
 msgid "By their nature, these releases are unstable and should not be used anyplace where your data is important. So please <a href=\"%1$s\">back up your database</a> before upgrading to a test release. In order to hear about the latest beta releases, your best bet is to watch the <a href=\"%2$s\">development blog</a> and the <a href=\"%3$s\">beta forum</a>."
 msgstr "Es liegt in der Natur dieser Versionen, dass sie instabil sind und daher nicht genutzt werden sollten, wenn deine Daten wichtig sind. Fertige also bitte ein <a href=\"%1$s\">Backup deiner Datenbank</a> an, bevor du auf eine Test-Version aktualisiert. Die beste Quelle für Informationen über die neuesten Beta-Versionen sind das <a href=\"%2$s\">Development-Blog (engl.)</a> und das <a href=\"%3$s\">Beta-Forum (engl.)</a>."
 
-#: src/WPBT/WPBT_Settings.php:231
+#: src/WPBT/WPBT_Settings.php:252
 msgid "<strong>Please note:</strong> Once you have switched your website to one of these beta versions of software, it will not always be possible to downgrade as the database structure may be updated during the development of a major release."
 msgstr "<strong>Bitte beachte:</strong> Sobald du deine Website auf eine dieser Beta-Versionen der Software umgestellt hast, wird es nicht immer möglich sein, ein Downgrade durchzuführen, da es sein kann, dass die Datenbankstruktur einer Hauptversion während der Entwicklung aktualisiert wird."
 
-#: src/WPBT/WPBT_Settings.php:80 src/WPBT/WPBT_Settings.php:228
+#: src/WPBT/WPBT_Settings.php:93 src/WPBT/WPBT_Settings.php:249
 msgid "Beta Testing WordPress"
 msgstr "WordPress-Beta testen"
 
 #. translators: %s: WordPress Beta Tester Settings page URL
-#: src/WPBT/WP_Beta_Tester.php:113
+#: src/WPBT/WP_Beta_Tester.php:127
 msgid "<strong>Warning:</strong> Your current <a href=\"%s\">WordPress Beta Tester plugin configuration</a> will downgrade your installation to a previous version - please reconfigure it."
 msgstr "<strong>Warnung:</strong> Deine aktuelle <a href=\"%s\">Konfiguration des Plugins WordPress-Beta-Tester</a> wird deine Installation auf eine ältere Version zurückstufen – bitte aktualisiere die Konfiguration."

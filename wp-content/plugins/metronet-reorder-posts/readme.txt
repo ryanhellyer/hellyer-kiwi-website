@@ -3,9 +3,9 @@ Contributors: ryanhellyer, ronalfy, scottbasgaard
 Author URI: https://github.com/ronalfy/reorder-posts
 Plugin URL: https://wordpress.org/plugins/metronet-reorder-posts/
 Requires at Least: 3.7
-Tested up to: 5.6
+Tested up to: 6.0
 Tags: reorder, reorder posts
-Stable tag: 2.5.0
+Stable tag: 2.5.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -129,6 +129,14 @@ No, but there is an add-on for this plugin called <a href="https://wordpress.org
 
 == Changelog ==
 
+= 2.5.3 =
+* Released 2022-05-27
+* Cache busting for people who are receiving script errors around Nested Sortable.
+
+= 2.5.1 =
+* Released 2022-02-14
+* Fixing sortable script with newer versions of jQuery sortable.
+
 = 2.5.0 =
 * Released 2020-11-18
 * Fixing sortable script with newer versions of jQuery.
@@ -243,5 +251,5 @@ No, but there is an add-on for this plugin called <a href="https://wordpress.org
 
 == Upgrade Notice ==
 
-= 2.5.0 =
-Fixing sortable script with newer versions of jQuery.
+= 2.5.3 =
+Cache busting for people who are receiving script errors around Nested Sortable.

@@ -9,4 +9,3 @@ function add_performance_stats() {
 	echo "\n";
 }
 add_action( 'wp_footer', 'add_performance_stats', 99999 );
-

@@ -1,11 +1,11 @@
 <?php
 /*
    Plugin Name: WP Mail Logging
-   Plugin URI: http://wordpress.org/extend/plugins/wp-mail-logging/
-   Support URI: https://github.com/mailpoet/wp-mail-logging/issues
-   Version: 1.9.7
-   Author: MailPoet
-   Author URI: https://www.mailpoet.com/
+   Plugin URI: https://wordpress.org/plugins/wp-mail-logging/
+   Support URI: https://github.com/kgjerstad/wp-mail-logging/issues
+   Version: 1.10.4
+   Author: Wysija
+   Author URI: https://profiles.wordpress.org/wysija/
    Description: Logs each email sent by WordPress.
    Text Domain: wp-mail-logging
    License: GPLv3
@@ -36,7 +36,7 @@ namespace No3x\WPML;
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define('WPML_PHP_MIN_VERSION', '5.4');
+define('WPML_PHP_MIN_VERSION', '7.1');
 
 /**
  * Check the PHP version and give a useful error message if the user's version is less than the required version

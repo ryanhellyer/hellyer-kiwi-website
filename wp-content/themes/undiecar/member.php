@@ -341,6 +341,20 @@ if (
 		echo ' value="1" />
 		<br />
 		<span>Includes upcoming race information and various updates via iRacing PM or email</span>
+		<br />
+		<label>Receive less notifications?</label>
+		<input name="receive-less-notifications" type="checkbox" style="font-size:40px;" ';
+
+		$receive_less_notifications = get_user_meta( $member_id, 'receive_less_notifications', true );
+		$checked = '';
+		if ( 'yes' === $receive_less_notifications ) {
+			$checked = 1;
+		}
+		echo checked( $checked, 1, false );
+
+		echo ' value="1" />
+		<br />
+		<span>Receive only very important notifications</span>
 		<br /><br />
 
 		<label>Current location</label>

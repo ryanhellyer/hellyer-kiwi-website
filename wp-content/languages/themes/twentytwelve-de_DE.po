@@ -2,31 +2,42 @@
 # This file is distributed under the same license as the Themes - Twenty Twelve package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-22 23:10:16+0000\n"
+"PO-Revision-Date: 2022-09-23 00:39:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
 "Language: de\n"
 "Project-Id-Version: Themes - Twenty Twelve\n"
 
 #. Description of the theme
+#, gp-priority: high
 msgid "The 2012 theme for WordPress is a fully responsive theme that looks great on any device. Features include a front page template with its own widgets, an optional display font, styling for post formats on both index and single views, and an optional no-sidebar page template. Make it yours with a custom menu, header image, and background."
 msgstr "Das 2012 Theme für WordPress ist ein komplett adaptives Theme (responsive theme), das auf jedem Ausgabegerät gut aussieht. Zu den Merkmalen gehören eine Startseiten-Vorlage mit eigenen Widgets, eine optionale Display-Schrift, Styling für Beitrags-Formate auf der Übersichts- und der Beitrags-Ansicht und eine optionale Seiten-Vorlage ohne Sidebar. Passe Menü, Header-Bild und Hintergrund deinen Vorstellungen an."
 
 #. Theme Name of the theme
+#: inc/block-patterns.php:20
+#, gp-priority: high
 msgid "Twenty Twelve"
 msgstr "Twenty Twelve"
 
-#: functions.php:454
-msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
-msgstr "Dein Kommentar wartet auf Freigabe. Dies ist eine Vorschau, dein Kommentar wird nach der Moderation sichtbar sein."
+#: inc/block-patterns.php:80
+msgid "—  Albert Einstein"
+msgstr "—  Albert Einstein"
+
+#: functions.php:473
+msgid "Your comment is awaiting moderation. This is a preview; your comment will be visible after it has been approved."
+msgstr "Ihr Kommentar wartet auf Moderation. Dies ist eine Vorschau; Ihr Kommentar wird sichtbar, nachdem er freigegeben wurde."
 
 #. translators: %s: The post title.
 #: comments.php:35
 msgid "One thought on &ldquo;%s&rdquo;"
 msgstr "Ein Gedanke zu &#8222;%s&#8220;"
+
+#: functions.php:74
+msgid "Blue"
+msgstr "Blau"
 
 #: functions.php:94
 msgid "White"
@@ -43,10 +54,6 @@ msgstr "Mittelgrau"
 #: functions.php:79
 msgid "Dark Gray"
 msgstr "Dunkelgrau"
-
-#: functions.php:74
-msgid "Blue"
-msgstr "Blau"
 
 #. Template Name of the theme
 msgid "Full-width Page Template, No Sidebar"
@@ -101,110 +108,116 @@ msgstr "&larr; Zurück"
 #. 5: Image height in pixels, 6: Post parent permalink, 7: Post parent title,
 #. 8: Post parent title.
 #: image.php:31
-msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>."
-msgstr "<span class=\"meta-prep meta-prep-entry-date\">Veröffentlicht am </span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> bei <a href=\"%3$s\" title=\"Originalgrösse anzeigen\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Zurück zu %7$s\" rel=\"gallery\">%8$s</a>."
+msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Go to %7$s\" rel=\"gallery\">%8$s</a>."
+msgstr "<span class=\"meta-prep meta-prep-entry-date\">Veröffentlicht </span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> am <a href=\"%3$s\" title=\"Link zum Bild in Originalgröße\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Weiter zu %7$s\" rel=\"gallery\">%8$s</a>."
 
 #: header.php:45
 msgid "Skip to content"
-msgstr "Springe zum Inhalt"
+msgstr "Zum Inhalt springen"
 
 #: header.php:44
 msgid "Menu"
 msgstr "Menü"
 
 #. translators: 3: Date, 4: Author display name.
-#: functions.php:530
+#: functions.php:547
 msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr "Dieser Beitrag wurde<span class=\"by-author\"> von %4$s</span> am %3$s veröffentlicht."
 
 #. translators: 1: Category name, 3: Date, 4: Author display name.
-#: functions.php:527
+#: functions.php:544
 msgid "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr "Dieser Beitrag wurde am %3$s<span class=\"by-author\"> von %4$s</span> unter %1$s veröffentlicht."
 
 #. translators: 1: Category name, 2: Tag name, 3: Date, 4: Author display name.
-#: functions.php:524
+#: functions.php:541
 msgid "This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author\"> by %4$s</span>."
 msgstr "Dieser Beitrag wurde am %3$s<span class=\"by-author\"> von %4$s</span> in %1$s veröffentlicht. Schlagworte: %2$s."
 
 #. translators: %s: Author display name.
-#: functions.php:518
+#: functions.php:535
 msgid "View all posts by %s"
-msgstr "Zeige alle Beiträge von %s"
+msgstr "Alle Beiträge von %s anzeigen"
 
 #. translators: Used between list items, there is a space after the comma.
-#: functions.php:501 functions.php:504
+#: functions.php:397
 msgid ", "
 msgstr ", "
 
-#: functions.php:473
+#: functions.php:492
 msgid "Reply"
 msgstr "Antworten"
 
-#: functions.php:452
+#: functions.php:471
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
 #. translators: 1: Date, 2: Time.
-#: functions.php:444
+#: functions.php:463
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
 
-#: functions.php:437
+#: functions.php:456
 msgid "Post author"
 msgstr "Beitragsautor"
 
-#: functions.php:421
+#: functions.php:440
 msgid "(Edit)"
 msgstr "(Bearbeiten)"
 
-#: functions.php:421
+#: functions.php:440
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: functions.php:395
+#: functions.php:414
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Neuere Beiträge <span class=\"meta-nav\">&rarr;</span>"
 
-#: functions.php:394
+#: functions.php:413
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Beiträge"
 
-#: single.php:23 functions.php:393
+#: functions.php:412 single.php:23
 msgid "Post navigation"
 msgstr "Beitrags-Navigation"
 
-#: functions.php:370
+#: functions.php:375
 msgid "Second Front Page Widget Area"
-msgstr "Zweiter Startseiten Widget Bereich"
+msgstr "Zweiter Startseiten Widget-Bereich"
 
-#: functions.php:360 functions.php:372
+#: functions.php:365 functions.php:377
 msgid "Appears when using the optional Front Page template with a page set as Static Front Page"
 msgstr "Erscheint, wenn das optionale Startseiten Template verwendet wird und die Seite als statische Startseite definiert wurde."
 
-#: functions.php:358
+#: functions.php:363
 msgid "First Front Page Widget Area"
 msgstr "Erster Startseiten Widget Bereich"
 
-#: functions.php:348
+#: functions.php:353
 msgid "Appears on posts and pages except the optional Front Page template, which has its own widgets"
 msgstr "Erscheint auf allen Beitragsseiten und statischen Seiten außer dem optionalen Startseitetemplate, welches eigene Widgets hat."
 
-#: functions.php:346
+#: functions.php:351
 msgid "Main Sidebar"
 msgstr "Haupt-Seitenleiste"
 
 #. translators: %s: Page number.
-#: functions.php:314
+#: functions.php:319
 msgid "Page %s"
 msgstr "Seite %s"
 
-#: functions.php:159
+#. translators: To add an additional Open Sans character subset specific to
+#. your language, translate this to 'greek', 'cyrillic' or 'vietnamese'. Do not
+#. translate into your own language.
+#: functions.php:164
 msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
 msgid "no-subset"
 msgstr "no-subset"
 
-#: functions.php:152
+#. translators: If there are characters in your language that are not supported
+#. by Open Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:157
 msgctxt "Open Sans font: on or off"
 msgid "on"
 msgstr "on"
@@ -231,15 +244,15 @@ msgstr "Zeige alle Beiträge von %s <span class=\"meta-nav\">&rarr;</span>"
 msgid "Featured post"
 msgstr "Hervorgehobener Beitrag"
 
-#: content-page.php:24 image.php:124 content.php:50
+#: content-page.php:24 content.php:50 image.php:124
 msgid "Pages:"
 msgstr "Seiten:"
 
-#: index.php:63 content-none.php:17
+#: content-none.php:17 index.php:63
 msgid "Apologies, but no results were found. Perhaps searching will help find a related post."
 msgstr "Bedaure, aber es wurden keine Ergebnisse gefunden. Möglicherweise hilft die Suchfunktion passende Beiträge zu finden."
 
-#: index.php:59 search.php:42 content-none.php:13
+#: content-none.php:13 index.php:59 search.php:42
 msgid "Nothing Found"
 msgstr "Es konnte nichts gefunden werden."
 
@@ -247,35 +260,35 @@ msgstr "Es konnte nichts gefunden werden."
 msgid "Link"
 msgstr "Link"
 
-#: content-aside.php:29 content-status.php:43 content-image.php:26
-#: content-link.php:27 content-page.php:31 content-quote.php:26 image.php:42
-#: functions.php:464 content.php:60
+#: content-aside.php:29 content-image.php:26 content-link.php:27
+#: content-page.php:31 content-quote.php:26 content-status.php:43
+#: content.php:60 functions.php:483 image.php:42
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: content-aside.php:26 content-status.php:40 content-image.php:23
-#: content-link.php:24 content-quote.php:23 content.php:35
+#: content-aside.php:26 content-image.php:23 content-link.php:24
+#: content-quote.php:23 content-status.php:40 content.php:35
 msgid "% Replies"
 msgstr "% Antworten"
 
-#: content-aside.php:26 content-status.php:40 content-image.php:23
-#: content-link.php:24 content-quote.php:23 content.php:35
+#: content-aside.php:26 content-image.php:23 content-link.php:24
+#: content-quote.php:23 content-status.php:40 content.php:35
 msgid "1 Reply"
 msgstr "1 Antwort"
 
-#: content-aside.php:26 content-status.php:40 content-image.php:23
-#: content-link.php:24 content-quote.php:23 content.php:35
+#: content-aside.php:26 content-image.php:23 content-link.php:24
+#: content-quote.php:23 content-status.php:40 content.php:35
 msgid "Leave a reply"
 msgstr "Schreibe eine Antwort"
 
 #. translators: %s: Post title.
-#: content-aside.php:11 content-status.php:11 content-link.php:11
-#: content-quote.php:11
+#: content-aside.php:11 content-link.php:11 content-quote.php:11
+#: content-status.php:11
 msgid "Permalink to %s"
 msgstr "Permalink zu %s"
 
-#: content-aside.php:18 content-status.php:34 content-image.php:13
-#: content-link.php:17 content-quote.php:16 content.php:46
+#: content-aside.php:18 content-image.php:13 content-link.php:17
+#: content-quote.php:16 content-status.php:34 content.php:46
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Weiterlesen <span class=\"meta-nav\">&rarr;</span>"
 
@@ -295,7 +308,7 @@ msgstr "&larr; Ältere Kommentare"
 msgid "Comment navigation"
 msgstr "Kommentar-Navigation"
 
-#. translators: %1$s: The number of comments. %2$s: The post title.
+#. translators: 1: The number of comments, 2: The post title.
 #: comments.php:41
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
@@ -307,9 +320,9 @@ msgstr[1] "%1$s Gedanken zu &#8222;%2$s&#8220;"
 msgid "Category Archives: %s"
 msgstr "Archiv der Kategorie: %s"
 
-#. translators: %s: Author display name.
 #. translators: Author display name.
-#: content.php:77 author.php:74
+#. translators: %s: Author display name.
+#: author.php:74 content.php:77
 msgid "About %s"
 msgstr "Über %s"
 
@@ -359,13 +372,16 @@ msgstr "Ups, diesen Inhalt gibt es wohl nicht."
 
 #. Author URI of the theme
 #: footer.php:21
+#, gp-priority: low
 msgid "https://wordpress.org/"
 msgstr "https://de.wordpress.org/"
 
 #. Author of the theme
+#, gp-priority: low
 msgid "the WordPress team"
 msgstr "WordPress-Team"
 
 #. Theme URI of the theme
+#, gp-priority: low
 msgid "https://wordpress.org/themes/twentytwelve/"
 msgstr "https://de.wordpress.org/themes/twentytwelve/"

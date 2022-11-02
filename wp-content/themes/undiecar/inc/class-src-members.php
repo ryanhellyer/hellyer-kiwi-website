@@ -15,11 +15,50 @@ class SRC_Members extends SRC_Core {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		add_action( 'init',                array( $this, 'unsubscribe' ) );
 		add_action( 'init',                array( $this, 'save' ) );
 		add_filter( 'init',                array( $this, 'member_template' ), 99 );
 		add_filter( 'get_avatar',          array( $this, 'avatar_filter' ) , 1 , 5 );
 		add_filter( 'get_avatar_url',      array( $this, 'custom_avatar' ), 1 , 5 );
 		add_shortcode( 'undiecar_drivers', array( $this, 'display_driver_table' ) );
+	}
+
+	public function unsubscribe() {
+
+		if ( '/member/' === substr( $_SERVER['REQUEST_URI'], 0, 8 ) ) {
+
+			$chunks      = explode( '/', $_SERVER['REQUEST_URI'] );
+			$driver_slug = $chunks[2];
+			$query_var   = str_replace( '?', '', $chunks[3] );
+			$decoded     = base64_decode( $query_var );
+			$options     = explode( '|', $decoded );
+			$driver_name = $options[0];
+			$option      = $options[1];
+
+			if ( 'receive_notifications' === $option ) {
+				$member = get_user_by( 'login', $driver_slug );
+				if ( is_object( $member ) ) {
+					$member_id = $member->ID;
+					update_user_meta( $member_id, 'receive_notifications', 'no' );
+				}
+
+				wp_safe_redirect( home_url() . '/unsubscribed/', 302 );
+				die;
+			}
+
+			if ( 'receive_less_notifications' === $option ) {
+				$member = get_user_by( 'login', $driver_slug );
+				if ( is_object( $member ) ) {
+					$member_id = $member->ID;
+					update_user_meta( $member_id, 'receive_less_notifications', 'yes' );
+				}
+
+				wp_safe_redirect( home_url() . '/less-notifications/', 302 );
+				die;
+			}
+
+		}
+
 	}
 
 	/**
@@ -236,6 +275,14 @@ class SRC_Members extends SRC_Core {
 			}
 			update_user_meta( $member_id, 'receive_notifications', $receive_notifications );
 
+			// Process checkbox
+			if ( isset( $_POST['receive-less-notifications'] ) ) {
+				$receive_less_notifications = 'yes';
+			} else {
+				$receive_less_notifications = 'no';
+			}
+			update_user_meta( $member_id, 'receive_less_notifications', $receive_less_notifications );
+
 			// Set the password
 			if ( isset( $_POST['password'] ) && '' !== $_POST['password'] ) {
 				$password = $_POST['password'];
@@ -407,7 +454,11 @@ class SRC_Members extends SRC_Core {
 				$driver_id = $driver->ID;
 
 				if ( 'no' !== get_user_meta( $driver_id, 'receive_notifications', true ) ) {
+
 					$drivers_to_notify[ $driver_slug ] = $driver_id;
+					if ( 'yes' !== get_user_meta( $driver_id, 'receive_less_notifications', true ) ) {
+						$drivers_to_rarely_notify[ $driver_slug ] = $driver_id;
+					}
 				}
 
 				$drivers[ $driver_slug ] = $driver_id;
@@ -452,49 +503,18 @@ class SRC_Members extends SRC_Core {
 		';
 
 		if ( is_super_admin() ) {
-			$messages = 'Iberia,Brazil';
 
-			$drivers_list = '';
-			$number = 0;
-			foreach ( $drivers_to_notify as $driver_slug => $driver_id )  {
-
-				$remove_clubs = explode( ',', $messages );
-				foreach ( $remove_clubs as $club ) {
-					if ( $club === get_user_meta( $driver_id, 'club', true ) ) {
-						$remove = true;
-					}
-				}
-
-				if (
-					(
-						'banned' != get_user_meta( $driver_id, 'season', true )
-						&&
-						! isset( $remove )
-						&&
-						'someunwanteddriver' !== $driver_id
-						&&
-						'someunwanteddriver' !== $driver_id
-					)
-					||
-					'josu-solaguren' === $driver_slug
-					||
-					'kleber-bottaro-moura' === $driver_slug
-
-				) {
-
-					$driver = get_userdata( $driver_id );
-					$driver_name = $driver->display_name;
-					$drivers_list .= $driver_name . ',';
-					$number++;
-
-				}
-
-				unset( $remove );
-
-			}
-
+//$drivers_to_rarely_notify
+			$drivers_list = $this->drivers_to_notify( $drivers_to_notify );
+			$number = count( explode( ',', $drivers_list ) );
 			$content .= '<h3>Drivers to message. Total count ' . esc_html( $number ) . '</h3>';
+			$content .= '<textarea style="font-family:monospace;font-size:12px;margin:20px 0;height:100px;">';
+			$content .= $drivers_list;
+			$content .= '</textarea>';
 
+			$drivers_list = $this->drivers_to_notify( $drivers_to_rarely_notify );
+			$number = count( explode( ',', $drivers_list ) );
+			$content .= '<h3>Drivers to regularly message. Total count ' . esc_html( $number ) . '</h3>';
 			$content .= '<textarea style="font-family:monospace;font-size:12px;margin:20px 0;height:100px;">';
 			$content .= $drivers_list;
 			$content .= '</textarea>';
@@ -525,6 +545,48 @@ class SRC_Members extends SRC_Core {
 		}
 
 		return $avatar_url;
+	}
+
+	public function drivers_to_notify( $drivers ) {
+		// Get drivers to message.
+		$messages = 'Iberia,Brazil';
+		$drivers_list = '';
+
+		foreach ( $drivers as $driver_slug => $driver_id )  {
+
+			$remove_clubs = explode( ',', $messages );
+			foreach ( $remove_clubs as $club ) {
+				if ( $club === get_user_meta( $driver_id, 'club', true ) ) {
+					$remove = true;
+				}
+			}
+
+			if (
+				(
+					'banned' != get_user_meta( $driver_id, 'season', true )
+					&&
+					! isset( $remove )
+					&&
+					'someunwanteddriver' !== $driver_id
+					&&
+					'someunwanteddriver' !== $driver_id
+				)
+				||
+				'josu-solaguren' === $driver_slug
+				||
+				'kleber-bottaro-moura' === $driver_slug
+
+			) {
+				$driver = get_userdata( $driver_id );
+				$driver_name = $driver->display_name;
+				$drivers_list .= $driver_name . ',';
+			}
+
+			unset( $remove );
+
+		}
+
+		return $drivers_list;
 	}
 
 }
