@@ -293,6 +293,8 @@ window.addEventListener( 'load', function( event ) {
 			}
 		}
 
+		// Strip out page tags.
+		// @todo convert to using regex or some other more logical method.
 		selection = selection.replace( '<page page_number="1" size="A4">', '' );
 		selection = selection.replace( '<page page_number="2" size="A4">', '' );
 		selection = selection.replace( '<page page_number="3" size="A4">', '' );
