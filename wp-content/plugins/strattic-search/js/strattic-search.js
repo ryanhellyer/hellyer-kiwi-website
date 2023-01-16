@@ -7,23 +7,29 @@ window.addEventListener(
 			return;
 		}
 
-		set_body_classes();
-		hide_page_sections();
-		set_content_areas();
+		setTimeout(
+			function() {
 
-		let data = get_local_data();
-		if ( null === data ) {
-			get_index();
-		} else {
-			data = JSON.parse( data );
-			strattic_search = Object.assign( data, strattic_search );
+				set_body_classes();
+				hide_page_sections();
+				set_content_areas();
 
-			strattic_search_engine( strattic_search );
+				let data = get_local_data();
+				if ( null === data ) {
+					get_index();
+				} else {
+					data = JSON.parse( data );
+					strattic_search = Object.assign( data, strattic_search );
 
-			set_taxonomy_form_fields();
-			monitor_form_fields(); // Only start monitoring after index has been collected.
-			show_search_page();
-		}
+					strattic_search_engine( strattic_search );
+
+					set_taxonomy_form_fields();
+					monitor_form_fields(); // Only start monitoring after index has been collected.
+					show_search_page();
+				}
+
+			}, 2000
+		);
 
 		/**
 		 * Get the index.
