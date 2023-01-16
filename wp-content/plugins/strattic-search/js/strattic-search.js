@@ -7,12 +7,12 @@ window.addEventListener(
 			return;
 		}
 
+		set_body_classes();
+		hide_page_sections();
+		set_content_areas();
+
 		setTimeout(
 			function() {
-
-				set_body_classes();
-				hide_page_sections();
-				set_content_areas();
 
 				let data = get_local_data();
 				if ( null === data ) {
