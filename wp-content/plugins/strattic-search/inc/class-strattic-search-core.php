@@ -13,7 +13,7 @@ class Strattic_Search_Core {
 
 	var $request_uri;
 
-	const VERSION_NUMBER = '2.3.36';
+	const VERSION_NUMBER = '2.3.44';
 
 	/**
 	 * Constructor.

@@ -10,7 +10,20 @@ window.addEventListener(
 		set_body_classes();
 		hide_page_sections();
 		set_content_areas();
-		get_index();
+
+		let data = get_local_data();
+		if ( null === data ) {
+			get_index();
+		} else {
+			data = JSON.parse( data );
+			strattic_search = Object.assign( data, strattic_search );
+
+			strattic_search_engine( strattic_search );
+
+			set_taxonomy_form_fields();
+			monitor_form_fields(); // Only start monitoring after index has been collected.
+			show_search_page();
+		}
 
 		/**
 		 * Get the index.
@@ -26,13 +39,16 @@ window.addEventListener(
 			request.setRequestHeader( 'Content-type', 'application/json' );
 			request.onreadystatechange = function() {
 				if ( request.readyState == 4 && request.status == 200 ) {
-					strattic_search = Object.assign( JSON.parse( request.responseText ), strattic_search );
+					const data = request.responseText;
 
+					strattic_search = Object.assign( JSON.parse( data ), strattic_search );
 					strattic_search_engine( strattic_search );
 
 					set_taxonomy_form_fields();
 					monitor_form_fields(); // Only start monitoring after index has been collected.
 					show_search_page();
+
+					save_local_data( data );
 				}
 			};
 
@@ -559,6 +575,24 @@ window.addEventListener(
 			}
 
 			return null;
+		}
+
+		/**
+		 * Save the local data.
+		 * Avoids needing to repeatedly perform AJAX requests to get the search data.
+		 *
+		 * @param object data The data to save.
+		 */
+		function save_local_data( data ) {
+			localStorage.setItem( 'strattic_search_data', data );
+		}
+
+		/**
+		 * Get the local data.
+		 * Avoids needing to repeatedly perform AJAX requests to get the search data.
+		 */
+		function get_local_data() {
+			return localStorage.getItem( 'strattic_search_data' );
 		}
 
 		/**
