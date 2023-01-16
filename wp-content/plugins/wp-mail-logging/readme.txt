@@ -1,11 +1,11 @@
 === WP Mail Logging ===
-Contributors: Wysija, MailPoet, No3x, tripflex
+Contributors: sendlayer, jaredatch, smub, capuderg
 Tags: mail, email, log, logging, email log, debug, smtp, spam, deliverability
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires at least: 5.0
-Tested up to: 5.9
-Stable tag: 1.10.4
+Tested up to: 6.1
+Stable tag: 1.10.5
 
 Log every single email sent by WordPress. Zero configuration. Entirely free.
 
@@ -115,6 +115,10 @@ Yes, directly on <a href="https://github.com/kgjerstad/wp-mail-logging/" rel="no
 3. The Settings
 
 == Changelog ==
+= 1.10.5 - 2022-12-21 =
+- Fixed: automatic email log deletion via Log Rotation settings.
+- Fixed: PHP 8.1 issues.
+
 = 1.10.4 - 2022-01-31 =
 - Improved: reduced zip archive size.
 
