@@ -1,19 +1,16 @@
 === Image Widget ===
-Contributors: theeventscalendar, aguseo, borkweb, bordoni, brianjessee, GeoffBel, geoffgraham, leahkoerper, lucatume, neillmcshea, patriciahillebrandt, vicskf, zbtirrell
+Contributors: theeventscalendar, aguseo, borkweb, bordoni, brianjessee, GeoffBel, leahkoerper, lucatume, neillmcshea, vicskf, zbtirrell
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4BSPTNFFY6AL6
 Tags: widget, image, ad, banner, sidebar
 Requires at least: 3.5
-Tested up to: 5.9.3
-Stable tag: 4.4.8
+Tested up to: 6.2.2
+Stable tag: 4.4.9
 
 A simple image widget that uses the native WordPress media manager to add image widgets to your site.
 
 == Description ==
 
 Image Widget is a simple plugin that uses the native WordPress media manager to add image widgets to your site.
-
-Need to add slideshows, lightboxes, or random images?
-<strong>Check out [Image Widget Plus](https://evnt.is/19mc)!</strong>
 
 = Image Widget Features =
 
@@ -25,24 +22,12 @@ Need to add slideshows, lightboxes, or random images?
 * Versatile - all fields are optional
 * Upload, link to external image, or select an image from your media collection
 * Customize the look & feel with filter hooks or theme overrides
-* Additional features available with [Image Widget Plus](https://evnt.is/19mc)
 
 = Quality You Can Trust =
 
 Image Widget is developed and maintained by [The Events Calendar](https://evnt.is/1aor), the same folks behind [The Events Calendar, Event Tickets, and a full suite of premium plugins](https://evnt.is/19me).
 
 This plugin is actively supported by our team and contributions from community members. If you see a question in the forum you can help with or have a great idea and want to code it up or submit a patch, that would be awesome! Not only will we shower you with praise and thanks, it’s also a good way to get to know us and lead into options for paid work if you freelance.
-
-= Image Widget Plus! =
-
-Image Widget Plus features include:
-
-* Multiple image support
-* Random image
-* Slideshow
-* Lightbox
-
-[Check out Image Widget Plus now!](https://evnt.is/19mg)
 
 = Pull Requests & Translations =
 
@@ -206,9 +191,14 @@ For more info on the philosophy here, check out our [blog post](http://tri.be/de
 
 == Changelog ==
 
-= [4.4.8] 2022-04-06 =
+= [4.4.9] 2022-05-06 =
 
-* Tweak - WordPress compatibility validation.
+* Tweak - Updating WordPress compatibility, tested up to 6.6.2.
+* Tweak - Remove references to Image Widget Plus and Notices.
+
+= [4.4.8] 2022-05-06 =
+
+* Tweak - Updating WordPress compatibility.
 
 = [4.4.7] 2017-11-02 =
 
@@ -496,7 +486,7 @@ Thank you @smurkas, @squigie and @laurie!!!  Special thanks to Cameron Clark fro
 * Tighter integration with the thickbok uploader attributes including caption, description, alignment, and link
 * Tighter image resize preview
 * Add Image link becomes "Change Image" once image has been added
-https://plugins.svn.wordpress.org/the-events-calendar
+
 = 3.0.4 =
 
 * Minor description changes

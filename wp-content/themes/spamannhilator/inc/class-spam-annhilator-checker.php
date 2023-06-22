@@ -20,6 +20,7 @@ if ( isset( $_GET['test'] ) ) {
 class Spam_Annhilator_Checker {
 
 	public $secret_key;
+	public $slug = '';
 
 	/**
 	 * Constructor.

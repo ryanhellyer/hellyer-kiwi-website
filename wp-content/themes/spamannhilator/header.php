@@ -40,7 +40,7 @@ if ( (string) get_the_ID() === get_option( 'page_on_front' ) ) {
 	<h1>Protect Links<?php edit_post_link( '*', ' <sup>', '</sup>' ); ?></h1>
 	<p>Easily block spam from Discord, Telegram and other invite links</p>
 
-    <a href="<?php echo esc_url( home_url( '/login/' ) ); ?>" class="button">Facebook Login</a>
+    <a href="#<?php echo esc_url( home_url( '/login/' ) ); ?>" class="button">Facebook Login (not working)</a>
     <p class="login-instructions">Login with Facebook to create anti-spam invite links</p><?php
 
 } else {

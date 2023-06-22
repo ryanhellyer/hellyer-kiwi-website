@@ -2,14 +2,71 @@
 # This file is distributed under the same license as the Plugins - Disable REST API - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-23 08:29:09+0000\n"
+"PO-Revision-Date: 2023-03-18 15:46:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"X-Generator: GlotPress/4.0.0-alpha.4\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Disable REST API - Development (trunk)\n"
+
+#: classes/disable-rest-api.php:240
+msgid "Allowlist settings saved for this user role."
+msgstr "Erlaubnislisten-Einstellungen für diese Benutzerrolle gespeichert."
+
+#: classes/disable-rest-api.php:234
+msgid "All allowlists have been reset for this user role."
+msgstr "Alle Erlaubnislisten wurden für diese Benutzerrolle zurückgesetzt."
+
+#: classes/disable-rest-api.php:216
+msgid "Invalid user role detected when processing form. No updates have been made."
+msgstr "Bei der Verarbeitung des Formulars wurde eine ungültige Benutzerrolle erkannt. Es wurde keine Aktualisierung vorgenommen."
+
+#: classes/helpers.php:197
+msgid "Unauthenticated"
+msgstr "Nicht authentifiziert"
+
+#: classes/admin.php:88
+msgid "Allow Full REST API Access"
+msgstr "Vollständigen Zugriff auf die REST-API gewähren"
+
+#: classes/admin.php:86
+msgid "Manage REST API Access"
+msgstr "REST-API-Zugriff verwalten"
+
+#: classes/admin.php:83
+msgid "If you choose to manage access for a user role, you will have to come back and add permissions for any new routes later."
+msgstr "Wenn du wählst, den Zugriff für diese Benutzerrolle zu verwalten, musst du später für neue Routen zurückkehren und Berechtigungen hinzufügen."
+
+#: classes/admin.php:81
+msgid "NOTE: New routes may be added in the future by plugins, themes, or WordPress itself."
+msgstr "HINWEIS: Neue Routen werden möglicherweise in der Zukunft von Plugins, Themes oder WordPress selbst hinzugefügt."
+
+#. translators: name of user role
+#: classes/admin.php:77
+msgid "Manage Rules for %s Users"
+msgstr "Regeln für Benutzer mit der Rolle %s verwalten"
+
+#: admin.php:43
+msgid "Are you sure you wish to reset all allowed routes for this user role?"
+msgstr "Bist du sicher, dass du alle erlaubten Routen für diese Benutzerrolle zurücksetzen möchtest?"
+
+#: admin.php:42
+msgid "Reset Allowed List of Routes"
+msgstr "Erlaubnisliste der Routen zurücksetzen"
+
+#: admin.php:14
+msgid "Unauthenticated Users"
+msgstr "Nicht authentifizierte Benutzer"
+
+#: admin.php:13
+msgid "Rules for"
+msgstr "Regeln für"
+
+#. Description of the plugin
+msgid "Disable the use of the REST API on your website to anonymous users. You can optionally enable select endpoints if you wish. Now with support for User Roles!"
+msgstr "Deaktiviere die Benutzung der REST-API auf deiner Website für anonyme Benutzer. Du kannst optional ausgewählte Endpunkte aktivieren, wenn du es wünschst. Jetzt mit Unterstützung für Benutzerrollen!"
 
 #. Author URI of the plugin
 msgid "http://www.binarytemplar.com"
@@ -19,63 +76,43 @@ msgstr "http://www.binarytemplar.com"
 msgid "Dave McHale"
 msgstr "Dave McHale"
 
-#. Description of the plugin
-msgid "Disable the use of the REST API on your website to anonymous users"
-msgstr "Deaktiviert die Verwendungsmöglichkeit der REST-API auf deiner Website für anonyme Benutzer"
-
 #. Plugin URI of the plugin
 msgid "http://www.binarytemplar.com/disable-json-api"
 msgstr "http://www.binarytemplar.com/disable-json-api"
 
-#: classes/disable-rest-api.php:207
+#: classes/disable-rest-api.php:276
 msgid "DRA: Only authenticated users can access the REST API."
 msgstr "DRA: Nur authentifizierte Benutzer können auf die REST-API zugreifen."
 
-#: classes/disable-rest-api.php:183
-msgid "Whitelist settings saved."
-msgstr "Whitelist-Einstellungen wurden gespeichert."
-
-#: classes/disable-rest-api.php:176
-msgid "All whitelists have been removed."
-msgstr "Alle Whitelists wurden entfernt."
-
-#: classes/disable-rest-api.php:131
+#: classes/disable-rest-api.php:165
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: classes/disable-rest-api.php:112
+#: classes/disable-rest-api.php:143
 msgid "Disable REST API Settings"
 msgstr "Disable REST API - Einstellungen"
 
-#: admin.php:69
+#: classes/admin.php:31
 msgid "On this website, the REST API root is %s"
 msgstr "Das Stammverzeichnis der REST-API auf dieser Website ist %s"
 
-#: admin.php:65
+#: classes/admin.php:27
 msgid "REST API ROOT"
 msgstr "REST API ROOT"
 
-#: admin.php:37
-msgid "Are you sure you wish to clear all whitelisted routes?"
-msgstr "Bist du sicher, dass du alle Whitelist-Regeln löschen möchtest?"
-
-#: admin.php:36
-msgid "Reset Whitelisted Routes"
-msgstr "Whitelist-Routen zurücksetzen"
-
-#: admin.php:26
+#: admin.php:7
 msgid "Checking a box merely restores default functionality to an endpoint. Other authentication and/or permissions may still be required for access, or other themes/plugins may also affect access to those endpoints."
 msgstr "Das Auswählen eines Auswahlkästchens stellt lediglich die Standardfunktionalität eines Endpunkts wieder her. Andere Authentifizierungen und/oder Berechtigungen können immer noch für den Zugriff erforderlich sein, oder andere Themes/Plugins können den Zugriff auf diese Endpunkte ebenfalls beeinflussen."
 
-#: admin.php:26
+#: admin.php:7
 msgid "IMPORTANT NOTE:"
 msgstr "WICHTIGER HINWEIS:"
 
-#: admin.php:24
+#: admin.php:5
 msgid "By default, this plugin ensures that the entire REST API is protected from non-authenticated users. You may use this page to specify which endpoints should be allowed to behave as normal."
 msgstr "Standardmäßig stellt dieses Plugin sicher, dass die gesamte REST-API vor nicht authentifizierten Benutzern geschützt ist. Auf dieser Seite kannst du festlegen, welche Endpunkte sich normal verhalten dürfen."
 
 #. Plugin Name of the plugin
-#: admin.php:22 classes/disable-rest-api.php:112
+#: admin.php:2 classes/disable-rest-api.php:144
 msgid "Disable REST API"
 msgstr "Disable REST API"

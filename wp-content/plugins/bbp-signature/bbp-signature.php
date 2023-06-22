@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: bbP Signature
-Plugin URI: http://arjunsk.in/bbp-signature/
+Plugin URI: http://rewweb.co.uk/bbp-signature/
 Description: This plugin allows users to add a signature below their topics and replies with support for BuddyPress.
-Author: Arjun S Kumar
-Version: 1.3
+Author: Arjun S Kumar, Robin W
+Version: 1.4
 Author URI: http://arjunsk.in/
 */
 

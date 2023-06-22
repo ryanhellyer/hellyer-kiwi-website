@@ -1,11 +1,10 @@
 === bbP Signature ===
 Contributors: arjunskumar, robinw
-Donate link: http://arjunsk.in/donate/
+Donate link: http://www.rewweb.co.uk/donate/
 Tags: bbpress, forums, discussion, custom, signature
-Requires at least: WP 3.1.1 / bbPress 2.0 / BuddyPress 1.5+
-Tested up to: 5.6
+Tested up to: 6.2
 
-Stable tag: 1.3
+Stable tag: 1.4
 
 This plugin adds user signature support to bbPress 2.0. 
 
@@ -25,7 +24,7 @@ Note: Requires the [bbPress plugin](http://wordpress.org/extend/plugins/bbpress/
 == Other Notes ==
 
 = Donate =
-You may donate by going [here](http://arjunsk.in/donate/).
+You may donate by going [here](http://www.rewweb.co.uk/donate/).
 
 = Todo =
  * Options page
