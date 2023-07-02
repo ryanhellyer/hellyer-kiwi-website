@@ -1,5 +1,5 @@
 <?php
-
+/*
 if ( is_super_admin() ) {
 	require( 'tools/get-names-from-json.php' );
 	require( 'tools/modify-results.php' );
@@ -13,6 +13,7 @@ if ( is_super_admin() ) {
 	require( 'tools/auto-unsubscribe-from-frequent-messages.php' );
 	require( 'tools/new-pms.php' );
 }
+*/
 
 add_option( 'src_featured_page', '' );
 add_option( 'src-season', '' );

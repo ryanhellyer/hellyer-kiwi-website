@@ -1,5 +1,7 @@
 <?php
 
+return;
+
 //   ?all  if you want ALL drivers, regardless of if they're already registered.
 
 /* GET SESSION IDEAS VIA JSON FROM http://members.iracing.com/memberstats/member/GetSeriesRaceResults
