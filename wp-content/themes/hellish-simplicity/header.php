@@ -10,6 +10,16 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2481610-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2481610-3');
+</script>
+
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
 <link rel="profile" href="http://gmpg.org/xfn/11" />
