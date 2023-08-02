@@ -1478,10 +1478,20 @@ $results[6] = $aron;
 				}
 
 				$html .= '<td>' . $driver_names . '</td>';
+
+				if ( ! isset( $result['start_pos'] ) ) {
+					$result['start_pos'] = 1;
+				}
 				$html .= '<td>' . esc_html( $result['start_pos'] ) . '</td>';
+				if ( ! isset( $result['car_no'] ) ) {
+					$result['car_no'] = 1;
+				}
 				$html .= '<td>' . esc_html( $result['car_no'] ) . '</td>';
 
 				if ( isset( $multiple_car_types ) ) {
+					if ( ! isset( $result['car'] ) ) {
+						$result['car'] = 1;
+					}
 					$html .= '<td>' . esc_html( $result['car'] ) . '</td>';
 				}
 
@@ -1741,6 +1751,9 @@ $results[6] = $aron;
 		$exploded = explode( ':', $time );
 		$count = count( $exploded ) - 1;
 		if ( isset( $exploded[ $count ] ) ) {
+			$exploded[ $count ] = absint( $exploded[ $count ] );
+			$count = absint( $count );
+			$round = absint( $round );
 			$decimal = round( $exploded[ $count ], $round );
 			$exploded[$count] = $decimal;
 
