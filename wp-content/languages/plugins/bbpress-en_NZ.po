@@ -2,22 +2,62 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-20 08:29:27+0000\n"
+"PO-Revision-Date: 2023-09-04 02:29:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"X-Generator: GlotPress/4.0.0-alpha.7\n"
 "Language: en_NZ\n"
 "Project-Id-Version: Plugins - bbPress - Stable (latest release)\n"
+
+#: includes/extend/buddypress/notifications.php:89
+msgid "You have %1$d new replies to %2$s"
+msgstr "You have %1$d new replies to %2$s"
+
+#: includes/admin/settings.php:856
+msgid "This includes roles, passwords, and email addresses."
+msgstr "This includes roles, passwords, and email addresses."
+
+#: includes/admin/settings.php:855
+msgid "Allow Moderators and Keymasters to edit users"
+msgstr "Allow Moderators and Keymasters to edit users"
+
+#: includes/admin/settings.php:841
+msgid "This does not include the ability to edit users."
+msgstr "This does not include the ability to edit users."
+
+#: includes/users/signups.php:214
+msgid "<strong>Error</strong>: Invalid role."
+msgstr "<strong>Error</strong>: Invalid role."
+
+#: includes/users/signups.php:209
+msgid "<strong>Error</strong>: Empty role."
+msgstr "<strong>Error</strong>: Empty role."
 
 #: bbpress.php:798
 msgid "bbPress User Activity"
 msgstr "bbPress User Activity"
 
+#: includes/extend/buddypress/groups.php:442
+msgid "<strong>Error</strong>: Reply To is invalid."
+msgstr "<strong>Error</strong>: Reply To is invalid."
+
+#: includes/extend/buddypress/groups.php:379
+msgid "<strong>Error</strong>: Forum ID is invalid."
+msgstr "<strong>Error</strong>: Forum ID is invalid."
+
 #: includes/admin/settings.php:2054
 msgid "Edit slug"
 msgstr "Edit slug"
+
+#: includes/replies/functions.php:1581
+msgid "<strong>Error</strong>: There was a problem unapproving the reply."
+msgstr "<strong>Error</strong>: There was a problem unapproving the reply."
+
+#: includes/replies/functions.php:1581
+msgid "<strong>Error</strong>: There was a problem approving the reply."
+msgstr "<strong>Error</strong>: There was a problem approving the reply."
 
 #: includes/admin/topics.php:738
 msgid "Topic \"%1$s\" successfully unstuck."
@@ -42,6 +82,10 @@ msgstr "Counting the number of pending, spammed, and trashed replies in each top
 #: includes/admin/tools/repair.php:48
 msgid "Some of these tools create substantial database overhead. Use caution when running more than 1 repair at a time."
 msgstr "Some of these tools create substantial database overhead. Use caution when running more than 1 repair at a time."
+
+#: includes/users/engagements.php:616
+msgid "<strong>Error</strong>: You do not have permission to edit favorites for that user."
+msgstr "<strong>Error</strong>: You do not have permission to edit favourites for that user."
 
 #: templates/default/bbpress/form-forum.php:52
 #: templates/default/bbpress/form-reply.php:48
@@ -191,10 +235,26 @@ msgstr "Filter topics list"
 msgid "View Topics"
 msgstr "View Topics"
 
+#: includes/topics/functions.php:2036
+msgid "<strong>Error</strong>: This topic could not be found or no longer exists."
+msgstr "<strong>Error</strong>: This topic could not be found or no longer exists."
+
 #: includes/topics/functions.php:1879
 msgctxt "Unapprove the topic"
 msgid "Pending"
 msgstr "Pending"
+
+#: includes/replies/functions.php:1224 includes/topics/functions.php:1360
+msgid "<strong>Error</strong>: A reply ID is required."
+msgstr "<strong>Error</strong>: A reply ID is required."
+
+#: includes/topics/functions.php:734
+msgid "<strong>Error</strong>: The following problem(s) have been found with your topic:"
+msgstr "<strong>Error</strong>: The following problem(s) have been found with your topic:"
+
+#: includes/topics/functions.php:419
+msgid "<strong>Error</strong>: The topic was not created."
+msgstr "<strong>Error</strong>: The topic was not created."
 
 #: includes/core/update.php:215
 msgid "And this is the very first reply."
@@ -715,6 +775,10 @@ msgstr "Forum Tools"
 #: includes/admin/settings.php:1799
 msgid "Ready to go."
 msgstr "Ready to go."
+
+#: includes/admin/settings.php:1798
+msgid "Previously stopped at step %1$d of %2$d"
+msgstr "Previously stopped at step %1$d of %2$d"
 
 #: includes/admin/settings.php:1793
 msgid "Resume"
@@ -1713,6 +1777,22 @@ msgctxt "Publish the reply"
 msgid "Publish"
 msgstr "Publish"
 
+#: includes/replies/functions.php:1499
+msgid "<strong>Error</strong>: This reply could not be found or no longer exists."
+msgstr "<strong>Error</strong>: This reply could not be found or no longer exists."
+
+#: includes/replies/functions.php:1277 includes/topics/functions.php:1413
+msgid "<strong>Error</strong>: A topic ID is required."
+msgstr "<strong>Error</strong>: A topic ID is required."
+
+#: includes/replies/functions.php:781
+msgid "<strong>Error</strong>: The following problem(s) have been found with your reply:"
+msgstr "<strong>Error</strong>: The following problem(s) have been found with your reply:"
+
+#: includes/replies/functions.php:495
+msgid "<strong>Error</strong>: The reply was not created."
+msgstr "<strong>Error</strong>: The reply was not created."
+
 #: includes/common/template.php:2744
 msgid "Your Profile"
 msgstr "Your Profile"
@@ -1783,6 +1863,14 @@ msgstr[1] "%s years"
 #: includes/common/widgets.php:651
 msgid "A list of recent topics, sorted by: newness, popularity, or recent replies."
 msgstr "A list of recent topics, sorted by: newness, popularity, or recent replies."
+
+#: includes/common/functions.php:562
+msgid "<strong>Error</strong>: Invalid email address."
+msgstr "<strong>Error</strong>: Invalid email address."
+
+#: includes/common/functions.php:556
+msgid "<strong>Error</strong>: Invalid author name."
+msgstr "<strong>Error</strong>: Invalid author name."
 
 #: includes/common/functions.php:402 includes/common/functions.php:460
 msgid "Pending: %s"
@@ -1871,6 +1959,25 @@ msgstr "View Forums"
 msgid "Add New"
 msgstr "Add New"
 
+#: includes/forums/functions.php:607
+msgid "<strong>Error</strong>: The following problem(s) have been found with your forum:"
+msgstr "<strong>Error</strong>: The following problem(s) have been found with your forum:"
+
+#: includes/forums/functions.php:368
+msgid "<strong>Error</strong>: The forum was not created."
+msgstr "<strong>Error</strong>: The forum was not created."
+
+#: includes/forums/functions.php:364 includes/replies/functions.php:491
+#: includes/topics/functions.php:415
+msgid "<strong>Error</strong>: The following problem(s) occurred: %s"
+msgstr "<strong>Error</strong>: The following problem(s) occurred: %s"
+
+#: includes/forums/functions.php:170 includes/forums/functions.php:470
+#: includes/replies/functions.php:284 includes/replies/functions.php:618
+#: includes/topics/functions.php:163 includes/topics/functions.php:550
+msgid "<strong>Error</strong>: Your title is too long."
+msgstr "<strong>Error</strong>: Your title is too long."
+
 #: includes/users/template.php:2407
 msgid "Moderators:"
 msgstr "Moderators:"
@@ -1883,6 +1990,18 @@ msgstr "There is a pending email address change to %1$s. %2$s"
 msgctxt "Dismiss pending user email address change"
 msgid "Cancel"
 msgstr "Cancel"
+
+#: includes/users/engagements.php:902
+msgid "<strong>Error</strong>: There was a problem subscribing."
+msgstr "<strong>Error</strong>: There was a problem subscribing."
+
+#: includes/users/engagements.php:900
+msgid "<strong>Error</strong>: There was a problem unsubscribing."
+msgstr "<strong>Error</strong>: There was a problem unsubscribing."
+
+#: includes/users/engagements.php:849
+msgid "<strong>Error</strong>: Not found. What are you subscribing/unsubscribing to?"
+msgstr "<strong>Error</strong>: Not found. What are you subscribing/unsubscribing to?"
 
 #: includes/users/functions.php:453
 msgid "[%s] New Email Address"
@@ -1919,6 +2038,18 @@ msgstr ""
 "Regards,\n"
 "The %4$s Team\n"
 "%5$s"
+
+#: includes/users/functions.php:406
+msgid "<strong>Error</strong>: An error occurred while updating your email address."
+msgstr "<strong>Error</strong>: An error occurred while updating your email address."
+
+#: includes/users/functions.php:226 includes/users/functions.php:343
+msgid "<strong>Error</strong>: That email address is already in use."
+msgstr "<strong>Error</strong>: That email address is already in use."
+
+#: includes/users/functions.php:208 includes/users/functions.php:220
+msgid "<strong>Error</strong>: That is not a valid email address."
+msgstr "<strong>Error</strong>: That is not a valid email address."
 
 #: includes/admin/settings.php:214 includes/admin/settings.php:453
 #: includes/admin/tools/common.php:455 includes/admin/topics.php:420
@@ -2738,6 +2869,30 @@ msgstr "Inactive"
 msgid "Guest"
 msgstr "Guest"
 
+#: includes/topics/functions.php:2126
+msgid "<strong>Error</strong>: There was a problem approving the topic."
+msgstr "<strong>Error</strong>: There was a problem approving the topic."
+
+#: includes/users/engagements.php:659
+msgid "<strong>Error</strong>: There was a problem favoriting that topic."
+msgstr "<strong>Error</strong>: There was a problem favouriting that topic."
+
+#: includes/topics/functions.php:2127
+msgid "<strong>Error</strong>: There was a problem unapproving the topic."
+msgstr "<strong>Error</strong>: There was a problem unapproving the topic."
+
+#: includes/users/engagements.php:657
+msgid "<strong>Error</strong>: There was a problem removing that topic from favorites."
+msgstr "<strong>Error</strong>: There was a problem removing that topic from favourites."
+
+#: includes/users/engagements.php:857
+msgid "<strong>Error</strong>: You do not have permission to edit subscriptions of that user."
+msgstr "<strong>Error</strong>: You do not have permission to edit subscriptions of that user."
+
+#: includes/users/engagements.php:608
+msgid "<strong>Error</strong>: No topic was found. Which topic are you marking/unmarking as favorite?"
+msgstr "<strong>Error</strong>: No topic was found. Which topic are you marking/unmarking as favourite?"
+
 #: includes/topics/template.php:3394
 msgid "View Topic Tag"
 msgstr "View Topic Tag"
@@ -2860,6 +3015,47 @@ msgstr "Create New Topic"
 msgid "New Topic"
 msgstr "New Topic"
 
+#: includes/topics/functions.php:2216
+msgid "<strong>Error</strong>: There was a problem deleting the topic."
+msgstr "<strong>Error</strong>: There was a problem deleting the topic."
+
+#: includes/topics/functions.php:2207
+msgid "<strong>Error</strong>: There was a problem untrashing the topic."
+msgstr "<strong>Error</strong>: There was a problem untrashing the topic."
+
+#: includes/topics/functions.php:2196
+msgid "<strong>Error</strong>: There was a problem trashing the topic."
+msgstr "<strong>Error</strong>: There was a problem trashing the topic."
+
+#: includes/topics/functions.php:2183
+msgid "<strong>Error</strong>: There was a problem marking the topic as spam."
+msgstr "<strong>Error</strong>: There was a problem marking the topic as spam."
+
+#: includes/topics/functions.php:2182
+msgid "<strong>Error</strong>: There was a problem unmarking the topic as spam."
+msgstr "<strong>Error</strong>: There was a problem unmarking the topic as spam."
+
+#: includes/topics/functions.php:2164
+msgid "<strong>Error</strong>: There was a problem sticking the topic."
+msgstr "<strong>Error</strong>: There was a problem sticking the topic."
+
+#: includes/topics/functions.php:2163
+msgid "<strong>Error</strong>: There was a problem unsticking the topic."
+msgstr "<strong>Error</strong>: There was a problem unsticking the topic."
+
+#: includes/topics/functions.php:2145
+msgid "<strong>Error</strong>: There was a problem opening the topic."
+msgstr "<strong>Error</strong>: There was a problem opening the topic."
+
+#: includes/topics/functions.php:2144
+msgid "<strong>Error</strong>: There was a problem closing the topic."
+msgstr "<strong>Error</strong>: There was a problem closing the topic."
+
+#: includes/replies/functions.php:1505 includes/topics/functions.php:291
+#: includes/topics/functions.php:594 includes/topics/functions.php:2042
+msgid "<strong>Error</strong>: You do not have permission to do that."
+msgstr "<strong>Error</strong>: You do not have permission to do that."
+
 #: includes/topics/functions.php:1898
 msgctxt "Make topic super sticky"
 msgid "Super Sticky"
@@ -2899,6 +3095,127 @@ msgstr "Closed"
 msgctxt "Open the topic"
 msgid "Open"
 msgstr "Open"
+
+#: includes/topics/functions.php:1840
+msgid "<strong>Error</strong>: The following problem(s) have been found while deleting the tag: %s"
+msgstr "<strong>Error</strong>: The following problem(s) have been found while deleting the tag: %s"
+
+#: includes/topics/functions.php:1831
+msgid "<strong>Error</strong>: You do not have permission to delete the topic tags."
+msgstr "<strong>Error</strong>: You do not have permission to delete the topic tags."
+
+#: includes/topics/functions.php:1796
+msgid "<strong>Error</strong>: The tags which are being merged can not be the same."
+msgstr "<strong>Error</strong>: The tags which are being merged can not be the same."
+
+#: includes/topics/functions.php:1787 includes/topics/functions.php:1808
+msgid "<strong>Error</strong>: The following problem(s) have been found while merging the tags: %s"
+msgstr "<strong>Error</strong>: The following problem(s) have been found while merging the tags: %s"
+
+#: includes/topics/functions.php:1747
+msgid "<strong>Error</strong>: The following problem(s) have been found while updating the tag: %s"
+msgstr "<strong>Error</strong>: The following problem(s) have been found while updating the tag: %s"
+
+#: includes/topics/functions.php:1732 includes/topics/functions.php:1776
+msgid "<strong>Error</strong>: You need to enter a tag name."
+msgstr "<strong>Error</strong>: You need to enter a tag name."
+
+#: includes/topics/functions.php:1726 includes/topics/functions.php:1770
+msgid "<strong>Error</strong>: You do not have permission to edit the topic tags."
+msgstr "<strong>Error</strong>: You do not have permission to edit the topic tags."
+
+#: includes/topics/functions.php:1708
+msgid "<strong>Error</strong>: The following problem(s) have been found while getting the tag: %s"
+msgstr "<strong>Error</strong>: The following problem(s) have been found while getting the tag: %s"
+
+#: includes/topics/functions.php:1423
+msgid "<strong>Error</strong>: The topic you want to split to was not found."
+msgstr "<strong>Error</strong>: The topic you want to split to was not found."
+
+#: includes/topics/functions.php:1400
+msgid "<strong>Error</strong>: You need to choose a valid split option."
+msgstr "<strong>Error</strong>: You need to choose a valid split option."
+
+#: includes/topics/functions.php:1379
+msgid "<strong>Error</strong>: The topic you want to split was not found."
+msgstr "<strong>Error</strong>: The topic you want to split was not found."
+
+#: includes/topics/functions.php:1369
+msgid "<strong>Error</strong>: The reply you want to split from was not found."
+msgstr "<strong>Error</strong>: The reply you want to split from was not found."
+
+#: includes/replies/functions.php:1292 includes/topics/functions.php:1140
+#: includes/topics/functions.php:1428
+msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
+msgstr "<strong>Error</strong>: You do not have permission to edit the destination topic."
+
+#: includes/topics/functions.php:1135
+msgid "<strong>Error</strong>: The topic you want to merge to was not found."
+msgstr "<strong>Error</strong>: The topic you want to merge to was not found."
+
+#: includes/topics/functions.php:1128
+msgid "<strong>Error</strong>: Destination topic ID not found."
+msgstr "<strong>Error</strong>: Destination topic ID not found."
+
+#: includes/topics/functions.php:1114
+msgid "<strong>Error</strong>: The topic you want to merge was not found."
+msgstr "<strong>Error</strong>: The topic you want to merge was not found."
+
+#: includes/topics/functions.php:570
+msgid "<strong>Error</strong>: Your topic cannot be edited at this time."
+msgstr "<strong>Error</strong>: Your topic cannot be edited at this time."
+
+#: includes/topics/functions.php:513
+msgid "<strong>Error</strong>: This forum is a category. No topics can be created in it."
+msgstr "<strong>Error</strong>: This forum is a category. No topics can be created in it."
+
+#: includes/topics/functions.php:467
+msgid "<strong>Error</strong>: You do not have permission to edit that topic."
+msgstr "<strong>Error</strong>: You do not have permission to edit that topic."
+
+#: includes/topics/functions.php:456
+msgid "<strong>Error</strong>: The topic you want to edit was not found."
+msgstr "<strong>Error</strong>: The topic you want to edit was not found."
+
+#: includes/topics/functions.php:445 includes/topics/functions.php:1102
+msgid "<strong>Error</strong>: Topic ID not found."
+msgstr "<strong>Error</strong>: Topic ID not found."
+
+#: includes/topics/functions.php:267
+msgid "<strong>Error</strong>: Your topic cannot be created at this time."
+msgstr "<strong>Error</strong>: Your topic cannot be created at this time."
+
+#: includes/topics/functions.php:261
+msgid "<strong>Error</strong>: Duplicate topic detected; it looks as though you&#8217;ve already said that."
+msgstr "<strong>Error</strong>: Duplicate topic detected; it looks as though you&#8217;ve already said that."
+
+#: includes/topics/functions.php:239 includes/topics/functions.php:529
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new topics in it."
+msgstr "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new topics in it."
+
+#: includes/topics/functions.php:235 includes/topics/functions.php:525
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new topics in it."
+msgstr "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new topics in it."
+
+#: includes/topics/functions.php:230 includes/topics/functions.php:520
+msgid "<strong>Error</strong>: This forum has been closed to new topics."
+msgstr "<strong>Error</strong>: This forum has been closed to new topics."
+
+#: includes/topics/functions.php:223
+msgid "<strong>Error</strong>: This forum is a category. No topics can be created in this forum."
+msgstr "<strong>Error</strong>: This forum is a category. No topics can be created in this forum."
+
+#: includes/topics/functions.php:177 includes/topics/functions.php:564
+msgid "<strong>Error</strong>: Your topic cannot be empty."
+msgstr "<strong>Error</strong>: Your topic cannot be empty."
+
+#: includes/topics/functions.php:158 includes/topics/functions.php:545
+msgid "<strong>Error</strong>: Your topic needs a title."
+msgstr "<strong>Error</strong>: Your topic needs a title."
+
+#: includes/topics/functions.php:132
+msgid "<strong>Error</strong>: You do not have permission to create new topics."
+msgstr "<strong>Error</strong>: You do not have permission to create new topics."
 
 #: includes/search/template.php:418
 msgid "Viewing %2$s results (of %4$s total)"
@@ -3045,10 +3362,149 @@ msgstr "Replies: %s"
 msgid "All Posts"
 msgstr "All Posts"
 
+#: includes/replies/functions.php:1623
+msgid "<strong>Error</strong>: There was a problem deleting the reply."
+msgstr "<strong>Error</strong>: There was a problem deleting the reply."
+
+#: includes/replies/functions.php:1615
+msgid "<strong>Error</strong>: There was a problem untrashing the reply."
+msgstr "<strong>Error</strong>: There was a problem untrashing the reply."
+
+#: includes/replies/functions.php:1607
+msgid "<strong>Error</strong>: There was a problem trashing the reply."
+msgstr "<strong>Error</strong>: There was a problem trashing the reply."
+
+#: includes/replies/functions.php:1592
+msgid "<strong>Error</strong>: There was a problem marking the reply as spam."
+msgstr "<strong>Error</strong>: There was a problem marking the reply as spam."
+
+#: includes/replies/functions.php:1592
+msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
+msgstr "<strong>Error</strong>: There was a problem unmarking the reply as spam."
+
+#: includes/replies/functions.php:1351 includes/topics/functions.php:1471
+msgid "<strong>Error</strong>: You do not have permission to create new topics. The reply could not be converted into a topic."
+msgstr "<strong>Error</strong>: You do not have permission to create new topics. The reply could not be converted into a topic."
+
+#: includes/replies/functions.php:1346 includes/topics/functions.php:1466
+msgid "<strong>Error</strong>: There was a problem converting the reply into the topic. Please try again."
+msgstr "<strong>Error</strong>: There was a problem converting the reply into the topic. Please try again."
+
 #: includes/replies/template.php:552
 #: templates/default/bbpress/form-reply.php:30
 msgid "Reply To: %s"
 msgstr "Reply To: %s"
+
+#: includes/replies/functions.php:1287
+msgid "<strong>Error</strong>: The topic you want to move to was not found."
+msgstr "<strong>Error</strong>: The topic you want to move to was not found."
+
+#: includes/replies/functions.php:1264
+msgid "<strong>Error</strong>: You need to choose a valid move option."
+msgstr "<strong>Error</strong>: You need to choose a valid move option."
+
+#: includes/replies/functions.php:1254 includes/topics/functions.php:1120
+#: includes/topics/functions.php:1390
+msgid "<strong>Error</strong>: You do not have permission to edit the source topic."
+msgstr "<strong>Error</strong>: You do not have permission to edit the source topic."
+
+#: includes/replies/functions.php:1243
+msgid "<strong>Error</strong>: The topic you want to move from was not found."
+msgstr "<strong>Error</strong>: The topic you want to move from was not found."
+
+#: includes/replies/functions.php:1233
+msgid "<strong>Error</strong>: The reply you want to move was not found."
+msgstr "<strong>Error</strong>: The reply you want to move was not found."
+
+#: includes/replies/functions.php:638
+msgid "<strong>Error</strong>: Your reply cannot be edited at this time."
+msgstr "<strong>Error</strong>: Your reply cannot be edited at this time."
+
+#: includes/replies/functions.php:551
+msgid "<strong>Error</strong>: You do not have permission to edit that reply."
+msgstr "<strong>Error</strong>: You do not have permission to edit that reply."
+
+#: includes/replies/functions.php:540
+msgid "<strong>Error</strong>: The reply you want to edit was not found."
+msgstr "<strong>Error</strong>: The reply you want to edit was not found."
+
+#: includes/replies/functions.php:523
+msgid "<strong>Error</strong>: Reply ID not found."
+msgstr "<strong>Error</strong>: Reply ID not found."
+
+#: includes/replies/functions.php:408 includes/replies/functions.php:723
+msgid "<strong>Error</strong>: There was a problem adding the tags to the topic."
+msgstr "<strong>Error</strong>: There was a problem adding the tags to the topic."
+
+#: includes/replies/functions.php:348
+msgid "<strong>Error</strong>: Topic is closed."
+msgstr "<strong>Error</strong>: Topic is closed."
+
+#: includes/replies/functions.php:324
+msgid "<strong>Error</strong>: Your reply cannot be created at this time."
+msgstr "<strong>Error</strong>: Your reply cannot be created at this time."
+
+#: includes/replies/functions.php:318
+msgid "<strong>Error</strong>: Duplicate reply detected; it looks as though you&#8217;ve already said that."
+msgstr "<strong>Error</strong>: Duplicate reply detected; it looks as though you&#8217;ve already said that."
+
+#: includes/replies/functions.php:298 includes/replies/functions.php:632
+msgid "<strong>Error</strong>: Your reply cannot be empty."
+msgstr "<strong>Error</strong>: Your reply cannot be empty."
+
+#: includes/replies/functions.php:259 includes/replies/functions.php:602
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new replies in it."
+msgstr "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new replies in it."
+
+#: includes/replies/functions.php:255 includes/replies/functions.php:598
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new replies in it."
+msgstr "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new replies in it."
+
+#: includes/replies/functions.php:250 includes/replies/functions.php:593
+msgid "<strong>Error</strong>: This forum has been closed to new replies."
+msgstr "<strong>Error</strong>: This forum has been closed to new replies."
+
+#: includes/replies/functions.php:243 includes/replies/functions.php:586
+msgid "<strong>Error</strong>: This forum is a category. No replies can be created in this forum."
+msgstr "<strong>Error</strong>: This forum is a category. No replies can be created in this forum."
+
+#: includes/replies/functions.php:229 includes/topics/functions.php:209
+msgid "<strong>Error</strong>: Forum does not exist."
+msgstr "<strong>Error</strong>: Forum does not exist."
+
+#: includes/replies/functions.php:225 includes/topics/functions.php:205
+msgid "<strong>Error</strong>: Forum ID cannot be a negative number."
+msgstr "<strong>Error</strong>: Forum ID cannot be a negative number."
+
+#: includes/replies/functions.php:211 includes/topics/functions.php:191
+msgid "<strong>Error</strong>: Forum ID must be a number."
+msgstr "<strong>Error</strong>: Forum ID must be a number."
+
+#: includes/replies/functions.php:207 includes/replies/functions.php:221
+#: includes/topics/functions.php:187 includes/topics/functions.php:201
+#: includes/topics/functions.php:498
+msgid "<strong>Error</strong>: Forum ID is missing."
+msgstr "<strong>Error</strong>: Forum ID is missing."
+
+#: includes/replies/functions.php:188
+msgid "<strong>Error</strong>: Topic does not exist."
+msgstr "<strong>Error</strong>: Topic does not exist."
+
+#: includes/replies/functions.php:184
+msgid "<strong>Error</strong>: Topic ID cannot be a negative number."
+msgstr "<strong>Error</strong>: Topic ID cannot be a negative number."
+
+#: includes/replies/functions.php:174
+msgid "<strong>Error</strong>: Topic ID must be a number."
+msgstr "<strong>Error</strong>: Topic ID must be a number."
+
+#: includes/replies/functions.php:170
+msgid "<strong>Error</strong>: Topic ID is missing."
+msgstr "<strong>Error</strong>: Topic ID is missing."
+
+#: includes/replies/functions.php:159
+msgid "<strong>Error</strong>: You do not have permission to reply."
+msgstr "<strong>Error</strong>: You do not have permission to reply."
 
 #: includes/forums/template.php:2045
 msgid "This forum is empty."
@@ -3155,6 +3611,79 @@ msgctxt "Open the forum"
 msgid "Open"
 msgstr "Open"
 
+#: includes/forums/functions.php:490
+msgid "<strong>Error</strong>: Your forum cannot be edited at this time."
+msgstr "<strong>Error</strong>: Your forum cannot be edited at this time."
+
+#: includes/forums/functions.php:414
+msgid "<strong>Error</strong>: You do not have permission to edit that forum."
+msgstr "<strong>Error</strong>: You do not have permission to edit that forum."
+
+#: includes/forums/functions.php:409
+msgid "<strong>Error</strong>: The forum you want to edit was not found."
+msgstr "<strong>Error</strong>: The forum you want to edit was not found."
+
+#: includes/forums/functions.php:393
+msgid "<strong>Error</strong>: Forum ID not found."
+msgstr "<strong>Error</strong>: Forum ID not found."
+
+#: includes/forums/functions.php:248
+msgid "<strong>Error</strong>: Your forum cannot be created at this time."
+msgstr "<strong>Error</strong>: Your forum cannot be created at this time."
+
+#: includes/forums/functions.php:242
+msgid "<strong>Error</strong>: This forum already exists."
+msgstr "<strong>Error</strong>: This forum already exists."
+
+#: includes/forums/functions.php:228 includes/replies/functions.php:304
+#: includes/topics/functions.php:247
+msgid "<strong>Error</strong>: Slow down; you move too fast."
+msgstr "<strong>Error</strong>: Slow down; you move too fast."
+
+#: includes/forums/functions.php:221 includes/forums/functions.php:450
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new forums in it."
+msgstr "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new forums in it."
+
+#: includes/forums/functions.php:216 includes/forums/functions.php:445
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new forums in it."
+msgstr "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new forums in it."
+
+#: includes/forums/functions.php:211 includes/forums/functions.php:440
+msgid "<strong>Error</strong>: This forum has been closed to new forums."
+msgstr "<strong>Error</strong>: This forum has been closed to new forums."
+
+#: includes/forums/functions.php:206
+msgid "<strong>Error</strong>: This forum is a category. No forums can be created in this forum."
+msgstr "<strong>Error</strong>: This forum is a category. No forums can be created in this forum."
+
+#: includes/forums/functions.php:199
+msgid "<strong>Error</strong>: Your forum must have a parent."
+msgstr "<strong>Error</strong>: Your forum must have a parent."
+
+#: includes/forums/functions.php:184 includes/forums/functions.php:484
+msgid "<strong>Error</strong>: Your forum description cannot be empty."
+msgstr "<strong>Error</strong>: Your forum description cannot be empty."
+
+#: includes/forums/functions.php:165 includes/forums/functions.php:465
+msgid "<strong>Error</strong>: Your forum needs a title."
+msgstr "<strong>Error</strong>: Your forum needs a title."
+
+#: includes/forums/functions.php:140
+msgid "<strong>Error</strong>: You do not have permission to create new forums."
+msgstr "<strong>Error</strong>: You do not have permission to create new forums."
+
+#: includes/extend/buddypress/notifications.php:203
+msgid "<strong>Error</strong>: You do not have permission to mark notifications for that user."
+msgstr "<strong>Error</strong>: You do not have permission to mark notifications for that user."
+
+#: includes/extend/buddypress/notifications.php:96
+msgid "You have %1$d new reply to %2$s"
+msgstr "You have %1$d new reply to %2$s"
+
+#: includes/extend/buddypress/notifications.php:95
+msgid "You have %1$d new reply to %2$s from %3$s"
+msgstr "You have %1$d new reply to %2$s from %3$s"
+
 #: includes/extend/buddypress/notifications.php:101
 msgid "Topic Replies"
 msgstr "Topic Replies"
@@ -3180,6 +3709,21 @@ msgstr "Group Forum"
 msgctxt "group admin edit screen"
 msgid "Discussion Forum"
 msgstr "Discussion Forum"
+
+#: includes/extend/buddypress/groups.php:531
+#: includes/extend/buddypress/groups.php:688
+#: includes/extend/buddypress/notifications.php:199
+#: includes/forums/functions.php:126 includes/forums/functions.php:404
+#: includes/replies/functions.php:134 includes/replies/functions.php:534
+#: includes/replies/functions.php:1248 includes/topics/functions.php:105
+#: includes/topics/functions.php:483 includes/topics/functions.php:1109
+#: includes/topics/functions.php:1384 includes/topics/functions.php:1720
+#: includes/topics/functions.php:1764 includes/topics/functions.php:1825
+#: includes/users/engagements.php:612 includes/users/engagements.php:853
+#: includes/users/functions.php:196 includes/users/functions.php:202
+#: includes/users/functions.php:380
+msgid "<strong>Error</strong>: Are you sure you wanted to do that?"
+msgstr "<strong>Error</strong>: Are you sure you wanted to do that?"
 
 #: includes/extend/buddypress/groups.php:496
 msgid "Save Settings"
