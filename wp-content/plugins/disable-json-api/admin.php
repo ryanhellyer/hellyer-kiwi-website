@@ -7,33 +7,33 @@
         <strong><?php esc_html_e( "IMPORTANT NOTE:", "disable-json-api" ); ?></strong> <?php esc_html_e( "Checking a box merely restores default functionality to an endpoint. Other authentication and/or permissions may still be required for access, or other themes/plugins may also affect access to those endpoints.", "disable-json-api" ); ?>
     </p>
 
-    <hr />
+    <hr/>
 
     <div id="select-container">
         <?php esc_html_e( "Rules for", "disable-json-api" ); ?>: <select name="role" id="dra-role">
             <option value="none"><?php esc_html_e( "Unauthenticated Users", "disable-json-api" ); ?></option>
-            <?php
-            $role = ( isset( $_GET['role'] ) ) ? $_GET['role'] : 'none';
-            wp_dropdown_roles( $role );
-            ?>
+			<?php
+			$role = ( isset( $_GET['role'] ) ) ? $_GET['role'] : 'none';
+			wp_dropdown_roles( $role );
+			?>
         </select>
     </div>
 
-    <hr />
+    <hr/>
 
     <form method="post" action="" id="DRA_form">
-	    <?php wp_nonce_field( 'DRA_admin_nonce' ); ?>
+		<?php wp_nonce_field( 'DRA_admin_nonce' ); ?>
         <input type="hidden" name="role" value="<?php echo esc_attr( $role ); ?>">
 
         <div id="default-allow-container">
-            <?php DRA_Admin::display_role_default_allow( $role ); ?>
+			<?php DRA_Admin::display_role_default_allow( $role ); ?>
         </div>
 
-        <hr />
+        <hr/>
 
         <div id="route-container">
-            <?php DRA_Admin::display_route_checkboxes( $role ); ?>
-            <hr />
+			<?php DRA_Admin::display_route_checkboxes( $role ); ?>
+            <hr/>
         </div>
 
         <div id="button-container">
