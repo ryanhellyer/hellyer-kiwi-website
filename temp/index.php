@@ -26,6 +26,25 @@ if ( isset($_GET['save'])) {
 		die;
 	}
 }
+
+if ( isset($_GET['delete'])) {
+	header('Content-Type: application/json');
+
+	$_POST['hash'] = 'ZmIwOWQ3MmYwNmNhNTgwMDBhYzg4NTE0NjZlNzZkZjY0ODg3NzdjMjUwN2NhY2MyZDJjNzIwN2YyYTYwZTZiMg==';
+	$_POST['title'] = 'Shroomiesxxx';
+
+	try {
+		$response = deleteItem($_POST['title'], $_POST['hash']);
+		if ($response) {
+			echo json_encode($response);
+			die;
+		}
+	} catch (Exception $e) {
+		// Handle error
+		echo escHtml($e->getMessage());
+		die;
+	}
+}
 ?><!DOCTYPE html>
 	<html lang="en">
 	<head>

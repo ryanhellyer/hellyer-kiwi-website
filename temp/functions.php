@@ -115,6 +115,25 @@ function saveData(string $title, string $originalTitle, string $encryptedContent
 }
 
 /**
+ * Delete a file.
+ * 
+ * @param string $title The title of the file.
+ * @param string $hash The hash to validate.
+ * @return bool True on success, false otherwise.
+ * @throws Exception If an error occurs.
+ */
+function deleteItem(string $title, string $hash): bool {
+    $dirPath = DIR_PATH;
+    $path = $dirPath . $title . '.data';
+
+    if (!checkHash($path, $hash)) {
+        throw new Exception('Password hashes do not match!');
+    }
+
+    return unlink($path);
+}
+
+/**
  * Function to list encrypted files and generate HTML list items for each.
  *
  * @return string The HTML output containing list items for each encrypted file.

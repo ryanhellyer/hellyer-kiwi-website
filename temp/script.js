@@ -72,10 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return new TextDecoder().decode(new Uint8Array(decryptedContent));
     }
 
-    async function postData(data = {}) {
+    async function postData(data = {}, type) {
         const urlEncodedData = new URLSearchParams(data).toString();
-    
-        const response = await fetch('./?save', {
+
+        const response = await fetch('./?' + type, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -140,11 +140,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 listItem.classList.add('decrypted');
 
                 // Delete the item.
-                console.log(deleteButton);
                 deleteButton.addEventListener('click', async function() {
+                    const title = listItem.querySelector('input[type=text]').value;
 
-                    postData({delete: true, hash: hash})
+                    postData({hash: hash, title: title}, 'delete')
                     .then(data => {
+                        console.log('Item has been deleted');
                         // DLETE THE ITEM @todo
                     })
                     .catch(error => {
@@ -167,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     console.log(hash);
 
-                    postData({title: title, originalTitle: originalTitle, encryptedContent: encryptedContent, hash: hash})
+                    postData({title: title, originalTitle: originalTitle, encryptedContent: encryptedContent, hash: hash}, 'save')
                     .then(data => {
 
                         // End save animation
