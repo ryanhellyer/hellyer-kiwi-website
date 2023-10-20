@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require('functions.php');
+require('class-encrypted-storage.php');
 
 ?><!DOCTYPE html>
 	<html lang="en">
@@ -67,12 +67,13 @@ require('functions.php');
 	<h1>End2End Encrypted Content</h1>
 
 	<ul><?php
-		echo $manager->listEncryptedFiles();
+		echo $encryptedStorage->listEncryptedFiles();
 	?>
 
 	</ul>
 
 	<noscript>This page does not work without JavaScript</noscript>
+	<script src="./functions.js"></script>
 	<script src="./script.js"></script>
 </body>
 </html>
