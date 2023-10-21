@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 6.4
-Stable tag: 1.8.3
+Stable tag: 1.9
 
 
 
@@ -91,6 +91,9 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.9 =
+* Updated WordPress coding standards support
 
 = 1.8.3 =
 * Confirmed support for newer WordPress versions
