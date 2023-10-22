@@ -1,0 +1,29 @@
+{
+	"name": "ryanhellyer/inpsyde-coding-test",
+	"description": "Coding test",
+	"license": "GPL-2.0-or-later",
+	"type": "php",
+	"authors": [
+		{
+			"name": "Ryan Hellyer",
+			"email": "ryanhellyer@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=8.2"
+	},
+    "autoload": {
+        "psr-4": {
+            "Utils\\": "src/Utils/",
+            "Interfaces\\": "src/Interfaces/",
+            "Storage\\": "src/Storage/",
+            "View\\": "src/View/",
+            "Config\\": "src/Config/"
+        }
+    },
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

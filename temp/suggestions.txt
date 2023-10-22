@@ -1,0 +1,27 @@
+Single Responsibility Principle: The class does multiple things (HTML generation, file operations, error handling). Consider separating these concerns.
+
+Error Handling: Throwing generic Exception isn't informative. Create custom exceptions for specific error cases.
+
+File Operations: Use more robust methods for file operations to better handle edge cases and errors.
+
+HTML Escaping: HTML escaping methods (escHtml, escAttr) might be better in a utility class.
+
+Magic Values: 'data' file extension and '400' HTTP codes are hardcoded. Consider using constants.
+
+Type Safety: file_get_contents() and file_put_contents() can return false, but there's no explicit type check.
+
+Encapsulation: The handleSaveRequest and handleDeleteRequest methods both manipulate HTTP response codes directly. This could be abstracted away.
+
+Method Complexity: Methods like listEncryptedFiles and handleSaveRequest are long and handle different aspects. Consider breaking them down.
+
+Directory Path: The directory path is hardcoded; making it configurable would add flexibility.
+
+Documentation: More comments could explain the business logic and flow.
+
+Constants: Use full visibility modifiers for constants (private const to private const).
+
+Naming: listItem doesn't convey what the function actually does, which is generating an HTML list item for a specific purpose. Consider renaming it for better readability.
+
+Consistency: Stick to a naming convention for variables, methods, and classes.
+
+File Validation: getExtension() === 'data' could be fooled by a crafted filename. Consider better validation.
