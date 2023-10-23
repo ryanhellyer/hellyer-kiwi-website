@@ -16,16 +16,16 @@ use Config\Config;
  */
 class Storage
 {
-    private $escaper;
-    private $files;
-    private $validation;
+    private EscaperInterface $escaper;
+    private FilesInterface $files;
+    private ValidationInterface $validation;
 
     /**
      * Constructor.
      *
-     * @param EscaperInterface    $escaper    An instance of the escaper interface.
-     * @param FilesInterface      $files      An instance of the files interface.
-     * @param ValidationInterface $validation An instance of the validation interface.
+     * @param EscaperInterface $escaper
+     * @param FilesInterface $files
+     * @param ValidationInterface $validation
      */
     public function __construct(
         EscaperInterface $escaper,
@@ -46,14 +46,19 @@ class Storage
      *
      * @param array $postData The POST data to be processed.
      * @return array The response array containing either the result or an error message.
-     * @throws Exception If an error occurs during the save operation.
+     * @throws \Exception If an error occurs during the save operation.
      */
     public function handleSaveRequest(array $postData): array
     {
         $requiredKeys = ['title', 'originalTitle', 'encryptedContent', 'hash'];
-        if (true !== $response = $this->validation->validatePostData($postData, $requiredKeys)) {
-            http_response_code(400);
-            return $response;
+        try {
+            $response = $this->validation->validatePostData($postData, $requiredKeys);
+            if ($response !== true) {
+                http_response_code(400);
+                return $response;
+            }
+        } catch (\Exception $e) {
+            return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
 
         try {
@@ -64,7 +69,7 @@ class Storage
                 $postData['hash']
             );
             return ['response' => $response];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
     }
@@ -78,20 +83,23 @@ class Storage
      *
      * @param array $postData The POST data to be processed.
      * @return array The response array containing either the result or an error message.
-     * @throws Exception If an error occurs during the delete operation.
+     * @throws \Exception If an error occurs during the delete operation.
      */
     public function handleDeleteRequest(array $postData): array
     {
         $requiredKeys = ['title', 'hash'];
-        if (true !== $response = $this->validation->validatePostData($postData, $requiredKeys)) {
+        try {
+            $response = $this->validation->validatePostData($postData, $requiredKeys);
+        } catch (\Exception $e) {
             http_response_code(400);
-            return $response;
+            return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
 
         try {
             $response = $this->files->deleteItem($postData['title'], $postData['hash']);
             return ['response' => $response];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
+            http_response_code(400);
             return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
     }

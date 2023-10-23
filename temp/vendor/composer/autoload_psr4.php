@@ -9,6 +9,10 @@ return array(
     'View\\' => array($baseDir . '/src/View'),
     'Utils\\' => array($baseDir . '/src/Utils'),
     'Storage\\' => array($baseDir . '/src/Storage'),
+    'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
     'Interfaces\\' => array($baseDir . '/src/Interfaces'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Config\\' => array($baseDir . '/src/Config'),
+    'Brain\\Monkey\\' => array($vendorDir . '/brain/monkey/src'),
 );

@@ -11,14 +11,11 @@ namespace Config;
  */
 class Config
 {
-    //@todo next two need renamed.
-    public const DIR_PATH = '/var/www/pressabl/public_html/temp/encrypted/';
-    public const TEMP_DIR_PATH = '/var/www/pressabl/public_html/temp/';
+    private const DIR_PATH = '/var/www/pressabl/public_html/temp/';
 
-    public const MAIN_TEMPLATE_PATH = self::TEMP_DIR_PATH . 'templates/main-template.tmpl';
-    public const ITEM_TEMPLATE_PATH = self::TEMP_DIR_PATH . 'templates/item-template.tmpl';
-
+    public const STORAGE_PATH = self::DIR_PATH . 'encrypted/';
+    public const MAIN_TEMPLATE_PATH = self::DIR_PATH . 'templates/main-template.tmpl';
+    public const ITEM_TEMPLATE_PATH = self::DIR_PATH . 'templates/item-template.tmpl';
     public const SEPARATOR = '<<<SEPARATOR>>>';
-
-    const STORAGE_FILE_EXTENSION = 'data';
+    public const STORAGE_FILE_EXTENSION = 'data';
 }

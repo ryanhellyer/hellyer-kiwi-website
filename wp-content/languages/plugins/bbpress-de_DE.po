@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-08-03 06:37:01+0000\n"
+"PO-Revision-Date: 2023-10-22 20:34:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0-alpha.6\n"
+"X-Generator: GlotPress/4.0.0-alpha.11\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - bbPress - Stable (latest release)\n"
 
@@ -15,13 +15,33 @@ msgstr ""
 msgid "You have %1$d new replies to %2$s"
 msgstr "Du hast %1$d neue Antworten auf %2$s"
 
+#: includes/admin/settings.php:856
+msgid "This includes roles, passwords, and email addresses."
+msgstr "Das schließt Rollen, Passwörter und E-Mail-Adressen ein."
+
+#: includes/admin/settings.php:855
+msgid "Allow Moderators and Keymasters to edit users"
+msgstr "Administratoren und Moderatoren erlauben, Benutzer zu bearbeiten"
+
+#: includes/admin/settings.php:841
+msgid "This does not include the ability to edit users."
+msgstr "Das schließt nicht die Möglichkeit ein, Benutzer zu bearbeiten."
+
 #: includes/users/signups.php:214
 msgid "<strong>Error</strong>: Invalid role."
 msgstr "<strong>Fehler</strong>: Ungültige Rolle."
 
+#: includes/users/signups.php:209
+msgid "<strong>Error</strong>: Empty role."
+msgstr "<strong>Fehler</strong>: Leere Rolle."
+
 #: bbpress.php:798
 msgid "bbPress User Activity"
 msgstr "bbPress Benutzeraktivität"
+
+#: includes/extend/buddypress/groups.php:442
+msgid "<strong>Error</strong>: Reply To is invalid."
+msgstr "<strong>FEHLER</strong>: Antwort ist ungültig."
 
 #: includes/extend/buddypress/groups.php:379
 msgid "<strong>Error</strong>: Forum ID is invalid."
@@ -377,13 +397,37 @@ msgstr[1] "Vollständig! %d Themen-Abonnements abgegraded."
 msgid "No topic subscriptions to upgrade."
 msgstr "Keine Themen-Abonnements zum Upgraden."
 
+#: includes/admin/tools/upgrade.php:463
+msgid "Upgrading user topic subscriptions&hellip; %s"
+msgstr "Ein Upgrade läuft für Benutzer-Forum-Abonnements&hellip; %s"
+
+#: includes/admin/tools/upgrade.php:447
+msgid "Complete! %d favorite upgraded."
+msgid_plural "Complete! %d favorites upgraded."
+msgstr[0] "Fertig! %d Favorit wurde aktualisiert."
+msgstr[1] "Fertig! %d Favoriten wurden aktualisiert."
+
 #: includes/admin/tools/upgrade.php:404
 msgid "No favorites to upgrade."
 msgstr "Keine Favoriten upzugraden."
 
+#: includes/admin/tools/upgrade.php:403
+msgid "Upgrading user favorites&hellip; %s"
+msgstr "Ein Upgrade läuft für Benutzerfavoriten&hellip; %s"
+
+#: includes/admin/tools/upgrade.php:249
+msgid "Complete! %d engagement upgraded."
+msgid_plural "Complete! %d engagements upgraded."
+msgstr[0] "Fertig! %d wurde Engagement aktualisiert."
+msgstr[1] "Fertig! %d wurden Engagements aktualisiert."
+
 #: includes/admin/tools/upgrade.php:216
 msgid "No engagements to upgrade."
 msgstr "Keine Verpflichtungen für ein Upgrade."
+
+#: includes/admin/tools/upgrade.php:215
+msgid "Upgrading user engagements&hellip; %s"
+msgstr "Ein Upgrade läuft für Benutzer-Engagements&hellip; %s"
 
 #: includes/admin/tools/upgrade.php:95 includes/admin/tools/upgrade.php:137
 #: includes/admin/tools/upgrade.php:182
@@ -685,6 +729,10 @@ msgid_plural "%s Users"
 msgstr[0] "%s Benutzer"
 msgstr[1] "%s Benutzer"
 
+#: includes/admin/settings.php:1905
+msgid "Packages can be stacked to allow for intelligent fallbacks."
+msgstr "Pakete können kombiniert werden, um intelligente Fallbacks zu ermöglichen."
+
 #: includes/admin/settings.php:1904
 msgid "Some themes may choose to ignore this setting entirely."
 msgstr "Einige Themes können diese Einstellung komplett ignorieren."
@@ -692,6 +740,10 @@ msgstr "Einige Themes können diese Einstellung komplett ignorieren."
 #: includes/admin/settings.php:1903
 msgid "The \"bbPress Default\" package is installed by default."
 msgstr "Das Paket \"bbPress Default\" ist standardmäßig installiert."
+
+#: includes/admin/settings.php:1900
+msgid "The \"Theme Packages\" section allows you to choose which theme package should be used."
+msgstr "Im Abschnitt „Themen-Pakete“ kannst du auswählen, welches Themen-Paket verwendet werden soll."
 
 #: includes/admin/settings.php:1899
 msgid "Theme Packages"
@@ -738,6 +790,10 @@ msgstr "Fertig"
 msgid "Up next: step %s"
 msgstr "Als nächstes: Schritt %s"
 
+#: includes/admin/settings.php:1768
+msgid "Passwords remain encrypted, and are converted as individual users log in."
+msgstr "Die Passwörter bleiben verschlüsselt und werden bei der Anmeldung individueller Benutzer umgewandelt."
+
 #: includes/admin/settings.php:1767
 msgid "Import user accounts from previous forums"
 msgstr "Benutzerkonten aus früheren Foren importieren"
@@ -774,6 +830,10 @@ msgstr "zweite Verzögerung zwischen jeder Abfrage der obigen Zeilen"
 msgid "entry maximum when querying for data to convert"
 msgstr "Eingabe des Maximums bei der Abfrage der zu konvertierenden Daten"
 
+#: includes/admin/settings.php:1677
+msgid "Use %s if converting from BuddyPress Legacy"
+msgstr "Verwende %s, wenn du von BuddyPress Legacy konvertierst"
+
 #: includes/admin/settings.php:1636
 msgid "Password for the above database user"
 msgstr "Passwort für den oben genannten Datenbankbenutzer"
@@ -786,9 +846,25 @@ msgstr "Umschalten"
 msgid "User to access the database"
 msgstr "Benutzer für den Datenbankzugriff"
 
+#: includes/admin/settings.php:1588
+msgid "Use default %s if same server, or IP or hostname"
+msgstr "Standard %s verwenden, wenn es sich um denselben Server, Hostnamen oder dieselbe IP handelt"
+
+#: includes/admin/settings.php:1551
+msgid "Information about the database for your previous forums so they can be converted."
+msgstr "Informationen über die Datenbank deiner bisherigen Foren, damit diese konvertiert werden können."
+
 #: includes/admin/settings.php:1477
 msgid "Changing this will not move existing forums."
 msgstr "Diese Änderung wird bestehende Foren nicht verschieben."
+
+#: includes/admin/settings.php:1472
+msgid "Use %s to contain your group forums"
+msgstr "Verwende %s, damit es deine Gruppenforen enthält"
+
+#: includes/admin/settings.php:1470
+msgid "Use %s to contain your group forums, or %s"
+msgstr "Verwende %s, damit es deine Gruppenforen enthält, oder %s"
 
 #: includes/admin/settings.php:1469
 msgid "create a new one"
@@ -948,6 +1024,10 @@ msgstr "Alle Favoriten importiert"
 msgid "No favorites to import"
 msgstr "Keine Favoriten zu importieren"
 
+#: includes/admin/classes/class-bbp-converter.php:750
+msgid "Converting topic subscriptions (%1$s through %2$s of %3$s)"
+msgstr "Konvertiere Foren-Abonnements (%1$s bis %2$s von %3$s)"
+
 #: includes/admin/classes/class-bbp-converter.php:747
 msgid "All topic subscriptions imported"
 msgstr "Alle Themen-Abonnements importiert"
@@ -956,9 +1036,21 @@ msgstr "Alle Themen-Abonnements importiert"
 msgid "No topic subscriptions to import"
 msgstr "Keine Themen-Abonnements zu importieren"
 
+#: includes/admin/classes/class-bbp-converter.php:732
+msgid "Converting topic tags (%1$s through %2$s of %3$s)"
+msgstr "Konvertiere Themen-Schlagwörter (%1$s bis %2$s von %3$s)"
+
+#: includes/admin/classes/class-bbp-converter.php:729
+msgid "All topic tags imported"
+msgstr "Alle Themen-Schlagwörtern wurden importiert"
+
 #: includes/admin/classes/class-bbp-converter.php:728
 msgid "No topic tags to import"
 msgstr "Keine Thema-Schlagwörter zu importieren"
+
+#: includes/admin/classes/class-bbp-converter.php:714
+msgid "Calculating closed topics (%1$s through %2$s of %3$s)"
+msgstr "Berechne geschlossene Themen (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:711
 msgid "All closed topics imported"
@@ -1003,6 +1095,10 @@ msgstr "Alle Foren-Abonnements importiert"
 #: includes/admin/classes/class-bbp-converter.php:620
 msgid "No forum subscriptions to import"
 msgstr "Keine Foren-Abonnements zu importieren"
+
+#: includes/admin/classes/class-bbp-converter.php:603
+msgid "All forum parents imported"
+msgstr "Alle übergeordneten Foren wurden importiert"
 
 #: includes/admin/classes/class-bbp-converter.php:588
 msgid "Converting forums (%1$s through %2$s of %3$s)"
@@ -1539,7 +1635,7 @@ msgstr[1] "%s&nbsp;Monaten"
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s Jahr"
-msgstr[1] "%s Jahre"
+msgstr[1] "%s Jahren"
 
 #: includes/common/widgets.php:651
 msgid "A list of recent topics, sorted by: newness, popularity, or recent replies."
@@ -1852,7 +1948,7 @@ msgstr "Moderator"
 #: includes/common/locale.php:44
 msgctxt "User role"
 msgid "Keymaster"
-msgstr "Verwalter"
+msgstr "Administrator"
 
 #. Description of the plugin
 msgid "bbPress is forum software with a twist from the creators of WordPress."
@@ -2506,9 +2602,25 @@ msgstr "Gast"
 msgid "<strong>Error</strong>: There was a problem approving the topic."
 msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit der Genehmigung des Themas."
 
+#: includes/users/engagements.php:659
+msgid "<strong>Error</strong>: There was a problem favoriting that topic."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Favorisieren des Themas."
+
 #: includes/topics/functions.php:2127
 msgid "<strong>Error</strong>: There was a problem unapproving the topic."
 msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit der Nichtgenehmigung des Themas."
+
+#: includes/users/engagements.php:657
+msgid "<strong>Error</strong>: There was a problem removing that topic from favorites."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Entfernen dieses Themas aus der Favoritenliste."
+
+#: includes/users/engagements.php:857
+msgid "<strong>Error</strong>: You do not have permission to edit subscriptions of that user."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, die Abonnements des Benutzers zu bearbeiten."
+
+#: includes/users/engagements.php:608
+msgid "<strong>Error</strong>: No topic was found. Which topic are you marking/unmarking as favorite?"
+msgstr "<strong>FEHLER</strong>: Es wurde kein Thema gefunden. Bei welchem Thema willst du eine Markierung als Favorit setzen oder entfernen?"
 
 #: includes/topics/template.php:3394
 msgid "View Topic Tag"
@@ -2632,6 +2744,11 @@ msgstr "Neues Thema erstellen"
 msgid "New Topic"
 msgstr "Neues Thema"
 
+#: includes/replies/functions.php:1505 includes/topics/functions.php:291
+#: includes/topics/functions.php:594 includes/topics/functions.php:2042
+msgid "<strong>Error</strong>: You do not have permission to do that."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das zu tun."
+
 #: includes/topics/functions.php:1898
 msgctxt "Make topic super sticky"
 msgid "Super Sticky"
@@ -2671,6 +2788,23 @@ msgstr "Geschlossen"
 msgctxt "Open the topic"
 msgid "Open"
 msgstr "Offen"
+
+#: includes/topics/functions.php:1423
+msgid "<strong>Error</strong>: The topic you want to split to was not found."
+msgstr "<strong>FEHLER</strong>: Das Thema, das du aufteilen willst, wurde nicht gefunden."
+
+#: includes/replies/functions.php:1292 includes/topics/functions.php:1140
+#: includes/topics/functions.php:1428
+msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bearbeiten."
+
+#: includes/topics/functions.php:467
+msgid "<strong>Error</strong>: You do not have permission to edit that topic."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
+
+#: includes/topics/functions.php:235 includes/topics/functions.php:525
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new topics in it."
+msgstr "<strong>FEHLER</strong>: Dieses Forum ist privat und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Themen."
 
 #: includes/search/template.php:418
 msgid "Viewing %2$s results (of %4$s total)"
@@ -2817,10 +2951,47 @@ msgstr "Antworten: %s"
 msgid "All Posts"
 msgstr "Alle Beiträge"
 
+#: includes/replies/functions.php:1623
+msgid "<strong>Error</strong>: There was a problem deleting the reply."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Löschen der Antwort."
+
+#: includes/replies/functions.php:1615
+msgid "<strong>Error</strong>: There was a problem untrashing the reply."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Wiederherstellen der Antwort aus dem Papierkorb."
+
+#: includes/replies/functions.php:1607
+msgid "<strong>Error</strong>: There was a problem trashing the reply."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Verschieben der Antwort in den Papierkorb."
+
+#: includes/replies/functions.php:1592
+msgid "<strong>Error</strong>: There was a problem marking the reply as spam."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Markieren der Antwort als Spam."
+
+#: includes/replies/functions.php:1592
+msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
+msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit dem Entfernen der Markierung dieser Antwort als Spam."
+
 #: includes/replies/template.php:552
 #: templates/default/bbpress/form-reply.php:30
 msgid "Reply To: %s"
 msgstr "Antwort auf: %s"
+
+#: includes/replies/functions.php:1287
+msgid "<strong>Error</strong>: The topic you want to move to was not found."
+msgstr "<strong>FEHLER</strong>: Das Thema, zu dem du wechseln möchtest, wurde nicht gefunden."
+
+#: includes/replies/functions.php:1254 includes/topics/functions.php:1120
+#: includes/topics/functions.php:1390
+msgid "<strong>Error</strong>: You do not have permission to edit the source topic."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ursprungs-Thema zu bearbeiten."
+
+#: includes/replies/functions.php:1243
+msgid "<strong>Error</strong>: The topic you want to move from was not found."
+msgstr "<strong>FEHLER</strong>: Das Thema, das du verschieben möchtest, wurde nicht gefunden."
+
+#: includes/replies/functions.php:1233
+msgid "<strong>Error</strong>: The reply you want to move was not found."
+msgstr "<strong>FEHLER</strong>: Die Antwort, die du verschieben möchtest, wurde nicht gefunden."
 
 #: includes/replies/functions.php:348
 msgid "<strong>Error</strong>: Topic is closed."
@@ -2962,6 +3133,31 @@ msgstr "Geschlossen"
 msgctxt "Open the forum"
 msgid "Open"
 msgstr "Öffnen"
+
+#: includes/forums/functions.php:414
+msgid "<strong>Error</strong>: You do not have permission to edit that forum."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Forum zu bearbeiten."
+
+#: includes/forums/functions.php:228 includes/replies/functions.php:304
+#: includes/topics/functions.php:247
+msgid "<strong>Error</strong>: Slow down; you move too fast."
+msgstr "<strong>FEHLER</strong>: Etwas langsamer bitte; du warst zu schnell."
+
+#: includes/forums/functions.php:221 includes/forums/functions.php:450
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new forums in it."
+msgstr "<strong>FEHLER</strong>: Dieses Forum ist verborgen und du bist nicht berechtigt, das Forum zu lesen oder ein neues Forum darin zu erstellen."
+
+#: includes/forums/functions.php:216 includes/forums/functions.php:445
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new forums in it."
+msgstr "<strong>FEHLER</strong>: Dieses Forum ist privat und du bist nicht berechtigt, das Forum zu lesen oder ein neues Forum darin zu erstellen."
+
+#: includes/forums/functions.php:184 includes/forums/functions.php:484
+msgid "<strong>Error</strong>: Your forum description cannot be empty."
+msgstr "<strong>FEHLER</strong>: Die Foren-Beschreibung darf nicht leer sein."
+
+#: includes/forums/functions.php:140
+msgid "<strong>Error</strong>: You do not have permission to create new forums."
+msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, neue Foren anzulegen."
 
 #: includes/extend/buddypress/notifications.php:203
 msgid "<strong>Error</strong>: You do not have permission to mark notifications for that user."
@@ -3850,6 +4046,10 @@ msgstr "Gruppen-Foren"
 msgid "Upgrading BuddyPress group-forum relationships&hellip; %s"
 msgstr "Aktualisiere die BuddyPress-Gruppen-Forum-Beziehungen&nbsp;&hellip; %s"
 
+#: includes/admin/tools/repair.php:456
+msgid "Counting the number of pending, spammed, and trashed replies in each forum&hellip; %s"
+msgstr "Zähle die Anzahl der ausstehenden, Spam und gelöschten Antworten in jedem Forum&hellip; %s"
+
 #: includes/admin/tools/repair.php:252
 msgid "Counting the number of voices in each topic&hellip; %s"
 msgstr "Zahl der Teilnehmer in allen Themen zählen&nbsp;&hellip; %s"
@@ -3934,6 +4134,10 @@ msgstr "Aktivitäten in jedem Thema und Forum neu berechnen"
 #: includes/admin/tools.php:139
 msgid "Recalculate private and hidden forums"
 msgstr "Private und versteckte Foren neu berechnen."
+
+#: includes/admin/tools/upgrade.php:45
+msgid "Some of these tools create substantial database overhead. Use caution when running more than 1 upgrade at a time."
+msgstr "Durch einiger dieser Werkzeuge wird ein erheblicher Datenbank-Overhead erstellt. Sei vorsichtig, wenn du mehr als 1 Upgrade gleichzeitig durchführen möchtest."
 
 #: includes/admin/tools/repair.php:47
 msgid "bbPress keeps track of relationships between forums, topics, replies, topic-tags, favorites, subscriptions, and users. Occasionally these relationships become out of sync, most often after an import or migration. Use the tools below to manually recalculate these relationships."

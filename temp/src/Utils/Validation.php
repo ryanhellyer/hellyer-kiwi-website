@@ -8,54 +8,47 @@ use Interfaces\ValidationInterface;
 use Config\Config;
 
 /**
- * Class Validation
- *
- * Utility class for Validation.
+ * Validation Class
+ * 
+ * Implements the ValidationInterface. Provides methods for validating
+ * file hashes and POST data.
  */
 class Validation implements ValidationInterface
 {
     /**
-     * Checks if the hash of the file matches with the previously saved hash.
+     * Compares a file's stored hash with a given hash.
      *
-     * @param string $path The path to the file.
-     * @param string $hash The hash to validate.
-     * @return bool True if the hashes match, false otherwise.
+     * @param string $path File path to validate.
+     * @param string $hash Expected hash for validation.
+     * @return bool True if the file hash matches, false otherwise.
      */
     public function checkHash(string $path, string $hash): bool
     {
         if (!file_exists($path)) {
-            return true;
+            return false;
         }
 
         $contents = file_get_contents($path);
         $bits = explode(Config::SEPARATOR, $contents);
-        $storedHash = $bits[0];
+        $storedHash = $bits[0] ?? '';
 
         return $storedHash === $hash;
     }
 
     /**
-     * Validates the presence of required keys in the POST data array.
+     * Validates required keys in a POST data array.
      *
-     * @param array $postData The array containing POST data.
-     * @param array $requiredKeys An array of keys to check for in the POST data.
-     *
-     * @return array|bool Returns true if all required keys are present.
-     *                    Returns an array of missing keys if any are absent.
+     * @param array $postData Data received via POST.
+     * @param array $requiredKeys Keys expected in the POST data.
+     * @return bool True if all required keys exist.
+     * @throws \Exception when required parameters are missing.
      */
-    public function validatePostData(array $postData, array $requiredKeys): array|bool
+    public function validatePostData(array $postData, array $requiredKeys): array
     {
-        $missingKeys = [];
+        $missingKeys = array_diff($requiredKeys, array_keys($postData));
 
-        foreach ($requiredKeys as $key) {
-            if (!isset($postData[$key])) {
-                $missingKeys[] = $key;
-            }
-        }
-
-        if (! empty($missingKeys)) {
-            $missingKeysString = implode(',', $missingKeys);
-            return ['error' => 'These required parameters were not found: ' . $missingKeysString];
+        if ($missingKeys) {
+            throw new \Exception('Missing required parameters: ' . implode(',', $missingKeys));
         }
 
         return true;

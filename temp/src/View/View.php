@@ -59,9 +59,13 @@ class View
         $output = '';
 
         foreach ($this->files->retrieveDocs() as $doc) {
-            $contents = $this->files->retrieveDocContent($doc);
-            $encryptedContent = $contents['encryptedContent'];
-            $output .= $this->displayDoc(false, $doc, $encryptedContent);
+            try {
+                $contents = $this->files->retrieveDocContent($doc);
+                $encryptedContent = $contents['encryptedContent'];
+                $output .= $this->displayDoc(false, $doc, $encryptedContent);
+            } catch (\Exception $e) {
+                $output .= $this->displayError($e->getMessage());
+            }
         }
 
         $output .= $this->displayDoc(true);
@@ -92,4 +96,20 @@ class View
 
         return $itemTemplate;
     }
+    /**
+     * Generates HTML for an error on a document.
+     *
+     * @param string $error The error message.
+     * @return string The generated HTML list item.
+     */
+    private function displayError(string $error): string
+    {
+        //@todo should use a template file.
+        $html = '<li>';
+        $html .= $this->escaper->escHtml($error);
+        $html .= '</li>';
+
+        return $html;
+    }
+
 }

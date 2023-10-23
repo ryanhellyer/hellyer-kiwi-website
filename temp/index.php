@@ -14,11 +14,13 @@ use View\View;
 use Utils\Escaper;
 use Utils\Files;
 use Utils\Validation;
+use Utils\FileHandler;
 
 $storage = new Storage(
 	new Escaper(),
 	new Files(
-		new Validation()
+		new Validation(),
+        new FileHandler()
 	),
 	new Validation()
 );
@@ -37,9 +39,10 @@ if (isset($_GET['delete'])) {
 
 $view = new View(
     new Escaper(),
-    new Files(
-		new Validation()
-	)
+	new Files(
+		new Validation(),
+        new FileHandler()
+	),
 );
 echo $view->displayMainTemplate();
 die;

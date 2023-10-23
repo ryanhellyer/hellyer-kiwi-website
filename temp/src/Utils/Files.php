@@ -6,6 +6,7 @@ namespace Utils;
 
 use Interfaces\FilesInterface;
 use Interfaces\ValidationInterface;
+use Interfaces\FileHandlerInterface;
 use Config\Config;
 
 /**
@@ -15,16 +16,19 @@ use Config\Config;
  */
 class Files implements FilesInterface
 {
-    private $validation;
+    private ValidationInterface $validation;
+    private FileHandlerInterface $fileHandler;
 
     /**
      * Constructor.
      *
      * @param ValidationInterface $validation An instance of the validation interface.
+     * @param FileHandlerInterface $fileHandler An instance of the fileHandler interface.
      */
-    public function __construct(ValidationInterface $validation)
+    public function __construct(ValidationInterface $validation, FileHandlerInterface $fileHandler)
     {
         $this->validation = $validation;
+        $this->fileHandler = $fileHandler;
     }
 
     /**
@@ -35,29 +39,35 @@ class Files implements FilesInterface
      * @param string $encryptedContent The encrypted content to save.
      * @param string $hash The hash to validate.
      * @return bool True on success, false otherwise.
-     * @throws Exception If an error occurs.
+     * @throws \Exception If an error occurs.
      */
     public function saveData(string $title, string $originalTitle, string $encryptedContent, string $hash): bool
     {
-        $oldPath = Config::DIR_PATH . $originalTitle . '.' . Config::STORAGE_FILE_EXTENSION;
-        $newPath = Config::DIR_PATH . $title . '.' . Config::STORAGE_FILE_EXTENSION;
+        $oldPath = Config::STORAGE_PATH . $originalTitle . '.' . Config::STORAGE_FILE_EXTENSION;
+        $newPath = Config::STORAGE_PATH . $title . '.' . Config::STORAGE_FILE_EXTENSION;
 
         if (!$this->validation->checkHash($newPath, $hash)) {
-            throw new Exception('Password hashes do not match!');
+            throw new \Exception('Password hashes do not match!');
         }
 
-        if ($oldPath !== $newPath && file_exists($newPath)) {
-            throw new Exception('That file name already exists');
+        if ($oldPath !== $newPath && $this->fileHandler->exists($newPath)) {
+            throw new \Exception('That file name already exists');
         }
 
         $fileContent = $hash . Config::SEPARATOR . $encryptedContent;
 
-        if (file_put_contents($newPath, $fileContent) === false) {
-            throw new Exception('File did not write');
+        if (!$this->fileHandler->putContents($newPath, $fileContent)) {
+            throw new \Exception('File did not write');
         }
 
-        if ('' !== $originalTitle && $oldPath !== $newPath && file_exists($oldPath)) {
-            unlink($oldPath);
+        if (
+            '' !== $originalTitle
+            &&
+            $oldPath !== $newPath
+            &&
+            $this->fileHandler->exists($oldPath)
+        ) {
+            $this->fileHandler->delete($oldPath);
         }
 
         return true;
@@ -69,18 +79,18 @@ class Files implements FilesInterface
      * @param string $title The title of the file.
      * @param string $hash The hash to validate.
      * @return bool True on success, false otherwise.
-     * @throws Exception If an error occurs.
+     * @throws \Exception If an error occurs.
      */
     public function deleteItem(string $title, string $hash): bool
     {
-        $path = Config::DIR_PATH . $title . '.' . Config::STORAGE_FILE_EXTENSION;
+        $path = Config::STORAGE_PATH . $title . '.' . Config::STORAGE_FILE_EXTENSION;
 
         if (!$this->validation->checkHash($path, $hash)) {
-            throw new Exception('Password hashes do not match!');
+            throw new \Exception('Password incorrect!');
         }
 
         if (file_exists($path)) {
-            return unlink($path);
+            return unlink($path); // Returns true if file successfully deleted, otherwise false.
         }
 
         return false;
@@ -98,7 +108,7 @@ class Files implements FilesInterface
     public function retrieveDocs(): array
     {
         $docs = [];
-        foreach (new \DirectoryIterator(Config::DIR_PATH) as $docInfo) {
+        foreach (new \DirectoryIterator(Config::STORAGE_PATH) as $docInfo) {
             if ($docInfo->isDot()) {
                 continue;
             }
@@ -117,13 +127,18 @@ class Files implements FilesInterface
      *
      * @param string $doc The name of the document without the file extension.
      * @return array The hash and encrypted content in the document file.
-     * @throws Exception If the file is not found.
+     * @throws \Exception If the file is not found.
      */
     public function retrieveDocContent(string $doc): array
     {
-        $path = Config::DIR_PATH . $doc . '.' . Config::STORAGE_FILE_EXTENSION;
-        if (false === $fileContent = file_get_contents($path)) {
-            throw new Exception('File not found');
+        $path = Config::STORAGE_PATH . $doc . '.' . Config::STORAGE_FILE_EXTENSION;
+
+        if (
+            ! file_exists($path)
+            ||
+            false === $fileContent = file_get_contents($path)
+        ) {
+            throw new \Exception('File not found');
         }
 
         $bits = explode(Config::SEPARATOR, $fileContent);
@@ -144,7 +159,7 @@ class Files implements FilesInterface
      *
      * @param string $templatePath The path to the template file, provided by Config::ITEM_TEMPLATE_PATH.
      * @return string The content of the template file.
-     * @throws \RuntimeException If the template file is not found.
+     * @throws \Exception If the template file is not found.
      */
     public function retrieveTemplate(string $templatePath): string
     {
@@ -152,10 +167,9 @@ class Files implements FilesInterface
 
         // Error handling for when no file is found.
         if ($template === false) {
-            throw new \RuntimeException('Item template file not found.');
+            throw new \Exception('Item template file not found.');
         }
 
         return $template;
     }
-
 }

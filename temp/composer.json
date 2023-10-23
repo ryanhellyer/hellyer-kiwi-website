@@ -25,5 +25,15 @@
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
+	},
+	"scripts": {
+		"test": [
+			"Composer\\Config::disableProcessTimeout",
+			"phpunit"
+		]
+	},
+	"require-dev": {
+		"brain/monkey": "^2.6",
+		"phpunit/phpunit": "*"
 	}
 }
