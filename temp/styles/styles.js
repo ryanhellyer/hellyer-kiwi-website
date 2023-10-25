@@ -38,81 +38,33 @@ var _this = this;
 /**
  * Handles password input and associated actions.
  * @param listItem - The HTMLInputElement.
- */
-var handlePasswordInput = function (listItem) { return __awaiter(_this, void 0, void 0, function () {
-    var password;
+*/
+var getPassword = function (inputElement) {
+    return inputElement.value;
+};
+var removeDecryptedClass = function (listItem) {
+    listItem.classList.remove('decrypted');
+};
+var decryptAndPopulateTextarea = function (listItem) { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        password = getPassword(listItem);
-        if (password.length === 0) {
-            //removeDecryptedClass(listItem);
-            return [2 /*return*/];
-        }
-        try {
-            console.log('bla');
-            //await decryptAndPopulateTextarea(listItem);
-        }
-        catch (error) {
-            console.log(error);
-            //removeDecryptedClass(listItem);
-        }
         return [2 /*return*/];
     });
 }); };
-document.addEventListener('DOMContentLoaded', function () {
-    // Main event delegation function
-    document.addEventListener('input', function (event) {
-        return __awaiter(this, void 0, void 0, function () {
-            var input;
-            return __generator(this, function (_a) {
-                input = event.target;
-                if (input.type !== 'password') {
-                    return [2 /*return*/];
-                }
-                try {
-                    handlePasswordInput(input);
-                }
-                catch (error) {
-                    console.error('There was a problem with handling the password input:', error);
-                }
-                return [2 /*return*/];
-            });
-        });
-    });
-});
 /*
-    // Main event delegation function
-    document.addEventListener('input', async function(event) {
-        const input = event.target;
- 
-        if (input.type !== 'password') {
-            return;
-        }
+const handlePasswordInput = async (listItem: HTMLInputElement): Promise<void> => {
+    const password = getPassword(listItem);
 
-        const listItem = input.parentNode;
-        try {
-            handlePasswordInput(listItem);
-        } catch (error) {
-            console.error('There was a problem with the handling the password input:', error);
-        }
-    });
+    if (password.length === 0) {
+        removeDecryptedClass(listItem);
+        return;
+    }
 
-    // Handle button clicks.
-    document.addEventListener('click', async function(event) {
-        const element = event.target;
-
-        if (element.classList.contains('save')) {
-            const listItem = element.parentNode;
-            try {
-                handleSaveButtonClick(listItem);
-            } catch (error) {
-                console.error('There was a problem with the save button click:', error);
-            }
-        } else if (element.classList.contains('delete')) {
-            try {
-                handleDeleteButtonClick(listItem);
-            } catch (error) {
-                console.error('There was a problem with the delete button click:', error);
-            }
-        }
-    });
-    */
+    try {
+        console.log('bla');
+        await decryptAndPopulateTextarea(listItem);
+    } catch (error) {
+        console.log(error);
+        removeDecryptedClass(listItem);
+    }
+};
+*/ 
