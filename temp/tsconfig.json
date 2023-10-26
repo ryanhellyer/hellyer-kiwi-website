@@ -2,18 +2,18 @@
   "compilerOptions": {
       "target": "es6",
       "lib": [
-          "es6",
-          "dom",
-          "es2018.asynciterable"
+        "es2018",
+        "dom"
       ],
-
-      "module": "commonjs",
+      "module": "amd",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "strict": true,
-      "skipLibCheck": true
+      "skipLibCheck": true,
+      "outFile": "script.js"
   },
   "files": [
-      "./styles/styles.ts"
+      "./functions.ts",
+      "./main.ts"
   ]
 }

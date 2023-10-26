@@ -34,37 +34,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
-/**
- * Handles password input and associated actions.
- * @param listItem - The HTMLInputElement.
-*/
-var getPassword = function (inputElement) {
-    return inputElement.value;
-};
-var removeDecryptedClass = function (listItem) {
-    listItem.classList.remove('decrypted');
-};
-var decryptAndPopulateTextarea = function (listItem) { return __awaiter(_this, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        return [2 /*return*/];
+document.addEventListener('DOMContentLoaded', function () {
+    // Main event delegation function
+    document.addEventListener('input', function (event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var input, listItem;
+            return __generator(this, function (_a) {
+                input = event.target;
+                if (input.type !== 'password') {
+                    return [2 /*return*/];
+                }
+                listItem = input.parentNode;
+                try {
+                    handlePasswordInput(listItem);
+                }
+                catch (error) {
+                    console.error('There was a problem with the handling the password input:', error);
+                }
+                return [2 /*return*/];
+            });
+        });
     });
-}); };
-/*
-const handlePasswordInput = async (listItem: HTMLInputElement): Promise<void> => {
-    const password = getPassword(listItem);
-
-    if (password.length === 0) {
-        removeDecryptedClass(listItem);
-        return;
-    }
-
-    try {
-        console.log('bla');
-        await decryptAndPopulateTextarea(listItem);
-    } catch (error) {
-        console.log(error);
-        removeDecryptedClass(listItem);
-    }
-};
-*/ 
+    // Handle button clicks.
+    document.addEventListener('click', function (event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var element, listItem;
+            return __generator(this, function (_a) {
+                element = event.target;
+                if (element.classList.contains('save')) {
+                    listItem = element.parentNode;
+                    try {
+                        handleSaveButtonClick(listItem);
+                    }
+                    catch (error) {
+                        console.error('There was a problem with the save button click:', error);
+                    }
+                }
+                else if (element.classList.contains('delete')) {
+                    try {
+                        handleDeleteButtonClick(listItem);
+                    }
+                    catch (error) {
+                        console.error('There was a problem with the delete button click:', error);
+                    }
+                }
+                return [2 /*return*/];
+            });
+        });
+    });
+});
