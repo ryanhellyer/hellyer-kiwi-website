@@ -4,7 +4,7 @@ Tags: custom-header, header, headers, images, page, post, plugin, image, images,
 Donate link: https://geek.hellyer.kiwi/donate/
 Requires at least: 4.3
 Tested up to: 6.4
-Stable tag: 1.9
+Stable tag: 1.9.3
 
 
 
@@ -91,6 +91,15 @@ Yes. Just send me a message via <a href="https://ryan.hellyer.kiwi/contact/">my 
 
 
 == Changelog ==
+
+= 1.9.3 =
+* Fixed a bug in the DotOrg_Plugin_Review() class. The switch to === broke the no debug check, so this has been fixed.
+
+= 1.9.2 =
+* Fixed a bug in the nonce system for taxonomy terms.
+
+= 1.9.1 =
+* Temporarily preventing the DotOrg_Plugin_Review() class from loading due to a bug report relating to it. It will be re-added later.
 
 = 1.9 =
 * Updated WordPress coding standards support
