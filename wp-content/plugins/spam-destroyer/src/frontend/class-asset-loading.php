@@ -1,55 +1,61 @@
 <?php
 /**
- * Handles asset loading for the SpamDestroyer plugin.
+ * Handles asset loading for the Spam Destroyer plugin.
  *
- * This file is responsible for loading necessary assets for the SpamDestroyer plugin.
+ * This file is responsible for loading necessary assets for the Spam Destroyer plugin.
  *
- * @package   SpamDestroyer\Frontend
- * @copyright Copyright (c), Ryan Hellyer
+ * @package   Spam Destroyer
+ * @copyright Copyright ©, Ryan Hellyer
  * @author    Ryan Hellyer <ryanhellyer@gmail.com>
  * @since     1.0
- * @license   GPL-3.0-or-later
  */
 
 declare(strict_types=1);
 
 namespace SpamDestroyer\Frontend;
 
+use SpamDestroyer\Shared;
+
 /**
- * Manages asset loading for the SpamDestroyer plugin.
+ * Manages asset loading for the Spam Destroyer plugin.
  *
- * This class is used for enqueuing scripts and styles required by the SpamDestroyer plugin.
+ * This class is used for enqueuing scripts and styles required by the Spam Destroyer plugin.
  *
- * @package SpamDestroyer\Frontend
+ * @package Spam Destroyer
  */
 class Asset_Loading {
 	/**
-	 * The Config class instance.
+	 * The Shared class instance.
 	 *
-	 * @var \SpamDestroyer\Config
+	 * @var Shared
 	 */
-	private $config;
+	private $shared;
 
 	/**
 	 * Class constructor.
 	 *
-	 * @param \SpamDestroyer\Config $config The Config instance.
+	 * @param Shared $shared The Shared instance.
 	 */
-	public function __construct( \SpamDestroyer\Config $config ) {
-		$this->config = $config;
+	public function __construct( Shared $shared ) {
+		$this->shared = $shared;
 	}
 
 	/**
-	 * Loading the javascript payload
+	 * Loading the javascript payload.
+	 * Adds the kill.js script which changes a hidden input field
+	 * in the page with correct data from the kill_it_dead var.
+	 *
+	 * Adds a spam_destroyer_cookie_lifetime filter, which can be used
+	 * for modifying the cookie expiry time.
 	 */
 	public function load_payload() {
 
 		// Load the payload.
 		wp_enqueue_script(
 			'kill_it_dead',
-			plugins_url( 'assets/kill.js', dirname( __DIR__ ) ),
+			plugins_url( 'assets/kill-spam.js', dirname( __DIR__ ) ),
 			'',
-			$this->config::VERSION,
+			$this->shared::VERSION,
 			true
 		);
 
@@ -58,7 +64,7 @@ class Asset_Loading {
 			'kill_it_dead',
 			'spam_destroyer',
 			array(
-				'key'      => $this->config->get_spam_key(),
+				'key'      => $this->shared->get_spam_key(),
 				'lifetime' => absint( apply_filters( 'spam_destroyer_cookie_lifetime', HOUR_IN_SECONDS ) ),
 			),
 		);
