@@ -96,6 +96,7 @@ class View
 
         return $itemTemplate;
     }
+
     /**
      * Generates HTML for an error on a document.
      *

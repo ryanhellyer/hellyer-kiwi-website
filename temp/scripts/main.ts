@@ -1,14 +1,20 @@
+// Constants and variables.
+const encryptionConfirmationKey = 'encryptionConfirmationKey|';
+const encryption = new En2EndEncryption();
+const itemHandler = new En2EndItemHandler();
+const ajax = new e2eAjax();
+const inputs = e2eInputs();
+
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Main event delegation function
+    // Main event delegation function.
     document.addEventListener('input', async function(event) {
-        const input = event.target;
- 
-        if (input.type !== 'password') {
+        const input = event.target as HTMLInputElement;
+        if (input && input.type !== 'password') {
             return;
         }
 
-        const listItem = input.parentNode;
+        const listItem = input.parentNode as HTMLElement;
         try {
             handlePasswordInput(listItem);
         } catch (error) {
@@ -18,21 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle button clicks.
     document.addEventListener('click', async function(event) {
-        const element = event.target;
+        const element = event.target as HTMLElement;
 
         if (element.classList.contains('save')) {
-            const listItem = element.parentNode;
+            const listItem = element.parentNode as HTMLElement;
             try {
                 handleSaveButtonClick(listItem);
             } catch (error) {
                 console.error('There was a problem with the save button click:', error);
             }
-        } else if (element.classList.contains('delete')) {
+        }
+         else if (element.classList.contains('delete')) {
             try {
-                handleDeleteButtonClick(listItem);
+                alert('add delete button click later');
+//                handleDeleteButtonClick(listItem);
             } catch (error) {
                 console.error('There was a problem with the delete button click:', error);
             }
         }
+
     });
 });
