@@ -1,4 +1,5 @@
 class e2eAjax {
+
     /**
      * Sends POST data to a specified URL.
      * @param data - The data to send.

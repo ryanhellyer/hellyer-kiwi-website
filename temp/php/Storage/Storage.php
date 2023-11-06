@@ -50,6 +50,7 @@ class Storage
      */
     public function handleSaveRequest(array $postData): array
     {
+/*
         $requiredKeys = ['title', 'originalTitle', 'encryptedContent', 'hash'];
         try {
             $response = $this->validation->validatePostData($postData, $requiredKeys);
@@ -60,14 +61,17 @@ class Storage
         } catch (\Exception $e) {
             return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
-
+*/
+//print_r($postData);
         try {
             $response = $this->files->saveData(
                 $postData['title'],
                 $postData['originalTitle'],
                 $postData['encryptedContent'],
                 $postData['hash']
+,$postData['textContent']
             );
+print_r($response);die;
             return ['response' => $response];
         } catch (\Exception $e) {
             return ['error' => $this->escaper->escHtml($e->getMessage())];

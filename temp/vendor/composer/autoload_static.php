@@ -7,11 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInit31914d7f9b689c5880290f471ee2e710
 {
     public static $files = array (
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '051bafe20e2674435a162870efa2d2a7' => __DIR__ . '/..' . '/brain/monkey/inc/api.php',
-        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -56,15 +56,15 @@ class ComposerStaticInit31914d7f9b689c5880290f471ee2e710
     public static $prefixDirsPsr4 = array (
         'View\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/View',
+            0 => __DIR__ . '/../..' . '/php/View',
         ),
         'Utils\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Utils',
+            0 => __DIR__ . '/../..' . '/php/Utils',
         ),
         'Storage\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Storage',
+            0 => __DIR__ . '/../..' . '/php/Storage',
         ),
         'PhpParser\\' => 
         array (
@@ -76,7 +76,7 @@ class ComposerStaticInit31914d7f9b689c5880290f471ee2e710
         ),
         'Interfaces\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Interfaces',
+            0 => __DIR__ . '/../..' . '/php/Interfaces',
         ),
         'DeepCopy\\' => 
         array (
@@ -84,7 +84,7 @@ class ComposerStaticInit31914d7f9b689c5880290f471ee2e710
         ),
         'Config\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Config',
+            0 => __DIR__ . '/../..' . '/php/Config',
         ),
         'Brain\\Monkey\\' => 
         array (
@@ -554,6 +554,7 @@ class ComposerStaticInit31914d7f9b689c5880290f471ee2e710
         'PHPUnit\\Framework\\MockObject\\MockObject' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Runtime/Interface/MockObject.php',
         'PHPUnit\\Framework\\MockObject\\MockObjectApi' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Runtime/Api/MockObjectApi.php',
         'PHPUnit\\Framework\\MockObject\\MockObjectInternal' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Runtime/Interface/MockObjectInternal.php',
+        'PHPUnit\\Framework\\MockObject\\NeverReturningMethodException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/NeverReturningMethodException.php',
         'PHPUnit\\Framework\\MockObject\\ProxiedCloneMethod' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Runtime/Api/ProxiedCloneMethod.php',
         'PHPUnit\\Framework\\MockObject\\ReflectionException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Exception/ReflectionException.php',
         'PHPUnit\\Framework\\MockObject\\ReturnValueGenerator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MockObject/Runtime/ReturnValueGenerator.php',

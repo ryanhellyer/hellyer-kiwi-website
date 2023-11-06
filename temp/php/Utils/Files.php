@@ -41,7 +41,7 @@ class Files implements FilesInterface
      * @return bool True on success, false otherwise.
      * @throws \Exception If an error occurs.
      */
-    public function saveData(string $title, string $originalTitle, string $encryptedContent, string $hash): bool
+    public function saveData(string $title, string $originalTitle, string $encryptedContent, string $hash, string $textContent/*@todo remove textContent*/): bool
     {
         $oldPath = Config::STORAGE_PATH . $originalTitle . '.' . Config::STORAGE_FILE_EXTENSION;
         $newPath = Config::STORAGE_PATH . $title . '.' . Config::STORAGE_FILE_EXTENSION;
@@ -53,10 +53,11 @@ class Files implements FilesInterface
         if ($oldPath !== $newPath && $this->fileHandler->exists($newPath)) {
             throw new \Exception('That file name already exists');
         }
+//@todo remove references to $textContent here.
+        $fileContent = $hash . Config::SEPARATOR . $encryptedContent . Config::SEPARATOR . $textContent;
+        $result = $this->fileHandler->putContents($newPath, $fileContent);
 
-        $fileContent = $hash . Config::SEPARATOR . $encryptedContent;
-
-        if (!$this->fileHandler->putContents($newPath, $fileContent)) {
+        if (!$result) {
             throw new \Exception('File did not write');
         }
 

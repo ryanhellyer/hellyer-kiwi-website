@@ -43,10 +43,9 @@ class Validation implements ValidationInterface
      * @return bool True if all required keys exist.
      * @throws \Exception when required parameters are missing.
      */
-    public function validatePostData(array $postData, array $requiredKeys): array
+    public function validatePostData(array $postData, array $requiredKeys): bool
     {
         $missingKeys = array_diff($requiredKeys, array_keys($postData));
-
         if ($missingKeys) {
             throw new \Exception('Missing required parameters: ' . implode(',', $missingKeys));
         }

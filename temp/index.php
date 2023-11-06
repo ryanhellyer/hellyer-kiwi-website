@@ -10,28 +10,50 @@ require 'vendor/autoload.php';
 
 use Storage\Storage;
 use View\View;
-
 use Utils\Escaper;
 use Utils\Files;
 use Utils\Validation;
 use Utils\FileHandler;
+use Utils\LoadJson;
 
-$storage = new Storage(
-	new Escaper(),
-	new Files(
-		new Validation(),
-        new FileHandler()
-	),
-	new Validation()
-);
+
+if (isset($_GET['data'])) {
+    $loadJSON = new LoadJson(
+        new Files(
+            new Validation(),
+            new FileHandler()
+        )
+    );
+    header('Content-Type: application/json');
+    echo json_encode($loadJSON->getData(), JSON_PRETTY_PRINT);
+    die;
+}
 
 if (isset($_GET['save'])) {
+    $storage = new Storage(
+        new Escaper(),
+        new Files(
+            new Validation(),
+            new FileHandler()
+        ),
+        new Validation()
+    );
+
     header('Content-Type: application/json');
     echo json_encode($storage->handleSaveRequest($_POST));
     exit;
 }
 
 if (isset($_GET['delete'])) {
+    $storage = new Storage(
+        new Escaper(),
+        new Files(
+            new Validation(),
+            new FileHandler()
+        ),
+        new Validation()
+    );
+
     header('Content-Type: application/json');
     echo json_encode($storage->handleDeleteRequest($_POST));
     exit;

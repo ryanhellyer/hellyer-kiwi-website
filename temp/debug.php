@@ -8,32 +8,27 @@ error_reporting(E_ALL);
 
 /*
 */
-$error = 'Deprecated: Creation of dynamic property Utils\Files::$fileHandler is deprecated in /var/www/pressabl/public_html/temp/src/Utils/Files.php on line 30
-
-Fatal error: Method View\View::__construct() cannot declare a return type in /var/www/pressabl/public_html/temp/src/View/View.php on line 27';
+$error = '
+<br />
+<b>Fatal error</b>:  Uncaught TypeError: Utils\LoadJson::getData(): Return value must be of type string, array returned in /var/www/pressabl/public_html/temp/php/Utils/LoadJson.php:47
+Stack trace:
+#0 /var/www/pressabl/public_html/temp/index.php(28): Utils\LoadJson-&gt;getData()
+#1 {main}
+  thrown in <b>/var/www/pressabl/public_html/temp/php/Utils/LoadJson.php</b> on line <b>47</b><br />
+';
 
 //echo 'Do the interfaces here make sense? index.php is the executing file:';
-echo 'Write PHP unit tests for these. index.php is the executing file:';
+echo 'Why do I get this error, with the following files?';
 
 echo "\n\n";
-//echo $error;
+echo $error;
 echo "\n\n";
 
 
 $files = [
-    'src/Config/Config.php',
-    'src/Interfaces/EscaperInterface.php',
-    'src/Interfaces/FileHandlerInterface.php',
-    'src/Interfaces/FilesInterface.php',
-    'src/Interfaces/ValidationInterface.php',
-    'src/Storage/Storage.php',
-    'src/Utils/Escaper.php',
-    'src/Utils/FileHandler.php',
-    'src/Utils/Files.php',
-    'src/Utils/Validation.php',
-    'src/View/View.php',
+    'php/Utils/LoadJson.php',
+    'php/Interfaces/LoadJsonInterface.php',
     'index.php',
-    'composer.json',
 ];
 foreach ($files as $file) {
     echo "\n\n\n";
