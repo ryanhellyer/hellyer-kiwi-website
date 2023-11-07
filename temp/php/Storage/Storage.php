@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Storage;
 
+use Interfaces\StorageInterface;
 use Interfaces\EscaperInterface;
 use Interfaces\FilesInterface;
 use Interfaces\ValidationInterface;
@@ -14,7 +15,7 @@ use Config\Config;
  *
  * Manages encrypted files, including saving, deleting, and listing.
  */
-class Storage
+class Storage implements StorageInterface
 {
     private EscaperInterface $escaper;
     private FilesInterface $files;
@@ -71,7 +72,6 @@ class Storage
                 $postData['hash']
 ,$postData['textContent']
             );
-print_r($response);die;
             return ['response' => $response];
         } catch (\Exception $e) {
             return ['error' => $this->escaper->escHtml($e->getMessage())];

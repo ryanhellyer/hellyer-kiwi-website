@@ -6,6 +6,9 @@ class e2eEventHandlers {
 
         document.addEventListener('input', this.handleInputEvent.bind(this));
         document.addEventListener('click', this.handleClickEvent.bind(this));
+
+        const randomInt = Math.floor(Math.random() * 10000);
+        this->fetchJSON('view-source:https://geek.hellyer.kiwi/temp/?data='+randomInt);
     }
 
     private async handleInputEvent(event: Event) {
@@ -39,6 +42,20 @@ class e2eEventHandlers {
             } catch (error) {
                 console.error('There was a problem with the delete button click:', error);
             }
+        }
+    }
+
+    public async fetchJSON(url: string): Promise<any> {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('There was a problem fetching the data:', error);
+            throw error;
         }
     }
 }
