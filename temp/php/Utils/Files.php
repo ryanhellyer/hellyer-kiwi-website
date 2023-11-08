@@ -147,6 +147,7 @@ class Files implements FilesInterface
         $encryptedContent = $bits[1] ?? $bits[0];
 
         return [
+            'name' => $doc,
             'hash' => $hash,
             'encryptedContent' => $encryptedContent,
         ];

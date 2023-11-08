@@ -8,7 +8,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-class e2eEncryption {
+class LoadItems {
+    getItems() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const randomInt = Math.floor(Math.random() * 10000);
+            const data = yield this.fetchJSON('/temp/?data=' + randomInt);
+            return data;
+        });
+    }
+    fetchJSON(url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = response.json();
+                return data;
+            }
+            catch (error) {
+                console.error('There was a problem fetching the data:', error);
+                throw error;
+            }
+        });
+    }
+}
+class Encryption {
     constructor() {
         this.salt = "salt";
         this.encoder = new TextEncoder();
@@ -64,325 +89,36 @@ class e2eEncryption {
         });
     }
 }
-class e2eItemHandler {
-    /**
-     * Retrieves the password value from an input element inside the given list item.
-     *
-     * @param listItem - The parent node containing the input element.
-     * @returns - The value of the password input element.
-     */
-    getPassword(listItem) {
-        const inputElement = listItem.querySelector('input[type="password"]');
-        return inputElement.value;
-    }
-    /**
-     * Retrieves the save button element from the given list item.
-     *
-     * @param listItem - The parent node containing the save button.
-     * @returns - The save button element.
-     */
-    getSaveButton(listItem) {
-        return listItem.querySelector('.save');
-    }
-    /**
-     * Retrieves the text area (editable content) element from the given list item.
-     *
-     * @param listItem - The parent node containing the text area.
-     * @returns - The text area element.
-     */
-    getTextArea(listItem) {
-        return listItem.querySelector('.editableContent');
-    }
-    /**
-     * Retrieves the div (encrypted content) element from the given list item.
-     *
-     * @param listItem - The parent node containing the div.
-     * @returns - The div element.
-     */
-    getDiv(listItem) {
-        return listItem.querySelector('.encryptedContent');
-    }
-    /**
-     * Retrieves the delete button element from the given list item.
-     *
-     * @param listItem - The parent node containing the delete button.
-     * @returns - The delete button element.
-     */
-    getDeleteButton(listItem) {
-        return listItem.querySelector('.delete');
-    }
-    /**
-     * Retrieves the message paragraph element from the given list item.
-     *
-     * @param listItem - The parent node containing the paragraph.
-     * @returns - The paragraph element.
-     */
-    getMessage(listItem) {
-        return listItem.querySelector('p');
-    }
-    /**
-     * Adds the 'decrypted' class to the list item to indicate it has been decrypted.
-     *
-     * @param listItem - The list item to be marked as decrypted.
-     */
-    setDecrypted(listItem) {
-        listItem.classList.add('decrypted');
-    }
-    /**
-     * Removes the 'decrypted' class from the list item to indicate it is no longer decrypted.
-     *
-     * @param listItem - The list item to be unmarked as decrypted.
-     */
-    unsetDecrypted(listItem) {
-        listItem.classList.remove('decrypted');
-    }
-    /**
-     * Hashes a password using the hashPassword function, password is fetched from parent node.
-     * @param listItem - The parent node of the input element.
-     * @returns - The hashed password.
-     */
-    getHash(listItem) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const password = this.getPassword(listItem);
-            return yield this.hashPassword(password);
-        });
-    }
-    /**
-     * Hashes a password using SHA-256.
-     * @param password - The password to hash.
-     * @returns - The hashed password.
-     */
-    hashPassword(password) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const msgBuffer = new TextEncoder().encode(password);
-            const hashBuffer = yield crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashString = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return btoa(hashString);
-        });
-    }
-}
-class e2eEventHandlers {
-    constructor(inputs) {
-        this.inputs = inputs;
-        document.addEventListener('input', this.handleInputEvent.bind(this));
-        document.addEventListener('click', this.handleClickEvent.bind(this));
-    }
-    handleInputEvent(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const input = event.target;
-            if (input && input.type !== 'password') {
-                return;
-            }
-            const listItem = input.parentNode;
-            try {
-                yield this.inputs.handlePasswordInput(listItem);
-            }
-            catch (error) {
-                console.error('There was a problem with handling the password input:', error);
-            }
-        });
-    }
-    handleClickEvent(event) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const element = event.target;
-            if (element.classList.contains('save')) {
-                const listItem = element.parentNode;
-                try {
-                    this.inputs.handleSaveButtonClick(listItem);
-                }
-                catch (error) {
-                    console.error('There was a problem with the save button click:', error);
-                }
-            }
-            else if (element.classList.contains('delete')) {
-                try {
-                    alert('add delete button click later');
-                    //                this.inputs.handleDeleteButtonClick(listItem);
-                }
-                catch (error) {
-                    console.error('There was a problem with the delete button click:', error);
-                }
-            }
-        });
-    }
-}
-class e2eAjax {
-    /**
-     * Sends POST data to a specified URL.
-     * @param data - The data to send.
-     * @param type - The type of request.
-     * @returns - The JSON response from the server.
-     */
-    postData(data = {}, type) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const urlEncodedData = new URLSearchParams(data).toString();
-            let response;
-            try {
-                response = yield fetch('./?' + type, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: urlEncodedData
-                });
-            }
-            catch (error) {
-                console.error('Fetch failed:', error);
-                throw error;
-            }
-            if (!response) {
-                throw new Error('No response found!');
-            }
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const jsonResponse = yield response.json();
-            if (!jsonResponse) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return jsonResponse;
-        });
-    }
-}
-class e2eAnimations {
-    /**
-     * Starts the save animation on a list item.
-     *
-     * @param listItem - The list item on which to start the save animation.
-     *
-     * This method adds the 'savingStart' class to the list item, triggering any associated CSS animations or transitions.
-     */
-    startSaveAnimation(listItem) {
-        listItem.classList.add('savingStart');
-    }
-    /**
-     * Ends the save animation on a list item.
-     *
-     * @param listItem - The list item on which to end the save animation.
-     *
-     * This method performs the following operations:
-     * 1. Removes the 'savingStart' class from the list item.
-     * 2. Adds the 'savingEnd' class to trigger the end of the animation.
-     * 3. Removes the 'savingEnd' class after 1 second to reset the animation state.
-     */
-    endSaveAnimation(listItem) {
-        listItem.classList.remove('savingStart');
-        listItem.classList.add('savingEnd');
-        setTimeout(() => {
-            listItem.classList.remove('savingEnd');
-        }, 1000);
-    }
-}
-class e2eInputs {
-    constructor(itemHandler, animations, ajax, encryption) {
-        this.itemHandler = itemHandler;
-        this.animations = animations;
-        this.ajax = ajax;
-        this.encryption = encryption;
-    }
-    /**
-     * Handles the click event for the save button within a list item.
-     *
-     * @param listItem - The parent list item containing the save button.
-     */
-    handleSaveButtonClick(listItem) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const saveButton = this.itemHandler.getSaveButton(listItem);
-            const message = this.itemHandler.getMessage(listItem);
-            const password = this.itemHandler.getPassword(listItem);
-            const textarea = this.itemHandler.getTextArea(listItem);
-            const textContent = textarea ? textarea.innerHTML : null;
-            const hash = yield this.itemHandler.getHash(listItem);
-            const contentForEncryption = encryptionConfirmationKey + textContent;
-            const encryptedContent = yield this.encryption.encrypt(contentForEncryption, password);
-            const inputTextElement = listItem.querySelector('input[type=text]');
-            const title = inputTextElement ? inputTextElement.value : null;
-            const inputHiddenElement = listItem.querySelector('input[type=hidden]');
-            const originalTitle = inputHiddenElement ? inputHiddenElement.value : null;
-            this.animations.startSaveAnimation(listItem);
-            try {
-                const response = yield this.ajax.postData({ title: title, originalTitle: originalTitle, encryptedContent: encryptedContent, hash: hash, textContent: textContent /*@todo remove textContent, just here for testing*/ }, 'save');
-                this.animations.endSaveAnimation(listItem);
-                if (response.error) {
-                    message.innerHTML = this.escHtml(response.error);
-                }
-                else if (inputHiddenElement && title !== null) {
-                    inputHiddenElement.value = title;
-                    listItem.classList.remove('new');
-                    message.innerHTML = this.escHtml('Much success ma bro!');
-                }
-            }
-            catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        });
-    }
-    /**
-     * Handles password input and associated actions.
-     *
-     * @param listItem - The list item element.
-     */
-    handlePasswordInput(listItem) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const password = this.itemHandler.getPassword(listItem);
-            if (password.length === 0) {
-                this.itemHandler.unsetDecrypted(listItem);
-                return;
-            }
-            try {
-                yield this.decryptAndPopulateTextarea(listItem);
-            }
-            catch (error) {
-                console.log(error);
-                this.itemHandler.unsetDecrypted(listItem);
-            }
-        });
-    }
-    /**
-     * Decrypts content and populates the textarea.
-     *
-     * @param listItem - The parent list item.
-     */
-    decryptAndPopulateTextarea(listItem) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let decryptedContent = '';
-            const password = this.itemHandler.getPassword(listItem);
-            const textarea = this.itemHandler.getTextArea(listItem);
-            const div = this.itemHandler.getDiv(listItem);
-            if (!listItem.classList.contains('new')) {
-                decryptedContent = yield this.encryption.decrypt(div.innerHTML, password);
-                if (decryptedContent.substring(0, encryptionConfirmationKey.length) !== encryptionConfirmationKey) {
-                    throw new Error('Confirmation of data decryption failed');
-                }
-                decryptedContent = decryptedContent.replace(encryptionConfirmationKey, '');
-                this.itemHandler.setDecrypted(listItem);
-            }
-            textarea.innerHTML = this.escHtml(decryptedContent);
-            listItem.classList.add('decrypted');
-        });
-    }
-    /**
-     * Escapes HTML entities in a string.
-     * @param {string} str - The string to escape.
-     * @returns {string} - The escaped string.
-     */
-    escHtml(str) {
-        const div = document.createElement('div');
-        div.appendChild(document.createTextNode(str));
-        const escapedString = div.innerHTML;
-        // We need to manually-deescape <b>, <i> and <u> tags.
-        const deEscapedString = escapedString.replace(/&lt;b&gt;/g, '<b>')
-            .replace(/&lt;\/b&gt;/g, '</b>')
-            .replace(/&lt;i&gt;/g, '<i>')
-            .replace(/&lt;\/i&gt;/g, '</i>')
-            .replace(/&lt;u&gt;/g, '<u>')
-            .replace(/&lt;\/u&gt;/g, '</u>')
-            .replace(/&lt;\/br&gt;/g, '<br>');
-        return deEscapedString;
-    }
-}
-const encryptionConfirmationKey = 'encryptionConfirmationKey|';
+const config = {
+    'encryptionConfirmationKey': 'encryptionConfirmationKey|',
+    'blockTemplate': `
+<li>
+    <input type="text" value="{{name}}">
+    <input type="hidden" value="{{name}}">
+    <input type="password" value="" placeholder="Enter password">
+    <div class="editableContent" contenteditable="true"></div>
+    <div class="encryptedContent">{{encryptedContent}}</div>
+    <button class="save">Save</button>
+    <button class="delete">Delete</button>
+<p></p>
+</li>`
+};
 document.addEventListener('DOMContentLoaded', function () {
-    new e2eEventHandlers(new e2eInputs(new e2eItemHandler, new e2eAnimations(), new e2eAjax(), new e2eEncryption));
+    return __awaiter(this, void 0, void 0, function* () {
+        const loadItems = new LoadItems();
+        const encryption = new Encryption();
+        let items = yield loadItems.getItems();
+        const blocks = document.getElementById('blocks');
+        if (blocks) {
+            for (const item of items) {
+                blocks.innerHTML += getBlock(item);
+            }
+        }
+        function getBlock(item) {
+            let HTML = config.blockTemplate;
+            HTML = HTML.replace('{{encryptedContent}}', item.encryptedContent);
+            HTML = HTML.replace('{{name}}', item.name);
+            return HTML;
+        }
+    });
 });

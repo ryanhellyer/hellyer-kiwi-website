@@ -9,7 +9,6 @@ error_reporting(E_ALL);
 require 'vendor/autoload.php';
 
 use Storage\Storage;
-use View\View;
 use Utils\Escaper;
 use Utils\Files;
 use Utils\Validation;
@@ -59,12 +58,5 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-$view = new View(
-    new Escaper(),
-	new Files(
-		new Validation(),
-        new FileHandler()
-	),
-);
-echo $view->displayMainTemplate();
+echo file_get_contents( 'templates/main-template.tmpl');
 die;
