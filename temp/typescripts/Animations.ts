@@ -1,4 +1,4 @@
-class e2eAnimations {
+class Animations {
     /**
      * Starts the save animation on a list item.
      * 

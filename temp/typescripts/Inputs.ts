@@ -1,11 +1,11 @@
-class e2eInputs {
-    private itemHandler: e2eItemHandler;
-    private animations: e2eAnimations;
-    private ajax: e2eAjax;
-    private encryption: e2eEncryption;
+class Inputs {
+    private inputHelper: InputHelper;
+    private animations: Animations;
+    private ajax: Ajax;
+    private encryption: Encryption;
 
-    constructor(itemHandler: e2eItemHandler, animations: e2eAnimations, ajax: e2eAjax, encryption: e2eEncryption) {
-        this.itemHandler = itemHandler;
+    constructor(inputHelper: InputHelper, animations: Animations, ajax: Ajax, encryption: Encryption) {
+        this.inputHelper = inputHelper;
         this.animations = animations;
         this.ajax = ajax;
         this.encryption = encryption;
@@ -17,15 +17,16 @@ class e2eInputs {
      * @param listItem - The parent list item containing the save button.
      */
     public async handleSaveButtonClick(listItem: HTMLElement): Promise<void> {
-        const saveButton: HTMLButtonElement | null = this.itemHandler.getSaveButton(listItem);
-        const message: HTMLParagraphElement | null = this.itemHandler.getMessage(listItem);
-        const password: string = this.itemHandler.getPassword(listItem);
+        const saveButton: HTMLButtonElement | null = this.inputHelper.getSaveButton(listItem);
+        const message: HTMLParagraphElement | null = this.inputHelper.getMessage(listItem);
+        const password: string = this.inputHelper.getPassword(listItem);
 
-        const textarea: HTMLDivElement | null = this.itemHandler.getTextArea(listItem);
+        const textarea: HTMLDivElement | null = this.inputHelper.getTextArea(listItem);
         const textContent: string | null = textarea ? textarea.innerHTML : null;
 
-        const hash: string = await this.itemHandler.getHash(listItem);
-        const contentForEncryption = encryptionConfirmationKey + textContent;
+        const hash: string = await this.inputHelper.getHash(listItem);
+        const newHash: string = await this.inputHelper.getNewHash(listItem);
+        const contentForEncryption = config.encryptionConfirmationKey + textContent;
 
         const encryptedContent = await this.encryption.encrypt(contentForEncryption, password);
 
@@ -58,10 +59,10 @@ class e2eInputs {
      * @param listItem - The list item element.
      */
     public async handlePasswordInput(listItem: HTMLElement): Promise<void> {
-        const password = this.itemHandler.getPassword(listItem);
+        const password = this.inputHelper.getPassword(listItem);
 
         if (password.length === 0) {
-            this.itemHandler.unsetDecrypted(listItem);
+            this.inputHelper.unsetDecrypted(listItem);
             return;
         }
 
@@ -69,7 +70,7 @@ class e2eInputs {
             await this.decryptAndPopulateTextarea(listItem);
         } catch (error) {
             console.log(error);
-            this.itemHandler.unsetDecrypted(listItem);
+            this.inputHelper.unsetDecrypted(listItem);
         }
     }
 
@@ -81,19 +82,19 @@ class e2eInputs {
     private async decryptAndPopulateTextarea(listItem: HTMLElement): Promise<void> {
         let decryptedContent = '';
 
-        const password = this.itemHandler.getPassword(listItem);
-        const textarea = this.itemHandler.getTextArea(listItem);
-        const div = this.itemHandler.getDiv(listItem);
+        const password = this.inputHelper.getPassword(listItem);
+        const textarea = this.inputHelper.getTextArea(listItem);
+        const div = this.inputHelper.getDiv(listItem);
 
         if (!listItem.classList.contains('new')) {
             decryptedContent = await this.encryption.decrypt(div.innerHTML, password);
 
-            if (decryptedContent.substring(0, encryptionConfirmationKey.length) !== encryptionConfirmationKey) {
+            if (decryptedContent.substring(0, config.encryptionConfirmationKey.length) !== config.encryptionConfirmationKey) {
                 throw new Error('Confirmation of data decryption failed');
             }
 
-            decryptedContent = decryptedContent.replace(encryptionConfirmationKey, '');
-            this.itemHandler.setDecrypted(listItem);
+            decryptedContent = decryptedContent.replace(config.encryptionConfirmationKey, '');
+            this.inputHelper.setDecrypted(listItem);
         }
 
         textarea.innerHTML = this.escHtml(decryptedContent);

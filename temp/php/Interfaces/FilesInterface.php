@@ -21,7 +21,7 @@ interface FilesInterface {
      * @param string $hash Hash associated with the document.
      * @return bool True if the operation was successful, false otherwise.
      */
-    public function saveData(string $title, string $originalTitle, string $encryptedContent, string $hash, string $textContent/*@todo remove textContent*/): bool;
+    public function saveData(string $title, string $originalTitle, string $encryptedContent, string $hash): bool;
 
     /**
      * Deletes a document item.

@@ -1,4 +1,4 @@
-class e2eEncryption {
+    class Encryption {
     private salt = "salt";
     private encoder: TextEncoder;
 

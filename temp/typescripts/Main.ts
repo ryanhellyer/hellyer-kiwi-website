@@ -4,24 +4,22 @@ const config = {
 <li>
     <input type="text" value="{{name}}">
     <input type="hidden" value="{{name}}">
-    <input type="password" value="" placeholder="Enter password">
+    <input class="password" type="password" value="" placeholder="Enter password">
     <div class="editableContent" contenteditable="true"></div>
     <div class="encryptedContent">{{encryptedContent}}</div>
     <button class="save">Save</button>
     <button class="delete">Delete</button>
-<p></p>
+    <input class="new-password" type="password" value="" placeholder="Enter new password">
+    <p></p>
 </li>`
 }
 
 
 document.addEventListener('DOMContentLoaded', async function() {
-    const loadItems = new LoadItems();
-    const encryption = new Encryption();
+    const ajax = new Ajax();
 
-
-    let items = await loadItems.getItems();
-
-
+    // Populate the blocks.
+    let items = await ajax.getItems();
     const blocks = document.getElementById('blocks');
     if(blocks) {
         for (const item of items) {
@@ -31,6 +29,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
 
+    const inputHelper = new InputHelper();
+    const animations = new Animations();
+    const encryption = new Encryption();
+
+    const inputs = new Inputs(inputHelper, animations, ajax, encryption);
+
+    const eventHandlers = new EventHandlers(inputs);
 
 
 
@@ -39,11 +44,15 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
 
-    function getBlock(item: Array<any>): string {
+
+
+
+
+    function getBlock(item: { encryptedContent: string; name: string }): string {
         let HTML = config.blockTemplate;
 
-        HTML = HTML.replace('{{encryptedContent}}', item.encryptedContent);
-        HTML = HTML.replace('{{name}}', item.name);
+        HTML = HTML.replaceAll('{{encryptedContent}}', item.encryptedContent);
+        HTML = HTML.replaceAll('{{name}}', item.name);
 
         return HTML;
     }

@@ -51,7 +51,6 @@ class Storage implements StorageInterface
      */
     public function handleSaveRequest(array $postData): array
     {
-/*
         $requiredKeys = ['title', 'originalTitle', 'encryptedContent', 'hash'];
         try {
             $response = $this->validation->validatePostData($postData, $requiredKeys);
@@ -62,15 +61,13 @@ class Storage implements StorageInterface
         } catch (\Exception $e) {
             return ['error' => $this->escaper->escHtml($e->getMessage())];
         }
-*/
-//print_r($postData);
+
         try {
             $response = $this->files->saveData(
                 $postData['title'],
                 $postData['originalTitle'],
                 $postData['encryptedContent'],
                 $postData['hash']
-,$postData['textContent']
             );
             return ['response' => $response];
         } catch (\Exception $e) {

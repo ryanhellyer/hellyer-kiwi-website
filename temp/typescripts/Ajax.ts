@@ -1,4 +1,20 @@
-class e2eAjax {
+class Ajax {
+
+    public async getItems(): Promise<any> {
+        try {
+            const randomInt = Math.floor(Math.random() * 10000);
+            const url = './?data='+randomInt;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = response.json();
+            return data;
+        } catch (error) {
+            console.error('There was a problem fetching the data:', error);
+            throw error;
+        }
+    }
 
     /**
      * Sends POST data to a specified URL.

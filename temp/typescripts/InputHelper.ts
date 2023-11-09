@@ -1,4 +1,4 @@
-class e2eItemHandler {
+class InputHelper {
 
     /**
      * Retrieves the password value from an input element inside the given list item.
@@ -7,7 +7,18 @@ class e2eItemHandler {
      * @returns - The value of the password input element.
      */
     public getPassword(listItem: HTMLElement): string {
-        const inputElement = listItem.querySelector('input[type="password"]') as HTMLInputElement;
+        const inputElement = listItem.querySelector('.password') as HTMLInputElement;
+        return inputElement.value;
+    }
+
+    /**
+     * Retrieves the new password value from an input element inside the given list item.
+     * 
+     * @param listItem - The parent node containing the input element.
+     * @returns - The value of the new password input element.
+     */
+    public getNewPassword(listItem: HTMLElement): string {
+        const inputElement = listItem.querySelector('.new-password') as HTMLInputElement;
         return inputElement.value;
     }
 
@@ -86,6 +97,16 @@ class e2eItemHandler {
      */
     public async getHash(listItem: HTMLElement): Promise<string> {
         const password = this.getPassword(listItem);
+        return await this.hashPassword(password);
+    }
+
+    /**
+     * Hashes a new password using the hashPassword function, new password is fetched from parent node.
+     * @param listItem - The parent node of the input element.
+     * @returns - The hashed password.
+     */
+    public async getNewHash(listItem: HTMLElement): Promise<string> {
+        const password = this.getNewPassword(listItem);
         return await this.hashPassword(password);
     }
 
