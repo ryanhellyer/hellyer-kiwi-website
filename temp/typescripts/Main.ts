@@ -1,5 +1,6 @@
 const config = {
     'encryptionConfirmationKey': 'encryptionConfirmationKey|',
+    'encryptionSalt': '9f14b082ad224f50be6e3cbb246985a15f426b13cf79a0957f8dda790916ecb9',
     'blockTemplate': `
 <li>
     <input type="text" value="{{name}}">

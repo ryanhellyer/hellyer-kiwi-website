@@ -1,5 +1,5 @@
-    class Encryption {
-    private salt = "salt";
+class Encryption {
+    private salt = config.encryptionSalt;
     private encoder: TextEncoder;
 
     constructor() {
