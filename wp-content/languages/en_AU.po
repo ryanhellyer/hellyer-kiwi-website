@@ -1148,7 +1148,7 @@ msgid "Sorry, replies to unapproved comments are not allowed."
 msgstr "Sorry, replies to unapproved comments are not allowed."
 
 #. translators: %s: A list of placeholders found to be a problem.
-#: wp-includes/class-wpdb.php:1647
+#: wp-includes/class-wpdb.php:1662
 msgid "Arguments cannot be prepared as both an Identifier and Value. Found the following conflicts: %s"
 msgstr "Arguments cannot be prepared as both an Identifier and Value. Found the following conflicts: %s"
 
@@ -1805,11 +1805,11 @@ msgid "Need more help? <a href=\"%1$s\">Read the support article on %2$s</a>."
 msgstr "Need more help? <a href=\"%1$s\">Read the support article on %2$s</a>."
 
 #. translators: %s: Database name.
-#: wp-includes/class-wpdb.php:1199
+#: wp-includes/class-wpdb.php:1214
 msgid "The database server could be connected to (which means your username and password is okay) but the %s database could not be selected."
 msgstr "The database server could be connected to (which means your username and password is okay) but the %s database could not be selected."
 
-#: wp-includes/class-wpdb.php:1195
+#: wp-includes/class-wpdb.php:1210
 msgid "Cannot select database"
 msgstr "Cannot select database"
 
@@ -2196,25 +2196,25 @@ msgstr "No comments"
 msgid "Confirm"
 msgstr "Confirm"
 
-#: wp-includes/class-wpdb.php:3670
+#: wp-includes/class-wpdb.php:3685
 msgid "Could not strip invalid text."
 msgstr "Could not strip invalid text."
 
-#: wp-includes/class-wpdb.php:3217
+#: wp-includes/class-wpdb.php:3232
 msgid "Could not retrieve table charset."
 msgstr "Could not retrieve table charset."
 
 #. translators: %s: Database fields where the error occurred.
-#: wp-includes/class-wpdb.php:2833
+#: wp-includes/class-wpdb.php:2848
 msgid "WordPress database error: Processing the values for the following fields failed: %s. The supplied values may be too long or contain invalid data."
 msgstr "WordPress database error: Processing the values for the following fields failed: %s. The supplied values may be too long or contain invalid data."
 
 #. translators: %s: Database field where the error occurred.
-#: wp-includes/class-wpdb.php:2827
+#: wp-includes/class-wpdb.php:2842
 msgid "WordPress database error: Processing the value for the following field failed: %s. The supplied value may be too long or contains invalid data."
 msgstr "WordPress database error: Processing the value for the following field failed: %s. The supplied value may be too long or contains invalid data."
 
-#: wp-includes/class-wpdb.php:2237
+#: wp-includes/class-wpdb.php:2252
 msgid "WordPress database error: Could not perform query because it contains invalid data."
 msgstr "WordPress database error: Could not perform query because it contains invalid data."
 
@@ -4400,7 +4400,7 @@ msgstr "(Home link, opens in a new tab)"
 
 #. translators: 1: Block type, 2: Typography supports key, e.g: fontSize,
 #. lineHeight, etc. 3: block.json, 4: Old metadata key, 5: New metadata key.
-#: wp-includes/blocks.php:1650
+#: wp-includes/blocks.php:1660
 msgid "Block \"%1$s\" is declaring %2$s support in %3$s file under %4$s. %2$s support is now declared under %5$s."
 msgstr "Block \"%1$s\" is declaring %2$s support in %3$s file under %4$s. %2$s support is now declared under %5$s."
 
@@ -5271,7 +5271,7 @@ msgstr "This theme does not work with your version of WordPress."
 #: wp-admin/includes/class-wp-plugins-list-table.php:1326
 #: wp-admin/includes/plugin.php:1140 wp-admin/includes/theme.php:929
 #: wp-admin/includes/theme.php:960 wp-admin/includes/theme.php:1006
-#: wp-admin/includes/theme.php:1029 wp-admin/includes/update-core.php:1170
+#: wp-admin/includes/theme.php:1029 wp-admin/includes/update-core.php:1172
 #: wp-admin/includes/update.php:788 wp-admin/includes/update.php:815
 #: wp-admin/install.php:255 wp-admin/theme-install.php:359
 #: wp-admin/theme-install.php:382 wp-admin/theme-install.php:564
@@ -7000,8 +7000,8 @@ msgid "Restore from Trash"
 msgstr "Restore from Trash"
 
 #. translators: Localized Support reference.
-#: wp-includes/admin-bar.php:213 wp-includes/class-wpdb.php:1224
-#: wp-includes/class-wpdb.php:2009 wp-includes/class-wpdb.php:2169
+#: wp-includes/admin-bar.php:213 wp-includes/class-wpdb.php:1239
+#: wp-includes/class-wpdb.php:2024 wp-includes/class-wpdb.php:2184
 #: wp-includes/customize/class-wp-customize-themes-section.php:90
 #: wp-includes/load.php:191
 #: wp-includes/rest-api/endpoints/class-wp-rest-pattern-directory-controller.php:150
@@ -8212,7 +8212,7 @@ msgstr "%s is already customising this changeset. Please wait until they are don
 msgid "Update anyway, even though it might break your site?"
 msgstr "Update anyway, even though it might break your site?"
 
-#: wp-includes/class-wpdb.php:1667
+#: wp-includes/class-wpdb.php:1682
 msgid "The query only expected one placeholder, but an array of multiple placeholders was sent."
 msgstr "The query only expected one placeholder, but an array of multiple placeholders was sent."
 
@@ -8291,12 +8291,12 @@ msgid "Looks like something&#8217;s gone wrong. Wait a couple seconds, and then 
 msgstr "Looks like something&#8217;s gone wrong. Wait a couple seconds, and then try again."
 
 #: wp-includes/class-wp-customize-manager.php:4326
-#: wp-includes/js/dist/editor.js:7566 wp-admin/includes/post.php:1891
+#: wp-includes/js/dist/editor.js:7566 wp-admin/includes/post.php:1878
 msgid "Take over"
 msgstr "Take over"
 
 #: wp-includes/class-wp-customize-manager.php:4322 wp-admin/comment.php:79
-#: wp-admin/comment.php:291 wp-admin/includes/post.php:1808
+#: wp-admin/comment.php:291 wp-admin/includes/post.php:1795
 #: wp-admin/plugin-editor.php:362 wp-admin/theme-editor.php:416
 msgid "Go back"
 msgstr "Go back"
@@ -8395,12 +8395,12 @@ msgid "%1$s &lsaquo; %2$s &#8212; WordPress"
 msgstr "%1$s &lsaquo; %2$s &#8212; WordPress"
 
 #. translators: 1: Number of placeholders, 2: Number of arguments passed.
-#: wp-includes/class-wpdb.php:1683
+#: wp-includes/class-wpdb.php:1698
 msgid "The query does not contain the correct number of placeholders (%1$d) for the number of arguments passed (%2$d)."
 msgstr "The query does not contain the correct number of placeholders (%1$d) for the number of arguments passed (%2$d)."
 
 #. translators: %s: Value type.
-#: wp-includes/class-wpdb.php:1727
+#: wp-includes/class-wpdb.php:1742
 msgid "Unsupported value type (%s)."
 msgstr "Unsupported value type (%s)."
 
@@ -11737,7 +11737,7 @@ msgctxt "site"
 msgid "&larr; Go to %s"
 msgstr "&larr; Go to %s"
 
-#: wp-includes/class-wpdb.php:2276
+#: wp-includes/class-wpdb.php:2291
 msgid "Unable to retrieve the error message from MySQL"
 msgstr "Unable to retrieve the error message from MySQL"
 
@@ -12287,58 +12287,58 @@ msgstr "Posted title:"
 msgid "Author:"
 msgstr "Author:"
 
-#: wp-includes/class-wpdb.php:2163
+#: wp-includes/class-wpdb.php:2178
 msgid "Are you sure the database server is not under particularly heavy load?"
 msgstr "Are you sure the database server is not under particularly heavy load?"
 
 #. translators: %s: Database host.
-#: wp-includes/class-wpdb.php:2157
+#: wp-includes/class-wpdb.php:2172
 msgid "This means that the contact with the database server at %s was lost. This could mean your host&#8217;s database server is down."
 msgstr "This means that the contact with the database server at %s was lost. This could mean your host&#8217;s database server is down."
 
-#: wp-includes/class-wpdb.php:2153
+#: wp-includes/class-wpdb.php:2168
 msgid "Error reconnecting to the database"
 msgstr "Error reconnecting to the database"
 
 #. translators: %s: Support forums URL.
-#: wp-includes/class-wpdb.php:2008 wp-includes/class-wpdb.php:2168
+#: wp-includes/class-wpdb.php:2023 wp-includes/class-wpdb.php:2183
 #: wp-includes/load.php:190
 msgid "If you are unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress support forums</a>."
 msgstr "If you are unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress Support Forums</a>."
 
-#: wp-includes/class-wpdb.php:2003 wp-includes/class-wpdb.php:2162
+#: wp-includes/class-wpdb.php:2018 wp-includes/class-wpdb.php:2177
 msgid "Are you sure the database server is running?"
 msgstr "Are you sure the database server is running?"
 
-#: wp-includes/class-wpdb.php:2002
+#: wp-includes/class-wpdb.php:2017
 msgid "Are you sure you have typed the correct hostname?"
 msgstr "Are you sure you have typed the correct hostname?"
 
-#: wp-includes/class-wpdb.php:2001
+#: wp-includes/class-wpdb.php:2016
 msgid "Are you sure you have the correct username and password?"
 msgstr "Are you sure you have the correct username and password?"
 
 #. translators: 1: wp-config.php, 2: Database host.
-#: wp-includes/class-wpdb.php:1995
+#: wp-includes/class-wpdb.php:2010
 msgid "This either means that the username and password information in your %1$s file is incorrect or that contact with the database server at %2$s could not be established. This could mean your host&#8217;s database server is down."
 msgstr "This either means that the username and password information in your %1$s file is incorrect or that contact with the database server at %2$s could not be established. This could mean your host&#8217;s database server is down."
 
 #. translators: %s: Support forums URL.
-#: wp-includes/class-wpdb.php:1223
+#: wp-includes/class-wpdb.php:1238
 msgid "If you do not know how to set up a database you should <strong>contact your host</strong>. If all else fails you may find help at the <a href=\"%s\">WordPress support forums</a>."
 msgstr "If you do not know how to set up a database you should <strong>contact your host</strong>. If all else fails you may find help at the <a href=\"%s\">WordPress Support Forums</a>."
 
 #. translators: %s: Database name.
-#: wp-includes/class-wpdb.php:1215
+#: wp-includes/class-wpdb.php:1230
 msgid "On some systems the name of your database is prefixed with your username, so it would be like <code>username_%1$s</code>. Could that be the problem?"
 msgstr "On some systems the name of your database is prefixed with your username, so it would be like <code>username_%1$s</code>. Could that be the problem?"
 
 #. translators: 1: Database user, 2: Database name.
-#: wp-includes/class-wpdb.php:1208
+#: wp-includes/class-wpdb.php:1223
 msgid "Does the user %1$s have permission to use the %2$s database?"
 msgstr "Does the user %1$s have permission to use the %2$s database?"
 
-#: wp-includes/class-wpdb.php:1204
+#: wp-includes/class-wpdb.php:1219
 msgid "Are you sure it exists?"
 msgstr "Are you sure it exists?"
 
@@ -12839,7 +12839,7 @@ msgstr "Add to menu: %1$s (%2$s)"
 msgid "When starting a new paragraph with one of these formatting shortcuts followed by a space, the formatting will be applied automatically. Press Backspace or Escape to undo."
 msgstr "When starting a new paragraph with one of these formatting shortcuts followed by a space, the formatting will be applied automatically. Press Backspace or Escape to undo."
 
-#: wp-includes/class-wpdb.php:1820 wp-includes/class-wpdb.php:1837
+#: wp-includes/class-wpdb.php:1835 wp-includes/class-wpdb.php:1852
 msgid "WordPress database error:"
 msgstr "WordPress database error:"
 
@@ -13626,7 +13626,7 @@ msgstr "The following values do not describe a valid date: month %1$s, day %2$s.
 
 #. translators: %s: Database access abstraction class, usually wpdb or a class
 #. extending wpdb.
-#: wp-includes/class-wpdb.php:1274
+#: wp-includes/class-wpdb.php:1289
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s must set a database connection for use with escaping."
 
@@ -14446,7 +14446,7 @@ msgid "Hint: The password should be at least twelve characters long. To make it 
 msgstr "Hint: The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ &amp; )."
 
 #. translators: %s: wpdb::prepare()
-#: wp-includes/class-wpdb.php:1460
+#: wp-includes/class-wpdb.php:1475
 msgid "The query argument of %s must have a placeholder."
 msgstr "The query argument of %s must have a placeholder."
 
@@ -16083,8 +16083,8 @@ msgstr "Image default link type"
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:489
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:804
 #: wp-admin/includes/ajax-actions.php:2066 wp-admin/includes/media.php:3810
-#: wp-admin/includes/post.php:288 wp-admin/includes/post.php:2073
-#: wp-admin/includes/post.php:2077
+#: wp-admin/includes/post.php:288 wp-admin/includes/post.php:2060
+#: wp-admin/includes/post.php:2064
 msgid "Sorry, you are not allowed to edit this post."
 msgstr "Sorry, you are not allowed to edit this post."
 
@@ -16094,7 +16094,7 @@ msgstr "Edit Site"
 
 #: wp-includes/post.php:5289 wp-admin/includes/ajax-actions.php:124
 #: wp-admin/includes/meta-boxes.php:583 wp-admin/includes/post.php:576
-#: wp-admin/includes/post.php:2251 wp-admin/js/inline-edit-post.js:400
+#: wp-admin/includes/post.php:2238 wp-admin/js/inline-edit-post.js:358
 #: wp-admin/js/tags-box.js:9 wp-admin/js/tags-suggest.js:12
 msgctxt "tag delimiter"
 msgid ","
@@ -16307,7 +16307,7 @@ msgstr "Documentation"
 msgid "&hellip;"
 msgstr "&hellip;"
 
-#: wp-includes/class-wpdb.php:1991 wp-includes/functions.php:5412
+#: wp-includes/class-wpdb.php:2006 wp-includes/functions.php:5412
 #: wp-includes/ms-load.php:475
 msgid "Error establishing a database connection"
 msgstr "Error establishing a database connection"
@@ -17620,7 +17620,7 @@ msgstr "Powered by WordPress"
 
 #. translators: 1: WordPress version number, 2: Minimum required MySQL version
 #. number.
-#: wp-includes/class-wpdb.php:3989
+#: wp-includes/class-wpdb.php:4004
 msgid "<strong>Error:</strong> WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>Error:</strong> WordPress %1$s requires MySQL %2$s or higher"
 
@@ -19428,7 +19428,7 @@ msgstr "Help"
 #: wp-includes/js/dist/edit-site.js:20449 wp-includes/js/dist/editor.js:10278
 #: wp-admin/includes/ajax-actions.php:2255 wp-admin/includes/media.php:3331
 #: wp-admin/includes/revision.php:61 wp-admin/includes/revision.php:64
-#: wp-admin/includes/template.php:2097 wp-admin/js/inline-edit-post.js:204
+#: wp-admin/includes/template.php:2097 wp-admin/js/inline-edit-post.js:201
 msgid "(no title)"
 msgstr "(no title)"
 
@@ -19939,7 +19939,7 @@ msgstr "Recent Comments"
 #: wp-admin/includes/class-custom-image-header.php:551
 #: wp-admin/includes/class-wp-posts-list-table.php:1542
 #: wp-admin/includes/class-wp-theme-install-list-table.php:346
-#: wp-admin/includes/meta-boxes.php:73 wp-admin/includes/post.php:1884
+#: wp-admin/includes/meta-boxes.php:73 wp-admin/includes/post.php:1871
 #: wp-admin/theme-install.php:426 wp-admin/theme-install.php:439
 #: wp-admin/theme-install.php:449 wp-admin/theme-install.php:456
 #: wp-admin/theme-install.php:609
@@ -20281,7 +20281,7 @@ msgstr "View"
 #: wp-admin/includes/class-wp-users-list-table.php:472
 #: wp-admin/includes/dashboard.php:758 wp-admin/includes/meta-boxes.php:135
 #: wp-admin/includes/meta-boxes.php:197 wp-admin/includes/meta-boxes.php:292
-#: wp-admin/includes/post.php:1595
+#: wp-admin/includes/post.php:1582
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:740
 #: wp-admin/includes/class-wp-ms-users-list-table.php:406
 #: wp-admin/includes/class-wp-ms-users-list-table.php:527
