@@ -229,6 +229,10 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'escape' => 'esc_html',
 				'string' => $client_data['domain'],
 			),
+			'issuance_date' => array(
+				'escape' => 'esc_html',
+				'string' => get_post_meta( $invoice_id, '_invoice_issuance_date', true ),
+			),
 			'invoice_from' => array(
 				'escape' => 'wp_kses_post',
 				'string' => $this->line_breaks( get_post_meta( $invoice_id, '_invoice_from', true ) ),

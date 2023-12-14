@@ -33,6 +33,9 @@ die;
 	<p class="box invoice-no">
 		<em>Invoice number:</em>
 		<?php echo esc_html( $data[ '_invoice_no' ] ); ?>
+		<br>
+		<em>Date of issuance:</em>
+		<?php echo esc_html( $data[ '_issuance_date' ] ); ?>
 	</p>
 
 	<p class="box invoice-to">

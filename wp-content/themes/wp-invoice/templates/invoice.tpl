@@ -21,6 +21,8 @@
 	<p class="box invoice-no">
 		<em>Invoice number:</em>
 		{invoice_number}
+		<em>Issuance date:</em>
+		{issuance_date}
 	</p>
 
 	<p class="box invoice-to">

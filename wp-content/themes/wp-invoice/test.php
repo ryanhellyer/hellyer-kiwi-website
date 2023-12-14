@@ -408,6 +408,11 @@ $data[$count]['project'] = '';
 			<br />
 			<input type="date" name="_invoice_due_date" id="_invoice_due_date" value="<?php echo esc_attr( $meta_data['due_date'] ); ?>" />
 		</p>
+		<p>
+			<label for="_invoice_issuance_date"><?php _e( 'Issuance date', 'wp-invoice' ); ?></label>
+			<br />
+			<input type="date" name="_invoice_issuance_date" id="_invoice_issuance_date" value="<?php echo esc_attr( $meta_data['issuance_date'] ); ?>" />
+		</p>
  
 		<p>
 			<label for="_invoice_hourly_rate"><?php _e( 'Hourly rate ', 'wp-invoice' ); ?></label>
@@ -528,6 +533,11 @@ add_action( 'save_post', array( $this, 'meta_invoice_from_boxes_save' ), 10, 2 )
 		if ( isset( $_POST['_invoice_due_date'] ) ) {
 			$invoice_due_date = date( self::DATE_FORMAT, absint( strtotime( $_POST['_invoice_due_date'] ) ) ) . ' 00:00:00';
 			update_post_meta( $post_id, '_invoice_due_date', $invoice_due_date );
+		}
+
+		if ( isset( $_POST['_invoice_issuance_date'] ) ) {
+			$invoice_issuance_date = date( self::DATE_FORMAT, absint( strtotime( $_POST['_invoice_issuance_date'] ) ) ) . ' 00:00:00';
+			update_post_meta( $post_id, '_invoice_issuance_date', $invoice_issuance_date );
 		}
 
 		if ( isset( $_POST['_invoice_hourly_rate'] ) ) {
