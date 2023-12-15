@@ -57,6 +57,11 @@
 		<tfoot>
 			<tr>
 				<td colspan="2"></td>
+				<td>VAT due</td>
+				<td class="total-amount">{vat_amount}</td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
 				<td>Total</td>
 				<td class="total-amount">{total_amount}</td>
 			</tr>
