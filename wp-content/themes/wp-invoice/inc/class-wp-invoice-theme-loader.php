@@ -243,7 +243,7 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 			),
 			'total_amount' => array(
 				'escape' => 'esc_html',
-				'string' => $this->get_amount( $invoice_id, 1.19 * $this->get_total_amount( $invoice_id ) ),
+				'string' => $this->get_amount( $invoice_id, 1.19 * round( $this->get_total_amount( $invoice_id ), 0 ), 2 ),
 			),
 			'vat_amount' => array(
 				'escape' => 'esc_html',
@@ -313,10 +313,10 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		return $total_amount;
 	}
 
-	public function get_amount( $invoice_id, $amount ) {
+	public function get_amount( $invoice_id, $amount, $rounding = 0 ) {
 		$currency = get_post_meta( $invoice_id, '_invoice_currency', true );
 
-		$amount = round( $amount );
+		$amount = round( $amount, $rounding );
 
 		foreach ( $this->currencies as $currency_code => $options ) {
 			if ( $currency === $currency_code ) {

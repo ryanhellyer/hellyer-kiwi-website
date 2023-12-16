@@ -58,7 +58,7 @@
 			<tr>
 				<td colspan="2"></td>
 				<td>VAT due</td>
-				<td class="total-amount">{vat_amount}</td>
+				<td class="total-amount">19%</td>
 			</tr>
 			<tr>
 				<td colspan="2"></td>
