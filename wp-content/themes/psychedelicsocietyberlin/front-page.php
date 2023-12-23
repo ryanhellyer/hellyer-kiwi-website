@@ -42,9 +42,17 @@ get_header();
 					<h2>
 						<?php the_title(); ?>
 					</h2>
-					<date><?php 
-						echo date( get_option( 'date_format' ) . ' h:m', get_post_meta( get_the_ID(), 'start_time', true ) );
-					?> </date>
+
+					<?php
+
+					$time = get_post_meta( get_the_ID(), 'start_time', true );
+					if ( '' !== $time ) {
+						echo '<date>';
+						echo date( get_option( 'date_format' ) . ' h:m', $time );
+						echo '</date>';
+					}
+
+					?>
 				</a>
 			</li><?php
 			}
