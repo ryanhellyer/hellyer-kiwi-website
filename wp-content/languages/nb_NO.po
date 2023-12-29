@@ -1367,11 +1367,11 @@ msgstr "Det ser ikke ut som det er noen %s-fil. Den trengs før installasjonen k
 msgid "The date and time the preferences were updated."
 msgstr "Dato og tid preferansene ble oppdatert."
 
-#: wp-includes/theme.php:4141
+#: wp-includes/theme.php:4104
 msgid "Whether the theme disables generated layout styles."
 msgstr "Om temaet slår av genererte oppsett-stiler."
 
-#: wp-includes/theme.php:3951
+#: wp-includes/theme.php:3914
 msgid "Whether a theme uses block-based template parts."
 msgstr "Om temaet bruker blokkbaserte delmaler."
 
@@ -1569,7 +1569,7 @@ msgstr "Cron-feil ved fjerning av planlagt hendelse for krok: %1$s, feilkode: %2
 msgid "Cron reschedule event error for hook: %1$s, Error code: %2$s, Error message: %3$s, Data: %4$s"
 msgstr "Cron-feil ved gjenplanlegging av hendelse for krok: %1$s, feilkode: %2$s, feilmelding: %3$s, data: %4$s"
 
-#: wp-includes/theme.php:3944
+#: wp-includes/theme.php:3907
 msgid "Whether a theme uses block-based templates."
 msgstr "Hvorvidt et tema bruker blokkbaserte maler."
 
@@ -5194,11 +5194,11 @@ msgstr "Versjon av blokk-API."
 msgid "Invalid parameters."
 msgstr "Ugyldige parametere."
 
-#: wp-includes/rest-api/class-wp-rest-server.php:1668
+#: wp-includes/rest-api/class-wp-rest-server.php:1675
 msgid "The requested route does not support batch requests."
 msgstr "Den forespurte ruten støtter ikke masseforespørsler."
 
-#: wp-includes/rest-api/class-wp-rest-server.php:1618
+#: wp-includes/rest-api/class-wp-rest-server.php:1625
 msgid "Could not parse the path."
 msgstr "Kunne ikke tolke banen."
 
@@ -5206,7 +5206,7 @@ msgstr "Kunne ikke tolke banen."
 msgid "The handler for the route is invalid."
 msgstr "Behandleren for ruten er ikke gyldig."
 
-#: wp-includes/theme.php:2717
+#: wp-includes/theme.php:2680
 msgid "You need to pass an array of post formats."
 msgstr "Du må oversende en rekke med formater."
 
@@ -5335,7 +5335,7 @@ msgid "Please use %s to add new schema properties."
 msgstr "Bruk %s for å legge til nye skjemaegenskaper."
 
 #. translators: %s: prepare_callback
-#: wp-includes/theme.php:3352
+#: wp-includes/theme.php:3315
 msgid "The \"%s\" must be a callable function."
 msgstr "\"%s\" må være en kallbar funksjon."
 
@@ -6140,44 +6140,44 @@ msgstr "Ved registrering av standard metaverdi, må dataene samsvare med den ang
 msgid "RSS Feed"
 msgstr "RSS-strøm"
 
-#: wp-includes/theme.php:4277
+#: wp-includes/theme.php:4240
 msgid "The post types that support thumbnails or true if all post types are supported."
 msgstr "De innholdstypene som støtter fremhevet bilde, eller sann om alle innholdstyper er støttet."
 
-#: wp-includes/theme.php:3339
+#: wp-includes/theme.php:3302
 msgid "When registering an \"object\" feature, the feature's schema must include the \"properties\" keyword."
 msgstr "Ved registrering av en \"object\"-funksjon, må funksjonens skjema inkludere \"properties\"-nøkkelordet."
 
-#: wp-includes/theme.php:3332
+#: wp-includes/theme.php:3295
 msgid "When registering an \"array\" feature, the feature's schema must include the \"items\" keyword."
 msgstr "Ved registrering av en \"array\"-funksjon, må funksjonens skjema inkludere \"items\"-nøkkelordet."
 
-#: wp-includes/theme.php:3325
+#: wp-includes/theme.php:3288
 msgid "When registering an \"array\" or \"object\" feature to show in the REST API, the feature's schema must also be defined."
 msgstr "Ved registrering av en \"array\"- eller \"object\"-funksjon som skal vises i REST API-et, må funksjonens skjema også være definert."
 
-#: wp-includes/theme.php:3317
+#: wp-includes/theme.php:3280
 msgid "When registering a \"variadic\" theme feature, the \"type\" must be an \"array\"."
 msgstr "Ved registrering av en \"variadic\" temafunksjon må \"type\" være \"array\"."
 
-#: wp-includes/theme.php:3310
+#: wp-includes/theme.php:3273
 msgid "The feature \"type\" is not valid JSON Schema type."
 msgstr "Funksjonen \"type\" er ikke en gyldig type for JSON Schema."
 
 #. translators: %s: Theme name.
-#: wp-includes/theme.php:1013
+#: wp-includes/theme.php:976
 msgctxt "theme"
 msgid "<strong>Error:</strong> Current WordPress version does not meet minimum requirements for %s."
 msgstr "<strong>Feil:</strong> Gjeldende versjon av WordPress oppfyller ikke minstekravene for %s."
 
 #. translators: %s: Theme name.
-#: wp-includes/theme.php:1004
+#: wp-includes/theme.php:967
 msgctxt "theme"
 msgid "<strong>Error:</strong> Current PHP version does not meet minimum requirements for %s."
 msgstr "<strong>Feil:</strong> Gjeldende versjon av PHP oppfyller ikke minstekravene for %s."
 
 #. translators: %s: Theme name.
-#: wp-includes/theme.php:995
+#: wp-includes/theme.php:958
 msgctxt "theme"
 msgid "<strong>Error:</strong> Current WordPress and PHP versions do not meet minimum requirements for %s."
 msgstr "<strong>Feil:</strong> Gjeldende versjon av WordPress og PHP oppfyller ikke minstekravene for %s."
@@ -6420,71 +6420,71 @@ msgstr "Begrens resultatsettet basert på forholdet mellom flere taksonomier."
 msgid "The \"%1$s\" taxonomy \"%2$s\" property (%3$s) conflicts with an existing property on the REST API Posts Controller. Specify a custom \"rest_base\" when registering the taxonomy to avoid this error."
 msgstr "Egenskapen \"%2$s\" for taksonomien \"%1$s\" (%3$s) kolliderer med en eksisterende egenskap i REST API Posts-kontrolleren. Benytt en tilpasset \"rest_base\"-verdi når du registrerer taksonomien for å unngå denne feilen."
 
-#: wp-includes/theme.php:4305
+#: wp-includes/theme.php:4268
 msgid "Whether theme opts in to default WordPress block styles for viewing."
 msgstr "Om temaet velger å benytte standardstilene i WordPress for visning av blokk."
 
-#: wp-includes/theme.php:4298
+#: wp-includes/theme.php:4261
 msgid "Whether the theme can manage the document title tag."
 msgstr "Om temaet kan administrere dokumenttittel."
 
-#: wp-includes/theme.php:4231
+#: wp-includes/theme.php:4194
 msgid "Allows use of HTML5 markup for search forms, comment forms, comment lists, gallery, and caption."
 msgstr "Tillater bruk av HTML5-kode for søkeskjema, kommentarskjema, kommentarlister, galleri og bildetekster."
 
-#: wp-includes/theme.php:4223
+#: wp-includes/theme.php:4186
 msgid "Whether theme opts in to the editor styles CSS wrapper."
 msgstr "Om temaet velger å benytte CSS-omslaget for stiler i redigeringsverktøyet."
 
-#: wp-includes/theme.php:4199
+#: wp-includes/theme.php:4162
 msgid "Custom gradient presets if defined by the theme."
 msgstr "Tilpassede fargeoverganger, om definert av temaet."
 
-#: wp-includes/theme.php:4174
+#: wp-includes/theme.php:4137
 msgid "Custom font sizes if defined by the theme."
 msgstr "Tilpasset skriftstørrelse, om definert av temaet."
 
-#: wp-includes/theme.php:4149
+#: wp-includes/theme.php:4112
 msgid "Custom color palette if defined by the theme."
 msgstr "Tilpasset fargepalett, om definert av temaet."
 
-#: wp-includes/theme.php:4134
+#: wp-includes/theme.php:4097
 msgid "Whether the theme disables custom gradients."
 msgstr "Om temaet slår av tilpassede gradienter."
 
-#: wp-includes/theme.php:4127
+#: wp-includes/theme.php:4090
 msgid "Whether the theme disables custom font sizes."
 msgstr "Om temaet slår av tilpassede skriftstørrelser."
 
-#: wp-includes/theme.php:4120
+#: wp-includes/theme.php:4083
 msgid "Whether the theme disables custom colors."
 msgstr "Om temaet slår av tilpassede farger."
 
-#: wp-includes/theme.php:4113
+#: wp-includes/theme.php:4076
 msgid "Whether theme opts in to the dark editor style UI."
 msgstr "Om temaet velger mørk stil på grensesnittet til redigeringsverktøyet."
 
-#: wp-includes/theme.php:4106
+#: wp-includes/theme.php:4069
 msgid "Whether the theme enables Selective Refresh for Widgets being managed with the Customizer."
 msgstr "Om temaet slår på selektiv oppfriskning for widgeter som blir behandlet i Tilpass."
 
-#: wp-includes/theme.php:4073
+#: wp-includes/theme.php:4036
 msgid "Custom logo if defined by the theme."
 msgstr "Tilpasset logo, om definert av temaet."
 
-#: wp-includes/theme.php:3958
+#: wp-includes/theme.php:3921
 msgid "Custom background if defined by the theme."
 msgstr "Tilpasset bakgrunn om definert av temaet."
 
-#: wp-includes/theme.php:4028
+#: wp-includes/theme.php:3991
 msgid "Custom header if defined by the theme."
 msgstr "Tilpasset sidetopp om definert av temaet."
 
-#: wp-includes/theme.php:3937
+#: wp-includes/theme.php:3900
 msgid "Whether posts and comments RSS feed links are added to head."
 msgstr "Om innleggs- og kommenarstrøm-lenker er lagt til i toppteksten."
 
-#: wp-includes/theme.php:3930
+#: wp-includes/theme.php:3893
 msgid "Whether theme opts in to wide alignment CSS class."
 msgstr "Om temaet velger å bruke CSS-klassen for bred justering."
 
@@ -7615,7 +7615,7 @@ msgstr "Attributter for blokken."
 msgid "Unique registered name for the block."
 msgstr "Et unikt registrert navn for blokken."
 
-#: wp-includes/theme.php:4291
+#: wp-includes/theme.php:4254
 msgid "Whether the theme supports responsive embedded content."
 msgstr "Om temaet støtter responsivt innbygget innhold."
 
@@ -7628,7 +7628,7 @@ msgstr "%s fra nå av"
 msgid "Limit result set to themes assigned one or more statuses."
 msgstr "Begrens resultatsettet til temaer tildelt en eller flere statuser."
 
-#: wp-includes/theme.php:4254
+#: wp-includes/theme.php:4217
 msgid "Post formats supported."
 msgstr "Innleggsformater er støttet."
 
@@ -9978,60 +9978,60 @@ msgstr "Ugyldig sidemal."
 msgid "Invalid date."
 msgstr "Ugyldig dato."
 
-#: wp-includes/theme.php:1732
+#: wp-includes/theme.php:1695
 msgid "Video is playing."
 msgstr "Videoen spilles."
 
-#: wp-includes/theme.php:1731
+#: wp-includes/theme.php:1694
 msgid "Video is paused."
 msgstr "Videoen er satt på pause."
 
-#: wp-includes/theme.php:2334
+#: wp-includes/theme.php:2297
 msgctxt "Theme starter content"
 msgid "Archives"
 msgstr "Arkiver"
 
-#: wp-includes/theme.php:2486
+#: wp-includes/theme.php:2449
 msgctxt "Theme starter content"
 msgid "This is an example of a homepage section. Homepage sections can be any page other than the homepage itself, including the page that shows your latest blog posts."
 msgstr "Dette er et eksempel på en forsideseksjon. Forsideseksjoner kan være en hvilken som helst side unntatt selve forsiden, inkludert siden som viser de siste blogginnleggene."
 
-#: wp-includes/theme.php:2478
+#: wp-includes/theme.php:2441
 msgctxt "Theme starter content"
 msgid "News"
 msgstr "Nyheter"
 
-#: wp-includes/theme.php:2469
+#: wp-includes/theme.php:2432
 msgctxt "Theme starter content"
 msgid "This is a page with some basic contact information, such as an address and phone number. You might also try a plugin to add a contact form."
 msgstr "Dette er en side med noe grunnleggende kontaktinformasjon, slik som en adresse og et telefonnummer. Du kan også prøve en utvidelse for å legge til et kontaktskjema."
 
-#: wp-includes/theme.php:2461
+#: wp-includes/theme.php:2424
 msgctxt "Theme starter content"
 msgid "You might be an artist who would like to introduce yourself and your work here or maybe you are a business with a mission to describe."
 msgstr "Du er kanskje en kunstner som ønsker å introdusere deg selv og arbeidet ditt her, eller kanskje du er et selskap med en målsetning å beskrive."
 
-#: wp-includes/theme.php:2453
+#: wp-includes/theme.php:2416
 msgctxt "Theme starter content"
 msgid "Welcome to your site! This is your homepage, which is what most visitors will see when they come to your site for the first time."
 msgstr "Velkommen til siden! Dette er hjemmesiden, som er det de fleste besøkende vil se når de kommer til siden din for første gang."
 
-#: wp-includes/theme.php:2364
+#: wp-includes/theme.php:2327
 msgctxt "Theme starter content"
 msgid "Recent Posts"
 msgstr "Nylige innlegg"
 
-#: wp-includes/theme.php:2358
+#: wp-includes/theme.php:2321
 msgctxt "Theme starter content"
 msgid "Recent Comments"
 msgstr "Nylige kommentarer"
 
-#: wp-includes/theme.php:2352
+#: wp-includes/theme.php:2315
 msgctxt "Theme starter content"
 msgid "Meta"
 msgstr "Meta"
 
-#: wp-includes/theme.php:2340
+#: wp-includes/theme.php:2303
 msgctxt "Theme starter content"
 msgid "Calendar"
 msgstr "Kalender"
@@ -10099,37 +10099,37 @@ msgstr "Beklager, du har ikke tilgang til å lese denne kommentaren."
 msgid "Sorry, you are not allowed to read comments without a post."
 msgstr "Beklager, du har ikke tilgang til å lese kommentaren uten et innlegg."
 
-#: wp-includes/theme.php:2443
+#: wp-includes/theme.php:2406
 msgctxt "Theme starter content"
 msgid "YouTube"
 msgstr "YouTube"
 
-#: wp-includes/theme.php:2431
+#: wp-includes/theme.php:2394
 msgctxt "Theme starter content"
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: wp-includes/theme.php:2427
+#: wp-includes/theme.php:2390
 msgctxt "Theme starter content"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: wp-includes/theme.php:2419
+#: wp-includes/theme.php:2382
 msgctxt "Theme starter content"
 msgid "GitHub"
 msgstr "GitHub"
 
-#: wp-includes/theme.php:2415
+#: wp-includes/theme.php:2378
 msgctxt "Theme starter content"
 msgid "Foursquare"
 msgstr "Foursquare"
 
-#: wp-includes/theme.php:2326
+#: wp-includes/theme.php:2289
 msgctxt "Theme starter content"
 msgid "This may be a good place to introduce yourself and your site or include some credits."
 msgstr "Dette kan være et godt sted å introdusere deg selv og nettstedet ditt."
 
-#: wp-includes/theme.php:2325
+#: wp-includes/theme.php:2288
 msgctxt "Theme starter content"
 msgid "About This Site"
 msgstr "Om dette nettstedet"
@@ -10179,97 +10179,97 @@ msgstr "Endre video"
 msgid "Select video"
 msgstr "Velg video"
 
-#: wp-includes/theme.php:2483
+#: wp-includes/theme.php:2446
 msgctxt "Theme starter content"
 msgid "A homepage section"
 msgstr "En forsideseksjon"
 
-#: wp-includes/theme.php:2474
+#: wp-includes/theme.php:2437
 msgctxt "Theme starter content"
 msgid "Blog"
 msgstr "Blogg"
 
-#: wp-includes/theme.php:2466
+#: wp-includes/theme.php:2429
 msgctxt "Theme starter content"
 msgid "Contact"
 msgstr "Kontakt oss"
 
-#: wp-includes/theme.php:2458
+#: wp-includes/theme.php:2421
 msgctxt "Theme starter content"
 msgid "About"
 msgstr "Om oss"
 
-#: wp-includes/theme.php:2377 wp-includes/theme.php:2450
+#: wp-includes/theme.php:2340 wp-includes/theme.php:2413
 msgctxt "Theme starter content"
 msgid "Home"
 msgstr "Hjem"
 
-#: wp-includes/theme.php:2407
+#: wp-includes/theme.php:2370
 msgctxt "Theme starter content"
 msgid "Email"
 msgstr "E-post"
 
-#: wp-includes/theme.php:2423
+#: wp-includes/theme.php:2386
 msgctxt "Theme starter content"
 msgid "Instagram"
 msgstr "Instagram"
 
-#: wp-includes/theme.php:2435
+#: wp-includes/theme.php:2398
 msgctxt "Theme starter content"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: wp-includes/theme.php:2411
+#: wp-includes/theme.php:2374
 msgctxt "Theme starter content"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: wp-includes/theme.php:2439
+#: wp-includes/theme.php:2402
 msgctxt "Theme starter content"
 msgid "Yelp"
 msgstr "Yelp"
 
-#: wp-includes/theme.php:2346
+#: wp-includes/theme.php:2309
 msgctxt "Theme starter content"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: wp-includes/theme.php:2370
+#: wp-includes/theme.php:2333
 msgctxt "Theme starter content"
 msgid "Search"
 msgstr "Søk"
 
-#: wp-includes/theme.php:2315
+#: wp-includes/theme.php:2278
 msgctxt "Theme starter content"
 msgid "Saturday &amp; Sunday: 11:00AM&ndash;3:00PM"
 msgstr "Lørdag og søndag: 11:00&ndash;15:00"
 
-#: wp-includes/theme.php:2314
+#: wp-includes/theme.php:2277
 msgctxt "Theme starter content"
 msgid "Monday&ndash;Friday: 9:00AM&ndash;5:00PM"
 msgstr "Mandag&ndash;fredag: 09:00&ndash;17:00"
 
-#: wp-includes/theme.php:2313
+#: wp-includes/theme.php:2276
 msgctxt "Theme starter content"
 msgid "Hours"
 msgstr "Åpningstider"
 
-#: wp-includes/theme.php:2312
+#: wp-includes/theme.php:2275
 msgctxt "Theme starter content"
 msgid "New York, NY 10001"
 msgstr "1234 Poststedet"
 
-#: wp-includes/theme.php:2311
+#: wp-includes/theme.php:2274
 msgctxt "Theme starter content"
 msgid "123 Main Street"
 msgstr "Hovedgata 123"
 
-#: wp-includes/theme.php:2310
+#: wp-includes/theme.php:2273
 msgctxt "Theme starter content"
 msgid "Address"
 msgstr "Adresse"
 
-#: wp-includes/theme.php:2306
+#: wp-includes/theme.php:2269
 msgctxt "Theme starter content"
 msgid "Find Us"
 msgstr "Finn oss"
@@ -11640,11 +11640,11 @@ msgstr "Videoavspiller"
 msgid "Time Slider"
 msgstr "Tidsskyver"
 
-#: wp-includes/script-loader.php:1080 wp-includes/theme.php:1729
+#: wp-includes/script-loader.php:1080 wp-includes/theme.php:1692
 msgid "Pause"
 msgstr "Pause"
 
-#: wp-includes/script-loader.php:1079 wp-includes/theme.php:1730
+#: wp-includes/script-loader.php:1079 wp-includes/theme.php:1693
 msgid "Play"
 msgstr "Spill av"
 
@@ -12397,7 +12397,7 @@ msgstr "%1$s (siden %2$s; ingen alternativer er tilgjengelige)"
 msgid "%1$s (since %2$s; use %3$s instead)"
 msgstr "%1$s (siden %2$s; bruk %3$s isteden)"
 
-#: wp-includes/rest-api/class-wp-rest-server.php:1418
+#: wp-includes/rest-api/class-wp-rest-server.php:1425
 msgid "The specified namespace could not be found."
 msgstr "Det spesifiserte namespacet ble ikke funnet."
 
@@ -12405,7 +12405,7 @@ msgstr "Det spesifiserte namespacet ble ikke funnet."
 msgid "No route was found matching the URL and request method."
 msgstr "Ingen rute som matchet URL og forespørselsmetoden ble funnet."
 
-#: wp-includes/rest-api/class-wp-rest-server.php:1741
+#: wp-includes/rest-api/class-wp-rest-server.php:1748
 msgid "The handler for the route is invalid"
 msgstr "Behandleren for ruten er ikke gyldig"
 
@@ -13369,7 +13369,7 @@ msgid_plural "%1$s responses to %2$s"
 msgstr[0] "%1$s komentar til %2$s"
 msgstr[1] "%1$s kommentarer til %2$s"
 
-#: wp-includes/theme.php:3736
+#: wp-includes/theme.php:3699
 msgid "Customizer"
 msgstr "Tematilpasser"
 
@@ -13580,7 +13580,7 @@ msgid "Distraction-free writing mode"
 msgstr "Distraksjonsfri skrivemodus"
 
 #. translators: 1: title-tag, 2: wp_loaded
-#: wp-includes/theme.php:2922
+#: wp-includes/theme.php:2885
 msgid "Theme support for %1$s should be registered before the %2$s hook."
 msgstr "Temastøtte for %1$s bør registreres før %2$s."
 
@@ -13627,7 +13627,7 @@ msgstr "Følgende verdier beskriver ikke en gyldig dato: måned %1$s, dag %2$s."
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s må sette en databasetilkobling til bruk for filtrering."
 
-#: wp-includes/theme.php:2729
+#: wp-includes/theme.php:2692
 msgid "You need to pass an array of types."
 msgstr "Du må bruke en rekke med typer."
 
@@ -18365,7 +18365,7 @@ msgid "Document properties"
 msgstr "Dokument-egenskaper"
 
 #: wp-includes/class-wp-editor.php:1370 wp-includes/script-loader.php:1293
-#: wp-includes/theme.php:3735 wp-admin/js/nav-menu.js:1260
+#: wp-includes/theme.php:3698 wp-admin/js/nav-menu.js:1260
 #: wp-admin/js/post.js:512 wp-admin/js/theme-plugin-editor.js:71
 #: wp-admin/js/widgets.js:98
 msgid "The changes you made will be lost if you navigate away from this page."
