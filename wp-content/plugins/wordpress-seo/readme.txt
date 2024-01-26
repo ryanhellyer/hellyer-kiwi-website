@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
 Tested up to: 6.4
-Stable tag: 21.9
+Stable tag: 21.9.1
 Requires PHP: 7.2.5
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -342,9 +342,20 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
+= 21.9.1 =
+
+Release date: 2024-01-25
+
+#### Bugfixes
+
+* Fixes a bug where a fatal error would occur when upgrading Yoast SEO on certain setups.
+* Fixes a bug where the image tag would be missing in the home page entry of the XML sitemap when using a static front page.
+
 = 21.9 =
 
 Release date: 2024-01-23
+
+We've just released Yoast SEO 21.9. This release comes with many behind-the-scenes improvements and general enhancements. Find out more about what's new in Yoast SEO 21.9 in [our release post](https://yoa.st/release-23-1-24)!
 
 #### Enhancements
 
@@ -358,13 +369,14 @@ Release date: 2024-01-23
 
 * Fixes a bug where a post would be saved when trying to dismiss a notification while editing.
 * Fixes a bug where editing a product would either crash or be slow when there is a high number of registered attributes.
-* Fixes a bug where the Yoast plugin icon in the block editor would not have any horizontal spacing anymore when rendered in \"compact\" mode.
+* Fixes a bug where the Yoast plugin icon in the block editor would not have any horizontal spacing anymore when rendered in "compact" mode.
 
 #### Other
 
 * Be explicit about required PHP extensions.
 * Improves PHP 8.2 compatibility.
 * Sets the minimum supported WordPress version to 6.3.
+* Removes the `WEBPAGE_HASH` constant that had been deprecated in Yoast SEO 19.3 (July 2022).
 
 = 21.8.1 =
 
