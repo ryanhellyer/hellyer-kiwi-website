@@ -160,6 +160,18 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 		return $client_data;
 	}
 
+	private function round_to_two_decimals_no_trailing_zeros( $number ) {
+		// Use number_format to control decimal places and suppress trailing zeros
+		$formatted_number = number_format($number, 2, '.', ''); 
+
+		// Check if the number ended in ".00" originally
+		if (substr($formatted_number, -3) === '.00') {
+			// Remove trailing zeros and decimal point
+			$formatted_number = substr($formatted_number, 0, -3); 
+		}
+
+		return $formatted_number;
+	}
 
 	/**
 	 * Process template.
@@ -241,13 +253,14 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 				'escape' => 'esc_html',
 				'string' => get_post_meta( $invoice_id, '_invoice_currency', true ),
 			),
+
 			'total_amount' => array(
 				'escape' => 'esc_html',
-				'string' => $this->get_amount( $invoice_id, 1.19 * round( $this->get_total_amount( $invoice_id ), 0 ), 2 ),
+				'string' => $this->get_amount( $invoice_id, 1.19 * $this->get_total_amount( $invoice_id ), 2 ),
 			),
 			'vat_amount' => array(
 				'escape' => 'esc_html',
-				'string' => $this->get_amount( $invoice_id, 0.19 * $this->get_total_amount( $invoice_id ) ),
+				'string' => $this->get_amount( $invoice_id, 0.19 * $this->get_total_amount( $invoice_id ), 2 ),
 			),
 
 
@@ -316,7 +329,8 @@ class WP_Invoice_Theme_Loader extends WP_Invoice_Core {
 	public function get_amount( $invoice_id, $amount, $rounding = 0 ) {
 		$currency = get_post_meta( $invoice_id, '_invoice_currency', true );
 
-		$amount = round( $amount, $rounding );
+		//$amount = round( $amount, $rounding ); // Replaced with better function.
+		$amount = $this->round_to_two_decimals_no_trailing_zeros( $amount );
 
 		foreach ( $this->currencies as $currency_code => $options ) {
 			if ( $currency === $currency_code ) {
