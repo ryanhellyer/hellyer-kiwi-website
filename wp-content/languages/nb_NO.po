@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 6.5.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-22 12:17:13+0000\n"
+"PO-Revision-Date: 2024-04-25 07:44:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -309,6 +309,10 @@ msgstr "Vis detaljer"
 msgid "Value"
 msgstr "Verdi"
 
+#: wp-includes/taxonomy.php:2457
+msgid "Invalid term name."
+msgstr "Ugyldig termnavn."
+
 #: wp-includes/taxonomy.php:252
 msgid "View Pattern Category"
 msgstr "Se mønsterkategorien"
@@ -374,6 +378,10 @@ msgstr "Legg til eller slett mønsterkategorier"
 msgid "Function %s used incorrectly in PHP."
 msgstr "Funksjonen %s er brukt feil i PHP."
 
+#: wp-includes/rest-api/endpoints/class-wp-rest-templates-controller.php:1068
+msgid "Where the template originally comes from e.g. 'theme'"
+msgstr "Hvor malen opprinnelig kommer fra, f.eks. 'theme'"
+
 #: wp-includes/rest-api/endpoints/class-wp-rest-templates-controller.php:1063
 msgid "Human readable text for the author."
 msgstr "Menneskelig lesbar tekst for forfatteren."
@@ -398,6 +406,11 @@ msgstr "%s-parameteret må være en gyldig JSON-streng."
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:229
 msgid "File %1$s must be used in %2$s."
 msgstr "Filen %1$s må brukes i %2$s."
+
+#. translators: %s: Font face source parameter name: "font_face_settings[src]".
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:207
+msgid "%s values must be non-empty strings."
+msgstr "%s-verdier må være ikke-tomme strenger."
 
 #. translators: %s: Name of the missing font face settings parameter, e.g.
 #. "font_face_settings[src]".
@@ -587,6 +600,26 @@ msgstr "Nettstedikonet er det du ser i nettleserfaner, bokmerkelinjer og innenfo
 #: wp-includes/class-wp-block-bindings-registry.php:222
 msgid "Block binding \"%s\" not found."
 msgstr "Blokkbindingen \"%s\" ble ikke funnet."
+
+#: wp-includes/class-wp-block-bindings-registry.php:179
+msgid "The $source_properties array contains invalid properties."
+msgstr "Rekken $source_properties inneholder ugyldige egenskaper."
+
+#: wp-includes/class-wp-block-bindings-registry.php:170
+msgid "The \"uses_context\" parameter must be an array."
+msgstr "Parameteren \"uses_context\" må være en rekke."
+
+#: wp-includes/class-wp-block-bindings-registry.php:160
+msgid "The \"get_value_callback\" parameter must be a valid callback."
+msgstr "Parameteren \"get_value\" må være et gyldig tilbakekall."
+
+#: wp-includes/class-wp-block-bindings-registry.php:150
+msgid "The $source_properties must contain a \"get_value_callback\"."
+msgstr "$source_properties må inneholsde en \"get_value_callback\"."
+
+#: wp-includes/class-wp-block-bindings-registry.php:140
+msgid "The $source_properties must contain a \"label\"."
+msgstr "$source_properties må inneholde en \"label\"."
 
 #. translators: %s: Block bindings source name.
 #: wp-includes/class-wp-block-bindings-registry.php:130
@@ -1855,7 +1888,7 @@ msgstr "Din implementasjon av objektmellomlagring støtter ikke tømming av det 
 
 #. translators: Custom template title in the Site Editor, referencing a deleted
 #. author. %s: Author nicename.
-#: wp-includes/block-template-utils.php:818
+#: wp-includes/block-template-utils.php:859
 msgid "Deleted author: %s"
 msgstr "Slettet forfatter: %s"
 
@@ -1865,7 +1898,7 @@ msgstr "Slettet forfatter: %s"
 #. name.
 #: wp-includes/block-template-utils.php:623
 #: wp-includes/block-template-utils.php:699
-#: wp-includes/block-template-utils.php:832
+#: wp-includes/block-template-utils.php:873
 msgid "Template for %s"
 msgstr "Mal for %s"
 
@@ -3175,11 +3208,11 @@ msgstr "Innleggsformat-lenke"
 msgid "The calendar block is hidden because there are no published posts."
 msgstr "Kalenderblokken er skjult fordi det ikke finnes noen publiserte innlegg."
 
-#: wp-includes/block-template-utils.php:1258
+#: wp-includes/block-template-utils.php:1299
 msgid "Unable to open export file (archive) for writing."
 msgstr "Klarer ikke å åpne eksportfilen (arkiv) for skriving."
 
-#: wp-includes/block-template-utils.php:1249
+#: wp-includes/block-template-utils.php:1290
 msgid "Zip Export not supported."
 msgstr "Zip-eksport er ikke støttet."
 
@@ -4539,7 +4572,8 @@ msgstr "Ingen passende mal funnet."
 msgid "Empty template: %s"
 msgstr "Tomme maler: %s"
 
-#: wp-includes/block-template-utils.php:752
+#: wp-includes/block-template-utils.php:742
+#: wp-includes/block-template-utils.php:810
 msgid "No theme is defined for this template."
 msgstr "Intet tema definert for denne malen."
 
@@ -5519,17 +5553,6 @@ msgstr "Kommentar"
 msgid "Crop"
 msgstr "Klipp"
 
-#. translators: Theme and Directory Patterns tab title in the block inserter.
-#: wp-includes/js/dist/block-editor.js:42603
-#: wp-includes/js/dist/block-editor.js:43800
-#: wp-includes/js/dist/block-editor.js:49059
-#: wp-includes/js/dist/block-library.js:58090
-#: wp-includes/js/dist/core-commands.js:155
-#: wp-includes/js/dist/edit-site.js:13738
-#: wp-includes/js/dist/edit-site.js:17877 wp-admin/menu.php:209
-msgid "Patterns"
-msgstr "Mønstre"
-
 #: wp-includes/script-loader.php:1010 wp-includes/js/media-views.js:3531
 #: wp-admin/js/media.js:237 wp-admin/js/post.js:1317
 msgid "The file URL has been copied to your clipboard"
@@ -5800,7 +5823,7 @@ msgstr "Skjema-nøkkelordet \"type\" for %1$s kan bare inneholde innebygde typer
 #. translators: 1: Theme name. 2: Theme slug.
 #: wp-includes/block-template-utils.php:637
 #: wp-includes/block-template-utils.php:716
-#: wp-includes/block-template-utils.php:848 wp-includes/rest-api.php:730
+#: wp-includes/block-template-utils.php:889 wp-includes/rest-api.php:730
 #: wp-includes/js/dist/block-library.js:32487
 #: wp-includes/js/dist/edit-site.js:12537
 #: wp-includes/js/dist/edit-site.js:14265
@@ -13877,7 +13900,7 @@ msgid "F j, Y"
 msgstr "j. F Y"
 
 #. translators: Custom template title in the Site Editor. %s: Author name.
-#: wp-includes/block-template-utils.php:826
+#: wp-includes/block-template-utils.php:867
 msgid "Author: %s"
 msgstr "Forfatter: %s"
 
