@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-16 09:40:31+0000\n"
+"PO-Revision-Date: 2024-04-30 08:11:06+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -353,7 +353,7 @@ msgstr "Potentially non-inclusive"
 
 #. translators: CTA to finish the first time configuration. %s: Either
 #. first-time SEO configuration or SEO configuration.
-#: admin/class-admin.php:245
+#: admin/class-admin.php:243
 msgid "Finish your %s"
 msgstr "Finish your %s"
 
@@ -364,6 +364,25 @@ msgstr "Finish your %s"
 #: js/dist/support.js:2 js/dist/term-edit.js:1
 msgid "%1$sGet%2$s %3$s"
 msgstr "%1$sGet%2$s %3$s"
+
+#. translators: 1: Link tag to WordPress Hosts page on Yoast.com; 2: Link
+#. closing tag
+#: src/integrations/admin/unsupported-php-version-notice.php:89
+msgid "Upgrading your PHP version is something your hosting provider can help you out with. If they can’t upgrade your PHP version, we advise you to consider %1$sswitching to a hosting provider%2$s that can provide the security and features a modern host should provide."
+msgstr "Upgrading your PHP version is something your hosting provider can help you out with. If they can’t upgrade your PHP version, we advise you to consider %1$sswitching to a hosting provider%2$s that can provide the security and features a modern host should provide."
+
+#: src/integrations/admin/unsupported-php-version-notice.php:85
+msgid "Can’t upgrade yourself? Ask your host!"
+msgstr "Can’t upgrade yourself? Ask your host!"
+
+#. translators: 1: Yoast SEO, 2: Yoast SEO Premium
+#: src/integrations/admin/unsupported-php-version-notice.php:77
+msgid "By November 1st, 2024, we’ll update the minimum PHP requirement for %1$s, %2$s and all our add-ons to PHP 7.4. This, to ensure we can keep delivering state of the art features."
+msgstr "By 1 November 2024, we’ll update the minimum PHP requirement for %1$s, %2$s and all our add-ons to PHP 7.4. This, to ensure we can keep delivering state of the art features."
+
+#: src/integrations/admin/unsupported-php-version-notice.php:73
+msgid "Upgrade your PHP version"
+msgstr "Upgrade your PHP version"
 
 #: inc/class-wpseo-admin-bar-menu.php:568
 msgid "WordPress.org support forums"
@@ -1280,7 +1299,7 @@ msgid "Installing and activating addons"
 msgstr "Installing and activating add-ons"
 
 #. translators: %s expands to Yoast SEO Premium.
-#: admin/class-admin.php:257
+#: admin/class-admin.php:255
 msgid "Required by %s"
 msgstr "Required by %s"
 
@@ -1379,7 +1398,7 @@ msgstr "The %s integration offers suggestions and insights for keywords related 
 msgid "This tab allows you to selectively disable %1$s integrations with third-party products for all sites in the network. By default all integrations are enabled, which allows site admins to choose for themselves if they want to toggle an integration on or off for their site. When you disable an integration here, site admins will not be able to use that integration at all."
 msgstr "This tab allows you to selectively disable %1$s integrations with third-party products for all sites in the network. By default, all integrations are enabled, which allows site admins to choose for themselves if they want to toggle an integration on or off for their site. When you disable an integration here, site admins will not be able to use that integration at all."
 
-#: admin/class-admin.php:268
+#: admin/class-admin.php:266
 msgid "Activate your subscription"
 msgstr "Activate your subscription"
 
@@ -1424,17 +1443,17 @@ msgid "Something has gone wrong and we couldn't complete the optimization of you
 msgstr "Something has gone wrong and we couldn't complete the optimisation of your SEO data. Please %1$srestart the process%2$s."
 
 #. translators: %s expands to a mailto support link.
-#: inc/class-addon-manager.php:876
+#: inc/class-addon-manager.php:875
 msgid "If you still need support and have an active subscription for this product, please email %s."
 msgstr "If you still need support and have an active subscription for this product, please email %s."
 
 #. translators: 1: expands to <a> that refers to the help page, 2: </a> closing
 #. tag.
-#: inc/class-addon-manager.php:873
+#: inc/class-addon-manager.php:872
 msgid "You can probably find an answer to your question in our %1$shelp center%2$s."
 msgstr "You can probably find an answer to your question in our %1$shelp centre%2$s."
 
-#: inc/class-addon-manager.php:870
+#: inc/class-addon-manager.php:869
 msgid "Need support?"
 msgstr "Need support?"
 
@@ -1925,7 +1944,7 @@ msgid "Posts with the SEO score: %s"
 msgstr "Posts with the SEO score: %s"
 
 #. translators: %s: expends to Yoast SEO
-#: admin/class-admin.php:358
+#: admin/class-admin.php:361
 msgid "%s video tutorial"
 msgstr "%s video tutorial"
 
@@ -1968,27 +1987,33 @@ msgstr "Organisation"
 msgid "You have previously set your site to represent a person. We’ve improved our functionality around Schema and the Knowledge Graph, so you should go in and %1$scomplete those settings%2$s."
 msgstr "You have previously set your site to represent a person. We’ve improved our functionality around Schema and the Knowledge Graph, so you should go in and %1$scomplete those settings%2$s."
 
-#: admin/class-admin.php:321
+#: admin/class-admin.php:324
+#: src/user-meta/framework/additional-contactmethods/wikipedia.php:28
 msgid "(if one exists)"
 msgstr "(if one exists)"
 
-#: admin/class-admin.php:321
+#: admin/class-admin.php:324
+#: src/user-meta/framework/additional-contactmethods/wikipedia.php:28
 msgid "Wikipedia page about you"
 msgstr "Wikipedia page about you"
 
-#: admin/class-admin.php:320
+#: admin/class-admin.php:323
+#: src/user-meta/framework/additional-contactmethods/youtube.php:28
 msgid "YouTube profile URL"
 msgstr "YouTube profile URL"
 
-#: admin/class-admin.php:318
+#: admin/class-admin.php:321
+#: src/user-meta/framework/additional-contactmethods/tumblr.php:28
 msgid "Tumblr profile URL"
 msgstr "Tumblr profile URL"
 
-#: admin/class-admin.php:317
+#: admin/class-admin.php:320
+#: src/user-meta/framework/additional-contactmethods/soundcloud.php:28
 msgid "SoundCloud profile URL"
 msgstr "SoundCloud profile URL"
 
-#: admin/class-admin.php:315
+#: admin/class-admin.php:318
+#: src/user-meta/framework/additional-contactmethods/myspace.php:28
 msgid "MySpace profile URL"
 msgstr "MySpace profile URL"
 
@@ -1996,15 +2021,18 @@ msgstr "MySpace profile URL"
 msgid "Uncategorized"
 msgstr "Uncategorised"
 
-#: admin/class-admin.php:316
+#: admin/class-admin.php:319
+#: src/user-meta/framework/additional-contactmethods/pinterest.php:28
 msgid "Pinterest profile URL"
 msgstr "Pinterest profile URL"
 
-#: admin/class-admin.php:314
+#: admin/class-admin.php:317
+#: src/user-meta/framework/additional-contactmethods/linkedin.php:28
 msgid "LinkedIn profile URL"
 msgstr "LinkedIn profile URL"
 
-#: admin/class-admin.php:313
+#: admin/class-admin.php:316
+#: src/user-meta/framework/additional-contactmethods/instagram.php:28
 msgid "Instagram profile URL"
 msgstr "Instagram profile URL"
 
@@ -2821,6 +2849,10 @@ msgstr "All Readability Scores"
 msgid "Filter by Readability Score"
 msgstr "Filter by Readability Score"
 
+#: src/integrations/admin/unsupported-php-version-notice.php:163
+msgid "Remind me again in 4 weeks."
+msgstr "Remind me again in 4 weeks."
+
 #. translators: %1$s expands to the request method
 #: admin/class-remote-request.php:97
 msgid "Request method %1$s is not valid."
@@ -2883,7 +2915,7 @@ msgstr "No ads!"
 msgid "Get %1$s"
 msgstr "Get %1$s"
 
-#: admin/class-admin.php:359
+#: admin/class-admin.php:362
 msgid "Scroll to see the table content."
 msgstr "Scroll to see the table content."
 
@@ -2936,7 +2968,7 @@ msgstr "We've noticed you've been using %1$s for some time now; we hope you love
 #. translators: %1$s: '%%term_title%%' variable used in titles and meta's
 #. template that's not compatible with the given template, %2$s: expands to
 #. 'HelpScout beacon'
-#: admin/class-admin.php:353
+#: admin/class-admin.php:356
 msgid "Warning: the variable %1$s cannot be used in this template. See the %2$s for more info."
 msgstr "Warning: the variable %1$s cannot be used in this template. See the %2$s for more info."
 
@@ -3068,7 +3100,7 @@ msgstr "Edit &#8220;%s&#8221;"
 msgid "Premium"
 msgstr "Premium"
 
-#: admin/class-admin.php:275
+#: admin/class-admin.php:273
 msgid "Get Premium"
 msgstr "Get Premium"
 
@@ -3336,7 +3368,7 @@ msgid "%1$s does not seem to be a valid %2$s verification string. Please correct
 msgstr "%1$s does not seem to be a valid %2$s verification string. Please correct."
 
 #. translators: %s expands to the name of a post type (plural).
-#: inc/class-upgrade.php:1525 inc/options/class-wpseo-option-titles.php:309
+#: inc/class-upgrade.php:1539 inc/options/class-wpseo-option-titles.php:309
 msgid "%s Archive"
 msgstr "%s Archive"
 
@@ -3578,7 +3610,7 @@ msgstr "Page not found"
 
 #. translators: %s expands to the variable used for term title.
 #: admin/formatter/class-term-metabox-formatter.php:162
-#: inc/class-upgrade.php:1528 inc/options/class-wpseo-option-titles.php:345
+#: inc/class-upgrade.php:1542 inc/options/class-wpseo-option-titles.php:345
 msgid "%s Archives"
 msgstr "%s Archives"
 
@@ -4091,15 +4123,16 @@ msgstr "New Yoast Meta Description"
 msgid "Existing Yoast Meta Description"
 msgstr "Existing Yoast Meta Description"
 
-#: admin/class-admin.php:312
+#: admin/class-admin.php:315
+#: src/user-meta/framework/additional-contactmethods/facebook.php:28
 msgid "Facebook profile URL"
 msgstr "Facebook profile URL"
 
-#: admin/class-admin.php:239 js/dist/structured-data-blocks.js:5
+#: admin/class-admin.php:237 js/dist/structured-data-blocks.js:5
 msgid "FAQ"
 msgstr "FAQ"
 
-#: admin/class-admin.php:234 admin/views/redirects.php:42
+#: admin/class-admin.php:232 admin/views/redirects.php:42
 #: src/integrations/settings-integration.php:317
 #: src/presenters/meta-description-presenter.php:37
 #: js/dist/structured-data-blocks.js:5
@@ -4110,7 +4143,7 @@ msgstr "Settings"
 msgid "Huge SEO Issue: You're blocking access to robots."
 msgstr "Huge SEO Issue: You're blocking access to robots."
 
-#: admin/class-admin.php:192
+#: admin/class-admin.php:190
 msgid "Posts"
 msgstr "Posts"
 
