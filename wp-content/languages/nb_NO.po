@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 6.5.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-28 13:47:52+0000\n"
+"PO-Revision-Date: 2024-05-09 17:39:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -390,6 +390,52 @@ msgstr "Menneskelig lesbar tekst for forfatteren."
 msgid "Unknown author"
 msgstr "Ukjent forfatter"
 
+#. translators: %d: A post id.
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:410
+msgid "The revision does not belong to the specified parent with id of \"%d\""
+msgstr "Revisjonen tilhører ikke den spesifiserte overordnede med IDen \"%d\""
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-global-styles-revisions-controller.php:305
+msgid "Invalid global styles revision ID."
+msgstr "Ugyldig revisjons-ID for global stil."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-global-styles-revisions-controller.php:83
+msgid "Unique identifier for the global styles revision."
+msgstr "Unik identifikator for den globale stilrevisjonen."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-global-styles-revisions-controller.php:79
+msgid "The ID for the parent of the global styles revision."
+msgstr "ID-en for overordnet for revisjonen av den globale stilen."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:432
+msgid "font-family declaration in theme.json format, encoded as a string."
+msgstr "font-family-deklarasjon i theme.json-format, kodet som en streng."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:343
+msgid "URL to a preview image of the font family."
+msgstr "URL til et forhåndsvisningsbilde av skriftfamilien."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:329
+msgid "Kebab-case unique identifier for the font family preset."
+msgstr "Kebab-case unik identifikator for forhåndsinnstillingen for fontfamilien."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:322
+msgid "Name of the font family preset, translatable."
+msgstr "Navnet på forhåndsinnstillingen for skriftfamilien, kan oversettes."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:317
+msgid "font-face definition in theme.json format."
+msgstr "font-face-definisjon i theme.json-format."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:307
+msgid "The IDs of the child font faces in the font family."
+msgstr "ID-ene til den underordnede skrifttypen i skriftfamilien."
+
+#. translators: %s: Font family slug.
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:190
+msgid "A font family with slug \"%s\" already exists."
+msgstr "En skriftfamilie med identifikator \"%s\" eksisterer allerede."
+
 #. translators: %s: Name of parameter being updated:
 #. font_family_settings[slug]".
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:114
@@ -401,9 +447,82 @@ msgstr "%s kan ikke oppdateres."
 msgid "%s parameter must be a valid JSON string."
 msgstr "%s-parameteret må være en gyldig JSON-streng."
 
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:72
+msgid "Sorry, you are not allowed to access this font family."
+msgstr "Beklager, du har ikke tilgang til dette endeppuntet."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:47
+msgid "Sorry, you are not allowed to access font families."
+msgstr "Du har ikke tilgang til skriftsamlinger."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:746
+msgid "font-face declaration in theme.json format, encoded as a string."
+msgstr "font-face-deklarasjon i theme.json-format, kodet som en streng."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:657
+msgid "URL to a preview image of the font face."
+msgstr "URL til et forhåndsvisningsbilde av skriften."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:650
+msgid "CSS unicode-range value."
+msgstr "CSS unicode-områdeverdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:643
+msgid "CSS size-adjust value."
+msgstr "CSS størrelse-juster verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:636
+msgid "CSS line-gap-override value."
+msgstr "CSS line-gap-override-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:629
+msgid "CSS font-variation-settings value."
+msgstr "CSS font-variation-settings-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:622
+msgid "CSS font-feature-settings value."
+msgstr "CSS font-feature-settings-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:615
+msgid "CSS font-variant value."
+msgstr "CSS font-variant-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:608
+msgid "CSS descent-override value."
+msgstr "CSS descent-override-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:601
+msgid "CSS ascent-override value."
+msgstr "CSS ascent-override-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:594
+msgid "CSS font-stretch value."
+msgstr "CSS font-stretch-verdi."
+
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:572
 msgid "Paths or URLs to the font files."
 msgstr "Baner eller nettadresser til skrift-filene."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:557
+msgid "CSS font-display value."
+msgstr "CSS font-display-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:547
+msgid "List of available font weights, separated by a space."
+msgstr "Liste over tilgjengelige verdier for 'font-weight' adskilt med mellomrom."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:539
+msgid "CSS font-style value."
+msgstr "CSS font-style-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:531
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:336
+msgid "CSS font-family value."
+msgstr "CSS font-family-verdi."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:526
+msgid "font-face declaration in theme.json format."
+msgstr "font-face-deklarasjon i theme.json-format."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-faces-controller.php:511
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-families-controller.php:299
@@ -438,6 +557,10 @@ msgstr "Du har ikke tilgang til skriftsamlinger."
 msgid "The categories for the font collection."
 msgstr "Kategorier for skriftsamlingen."
 
+#: wp-includes/rest-api/endpoints/class-wp-rest-font-collections-controller.php:242
+msgid "The font families for the font collection."
+msgstr "Skriftfamiliene for skriftsamlingen."
+
 #: wp-includes/rest-api/endpoints/class-wp-rest-font-collections-controller.php:237
 msgid "The description for the font collection."
 msgstr "Beskrivelsen for skriftsamlingen."
@@ -457,6 +580,15 @@ msgstr "Skrifttypesamling ikke funnet."
 #: wp-includes/rest-api/endpoints/class-wp-rest-block-types-controller.php:740
 msgid "Allowed child block types."
 msgstr "Tillatte underblokktyper."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-block-types-controller.php:590
+msgid "Public facing script module IDs."
+msgstr "Offentlig viste skriptmodul-id-er."
+
+#. translators: %s: attachment mime type
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:363
+msgid "This site does not support post thumbnails on attachments with MIME type %s."
+msgstr "Dette nettstedet støtter ikke miniatyrbilder for vedlegg med MIME-typen %s."
 
 #: wp-includes/post.php:571
 msgid "Font Families"
