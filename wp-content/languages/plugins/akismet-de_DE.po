@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - Akismet Anti-spam: Spam Protection - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-29 19:53:03+0000\n"
+"PO-Revision-Date: 2024-06-13 16:13:12+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Akismet Anti-spam: Spam Protection - Stable (latest release)\n"
 
@@ -307,6 +307,11 @@ msgstr "Manuelle Konfiguration"
 msgid "On this page, you are able to update your Akismet settings and view spam stats."
 msgstr "Auf dieser Seite kannst du deine Akismet-Einstellungen aktualisieren und Spam-Statistiken betrachten."
 
+#. Description of the plugin
+#: akismet.php
+msgid "Used by millions, Akismet is quite possibly the best way in the world to <strong>protect your blog from spam</strong>. Akismet Anti-spam keeps your site protected even while you sleep. To get started: activate the Akismet plugin and then go to your Akismet Settings page to set up your API key."
+msgstr "Von Millionen genutzt, ist Akismet wahrscheinlich der beste Weg in der Welt, <strong>um deine Website oder deinen Blog vor Spam zu schützen</strong>. Es schützt deine Website auch während du schläfst. Um zu beginnen: Aktiviere das Akismet Plugin und gehe dann auf deine Akismet-Einstellungen Seite, um deinen API-Schlüssel einzurichten."
+
 #: class.akismet-admin.php:114 class.akismet-admin.php:117
 msgid "Akismet Anti-spam"
 msgstr "Akismet Anti-Spam"
@@ -600,6 +605,11 @@ msgstr "Netzwerkfunktionen sind deaktiviert."
 msgid "For more information: %s"
 msgstr "Für weitere Informationen: %s"
 
+#. translators: The placeholder is an error code returned by Akismet.
+#: views/notice.php:57
+msgid "Akismet error code: %s"
+msgstr "Akismet Fehler-Code: %s"
+
 #: views/notice.php:42
 msgid "Some comments have not yet been checked for spam by Akismet. They have been temporarily held for moderation and will automatically be rechecked later."
 msgstr "Einige Kommentare wurden nicht durch Akismet auf Spam überprüft. Sie wurden temporär in die Moderation eingereiht und werden automatisch später nachgeprüft."
@@ -659,6 +669,10 @@ msgstr "Spam immer in den Spam-Ordner zur Überprüfung ablegen."
 #: views/config.php:159
 msgid "Silently discard the worst and most pervasive spam so I never see it."
 msgstr "Wirf den schlimmsten und am weitesten verbreiteten Spam stillschweigend weg, damit ich ihn nie sehe."
+
+#: views/config.php:153
+msgid "Akismet Anti-spam strictness"
+msgstr "Akismet Anti-Spam-Genauigkeit"
 
 #: views/config.php:140
 msgid "Show the number of approved comments beside each comment author."
