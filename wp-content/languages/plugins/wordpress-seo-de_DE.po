@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-06 20:54:15+0000\n"
+"PO-Revision-Date: 2024-06-18 07:56:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: de\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#: admin/menu/class-base-menu.php:260 admin/menu/class-base-menu.php:264
+msgid "Upgrades"
+msgstr "Upgrades"
 
 #: blocks/dynamic-blocks/breadcrumbs/block.json
 msgctxt "block keyword"
@@ -429,7 +433,7 @@ msgstr "Gewinne mehr lokale Kunden auf deiner Website und in deinem Ladengeschä
 msgid "It looks like you've enabled media pages. We recommend that you help us to re-analyze your site by running the SEO data optimization. "
 msgstr "Es sieht so aus, als hättest du die Medienseiten aktiviert. Wir empfehlen, dass du uns hilfst, deine Website erneut zu analysieren, indem du die SEO-Datenoptimierung durchführst. "
 
-#: admin/formatter/class-metabox-formatter.php:166 inc/class-wpseo-rank.php:156
+#: admin/formatter/class-metabox-formatter.php:162 inc/class-wpseo-rank.php:156
 #: inc/class-wpseo-rank.php:240 js/dist/block-editor.js:576
 #: js/dist/editor-modules.js:324 js/dist/elementor.js:89
 #: js/dist/externals-components.js:188 js/dist/externals-components.js:264
@@ -683,10 +687,10 @@ msgstr "Entdecke, warum integrative Sprache für SEO wichtig ist."
 
 #. translators: %1$s expands to the opening anchor tag, %2$s to the closing
 #. anchor tag, %3$s to the inclusive language score.
-#: admin/formatter/class-metabox-formatter.php:149
-#: admin/formatter/class-metabox-formatter.php:156
-#: admin/formatter/class-metabox-formatter.php:163
-#: admin/formatter/class-metabox-formatter.php:170
+#: admin/formatter/class-metabox-formatter.php:145
+#: admin/formatter/class-metabox-formatter.php:152
+#: admin/formatter/class-metabox-formatter.php:159
+#: admin/formatter/class-metabox-formatter.php:166
 msgid "%1$sInclusive language%2$s: %3$s"
 msgstr "%1$sInklusive Sprache%2$s: %3$s"
 
@@ -1972,19 +1976,19 @@ msgstr "Aktiviere %s für deine Website auf MyYoast"
 
 #. translators: %1$s expands to the opening anchor tag, %2$s to the closing
 #. anchor tag, %3$s to the readability score.
-#: admin/formatter/class-metabox-formatter.php:119
-#: admin/formatter/class-metabox-formatter.php:126
-#: admin/formatter/class-metabox-formatter.php:133
-#: admin/formatter/class-metabox-formatter.php:140
+#: admin/formatter/class-metabox-formatter.php:115
+#: admin/formatter/class-metabox-formatter.php:122
+#: admin/formatter/class-metabox-formatter.php:129
+#: admin/formatter/class-metabox-formatter.php:136
 msgid "%1$sReadability%2$s: %3$s"
 msgstr "%1$sLesbarkeit%2$s: %3$s"
 
 #. translators: %1$s expands to the opening anchor tag, %2$s to the closing
 #. anchor tag, %3$s to the SEO score.
-#: admin/formatter/class-metabox-formatter.php:89
-#: admin/formatter/class-metabox-formatter.php:96
-#: admin/formatter/class-metabox-formatter.php:103
-#: admin/formatter/class-metabox-formatter.php:110
+#: admin/formatter/class-metabox-formatter.php:85
+#: admin/formatter/class-metabox-formatter.php:92
+#: admin/formatter/class-metabox-formatter.php:99
+#: admin/formatter/class-metabox-formatter.php:106
 msgid "%1$sSEO%2$s: %3$s"
 msgstr "%1$sSEO%2$s: %3$s"
 
@@ -2203,18 +2207,10 @@ msgstr "Kontrolle zulassen"
 msgid "This tab allows you to selectively disable %s features for all sites in the network. By default all features are enabled, which allows site admins to choose for themselves if they want to toggle a feature on or off for their site. When you disable a feature here, site admins will not be able to use that feature at all."
 msgstr "Diese Registerkarte ermöglicht es dir, die %s Funktionen für alle Seiten im Netzwerk selektiv zu deaktivieren. Standardmäßig sind alle Funktionen aktiviert, so dass die Administratoren der Website selbst entscheiden können, ob sie eine Funktion für ihre Website ein- oder ausschalten möchten. Wenn du eine Funktion hier deaktivieren möchtest, können die Administratoren diese Funktion überhaupt nicht verwenden."
 
-#: admin/formatter/class-metabox-formatter.php:63
-msgid "Remove keyphrase"
-msgstr "Keyphrase löschen"
-
 #. translators: %s: argument name
 #: admin/views/class-yoast-feature-toggle.php:161
 msgid "%s is a required feature toggle argument."
 msgstr "%s ist ein erforderliches Feature-Toggle-Argument."
-
-#: admin/formatter/class-metabox-formatter.php:62
-msgid "Keyphrase:"
-msgstr "Keyphrase:"
 
 #: admin/class-yoast-form.php:1081 js/dist/first-time-configuration.js:15
 msgid "This feature has been disabled by the network admin."
@@ -2702,12 +2698,6 @@ msgstr "Erfahre, warum Lesbarkeit für SEO wichtig ist."
 msgid "Find out how cornerstone content can help you improve your site structure."
 msgstr "Erfahre, wie Cornerstone-Inhalte dir helfen können, die Struktur deiner Website zu verbessern."
 
-#: admin/formatter/class-metabox-formatter.php:217
-#: js/dist/editor-modules.js:181 js/dist/externals-components.js:188
-#: js/dist/externals/analysisReport.js:36
-msgid "Good results"
-msgstr "Gute Ergebnisse"
-
 #. translators: %s: 'Semrush'
 #. translators: %s: Algolia.
 #: admin/views/class-yoast-integration-toggles.php:67
@@ -2744,31 +2734,9 @@ msgstr "https://yoa.st/1uj"
 msgid "Latest blog posts on %1$s"
 msgstr "Letzte Blog-Beiträge auf %1$s"
 
-#: admin/formatter/class-metabox-formatter.php:219
-#: js/dist/externals/analysisReport.js:18
-msgid "Remove highlight from the text"
-msgstr "Text-Markierung entfernen"
-
-#: admin/formatter/class-metabox-formatter.php:213
-#: js/dist/editor-modules.js:181 js/dist/externals-components.js:188
-#: js/dist/externals/analysisReport.js:36
-msgid "Errors"
-msgstr "Fehler"
-
 #: src/helpers/first-time-configuration-notice-helper.php:68
 msgid "First-time SEO configuration"
 msgstr "Erstmalige SEO-Konfiguration"
-
-#: admin/formatter/class-metabox-formatter.php:218
-#: js/dist/externals/analysisReport.js:18
-msgid "Highlight this result in the text"
-msgstr "Markiere dieses Ergebnis im Text"
-
-#: admin/formatter/class-metabox-formatter.php:216
-#: js/dist/editor-modules.js:181 js/dist/externals-components.js:188
-#: js/dist/externals/analysisReport.js:36
-msgid "Considerations"
-msgstr "Überlegungen"
 
 #. translators: %s expands to ".htaccess".
 #: admin/views/tool-file-editor.php:186
@@ -2820,8 +2788,7 @@ msgstr "Alter Konfigurations-Assistent"
 #. translators: Hidden accessibility text.
 #: admin/class-admin-utils.php:79 admin/class-premium-popup.php:83
 #: admin/class-premium-upsell-admin-block.php:102
-#: admin/class-yoast-form.php:952
-#: admin/formatter/class-metabox-formatter.php:222 admin/views/licenses.php:130
+#: admin/class-yoast-form.php:952 admin/views/licenses.php:130
 #: admin/watchers/class-slug-change-watcher.php:232
 #: src/integrations/admin/workouts-integration.php:214
 #: src/integrations/admin/workouts-integration.php:244
@@ -2989,11 +2956,6 @@ msgstr "Speichern"
 msgid "%1$s, Author at %2$s"
 msgstr "%1$s, Autor bei %2$s"
 
-#: admin/formatter/class-metabox-formatter.php:220
-#: js/dist/externals/analysisReport.js:18
-msgid "Marks are disabled in current view"
-msgstr "Markierungen sind in der aktuellen Ansicht deaktiviert."
-
 #: admin/views/tool-import-export.php:89
 msgid "Export settings"
 msgstr "Export-Einstellungen"
@@ -3156,7 +3118,6 @@ msgstr "Nahtlose Integration zwischen %1$s und %2$s"
 msgid "Edit &#8220;%s&#8221;"
 msgstr "Bearbeite &#8221;%s&#8222;"
 
-#: admin/menu/class-base-menu.php:260 admin/menu/class-base-menu.php:264
 #: src/integrations/admin/menu-badge-integration.php:35 js/dist/academy.js:8
 msgid "Premium"
 msgstr "Premium"
@@ -3189,7 +3150,6 @@ msgstr[1] "%s Benachrichtigungen"
 msgid "Make primary"
 msgstr "Mache primär"
 
-#: admin/formatter/class-metabox-formatter.php:61
 #: admin/metabox/class-metabox-section-readability.php:30
 #: inc/class-wpseo-admin-bar-menu.php:256
 msgid "Readability"
@@ -3205,9 +3165,9 @@ msgstr "Lesbarkeits-Analyse"
 msgid "Disable readability analysis"
 msgstr "Deaktivere die Lesbarkeits-Analyse"
 
-#: admin/formatter/class-metabox-formatter.php:99
-#: admin/formatter/class-metabox-formatter.php:129
-#: admin/formatter/class-metabox-formatter.php:159
+#: admin/formatter/class-metabox-formatter.php:95
+#: admin/formatter/class-metabox-formatter.php:125
+#: admin/formatter/class-metabox-formatter.php:155
 #: admin/statistics/class-statistics-service.php:217
 #: inc/class-wpseo-rank.php:140 inc/class-wpseo-rank.php:176
 #: inc/class-wpseo-rank.php:208 inc/class-wpseo-rank.php:235
@@ -3222,28 +3182,17 @@ msgstr "Verbesserungsbedarf"
 msgid "Removes the readability analysis section from the metabox and disables all readability-related suggestions."
 msgstr "Entfernt den Lesbarkeitsanalyse-Reiter aus der Metabox und deaktiviert alle lesbarkeitsbezogenen Empfehlungen."
 
-#: admin/formatter/class-metabox-formatter.php:92
-#: admin/formatter/class-metabox-formatter.php:122
-#: admin/formatter/class-metabox-formatter.php:152 inc/class-wpseo-rank.php:138
+#: admin/formatter/class-metabox-formatter.php:88
+#: admin/formatter/class-metabox-formatter.php:118
+#: admin/formatter/class-metabox-formatter.php:148 inc/class-wpseo-rank.php:138
 msgid "Not available"
 msgstr "Nicht verfügbar"
 
-#: admin/formatter/class-metabox-formatter.php:214
 #: admin/views/partial-notifications-errors.php:20
 #: js/dist/editor-modules.js:181 js/dist/externals-components.js:188
 #: js/dist/externals/analysisReport.js:36
 msgid "Problems"
 msgstr "Probleme"
-
-#: admin/formatter/class-metabox-formatter.php:215
-#: js/dist/editor-modules.js:181 js/dist/externals-components.js:188
-#: js/dist/externals/analysisReport.js:36
-msgid "Improvements"
-msgstr "Verbesserungen"
-
-#: admin/formatter/class-metabox-formatter.php:184
-msgid "Analysis"
-msgstr "Analyse"
 
 #: admin/menu/class-admin-menu.php:56 admin/pages/dashboard.php:32
 msgid "Dashboard"
@@ -3435,9 +3384,9 @@ msgstr "%s Archiv"
 msgid "Facebook Debugger"
 msgstr "Facebook Debugger"
 
-#: admin/formatter/class-metabox-formatter.php:113
-#: admin/formatter/class-metabox-formatter.php:143
-#: admin/formatter/class-metabox-formatter.php:173
+#: admin/formatter/class-metabox-formatter.php:109
+#: admin/formatter/class-metabox-formatter.php:139
+#: admin/formatter/class-metabox-formatter.php:169
 #: admin/statistics/class-statistics-service.php:227
 #: inc/class-wpseo-rank.php:142 inc/class-wpseo-rank.php:186
 #: inc/class-wpseo-rank.php:218 inc/class-wpseo-rank.php:245
@@ -3934,8 +3883,8 @@ msgstr "Alle SEO-Werte"
 msgid "The %1$s plugin might cause issues when used in conjunction with %2$s."
 msgstr "Das %1$s Plugin könnte in Verbindung mit %2$s Fehler hervorrufen."
 
-#: admin/formatter/class-metabox-formatter.php:106
-#: admin/formatter/class-metabox-formatter.php:136
+#: admin/formatter/class-metabox-formatter.php:102
+#: admin/formatter/class-metabox-formatter.php:132
 #: admin/statistics/class-statistics-service.php:222
 #: inc/class-wpseo-rank.php:141 inc/class-wpseo-rank.php:181
 #: inc/class-wpseo-rank.php:213 js/dist/block-editor.js:576
