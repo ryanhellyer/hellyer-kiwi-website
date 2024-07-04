@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-01 21:03:53+0000\n"
+"PO-Revision-Date: 2024-07-03 03:00:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2798,6 +2798,10 @@ msgstr "<strong>FEHLER</strong>: Das Thema, das du aufteilen willst, wurde nicht
 msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
 msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bearbeiten."
 
+#: includes/topics/functions.php:1128
+msgid "<strong>Error</strong>: Destination topic ID not found."
+msgstr "<strong>Fehler</strong>: Die ID des Ziel-Themas wurde nicht gefunden."
+
 #: includes/topics/functions.php:467
 msgid "<strong>Error</strong>: You do not have permission to edit that topic."
 msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
@@ -3142,6 +3146,10 @@ msgstr "Öffnen"
 msgid "<strong>Error</strong>: You do not have permission to edit that forum."
 msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Forum zu bearbeiten."
 
+#: includes/forums/functions.php:409
+msgid "<strong>Error</strong>: The forum you want to edit was not found."
+msgstr "<strong>FEHLER</strong>: Das Forum, das du bearbeiten möchtest, wurde nicht gefunden."
+
 #: includes/forums/functions.php:242
 msgid "<strong>Error</strong>: This forum already exists."
 msgstr "<strong>Fehler</strong>: Dieses Forum gibt es bereits."
@@ -3178,6 +3186,14 @@ msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, neue Foren anzulegen.
 #: includes/extend/buddypress/notifications.php:203
 msgid "<strong>Error</strong>: You do not have permission to mark notifications for that user."
 msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, Benachrichtigungen für diesen Nutzer zu markieren."
+
+#: includes/extend/buddypress/notifications.php:96
+msgid "You have %1$d new reply to %2$s"
+msgstr "Du hast %1$d neue Antwort(en) zu %2$s"
+
+#: includes/extend/buddypress/notifications.php:95
+msgid "You have %1$d new reply to %2$s from %3$s"
+msgstr "Du hast %1$d neue Antwort(en) von %3$s auf %2$s"
 
 #: includes/extend/buddypress/notifications.php:101
 msgid "Topic Replies"
@@ -3812,7 +3828,7 @@ msgstr "Das Thema \"%1$s\" wurde erfolgreich geöffnet."
 
 #: includes/admin/topics.php:713
 msgid "There was a problem opening the topic \"%1$s\"."
-msgstr "Es gab ein Problem beim Öffnen des Themas \"%1$s\"."
+msgstr "Es gab ein Problem beim Öffnen des Themas „%1$s“."
 
 #: includes/admin/forums.php:361
 msgid "The forum was not found."
@@ -4694,7 +4710,7 @@ msgstr "Antwort „%1$s“ erfolgreich als Spam markiert."
 
 #: includes/admin/replies.php:562
 msgid "There was a problem marking the reply \"%1$s\" as spam."
-msgstr "Beim Markieren von ¡%1$s¡ als Spam ist ein Problem aufgetreten."
+msgstr "Es ist ein Problem beim Markieren von „%1$s“ als Spam aufgetreten."
 
 #: includes/admin/forums.php:366 includes/admin/replies.php:464
 #: includes/admin/topics.php:582
