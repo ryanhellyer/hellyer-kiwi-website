@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-04 20:21:03+0000\n"
+"PO-Revision-Date: 2024-07-07 01:13:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -356,8 +356,8 @@ msgstr "Entferne Forum Abonnements von usermeta&hellip; %s"
 #: includes/admin/tools/upgrade.php:639
 msgid "Complete! %d topic subscription deleted."
 msgid_plural "Complete! %d topic subscriptions deleted."
-msgstr[0] "Komplett! %d Themenabonnement gelöscht."
-msgstr[1] "Komplett! %d Themenabonnements wurden gelöscht."
+msgstr[0] "Fertig! %d Themen-Abonnement wurde gelöscht."
+msgstr[1] "Fertig! %d Themen-Abonnements wurden gelöscht."
 
 #: includes/admin/tools/upgrade.php:620
 msgid "No topic subscriptions to remove."
@@ -458,11 +458,11 @@ msgstr "Keine geschlossenen Themen zum Reparieren vorhanden."
 
 #: includes/admin/tools/repair.php:1103
 msgid "Repairing closed topics&hellip; %s"
-msgstr "Repariere geschlossene Themen&nbsp;&hellip; %s"
+msgstr "Geschlossene Themen werden repariert &hellip; %s"
 
 #: includes/admin/tools/repair.php:155 includes/admin/tools/upgrade.php:166
 msgid "No repair tools match this criteria."
-msgstr "Keine Reparaturwerkzeuge erfüllen diese Anforderung."
+msgstr "Kein Reparaturwerkzeug erfüllt diese Anforderungen."
 
 #: includes/admin/tools/repair.php:130 includes/admin/tools/upgrade.php:134
 msgid "Show more details"
@@ -1275,6 +1275,10 @@ msgstr "Status geschlossener Themen reparieren"
 #: includes/admin/tools.php:188
 msgid "Run this if voices appear incorrectly."
 msgstr "Führe dies aus, wenn Stimmen falsch erscheinen."
+
+#: includes/admin/tools.php:164
+msgid "Run this if sticky topics appear incorrectly."
+msgstr "Führe dies aus, wenn oben gehaltene Themen nicht korrekt angezeigt werden."
 
 #: includes/admin/tools.php:127
 msgid "Recalculate parent forum for each topic and reply"
@@ -2816,12 +2820,12 @@ msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das zu tun."
 #: includes/topics/functions.php:1898
 msgctxt "Make topic super sticky"
 msgid "Super Sticky"
-msgstr "Super Sticky"
+msgstr "Überall oben halten"
 
 #: includes/topics/functions.php:1897
 msgctxt "Make topic sticky"
 msgid "Sticky"
-msgstr "Anheften"
+msgstr "Oben halten"
 
 #: includes/topics/functions.php:1896
 msgctxt "Unstick a topic"
@@ -4127,7 +4131,7 @@ msgstr "Neuberechnung der Forum-Sichtbarkeit&nbsp;&hellip; %s"
 
 #: includes/admin/tools/repair.php:1038
 msgid "Repairing the sticky topic to the parent forum relationships&hellip; %s"
-msgstr "Repariere das oben gehaltene Thema mit den Eltern-Forum-Beziehungen&nbsp;&hellip; %s"
+msgstr "Die Beziehungen der oben gehaltenen Themen zu den jeweiligen Foren werden repariert &hellip; %s"
 
 #: includes/admin/tools/repair.php:917
 msgid "Recomputing latest post in every topic and forum&hellip; %s"
@@ -4270,7 +4274,7 @@ msgstr "Aktualisiere die BuddyPress-Gruppen-Forum-Beziehungen"
 
 #: includes/admin/tools.php:163
 msgid "Recalculate sticky relationship of each topic"
-msgstr "Berechne die Beziehung \"oben gehalten\" für jedes Thema neu"
+msgstr "Die Beziehung „oben gehalten“ für jedes Thema neu berechnen"
 
 #: includes/admin/tools.php:151
 msgid "Recalculate last activity in each topic and forum"
