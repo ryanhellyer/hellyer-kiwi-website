@@ -2,22 +2,23 @@
 # This file is distributed under the same license as the Themes - Twenty Sixteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-02-08 02:18:31+0000\n"
+"PO-Revision-Date: 2024-07-09 15:42:31+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: de\n"
 "Project-Id-Version: Themes - Twenty Sixteen\n"
 
 #. Description of the theme
+#: style.css
 #, gp-priority: high
 msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
 msgstr "Twenty Sixteen ist die moderne Interpretation eines allzeit beliebten WordPress-Layouts – einer horizontalen Kopfzeile mit einer optionalen rechten Seitenleiste, die gleichermaßen bei Blogs wie klassischen Websites perfekt funktioniert. Das Theme bietet Einstellungsmöglichkeiten für individuelle​ Farben mit schönen Standard-Farbvorlagen​, ein harmonisches, flexibles​ Raster mit einem Mobile-First-Ansatz und einem makellosen Schliff in jedem Detail. Twenty Sixteen sorgt für einen tollen Look ​bei​ all deinen WordPress-Websites."
 
 #. Theme Name of the theme
-#: inc/block-patterns.php:17 inc/block-patterns.php:57
+#: style.css inc/block-patterns.php:17 inc/block-patterns.php:57
 #, gp-priority: high
 msgid "Twenty Sixteen"
 msgstr "Twenty Sixteen"
@@ -32,7 +33,7 @@ msgstr "Mein neues Buch „Twenty Sixteen“ kann man vorbestellen."
 
 #: inc/block-patterns.php:122
 msgid "Call to Action"
-msgstr "Call-to-Action"
+msgstr "Handlungsaufforderung"
 
 #: inc/block-patterns.php:102
 msgid "— Takashi Irie"
@@ -70,59 +71,59 @@ msgstr "Twenty Sixteen hat eine moderne Gestaltung mit horizontalem Titel mit ei
 msgid "Large heading with short description"
 msgstr "Große Überschrift mit kurzer Beschreibung"
 
-#: functions.php:205
+#: functions.php:218
 msgid "Bright Red"
 msgstr "Helles Rot"
 
-#: functions.php:200
+#: functions.php:213
 msgid "Dark Red"
 msgstr "Dunkelrot"
 
-#: functions.php:195
+#: functions.php:208
 msgid "Medium Brown"
 msgstr "Mittelbraun"
 
-#: functions.php:190
+#: functions.php:203
 msgid "Dark Brown"
 msgstr "Dunkelbraun"
 
-#: functions.php:185
+#: functions.php:198
 msgid "Light Blue"
 msgstr "Helles Blau"
 
-#: functions.php:180
+#: functions.php:193
 msgid "Bright Blue"
 msgstr "Strahlendes Blau"
 
-#: functions.php:175
+#: functions.php:188
 msgid "Blue Gray"
 msgstr "Blau-Grau"
 
-#: functions.php:170
+#: functions.php:183
 msgid "White"
 msgstr "Weiß"
 
-#: functions.php:165
+#: functions.php:178
 msgid "Light Gray"
 msgstr "Hellgrau"
 
-#: functions.php:160
+#: functions.php:173
 msgid "Medium Gray"
 msgstr "Mittelgrau"
 
-#: functions.php:155
+#: functions.php:168
 msgid "Dark Gray"
 msgstr "Dunkelgrau"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: inc/template-tags.php:195 template-parts/content.php:29
+#: inc/template-tags.php:203 template-parts/content.php:29
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "<span class=\"screen-reader-text\">„%s“</span> weiterlesen"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: image.php:88 template-parts/content-page.php:39
+#: image.php:90 template-parts/content-page.php:40
 #: template-parts/content-search.php:28 template-parts/content-search.php:43
-#: template-parts/content-single.php:47 template-parts/content.php:53
+#: template-parts/content-single.php:48 template-parts/content.php:54
 msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "<span class=\"screen-reader-text\">&#8222;%s&#8220;</span> bearbeiten"
 
@@ -136,17 +137,19 @@ msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
 msgstr "Ein Gedanke zu &#8222;%s&#8220;"
 
-#: searchform.php:16
+#. translators: Hidden accessibility text.
+#: searchform.php:24
 msgctxt "submit button"
 msgid "Search"
 msgstr "Suchen"
 
-#: searchform.php:14
+#: searchform.php:19
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Suche&#160;&hellip;"
 
-#: searchform.php:13
+#. translators: Hidden accessibility text.
+#: searchform.php:16
 msgctxt "label"
 msgid "Search for:"
 msgstr "Suche nach:"
@@ -159,7 +162,7 @@ msgstr "Footer-Social-Links-Menü"
 msgid "Footer Primary Menu"
 msgstr "Primäres Footer-Menü"
 
-#: functions.php:273
+#: functions.php:287
 msgid "Add widgets here to appear in your sidebar."
 msgstr "Widgets hier hinzufügen, um sie in die Seitenleiste einzubauen."
 
@@ -193,15 +196,17 @@ msgstr "Alle Beiträge von %s anzeigen"
 msgid "Author:"
 msgstr "Autor:"
 
-#: single.php:42
+#. translators: Hidden accessibility text.
+#: single.php:44
 msgid "Previous post:"
 msgstr "Vorheriger Beitrag:"
 
-#: single.php:41
+#: single.php:42
 msgid "Previous"
 msgstr "Zurück"
 
-#: single.php:39
+#. translators: Hidden accessibility text.
+#: single.php:40
 msgid "Next post:"
 msgstr "Nächster Beitrag:"
 
@@ -214,42 +219,47 @@ msgstr "Weiter"
 msgid "Search Results for: %s"
 msgstr "Suchergebnisse für: %s"
 
-#: inc/template-tags.php:113
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:121
 msgctxt "Used before tag names."
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: inc/template-tags.php:104
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:111
 msgctxt "Used before category names."
 msgid "Categories"
 msgstr "Kategorien"
 
-#: inc/template-tags.php:100 inc/template-tags.php:109
+#: inc/template-tags.php:106 inc/template-tags.php:116
 msgctxt "Used between list items, there is a space after the comma."
 msgid ", "
 msgstr ", "
 
-#: inc/template-tags.php:84
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:90
 msgctxt "Used before publish date."
 msgid "Posted on"
 msgstr "Veröffentlicht am"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: inc/template-tags.php:53
+#: inc/template-tags.php:58
 msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Schreibe einen Kommentar<span class=\"screen-reader-text\"> zu %s</span>"
 
-#: inc/template-tags.php:40
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:44
 msgctxt "Used before post format."
 msgid "Format"
 msgstr "Format"
 
-#: inc/template-tags.php:26
+#. translators: Hidden accessibility text.
+#: inc/template-tags.php:27
 msgctxt "Used before post author name."
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:210 inc/customizer.php:357
+#: functions.php:223 inc/customizer.php:357
 msgid "Yellow"
 msgstr "Gelb"
 
@@ -290,12 +300,13 @@ msgstr "Farbschema"
 msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
 msgstr "Twenty Sixteen benötigt mindestens WordPress-Version 4.4. Du verwendest Version %s. Bitte aktualisiere WordPress und versuche es erneut."
 
-#: image.php:107 single.php:31
+#: image.php:109 single.php:31
 msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Veröffentlicht in</span><span class=\"post-title\">%title</span>"
 
-#: image.php:77
+#. translators: Hidden accessibility text.
+#: image.php:79
 msgctxt "Used before full size attachment link."
 msgid "Full size"
 msgstr "Volle Größe"
@@ -313,26 +324,27 @@ msgstr "Nächstes Bild"
 msgid "Previous Image"
 msgstr "Vorheriges Bild"
 
-#: header.php:50
+#: header.php:55
 msgid "Menu"
 msgstr "Menü"
 
-#: header.php:28
+#. translators: Hidden accessibility text.
+#: header.php:31
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: functions.php:424
+#: functions.php:442
 msgid "collapse child menu"
 msgstr "Untermenü verbergen"
 
-#: functions.php:423
+#: functions.php:441
 msgid "expand child menu"
 msgstr "Untermenü anzeigen"
 
 #. translators: If there are characters in your language that are not supported
 #. by Inconsolata, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:342
+#: functions.php:356
 msgctxt "Inconsolata font: on or off"
 msgid "on"
 msgstr "on"
@@ -340,7 +352,7 @@ msgstr "on"
 #. translators: If there are characters in your language that are not supported
 #. by Montserrat, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:334
+#: functions.php:348
 msgctxt "Montserrat font: on or off"
 msgid "on"
 msgstr "on"
@@ -348,32 +360,32 @@ msgstr "on"
 #. translators: If there are characters in your language that are not supported
 #. by Merriweather, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:326
+#: functions.php:340
 msgctxt "Merriweather font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:295
+#: functions.php:309
 msgid "Content Bottom 2"
 msgstr "Unterhalb des Inhalts 2"
 
-#: functions.php:285 functions.php:297
+#: functions.php:299 functions.php:311
 msgid "Appears at the bottom of the content on posts and pages."
 msgstr "Erscheint unterhalb des Inhalts von Beiträgen und Seiten."
 
-#: functions.php:283
+#: functions.php:297
 msgid "Content Bottom 1"
 msgstr "Unterhalb des Inhalts 1"
 
-#: functions.php:271
+#: functions.php:285
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:93 header.php:67
+#: functions.php:100 header.php:72
 msgid "Social Links Menu"
 msgstr "Social-Links-Menü"
 
-#: functions.php:92 header.php:54
+#: functions.php:99 header.php:59
 msgid "Primary Menu"
 msgstr "Primäres Menü"
 
@@ -391,12 +403,13 @@ msgstr "Kommentare sind geschlossen."
 msgctxt "comments title"
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "Ein Gedanke zu &#8222;%2$s&#8220;"
+msgstr[0] "%1$s Gedanke zu &#8222;%2$s&#8220;"
 msgstr[1] "%1$s Gedanken zu &#8222;%2$s&#8220;"
 
-#: archive.php:54 image.php:62 index.php:51 search.php:46
-#: template-parts/content-page.php:28 template-parts/content-single.php:30
-#: template-parts/content.php:40
+#. translators: Hidden accessibility text.
+#: archive.php:55 image.php:63 index.php:52 search.php:47
+#: template-parts/content-page.php:29 template-parts/content-single.php:31
+#: template-parts/content.php:41
 msgid "Page"
 msgstr "Seite"
 
@@ -417,17 +430,19 @@ msgid "Oops! That page can&rsquo;t be found."
 msgstr "Die Seite konnte leider nicht gefunden werden."
 
 #. Author of the theme
+#: style.css
 #, gp-priority: low
 msgid "the WordPress team"
 msgstr "Das WordPress-Team"
 
 #. Theme URI of the theme
+#: style.css
 #, gp-priority: low
 msgid "https://wordpress.org/themes/twentysixteen/"
 msgstr "https://de.wordpress.org/themes/twentysixteen/"
 
 #. Author URI of the theme
-#: footer.php:60
+#: style.css footer.php:60
 #, gp-priority: low
 msgid "https://wordpress.org/"
 msgstr "https://de.wordpress.org/"
