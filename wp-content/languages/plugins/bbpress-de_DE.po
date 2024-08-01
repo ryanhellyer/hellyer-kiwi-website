@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-29 22:25:29+0000\n"
+"PO-Revision-Date: 2024-07-30 23:13:56+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -342,8 +342,8 @@ msgstr "Es gab ein Problem, das Forum „%1$s“ zu öffnen."
 #: includes/admin/tools/upgrade.php:675
 msgid "Complete! %d forum subscription deleted."
 msgid_plural "Complete! %d forum subscriptions deleted."
-msgstr[0] "Komplett! %d Forum-Abonnement gelöscht."
-msgstr[1] "Komplett! %d Forum-Abonnements wurden gelöscht."
+msgstr[0] "Fertig! %d Forum-Abonnement wurde gelöscht."
+msgstr[1] "Fertig! %d Forum-Abonnements wurden gelöscht."
 
 #: includes/admin/tools/upgrade.php:656
 msgid "No forum subscriptions to remove."
@@ -1978,11 +1978,19 @@ msgstr "Antwort #%1$s in %2$s"
 #: templates/default/bbpress/form-reply-move.php:48
 #: templates/default/bbpress/form-topic-split.php:48
 msgid "New topic in %s titled:"
-msgstr "Neues Thema mit %s betitelt:"
+msgstr "Neues Thema in %s mit dem Titel:"
 
 #: templates/default/bbpress/form-user-edit.php:119
 msgid "Language"
 msgstr "Sprache"
+
+#: templates/default/bbpress-functions.php:321
+msgid "Subscription failed."
+msgstr "Das Abonnement ist fehlgeschlagen."
+
+#: templates/default/bbpress-functions.php:301
+msgid "Please login to subscribe."
+msgstr "Bitte melde dich an, um zu abonnieren."
 
 #: bbpress.php:763
 msgid "bbPress Item Count"
@@ -2882,6 +2890,10 @@ msgstr "<strong>Fehler</strong>: Die ID des Ziel-Themas wurde nicht gefunden."
 msgid "<strong>Error</strong>: You do not have permission to edit that topic."
 msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
 
+#: includes/topics/functions.php:445 includes/topics/functions.php:1102
+msgid "<strong>Error</strong>: Topic ID not found."
+msgstr "<strong>Fehler</strong>: Die Thema-ID konnte nicht gefunden werden."
+
 #: includes/topics/functions.php:267
 msgid "<strong>Error</strong>: Your topic cannot be created at this time."
 msgstr "<strong>Fehler</strong>: Dein Thema kann momentan nicht erstellt werden."
@@ -2992,7 +3004,7 @@ msgstr "Die Website von %s besuchen"
 #: includes/replies/template.php:1196 includes/topics/template.php:1429
 #: includes/users/template.php:2037
 msgid "View %s's profile"
-msgstr "Das Profil von %s betrachten"
+msgstr "Das Profil von %s anzeigen"
 
 #: includes/admin/settings.php:155 includes/users/template.php:838
 msgid "Anonymous"
@@ -3138,6 +3150,10 @@ msgstr "<strong>Fehler</strong>: Die Themen-ID darf keine negative Zahl sein."
 #: includes/replies/functions.php:174
 msgid "<strong>Error</strong>: Topic ID must be a number."
 msgstr "<strong>Fehler</strong>: Die Themen-ID muss eine Zahl sein."
+
+#: includes/replies/functions.php:170
+msgid "<strong>Error</strong>: Topic ID is missing."
+msgstr "<strong>Fehler</strong>: Die Thema-ID fehlt."
 
 #: includes/forums/template.php:2045
 msgid "This forum is empty."
