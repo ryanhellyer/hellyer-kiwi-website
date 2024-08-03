@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-30 23:13:56+0000\n"
+"PO-Revision-Date: 2024-08-02 02:35:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -49,19 +49,19 @@ msgstr "bbPress-Benutzeraktivität"
 
 #: includes/extend/buddypress/groups.php:442
 msgid "<strong>Error</strong>: Reply To is invalid."
-msgstr "<strong>FEHLER</strong>: Antwort ist ungültig."
+msgstr "<strong>Fehler</strong>: Die Antwort ist ungültig."
 
 #: includes/extend/buddypress/groups.php:379
 msgid "<strong>Error</strong>: Forum ID is invalid."
-msgstr "<strong>Fehler</strong>: Forum-ID ist ungültig."
+msgstr "<strong>Fehler</strong>: Die Forum-ID ist ungültig."
 
 #: includes/admin/settings.php:2054
 msgid "Edit slug"
-msgstr "Bearbeite Titelform"
+msgstr "Titelform bearbeiten"
 
 #: includes/replies/functions.php:1596
 msgid "<strong>Error</strong>: There was a problem unapproving the reply."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit der Nichtgenehmigung der Antwort."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem mit der Nichtgenehmigung der Antwort."
 
 #: includes/replies/functions.php:1596
 msgid "<strong>Error</strong>: There was a problem approving the reply."
@@ -122,7 +122,7 @@ msgstr "Liste der Themen-Schlagwörter"
 
 #: includes/topics/template.php:3403
 msgid "Topic tags list navigation"
-msgstr "Themen-Schlagwort Listennavigation"
+msgstr "Themen-Schlagwort-Listennavigation"
 
 #: includes/topics/template.php:3402
 msgid "No topic tags"
@@ -130,7 +130,7 @@ msgstr "Keine Themen-Schlagwörter"
 
 #: includes/topics/template.php:3401
 msgid "No topic tags found."
-msgstr "Keine Themen-Schlagwörter gefunden."
+msgstr "Es wurden keine Themen-Schlagwörter gefunden."
 
 #: includes/topics/template.php:3400
 msgid "Choose from the most used tags"
@@ -351,7 +351,7 @@ msgstr "Keine Forum-Abonnements zu entfernen."
 
 #: includes/admin/tools/upgrade.php:655
 msgid "Remove forum subscriptions from usermeta&hellip; %s"
-msgstr "Entferne Forum Abonnements von usermeta&hellip; %s"
+msgstr "Forum-Abonnements werden von usermeta entfernt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:639
 msgid "Complete! %d topic subscription deleted."
@@ -365,7 +365,7 @@ msgstr "Es sind keine Themen-Abonnements zu entfernen."
 
 #: includes/admin/tools/upgrade.php:619
 msgid "Remove topic subscriptions from usermeta&hellip; %s"
-msgstr "Entferne Thema Abonnements von usermeta&hellip; %s"
+msgstr "Thema-Abonnements werden von usermeta entfernt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:603
 msgid "Complete! %d favorite deleted."
@@ -691,7 +691,7 @@ msgstr "Keine Benutzer haben dieses Forum abonniert."
 
 #: includes/admin/metaboxes.php:765
 msgid "No users have subscribed to this topic."
-msgstr "Es haben sich noch keine Benutzer für dieses Thema angemeldet."
+msgstr "Dieses Thema wurde von keinem Benutzer abonniert."
 
 #: includes/admin/metaboxes.php:725
 msgid "No users have favorited this topic."
@@ -996,14 +996,6 @@ msgstr "Mehr erfahren"
 msgid "Import Finished"
 msgstr "Import beendet"
 
-#: includes/admin/classes/class-bbp-converter.php:819
-msgid "All threaded replies imported"
-msgstr "Alle themenbezogenen Antworten importiert"
-
-#: includes/admin/classes/class-bbp-converter.php:818
-msgid "No threaded replies to import"
-msgstr "Keine themenbezogenen Antworten zu importieren"
-
 #: includes/admin/classes/class-bbp-converter.php:804
 msgid "Converting anonymous reply authors (%1$s through %2$s of %3$s)"
 msgstr "Konvertiere anonym antwortende Autoren (%1$s bis %2$s von %3$s)"
@@ -1042,7 +1034,7 @@ msgstr "Keine Favoriten zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:750
 msgid "Converting topic subscriptions (%1$s through %2$s of %3$s)"
-msgstr "Konvertiere Foren-Abonnements (%1$s bis %2$s von %3$s)"
+msgstr "Themen-Abonnements werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:747
 msgid "All topic subscriptions imported"
@@ -1066,7 +1058,7 @@ msgstr "Keine Thema-Schlagwörter zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:714
 msgid "Calculating closed topics (%1$s through %2$s of %3$s)"
-msgstr "Berechne geschlossene Themen (%1$s bis %2$s von %3$s)"
+msgstr "Geschlossene Themen werden berechnet (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:711
 msgid "All closed topics imported"
@@ -1090,7 +1082,7 @@ msgstr "Alle anonymen Themen-Autoren importiert"
 
 #: includes/admin/classes/class-bbp-converter.php:656
 msgid "No anonymous topic authors to import"
-msgstr "Kein anonymen Themen-Autoren zu importieren"
+msgstr "Keine anonymen Themen-Autoren zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:642
 msgid "Converting topics (%1$s through %2$s of %3$s)"
@@ -1122,7 +1114,7 @@ msgstr "Alle übergeordneten Foren wurden importiert"
 
 #: includes/admin/classes/class-bbp-converter.php:588
 msgid "Converting forums (%1$s through %2$s of %3$s)"
-msgstr "Konvertiere Foren (%1$s bis %2$s von %3$s)"
+msgstr "Foren werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:585
 msgid "All forums imported"
@@ -1134,7 +1126,7 @@ msgstr "Keine Foren zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:570
 msgid "Skipping password clean-up"
-msgstr "Überspringe Passwort-Bereinigung"
+msgstr "Passwort-Bereinigung wird übersprungen"
 
 #: includes/admin/classes/class-bbp-converter.php:566
 msgid "Delete default WordPress user passwords (%1$s through %2$s)"
@@ -1146,11 +1138,11 @@ msgstr "Alle Passwörter bereinigt"
 
 #: includes/admin/classes/class-bbp-converter.php:547
 msgid "Skipping user clean-up"
-msgstr "Überspringe Benutzer-Bereinigung"
+msgstr "Benutzer-Bereinigung wird übersprungen"
 
 #: includes/admin/classes/class-bbp-converter.php:543
 msgid "Converting users (%1$s through %2$s of %3$s)"
-msgstr "Konvertiere Benutzer (%1$s bis %2$s von %3$s)"
+msgstr "Benutzer werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:540
 msgid "All users imported"
@@ -1158,7 +1150,7 @@ msgstr "Alle Benutzer importiert"
 
 #: includes/admin/classes/class-bbp-converter.php:539
 msgid "No users to import"
-msgstr "Keine Benutzer importiert"
+msgstr "Keine Benutzer zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:180
 msgid "Next in %s seconds..."
@@ -1198,11 +1190,11 @@ msgstr "Import beendet."
 
 #: includes/admin/classes/class-bbp-converter.php:167
 msgid "Continuing Import..."
-msgstr "Import fortgesetzt&nbsp;&hellip;"
+msgstr "Import wird fortgesetzt &hellip;"
 
 #: includes/admin/classes/class-bbp-converter.php:166
 msgid "Starting Import..."
-msgstr "Import gestartet&nbsp;&hellip;"
+msgstr "Import wurde gestartet &hellip;"
 
 #: includes/admin/classes/class-bbp-converter.php:163
 msgid "Continue"
@@ -1344,7 +1336,7 @@ msgstr "Die Antwort „%1$s“ wurde erfolgreich zurückgewiesen."
 
 #: includes/admin/replies.php:580
 msgid "There was a problem unapproving the reply \"%1$s\"."
-msgstr "Es gab ein Problem mit der Nichtgenehmigung der Antwort \"%1$s\"."
+msgstr "Es gab ein Problem mit der Nichtgenehmigung der Antwort „%1$s“."
 
 #: includes/admin/replies.php:575
 msgid "Reply \"%1$s\" successfully approved."
@@ -1528,7 +1520,7 @@ msgstr "Antworten"
 
 #: includes/replies/template.php:79
 msgid "Reply scheduled."
-msgstr "Antwort geplant."
+msgstr "Antwort ist geplant."
 
 #: includes/replies/template.php:78
 msgid "Reply reverted to draft."
@@ -1540,7 +1532,7 @@ msgstr "Antwort privat veröffentlicht."
 
 #: includes/replies/template.php:76
 msgid "Reply published."
-msgstr "Antwort veröffentlicht."
+msgstr "Die Antwort wurde veröffentlicht."
 
 #: includes/replies/template.php:75
 msgid "Use as reply image"
@@ -2595,7 +2587,7 @@ msgstr "Wie ärgerlich! Hier wurden keine Antworten gefunden."
 
 #: templates/default/bbpress/feedback-no-forums.php:17
 msgid "Oh, bother! No forums were found here."
-msgstr "Wie schade! Hier wurde keine Foren gefunden."
+msgstr "Wie schade! Hier wurden keine Foren gefunden."
 
 #: templates/default/bbpress/feedback-no-access.php:20
 msgid "You do not have permission to view this forum."
@@ -2823,6 +2815,14 @@ msgstr "Neues Thema erstellen"
 msgid "New Topic"
 msgstr "Neues Thema"
 
+#: includes/topics/functions.php:2216
+msgid "<strong>Error</strong>: There was a problem deleting the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Löschen des Themas."
+
+#: includes/topics/functions.php:2196
+msgid "<strong>Error</strong>: There was a problem trashing the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Verschieben des Themas in den Papierkorb."
+
 #: includes/replies/functions.php:662 includes/replies/functions.php:1520
 #: includes/topics/functions.php:291 includes/topics/functions.php:594
 #: includes/topics/functions.php:2042
@@ -2877,6 +2877,10 @@ msgstr "<strong>Fehler</strong>: Du musst einen Schlagwort-Namen angeben."
 msgid "<strong>Error</strong>: The topic you want to split to was not found."
 msgstr "<strong>FEHLER</strong>: Das Thema, das du aufteilen willst, wurde nicht gefunden."
 
+#: includes/topics/functions.php:1400
+msgid "<strong>Error</strong>: You need to choose a valid split option."
+msgstr "<strong>Fehler</strong>: Du musst eine gültige Option zum Aufteilen wählen."
+
 #: includes/replies/functions.php:1307 includes/topics/functions.php:1140
 #: includes/topics/functions.php:1428
 msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
@@ -2886,9 +2890,13 @@ msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bea
 msgid "<strong>Error</strong>: Destination topic ID not found."
 msgstr "<strong>Fehler</strong>: Die ID des Ziel-Themas wurde nicht gefunden."
 
+#: includes/topics/functions.php:570
+msgid "<strong>Error</strong>: Your topic cannot be edited at this time."
+msgstr "<strong>Fehler</strong>: Dein Thema kann gerade nicht geändert werden."
+
 #: includes/topics/functions.php:467
 msgid "<strong>Error</strong>: You do not have permission to edit that topic."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
 
 #: includes/topics/functions.php:445 includes/topics/functions.php:1102
 msgid "<strong>Error</strong>: Topic ID not found."
@@ -3101,6 +3109,18 @@ msgstr "<strong>FEHLER</strong>: Das Thema, das du verschieben möchtest, wurde 
 msgid "<strong>Error</strong>: The reply you want to move was not found."
 msgstr "<strong>FEHLER</strong>: Die Antwort, die du verschieben möchtest, wurde nicht gefunden."
 
+#: includes/replies/functions.php:638
+msgid "<strong>Error</strong>: Your reply cannot be edited at this time."
+msgstr "<strong>Fehler</strong>: Deine Antwort kann gerade nicht geändert werden."
+
+#: includes/replies/functions.php:540
+msgid "<strong>Error</strong>: The reply you want to edit was not found."
+msgstr "<strong>Fehler</strong>: Die Antwort, die du bearbeiten möchtest, wurde nicht gefunden."
+
+#: includes/replies/functions.php:523
+msgid "<strong>Error</strong>: Reply ID not found."
+msgstr "<strong>Fehler</strong>: Die Antwort-ID wurde nicht gefunden."
+
 #: includes/replies/functions.php:348
 msgid "<strong>Error</strong>: Topic is closed."
 msgstr "<strong>Fehler</strong>: Das Thema ist geschlossen."
@@ -3154,6 +3174,10 @@ msgstr "<strong>Fehler</strong>: Die Themen-ID muss eine Zahl sein."
 #: includes/replies/functions.php:170
 msgid "<strong>Error</strong>: Topic ID is missing."
 msgstr "<strong>Fehler</strong>: Die Thema-ID fehlt."
+
+#: includes/replies/functions.php:159
+msgid "<strong>Error</strong>: You do not have permission to reply."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, zu antworten."
 
 #: includes/forums/template.php:2045
 msgid "This forum is empty."
@@ -3278,12 +3302,12 @@ msgstr "<strong>Fehler</strong>: Die Forum-ID wurde nicht gefunden."
 
 #: includes/forums/functions.php:242
 msgid "<strong>Error</strong>: This forum already exists."
-msgstr "<strong>Fehler</strong>: Dieses Forum gibt es bereits."
+msgstr "<strong>Fehler</strong>: Dieses Forum existiert bereits."
 
 #: includes/forums/functions.php:228 includes/replies/functions.php:304
 #: includes/topics/functions.php:247
 msgid "<strong>Error</strong>: Slow down; you move too fast."
-msgstr "<strong>FEHLER</strong>: Etwas langsamer bitte; du warst zu schnell."
+msgstr "<strong>Fehler</strong>: Etwas langsamer bitte; du warst zu schnell."
 
 #: includes/forums/functions.php:221 includes/forums/functions.php:450
 msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new forums in it."
@@ -3969,7 +3993,7 @@ msgstr "Es gab ein Problem beim Schließen des Themas \"%1$s\"."
 
 #: includes/admin/topics.php:714
 msgid "Topic \"%1$s\" successfully opened."
-msgstr "Das Thema \"%1$s\" wurde erfolgreich geöffnet."
+msgstr "Das Thema „%1$s“ wurde erfolgreich geöffnet."
 
 #: includes/admin/topics.php:713
 msgid "There was a problem opening the topic \"%1$s\"."
@@ -4495,7 +4519,7 @@ msgstr "Verwende im Zweifel %s als Standard"
 
 #: includes/admin/settings.php:1574
 msgid "The previous forum software"
-msgstr "Die bisherige Forensoftware"
+msgstr "Die vorherige Forensoftware"
 
 #: includes/admin/settings.php:1533
 #: templates/default/bbpress/form-user-edit.php:161
@@ -5363,10 +5387,6 @@ msgstr "Diese Ansicht zeigt die einzelnen Foren deiner Website an. Du kannst die
 #: includes/admin/topics.php:119
 msgid "Overview"
 msgstr "Überblick"
-
-#: includes/admin/classes/class-bbp-converter.php:602
-msgid "No forum parents to import"
-msgstr "Keine übergeordneten Foren vorhanden"
 
 #: includes/admin/classes/class-bbp-converter.php:562
 msgid "No passwords to clear"
