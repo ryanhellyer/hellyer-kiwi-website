@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-02 02:35:00+0000\n"
+"PO-Revision-Date: 2024-08-03 17:33:18+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -370,8 +370,8 @@ msgstr "Thema-Abonnements werden von usermeta entfernt &hellip; %s"
 #: includes/admin/tools/upgrade.php:603
 msgid "Complete! %d favorite deleted."
 msgid_plural "Complete! %d favorites deleted."
-msgstr[0] "Komplett! %d Favorit gelöscht."
-msgstr[1] "Komplett! %d Favoriten gelöscht."
+msgstr[0] "Fertig! %d Favorit wurde gelöscht."
+msgstr[1] "Fertig! %d Favoriten wurden gelöscht."
 
 #: includes/admin/tools/upgrade.php:584
 msgid "No favorites to remove."
@@ -898,6 +898,10 @@ msgstr "Erlaube die Verfolgung der Themen, in denen sich jeder Benutzer engagier
 msgid "Uncheck this to manually assign all user access to your forums."
 msgstr "Deaktiviere dieses Kontrollkästchen, um allen Benutzern manuell Zugang zu deinen Foren zu vergeben."
 
+#: includes/admin/settings.php:601
+msgid "Helper Data"
+msgstr "Helfer-Daten"
+
 #: includes/admin/settings.php:585
 msgid "Stop on Error"
 msgstr "Anhalten bei Fehler"
@@ -998,7 +1002,7 @@ msgstr "Import beendet"
 
 #: includes/admin/classes/class-bbp-converter.php:804
 msgid "Converting anonymous reply authors (%1$s through %2$s of %3$s)"
-msgstr "Konvertiere anonym antwortende Autoren (%1$s bis %2$s von %3$s)"
+msgstr "Anonym antwortende Autoren werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:801
 msgid "All anonymous reply authors imported"
@@ -1366,7 +1370,7 @@ msgstr[1] "%s Antworten wurden nicht aktualisiert, da sie jemand bearbeitet."
 
 #: includes/admin/replies.php:253
 msgid "1 reply not updated, somebody is editing it."
-msgstr "1 Antwort wurde nicht aktualisiert, da sie jemand bearbeitet."
+msgstr "Eine Antwort wurde nicht aktualisiert, da sie jemand bearbeitet."
 
 #: includes/admin/replies.php:251
 msgid "%s reply updated."
@@ -1524,11 +1528,11 @@ msgstr "Antwort ist geplant."
 
 #: includes/replies/template.php:78
 msgid "Reply reverted to draft."
-msgstr "Antwort auf Entwurf zurückgesetzt."
+msgstr "Die Antwort wurde auf Entwurf zurückgesetzt."
 
 #: includes/replies/template.php:77
 msgid "Reply published privately."
-msgstr "Antwort privat veröffentlicht."
+msgstr "Die Antwort wurde privat veröffentlicht."
 
 #: includes/replies/template.php:76
 msgid "Reply published."
@@ -2679,7 +2683,7 @@ msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Favorisieren des Themas
 
 #: includes/topics/functions.php:2127
 msgid "<strong>Error</strong>: There was a problem unapproving the topic."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit der Nichtgenehmigung des Themas."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem mit der Nichtgenehmigung des Themas."
 
 #: includes/users/engagements.php:657
 msgid "<strong>Error</strong>: There was a problem removing that topic from favorites."
@@ -2873,18 +2877,30 @@ msgstr "Offen"
 msgid "<strong>Error</strong>: You need to enter a tag name."
 msgstr "<strong>Fehler</strong>: Du musst einen Schlagwort-Namen angeben."
 
+#: includes/topics/functions.php:1726 includes/topics/functions.php:1770
+msgid "<strong>Error</strong>: You do not have permission to edit the topic tags."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, diese Thema-Schlagwörter zu bearbeiten."
+
 #: includes/topics/functions.php:1423
 msgid "<strong>Error</strong>: The topic you want to split to was not found."
-msgstr "<strong>FEHLER</strong>: Das Thema, das du aufteilen willst, wurde nicht gefunden."
+msgstr "<strong>Fehler</strong>: Das Thema, das du aufteilen willst, wurde nicht gefunden."
 
 #: includes/topics/functions.php:1400
 msgid "<strong>Error</strong>: You need to choose a valid split option."
 msgstr "<strong>Fehler</strong>: Du musst eine gültige Option zum Aufteilen wählen."
 
+#: includes/topics/functions.php:1379
+msgid "<strong>Error</strong>: The topic you want to split was not found."
+msgstr "<strong>Fehler</strong>: Das Thema, das du teilen möchtest, wurde nicht gefunden."
+
+#: includes/topics/functions.php:1369
+msgid "<strong>Error</strong>: The reply you want to split from was not found."
+msgstr "<strong>Fehler</strong>: Die Antwort, von der du teilen möchtest, wurde nicht gefunden."
+
 #: includes/replies/functions.php:1307 includes/topics/functions.php:1140
 #: includes/topics/functions.php:1428
 msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bearbeiten."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bearbeiten."
 
 #: includes/topics/functions.php:1128
 msgid "<strong>Error</strong>: Destination topic ID not found."
@@ -3069,19 +3085,19 @@ msgstr "Alle Beiträge"
 
 #: includes/replies/functions.php:1638
 msgid "<strong>Error</strong>: There was a problem deleting the reply."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Löschen der Antwort."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Löschen der Antwort!"
 
 #: includes/replies/functions.php:1630
 msgid "<strong>Error</strong>: There was a problem untrashing the reply."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Wiederherstellen der Antwort aus dem Papierkorb."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Wiederherstellen der Antwort aus dem Papierkorb."
 
 #: includes/replies/functions.php:1622
 msgid "<strong>Error</strong>: There was a problem trashing the reply."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Verschieben der Antwort in den Papierkorb."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Verschieben der Antwort in den Papierkorb."
 
 #: includes/replies/functions.php:1607
 msgid "<strong>Error</strong>: There was a problem marking the reply as spam."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Markieren der Antwort als Spam."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Markieren der Antwort als Spam."
 
 #: includes/replies/functions.php:1607
 msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
@@ -3094,24 +3110,32 @@ msgstr "Antwort auf: %s"
 
 #: includes/replies/functions.php:1302
 msgid "<strong>Error</strong>: The topic you want to move to was not found."
-msgstr "<strong>FEHLER</strong>: Das Thema, zu dem du wechseln möchtest, wurde nicht gefunden."
+msgstr "<strong>Fehler</strong>: Das Thema, das du verschieben möchtest, wurde nicht gefunden."
+
+#: includes/replies/functions.php:1279
+msgid "<strong>Error</strong>: You need to choose a valid move option."
+msgstr "<strong>Fehler</strong>: Du musst eine gültige Option zum Verschieben auswählen."
 
 #: includes/replies/functions.php:1269 includes/topics/functions.php:1120
 #: includes/topics/functions.php:1390
 msgid "<strong>Error</strong>: You do not have permission to edit the source topic."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, das Ursprungs-Thema zu bearbeiten."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, das Quellthema zu bearbeiten."
 
 #: includes/replies/functions.php:1258
 msgid "<strong>Error</strong>: The topic you want to move from was not found."
-msgstr "<strong>FEHLER</strong>: Das Thema, das du verschieben möchtest, wurde nicht gefunden."
+msgstr "<strong>Fehler</strong>: Das Thema, das du verschieben möchtest, wurde nicht gefunden."
 
 #: includes/replies/functions.php:1248
 msgid "<strong>Error</strong>: The reply you want to move was not found."
-msgstr "<strong>FEHLER</strong>: Die Antwort, die du verschieben möchtest, wurde nicht gefunden."
+msgstr "<strong>Fehler</strong>: Die Antwort, die du verschieben möchtest, wurde nicht gefunden."
 
 #: includes/replies/functions.php:638
 msgid "<strong>Error</strong>: Your reply cannot be edited at this time."
 msgstr "<strong>Fehler</strong>: Deine Antwort kann gerade nicht geändert werden."
+
+#: includes/replies/functions.php:551
+msgid "<strong>Error</strong>: You do not have permission to edit that reply."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, diese Antwort zu bearbeiten."
 
 #: includes/replies/functions.php:540
 msgid "<strong>Error</strong>: The reply you want to edit was not found."
@@ -3120,6 +3144,10 @@ msgstr "<strong>Fehler</strong>: Die Antwort, die du bearbeiten möchtest, wurde
 #: includes/replies/functions.php:523
 msgid "<strong>Error</strong>: Reply ID not found."
 msgstr "<strong>Fehler</strong>: Die Antwort-ID wurde nicht gefunden."
+
+#: includes/replies/functions.php:408 includes/replies/functions.php:738
+msgid "<strong>Error</strong>: There was a problem adding the tags to the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Hinzufügen der Schlagwörter zum Thema."
 
 #: includes/replies/functions.php:348
 msgid "<strong>Error</strong>: Topic is closed."
@@ -3132,6 +3160,10 @@ msgstr "<strong>Fehler</strong>: Deine Antwort kann momentan nicht erstellt werd
 #: includes/replies/functions.php:298 includes/replies/functions.php:632
 msgid "<strong>Error</strong>: Your reply cannot be empty."
 msgstr "<strong>Fehler</strong>: Deine Antwort kann nicht leer sein."
+
+#: includes/replies/functions.php:255 includes/replies/functions.php:598
+msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new replies in it."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist privat und du hast keine Berechtigung zum Lesen oder Erstellen neuer Antworten darin."
 
 #: includes/replies/functions.php:250 includes/replies/functions.php:593
 msgid "<strong>Error</strong>: This forum has been closed to new replies."
@@ -3290,7 +3322,7 @@ msgstr "<strong>Fehler</strong>: Dein Forum kann momentan nicht bearbeitet werde
 
 #: includes/forums/functions.php:414
 msgid "<strong>Error</strong>: You do not have permission to edit that forum."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, dieses Forum zu bearbeiten."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, dieses Forum zu bearbeiten."
 
 #: includes/forums/functions.php:409
 msgid "<strong>Error</strong>: The forum you want to edit was not found."
@@ -3665,7 +3697,7 @@ msgstr "(bbPress) Anmelden-Widget"
 
 #: includes/common/widgets.php:34
 msgid "A simple login form with optional links to sign-up and lost password pages."
-msgstr "Ein einfaches Login-Formular mit optionalen Links zu den Seiten für Registrierung und \"Passwort verloren\"."
+msgstr "Ein einfaches Anmeldeformular mit optionalen Links zu den Seiten Registrierung und „Passwort verloren“."
 
 #: includes/common/template.php:2796
 msgid "View: %s"
@@ -3977,7 +4009,7 @@ msgstr "Es gab ein Problem, das Thema „%1$s“ oben anzuheften."
 
 #: includes/admin/topics.php:726
 msgid "Topic \"%1$s\" successfully stuck to front."
-msgstr "Thema \"%1$s\" erfolgreich auf der Startseite angeheftet."
+msgstr "Das Thema „%1$s“ wurde erfolgreich auf der Startseite angeheftet."
 
 #: includes/admin/topics.php:725
 msgid "There was a problem sticking the topic \"%1$s\" to front."
@@ -3989,7 +4021,7 @@ msgstr "Das Thema „%1$s“ wurde erfolgreich geschlossen."
 
 #: includes/admin/topics.php:719
 msgid "There was a problem closing the topic \"%1$s\"."
-msgstr "Es gab ein Problem beim Schließen des Themas \"%1$s\"."
+msgstr "Es gab ein Problem beim Schließen des Themas „%1$s“."
 
 #: includes/admin/topics.php:714
 msgid "Topic \"%1$s\" successfully opened."
@@ -4623,7 +4655,7 @@ msgstr "Themen dürfen Schlagwörter haben"
 
 #: includes/admin/settings.php:798
 msgid "Allow users to subscribe to forums and topics"
-msgstr "Benutzern erlauben, Foren und Themen zu abonnieren."
+msgstr "Benutzern erlauben, Foren und Themen zu abonnieren"
 
 #: includes/admin/settings.php:784
 msgid "Allow users to mark topics as favorites"
@@ -5314,7 +5346,7 @@ msgstr "<a href=\"https://bbpress.org/forums/\" target=\"_blank\">bbPress-Suppor
 #: includes/admin/tools/help.php:73 includes/admin/tools/help.php:131
 #: includes/admin/topics.php:168 includes/admin/topics.php:221
 msgid "<a href=\"https://codex.bbpress.org\" target=\"_blank\">bbPress Documentation</a>"
-msgstr "<a href=\"https://codex.bbpress.org\" target=\"_blank\">bbPress Dokumentation (engl.)</a>"
+msgstr "<a href=\"https://codex.bbpress.org\" target=\"_blank\">bbPress-Dokumentation (engl.)</a>"
 
 #: includes/admin/forums.php:144 includes/admin/forums.php:200
 #: includes/admin/replies.php:161 includes/admin/replies.php:215
@@ -5394,7 +5426,7 @@ msgstr "Keine Passwörter zum Zurücksetzen vorhanden"
 
 #: includes/admin/classes/class-bbp-converter.php:517
 msgid "Deleting previously converted data (%1$s through %2$s)"
-msgstr "Lösche zuletzt konvertierte Daten (%1$s bis %2$s)"
+msgstr "Zuletzt konvertierte Daten werden gelöscht (%1$s bis %2$s)"
 
 #: includes/admin/settings.php:593
 msgid "Start Over"
