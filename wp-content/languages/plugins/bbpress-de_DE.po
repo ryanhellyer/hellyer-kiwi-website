@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-03 17:33:18+0000\n"
+"PO-Revision-Date: 2024-08-04 18:39:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -384,8 +384,8 @@ msgstr "Entferne Favoriten von den Benutzer-Metadaten&nbsp;&hellip; %s"
 #: includes/admin/tools/upgrade.php:567
 msgid "Complete! %d forum subscription upgraded."
 msgid_plural "Complete! %d forum subscriptions upgraded."
-msgstr[0] "Fertig! %d Forum Abonnement aktualisiert"
-msgstr[1] "Fertig! %d Forum Abonnements aktualisiert"
+msgstr[0] "Fertig! %d Forum-Abonnement wurde erweitert."
+msgstr[1] "Fertig! %d Forum-Abonnements wurden erweitert."
 
 #: includes/admin/tools/upgrade.php:524
 msgid "No forum subscriptions to upgrade."
@@ -398,8 +398,8 @@ msgstr "Forum-Abonnements der Benutzer werden aktualisiert &hellip; %s"
 #: includes/admin/tools/upgrade.php:507
 msgid "Complete! %d topic subscription upgraded."
 msgid_plural "Complete! %d topic subscriptions upgraded."
-msgstr[0] "Vollständig! %d Themen-Abonnement abgegraded."
-msgstr[1] "Vollständig! %d Themen-Abonnements abgegraded."
+msgstr[0] "Fertig! %d Themen-Abonnement wurde erweitert."
+msgstr[1] "Fertig! %d Themen-Abonnements wurden erweitert."
 
 #: includes/admin/tools/upgrade.php:464
 msgid "No topic subscriptions to upgrade."
@@ -407,7 +407,7 @@ msgstr "Es sind keine Themen-Abonnements zum Upgraden vorhanden."
 
 #: includes/admin/tools/upgrade.php:463
 msgid "Upgrading user topic subscriptions&hellip; %s"
-msgstr "Ein Upgrade läuft für Benutzer-Forum-Abonnements&hellip; %s"
+msgstr "Benutzer-Themen-Abonnements werden erweitert &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:447
 msgid "Complete! %d favorite upgraded."
@@ -529,11 +529,11 @@ msgstr "bbPress-spezifische Benutzer-Metadaten werden gelöscht &hellip; %s"
 
 #: includes/admin/tools/reset.php:233
 msgid "Deleting Imported User Meta&hellip; %s"
-msgstr "Lösche importierte Benutzer-Metadaten&nbsp;&hellip; %s"
+msgstr "Importierte Benutzer-Metadaten werden gelöscht &hellip; %s"
 
 #: includes/admin/tools/reset.php:227
 msgid "Deleting Imported Users&hellip; %s"
-msgstr "Lösche importierte Benutzer&nbsp;&hellip; %s"
+msgstr "Importierte Benutzer werden gelöscht &hellip; %s"
 
 #: includes/admin/tools/reset.php:199
 msgid "Removing Revision Data&hellip; %s"
@@ -561,7 +561,7 @@ msgstr "Willst du das wirklich tun?"
 
 #: includes/admin/tools/reset.php:52
 msgid "Proceeding without this checked removes the meta-data necessary to delete these users later."
-msgstr "Vorgehen ohne dies auszuwählen entfernt die Metadaten, die notwendig sind, um später die Nutzer zu entfernen."
+msgstr "Wird dies nicht berücksichtigt, werden die Metadaten entfernt, die zum späteren Löschen dieser Benutzer erforderlich sind."
 
 #: includes/admin/tools/reset.php:38
 msgid "All Meta Data"
@@ -619,7 +619,7 @@ msgstr "Siehe auch <a href=\"https://codex.bbpress.org/repair-forums/\">bbPress:
 
 #: includes/admin/tools/help.php:35
 msgid "bbPress roles: <a href=\"https://codex.bbpress.org/bbpress-user-roles-and-capabilities/\" target=\"_blank\">bbPress User Roles and Capabilities</a>"
-msgstr "bbPress Rollen: <a href=\"https://codex.bbpress.org/bbpress-user-roles-and-capabilities/\" target=\"_blank\">bbPress Benutzerrollen und Berechtigungen (engl.)</a>"
+msgstr "bbPress-Rollen: <a href=\"https://codex.bbpress.org/bbpress-user-roles-and-capabilities/\" target=\"_blank\">bbPress-Benutzerrollen und -Berechtigungen (engl.)</a>"
 
 #: includes/admin/tools/help.php:34
 msgid "BuddyPress Group Forums: <a href=\"https://codex.buddypress.org/getting-started/installing-group-and-sitewide-forums/\">Installing Group and Sitewide Forums</a> and <a href=\"https://codex.buddypress.org/getting-started/guides/migrating-from-old-forums-to-bbpress-2/\">Migrating from old forums to bbPress 2.2+</a>."
@@ -808,11 +808,11 @@ msgstr "Benutzerkonten aus früheren Foren importieren"
 
 #: includes/admin/settings.php:1753
 msgid "Use this if an import failed, or you just want to remove the relationship data."
-msgstr "Verwende dies, wenn ein Import fehlgeschlagen ist oder du einfach nur die Beziehungsdaten entfernen möchten."
+msgstr "Verwende dies, wenn ein Import fehlgeschlagen ist oder du einfach nur die Bezugsdaten entfernen möchtest."
 
 #: includes/admin/settings.php:1752
 msgid "Purge all meta-data from a previous import"
-msgstr "Bereinigung aller Metadaten aus einem früheren Import"
+msgstr "Alle Metadaten aus einem früheren Import löschen"
 
 #: includes/admin/settings.php:1738
 msgid "This forces all steps back to 0. Avoid duplicate data by purging or resetting first."
@@ -828,15 +828,15 @@ msgstr "Dies ist hilfreich, wenn du Probleme debuggen willst."
 
 #: includes/admin/settings.php:1721
 msgid "Halt the conversion if an error occurs"
-msgstr "Stopp die Konvertierung im Fehlerfall"
+msgstr "Die Konvertierung anhalten, wenn ein Fehler auftritt"
 
 #: includes/admin/settings.php:1706
 msgid "second delay between each query of rows above"
-msgstr "zweite Verzögerung zwischen jeder Abfrage der obigen Zeilen"
+msgstr "Verzögerung (in Sekunden) zwischen jeder Abfrage der obigen Zeilen"
 
 #: includes/admin/settings.php:1691
 msgid "entry maximum when querying for data to convert"
-msgstr "Eingabe des Maximums bei der Abfrage der zu konvertierenden Daten"
+msgstr "Eingabegrenze bei der Abfrage der zu konvertierenden Daten"
 
 #: includes/admin/settings.php:1677
 msgid "Use %s if converting from BuddyPress Legacy"
@@ -856,7 +856,7 @@ msgstr "Benutzer für den Datenbankzugriff"
 
 #: includes/admin/settings.php:1588
 msgid "Use default %s if same server, or IP or hostname"
-msgstr "Standard %s verwenden, wenn es sich um denselben Server, Hostnamen oder dieselbe IP handelt"
+msgstr "Verwende den Standard %s, wenn es sich um denselben Server, Hostnamen oder dieselbe IP-Adresse handelt"
 
 #: includes/admin/settings.php:1551
 msgid "Information about the database for your previous forums so they can be converted."
@@ -900,11 +900,11 @@ msgstr "Deaktiviere dieses Kontrollkästchen, um allen Benutzern manuell Zugang 
 
 #: includes/admin/settings.php:601
 msgid "Helper Data"
-msgstr "Helfer-Daten"
+msgstr "Hilfsdaten"
 
 #: includes/admin/settings.php:585
 msgid "Stop on Error"
-msgstr "Anhalten bei Fehler"
+msgstr "Bei Fehler anhalten"
 
 #: includes/admin/settings.php:474
 msgid "Primary Forum"
@@ -999,6 +999,14 @@ msgstr "Mehr erfahren"
 #: includes/admin/classes/class-bbp-converter.php:833
 msgid "Import Finished"
 msgstr "Import beendet"
+
+#: includes/admin/classes/class-bbp-converter.php:819
+msgid "All threaded replies imported"
+msgstr "Alle Antwort-Threads wurden importiert"
+
+#: includes/admin/classes/class-bbp-converter.php:818
+msgid "No threaded replies to import"
+msgstr "Keine Antwort-Threads zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:804
 msgid "Converting anonymous reply authors (%1$s through %2$s of %3$s)"
@@ -1208,6 +1216,10 @@ msgstr "Fortfahren"
 msgid "Upgrade Forums"
 msgstr "Foren aktualisieren"
 
+#: includes/admin/tools.php:450
+msgid "Any"
+msgstr "Jede"
+
 #: includes/admin/tools.php:407
 msgid "Remove favorites from user-meta"
 msgstr "Favoriten aus der User-Meta entfernen"
@@ -1282,11 +1294,11 @@ msgstr "Führe dies aus, wenn oben gehaltene Themen nicht korrekt angezeigt werd
 
 #: includes/admin/tools.php:127
 msgid "Recalculate parent forum for each topic and reply"
-msgstr "Berechne das übergeordnete Forum für jedes Thema und jede Antwort neu"
+msgstr "Das übergeordnete Forum für jedes Thema und jede Antwort neu berechnen"
 
 #: includes/admin/tools.php:115
 msgid "Recalculate parent topic for each reply"
-msgstr "Berechne das übergeordnete Forum für jede Antwort neu"
+msgstr "Das übergeordnete Thema für jede Antwort neu berechnen"
 
 #: includes/admin/tools.php:79
 msgid "The repair was not successful"
@@ -1348,7 +1360,7 @@ msgstr "Die Antwort „%1$s“ wurde erfolgreich freigegeben."
 
 #: includes/admin/replies.php:574
 msgid "There was a problem approving the reply \"%1$s\"."
-msgstr "Es gab ein Problem beim Genehmigen der Antwort \"%1$s\"."
+msgstr "Es gab ein Problem bei der Freigabe der Antwort „%1$s“."
 
 #: includes/admin/replies.php:312
 msgid "Error in unspamming reply."
@@ -1437,7 +1449,7 @@ msgstr "Es gab ein Problem beim Zurücknehmen der Genehmigung zum Thema \"%1$s\"
 
 #: includes/admin/topics.php:755
 msgid "There was a problem approving the topic \"%1$s\"."
-msgstr "Es gab ein Problem bei der Genehmigung des Themas \"%1$s\"."
+msgstr "Es gab ein Problem bei der Freigabe des Themas „%1$s“."
 
 #: includes/admin/topics.php:317
 msgid "Error in unspamming topic."
@@ -2733,7 +2745,7 @@ msgstr "Schlagwörter suchen"
 #: includes/topics/template.php:3386
 #: templates/default/bbpress/content-statistics.php:40
 msgid "Topic Tags"
-msgstr "Thema-Schlagwörter"
+msgstr "Themen-Schlagwörter"
 
 #: includes/topics/template.php:3330
 msgid "This topic has no replies."
@@ -2873,6 +2885,22 @@ msgctxt "Open the topic"
 msgid "Open"
 msgstr "Offen"
 
+#: includes/topics/functions.php:1840
+msgid "<strong>Error</strong>: The following problem(s) have been found while deleting the tag: %s"
+msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) gefunden beim Löschen des Schlagwortes: %s"
+
+#: includes/topics/functions.php:1831
+msgid "<strong>Error</strong>: You do not have permission to delete the topic tags."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, die Thema-Schlagwörter zu löschen."
+
+#: includes/topics/functions.php:1787 includes/topics/functions.php:1808
+msgid "<strong>Error</strong>: The following problem(s) have been found while merging the tags: %s"
+msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) gefunden beim Zusammenführen der Schlagwörter: %s"
+
+#: includes/topics/functions.php:1747
+msgid "<strong>Error</strong>: The following problem(s) have been found while updating the tag: %s"
+msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) sind beim Aktualisieren des Schlagwortes aufgetreten: %s"
+
 #: includes/topics/functions.php:1732 includes/topics/functions.php:1776
 msgid "<strong>Error</strong>: You need to enter a tag name."
 msgstr "<strong>Fehler</strong>: Du musst einen Schlagwort-Namen angeben."
@@ -2880,6 +2908,10 @@ msgstr "<strong>Fehler</strong>: Du musst einen Schlagwort-Namen angeben."
 #: includes/topics/functions.php:1726 includes/topics/functions.php:1770
 msgid "<strong>Error</strong>: You do not have permission to edit the topic tags."
 msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, diese Thema-Schlagwörter zu bearbeiten."
+
+#: includes/topics/functions.php:1708
+msgid "<strong>Error</strong>: The following problem(s) have been found while getting the tag: %s"
+msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) gefunden beim Erhalt des Schlagwortes: %s"
 
 #: includes/topics/functions.php:1423
 msgid "<strong>Error</strong>: The topic you want to split to was not found."
@@ -2906,9 +2938,17 @@ msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bea
 msgid "<strong>Error</strong>: Destination topic ID not found."
 msgstr "<strong>Fehler</strong>: Die ID des Ziel-Themas wurde nicht gefunden."
 
+#: includes/topics/functions.php:1114
+msgid "<strong>Error</strong>: The topic you want to merge was not found."
+msgstr "<strong>Fehler</strong>: Das Thema zum Zusammenführen wurde nicht gefunden."
+
 #: includes/topics/functions.php:570
 msgid "<strong>Error</strong>: Your topic cannot be edited at this time."
 msgstr "<strong>Fehler</strong>: Dein Thema kann gerade nicht geändert werden."
+
+#: includes/topics/functions.php:513
+msgid "<strong>Error</strong>: This forum is a category. No topics can be created in it."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist eine Kategorie, deshalb können darin keine Themen erstellt werden."
 
 #: includes/topics/functions.php:467
 msgid "<strong>Error</strong>: You do not have permission to edit that topic."
@@ -2925,6 +2965,14 @@ msgstr "<strong>Fehler</strong>: Dein Thema kann momentan nicht erstellt werden.
 #: includes/topics/functions.php:235 includes/topics/functions.php:525
 msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new topics in it."
 msgstr "<strong>FEHLER</strong>: Dieses Forum ist privat und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Themen."
+
+#: includes/topics/functions.php:230 includes/topics/functions.php:520
+msgid "<strong>Error</strong>: This forum has been closed to new topics."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist für neue Themen geschlossen."
+
+#: includes/topics/functions.php:223
+msgid "<strong>Error</strong>: This forum is a category. No topics can be created in this forum."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist eine Kategorie, deshalb können darin keine Themen erstellt werden."
 
 #: includes/topics/functions.php:177 includes/topics/functions.php:564
 msgid "<strong>Error</strong>: Your topic cannot be empty."
@@ -3102,6 +3150,10 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Markieren der Antwort a
 #: includes/replies/functions.php:1607
 msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
 msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit dem Entfernen der Markierung dieser Antwort als Spam."
+
+#: includes/replies/functions.php:1361 includes/topics/functions.php:1466
+msgid "<strong>Error</strong>: There was a problem converting the reply into the topic. Please try again."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Konvertieren der Antwort in ein Thema. Bitte versuche es noch einmal."
 
 #: includes/replies/template.php:552
 #: templates/default/bbpress/form-reply.php:30
@@ -3371,7 +3423,7 @@ msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, neue Foren anzulegen.
 
 #: includes/extend/buddypress/notifications.php:203
 msgid "<strong>Error</strong>: You do not have permission to mark notifications for that user."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, Benachrichtigungen für diesen Nutzer zu markieren."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, Benachrichtigungen für diesen Benutzer zu markieren."
 
 #: includes/extend/buddypress/notifications.php:96
 msgid "You have %1$d new reply to %2$s"
@@ -4122,7 +4174,7 @@ msgstr "Dieser Bildschirm zeigt die einzelnen Themen deiner Website. Du kannst d
 
 #: includes/admin/tools/reset.php:208
 msgid "Deleting Topic Tags&hellip; %s"
-msgstr "Lösche Themen-Schlagwörter&nbsp;&hellip; %s"
+msgstr "Themen-Schlagwörter werden gelöscht &hellip; %s"
 
 #: includes/admin/tools/reset.php:121
 msgid "Success!"
@@ -4141,7 +4193,7 @@ msgstr "Dieser Vorgang kann nicht rückgängig gemacht werden."
 
 #: includes/admin/tools/reset.php:51
 msgid "This option will delete all previously imported users, and cannot be undone."
-msgstr "Diese Option wird alle vorher importierten Nutzer löschen und kann nicht rückgängig gemacht werden."
+msgstr "Diese Option wird alle zuvor importierten Benutzer löschen und kann nicht rückgängig gemacht werden."
 
 #: includes/admin/tools/reset.php:50 includes/admin/tools/reset.php:60
 msgid "Say it ain't so!"
@@ -4149,7 +4201,7 @@ msgstr "Sag, dass das nicht wahr ist!"
 
 #: includes/admin/tools/reset.php:47
 msgid "Delete imported users?"
-msgstr "Importierte Nutzer löschen?"
+msgstr "Importierte Benutzer löschen?"
 
 #: includes/admin/tools/reset.php:43
 msgid "Importer Helper Data"
@@ -4240,7 +4292,7 @@ msgstr "Entferne unveröffentlichte Themen aus den Benutzer-Favoriten&nbsp;&hell
 
 #: includes/admin/tools/repair.php:547
 msgid "Counting the number of topics to which each user has replied&hellip; %s"
-msgstr "Themen, in denen jeder Nutzer geantwortet hat, zählen&nbsp;&hellip; %s"
+msgstr "Themen, in denen jeder Benutzer geantwortet hat, werden gezählt &hellip; %s"
 
 #: includes/admin/tools/repair.php:497
 msgid "Counting the number of topics each user has created&hellip; %s"
@@ -4314,15 +4366,15 @@ msgstr "Alle Benutzer des Forums auf Standard-Rollen zurücksetzen"
 
 #: includes/admin/tools.php:331
 msgid "Remove unpublished forums from user subscriptions"
-msgstr "Entferne unveröffentlichte Foren aus Benutzer-Abonnements"
+msgstr "Unveröffentlichte Foren aus Benutzer-Abonnements entfernen"
 
 #: includes/admin/tools.php:319
 msgid "Remove unpublished topics from user subscriptions"
-msgstr "Entferne unveröffentlichte Themen aus Benutzer-Abonnements"
+msgstr "Unveröffentlichte Themen aus Benutzer-Abonnements entfernen"
 
 #: includes/admin/tools.php:307
 msgid "Remove unpublished topics from user favorites"
-msgstr "Die in den Papierkorb verschobenen Themen aus den Favoriten des Nutzers entfernen"
+msgstr "Unveröffentlichte Themen aus den Benutzerfavoriten entfernen"
 
 #: includes/admin/tools.php:295
 msgid "Recount replies for each user"
@@ -4346,7 +4398,7 @@ msgstr "Themen in jedem Forum neu zählen"
 
 #: includes/admin/tools.php:446
 msgid "Upgrade BuddyPress Group Forum relationships"
-msgstr "Aktualisiere die BuddyPress-Gruppen-Forum-Beziehungen"
+msgstr "BuddyPress-Gruppen-Forum-Beziehungen aktualisieren"
 
 #: includes/admin/tools.php:163
 msgid "Recalculate sticky relationship of each topic"
@@ -4547,7 +4599,7 @@ msgstr "Datenbankname mit alten Forendaten"
 
 #: includes/admin/settings.php:1602
 msgid "Use default %s if unsure"
-msgstr "Verwende im Zweifel %s als Standard"
+msgstr "Verwende im Zweifel den Standard %s"
 
 #: includes/admin/settings.php:1574
 msgid "The previous forum software"
@@ -4592,7 +4644,7 @@ msgstr "Foren-Index"
 
 #: includes/admin/settings.php:1127
 msgid "Prefix all forum content with the Forum Root slug (Recommended)"
-msgstr "Verwende die Forum-Stamm-Titelform als Präfix für den gesamten Foreninhalt (empfohlen)"
+msgstr "Die Forum-Stamm-Titelform als Präfix für den gesamten Foreninhalt verwenden (empfohlen)"
 
 #: includes/admin/settings.php:1098
 msgid "Customize your Forums root. Partner with a WordPress Page and use Shortcodes for more flexibility."
@@ -4613,7 +4665,7 @@ msgstr "Anzahl der Themen und Antworten, die pro Seite angezeigt werden"
 
 #: includes/admin/settings.php:993
 msgid "Embed media (YouTube, Twitter, Flickr, etc...) directly into topics and replies"
-msgstr "Einbetten von Medien (YouTube, Twitter, Flickr, etc.) direkt in Themen und Antworten"
+msgstr "Medien (YouTube, Twitter, Flickr, etc.) direkt in Themen und Antworten einbetten"
 
 #: includes/admin/settings.php:979
 msgid "No template packages available."
@@ -4635,7 +4687,7 @@ msgstr "Wie dein Forum in deinem existierenden Theme dargestellt wird."
 
 #: includes/admin/settings.php:934
 msgid "Add toolbar & buttons to textareas to help with HTML formatting"
-msgstr "Toolbar & Buttons zu Textfeldern hinzufügen, die bei der HTML-Formatierung helfen"
+msgstr "Werkzeugleiste und Buttons zu Textfeldern hinzufügen, um bei der HTML-Formatierung zu helfen"
 
 #: includes/admin/settings.php:920
 msgid "Allow topic and reply revision logging"
@@ -4659,7 +4711,7 @@ msgstr "Benutzern erlauben, Foren und Themen zu abonnieren"
 
 #: includes/admin/settings.php:784
 msgid "Allow users to mark topics as favorites"
-msgstr "Benutzern erlauben, Themen als Favoriten zu markieren"
+msgstr "Benutzer können Themen als Favoriten markieren"
 
 #: includes/admin/settings.php:770
 msgid "Forum features that can be toggled on and off"
@@ -4707,7 +4759,7 @@ msgstr "Themen-Ansicht"
 
 #: includes/admin/settings.php:339
 msgid "Forum root should show"
-msgstr "Stamm-Forum sollte folgendes zeigen"
+msgstr "Stamm-Forum sollte folgendes anzeigen"
 
 #: includes/admin/settings.php:331
 msgid "Forum Prefix"
@@ -5155,7 +5207,7 @@ msgstr[1] "Benutzer"
 
 #: includes/admin/metaboxes.php:190
 msgid "Users &amp; Moderation"
-msgstr "Nutzer und Moderation"
+msgstr "Benutzer und Moderation"
 
 #: includes/admin/metaboxes.php:166 includes/admin/settings.php:368
 #: includes/topics/template.php:3387
@@ -5208,12 +5260,12 @@ msgstr "Forum aktualisiert"
 #: includes/admin/forums.php:719 includes/admin/replies.php:980
 #: includes/admin/topics.php:1184
 msgid "Custom field deleted."
-msgstr "Benutzerdefiniertes Feld gelöscht."
+msgstr "Das individuelle Feld wurde gelöscht."
 
 #: includes/admin/forums.php:716 includes/admin/replies.php:977
 #: includes/admin/topics.php:1181
 msgid "Custom field updated."
-msgstr "Benutzerdefiniertes Feld aktualisiert."
+msgstr "Das individuelle Feld wurde aktualisiert."
 
 #: includes/admin/forums.php:595 includes/forums/template.php:581
 msgid "No Topics"
@@ -5430,7 +5482,7 @@ msgstr "Zuletzt konvertierte Daten werden gelöscht (%1$s bis %2$s)"
 
 #: includes/admin/settings.php:593
 msgid "Start Over"
-msgstr "Von vorne anfangen"
+msgstr "Neu beginnen"
 
 #: includes/admin/settings.php:577
 msgid "Convert Users"
@@ -5578,7 +5630,7 @@ msgstr "Konverter"
 
 #: includes/admin/classes/class-bbp-admin.php:1103
 msgid "Your users can manage all of their subscriptions in one convenient location."
-msgstr "Deine Nutzer können alle ihre Abonnements an einem Ort verwalten."
+msgstr "Deine Benutzer können alle ihre Abonnements bequem von einem Ort aus verwalten."
 
 #: includes/admin/classes/class-bbp-admin.php:1102
 msgid "Manage Subscriptions"
@@ -5586,7 +5638,7 @@ msgstr "Abonnements verwalten"
 
 #: includes/admin/classes/class-bbp-admin.php:1098
 msgid "Now your users can subscribe to new topics in specific forums."
-msgstr "Jetzt können deine Nutzer neue Themen in spezifischen Foren abonnieren."
+msgstr "Jetzt können deine Benutzer neue Themen in bestimmten Foren abonnieren."
 
 #: includes/admin/classes/class-bbp-admin.php:1097
 msgid "Subscribe to Forums"
