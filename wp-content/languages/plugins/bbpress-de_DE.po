@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-04 18:39:10+0000\n"
+"PO-Revision-Date: 2024-08-05 20:10:58+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,7 +61,7 @@ msgstr "Titelform bearbeiten"
 
 #: includes/replies/functions.php:1596
 msgid "<strong>Error</strong>: There was a problem unapproving the reply."
-msgstr "<strong>Fehler</strong>: Es gab ein Problem mit der Nichtgenehmigung der Antwort."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Zurückweisen der Antwort."
 
 #: includes/replies/functions.php:1596
 msgid "<strong>Error</strong>: There was a problem approving the reply."
@@ -351,7 +351,7 @@ msgstr "Keine Forum-Abonnements zu entfernen."
 
 #: includes/admin/tools/upgrade.php:655
 msgid "Remove forum subscriptions from usermeta&hellip; %s"
-msgstr "Forum-Abonnements werden von usermeta entfernt &hellip; %s"
+msgstr "Forum-Abonnements werden von den Benutzer-Metadaten entfernt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:639
 msgid "Complete! %d topic subscription deleted."
@@ -365,7 +365,7 @@ msgstr "Es sind keine Themen-Abonnements zu entfernen."
 
 #: includes/admin/tools/upgrade.php:619
 msgid "Remove topic subscriptions from usermeta&hellip; %s"
-msgstr "Thema-Abonnements werden von usermeta entfernt &hellip; %s"
+msgstr "Thema-Abonnements werden von den Benutzer-Metadaten entfernt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:603
 msgid "Complete! %d favorite deleted."
@@ -379,7 +379,7 @@ msgstr "Keine Favoriten zu entfernen."
 
 #: includes/admin/tools/upgrade.php:583
 msgid "Remove favorites from usermeta&hellip; %s"
-msgstr "Entferne Favoriten von den Benutzer-Metadaten&nbsp;&hellip; %s"
+msgstr "Die Favoriten werden von den Benutzer-Metadaten entfernt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:567
 msgid "Complete! %d forum subscription upgraded."
@@ -513,7 +513,7 @@ msgstr "Ausführen"
 #: includes/admin/tools/repair.php:61 includes/admin/tools/repair.php:178
 #: includes/admin/tools/upgrade.php:58 includes/admin/tools/upgrade.php:190
 msgid "Select bulk action"
-msgstr "Sammelaktion auswählen"
+msgstr "Mehrfachaktion auswählen"
 
 #: includes/admin/tools/reset.php:263
 msgid "Removing Roles and Capabilities&hellip; Success!"
@@ -824,7 +824,7 @@ msgstr "Den Konverter von Anfang an neu starten"
 
 #: includes/admin/settings.php:1722
 msgid "This is helpful if you want to debug problems."
-msgstr "Dies ist hilfreich, wenn du Probleme debuggen willst."
+msgstr "Dies ist hilfreich, wenn du eine Fehlersuche durchführen möchtest."
 
 #: includes/admin/settings.php:1721
 msgid "Halt the conversion if an error occurs"
@@ -1058,7 +1058,7 @@ msgstr "Keine Themen-Abonnements zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:732
 msgid "Converting topic tags (%1$s through %2$s of %3$s)"
-msgstr "Konvertiere Themen-Schlagwörter (%1$s bis %2$s von %3$s)"
+msgstr "Themen-Schlagwörter werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:729
 msgid "All topic tags imported"
@@ -1080,9 +1080,29 @@ msgstr "Alle geschlossenen Themen importiert"
 msgid "No closed topics to import"
 msgstr "Keine geschlossenen Themen zu importieren"
 
+#: includes/admin/classes/class-bbp-converter.php:696
+msgid "Calculating topic super stickies (%1$s through %2$s of %3$s)"
+msgstr "Die überall oben gehaltenen Themen werden ermittelt (%1$s bis %2$s von %3$s)"
+
+#: includes/admin/classes/class-bbp-converter.php:693
+msgid "All super stickies imported"
+msgstr "Alle überall oben gehaltenen Themen wurden importiert"
+
+#: includes/admin/classes/class-bbp-converter.php:692
+msgid "No super stickies to import"
+msgstr "Es sind keine überall oben gehaltenen Themen zu importieren"
+
+#: includes/admin/classes/class-bbp-converter.php:678
+msgid "Calculating topic stickies (%1$s through %2$s of %3$s)"
+msgstr "Die oben gehaltenen Themen werden ermittelt (%1$s bis %2$s von %3$s)"
+
+#: includes/admin/classes/class-bbp-converter.php:675
+msgid "All stickies imported"
+msgstr "Alle oben gehaltenen Themen wurden importiert"
+
 #: includes/admin/classes/class-bbp-converter.php:674
 msgid "No stickies to import"
-msgstr "Es ist nichts Angeheftetes zu importieren"
+msgstr "Es sind keine oben gehaltenen Themen zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:660
 msgid "Converting anonymous topic authors (%1$s through %2$s of %3$s)"
@@ -1190,11 +1210,11 @@ msgstr "Die Verbindung zur Datenbank ist fehlgeschlagen."
 
 #: includes/admin/classes/class-bbp-converter.php:172
 msgid "Import Halted (Error.)"
-msgstr "Import (durch Fehler) unterbrochen."
+msgstr "Import wurde (durch Fehler) unterbrochen."
 
 #: includes/admin/classes/class-bbp-converter.php:171
 msgid "Import Stopped (by User.)"
-msgstr "Import (durch Benutzer) angehalten."
+msgstr "Import wurde (durch Benutzer) angehalten."
 
 #: includes/admin/classes/class-bbp-converter.php:170
 msgid "Import Finished."
@@ -1262,7 +1282,7 @@ msgstr "Führe dies aus, wenn nicht-öffentliche Antworten in Foren falsch angez
 
 #: includes/admin/tools.php:247
 msgid "Recount pending, spammed, and trashed replies in each forum"
-msgstr "Ausstehende, Spam und verworfene Antworten in jedem Forum neu zählen"
+msgstr "Ausstehende, als Spam markierte und in den Papierkorb verschobene Antworten in jedem Forum neu zählen"
 
 #: includes/admin/tools.php:236
 msgid "Run this if the number of replies in any forums are incorrect."
@@ -1352,7 +1372,7 @@ msgstr "Die Antwort „%1$s“ wurde erfolgreich zurückgewiesen."
 
 #: includes/admin/replies.php:580
 msgid "There was a problem unapproving the reply \"%1$s\"."
-msgstr "Es gab ein Problem mit der Nichtgenehmigung der Antwort „%1$s“."
+msgstr "Es gab ein Problem beim Zurückweisen der Antwort „%1$s“."
 
 #: includes/admin/replies.php:575
 msgid "Reply \"%1$s\" successfully approved."
@@ -1368,11 +1388,11 @@ msgstr "Fehler beim Entspammen der Antwort."
 
 #: includes/admin/replies.php:303
 msgid "Sorry, you are not allowed to unspam this reply."
-msgstr "Leider, darfst du die Antwort nicht entspammen."
+msgstr "Du bist nicht berechtigt, die Markierung der Antwort als Spam aufzuheben."
 
 #: includes/admin/replies.php:287
 msgid "Error in spamming reply."
-msgstr "Fehler beim Spammen der Antwort."
+msgstr "Beim Markieren der Antwort als Spam ist ein Fehler aufgetreten."
 
 #: includes/admin/replies.php:254
 msgid "%s reply not updated, somebody is editing it."
@@ -1445,7 +1465,7 @@ msgstr "Dieses Thema zurückweisen"
 
 #: includes/admin/topics.php:761
 msgid "There was a problem unapproving the topic \"%1$s\"."
-msgstr "Es gab ein Problem beim Zurücknehmen der Genehmigung zum Thema \"%1$s\"."
+msgstr "Es gab ein Problem beim Zurückweisen des Themas „%1$s“."
 
 #: includes/admin/topics.php:755
 msgid "There was a problem approving the topic \"%1$s\"."
@@ -1457,11 +1477,11 @@ msgstr "Fehler beim Entspammen des Themas."
 
 #: includes/admin/topics.php:308
 msgid "Sorry, you are not allowed to unspam this topic."
-msgstr "Leider, darfst du das Themen nicht entspammen."
+msgstr "Du bist nicht berechtigt, die Markierung des Themas als Spam aufzuheben."
 
 #: includes/admin/topics.php:292
 msgid "Error in spamming topic."
-msgstr "Fehler beim Spammen des Themas."
+msgstr "Beim Markieren des Themas als Spam ist ein Fehler aufgetreten."
 
 #: includes/admin/replies.php:278 includes/admin/topics.php:283
 msgid "Sorry, you are not allowed to spam this item."
@@ -2330,7 +2350,7 @@ msgstr "Dies löscht nicht deine Themen. Nur das Schlagwort selbst wird gelösch
 
 #: templates/default/bbpress/form-topic-tag.php:85
 msgid "Are you sure you want to merge the \"%s\" tag into the tag you specified?"
-msgstr "Bist du sicher, dass du das Schlagwort „%s“ mit diesem Schlagwort zusammenführen willst?"
+msgstr "Bist du sicher, dass du das Schlagwort „%s“ mit dem angegebenen Schlagwort zusammenführen willst?"
 
 #: templates/default/bbpress/form-topic-tag.php:80
 msgid "Existing tag:"
@@ -2695,7 +2715,7 @@ msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Favorisieren des Themas
 
 #: includes/topics/functions.php:2127
 msgid "<strong>Error</strong>: There was a problem unapproving the topic."
-msgstr "<strong>Fehler</strong>: Es gab ein Problem mit der Nichtgenehmigung des Themas."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Zurückweisen des Themas."
 
 #: includes/users/engagements.php:657
 msgid "<strong>Error</strong>: There was a problem removing that topic from favorites."
@@ -2838,6 +2858,18 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Löschen des Themas."
 #: includes/topics/functions.php:2196
 msgid "<strong>Error</strong>: There was a problem trashing the topic."
 msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Verschieben des Themas in den Papierkorb."
+
+#: includes/topics/functions.php:2182
+msgid "<strong>Error</strong>: There was a problem unmarking the topic as spam."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem, die Spam-Markierung des Themas zu entfernen."
+
+#: includes/topics/functions.php:2164
+msgid "<strong>Error</strong>: There was a problem sticking the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem das Thema oben zu halten."
+
+#: includes/topics/functions.php:2163
+msgid "<strong>Error</strong>: There was a problem unsticking the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim oben Lösen des Themas."
 
 #: includes/replies/functions.php:662 includes/replies/functions.php:1520
 #: includes/topics/functions.php:291 includes/topics/functions.php:594
@@ -3149,7 +3181,7 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Markieren der Antwort a
 
 #: includes/replies/functions.php:1607
 msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit dem Entfernen der Markierung dieser Antwort als Spam."
+msgstr "<strong>Fehler</strong>: Beim Aufheben der Spam-Markierung der Antwort ist ein Problem aufgetreten."
 
 #: includes/replies/functions.php:1361 includes/topics/functions.php:1466
 msgid "<strong>Error</strong>: There was a problem converting the reply into the topic. Please try again."
@@ -3545,7 +3577,7 @@ msgstr "Beitragsstatus wurde auf %s geändert"
 
 #: includes/extend/akismet.php:604
 msgid "Akismet caught this post as spam"
-msgstr "Akismet hat diesen Beitrag als Spam aufgefangen"
+msgstr "Akismet hat diesen Beitrag als Spam erkannt"
 
 #: includes/extend/akismet.php:518 includes/extend/akismet.php:523
 msgid "No response"
@@ -3979,19 +4011,19 @@ msgstr "Thema als Nicht-Spam markieren"
 
 #: includes/admin/topics.php:1016 includes/topics/template.php:2690
 msgid "(to front)"
-msgstr "(nach oben)"
+msgstr "(überall)"
 
 #: includes/admin/topics.php:1016
 msgid "Stick this topic to front"
-msgstr "Dieses Thema vorne anheften"
+msgstr "Dieses Thema überall oben halten"
 
 #: includes/admin/topics.php:1016 includes/topics/template.php:2688
 msgid "Stick"
-msgstr "Anheften"
+msgstr "Oben halten"
 
 #: includes/admin/topics.php:1016
 msgid "Stick this topic to its forum"
-msgstr "Dieses Thema in seinem Forum oben anheften"
+msgstr "Dieses Thema in seinem Forum oben halten"
 
 #: includes/admin/topics.php:1013 includes/topics/template.php:2689
 msgid "Unstick"
@@ -3999,7 +4031,7 @@ msgstr "Oben lösen"
 
 #: includes/admin/topics.php:1013
 msgid "Unstick this topic"
-msgstr "Dieses Thema lösen"
+msgstr "Dieses Thema oben lösen"
 
 #: includes/admin/topics.php:1004
 msgctxt "Open a Topic"
@@ -4049,7 +4081,7 @@ msgstr "Das Thema „%1$s“ wurde erfolgreich zurückgewiesen."
 
 #: includes/admin/topics.php:737
 msgid "There was a problem unsticking the topic \"%1$s\"."
-msgstr "Es gab ein Problem, das Thema „%1$s“ oben abzulösen."
+msgstr "Es gab ein Problem, das Thema „%1$s“ oben zu lösen."
 
 #: includes/admin/topics.php:756
 msgid "Topic \"%1$s\" successfully approved."
@@ -4057,15 +4089,15 @@ msgstr "Das Thema „%1$s“ wurde erfolgreich freigegeben."
 
 #: includes/admin/topics.php:731
 msgid "There was a problem sticking the topic \"%1$s\"."
-msgstr "Es gab ein Problem, das Thema „%1$s“ oben anzuheften."
+msgstr "Es gab ein Problem, das Thema „%1$s“ oben zu halten."
 
 #: includes/admin/topics.php:726
 msgid "Topic \"%1$s\" successfully stuck to front."
-msgstr "Das Thema „%1$s“ wurde erfolgreich auf der Startseite angeheftet."
+msgstr "Das Thema „%1$s“ wurde erfolgreich überall oben gehalten."
 
 #: includes/admin/topics.php:725
 msgid "There was a problem sticking the topic \"%1$s\" to front."
-msgstr "Es gab ein Problem, das Thema „%1$s“ auf der Startseite oben anzuheften."
+msgstr "Es gab ein Problem, das Thema „%1$s“ überall oben anzuheften."
 
 #: includes/admin/topics.php:720
 msgid "Topic \"%1$s\" successfully closed."
@@ -4134,11 +4166,11 @@ msgstr "Wenn du die Sammelbearbeitung nutzt, kannst du die Metadaten (Kategorien
 
 #: includes/admin/topics.php:161
 msgid "You can also edit, spam, or move multiple topics to the trash at once. Select the topics you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply."
-msgstr "Du kannst auch mehrere Beiträge auf einmal bearbeiten oder in den Papierkorb verschieben. Markiere hierfür zunächst alle zu bearbeitenden Beiträge, indem du deren Checkbox anklickst. Dann wähle im Aktionsmenu die Option, welche du auf alle markierten Elemente anwenden möchtest und bestätige durch klicken auf den \"Übernehmen\" Button."
+msgstr "Du kannst auch mehrere Themen auf einmal bearbeiten, als Spam markieren oder in den Papierkorb verschieben. Wähle die Themen, die du bearbeiten möchtest, mit Hilfe der Kontrollkästchen aus. Wähle dann die gewünschte Aktion aus dem Menü Mehrfachaktionen und klicke auf den Button „Anwenden“."
 
 #: includes/admin/topics.php:147
 msgid "<strong>Stick <em>(to front)</em></strong> will keep the selected topic &#8217;pinned&#8217; to the top of ALL forums and be visable in any forums topics list."
-msgstr "<strong>Oben halten <em>(auf der Startseite)</em></strong> hält das gewählte Thema &#8222;angepinnt&#8220; oberhalb ALLER Foren, und ist in jeder Foren-Themen-Liste sichtbar."
+msgstr "<strong>Oben halten <em>(überall)</em></strong> hält das gewählte Thema oberhalb ALLER Foren &#8222;angepinnt&#8220;, und ist in jeder Foren-Themen-Liste sichtbar."
 
 #: includes/admin/topics.php:146
 msgid "<strong>Stick</strong> will keep the selected topic &#8217;pinned&#8217; to the top the parent forum topic list."
@@ -4162,7 +4194,7 @@ msgstr "Fahre mit der Maus über ein Themenfeld, um Verwaltungsmöglichkeiten de
 
 #: includes/admin/topics.php:132
 msgid "You can filter the list of topics by topic status using the text links in the upper left to show All, Published, Draft, Pending, Trashed, Closed, or Spam  topics. The default view is to show all topics."
-msgstr "Du kannst die Themenliste nach Themenstatus filtern mit den Textlinks oben links: Alle Themen, nur veröffentlichte Themen, Entwürfe, Ausstehende, Gelöschte, Geschlossene oder Spam-Themen. Voreinstellung ist: Alle Themen sichtbar. "
+msgstr "Du kannst die Themenliste nach Themenstatus mit den Textlinks oben links filtern: Alle, Veröffentlichte, Entwürfe, Ausstehende, in den Papierkorb verschobene, Geschlossene oder als Spam markierte. Voreinstellung ist: Alle Themen sichtbar."
 
 #: includes/admin/topics.php:131
 msgid "You can hide/display columns based on your needs and decide how many topics to list per screen using the Screen Options tab."
@@ -4259,7 +4291,7 @@ msgstr "Neuberechnung der Forum-Sichtbarkeit&nbsp;&hellip; %s"
 
 #: includes/admin/tools/repair.php:1038
 msgid "Repairing the sticky topic to the parent forum relationships&hellip; %s"
-msgstr "Die Beziehungen der oben gehaltenen Themen zu den jeweiligen Foren werden repariert &hellip; %s"
+msgstr "Die Bezugsdaten der oben gehaltenen Themen zu den jeweiligen Foren werden repariert &hellip; %s"
 
 #: includes/admin/tools/repair.php:917
 msgid "Recomputing latest post in every topic and forum&hellip; %s"
@@ -4325,7 +4357,7 @@ msgstr "Aktualisiere die BuddyPress-Gruppen-Forum-Beziehungen&nbsp;&hellip; %s"
 
 #: includes/admin/tools/repair.php:456
 msgid "Counting the number of pending, spammed, and trashed replies in each forum&hellip; %s"
-msgstr "Zähle die Anzahl der ausstehenden, Spam und gelöschten Antworten in jedem Forum&hellip; %s"
+msgstr "Die Anzahl der ausstehenden, als Spam markierten und in den Papierkorb verschobenen Antworten in jedem Forum wird neu gezählt &hellip; %s"
 
 #: includes/admin/tools/repair.php:252
 msgid "Counting the number of voices in each topic&hellip; %s"
@@ -4402,7 +4434,7 @@ msgstr "BuddyPress-Gruppen-Forum-Beziehungen aktualisieren"
 
 #: includes/admin/tools.php:163
 msgid "Recalculate sticky relationship of each topic"
-msgstr "Die Beziehung „oben gehalten“ für jedes Thema neu berechnen"
+msgstr "Die Bezugsdaten für „oben halten“ für jedes Thema neu berechnen"
 
 #: includes/admin/tools.php:151
 msgid "Recalculate last activity in each topic and forum"
@@ -5006,7 +5038,7 @@ msgstr "<strong>Beitragsbild</strong> - Dies erlaubt dir ein Bild mit deiner Ant
 
 #: includes/admin/replies.php:190
 msgid "<strong>Publish</strong> - You can set the terms of publishing your reply in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a reply or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a reply to be published in the future or backdate a reply."
-msgstr "<strong>Veröffentlichen</strong> - Du kannst die Begriffe zum Veröffentlichen deiner Antwort in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen um eine Antwort mit einem Passwort zu schützen oder um sie oben im Blog anzuheften (sticky). Veröffentlichen (sofort) ermöglicht dir Datum und Uhrzeit in der Zukunft oder Vergangenheit zu setzen, so dass du die Veröffentlichung der Antwort für die Zukunft oder die Vergangenheit planen kannst. "
+msgstr "<strong>Veröffentlichen</strong> – Du kannst die Begriffe zum Veröffentlichen deiner Antwort in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link, um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um eine Antwort mit einem Passwort zu schützen oder um sie im Blog oben zu halten. Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder in der Vergangenheit zu setzen, sodass du die Veröffentlichung der Antwort für die Zukunft oder die Vergangenheit planen kannst."
 
 #: includes/admin/replies.php:187
 msgid "<strong>Reply Editor</strong> - Enter the text for your reply. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your reply text. You can insert media files by clicking the icons above the reply editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular reply editor."
@@ -5030,7 +5062,7 @@ msgstr "Wenn du die Sammelbearbeitung nutzt, kannst du die Metadaten (Kategorien
 
 #: includes/admin/replies.php:155
 msgid "You can also edit, spam, or move multiple replies to the trash at once. Select the replies you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply."
-msgstr "Du kannst auch mehrere Antworten auf einmal bearbeiten oder in den Papierkorb legen. Wähle die Antworten, die du bearbeiten möchtest mithilfe der Auswahl-Buttons aus, wähle dann den gewünschten Befehl aus dem Stapel-Bearbeiten-Menü und klicke auf Anwenden."
+msgstr "Du kannst auch mehrere Antworten auf einmal bearbeiten, als Spam markieren oder in den Papierkorb verschieben. Wähle die Antworten, die du bearbeiten möchtest, mit Hilfe der Kontrollkästchen aus. Wähle dann die gewünschte Aktion aus dem Menü Mehrfachaktionen und klicke auf den Button „Anwenden“."
 
 #: includes/admin/replies.php:144
 msgid "<strong>Spam</strong> removes your reply from this list and places it in the spam queue, from which you can permanently delete it."
@@ -5054,7 +5086,7 @@ msgstr "Du kannst die Antworten in einer einfachen Titelliste oder mit einem Aus
 
 #: includes/admin/replies.php:128
 msgid "You can filter the list of replies by reply status using the text links in the upper left to show All, Published, Draft, Pending, Trashed, or Spam replies. The default view is to show all replies."
-msgstr "Du kannst die Liste der Antworten nach deren Status über die Text-Links oben links sortieren, um Alle, Veröffentlichte, Entwürfe, Ausstehende, Gelöschte oder Spam-Antworten anzuzeigen. Die Standard-Ansicht ist Zeige alle Antworten."
+msgstr "Du kannst die Liste der Antworten nach deren Status über die Text-Links oben links sortieren, um Alle, Veröffentlichte, Entwürfe, Ausstehende, in den Papierkorb verschobene oder als Spam markierte anzuzeigen. Die Standard-Ansicht ist, dass alle Antworten angezeigt werden."
 
 #: includes/admin/replies.php:127
 msgid "You can hide/display columns based on your needs and decide how many replies to list per screen using the Screen Options tab."
@@ -5414,7 +5446,7 @@ msgstr "Wenn du die Sammelbearbeitung nutzt, kannst du die Metadaten (Kategorien
 
 #: includes/admin/forums.php:138
 msgid "You can also edit or move multiple forums to the trash at once. Select the forums you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply."
-msgstr "Du kannst auch mehrere Foren auf einmal bearbeiten oder löschen. Wähle die Foren, die Du bearbeiten möchtest mithilfe der Auswahl-Buttons aus, wähle dann den gewünschten Befehl von dem Stapel-Bearbeiten-Menü und klicke Anwenden."
+msgstr "Du kannst auch mehrere Foren auf einmal bearbeiten, als Spam markieren oder in den Papierkorb verschieben. Wähle die Foren, die du bearbeiten möchtest, mit Hilfe der Kontrollkästchen aus. Wähle dann die gewünschte Aktion aus dem Menü Mehrfachaktionen und klicke auf den Button „Anwenden“."
 
 #: includes/admin/forums.php:136 includes/admin/replies.php:153
 #: includes/admin/tools/repair.php:63 includes/admin/tools/repair.php:180
