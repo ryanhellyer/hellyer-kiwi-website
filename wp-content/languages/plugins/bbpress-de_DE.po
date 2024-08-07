@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - bbPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-05 20:10:58+0000\n"
+"PO-Revision-Date: 2024-08-06 18:38:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,11 +69,11 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem bei der Freigabe der Antwort
 
 #: includes/admin/topics.php:738
 msgid "Topic \"%1$s\" successfully unstuck."
-msgstr "Das Thema „%1$s“ wurde erfolgreich abgelöst."
+msgstr "Das Thema „%1$s“ wurde erfolgreich oben gelöst."
 
 #: includes/admin/topics.php:732
 msgid "Topic \"%1$s\" successfully stuck."
-msgstr "Das Thema „%1$s“ wurde erfolgreich angeheftet."
+msgstr "Das Thema „%1$s“ wurde erfolgreich oben gehalten."
 
 #: includes/admin/topics.php:577
 msgid "The topic was not found."
@@ -225,7 +225,7 @@ msgstr "In das Thema einfügen"
 
 #: includes/topics/template.php:66
 msgid "Forum Topics"
-msgstr "Foren-Themen"
+msgstr "Forum-Themen"
 
 #: includes/topics/template.php:64
 msgid "Topics list navigation"
@@ -241,7 +241,7 @@ msgstr "Themenliste filtern"
 
 #: includes/topics/template.php:58
 msgid "View Topics"
-msgstr "Themen ansehen"
+msgstr "Themen anzeigen"
 
 #: includes/topics/functions.php:2036
 msgid "<strong>Error</strong>: This topic could not be found or no longer exists."
@@ -384,8 +384,8 @@ msgstr "Die Favoriten werden von den Benutzer-Metadaten entfernt &hellip; %s"
 #: includes/admin/tools/upgrade.php:567
 msgid "Complete! %d forum subscription upgraded."
 msgid_plural "Complete! %d forum subscriptions upgraded."
-msgstr[0] "Fertig! %d Forum-Abonnement wurde erweitert."
-msgstr[1] "Fertig! %d Forum-Abonnements wurden erweitert."
+msgstr[0] "Fertig! %d Forum-Abonnement wurde aktualisiert."
+msgstr[1] "Fertig! %d Forum-Abonnements wurden aktualisiert."
 
 #: includes/admin/tools/upgrade.php:524
 msgid "No forum subscriptions to upgrade."
@@ -393,13 +393,13 @@ msgstr "Keine Forum-Abonnements zum Upgraden."
 
 #: includes/admin/tools/upgrade.php:523
 msgid "Upgrading user forum subscriptions&hellip; %s"
-msgstr "Forum-Abonnements der Benutzer werden aktualisiert &hellip; %s"
+msgstr "Upgrade für die Forum-Abonnements der Benutzer wird durchgeführt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:507
 msgid "Complete! %d topic subscription upgraded."
 msgid_plural "Complete! %d topic subscriptions upgraded."
-msgstr[0] "Fertig! %d Themen-Abonnement wurde erweitert."
-msgstr[1] "Fertig! %d Themen-Abonnements wurden erweitert."
+msgstr[0] "Fertig! %d Themen-Abonnement wurde aktualisiert."
+msgstr[1] "Fertig! %d Themen-Abonnements wurden aktualisiert."
 
 #: includes/admin/tools/upgrade.php:464
 msgid "No topic subscriptions to upgrade."
@@ -407,7 +407,7 @@ msgstr "Es sind keine Themen-Abonnements zum Upgraden vorhanden."
 
 #: includes/admin/tools/upgrade.php:463
 msgid "Upgrading user topic subscriptions&hellip; %s"
-msgstr "Benutzer-Themen-Abonnements werden erweitert &hellip; %s"
+msgstr "Upgrade der Benutzer-Themen-Abonnements wird durchgeführt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:447
 msgid "Complete! %d favorite upgraded."
@@ -426,16 +426,16 @@ msgstr "Ein Upgrade wird für die Benutzer-Favoriten durchgeführt &hellip; %s"
 #: includes/admin/tools/upgrade.php:249
 msgid "Complete! %d engagement upgraded."
 msgid_plural "Complete! %d engagements upgraded."
-msgstr[0] "Fertig! %d wurde Engagement aktualisiert."
-msgstr[1] "Fertig! %d wurden Engagements aktualisiert."
+msgstr[0] "Fertig! %d Beteiligung wurde aktualisiert."
+msgstr[1] "Fertig! %d Beteiligungen wurden aktualisiert."
 
 #: includes/admin/tools/upgrade.php:216
 msgid "No engagements to upgrade."
-msgstr "Keine Verpflichtungen für ein Upgrade."
+msgstr "Es ist kein Upgrade der Beteiligungen erforderlich."
 
 #: includes/admin/tools/upgrade.php:215
 msgid "Upgrading user engagements&hellip; %s"
-msgstr "Ein Upgrade läuft für Benutzer-Engagements&hellip; %s"
+msgstr "Ein Upgrade wird für Benutzer-Beteiligungen durchgeführt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:95 includes/admin/tools/upgrade.php:137
 #: includes/admin/tools/upgrade.php:182
@@ -460,13 +460,17 @@ msgstr "Keine geschlossenen Themen zum Reparieren vorhanden."
 msgid "Repairing closed topics&hellip; %s"
 msgstr "Geschlossene Themen werden repariert &hellip; %s"
 
+#: includes/admin/tools/repair.php:369
+msgid "Counting the number of topics in each topic-tag&hellip; %s"
+msgstr "Die Anzahl der Themen zu jedem Themen-Schlagwort wird gezählt &hellip; %s"
+
 #: includes/admin/tools/repair.php:155 includes/admin/tools/upgrade.php:166
 msgid "No repair tools match this criteria."
 msgstr "Kein Reparaturwerkzeug erfüllt diese Anforderungen."
 
 #: includes/admin/tools/repair.php:130 includes/admin/tools/upgrade.php:134
 msgid "Show more details"
-msgstr "Mehr Details anzeigen"
+msgstr "Weitere Details anzeigen"
 
 #: includes/admin/tools/repair.php:126 includes/admin/tools/upgrade.php:130
 msgid "Run %s"
@@ -573,7 +577,7 @@ msgstr "Setze deine Foren wieder auf eine brandneue Installation zurück, als ob
 
 #: includes/admin/tools/help.php:123
 msgid "\"Purge Previous Import\" will remove data imported from a failed import without removing your existing forum data."
-msgstr "\"Bereinige vorherigen Import\" wird die Daten eines fehlgeschlagenen Imports entfernen ohne die existierenden Forendaten zu löschen."
+msgstr "„Vorherigen Import bereinigen“ wird die Daten eines fehlgeschlagenen Imports entfernen ohne die existierenden Forendaten löschen."
 
 #: includes/admin/tools/help.php:122
 msgid "\"Start Over\" will start the importer fresh, if your import failed for any reason leaving this setting unchecked the importer will begin from where it left off."
@@ -627,7 +631,7 @@ msgstr "BuddyPress Gruppen-Foren: <a href=\"https://codex.buddypress.org/getting
 
 #: includes/admin/tools/help.php:31
 msgid "There is more detailed information available on the bbPress and BuddyPress codex for the following:"
-msgstr "Im bbPress- und BuddyPress Codex sind detailliertere Informationen zu folgenden Themen zu finden:"
+msgstr "Im bbPress- und BuddyPress-Codex sind detailliertere Informationen zu folgenden Themen zu finden:"
 
 #: includes/admin/tools/common.php:925
 msgid "Pending %s"
@@ -751,7 +755,7 @@ msgstr "Das Paket \"bbPress Default\" ist standardmäßig installiert."
 
 #: includes/admin/settings.php:1900
 msgid "The \"Theme Packages\" section allows you to choose which theme package should be used."
-msgstr "Im Abschnitt „Themen-Pakete“ kannst du auswählen, welches Themen-Paket verwendet werden soll."
+msgstr "Im Abschnitt „Theme-Pakete“ kannst du auswählen, welches Theme-Paket verwendet werden soll."
 
 #: includes/admin/settings.php:1899
 msgid "Theme Packages"
@@ -876,7 +880,7 @@ msgstr "Verwende %s, damit es deine Gruppenforen enthält, oder %s"
 
 #: includes/admin/settings.php:1469
 msgid "create a new one"
-msgstr "einen neuen anlegen"
+msgstr "Einen Neuen erstellen"
 
 #: includes/admin/settings.php:1170
 msgid "This setting will be ignored because %s was found in your theme."
@@ -892,11 +896,19 @@ msgstr "Fest zugeordnete Moderatoren für Foren erlauben"
 
 #: includes/admin/settings.php:812
 msgid "Allow tracking of topics each user engages in"
-msgstr "Erlaube die Verfolgung der Themen, in denen sich jeder Benutzer engagiert."
+msgstr "Verfolgung der Themen, an denen jeder Benutzer beteiligt ist, ermöglichen"
 
 #: includes/admin/settings.php:755
 msgid "Uncheck this to manually assign all user access to your forums."
 msgstr "Deaktiviere dieses Kontrollkästchen, um allen Benutzern manuell Zugang zu deinen Foren zu vergeben."
+
+#: includes/admin/settings.php:680
+msgid "If checked, setting to \"0 minutes\" allows editing forever."
+msgstr "Wenn angehakt, erlaubt die Einstellung „0 Minuten“ zeitlich unbeschränktes Bearbeiten."
+
+#: includes/admin/settings.php:678
+msgid "Allow users to edit their content for %s minutes after posting"
+msgstr "Benutzern erlauben, ihre Inhalte für %s Minuten nach der Veröffentlichung zu bearbeiten"
 
 #: includes/admin/settings.php:601
 msgid "Helper Data"
@@ -908,7 +920,7 @@ msgstr "Bei Fehler anhalten"
 
 #: includes/admin/settings.php:474
 msgid "Primary Forum"
-msgstr "Primäres Forum"
+msgstr "Hauptforum"
 
 #: includes/admin/settings.php:254
 msgid "Super Moderators"
@@ -934,6 +946,10 @@ msgstr "Forum-Integration für Akismet"
 #: includes/admin/settings.php:71
 msgid "Forum Integration for BuddyPress"
 msgstr "Forum-Integration für BuddyPress"
+
+#: includes/admin/settings.php:59
+msgid "Forum Single Slugs"
+msgstr "Einzelne Titelformen für Foren"
 
 #: includes/admin/classes/class-bbp-converter-base.php:154
 msgid "Database connection failed."
@@ -970,7 +986,7 @@ msgstr "Projekt-Ruheständler"
 #: includes/admin/classes/class-bbp-admin.php:1192
 #: includes/admin/classes/class-bbp-admin.php:1196
 msgid "Core Developer"
-msgstr "Kernentwickler"
+msgstr "Core-Entwickler"
 
 #: includes/admin/classes/class-bbp-admin.php:1184
 msgid "Tool Maven"
@@ -999,6 +1015,10 @@ msgstr "Mehr erfahren"
 #: includes/admin/classes/class-bbp-converter.php:833
 msgid "Import Finished"
 msgstr "Import beendet"
+
+#: includes/admin/classes/class-bbp-converter.php:822
+msgid "Calculating threaded replies parents (%1$s through %2$s of %3$s)"
+msgstr "Übergeordnete Thread-Antworten werden ermittelt (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:819
 msgid "All threaded replies imported"
@@ -1062,7 +1082,7 @@ msgstr "Themen-Schlagwörter werden konvertiert (%1$s bis %2$s von %3$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:729
 msgid "All topic tags imported"
-msgstr "Alle Themen-Schlagwörtern wurden importiert"
+msgstr "Alle Themen-Schlagwörter wurden importiert"
 
 #: includes/admin/classes/class-bbp-converter.php:728
 msgid "No topic tags to import"
@@ -1140,6 +1160,10 @@ msgstr "Alle Foren-Abonnements importiert"
 msgid "No forum subscriptions to import"
 msgstr "Keine Foren-Abonnements zu importieren"
 
+#: includes/admin/classes/class-bbp-converter.php:606
+msgid "Calculating forum hierarchy (%1$s through %2$s of %3$s)"
+msgstr "Forenhierarchie wird berechnet (%1$s bis %2$s von %3$s)"
+
 #: includes/admin/classes/class-bbp-converter.php:603
 msgid "All forum parents imported"
 msgstr "Alle übergeordneten Foren wurden importiert"
@@ -1162,7 +1186,7 @@ msgstr "Passwort-Bereinigung wird übersprungen"
 
 #: includes/admin/classes/class-bbp-converter.php:566
 msgid "Delete default WordPress user passwords (%1$s through %2$s)"
-msgstr "Lösche Standard WordPress-Benutzer Passwörter (%1$s bis %2$s)"
+msgstr "Standard-WordPress-Benutzerpasswörter werden gelöscht (%1$s bis %2$s)"
 
 #: includes/admin/classes/class-bbp-converter.php:563
 msgid "All passwords cleared"
@@ -1240,21 +1264,57 @@ msgstr "Foren aktualisieren"
 msgid "Any"
 msgstr "Jede"
 
+#: includes/admin/tools.php:447
+msgid "Run this if you just upgraded BuddyPress Forums from Legacy."
+msgstr "Führe dies aus, wenn du gerade ein Upgrade der BuddyPress-Foren von Legacy durchgeführt hast."
+
+#: includes/admin/tools.php:433
+msgid "Remove forum subscriptions from user-meta"
+msgstr "Forum-Abonnements aus den Benutzer-Metadaten entfernen"
+
+#: includes/admin/tools.php:420
+msgid "Remove topic subscriptions from user-meta"
+msgstr "Themen-Abonnements aus den Benutzer-Metadaten entfernen"
+
 #: includes/admin/tools.php:407
 msgid "Remove favorites from user-meta"
-msgstr "Favoriten aus der User-Meta entfernen"
+msgstr "Favoriten aus den Benutzer-Metadaten entfernen"
+
+#: includes/admin/tools.php:395
+msgid "Copies forum subscriptions from user meta to forum meta."
+msgstr "Kopiert Foren-Abonnements aus den Benutzer-Metadaten in die Foren-Metadaten."
 
 #: includes/admin/tools.php:394
 msgid "Upgrade user forum subscriptions"
 msgstr "Upgrade von Benutzerforum-Abonnements"
 
-#: includes/admin/tools.php:320
-msgid "Run this to remove trashed or deleted topics from all user subscriptions."
-msgstr "Führe dies aus, um verworfene oder gelöschte Themen aus allen Benutzerabonnements zu entfernen."
+#: includes/admin/tools.php:382
+msgid "Copies topic subscriptions from user meta to topic meta."
+msgstr "Kopiert Themen-Abonnements aus den Benutzer-Metadaten in die Themen-Metadaten."
 
-#: includes/admin/tools.php:308
-msgid "Run this to remove trashed or deleted topics from all user favorites."
-msgstr "Führe dies aus, um verworfene oder gelöschte Themen aus allen Benutzer-Favoriten zu entfernen."
+#: includes/admin/tools.php:381
+msgid "Upgrade user topic subscriptions"
+msgstr "Upgrade von Themen-Abonnements der Benutzer durchführen"
+
+#: includes/admin/tools.php:369
+msgid "Copies favorites from user meta to topic meta."
+msgstr "Kopiert Favoriten aus den Benutzer-Metadaten in die Themen-Metadaten."
+
+#: includes/admin/tools.php:368
+msgid "Upgrade user topic favorites"
+msgstr "Upgrade von Themen-Favoriten der Benutzer durchführen"
+
+#: includes/admin/tools.php:356
+msgid "Copies engagements from user meta to topic meta."
+msgstr "Kopiert Beteiligungen von den Benutzer-Metadaten nach Themen-Metadaten."
+
+#: includes/admin/tools.php:355
+msgid "Upgrade user topic engagements"
+msgstr "Upgrade der Themen-Beteiligungen der Benutzer durchführen"
+
+#: includes/admin/tools.php:344
+msgid "Run this if users have issues accessing the forums."
+msgstr "Führe dies aus, wenn Benutzer Schwierigkeiten haben auf Foren zuzugreifen."
 
 #: includes/admin/tools.php:296
 msgid "Run this to get fresh reply counts for all users."
@@ -1296,6 +1356,10 @@ msgstr "Führe dies aus, wenn die Anzahl der Themen in den Themen-Schlagwörtern
 msgid "Recount topics in each topic-tag"
 msgstr "Themen in jedem Themen-Schlagwort neu zählen"
 
+#: includes/admin/tools.php:212
+msgid "Run this if the number of topics in any forums are incorrect."
+msgstr "Führe dies aus, wenn die Anzahl der Themen in Foren falsch ist."
+
 #: includes/admin/tools.php:200
 msgid "Run this if closed topics appear incorrectly."
 msgstr "Führe dies aus, wenn geschlossene Themen nicht korrekt angezeigt werden."
@@ -1308,17 +1372,41 @@ msgstr "Status geschlossener Themen reparieren"
 msgid "Run this if voices appear incorrectly."
 msgstr "Führe dies aus, wenn Stimmen falsch erscheinen."
 
+#: includes/admin/tools.php:187
+msgid "Recalculate engagements in each topic for each user"
+msgstr "Beteiligungen jedes Benutzers an jedem Thema neu ermitteln"
+
+#: includes/admin/tools.php:176
+msgid "Run this if replies appear in the wrong order."
+msgstr "Führe dies aus, wenn Antworten in falscher Reihenfolge erscheinen."
+
+#: includes/admin/tools.php:175
+msgid "Recalculate position of each reply in each topic"
+msgstr "Neuberechnung der Position jeder Antwort in jedem Thema"
+
 #: includes/admin/tools.php:164
 msgid "Run this if sticky topics appear incorrectly."
 msgstr "Führe dies aus, wenn oben gehaltene Themen nicht korrekt angezeigt werden."
 
+#: includes/admin/tools.php:140
+msgid "Run this if non-public forums are publicly visible."
+msgstr "Führe dies aus, wenn nicht-öffentliche Foren öffentlich sichtbar sind."
+
+#: includes/admin/tools.php:128
+msgid "Run this if topics or replies appear in the wrong forums."
+msgstr "Führe dies aus, wenn Themen oder Antworten in den falschen Foren erscheinen."
+
 #: includes/admin/tools.php:127
 msgid "Recalculate parent forum for each topic and reply"
-msgstr "Das übergeordnete Forum für jedes Thema und jede Antwort neu berechnen"
+msgstr "Das übergeordnete Forum für jedes Thema und jede Antwort neu ermitteln"
+
+#: includes/admin/tools.php:116
+msgid "Run this if replies appear in the wrong topics."
+msgstr "Führe dies aus, wenn Antworten in den falschen Themen erscheinen."
 
 #: includes/admin/tools.php:115
 msgid "Recalculate parent topic for each reply"
-msgstr "Das übergeordnete Thema für jede Antwort neu berechnen"
+msgstr "Das übergeordnete Thema für jede Antwort neu ermitteln"
 
 #: includes/admin/tools.php:79
 msgid "The repair was not successful"
@@ -1384,7 +1472,7 @@ msgstr "Es gab ein Problem bei der Freigabe der Antwort „%1$s“."
 
 #: includes/admin/replies.php:312
 msgid "Error in unspamming reply."
-msgstr "Fehler beim Entspammen der Antwort."
+msgstr "Fehler bei der Aufhebung der Markierung als Spam für die Antwort."
 
 #: includes/admin/replies.php:303
 msgid "Sorry, you are not allowed to unspam this reply."
@@ -1473,7 +1561,7 @@ msgstr "Es gab ein Problem bei der Freigabe des Themas „%1$s“."
 
 #: includes/admin/topics.php:317
 msgid "Error in unspamming topic."
-msgstr "Fehler beim Entspammen des Themas."
+msgstr "Fehler bei der Aufhebung der Markierung als Spam für das Thema."
 
 #: includes/admin/topics.php:308
 msgid "Sorry, you are not allowed to unspam this topic."
@@ -1485,7 +1573,7 @@ msgstr "Beim Markieren des Themas als Spam ist ein Fehler aufgetreten."
 
 #: includes/admin/replies.php:278 includes/admin/topics.php:283
 msgid "Sorry, you are not allowed to spam this item."
-msgstr "Leider, darfst du diesen Artikel nicht spammen."
+msgstr "Entschuldigung, du bist nicht berechtigt, dies als Spam zu markieren."
 
 #: includes/admin/topics.php:259
 msgid "%s topic not updated, somebody is editing it."
@@ -1538,6 +1626,11 @@ msgstr "%s hat diese Antwort als Spam gemeldet"
 #: includes/extend/akismet.php:373
 msgid "%s reported this topic as spam"
 msgstr "%s hat dieses Thema als Spam gemeldet"
+
+#: includes/replies/template.php:2564
+msgctxt "Default reply to dropdown text"
+msgid "None"
+msgstr "Keine"
 
 #: includes/replies/template.php:2202
 msgctxt "Pending Status"
@@ -1604,7 +1697,7 @@ msgstr "Übergeordnetes Thema:"
 
 #: includes/replies/template.php:66
 msgid "Replies list navigation"
-msgstr "Antworten-Liste Navigation"
+msgstr "Navigation der Antworten-Liste"
 
 #: includes/replies/template.php:65
 msgid "Replies list"
@@ -1648,7 +1741,7 @@ msgstr "<strong>Fehler</strong>: Eine Themen-ID ist erforderlich."
 
 #: includes/replies/functions.php:796
 msgid "<strong>Error</strong>: The following problem(s) have been found with your reply:"
-msgstr "<strong>Fehler</strong>: Das folgende Problem/die folgenden Probleme ist/, sind bei deiner Antwort aufgetreten:"
+msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) bei deiner Antwort gefunden:"
 
 #: includes/replies/functions.php:495
 msgid "<strong>Error</strong>: The reply was not created."
@@ -1682,44 +1775,44 @@ msgstr "Deine Themen"
 #: includes/common/formatting.php:658
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] "%s Sekunde"
-msgstr[1] "%s Sekunden"
+msgstr[0] "%s Sekunde"
+msgstr[1] "%s Sekunden"
 
 #: includes/common/formatting.php:657
 msgid "%s minute"
 msgid_plural "%s minutes"
-msgstr[0] "%s&nbsp;Minute"
-msgstr[1] "%s&nbsp;Minuten"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
 
 #: includes/common/formatting.php:656
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "%s&nbsp;Stunde"
-msgstr[1] "%s&nbsp;Stunden"
+msgstr[0] "%s Stunde"
+msgstr[1] "%s Stunden"
 
 #: includes/common/formatting.php:655
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] "%s Tag"
-msgstr[1] "%s Tage"
+msgstr[0] "%s Tag"
+msgstr[1] "%s Tage"
 
 #: includes/common/formatting.php:654
 msgid "%s week"
 msgid_plural "%s weeks"
-msgstr[0] "%s&nbsp;Woche"
-msgstr[1] "%s&nbsp;Wochen"
+msgstr[0] "%s Woche"
+msgstr[1] "%s Wochen"
 
 #: includes/common/formatting.php:653
 msgid "%s month"
 msgid_plural "%s months"
-msgstr[0] "%s&nbsp;Monat"
-msgstr[1] "%s&nbsp;Monaten"
+msgstr[0] "%s Monat"
+msgstr[1] "%s Monaten"
 
 #: includes/common/formatting.php:652
 msgid "%s year"
 msgid_plural "%s years"
-msgstr[0] "%s Jahr"
-msgstr[1] "%s Jahren"
+msgstr[0] "%s Jahr"
+msgstr[1] "%s Jahren"
 
 #: includes/common/widgets.php:651
 msgid "A list of recent topics, sorted by: newness, popularity, or recent replies."
@@ -1801,7 +1894,7 @@ msgstr "In das Forum einfügen"
 
 #: includes/forums/template.php:65
 msgid "Forums list navigation"
-msgstr "Foren-Liste Navigation"
+msgstr "Navigation der Foren-Liste"
 
 #: includes/forums/template.php:64
 msgid "Forums list"
@@ -1862,7 +1955,7 @@ msgstr "<strong>Fehler</strong>: Beim Deaktivieren des Abonnements ist ein Probl
 
 #: includes/users/engagements.php:849
 msgid "<strong>Error</strong>: Not found. What are you subscribing/unsubscribing to?"
-msgstr "<strong>FEHLER</strong>: Inhalt nicht gefunden. Was willst du abonnieren/abbestellen?"
+msgstr "<strong>Fehler</strong>: Nicht gefunden. Was willst du abonnieren/abbestellen?"
 
 #: includes/users/functions.php:453
 msgid "[%s] New Email Address"
@@ -1912,6 +2005,18 @@ msgstr "<strong>FEHLER</strong>: Diese E-Mail-Adresse wird schon verwendet."
 msgid "<strong>Error</strong>: That is not a valid email address."
 msgstr "<strong>Fehler</strong>: Das ist keine gültige E-Mail-Adresse."
 
+#: includes/admin/settings.php:214 includes/admin/settings.php:453
+#: includes/admin/tools/common.php:455 includes/admin/topics.php:420
+#: includes/extend/buddypress/loader.php:234
+#: includes/extend/buddypress/loader.php:336
+#: templates/default/bbpress/user-details.php:49
+msgid "Engagements"
+msgstr "Beteiligungen"
+
+#: templates/default/bbpress/user-details.php:49
+msgid "%s's Engagements"
+msgstr "Beteiligungen von %s"
+
 #: includes/admin/metaboxes.php:445 includes/extend/buddypress/groups.php:487
 #: templates/default/bbpress/form-topic.php:120
 msgid "&mdash; No forum &mdash;"
@@ -1936,6 +2041,10 @@ msgstr "Verlassen"
 #: templates/default/bbpress/form-reply-search.php:18
 msgid "Search replies:"
 msgstr "Antworten suchen:"
+
+#: templates/default/bbpress/user-engagements.php:19
+msgid "Topics Engaged In"
+msgstr "Themen-Beteiligungen in"
 
 #: templates/default/bbpress/loop-single-topic.php:70
 msgid "in: %1$s"
@@ -1981,7 +2090,7 @@ msgstr "Neues Passwort wiederholen"
 
 #: templates/default/bbpress/form-user-passwords.php:29
 msgid "Cancel password change"
-msgstr "Passwort-Änderung abbrechen"
+msgstr "Passwortänderung abbrechen"
 
 #: templates/default/bbpress/form-user-passwords.php:28
 msgid "Hide"
@@ -2020,6 +2129,14 @@ msgstr "Das Abonnement ist fehlgeschlagen."
 msgid "Please login to subscribe."
 msgstr "Bitte melde dich an, um zu abonnieren."
 
+#: templates/default/bbpress-functions.php:258
+msgid "Favorite failed."
+msgstr "Das Favorisieren ist fehlgeschlagen."
+
+#: templates/default/bbpress-functions.php:238
+msgid "Please login to favorite."
+msgstr "Bitte melde dich an, um zu favorisieren."
+
 #: bbpress.php:763
 msgid "bbPress Item Count"
 msgstr "bbPress-Beitragszähler"
@@ -2039,7 +2156,7 @@ msgstr "Gesperrt"
 #: includes/common/locale.php:53
 msgctxt "User role"
 msgid "Spectator"
-msgstr "Leser"
+msgstr "Betrachter"
 
 #. translators: user role
 #: includes/common/locale.php:50
@@ -2081,7 +2198,7 @@ msgstr "Keine Antwortpositionen zum Neuberechnen."
 
 #: includes/admin/tools/repair.php:1283
 msgid "Recalculating reply menu order&hellip; %s"
-msgstr "Neuberechnung der Sortierung des Antwortmenüs&nbsp;&hellip; %s"
+msgstr "Neuberechnung der Sortierung des Antwortmenüs &hellip; %s"
 
 #: templates/default/extras/page-topic-tags.php:22
 msgid "This is a collection of tags that are currently popular on our forums."
@@ -2093,7 +2210,7 @@ msgstr "Hier sind die Statistiken und beliebten Themen aus unseren Foren."
 
 #: templates/default/bbpress-functions.php:233
 msgid "Favorites are no longer active."
-msgstr "Lesezeichen sind nicht länger aktiv."
+msgstr "Favoriten sind nicht länger aktiv."
 
 #: templates/default/bbpress-functions.php:273
 #: templates/default/bbpress-functions.php:336
@@ -2326,7 +2443,7 @@ msgstr "Themen-Titel (Maximale Länge: %d):"
 
 #: templates/default/bbpress/form-topic.php:60
 msgid "This forum is marked as closed to new topics, however your posting capabilities still allow you to create a topic."
-msgstr "Dieses Forum ist für neue Themen gesperrt, aber deine Beitrags-Berechtigungen ermöglichen es dir dennoch, neue Themen zu erstellen."
+msgstr "Dieses Forum ist für neue Themen geschlossen, aber deine Berechtigungen erlauben dir, dennoch ein Thema zu erstellen."
 
 #: templates/default/bbpress/form-topic.php:47
 msgid "Create New Topic in &ldquo;%s&rdquo;"
@@ -2514,7 +2631,7 @@ msgstr "Schlagwörter:"
 
 #: templates/default/bbpress/form-reply.php:38
 msgid "This topic is marked as closed to new replies, however your posting capabilities still allow you to reply."
-msgstr "Dieses Thema ist geschlossen für neue Antworten, aber deine Beitrags-Berechtigungen ermöglichen es dir dennoch zu antworten."
+msgstr "Dieses Thema ist für neue Antworten geschlossen, aber deine Berechtigungen ermöglichen es dir, dennoch zu antworten."
 
 #: templates/default/bbpress/form-reply-move.php:96
 msgid "You cannot edit this reply."
@@ -2707,11 +2824,11 @@ msgstr "Gast"
 
 #: includes/topics/functions.php:2126
 msgid "<strong>Error</strong>: There was a problem approving the topic."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem mit der Genehmigung des Themas."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem mit der Freigabe des Themas."
 
 #: includes/users/engagements.php:659
 msgid "<strong>Error</strong>: There was a problem favoriting that topic."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Favorisieren des Themas."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Favorisieren des Themas."
 
 #: includes/topics/functions.php:2127
 msgid "<strong>Error</strong>: There was a problem unapproving the topic."
@@ -2719,7 +2836,7 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Zurückweisen des Thema
 
 #: includes/users/engagements.php:657
 msgid "<strong>Error</strong>: There was a problem removing that topic from favorites."
-msgstr "<strong>FEHLER</strong>: Es gab ein Problem beim Entfernen dieses Themas aus der Favoritenliste."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Entfernen dieses Themas aus den Favoriten."
 
 #: includes/users/engagements.php:857
 msgid "<strong>Error</strong>: You do not have permission to edit subscriptions of that user."
@@ -2727,7 +2844,7 @@ msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, die Abonnements des B
 
 #: includes/users/engagements.php:608
 msgid "<strong>Error</strong>: No topic was found. Which topic are you marking/unmarking as favorite?"
-msgstr "<strong>FEHLER</strong>: Es wurde kein Thema gefunden. Bei welchem Thema willst du eine Markierung als Favorit setzen oder entfernen?"
+msgstr "<strong>Fehler</strong>: Es wurde kein Thema gefunden. Bei welchem Thema möchtest du eine Markierung als Favorit setzen oder entfernen?"
 
 #: includes/topics/template.php:3394
 msgid "View Topic Tag"
@@ -2855,9 +2972,17 @@ msgstr "Neues Thema"
 msgid "<strong>Error</strong>: There was a problem deleting the topic."
 msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Löschen des Themas."
 
+#: includes/topics/functions.php:2207
+msgid "<strong>Error</strong>: There was a problem untrashing the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem bei der Wiederherstellung des Themas aus dem Papierkorb."
+
 #: includes/topics/functions.php:2196
 msgid "<strong>Error</strong>: There was a problem trashing the topic."
 msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Verschieben des Themas in den Papierkorb."
+
+#: includes/topics/functions.php:2183
+msgid "<strong>Error</strong>: There was a problem marking the topic as spam."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Markieren des Themas als Spam."
 
 #: includes/topics/functions.php:2182
 msgid "<strong>Error</strong>: There was a problem unmarking the topic as spam."
@@ -2870,6 +2995,14 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem das Thema oben zu halten."
 #: includes/topics/functions.php:2163
 msgid "<strong>Error</strong>: There was a problem unsticking the topic."
 msgstr "<strong>Fehler</strong>: Es gab ein Problem beim oben Lösen des Themas."
+
+#: includes/topics/functions.php:2145
+msgid "<strong>Error</strong>: There was a problem opening the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Öffnen des Themas."
+
+#: includes/topics/functions.php:2144
+msgid "<strong>Error</strong>: There was a problem closing the topic."
+msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Schließen des Themas."
 
 #: includes/replies/functions.php:662 includes/replies/functions.php:1520
 #: includes/topics/functions.php:291 includes/topics/functions.php:594
@@ -2925,6 +3058,10 @@ msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) gefunden beim L
 msgid "<strong>Error</strong>: You do not have permission to delete the topic tags."
 msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, die Thema-Schlagwörter zu löschen."
 
+#: includes/topics/functions.php:1796
+msgid "<strong>Error</strong>: The tags which are being merged can not be the same."
+msgstr "<strong>Fehler</strong>: Die Schlagwörter, die zusammengeführt werden sollen, könnten nicht dieselben sein."
+
 #: includes/topics/functions.php:1787 includes/topics/functions.php:1808
 msgid "<strong>Error</strong>: The following problem(s) have been found while merging the tags: %s"
 msgstr "<strong>Fehler</strong>: Folgende(s) Problem(e) wurde(n) gefunden beim Zusammenführen der Schlagwörter: %s"
@@ -2966,6 +3103,10 @@ msgstr "<strong>Fehler</strong>: Die Antwort, von der du teilen möchtest, wurde
 msgid "<strong>Error</strong>: You do not have permission to edit the destination topic."
 msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, das Ziel-Thema zu bearbeiten."
 
+#: includes/topics/functions.php:1135
+msgid "<strong>Error</strong>: The topic you want to merge to was not found."
+msgstr "<strong>Fehler</strong>: Das Thema, mit dem du zusammenführen möchtest, wurde nicht gefunden."
+
 #: includes/topics/functions.php:1128
 msgid "<strong>Error</strong>: Destination topic ID not found."
 msgstr "<strong>Fehler</strong>: Die ID des Ziel-Themas wurde nicht gefunden."
@@ -2986,6 +3127,10 @@ msgstr "<strong>Fehler</strong>: Dieses Forum ist eine Kategorie, deshalb könne
 msgid "<strong>Error</strong>: You do not have permission to edit that topic."
 msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, dieses Thema zu bearbeiten."
 
+#: includes/topics/functions.php:456
+msgid "<strong>Error</strong>: The topic you want to edit was not found."
+msgstr "<strong>Fehler</strong>: Das Thema, das du bearbeiten willst, wurde nicht gefunden."
+
 #: includes/topics/functions.php:445 includes/topics/functions.php:1102
 msgid "<strong>Error</strong>: Topic ID not found."
 msgstr "<strong>Fehler</strong>: Die Thema-ID konnte nicht gefunden werden."
@@ -2994,9 +3139,17 @@ msgstr "<strong>Fehler</strong>: Die Thema-ID konnte nicht gefunden werden."
 msgid "<strong>Error</strong>: Your topic cannot be created at this time."
 msgstr "<strong>Fehler</strong>: Dein Thema kann momentan nicht erstellt werden."
 
+#: includes/topics/functions.php:261
+msgid "<strong>Error</strong>: Duplicate topic detected; it looks as though you&#8217;ve already said that."
+msgstr "<strong>Fehler</strong>: Doppeltes Thema erkannt; es sieht so aus, als hättest du das bereits geschrieben."
+
+#: includes/topics/functions.php:239 includes/topics/functions.php:529
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new topics in it."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist versteckt und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Themen."
+
 #: includes/topics/functions.php:235 includes/topics/functions.php:525
 msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new topics in it."
-msgstr "<strong>FEHLER</strong>: Dieses Forum ist privat und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Themen."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist privat und du hast darin keine Berechtigung zum Lesen oder zum Erstellen neuer Themen."
 
 #: includes/topics/functions.php:230 includes/topics/functions.php:520
 msgid "<strong>Error</strong>: This forum has been closed to new topics."
@@ -3032,7 +3185,7 @@ msgstr[1] "Angezeigt werden %1$s Ergebnisse"
 
 #: includes/search/template.php:176
 msgid "Search Results for '%s'"
-msgstr "Suchergebnisse für '%s'"
+msgstr "Suchergebnisse für ‚%s‘"
 
 #: includes/replies/template.php:2402
 msgid "Viewing %2$s post (of %4$s total)"
@@ -3183,6 +3336,10 @@ msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Markieren der Antwort a
 msgid "<strong>Error</strong>: There was a problem unmarking the reply as spam."
 msgstr "<strong>Fehler</strong>: Beim Aufheben der Spam-Markierung der Antwort ist ein Problem aufgetreten."
 
+#: includes/replies/functions.php:1366 includes/topics/functions.php:1471
+msgid "<strong>Error</strong>: You do not have permission to create new topics. The reply could not be converted into a topic."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, neue Themen zu erstellen. Die Antwort konnte nicht in ein Thema konvertiert werden."
+
 #: includes/replies/functions.php:1361 includes/topics/functions.php:1466
 msgid "<strong>Error</strong>: There was a problem converting the reply into the topic. Please try again."
 msgstr "<strong>Fehler</strong>: Es gab ein Problem beim Konvertieren der Antwort in ein Thema. Bitte versuche es noch einmal."
@@ -3241,13 +3398,21 @@ msgstr "<strong>Fehler</strong>: Das Thema ist geschlossen."
 msgid "<strong>Error</strong>: Your reply cannot be created at this time."
 msgstr "<strong>Fehler</strong>: Deine Antwort kann momentan nicht erstellt werden."
 
+#: includes/replies/functions.php:318
+msgid "<strong>Error</strong>: Duplicate reply detected; it looks as though you&#8217;ve already said that."
+msgstr "<strong>Fehler</strong>: Doppelte Antwort entdeckt. Es sieht so aus, als hättest du das bereits geschrieben."
+
 #: includes/replies/functions.php:298 includes/replies/functions.php:632
 msgid "<strong>Error</strong>: Your reply cannot be empty."
 msgstr "<strong>Fehler</strong>: Deine Antwort kann nicht leer sein."
 
+#: includes/replies/functions.php:259 includes/replies/functions.php:602
+msgid "<strong>Error</strong>: This forum is hidden and you do not have the capability to read or create new replies in it."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist versteckt und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Antworten."
+
 #: includes/replies/functions.php:255 includes/replies/functions.php:598
 msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new replies in it."
-msgstr "<strong>Fehler</strong>: Dieses Forum ist privat und du hast keine Berechtigung zum Lesen oder Erstellen neuer Antworten darin."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist privat und du hast darin keine Berechtigung zum Lesen oder Erstellen neuer Antworten."
 
 #: includes/replies/functions.php:250 includes/replies/functions.php:593
 msgid "<strong>Error</strong>: This forum has been closed to new replies."
@@ -3416,6 +3581,10 @@ msgstr "<strong>FEHLER</strong>: Das Forum, das du bearbeiten möchtest, wurde n
 msgid "<strong>Error</strong>: Forum ID not found."
 msgstr "<strong>Fehler</strong>: Die Forum-ID wurde nicht gefunden."
 
+#: includes/forums/functions.php:248
+msgid "<strong>Error</strong>: Your forum cannot be created at this time."
+msgstr "<strong>Fehler</strong>: Dein Forum kann zurzeit nicht erstellt werden."
+
 #: includes/forums/functions.php:242
 msgid "<strong>Error</strong>: This forum already exists."
 msgstr "<strong>Fehler</strong>: Dieses Forum existiert bereits."
@@ -3431,11 +3600,15 @@ msgstr "<strong>FEHLER</strong>: Dieses Forum ist verborgen und du bist nicht be
 
 #: includes/forums/functions.php:216 includes/forums/functions.php:445
 msgid "<strong>Error</strong>: This forum is private and you do not have the capability to read or create new forums in it."
-msgstr "<strong>FEHLER</strong>: Dieses Forum ist privat und du bist nicht berechtigt, das Forum zu lesen oder ein neues Forum darin zu erstellen."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist privat und du bist nicht berechtigt, das Forum zu lesen oder ein neues Forum darin zu erstellen."
 
 #: includes/forums/functions.php:211 includes/forums/functions.php:440
 msgid "<strong>Error</strong>: This forum has been closed to new forums."
 msgstr "<strong>Fehler</strong>: In diesem Forum dürfen keine neuen Foren mehr angelegt werden."
+
+#: includes/forums/functions.php:206
+msgid "<strong>Error</strong>: This forum is a category. No forums can be created in this forum."
+msgstr "<strong>Fehler</strong>: Dieses Forum ist eine Kategorie. Deshalb können darin keine Foren angelegt werden."
 
 #: includes/forums/functions.php:199
 msgid "<strong>Error</strong>: Your forum must have a parent."
@@ -3451,7 +3624,7 @@ msgstr "<strong>Fehler</strong>: Dein Forum benötigt einen Titel."
 
 #: includes/forums/functions.php:140
 msgid "<strong>Error</strong>: You do not have permission to create new forums."
-msgstr "<strong>FEHLER</strong>: Du bist nicht berechtigt, neue Foren anzulegen."
+msgstr "<strong>Fehler</strong>: Du bist nicht berechtigt, neue Foren zu erstellen."
 
 #: includes/extend/buddypress/notifications.php:203
 msgid "<strong>Error</strong>: You do not have permission to mark notifications for that user."
@@ -3697,7 +3870,7 @@ msgstr "(bbPress) Aktuelle Themen"
 
 #: includes/common/widgets.php:611 includes/common/widgets.php:881
 msgid "\"0\" to show only root - \"any\" to show all"
-msgstr "\"0\" um nur die Startseite anzuzeigen - \"any\" um alle anzuzeigen"
+msgstr "„0“, um nur die Startseite anzuzeigen – „Jede“, um alle anzuzeigen"
 
 #: includes/common/widgets.php:605 includes/common/widgets.php:875
 msgid "Parent Forum ID:"
@@ -4121,7 +4294,7 @@ msgstr "Das Forum wurde nicht gefunden."
 
 #: includes/admin/topics.php:209
 msgid "<strong>Topic Type</strong> dropdown indicates the sticky status of the topic. Selecting the super sticky option would stick the topic to the front of your forums, i.e. the topic index, sticky option would stick the topic to its respective forum. Selecting normal would not stick the topic anywhere."
-msgstr "<strong>Themen-Typ</strong>-Drop-down-Menü zeigt den angehefteten Status des Themas an. Das Auswählen der Super-Anheften-Option würde das Thema auf der Startseite des Forums, z.B. dem Themen-Index anheften, die Anheften-Option würde das Thema oben im entsprechenden Forum anheften. Die Auswahl von Normal würde das Thema nirgendwo anheften."
+msgstr "<strong>Themen-Typ</strong>-Drop-down-Menü zeigt den „oben halten“-Status des Themas an. Das Auswählen der Option „überall oben halten“ würde das Thema an die erste Stelle deiner Foren setzten, d. h. in den Themenindex. Die „oben halten“-Option würde das Thema im entsprechenden Forum oben halten. Die Auswahl von Normal würde das Thema nirgendwo oben halten."
 
 #: includes/admin/topics.php:208
 msgid "<strong>Forum</strong> dropdown determines the parent forum that the topic belongs to. Select the forum or category from the dropdown, or leave the default \"No forum\" to post the topic without an assigned forum."
@@ -4142,7 +4315,7 @@ msgstr "<strong>Beitragsbild</strong> - Dies erlaubt dir ein Bild mit deinem The
 
 #: includes/admin/topics.php:196
 msgid "<strong>Publish</strong> - You can set the terms of publishing your topic in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a topic or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a topic to be published in the future or backdate a topic."
-msgstr "<strong>Veröffentlichen</strong> - Du kannst die Begriffe zum Veröffentlichen deines Themas in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um ein Thema mit einem Passwort zu schützen oder um es oben im Blog anzuheften (sticky). Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder Vergangenheit zu setzen, so dass du die Veröffentlichung des Themas für die Zukunft oder die Vergangenheit planen kannst."
+msgstr "<strong>Veröffentlichen</strong> – Du kannst die Begriffe zum Veröffentlichen deines Themas in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link, um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um ein Thema mit einem Passwort zu schützen oder um es im Blog oben zu halten. Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder in der Vergangenheit zu setzen, sodass du die Veröffentlichung des Themas für die Zukunft oder für die Vergangenheit planen kannst."
 
 #: includes/admin/topics.php:193
 msgid "<strong>Topic Editor</strong> - Enter the text for your topic. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your topic text. You can insert media files by clicking the icons above the topic editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular topic editor."
@@ -4176,6 +4349,10 @@ msgstr "<strong>Oben halten <em>(überall)</em></strong> hält das gewählte The
 msgid "<strong>Stick</strong> will keep the selected topic &#8217;pinned&#8217; to the top the parent forum topic list."
 msgstr "Mit <strong>oben halten</strong> wird das markierte Thema oberhalb der übergeordneten Themenliste &#8222;angepinnt&#8220;."
 
+#: includes/admin/forums.php:127
+msgid "<strong>Close</strong> will mark the selected forum as &#8217;closed&#8217; and disable the ability to post new topics and replies in it."
+msgstr "<strong>Schließen</strong> markiert das gewählte Forum als „geschlossen“ und deaktiviert die Möglichkeit, neue Themen und Antworten darin zu veröffentlichen."
+
 #: includes/admin/topics.php:150
 msgid "<strong>Spam</strong> removes your topic from this list and places it in the spam queue, from which you can permanently delete it."
 msgstr "<strong>Spam</strong> entfernt dein Thema von dieser Liste und legt es in die Spam-Warteschlange, von wo aus du es unwiederbringlich löschen kannst."
@@ -4203,6 +4380,10 @@ msgstr "Du kannst Spalten nach deinem Bedarf anzeigen/verstecken und durch das N
 #: includes/admin/topics.php:121
 msgid "This screen displays the individual topics on your site. You can customize the display of this screen to suit your workflow."
 msgstr "Dieser Bildschirm zeigt die einzelnen Themen deiner Website. Du kannst die Anzeige dieses Bildschirms deiner Arbeitsweise anpassen."
+
+#: includes/admin/tools/reset.php:250
+msgid "Dropping Conversion Table&hellip; %s"
+msgstr "Konvertierungs-Tabelle wird gelöscht &hellip; %s"
 
 #: includes/admin/tools/reset.php:208
 msgid "Deleting Topic Tags&hellip; %s"
@@ -4271,7 +4452,7 @@ msgstr "Alle Foren"
 
 #: includes/admin/tools/reset.php:32
 msgid "The following data will be removed:"
-msgstr "Die folgenden Daten werden entfernt:"
+msgstr "Die folgenden Daten werden gelöscht:"
 
 #: includes/admin/tools/reset.php:62
 msgid "Backup your database before proceeding."
@@ -4279,15 +4460,15 @@ msgstr "Sichere die Datenbank, bevor du weitermachst."
 
 #: includes/admin/tools/repair.php:1232
 msgid "Recalculating the topic for each post&hellip; %s"
-msgstr "Neuberechnung des Themas für jeden Beitrag&nbsp;&hellip; %s"
+msgstr "Neuberechnung des Themas für jeden Beitrag &hellip; %s"
 
 #: includes/admin/tools/repair.php:1170
 msgid "Recalculating the forum for each post&hellip; %s"
-msgstr "Neuberechnung des Forums für jeden Beitrag&nbsp;&hellip; %s"
+msgstr "Neuberechnung des Forums für jeden Beitrag &hellip; %s"
 
 #: includes/admin/tools/repair.php:1147
 msgid "Recalculating forum visibility&hellip; %s"
-msgstr "Neuberechnung der Forum-Sichtbarkeit&nbsp;&hellip; %s"
+msgstr "Neuberechnung der Forum-Sichtbarkeit &hellip; %s"
 
 #: includes/admin/tools/repair.php:1038
 msgid "Repairing the sticky topic to the parent forum relationships&hellip; %s"
@@ -4303,15 +4484,15 @@ msgstr "Fertig! %s Benutzer wurden aktualisiert."
 
 #: includes/admin/tools/repair.php:803
 msgid "Remapping forum role for each user on this site&hellip; %s"
-msgstr "Belege die Foren-Rolle für jeden Benutzer auf dieser Seite neu&nbsp;&hellip; %s"
+msgstr "Neuzuordnung der Forenrolle für jeden Benutzer auf dieser Website &hellip; %s"
 
 #: includes/admin/tools/repair.php:736
 msgid "Removing trashed forums from user subscriptions&hellip; %s"
-msgstr "Gelöschte Foren werden aus Benutzer-Abonnements gelöscht&nbsp;&hellip; %s"
+msgstr "In den Papierkorb verschobene Foren werden aus den Benutzer-Abonnements entfernt &hellip; %s"
 
 #: includes/admin/tools/repair.php:667
 msgid "Removing trashed topics from user subscriptions&hellip; %s"
-msgstr "Gelöschte Themen werden aus Benutzer-Abonnements gelöscht&nbsp;&hellip; %s"
+msgstr "In den Papierkorb verschobene Themen werden aus den Benutzer-Abonnements entfernt &hellip; %s"
 
 #: includes/admin/tools/repair.php:636 includes/admin/tools/repair.php:705
 #: includes/admin/tools/repair.php:774
@@ -4320,7 +4501,7 @@ msgstr "Nichts zum Entfernen!"
 
 #: includes/admin/tools/repair.php:597
 msgid "Removing unpublished topics from user favorites&hellip; %s"
-msgstr "Entferne unveröffentlichte Themen aus den Benutzer-Favoriten&nbsp;&hellip; %s"
+msgstr "Unveröffentlichte Themen werden aus den Benutzer-Favoriten entfernt &hellip; %s"
 
 #: includes/admin/tools/repair.php:547
 msgid "Counting the number of topics to which each user has replied&hellip; %s"
@@ -4332,15 +4513,15 @@ msgstr "Zählung der Themen, die jeder Benutzer angelegt hat&nbsp;&hellip; %s"
 
 #: includes/admin/tools/repair.php:414
 msgid "Counting the number of replies in each forum&hellip; %s"
-msgstr "Zahl der Antworten in allen Foren zählen&nbsp;&hellip;%s"
+msgstr "Die Anzahl der Antworten in jedem Forum wird gezählt &hellip; %s"
 
 #: includes/admin/tools/repair.php:338
 msgid "Counting the number of topics in each forum&hellip; %s"
-msgstr "Zahl der Themen in allen Foren zählen&nbsp;&hellip;%s"
+msgstr "Die Anzahl der Themen in allen Foren wird gezählt &hellip; %s"
 
 #: includes/admin/tools/upgrade.php:388
 msgid "Complete! %s groups updated; %s forums updated; %s forum statuses synced."
-msgstr "Vollständig! %s Gruppen aktualisiert; %s Foren aktualisiert; %s Foren-Statistiken synchronisiert."
+msgstr "Fertig! %s Gruppen aktualisiert; %s Foren aktualisiert; %s Forenstatus synchronisiert."
 
 #: includes/admin/tools/upgrade.php:372
 msgid "group-forums"
@@ -4353,7 +4534,7 @@ msgstr "Gruppen-Foren"
 
 #: includes/admin/tools/upgrade.php:267
 msgid "Upgrading BuddyPress group-forum relationships&hellip; %s"
-msgstr "Aktualisiere die BuddyPress-Gruppen-Forum-Beziehungen&nbsp;&hellip; %s"
+msgstr "Die Bezugsdaten von BuddyPress-Gruppen-Foren werden aktualisiert &hellip; %s"
 
 #: includes/admin/tools/repair.php:456
 msgid "Counting the number of pending, spammed, and trashed replies in each forum&hellip; %s"
@@ -4361,7 +4542,7 @@ msgstr "Die Anzahl der ausstehenden, als Spam markierten und in den Papierkorb v
 
 #: includes/admin/tools/repair.php:252
 msgid "Counting the number of voices in each topic&hellip; %s"
-msgstr "Zahl der Teilnehmer in allen Themen zählen&nbsp;&hellip; %s"
+msgstr "Die Anzahl der Teilnehmer in allen Themen wird gezählt &hellip; %s"
 
 #: includes/admin/tools/repair.php:238 includes/admin/tools/repair.php:290
 #: includes/admin/tools/repair.php:324 includes/admin/tools/repair.php:356
@@ -4390,7 +4571,7 @@ msgstr "Fehlgeschlagen!"
 
 #: includes/admin/tools/repair.php:203
 msgid "Counting the number of replies in each topic&hellip; %s"
-msgstr "Zahl der Antworten in allen Themen zählen&nbsp;&hellip; %s"
+msgstr "Die Anzahl der Antworten in allen Themen wird gezählt &hellip; %s"
 
 #: includes/admin/tools.php:343
 msgid "Remap all users to default forum roles"
@@ -4430,15 +4611,15 @@ msgstr "Themen in jedem Forum neu zählen"
 
 #: includes/admin/tools.php:446
 msgid "Upgrade BuddyPress Group Forum relationships"
-msgstr "BuddyPress-Gruppen-Forum-Beziehungen aktualisieren"
+msgstr "Upgrade der Bezugsdaten des BuddyPress-Gruppen-Forums durchführen"
 
 #: includes/admin/tools.php:163
 msgid "Recalculate sticky relationship of each topic"
-msgstr "Die Bezugsdaten für „oben halten“ für jedes Thema neu berechnen"
+msgstr "Die Bezugsdaten für „oben halten“ für jedes Thema neu ermitteln"
 
 #: includes/admin/tools.php:151
 msgid "Recalculate last activity in each topic and forum"
-msgstr "Aktivitäten in jedem Thema und Forum neu berechnen"
+msgstr "Aktivitäten in jedem Thema und Forum neu ermitteln"
 
 #: includes/admin/tools.php:139
 msgid "Recalculate private and hidden forums"
@@ -4446,11 +4627,11 @@ msgstr "Private und verborgene Foren neu berechnen"
 
 #: includes/admin/tools/upgrade.php:45
 msgid "Some of these tools create substantial database overhead. Use caution when running more than 1 upgrade at a time."
-msgstr "Durch einiger dieser Werkzeuge wird ein erheblicher Datenbank-Overhead erstellt. Sei vorsichtig, wenn du mehr als 1 Upgrade gleichzeitig durchführen möchtest."
+msgstr "Einige dieser Werkzeuge verursachen einen erheblichen Datenbank-Overhead. Sei vorsichtig, wenn du mehr als ein Upgrade zur gleichen Zeit durchführen möchtest."
 
 #: includes/admin/tools/repair.php:47
 msgid "bbPress keeps track of relationships between forums, topics, replies, topic-tags, favorites, subscriptions, and users. Occasionally these relationships become out of sync, most often after an import or migration. Use the tools below to manually recalculate these relationships."
-msgstr "bbPress verwaltet die Beziehungen zwischen Foren, Themen, Antworten, Themen-Schlagwörter, Favoriten, Abonnements und Benutzern. Gelegentlich sind diese Beziehungen nicht mehr synchron, meist nach einem Import oder einer Migration. Benutze die unten folgenden Werkzeuge, um diese Beziehungen manuell neu zu kalkulieren."
+msgstr "bbPress verwaltet die Zusammenhänge zwischen Foren, Themen, Antworten, Themen-Schlagwörtern, Favoriten, Abonnements und Benutzern. Gelegentlich sind diese Zusammenhänge nicht mehr synchron, meist nach einem Import oder einer Migration. Verwende die unten folgenden Werkzeuge, um diese Bezugsdaten manuell neu zu berechnen."
 
 #: includes/admin/settings.php:2098
 msgid "Possible %1$s conflict: %2$s"
@@ -4550,7 +4731,7 @@ msgstr "Das ist vergleichbar mit der WordPress „Lesen-Einstellungen“-Seite, 
 
 #: includes/admin/settings.php:1914
 msgid "The \"Per Page\" section allows you to control the number of topics and replies appear on each page."
-msgstr "Die Pro-Seite-Einstellungen ermöglichen dir, die Anzahl der Themen und Antworten, die je Seite erscheinen sollen, zu regeln."
+msgstr "Der Abschnitt „Pro Seite“ ermöglicht es dir, die Anzahl der Themen und Antworten auf jeder Seite zu steuern."
 
 #: includes/admin/settings.php:1913
 msgid "Per Page"
@@ -4570,7 +4751,7 @@ msgstr "Der Fancy-Editor bringt den Luxus des visuellen und des HTML-Editors des
 
 #: includes/admin/settings.php:1888
 msgid "\"Anonymous Posting\" allows guest users who do not have accounts on your site to both create topics as well as replies."
-msgstr "„Anonymes Veröffentlichen“ erlaubt Gästen, die kein Benutzerkonto haben, das Erstellen und Beantworten von Themen."
+msgstr "„Anonymes Veröffentlichen“ erlaubt Gästen, die kein Konto auf deiner Website haben, das Erstellen und Beantworten von Themen."
 
 #: includes/admin/settings.php:1887
 msgid "Topic-Tags allow users to filter topics between forums. This is enabled by default."
@@ -4606,7 +4787,7 @@ msgstr "Bitte konsultiere die zusätzlichen Hilfe-Reiter für mehr Informationen
 
 #: includes/admin/settings.php:1872
 msgid "This screen provides access to all of the Forums settings."
-msgstr "Dieser Bereich stellt Zugang zu allen Einstellungen des Forums bereit."
+msgstr "Dieser Bereich stellt einen Zugang zu allen Einstellungen des Forums bereit."
 
 #: includes/admin/classes/class-bbp-converter.php:162
 #: includes/admin/settings.php:1794
@@ -4619,7 +4800,7 @@ msgstr "Ein hoher Wert verhindert Probleme mit zu vielen Verbindungen."
 
 #: includes/admin/settings.php:1692
 msgid "Keep this low if you experience out-of-memory issues."
-msgstr "Halte diesen Wert niedrig, wenn du Probleme mit zu geringem Speicher bekommst."
+msgstr "Halte diesen Wert niedrig, wenn du Probleme mit zu geringem Arbeitsspeicher bekommst."
 
 #: includes/admin/settings.php:1663
 msgid "Some optional parameters to help tune the conversion process."
@@ -4627,7 +4808,7 @@ msgstr "Einige optionale Parameter, um den Konvertierungsprozess einzustellen."
 
 #: includes/admin/settings.php:1650
 msgid "Name of the database with your old forum data"
-msgstr "Datenbankname mit alten Forendaten"
+msgstr "Datenbankname mit deinen alten Forendaten"
 
 #: includes/admin/settings.php:1602
 msgid "Use default %s if unsure"
@@ -4664,7 +4845,7 @@ msgstr "Forums-Einstellungen für BuddyPress"
 
 #: includes/admin/settings.php:1290
 msgid "Custom slugs for single forums, topics, replies, tags, views, edit, and search."
-msgstr "Individuelle Titelformen für einzelne Foren, Themen, Antworten, Schlagwörter, Ansichten, Editieren und Suche."
+msgstr "Individuelle Titelformen für einzelne Foren, Themen, Antworten, Schlagwörter, Ansichten, Bearbeiten und Suche."
 
 #: includes/admin/settings.php:1185
 msgid "Customize your user profile slugs."
@@ -4840,7 +5021,7 @@ msgstr "Abonnements"
 #: includes/admin/topics.php:450 includes/extend/buddypress/loader.php:247
 #: templates/default/bbpress/user-details.php:57
 msgid "Favorites"
-msgstr "Lesezeichen"
+msgstr "Favoriten"
 
 #: includes/admin/settings.php:190 includes/admin/settings.php:2026
 msgid "Revisions"
@@ -4864,7 +5045,7 @@ msgstr "Themen und Antworten pro Seite"
 
 #: includes/admin/settings.php:39
 msgid "Forum Theme Packages"
-msgstr "Forum-Themen-Pakete"
+msgstr "Forum-Theme-Pakete"
 
 #: includes/admin/settings.php:34
 msgid "Forum Features"
@@ -4914,7 +5095,7 @@ msgstr "Papierkorb"
 #: includes/admin/replies.php:833 includes/admin/topics.php:1037
 #: includes/replies/template.php:1983 includes/topics/template.php:2534
 msgid "Move this item to the Trash"
-msgstr "Dieses Objekt in den Papierkorb legen"
+msgstr "Element in den Papierkorb verschieben"
 
 #: includes/admin/replies.php:831 includes/admin/topics.php:1035
 #: includes/replies/template.php:1962 includes/topics/template.php:2516
@@ -5034,11 +5215,11 @@ msgstr "Antwort-Attribute"
 
 #: includes/admin/replies.php:193
 msgid "<strong>Featured Image</strong> - This allows you to associate an image with your reply without inserting it. This is usually useful only if your theme makes use of the featured image as a reply thumbnail on the home page, a custom header, etc."
-msgstr "<strong>Beitragsbild</strong> - Dies erlaubt dir ein Bild mit deiner Antwort zu assoziieren ohne es einzufügen. Das ist in der Regel nur hilfreich, wenn dein Theme Beitragsbilder als Antworten-Vorschaubilder auf der Homepage, in einem individuellen Header, etc. nutzt."
+msgstr "<strong>Beitragsbild</strong> – Damit kannst du ein Bild mit deiner Antwort verknüpfen, ohne es einzufügen. Das ist in der Regel nur dann sinnvoll, wenn dein Theme Beitragsbilder als Antwort-Vorschaubilder auf der Homepage, in einem individuellen Header, etc. verwendet."
 
 #: includes/admin/replies.php:190
 msgid "<strong>Publish</strong> - You can set the terms of publishing your reply in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a reply or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a reply to be published in the future or backdate a reply."
-msgstr "<strong>Veröffentlichen</strong> – Du kannst die Begriffe zum Veröffentlichen deiner Antwort in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link, um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um eine Antwort mit einem Passwort zu schützen oder um sie im Blog oben zu halten. Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder in der Vergangenheit zu setzen, sodass du die Veröffentlichung der Antwort für die Zukunft oder die Vergangenheit planen kannst."
+msgstr "<strong>Veröffentlichen</strong> – Du kannst die Begriffe zum Veröffentlichen deiner Antwort in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link, um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um eine Antwort mit einem Passwort zu schützen oder um sie im Blog oben zu halten. Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder in der Vergangenheit zu setzen, sodass du die Veröffentlichung der Antwort für die Zukunft oder für die Vergangenheit planen kannst."
 
 #: includes/admin/replies.php:187
 msgid "<strong>Reply Editor</strong> - Enter the text for your reply. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your reply text. You can insert media files by clicking the icons above the reply editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular reply editor."
@@ -5287,7 +5468,7 @@ msgstr "Forum wiederhergestellt zur Überprüfung durch %s"
 #: includes/admin/forums.php:710 includes/admin/forums.php:722
 #: includes/forums/template.php:79
 msgid "Forum updated."
-msgstr "Forum aktualisiert"
+msgstr "Forum wurde aktualisiert."
 
 #: includes/admin/forums.php:719 includes/admin/replies.php:980
 #: includes/admin/topics.php:1184
@@ -5393,7 +5574,7 @@ msgstr "<strong>Beitragsbild</strong> - Dies erlaubt dir ein Bild mit deinem For
 
 #: includes/admin/forums.php:173
 msgid "<strong>Publish</strong> - You can set the terms of publishing your forum in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a forum or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a forum to be published in the future or backdate a forum."
-msgstr "<strong>Veröffentlichen</strong> - Du kannst die Begriffe zum Veröffentlichen des Forums in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen um ein Forum mit einem Passwort zu schützen oder um es oben im Blog anzupinnen (sticky). Veröffentlichen (sofort) ermöglicht dir Datum und Uhrzeit in der Zukunft oder Vergangenheit zu setzen, so dass du die Veröffentlichung des Forums für die Zukunft oder die Vergangenheit planen kannst."
+msgstr "<strong>Veröffentlichen</strong> – Du kannst die Begriffe zum Veröffentlichen des Forums in der Veröffentlichen-Box einstellen. Für Status, Sichtbarkeit und Veröffentlichen (sofort) klicke auf den Bearbeiten-Link, um mehr Optionen anzuzeigen. Sichtbarkeit beinhaltet Optionen, um ein Forum mit einem Passwort zu schützen oder um es im Blog oben zu halten. Veröffentlichen (sofort) ermöglicht dir, Datum und Uhrzeit in der Zukunft oder in der Vergangenheit zu setzen, sodass du die Veröffentlichung des Forums für die Zukunft oder für die Vergangenheit planen kannst."
 
 #: includes/admin/forums.php:170
 msgid "<strong>Forum Editor</strong> - Enter the text for your forum. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your forum text. You can insert media files by clicking the icons above the forum editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular forum editor."
@@ -5455,6 +5636,10 @@ msgstr "Du kannst auch mehrere Foren auf einmal bearbeiten, als Spam markieren o
 msgid "Bulk Actions"
 msgstr "Mehrfachaktionen"
 
+#: includes/admin/forums.php:129
+msgid "<strong>View</strong> will either show you what your draft forum will look like if you publish it, or take you to your live site to view it. Which link depends on your forum&#8217;s status."
+msgstr "<strong>Anzeigen</strong> zeigt dir entweder, wie dein Forenentwurf aussehen wird, wenn du ihn veröffentlichst, oder führt dich zu deiner Live-Website, um ihn anzusehen. Welcher Link angezeigt wird, hängt vom Status deines Forums ab."
+
 #: includes/admin/forums.php:128
 msgid "<strong>Trash</strong> removes your forum from this list and places it in the trash, from which you can permanently delete it."
 msgstr "<strong>Papierkorb</strong> entfernt dein Forum von dieser Liste und legt es in den Papierkorb, von wo du es unwiederbringlich löschen kannst."
@@ -5478,11 +5663,11 @@ msgstr "Du kannst die Liste verfeinern, um nur die Foren eines bestimmten Monats
 
 #: includes/admin/forums.php:114
 msgid "You can filter the list of forums by forum status using the text links in the upper left to show All, Published, or Trashed forums. The default view is to show all forums."
-msgstr "Du kannst die Liste der Foren nach deren Status über die Text-Links oben links sortieren, um Alle, Veröffentlicht, Entwurf, oder Foren im Papierkorb anzuzeigen. Die Standard-Ansicht ist Zeige alle Foren."
+msgstr "Du kannst die Liste der Foren nach deren Status über die Text-Links oben links sortieren, um Alle, Veröffentlicht, oder Foren im Papierkorb anzuzeigen. In der Standardansicht werden alle Foren angezeigt."
 
 #: includes/admin/forums.php:113
 msgid "You can hide/display columns based on your needs and decide how many forums to list per screen using the Screen Options tab."
-msgstr "Du kannst Spalten nach deinem Bedarf anzeigen/verstecken und durch das Nutzen des Anzeige-Optionen-Kartenreiters bestimmen, wie viele Foren pro Bildschirmseite gelistet werden."
+msgstr "Du kannst Spalten je nach Bedarf ein- und ausblenden und unter dem Tab Bildschirmoptionen festlegen, wie viele Foren pro Bildschirm aufgelistet werden sollen."
 
 #: includes/admin/forums.php:111 includes/admin/replies.php:125
 #: includes/admin/topics.php:129
@@ -5503,6 +5688,10 @@ msgstr "Diese Ansicht zeigt die einzelnen Foren deiner Website an. Du kannst die
 #: includes/admin/topics.php:119
 msgid "Overview"
 msgstr "Überblick"
+
+#: includes/admin/classes/class-bbp-converter.php:602
+msgid "No forum parents to import"
+msgstr "Es sind keine übergeordneten Foren zu importieren"
 
 #: includes/admin/classes/class-bbp-converter.php:562
 msgid "No passwords to clear"
@@ -5605,7 +5794,7 @@ msgstr "Mitwirkende Entwickler"
 
 #: includes/admin/classes/class-bbp-admin.php:1204
 msgid "Feature Developer"
-msgstr "Feature-Entwickler"
+msgstr "Funktionsentwickler"
 
 #: includes/admin/classes/class-bbp-admin.php:1176
 msgid "Lead Developer"
@@ -5654,7 +5843,7 @@ msgstr "Theme-Kompatibilität"
 
 #: includes/admin/classes/class-bbp-admin.php:1113
 msgid "We&#8217;re all abuzz about the hive of new importers, AEF, Drupal, FluxBB, Kunena Forums for Joomla, MyBB, Phorum, PHPFox, PHPWind, PunBB, SMF, Xenforo and XMB. Existing importers are now sweeter than honey with improved importing stickies, topic tags, forum categories and the sting is now gone if you need to remove imported users."
-msgstr "Wir sind alle begeistert über die Anzahl der neuen Importer, AEF, Drupal, FluxBB, Kunena Forum für Joomla, MyBB, Phorum, PHPFox, PHPWind, PunBB, SMF, Xenforo und XMB. Existierende Importer versüßen das Leben mit dem Importieren von \"Oben halten\", Themen-Schlagwörtern, Forenkategorien und das Entfernen importierter Benutzer ist nun auch schmerzfrei möglich."
+msgstr "Wir sind alle begeistert über die Anzahl der neuen Importer, AEF, Drupal, FluxBB, Kunena Forum für Joomla, MyBB, Phorum, PHPFox, PHPWind, PunBB, SMF, Xenforo und XMB. Existierende Importer versüßen das Leben mit dem Importieren von „Oben halten“, Themen-Schlagwörtern, Forenkategorien und das Entfernen importierter Benutzer ist nun auch schmerzfrei möglich."
 
 #: includes/admin/classes/class-bbp-admin.php:1109
 msgid "Converters"
