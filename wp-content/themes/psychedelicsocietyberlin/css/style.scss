@@ -58,7 +58,8 @@ body {
 		transition: color 2s;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus-within {
 		width: 90%;
 
 		&:before {
@@ -85,7 +86,8 @@ body {
 		transition: right 0.5s;
 	}
 
-	&:hover ul {
+	&:hover ul,
+	&:focus-within ul {
 		right: 0;
 	}
 
