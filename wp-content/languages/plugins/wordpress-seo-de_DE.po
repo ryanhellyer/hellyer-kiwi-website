@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-10-22 08:15:31+0000\n"
+"PO-Revision-Date: 2024-10-22 23:54:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -482,6 +482,10 @@ msgstr "Erhalte automatisch unseren Ratgeber für technisches SEO für lokale Un
 msgid "Attract more customers to your site and physical store"
 msgstr "Gewinne mehr lokale Kunden auf deiner Website und in deinem Ladengeschäft"
 
+#: src/presenters/admin/indexing-notification-presenter.php:93
+msgid "It looks like you've enabled media pages. We recommend that you help us to re-analyze your site by running the SEO data optimization."
+msgstr "Es sieht so aus, als hättest du die Medienseiten aktiviert. Wir empfehlen, dass du uns hilfst, deine Website erneut zu analysieren, indem du die SEO-Datenoptimierung durchführst."
+
 #: inc/class-wpseo-rank.php:156 inc/class-wpseo-rank.php:240
 #: js/dist/block-editor.js:563 js/dist/editor-modules.js:324
 #: js/dist/elementor.js:92 js/dist/externals-components.js:188
@@ -662,6 +666,14 @@ msgstr "Der Beitrag %s konnte nicht indexiert werden, da sein Beitragstyp von de
 #: src/exceptions/indexable/term-not-built-exception.php:20
 msgid "The term %s could not be built because it's not indexable."
 msgstr "Der Begriff %s konnte nicht erstellt werden, da er nicht indexierbar ist."
+
+#: src/presenters/admin/indexing-notification-presenter.php:87
+msgid "We need to re-analyze some of your SEO data because of a change in the visibility of your post types. Please help us do that by running the SEO data optimization."
+msgstr "Wir müssen einige deiner SEO-Daten erneut analysieren, da sich die Sichtbarkeit deiner Inhaltstypen geändert hat. Bitte hilf uns dabei, indem du die SEO-Datenoptimierung durchführst."
+
+#: src/presenters/admin/indexing-notification-presenter.php:90
+msgid "We need to re-analyze some of your SEO data because of a change in the visibility of your taxonomies. Please help us do that by running the SEO data optimization."
+msgstr "Wir müssen einige deiner SEO-Daten erneut analysieren, da sich die Sichtbarkeit deiner Taxonomien geändert hat. Bitte hilf uns dabei, indem du die SEO-Datenoptimierung durchführst."
 
 #: admin/views/class-yoast-feature-toggles.php:210 js/dist/new-settings.js:310
 #: js/dist/post-edit.js:20
@@ -1475,6 +1487,10 @@ msgstr "Erfahre mehr über die Vorteile optimierter SEO-Daten."
 msgid "You can speed up your site and get insight into your internal linking structure by letting us perform a few optimizations to the way SEO data is stored. If you have a lot of content it might take a while, but trust us, it's worth it."
 msgstr "Du kannst deine Website beschleunigen und deine interne Verlinkungsstruktur besser verstehen, wenn du uns einige Optimierungen der SEO-Datenspeicherung erlaubst. Wenn du eine Menge Inhalte hast, kann das eine Weile dauern – aber glaube uns, es lohnt sich."
 
+#: src/presenters/admin/indexing-notification-presenter.php:96
+msgid "You can speed up your site and get insight into your internal linking structure by letting us perform a few optimizations to the way SEO data is stored."
+msgstr "Du kannst deine Website beschleunigen und deine interne Verlinkungsstruktur besser verstehen, wenn du uns einige Optimierungen der SEO-Datenspeicherung erlaubst."
+
 #: src/presenters/admin/indexing-list-item-presenter.php:37
 msgid "Optimize SEO Data"
 msgstr "SEO-Daten optimieren"
@@ -1684,11 +1700,23 @@ msgstr "Wir haben einen Artikel darüber geschrieben, %1$swie du mit der Bewertu
 msgid "Your site will continue to work normally, but won't take full advantage of %s."
 msgstr "Deine Website wird weiterhin normal funktionieren, aber nutzt nicht alle Vorteile von %s aus."
 
+#: src/presenters/admin/indexing-notification-presenter.php:121
+msgid " We estimate this will take a couple of minutes."
+msgstr " Wir schätzen, dies wird ein paar Minuten dauern."
+
+#: src/presenters/admin/indexing-notification-presenter.php:117
+msgid " We estimate this will take less than a minute."
+msgstr " Wir schätzen, dies wird weniger als eine Minute dauern."
+
 #. translators: 1: Link to article about indexation command, 2: Anchor closing
 #. tag, 3: Link to WP CLI.
 #: src/presenters/admin/indexing-notification-presenter.php:136
 msgid "%1$sRun the indexation process on your server%2$s using %3$sWP CLI%2$s."
 msgstr "%1$sDen Indexierungsprozess auf deinem Server ausführen%2$s mit %3$sWP CLI%2$s."
+
+#: src/presenters/admin/indexing-notification-presenter.php:124
+msgid " We estimate this could take a long time, due to the size of your site. As an alternative to waiting, you could:"
+msgstr " Wir schätzen, dies wird lange dauern, aufgrund der Größe deiner Website. Anstelle zu warten, könntest du:"
 
 #. translators: %1$s: link to help article about solving table issue. %2$s: is
 #. anchor closing.
