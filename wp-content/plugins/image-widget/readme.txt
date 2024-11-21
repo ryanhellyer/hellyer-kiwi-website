@@ -1,10 +1,10 @@
 === Image Widget ===
-Contributors: theeventscalendar, aguseo, borkweb, bordoni, brianjessee, GeoffBel, leahkoerper, lucatume, neillmcshea, vicskf, zbtirrell
+Contributors: theeventscalendar, aguseo, borkweb, bordoni, brianjessee, leahkoerper, lucatume, neillmcshea, vicskf, zbtirrell
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4BSPTNFFY6AL6
 Tags: widget, image, ad, banner, sidebar
 Requires at least: 3.5
-Tested up to: 6.2.2
-Stable tag: 4.4.9
+Tested up to: 6.7.1
+Stable tag: 4.4.11
 
 A simple image widget that uses the native WordPress media manager to add image widgets to your site.
 
@@ -82,6 +82,14 @@ These features are part of our Image Widget Plus plugin. You can learn more abou
 = Where do I go to file a bug or ask a question? =
 
 Please [visit the forum to post questions or comments](https://wordpress.org/support/plugin/image-widget/).
+
+= Found a security vulnerability? =
+
+Make sure you are reporting in a safe and responsible way. We take security very seriously. If you discover a security issue, please bring it to our attention right away! Below you will find all the methods to report security vulnerabilities:
+
+* [Report security bugs through the Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/image-widget)
+* Check our [Bug Bounty Program](https://www.liquidweb.com/policies/bug-bounty-program/)
+* Reach out directly to us on `security [at] stellarwp.com`.
 
 == Documentation ==
 
@@ -191,7 +199,16 @@ For more info on the philosophy here, check out our [blog post](http://tri.be/de
 
 == Changelog ==
 
-= [4.4.9] 2022-05-06 =
+= [4.4.11] 2024-11-20 =
+
+* Security - Prevent old Image URL from being misused for XSS attacks.
+
+= [4.4.10] 2022-06-05 =
+
+* Fix - Prevent weird bugs around `widget_title` not having all the expected arguments.
+* Tweak - Add documentation for a few filters.
+
+= [4.4.9] 2023-05-30 =
 
 * Tweak - Updating WordPress compatibility, tested up to 6.6.2.
 * Tweak - Remove references to Image Widget Plus and Notices.
