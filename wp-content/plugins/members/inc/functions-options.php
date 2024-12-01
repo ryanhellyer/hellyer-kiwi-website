@@ -4,9 +4,9 @@
  *
  * @package    Members
  * @subpackage Includes
- * @author     Justin Tadlock <justintadlock@gmail.com>
- * @copyright  Copyright (c) 2009 - 2018, Justin Tadlock
- * @link       https://themehybrid.com/plugins/members
+ * @author     The MemberPress Team 
+ * @copyright  Copyright (c) 2009 - 2018, The MemberPress Team
+ * @link       https://members-plugin.com/
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -69,6 +69,18 @@ function members_multiple_user_roles_enabled() {
 function members_content_permissions_enabled() {
 
 	return apply_filters( 'members_content_permissions_enabled', members_get_setting( 'content_permissions' ) );
+}
+
+/**
+ * Conditional check to see if hide protected posts in REST API is enabled.
+ *
+ * @since  3.2.11
+ * @access public
+ * @return bool
+ */
+function members_is_hidden_protected_posts_enabled() {
+
+    return apply_filters( 'members_is_hidden_protected_posts', members_get_setting( 'hide_posts_rest_api' ) );
 }
 
 /**
@@ -139,5 +151,8 @@ function members_get_default_settings() {
 		// @since 2.0.0
 		'show_human_caps'      => true,
 		'private_rest_api'     => false,
+
+        // @since 3.2.11
+        'hide_posts_rest_api'  => true,
 	);
 }

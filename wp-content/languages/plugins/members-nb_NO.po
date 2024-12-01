@@ -2,18 +2,35 @@
 # This file is distributed under the same license as the Plugins - Members &#8211; Membership &amp; User Role Editor Plugin - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-28 23:11:32+0000\n"
+"PO-Revision-Date: 2024-11-30 13:59:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0-alpha.4\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: nb_NO\n"
 "Project-Id-Version: Plugins - Members &#8211; Membership &amp; User Role Editor Plugin - Stable (latest release)\n"
 
-#: admin/functions-admin.php:266
-msgid "Made with ♥ by the Members Team"
-msgstr "Laget med ♥ av Members-gruppen"
+#: admin/class-meta-box-content-permissions.php:115
+msgid "Content Permissions (Members)"
+msgstr "Innholdstillatelser"
+
+#. Plugin URI of the plugin
+#: members.php
+msgid "https://members-plugin.com/"
+msgstr "https://members-plugin.com/"
+
+#: admin/views/class-view-general.php:253
+msgid "Block protected posts from showing in the REST API requests."
+msgstr "Hindre beskyttede innlagg fra å vises i REST API-forespørslene."
+
+#: admin/views/class-view-general.php:76
+msgid "Hide Protected Posts from WP REST API"
+msgstr "Skjul beskyttede innlegg fra WP REST API"
+
+#: admin/class-settings.php:158 admin/functions-admin.php:285
+msgid "You are not allowed to make these changes."
+msgstr "Du har ikke lov til å gjøre dissee endringene."
 
 #: admin/functions-admin.php:261
 msgid "About Us"
@@ -26,6 +43,10 @@ msgstr "Dokumentasjon"
 #: admin/functions-admin.php:251
 msgid "Support"
 msgstr "Brukerstøtte"
+
+#: admin/functions-admin.php:266
+msgid "Made with ♥ by the MemberPress Team"
+msgstr "Laget med ♥ av MembePresss-gruppen"
 
 #: admin/class-notifications.php:617
 msgid "Close"
@@ -112,8 +133,8 @@ msgstr "Se aktive"
 msgid "View Dismissed"
 msgstr "Se avviste"
 
-#: admin/class-meta-box-content-permissions.php:243
-#: admin/class-meta-box-content-permissions.php:364
+#: admin/class-meta-box-content-permissions.php:242
+#: admin/class-meta-box-content-permissions.php:363
 msgid "Add MemberPress"
 msgstr "Legg til MemberPress"
 
@@ -121,11 +142,11 @@ msgstr "Legg til MemberPress"
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: admin/views/class-view-general.php:302
+#: admin/views/class-view-general.php:319
 msgid "Permanently remove Members review prompt."
 msgstr "Permanent fjerning av spørsmål om Members vurdering."
 
-#: admin/views/class-view-general.php:85
+#: admin/views/class-view-general.php:86
 msgid "Disable Review Prompt"
 msgstr "Deaktiver spørsmål om vurdering"
 
@@ -153,22 +174,14 @@ msgstr "Ok, du fortjener det"
 msgid "Are you enjoying using Members?"
 msgstr "Har du glede av å bruke Members?"
 
-#: admin/class-meta-box-content-permissions.php:196
-#: admin/class-meta-box-content-permissions.php:315
-#: admin/class-meta-box-content-permissions.php:360
+#: admin/class-meta-box-content-permissions.php:195
+#: admin/class-meta-box-content-permissions.php:314
+#: admin/class-meta-box-content-permissions.php:359
 msgid "Paid Memberships"
 msgstr "Betalte medlemskap"
 
-#: admin/class-meta-box-content-permissions.php:115
-msgid "<svg width=\"15px\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"users-cog\" class=\"svg-inline--fa fa-users-cog fa-w-20\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M610.5 341.3c2.6-14.1 2.6-28.5 0-42.6l25.8-14.9c3-1.7 4.3-5.2 3.3-8.5-6.7-21.6-18.2-41.2-33.2-57.4-2.3-2.5-6-3.1-9-1.4l-25.8 14.9c-10.9-9.3-23.4-16.5-36.9-21.3v-29.8c0-3.4-2.4-6.4-5.7-7.1-22.3-5-45-4.8-66.2 0-3.3.7-5.7 3.7-5.7 7.1v29.8c-13.5 4.8-26 12-36.9 21.3l-25.8-14.9c-2.9-1.7-6.7-1.1-9 1.4-15 16.2-26.5 35.8-33.2 57.4-1 3.3.4 6.8 3.3 8.5l25.8 14.9c-2.6 14.1-2.6 28.5 0 42.6l-25.8 14.9c-3 1.7-4.3 5.2-3.3 8.5 6.7 21.6 18.2 41.1 33.2 57.4 2.3 2.5 6 3.1 9 1.4l25.8-14.9c10.9 9.3 23.4 16.5 36.9 21.3v29.8c0 3.4 2.4 6.4 5.7 7.1 22.3 5 45 4.8 66.2 0 3.3-.7 5.7-3.7 5.7-7.1v-29.8c13.5-4.8 26-12 36.9-21.3l25.8 14.9c2.9 1.7 6.7 1.1 9-1.4 15-16.2 26.5-35.8 33.2-57.4 1-3.3-.4-6.8-3.3-8.5l-25.8-14.9zM496 368.5c-26.8 0-48.5-21.8-48.5-48.5s21.8-48.5 48.5-48.5 48.5 21.8 48.5 48.5-21.7 48.5-48.5 48.5zM96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm224 32c1.9 0 3.7-.5 5.6-.6 8.3-21.7 20.5-42.1 36.3-59.2 7.4-8 17.9-12.6 28.9-12.6 6.9 0 13.7 1.8 19.6 5.3l7.9 4.6c.8-.5 1.6-.9 2.4-1.4 7-14.6 11.2-30.8 11.2-48 0-61.9-50.1-112-112-112S208 82.1 208 144c0 61.9 50.1 112 112 112zm105.2 194.5c-2.3-1.2-4.6-2.6-6.8-3.9-8.2 4.8-15.3 9.8-27.5 9.8-10.9 0-21.4-4.6-28.9-12.6-18.3-19.8-32.3-43.9-40.2-69.6-10.7-34.5 24.9-49.7 25.8-50.3-.1-2.6-.1-5.2 0-7.8l-7.9-4.6c-3.8-2.2-7-5-9.8-8.1-3.3.2-6.5.6-9.8.6-24.6 0-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h255.4c-3.7-6-6.2-12.8-6.2-20.3v-9.2zM173.1 274.6C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z\"></path></svg> "
-msgstr "<svg width=\"15px\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"users-cog\" class=\"svg-inline--fa fa-users-cog fa-w-20\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M610.5 341.3c2.6-14.1 2.6-28.5 0-42.6l25.8-14.9c3-1.7 4.3-5.2 3.3-8.5-6.7-21.6-18.2-41.2-33.2-57.4-2.3-2.5-6-3.1-9-1.4l-25.8 14.9c-10.9-9.3-23.4-16.5-36.9-21.3v-29.8c0-3.4-2.4-6.4-5.7-7.1-22.3-5-45-4.8-66.2 0-3.3.7-5.7 3.7-5.7 7.1v29.8c-13.5 4.8-26 12-36.9 21.3l-25.8-14.9c-2.9-1.7-6.7-1.1-9 1.4-15 16.2-26.5 35.8-33.2 57.4-1 3.3.4 6.8 3.3 8.5l25.8 14.9c-2.6 14.1-2.6 28.5 0 42.6l-25.8 14.9c-3 1.7-4.3 5.2-3.3 8.5 6.7 21.6 18.2 41.1 33.2 57.4 2.3 2.5 6 3.1 9 1.4l25.8-14.9c10.9 9.3 23.4 16.5 36.9 21.3v29.8c0 3.4 2.4 6.4 5.7 7.1 22.3 5 45 4.8 66.2 0 3.3-.7 5.7-3.7 5.7-7.1v-29.8c13.5-4.8 26-12 36.9-21.3l25.8 14.9c2.9 1.7 6.7 1.1 9-1.4 15-16.2 26.5-35.8 33.2-57.4 1-3.3-.4-6.8-3.3-8.5l-25.8-14.9zM496 368.5c-26.8 0-48.5-21.8-48.5-48.5s21.8-48.5 48.5-48.5 48.5 21.8 48.5 48.5-21.7 48.5-48.5 48.5zM96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm224 32c1.9 0 3.7-.5 5.6-.6 8.3-21.7 20.5-42.1 36.3-59.2 7.4-8 17.9-12.6 28.9-12.6 6.9 0 13.7 1.8 19.6 5.3l7.9 4.6c.8-.5 1.6-.9 2.4-1.4 7-14.6 11.2-30.8 11.2-48 0-61.9-50.1-112-112-112S208 82.1 208 144c0 61.9 50.1 112 112 112zm105.2 194.5c-2.3-1.2-4.6-2.6-6.8-3.9-8.2 4.8-15.3 9.8-27.5 9.8-10.9 0-21.4-4.6-28.9-12.6-18.3-19.8-32.3-43.9-40.2-69.6-10.7-34.5 24.9-49.7 25.8-50.3-.1-2.6-.1-5.2 0-7.8l-7.9-4.6c-3.8-2.2-7-5-9.8-8.1-3.3.2-6.5.6-9.8.6-24.6 0-47.6-6-68.5-16h-8.3C179.6 288 128 339.6 128 403.2V432c0 26.5 21.5 48 48 48h255.4c-3.7-6-6.2-12.8-6.2-20.3v-9.2zM173.1 274.6C161.5 263.1 145.6 256 128 256H64c-35.3 0-64 28.7-64 64v32c0 17.7 14.3 32 32 32h65.9c6.3-47.4 34.9-87.3 75.2-109.4z\"></path></svg> "
-
-#: admin/functions-admin.php:201
-msgid "You're using Members. To unlock more features, consider <a href=\"https://memberpress.com/plans/pricing/?utm_source=members&utm_medium=link&utm_campaign=in_plugin&utm_content=pro_features\">adding MemberPress.</a>"
-msgstr "Du bruker Members. For å få tilgang til flere funksjoner bør du vurdere <a href=\"https://memberpress.com/plans/pricing/?utm_source=members&utm_medium=link&utm_campaign=in_plugin&utm_content=pro_features\">å legge til MemberPress.</a>"
-
-#: admin/class-meta-box-content-permissions.php:242
-#: admin/class-meta-box-content-permissions.php:363
+#: admin/class-meta-box-content-permissions.php:241
+#: admin/class-meta-box-content-permissions.php:362
 msgid "To protect this block by paid membership or centrally with <br> a content protection rule, add MemberPress."
 msgstr "For å beskytte denne blokken med betalt medlemskap eller generelt med <br> en regel for innholdsbeskyttelse, legg til MemberPress."
 
@@ -179,6 +192,10 @@ msgstr "Det var leit å høre at du ikke liker Members. Vi ønsker forbedre oss.
 #: admin/class-review-prompt.php:85
 msgid "That's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?"
 msgstr "Veldig bra! Kunne du vennligst gjøre meg en stor tjeneste og gi en 5-stjerners vurdering på WordPress for å bidra til å spre informasjon og motivere oss enda mer?"
+
+#: admin/functions-admin.php:201
+msgid "You're using Members. To unlock more features, consider <a href=\"https://memberpress.com/plans/pricing/?utm_source=members_plugin&utm_medium=link&utm_campaign=in_plugin&utm_content=pro_features\">adding MemberPress.</a>"
+msgstr "Du bruker Members. For å få tilgang til flere funksjoner bør du vurdere å <a href=\"https://memberpress.com/plans/pricing/?utm_source=members_plugin&utm_medium=link&utm_campaign=in_plugin&utm_content=pro_features\">legge til MemberPress</a>."
 
 #: addons/members-core-create-caps/addon.php:30
 msgid "Create Pages"
@@ -508,17 +525,17 @@ msgstr "Rabattkuponger: Slette taksonomitermer"
 msgid "Downloads"
 msgstr "Nedlastinger"
 
-#: addons/members-acf-integration/src/Plugin.php:365
+#: addons/members-acf-integration/src/Plugin.php:352
 msgid "Custom Fields"
 msgstr "Tilpassede felter"
 
-#: addons/members-acf-integration/src/Plugin.php:334
+#: addons/members-acf-integration/src/Plugin.php:321
 msgid "Advanced Custom Fields %s"
 msgid_plural "Advanced Custom Fields %s"
 msgstr[0] "Avanserte tilpasset felt %s"
 msgstr[1] "Avanserte tilpassede felter %s"
 
-#: addons/members-acf-integration/src/Plugin.php:333
+#: addons/members-acf-integration/src/Plugin.php:320
 msgid "Advanced Custom Fields"
 msgstr "Avanserte Tilpassede Felt"
 
@@ -557,36 +574,36 @@ msgstr "Type"
 msgid "Condition"
 msgstr "Betingelse"
 
-#: admin/class-settings.php:231 admin/class-settings.php:609
+#: admin/class-settings.php:271 admin/class-settings.php:649
 msgctxt "admin screen"
 msgid "About Us"
 msgstr "Om oss"
 
-#: admin/class-settings.php:228 admin/class-settings.php:353
+#: admin/class-settings.php:268 admin/class-settings.php:393
 msgctxt "admin screen"
 msgid "Payments"
 msgstr "Betalinger"
 
-#: admin/class-settings.php:225
+#: admin/class-settings.php:265
 msgctxt "admin screen"
 msgid "<span style=\"color: #8CBD5A;\">Add-Ons</span>"
 msgstr "<span style=\"color: #8CBD5A;\">Tillegg</span>"
 
-#: admin/class-settings.php:225
+#: admin/class-settings.php:265
 msgctxt "admin screen"
 msgid "Add-Ons"
 msgstr "Tillegg"
 
-#: admin/class-settings.php:223
+#: admin/class-settings.php:263
 msgctxt "admin screen"
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: admin/class-settings.php:136 admin/views/class-view-addons.php:159
+#: admin/class-settings.php:176 admin/views/class-view-addons.php:159
 msgid "Active"
 msgstr "Aktiv"
 
-#: admin/class-settings.php:148 admin/views/class-view-addons.php:153
+#: admin/class-settings.php:188 admin/views/class-view-addons.php:153
 #: admin/views/class-view-addons.php:159
 msgid "Activate"
 msgstr "Aktiver"
@@ -596,7 +613,7 @@ msgctxt "admin screen"
 msgid "Add New Role"
 msgstr "Legg til ny rolle"
 
-#: addons/members-block-permissions/src/Editor.php:87 members.php:466
+#: addons/members-block-permissions/src/Editor.php:87 members.php:451
 msgid "Permissions"
 msgstr "Tillatelser"
 
@@ -695,15 +712,15 @@ msgstr "Nivå 1"
 msgid "Level 0"
 msgstr "Nivå 0"
 
-#: admin/class-settings.php:149
+#: admin/class-settings.php:189
 msgid "Add-on deactivated"
 msgstr "Tillegg deaktivert"
 
-#: admin/class-settings.php:137
+#: admin/class-settings.php:177
 msgid "Add-on activated"
 msgstr "Tillegg aktivert"
 
-#: admin/class-settings.php:125
+#: admin/class-settings.php:165
 msgid "No add-on provided."
 msgstr "Intet tillegg levert"
 
@@ -1394,7 +1411,7 @@ msgid "Allows users to edit private downloads."
 msgstr "Lar brukere redigere private nedlastinger."
 
 #: addons/members-block-permissions/src/Editor.php:131
-#: addons/members-block-permissions/src/Editor.php:132 members.php:467
+#: addons/members-block-permissions/src/Editor.php:132 members.php:452
 msgid "To protect this block by paid membership or centrally with a content protection rule, add MemberPress."
 msgstr "For å beskytte denne blokken ved betalt medlemskap, eller sentralt med en regel for innholdsbeskyttelse, legg til til MemberPress."
 
@@ -1451,16 +1468,14 @@ msgid "Allows access to download taxonomy management screens."
 msgstr "Gir tilgang til å laste ned skjermbilder for å behandle taksonomi."
 
 #. Author URI of the plugin
+#: members.php
 msgid "https://memberpress.com"
 msgstr "https://memberpress.com"
 
 #. Author of the plugin
+#: members.php
 msgid "MemberPress"
 msgstr "MemberPress"
-
-#. Plugin URI of the plugin
-msgid "https://memberpress.com/plugins/members"
-msgstr "https://memberpress.com/plugins/members"
 
 #: admin/class-meta-box-publish-role.php:104
 msgid "%s User"
@@ -1484,7 +1499,7 @@ msgstr "Import"
 msgid "Export"
 msgstr "Eksport"
 
-#: admin/views/class-view-general.php:80
+#: admin/views/class-view-general.php:81
 msgid "REST API"
 msgstr "REST API"
 
@@ -1558,11 +1573,11 @@ msgstr "Rolle fjernet fra valgte brukere."
 msgid "Role added to selected users."
 msgstr "Rolle lagt til valgte brukere."
 
-#: inc/functions-private-site.php:167
+#: inc/functions-private-site.php:172
 msgid "You are not currently logged in."
 msgstr "Du er ikke innlogget."
 
-#: inc/functions-private-site.php:191
+#: inc/functions-private-site.php:196
 msgid "You do not currently have access to the \"%s\" site. If you believe you should have access, please contact your network administrator."
 msgstr "Du har for tiden ikke tilgang til nettstedet \"%s\". Om du mener du skulle ha tilgang, vennligt kontakt nettverksadministratoren."
 
@@ -1766,15 +1781,15 @@ msgstr "Redigere filer"
 msgid "Edit Dashboard"
 msgstr "Redigere kontrollpanelet"
 
-#: inc/functions-private-site.php:198
+#: inc/functions-private-site.php:203
 msgid "If you reached this page by accident and meant to visit one of your own sites, try one of the following links."
 msgstr "Om du har kommet til denne siden og mente å besøke en av dine egne nettsteder, prøv en av følgende lenker."
 
-#: admin/views/class-view-general.php:251
+#: admin/views/class-view-general.php:268
 msgid "Require authentication for access to the REST API."
 msgstr "Krev autentisering for tilgang til REST API."
 
-#: admin/views/class-view-general.php:168
+#: admin/views/class-view-general.php:170
 msgid "Show human-readable capabilities when possible."
 msgstr "Vi menneske-lesbare tillatelser når mulig"
 
@@ -1802,11 +1817,11 @@ msgstr "Rollen til inneværende bruker må ha tillatelser til å redigere bruker
 msgid "The Add-Ons screen allows you to view available add-ons for the Members plugin. You can download some plugins directly. Others may be available to purchase."
 msgstr "Skjermbildet for tillegg lar deg se tilgjengelige programtillegg for Members. Du kan laste ned noen tillegg direkte. Andre kan være tilgjengelig for å kjøpe."
 
-#: members.php:351
+#: members.php:336
 msgid "Members requires PHP version %1$s. You are running version %2$s. Please upgrade and try again."
 msgstr "Members krever PHP-versjon %1$s. Du kjører versjon %2$s. Vennligst oppgrader og prøv på nytt."
 
-#: admin/views/class-view-general.php:398
+#: admin/views/class-view-general.php:415
 msgid "Tick the checkbox to show human-readable capabilities when possible. Note that custom capabilities and capabilities from third-party plugins will show the machine-readable capability name unless they are registered."
 msgstr "Kryss av for å benytte menneske-lesbare tillatelser når mulig. Merk at egendefinerte tillatelser og tillatelser fra tredjepartsutvidelser vil benytte maskinlesbare tillatelser så lenge de ikke er registrert."
 
@@ -1831,18 +1846,19 @@ msgid "Order By:"
 msgstr "Sorter etter:"
 
 #. Plugin Name of the plugin
+#: members.php
 msgid "Members"
 msgstr "Members"
 
-#: members.php:151
+#: members.php:152
 msgid "Method does not exist."
 msgstr "Metoden eksisterer ikke."
 
-#: inc/functions-options.php:133
+#: inc/functions-options.php:145
 msgid "You must be logged into the site to view this content."
 msgstr "Du må være innlogget for å se dette innholdet."
 
-#: inc/functions-options.php:132
+#: inc/functions-options.php:144
 msgid "Sorry, but you do not have permission to view this content."
 msgstr "Beklager, du har ikke tillatelse til å se dette innholdet."
 
@@ -1891,6 +1907,7 @@ msgid "Post Count"
 msgstr "Antall innlegg"
 
 #. Description of the plugin
+#: members.php
 msgid "A user and role management plugin that puts you in full control of your site's permissions. This plugin allows you to edit your roles and their capabilities, clone existing roles, assign multiple roles per user, block post content, or even make your site completely private."
 msgstr "En bruker- og rollehåndteringsutvidelse som gir deg full kontroll over tillatelser på ditt nettsted. Denne utvidelsenen lar deg endre roller og deres tillatelser, kopiere fra eksisterende roller, tildele flere roller pr. bruker, blokkere innhold, eller til og med gjøre nettstedet ditt fullstendig privat."
 
@@ -2030,7 +2047,7 @@ msgid "OK"
 msgstr "OK"
 
 #: addons/members-block-permissions/src/Editor.php:108
-#: admin/class-user-edit.php:98 admin/class-user-new.php:109
+#: admin/class-user-edit.php:98 admin/class-user-new.php:108
 msgid "User Roles"
 msgstr "Brukerroller"
 
@@ -2046,15 +2063,15 @@ msgstr "Er du sikker på at du vil slette denne rollen? Denne handlingen er perm
 msgid "Support Forums"
 msgstr "Støtteforum"
 
-#: admin/views/class-view-general.php:340
+#: admin/views/class-view-general.php:357
 msgid "Role and Capabilities"
 msgstr "Roller og tillatelser"
 
 #: addons/members-block-permissions/src/Editor.php:103
-#: admin/class-meta-box-content-permissions.php:203
-#: admin/class-meta-box-content-permissions.php:322
-#: admin/class-meta-box-content-permissions.php:371
-#: admin/views/class-view-general.php:76
+#: admin/class-meta-box-content-permissions.php:202
+#: admin/class-meta-box-content-permissions.php:321
+#: admin/class-meta-box-content-permissions.php:370
+#: admin/views/class-view-general.php:77
 msgid "Error Message"
 msgstr "Feilmelding"
 
@@ -2129,20 +2146,19 @@ msgstr "Rolle"
 msgid "Custom Capability"
 msgstr "Egendefinert tillatelse"
 
-#: admin/class-meta-box-content-permissions.php:115
-#: admin/views/class-view-general.php:63 admin/views/class-view-general.php:349
+#: admin/views/class-view-general.php:63 admin/views/class-view-general.php:366
 msgid "Content Permissions"
 msgstr "Innholdstillatelser"
 
-#: admin/class-manage-roles.php:90 admin/class-role-edit.php:298
+#: admin/class-manage-roles.php:91 admin/class-role-edit.php:298
 msgid "Edit Role"
 msgstr "Rediger rolle"
 
-#: admin/class-manage-roles.php:87 admin/class-manage-roles.php:93
+#: admin/class-manage-roles.php:88 admin/class-manage-roles.php:94
 #: admin/class-manage-users.php:360
-#: admin/class-meta-box-content-permissions.php:189
-#: admin/class-meta-box-content-permissions.php:308
-#: admin/class-meta-box-content-permissions.php:330 admin/class-roles.php:170
+#: admin/class-meta-box-content-permissions.php:188
+#: admin/class-meta-box-content-permissions.php:307
+#: admin/class-meta-box-content-permissions.php:329 admin/class-roles.php:170
 #: admin/class-user-edit.php:93
 msgid "Roles"
 msgstr "Roller"
@@ -2159,8 +2175,8 @@ msgstr "Nekte tillatelsen %s"
 msgid "Grant %s capability"
 msgstr "Innvilge tillatelsen %s"
 
-#: admin/class-meta-box-content-permissions.php:233
-#: admin/class-meta-box-content-permissions.php:353
+#: admin/class-meta-box-content-permissions.php:232
+#: admin/class-meta-box-content-permissions.php:352
 msgid "If no roles are selected, everyone can view the content. The author, any users who can edit the content, and users with the %s capability can view the content regardless of role."
 msgstr "Om ingen roller velges kan alle se innholdet. Forfatteren, enhver bruker som kan redigere innholdet og brukere med tillatelsen %s kan se innholdet, uansett rolle."
 
@@ -2295,11 +2311,11 @@ msgstr "Tillatelser"
 msgid "Role Manager"
 msgstr "Rollebehandler"
 
-#: admin/views/class-view-general.php:64 admin/views/class-view-general.php:367
+#: admin/views/class-view-general.php:64 admin/views/class-view-general.php:384
 msgid "Private Site"
 msgstr "Privat nettsted"
 
-#: admin/views/class-view-general.php:358
+#: admin/views/class-view-general.php:375
 msgid "Sidebar Widgets"
 msgstr "Widgeter i sidestolpen"
 
@@ -2307,7 +2323,7 @@ msgstr "Widgeter i sidestolpen"
 msgid "Roles and Capabilities"
 msgstr "Roller og tillatelser"
 
-#: admin/class-settings.php:330
+#: admin/class-settings.php:370
 msgctxt "admin screen"
 msgid "Members"
 msgstr "Medlemmer"
@@ -2316,23 +2332,23 @@ msgstr "Medlemmer"
 msgid "Edit Capabilities"
 msgstr "Redigere tillatelelser"
 
-#: admin/views/class-view-general.php:440
+#: admin/views/class-view-general.php:457
 msgid "The private site feature redirects all users who are not logged into the site to the login page, creating an entirely private site. You may also replace your feed content with a custom error message."
 msgstr "\"Privat side\"-funksjonen omdirigerer alle brukere som ikke er logget inn til innloggingssiden og skaper da et helt privat nettsted. Du kan også erstatte feeden med en egendefinert feilmelding."
 
-#: admin/views/class-view-general.php:186
+#: admin/views/class-view-general.php:188
 msgid "Allow users to be assigned more than a single role."
 msgstr "La brukere ha mer enn én rolle."
 
-#: admin/views/class-view-general.php:143
+#: admin/views/class-view-general.php:145
 msgid "Enable the role manager."
 msgstr "Aktiver rollebehandleren."
 
-#: admin/views/class-view-general.php:128
+#: admin/views/class-view-general.php:130
 msgid "Your roles and capabilities will not revert back to their previous settings after deactivating or uninstalling this plugin, so use this feature wisely."
 msgstr "Dine roller og tillatelser vil ikke tilbakestilles etter at du har avinstallert denne utvidelsen, så bruk denne funksjonen varsomt."
 
-#: admin/views/class-view-general.php:79
+#: admin/views/class-view-general.php:80
 msgid "Enable Private Site"
 msgstr "Aktiver privat nettsted"
 
@@ -2390,15 +2406,15 @@ msgstr "Rollenavn-feltet lar deg gi rollen et navn som er forståelig for mennes
 msgid "This screen allows you to edit an individual role and its capabilities."
 msgstr "Denne siden lar deg endre en individuell rolle og dens tillatelser."
 
-#: admin/views/class-view-general.php:266
+#: admin/views/class-view-general.php:283
 msgid "Show error message for feed items."
 msgstr "Vis feilmelding for feed-elementer."
 
-#: admin/views/class-view-general.php:82
+#: admin/views/class-view-general.php:83
 msgid "Feed Error Message"
 msgstr "Feed-feilmelding"
 
-#: admin/views/class-view-general.php:81
+#: admin/views/class-view-general.php:82
 msgid "Disable Feed"
 msgstr "Deaktiver feed"
 
@@ -2446,11 +2462,11 @@ msgstr "ID for Husk meg-felt:"
 msgid "Username Field ID:"
 msgstr "ID for brukernavn-felt:"
 
-#: admin/views/class-view-general.php:426
+#: admin/views/class-view-general.php:443
 msgid "The sidebar widgets feature adds additional widgets for use in your theme's sidebars."
 msgstr "Widgets-muligheten legger til ekstra widgeter som kan brukes i widgetområdene for ditt tema."
 
-#: admin/views/class-view-general.php:161
+#: admin/views/class-view-general.php:163
 msgid "Denied capabilities should always overrule granted capabilities."
 msgstr "Nektede tillatelser bør alltid overstyre gitte tillatelser."
 
@@ -2462,12 +2478,12 @@ msgstr "<strong>Nekte</strong> lar deg eksplisitt nekte en tillatelse for rollen
 msgid "You may also opt to neither grant nor deny the role a capability."
 msgstr "Du kan også velge verken å gi eller nekte en tillatelse for rollen."
 
-#: admin/views/class-view-general.php:236
+#: admin/views/class-view-general.php:238
 msgid "Redirect all logged-out users to the login page before allowing them to view the site."
 msgstr "Omdiriger ikke-innloggede brukere til innloggingssiden før de får se dette nettstedet."
 
 #: addons/members-admin-access/app/class-view-settings.php:189
-#: admin/views/class-view-general.php:319
+#: admin/views/class-view-general.php:336
 msgid "Update Settings"
 msgstr "Oppdater innstillingene"
 
@@ -2475,12 +2491,12 @@ msgstr "Oppdater innstillingene"
 msgid "%s role updated."
 msgstr "Rollen %s oppdatert."
 
-#: admin/views/class-view-general.php:201
+#: admin/views/class-view-general.php:203
 msgid "Enable the content permissions feature."
 msgstr "Aktiver funksjonaliteten for innholdsbegrensning."
 
-#: admin/class-meta-box-content-permissions.php:213
-#: admin/class-meta-box-content-permissions.php:333
+#: admin/class-meta-box-content-permissions.php:212
+#: admin/class-meta-box-content-permissions.php:332
 msgid "Limit access to the content to users of the selected roles."
 msgstr "Begrens tilgang til innholdet for brukere med bestemte roller."
 
@@ -2488,11 +2504,11 @@ msgstr "Begrens tilgang til innholdet for brukere med bestemte roller."
 msgid "You can customize the display of this screen&#8216;s contents in a number of ways:"
 msgstr "Du kan tilpasse visningen denne sidens innhold på mange ulike måter:"
 
-#: admin/views/class-view-general.php:390
+#: admin/views/class-view-general.php:407
 msgid "The multiple user roles feature allows you to assign more than one role to each user from the edit user screen."
 msgstr "Funksjonen for flere brukerroller lar deg tilordne mer enn én rolle til hver bruker fra skjermen for redigering av brukere."
 
-#: admin/views/class-view-general.php:394
+#: admin/views/class-view-general.php:411
 msgid "Tick the checkbox for denied capabilities to always take precedence over granted capabilities when there is a conflict. This is only relevant when using multiple roles per user."
 msgstr "Kryss av i denne boksen for alltid å la nektede tillatelser overstyre gitte tillatelser når det er konflikt. Dette er bare relevant når man bruker flere roller pr. bruker."
 
@@ -2512,15 +2528,15 @@ msgstr "Du kan skjule/vis kolonner basert på dine behov og avgjøre hvor mange 
 msgid "This screen provides access to all of your user roles. Roles are a method of grouping users. They are made up of capabilities (caps), which give permission to users to perform specific actions on the site."
 msgstr "Denne skjermen gir tilgang til alle dine brukerroller. Roller er en metode for å gruppere brukere. De består av tillatelser (caps) som gir brukere adgang til å utføre bestemte handlinger på netstedet."
 
-#: admin/views/class-view-general.php:386
-msgid "The role manager allows you to manage roles on your site by giving you the ability to create, edit, and delete any role. Note that changes to roles do not change settings for the Members plugin. You are literally changing data in your WordPress database. This plugin feature merely provides an interface for you to make these changes."
-msgstr "Rollebehandleren lar deg behandle roller på dit nettsted ved å gi deg muligheten til å opprette, redigere og slette enhver rolle. Merk at endringer av roller ikke endrer innstillingene for denne utvidelsen. Du endrer bokstavelig talt data i din WordPress-databasen. Denne funksjonen i utvidelsen gir deg bare et grensesnitt slik a du kan gjøre disse endringene."
-
 #: admin/class-manage-users.php:161 admin/class-manage-users.php:236
-#: admin/class-role-edit.php:92 members.php:129 members.php:140
+#: admin/class-role-edit.php:92 members.php:130 members.php:141
 msgid "Whoah, partner!"
 msgstr "Rolig, partner!"
 
-#: admin/views/class-view-general.php:412
+#: admin/views/class-view-general.php:403
+msgid "The role manager allows you to manage roles on your site by giving you the ability to create, edit, and delete any role. Note that changes to roles do not change settings for the Members plugin. You are literally changing data in your WordPress database. This plugin feature merely provides an interface for you to make these changes."
+msgstr "Rollebehandleren lar deg behandle roller på dit nettsted ved å gi deg muligheten til å opprette, redigere og slette enhver rolle. Merk at endringer av roller ikke endrer innstillingene for denne utvidelsen. Du endrer bokstavelig talt data i din WordPress-databasen. Denne funksjonen i utvidelsen gir deg bare et grensesnitt slik a du kan gjøre disse endringene."
+
+#: admin/views/class-view-general.php:429
 msgid "The content permissions features adds a meta box to the edit post screen that allows you to grant permissions for who can read the post content based on the user's role. Only users of roles with the %s capability will be able to use this component."
 msgstr "Funksjonene for innholdstillatelser legger til en metaboks på redigeringsskjermen, og som lar deg gi tillatelser til hvem som kan lese innholdet basert på brukerens rolle. Bare brukere i roller med tillatelsen %s vil kunne bruke denne komponenten."
